@@ -41,33 +41,35 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Curp</th>
+                    <th></th>
+                    <th>CURP</th>
                     <th>RFC</th>
-                    <th>Nombre</th>
+                    <th>NOMBRE COMPLETO</th>
                     <th>MODULOS</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($profesionales as $profesional)
                     <tr>
+                        <td><a href="#!" class="btn btn-success btn-sm"><i class="fa fa-info" aria-hidden="true"></i></a></td>
                         <td>{{ $profesional->curp }}</td>
                         <td>{{ $profesional->rfc }}</td>
                         <td>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
                         <td>
                             @if($profesional->mdl_datos_generales == 1)
                                 <!-- Si mdl_datos_generales es igual a 1, mostrar este contenido -->
-                                <a href="#!" class="btn btn-info btn-sm">X</a>
+                                <a href="{{ route('profesionalEdit', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa fa-user" aria-hidden="true"></i></a>
                             @else
                                 <!-- Si mdl_datos_generales no es igual a 1, mostrar otro contenido -->
-                                <a href="#!" class="btn btn-danger btn-sm">X</a>
+                                <a href="#!" class="btn btn-danger btn-sm"><i class="fa fa-user" aria-hidden="true"></i></a>
                             @endif
 
-                            @if($profesional->mdl_puesto == 1)
-                                <!-- Si mdl_datos_generales es igual a 1, mostrar este contenido -->
-                                <a href="#!" class="btn btn-info btn-sm">X</a>
+                            @if(optional($profesional->puestos->first())->mdl_puesto == 1)
+                                <!-- Si mdl_puesto del primer puesto es 1, mostrar botón azul -->
+                                <a href="{{ route('createPuesto', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa fa-archive" aria-hidden="true"></i></a>
                             @else
-                                <!-- Si mdl_datos_generales no es igual a 1, mostrar otro contenido -->
-                                <a href="#!" class="btn btn-danger btn-sm">X</a>
+                                <!-- Si no es 1 o si no hay puestos, mostrar botón rojo -->
+                                <a href="{{ route('createPuesto', $profesional->id) }}" class="btn btn-danger btn-sm"><i class="fa fa-archive" aria-hidden="true"></i></a>
                             @endif
                         </td>
                     </tr>

@@ -33,4 +33,9 @@ class Profesional extends Model
     protected $dates = [
         'fecha_nacimiento',
     ];
+
+    public function puestos()
+    {
+        return $this->hasMany(ProfesionalPuesto::class, 'id_profesional');
+    }
 }

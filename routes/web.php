@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfesionalController;
+use App\Http\Controllers\ProfesionalPuestoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -34,3 +35,23 @@ Route::post('admin/profesionales/datosGeneralesStore',[ProfesionalController::cl
 
 // Ruta para ver los registros
 Route::get('admin/profesionales/profesionalIndex',[ProfesionalController::class, 'profesionalIndex'])->name('profesionalIndex');
+
+// Ruta para mostrar el formulario de edicion
+Route::get('admin/profesionales/profesionalEdit/{id}', [ProfesionalController::class, 'profesionalEdit'])->name('profesionalEdit');
+
+// Ruta para actualizar el registro
+Route::put('admin/profesionales/profesionalUpdate/{id}', [ProfesionalController::class, 'profesionalUpdate'])->name('profesionalUpdate');
+
+/**
+ * 
+ * 
+ * PUESTO MODULO
+ * 
+ * 
+ */
+
+ //Ruta para mostrar el formulario de creacion
+ Route::get('admin/profesionales/puesto/createPuesto/{id}',[ProfesionalPuestoController::class,'createPuesto'])->name('createPuesto');
+
+ // Ruta para almacenar los datos
+ Route::post('admin/profesionales/puesto/storePuesto',[ProfesionalPuestoController::class,'storePuesto'])->name('storePuesto');

@@ -24,8 +24,14 @@
                         <p>Ingresa la CURP</p>
                         <input type="text" name="curp" id='curp' class="form-control" value="{{ old('curp') }}">
                         @error('curp')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+<br>
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                     </div>
                 </div>
         

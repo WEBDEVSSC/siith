@@ -91,7 +91,7 @@ class ProfesionalController extends Controller
          // Lista de municipios
          $municipios = Municipio::where('relacion',$entidad->id)->get();
 
-         return view('profesional.datos-generales',compact(
+         return view('profesional.create',compact(
             'curp',
             'rfc',
             'sexo',
@@ -195,6 +195,89 @@ class ProfesionalController extends Controller
 
         // Regresamos la vista con el objeto
         return view('profesional.index',compact('profesionales'));
+    }
+
+    /**
+     * 
+     * 
+     * 
+     * 
+     * 
+     */
+    public function profesionalEdit($id)
+    {
+        // Buscamos el registro por el ID
+        $profesional = Profesional::findOrFail($id);
+
+        // Creamos el arreglo para los municipios select
+
+        $municipioRelacion = Municipio::where('nombre',$profesional->municipio_nacimiento)->first();
+
+        $municipios = Municipio::where('relacion',$municipioRelacion->relacion)->get();
+
+        // Creamos el arreglo para los estados conyugales
+        $estadosConyuales = EstadoConyugal::all();
+
+        // Regresamos la vista con el arreglo
+        return view('profesional.edit', compact('profesional','municipios','estadosConyuales'));
+    }
+
+    /**
+     * 
+     * 
+     * 
+     * 
+     * 
+     */
+    public function profesionalUpdate(Request $request, $id)
+    {
+        // Validamos los datos
+        $validated = $request->validate([
+            'homoclave' => 'required|size:3',
+            'nombre' => 'required',
+            'apellido_paterno' => 'required',
+            'apellido_materno' => 'required',
+            'municipio_nacimiento' => 'required',
+            'estado_conyugal' => 'required',
+            'telefono_casa' => 'required|size:10',
+            'celular' => 'required|size:10',
+            'email' => 'required|email',
+            
+        ], [
+            'homoclave.required' => 'La homoclave es obligatoria.',
+            'homoclave.size' => 'La homoclave debe ser de 3 caracteres.',            
+            'nombre.required' => 'El nombre es obligatorio.',            
+            'apellido_paterno.required' => 'El apellido paterno es obligatorio.',            
+            'apellido_materno.required' => 'El apellido materno es obligatorio.',            
+            'municipio_nacimiento.required' => 'El municipio de nacimiento es obligatorio.',            
+            'telefono_casa.required' => 'El teléfono de casa es obligatorio.',
+            'telefono_casa.size' => 'El teléfono de casa debe tener más de 10 caracteres.',            
+            'celular.required' => 'El celular es obligatorio.',
+            'celular.size' => 'El celular debe tener más de 10 caracteres.',            
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El correo electrónico debe ser una dirección válida.',
+            'estado_conyugal.required' => 'El estado conyugal es obligatorio.',
+        ]);
+
+        // Buscamos el registro
+        $profesional = Profesional::findOrFail($id);
+
+        // Actualizamos los campos
+        $profesional->update([
+            'homoclave'=>$request->homoclave,
+            'nombre'=>$request->nombre,
+            'apellido_paterno'=>$request->apellido_paterno,
+            'apellido_materno'=>$request->apellido_materno,
+            'municipio_nacimiento' => $request->municipio_nacimiento,
+            'estado_conyugal' => $request->estado_conyugal,
+            'telefono_casa' => $request->telefono_casa,
+            'celular' => $request->celular,
+            'email' => $request->email,
+        ]);
+
+        // Redireccionar con un mensaje de éxito
+        return redirect()->route('profesionalIndex')->with('success', 'Registro actualizado correctamente.');
+
     }
 
 }
