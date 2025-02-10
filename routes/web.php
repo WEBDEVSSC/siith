@@ -1,9 +1,14 @@
 <?php
 
 use App\Http\Controllers\ProfesionalController;
+use App\Http\Controllers\ProfesionalCredencializacionController;
 use App\Http\Controllers\ProfesionalPuestoController;
+use App\Models\Profesional;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,6 +47,9 @@ Route::get('admin/profesionales/profesionalEdit/{id}', [ProfesionalController::c
 // Ruta para actualizar el registro
 Route::put('admin/profesionales/profesionalUpdate/{id}', [ProfesionalController::class, 'profesionalUpdate'])->name('profesionalUpdate');
 
+// Ruta para mostrar el perfil del trabajador
+Route::get('admin/profesionales/profesionalShow/{id}', [ProfesionalController::class, 'profesionalShow'])->name('profesionalShow');
+
 /**
  * 
  * 
@@ -50,8 +58,31 @@ Route::put('admin/profesionales/profesionalUpdate/{id}', [ProfesionalController:
  * 
  */
 
- //Ruta para mostrar el formulario de creacion
- Route::get('admin/profesionales/puesto/createPuesto/{id}',[ProfesionalPuestoController::class,'createPuesto'])->name('createPuesto');
+//Ruta para mostrar el formulario de creacion
+Route::get('admin/profesionales/puesto/createPuesto/{id}',[ProfesionalPuestoController::class,'createPuesto'])->name('createPuesto');
 
- // Ruta para almacenar los datos
- Route::post('admin/profesionales/puesto/storePuesto',[ProfesionalPuestoController::class,'storePuesto'])->name('storePuesto');
+// Ruta para almacenar los datos
+Route::post('admin/profesionales/puesto/storePuesto',[ProfesionalPuestoController::class,'storePuesto'])->name('storePuesto');
+
+ /**
+ * 
+ * 
+ * CREDENCIALIZACION MODULO
+ * 
+ * 
+ */
+
+ Route::get('admin/profesionales/credencializacion/createCredencializacion/{id}',[ProfesionalCredencializacionController::class,'createCredencializacion'])->name('createCredencializacion');
+
+ Route::post('admin/profesionales/credencializacion/storeCredencializacion', [ProfesionalCredencializacionController::class,'storeCredencializacion'])->name('storeCredencializacion');
+
+ Route::get('/foto/{filename}', function ($filename) {
+    $path = storage_path('app/private/credencializacion/' . $filename);
+
+    // Verificar si el archivo existe
+    if (file_exists($path)) {
+        return response()->file($path);
+    }
+
+    return abort(404); // Si el archivo no existe, devuelve un error 404
+});

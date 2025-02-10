@@ -280,4 +280,43 @@ class ProfesionalController extends Controller
 
     }
 
+    /**
+     * 
+     * 
+     * 
+     * 
+     * 
+     */
+    public function profesionalShow($id)
+    {
+        // Buscamos el registro por el ID
+        $profesional = Profesional::findOrFail($id);
+
+        // Calculamos la edad
+        $edad = Carbon::parse($profesional->fecha_nacimiento)->age;
+
+        // Cargamos los datos del MODULO PUESTO
+        $puesto = $profesional->puestos->first();
+        $fiel = $puesto ? $puesto->fiel : null;
+        $fiel_vigencia = $puesto ? $puesto->fiel_vigencia : null;
+
+        // Cargamos los datos del MODULO CREDENCIALIZACION
+        $credencializacion = $profesional->credencializaciones->first();
+        $fotografia = $credencializacion ? $credencializacion->fotografia : null;
+
+        // Generamos la URL de la fotografía
+    $fotoUrl = $fotografia ? url('/foto/' . basename($fotografia)) : null;
+
+
+        // Regresamos la vista con el arreglo
+        return view('profesional.show', compact(
+            'profesional',
+            'edad',
+            'fiel',
+            'fiel_vigencia',
+            'fotografia',
+        'fotoUrl'
+        ));
+    }
+
 }

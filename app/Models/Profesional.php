@@ -38,4 +38,9 @@ class Profesional extends Model
     {
         return $this->hasMany(ProfesionalPuesto::class, 'id_profesional');
     }
+
+    public function credencializaciones()
+    {
+        return $this->hasMany(ProfesionalCredencializacion::class, 'id_profesional');
+    }
 }
