@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Profesionales')
 
 @section('content_header')
     <h1><strong>Profesionales</strong> <small>Perfil del Trabajador</small></h1>
@@ -10,7 +10,7 @@
     
 <div class="card">
     <div class="card-header">
-        <strong>Datos Generales</strong>
+        <strong>DATOS GENERALES</strong>
     </div>
     <div class="card-body">
         <div class="row">
@@ -83,13 +83,56 @@
     <!-- -- -->
 
     <div class="card">
-        <div class="card-header"><strong>Puesto</strong></div>
+        <div class="card-header"><strong>PUESTO</strong></div>
         <div class="card-body">
 
             <div class="row">
                 <div class="col-md-3">
                     <p><strong>FIEL </strong></p>
                     {{ $fiel }} {{ $fiel_vigencia }}
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Actividad</strong></p>
+                    {{ $actividad }}
+                </div>
+                <div class="col-md-3">
+                    <p><strong>Adicional</strong></p>
+                    {{ $adicional }}
+                </div>
+                
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <p><strong>Tipo de personal</strong></p>
+                    {{ $tipoPersonal }}
+                </div>
+                <div class="col-md-3">
+                    <p><strong>Código de puesto </strong></p>
+                    {{ $codigoPuesto }}
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Actividad</strong></p>
+                    {{ $actividad }}
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <p><strong>CLUES Nomina</strong></p>
+                    {{ $cluesNomina }} <br> {{ $cluesNominaNombre }}
+                </div>
+                <div class="col-md-3">
+                    <p><strong>Municipio</strong></p>
+                    {{ $cluesNominaMunicipio }} <br> JURISDICCIÓN {{ $cluesNominaJurisdiccion }}
+                </div>
+                <div class="col-md-3">
+                    <p><strong>CLUES Adscripción</strong></p>
+                    {{ $cluesAdscripcion }} <br> {{ $cluesAdscripcionNombre }}
+                </div>
+                <div class="col-md-3">
+                    <p><strong>Municipio</strong></p>
+                    {{ $cluesNominaMunicipio }} <br> JURISDICCIÓN {{ $cluesNominaJurisdiccion }}
                 </div>
             </div>
 
@@ -99,12 +142,78 @@
 
     <!-- -- -->
 
+    <div class="card">
+        <div class="card-header">
+            <strong>HORARIO</strong>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <p><strong>Jornada</strong></p>
+                    {{ $jornada }}
+                </div>
+                <div class="col-md-9">
+                    <table class="table table-striped">
+                        <tr>
+                            <th><strong>DIA</strong></th>
+                            <th><strong>ENTRADA</strong></th>
+                            <th><strong>SALIDA</strong></th>
+                        </tr>
+                        <tr>
+                            <th><strong>LUNES</strong></th>
+                            <td>{{ $entradaLunes }}</td>
+                            <td>{{ $salidaLunes }}</td>
+                        </tr>
+                        <tr>
+                            <th><strong>MARTES</strong></th>
+                            <td>{{ $entradaMartes }}</td>
+                            <td>{{ $salidaMartes }}</td>
+                        </tr>
+                        <tr>
+                            <th><strong>MIÉRCOLES</strong></th>
+                            <td>{{ $entradaMiercoles }}</td>
+                            <td>{{ $salidaMiercoles }}</td>
+                        </tr>
+                        <tr>
+                            <th><strong>JUEVES</strong></th>
+                            <td>{{ $entradaJueves }}</td>
+                            <td>{{ $salidaJueves }}</td>
+                        </tr>
+                        <tr>
+                            <th><strong>VIERNES</strong></th>
+                            <td>{{ $entradaViernes }}</td>
+                            <td>{{ $salidaViernes }}</td>
+                        </tr>
+                        <tr>
+                            <th><strong>SÁBADO</strong></th>
+                            <td>{{ $entradaSabado }}</td>
+                            <td>{{ $salidaSabado }}</td>
+                        </tr>
+                        <tr>
+                            <th><strong>DOMINGO</strong></th>
+                            <td>{{ $entradaDomingo }}</td>
+                            <td>{{ $salidaDomingo }}</td>
+                        </tr>
+                        <tr>
+                            <th><strong>FESTIVO</strong></th>
+                            <td>{{ $entradaFestivo }}</td>
+                            <td>{{ $salidaFestivo }}</td>
+                        </tr>
+                        
+                    </table>
+                </div>
+        </div>
+        <div class="card-footer">
+
+        </div>
+    </div>
+
 
     @if($fotoUrl)
-    <img src="{{ $fotoUrl }}" alt="Fotografía del profesional" width="200" />
-@else
-    <p>No se ha cargado una fotografía.</p>
-@endif
+        <img src="{{ $fotoUrl }}" alt="Fotografía del profesional" width="200" />
+    @else
+        <p>No se ha cargado una fotografía.</p>
+    @endif
 
 @stop
 

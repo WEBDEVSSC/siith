@@ -193,8 +193,18 @@ class ProfesionalController extends Controller
         // Consultamos todos los usuarios
         $profesionales = Profesional::all();
 
-        // Regresamos la vista con el objeto
-        return view('profesional.index',compact('profesionales'));
+        // Creamos un array para almacenar los datos adicionales
+        $profesionalesData = $profesionales->map(function ($profesional) {
+            
+            $puesto = $profesional->puesto->first();
+            return [
+                'profesional' => $profesional,
+                'cluesAdscripcionNombre' => $puesto ? $puesto->clues_adscripcion_nombre : null,
+            ];
+        });
+
+        // Regresamos la vista con los datos
+        return view('profesional.index', compact('profesionalesData'));
     }
 
     /**
@@ -296,16 +306,58 @@ class ProfesionalController extends Controller
         $edad = Carbon::parse($profesional->fecha_nacimiento)->age;
 
         // Cargamos los datos del MODULO PUESTO
-        $puesto = $profesional->puestos->first();
+        $puesto = $profesional->puesto->first();
         $fiel = $puesto ? $puesto->fiel : null;
         $fiel_vigencia = $puesto ? $puesto->fiel_vigencia : null;
+        $actividad = $puesto ? $puesto->actividad : null;
+        $adicional = $puesto ? $puesto->adicional : null;
+        $tipoPersonal = $puesto ? $puesto->tipo_personal : null;
+        $codigoPuesto = $puesto ? $puesto->codigo_puesto : null;
+
+        $cluesNomina = $puesto ? $puesto->clues_nomina : null;
+        $cluesNominaNombre = $puesto ? $puesto->clues_nomina_nombre : null;
+        $cluesNominaMunicipio = $puesto ? $puesto->clues_nomina_municipio : null;
+        $cluesNominaJurisdiccion = $puesto ? $puesto->clues_nomina_jurisdiccion : null;
+
+        $cluesAdscripcion = $puesto ? $puesto->clues_adscripcion : null;
+        $cluesAdscripcionNombre = $puesto ? $puesto->clues_adscripcion_nombre : null;
+        $cluesAdscripcionMunicipio = $puesto ? $puesto->clues_adscripcion_municipio : null;
+        $cluesAdscripcionJurisdiccion = $puesto ? $puesto->clues_adscripcion_jurisdiccion : null;
 
         // Cargamos los datos del MODULO CREDENCIALIZACION
-        $credencializacion = $profesional->credencializaciones->first();
+        $credencializacion = $profesional->credencializacion->first();
         $fotografia = $credencializacion ? $credencializacion->fotografia : null;
 
         // Generamos la URL de la fotografía
-    $fotoUrl = $fotografia ? url('/foto/' . basename($fotografia)) : null;
+        $fotoUrl = $fotografia ? url('/foto/' . basename($fotografia)) : null;
+
+        // Cargamos los datos del MODULO DE HORARIO
+        $horario = $profesional->horario->first();
+        $jornada = $horario ? $horario->jornada : null;
+        
+        $entradaLunes = $horario && $horario->entrada_lunes ? Carbon::parse($horario->entrada_lunes)->format('h:i A') : null;
+        $salidaLunes = $horario && $horario->salida_lunes ? Carbon::parse($horario->salida_lunes)->format('h:i A') : null;
+
+        $entradaMartes = $horario && $horario->entrada_martes ? Carbon::parse($horario->entrada_martes)->format('h:i A') : null;
+        $salidaMartes = $horario && $horario->salida_martes ? Carbon::parse($horario->salida_martes)->format('h:i A') : null;
+
+        $entradaMiercoles = $horario && $horario->entrada_miercoles ? Carbon::parse($horario->entrada_miercoles)->format('h:i A') : null;
+        $salidaMiercoles = $horario && $horario->salida_miercoles ? Carbon::parse($horario->salida_miercoles)->format('h:i A') : null;
+
+        $entradaJueves = $horario && $horario->entrada_jueves ? Carbon::parse($horario->entrada_jueves)->format('h:i A') : null;
+        $salidaJueves = $horario && $horario->salida_jueves ? Carbon::parse($horario->salida_jueves)->format('h:i A') : null;
+
+        $entradaViernes = $horario && $horario->entrada_viernes ? Carbon::parse($horario->entrada_viernes)->format('h:i A') : null;
+        $salidaViernes = $horario && $horario->salida_viernes ? Carbon::parse($horario->salida_viernes)->format('h:i A') : null;
+
+        $entradaSabado = $horario && $horario->entrada_sabado ? Carbon::parse($horario->entrada_sabado)->format('h:i A') : null;
+        $salidaSabado = $horario && $horario->salida_sabado ? Carbon::parse($horario->salida_sabado)->format('h:i A') : null;
+
+        $entradaDomingo = $horario && $horario->entrada_domingo ? Carbon::parse($horario->entrada_domingo)->format('h:i A') : null;
+        $salidaDomingo = $horario && $horario->salida_domingo ? Carbon::parse($horario->salida_domingo)->format('h:i A') : null;
+
+        $entradaFestivo = $horario && $horario->entrada_festivo ? Carbon::parse($horario->entrada_festivo)->format('h:i A') : null;
+        $salidaFestivo = $horario && $horario->salida_festivo ? Carbon::parse($horario->salida_festivo)->format('h:i A') : null;
 
 
         // Regresamos la vista con el arreglo
@@ -314,8 +366,37 @@ class ProfesionalController extends Controller
             'edad',
             'fiel',
             'fiel_vigencia',
+            'actividad',
+            'adicional',
+            'tipoPersonal',
+            'codigoPuesto',
+            'cluesNomina',
+            'cluesNominaNombre',
+            'cluesNominaMunicipio',
+            'cluesNominaJurisdiccion',
+            'cluesAdscripcion',
+            'cluesAdscripcionNombre',
+            'cluesAdscripcionMunicipio',
+            'cluesAdscripcionJurisdiccion',
             'fotografia',
-        'fotoUrl'
+            'fotoUrl',
+            'jornada',
+            'entradaLunes',
+            'salidaLunes',
+            'entradaMartes',
+            'salidaMartes',
+            'entradaMiercoles',
+            'salidaMiercoles',
+            'entradaJueves',
+            'salidaJueves',
+            'entradaViernes',
+            'salidaViernes',
+            'entradaSabado',
+            'salidaSabado',
+            'entradaDomingo',
+            'salidaDomingo',
+            'entradaFestivo',
+            'salidaFestivo',
         ));
     }
 

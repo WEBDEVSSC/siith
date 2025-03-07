@@ -25,8 +25,13 @@ class ProfesionalCredencializacionController extends Controller
         // Consultamos el ID del profesional
         $profesional = Profesional::findOrFail($id);
 
+        // Generamos la URL de la fotografía
+        $credencializacion = $profesional->credencializaciones->first();
+        $fotografia = $credencializacion ? $credencializacion->fotografia : null;
+        $fotoUrl = $fotografia ? url('/foto/' . basename($fotografia)) : null;
+
         // Regresamos a la vista
-        return view('credencializacion.index', compact('profesional'));
+        return view('credencializacion.index', compact('profesional','fotoUrl'));
     }
 
     /**
@@ -81,17 +86,64 @@ class ProfesionalCredencializacionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function editCredencializacion(string $id)
     {
-        //
+        // Buscamos el registro utilizando el id
+        $credencializacion = ProfesionalCredencializacion::where('id_profesional',$id)->first();
+
+        // Consutlamos los datos del usuario para la tartjeta
+        $profesional = Profesional::findOrFail($id);
+
+         // Generamos la URL de la fotografía
+         $credencializacion = $profesional->credencializaciones->first();
+         $fotografia = $credencializacion ? $credencializacion->fotografia : null;
+         $fotoUrl = $fotografia ? url('/foto/' . basename($fotografia)) : null;
+
+        // Retornamos la vista
+        return view('credencializacion.edit', compact('credencializacion','profesional','fotoUrl'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function updateCredencializacion(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'id_profesional' => 'required',
+            'curp' => 'required',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+        ], [
+            'id_profesional.required' => 'El campo Profesional ID es obligatorio.',
+            'curp.required' => 'El campo CURP es obligatorio.',
+            'foto.image' => 'El archivo debe ser una imagen.',
+            'foto.mimes' => 'La imagen debe ser de tipo: jpeg, png o jpg.',
+            'foto.max' => 'El tamaño máximo permitido para la imagen es 2MB.',
+        ]);
+
+        // Consultamos el registro
+        $credencializacion = ProfesionalCredencializacion::findOrFail($id);
+
+        // Eliminamos la imagen actual
+        if (Storage::exists($credencializacion->fotografia)) 
+        {
+            Storage::delete($credencializacion->fotografia);
+        }
+        
+        // Obtener la fecha y hora actual en el formato deseado
+        $timestamp = now()->format('Ymd_His');
+
+        // Crear el nombre del archivo con la fecha y hora
+        $archivoNombre = $request->curp . '-' . $timestamp . '.' . $request->foto->extension();
+
+        // Almacenar el archivo en la carpeta 'documents' en el almacenamiento local
+        $archivoPath = $request->foto->storeAs('credencializacion', $archivoNombre, 'local');
+
+        // Actualizamos los campos
+        $credencializacion->update([
+            'fotografia'=>$archivoPath,
+        ]);
+
+        return redirect()->route('profesionalIndex')->with('updateCredencializacion', 'Fotografía actualizada correctamente');
     }
 
     /**

@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\ProfesionalController;
 use App\Http\Controllers\ProfesionalCredencializacionController;
+use App\Http\Controllers\ProfesionalHorarioController;
 use App\Http\Controllers\ProfesionalPuestoController;
 use App\Models\Profesional;
+use App\Models\VigenciaMotivo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -64,6 +66,15 @@ Route::get('admin/profesionales/puesto/createPuesto/{id}',[ProfesionalPuestoCont
 // Ruta para almacenar los datos
 Route::post('admin/profesionales/puesto/storePuesto',[ProfesionalPuestoController::class,'storePuesto'])->name('storePuesto');
 
+// Ruta para mostrar el formulario de edicicon
+Route::get('admin/profesionales/puesto/editPuesto/{id}', [ProfesionalPuestoController::class, 'editPuesto'])->name('editPuesto');
+
+// Ruta para editar los datos
+Route::put('admin/profesionales/puesto/updatePuesto/{id}', [ProfesionalPuestoController::class, 'updatePuesto'])->name('updatePuesto');
+
+// Ruta dinamica para mostrar los motivos de vigencia
+Route::get('/get-motivos/{id}', function ($id) { return response()->json(VigenciaMotivo::where('id_vigencia', $id)->get()); });
+
  /**
  * 
  * 
@@ -72,10 +83,19 @@ Route::post('admin/profesionales/puesto/storePuesto',[ProfesionalPuestoControlle
  * 
  */
 
+ // Ruta para mostrar el formulario
  Route::get('admin/profesionales/credencializacion/createCredencializacion/{id}',[ProfesionalCredencializacionController::class,'createCredencializacion'])->name('createCredencializacion');
 
+ // Ruta para guardar los datos
  Route::post('admin/profesionales/credencializacion/storeCredencializacion', [ProfesionalCredencializacionController::class,'storeCredencializacion'])->name('storeCredencializacion');
 
+ // Ruta para mostrar el form de editar la fotografia
+ Route::get('admin/profesionales/credencializacion/editCredencializacion/{id}', [ProfesionalCredencializacionController::class, 'editCredencializacion'])->name('editCredencializacion');
+
+ // Ruta para actualizar el registro
+ Route::put('admin/profesionales/credencializacion/updateCredencializacion/{id}', [ProfesionalCredencializacionController::class, 'updateCredencializacion'])->name('updateCredencializacion');
+
+ // Ruta para mostrar la imagen al estar en la carpeta private
  Route::get('/foto/{filename}', function ($filename) {
     $path = storage_path('app/private/credencializacion/' . $filename);
 
@@ -86,3 +106,18 @@ Route::post('admin/profesionales/puesto/storePuesto',[ProfesionalPuestoControlle
 
     return abort(404); // Si el archivo no existe, devuelve un error 404
 });
+
+/**
+ * 
+ * 
+ * HORARIO MODULO
+ * 
+ * 
+ */
+Route::get('admin/profesionales/horario/createHorario/{id}',[ProfesionalHorarioController::class,'createHorario'])->name('createHorario');
+
+Route::post('admin/profesionales/horario/storeHorario', [ProfesionalHorarioController::class, 'storeHorario'])->name('storeHorario');
+
+Route::get('admin/profesionales/horario/editHorario/{id}', [ProfesionalHorarioController::class,'editHorario'])->name('editHorario');
+
+Route::put('admin/profesionales/horario/updateHorario/{id}', [ProfesionalHorarioController::class, 'updateHorario'])->name('updateHorario');

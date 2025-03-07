@@ -34,13 +34,18 @@ class Profesional extends Model
         'fecha_nacimiento',
     ];
 
-    public function puestos()
+    public function puesto()
     {
         return $this->hasMany(ProfesionalPuesto::class, 'id_profesional');
     }
 
-    public function credencializaciones()
+    public function credencializacion()
     {
         return $this->hasMany(ProfesionalCredencializacion::class, 'id_profesional');
+    }
+
+    public function horario()
+    {
+        return $this->hasMany(ProfesionalHorario::class, 'id_profesional');
     }
 }

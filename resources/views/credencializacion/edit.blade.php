@@ -37,9 +37,10 @@
 
         </div>
 
-        <form action="{{ route('storeCredencializacion') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('updateCredencializacion' , $credencializacion->id) }}" method="POST" enctype="multipart/form-data">
 
         @csrf 
+        @method('PUT')
 
         <input type="hidden" name="id_profesional" value="{{ $profesional->id }}">
         <input type="hidden" name="curp" value="{{ $profesional->curp }}">
