@@ -86,22 +86,25 @@ class ProfesionalCredencializacionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function editCredencializacion(string $id)
+    public function editCredencializacion($id)
     {
         // Buscamos el registro utilizando el id
-        $credencializacion = ProfesionalCredencializacion::where('id_profesional',$id)->first();
+        $credencializacion = ProfesionalCredencializacion::where('id_profesional', $id)->first();
 
-        // Consutlamos los datos del usuario para la tartjeta
+        // Consultamos los datos del usuario para la tarjeta
         $profesional = Profesional::findOrFail($id);
 
-         // Generamos la URL de la fotografía
-         $credencializacion = $profesional->credencializaciones->first();
-         $fotografia = $credencializacion ? $credencializacion->fotografia : null;
-         $fotoUrl = $fotografia ? url('/foto/' . basename($fotografia)) : null;
+        // Obtenemos la primera credencialización asociada al profesional
+        $credencializacionRelacionado = $profesional->credencializaciones->first();
+
+        // Generamos la URL de la fotografía
+        $fotografia = $credencializacionRelacionado ? $credencializacionRelacionado->fotografia : null;
+        $fotoUrl = $fotografia ? url('/foto/' . basename($fotografia)) : null;
 
         // Retornamos la vista
-        return view('credencializacion.edit', compact('credencializacion','profesional','fotoUrl'));
+        return view('credencializacion.edit', compact('credencializacion', 'profesional', 'fotoUrl'));
     }
+
 
     /**
      * Update the specified resource in storage.
