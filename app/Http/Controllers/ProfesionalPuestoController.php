@@ -21,6 +21,13 @@ use Illuminate\Http\Request;
 
 class ProfesionalPuestoController extends Controller
 {
+    public function getMotivos($vigencia)
+    {
+        $motivos = VigenciaMotivo::where('label_vigencia', $vigencia)->pluck('motivo', 'id');
+        return response()->json($motivos);
+        
+    }
+    
     //
     public function createPuesto($id)
     {

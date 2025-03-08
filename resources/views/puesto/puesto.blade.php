@@ -352,4 +352,25 @@
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            $('#vigencia').change(function(){
+                let vigencia = $(this).val();
+                $('#vigencia_motivo').empty().append('<option value="">Seleccione un motivo</option>');
+    
+                if(vigencia) {
+                    $.ajax({
+                        url: `/vigencias-motivos/${vigencia}`,
+                        type: 'GET',
+                        success: function(response) {
+                            $.each(response, function(id, motivo){
+                                $('#vigencia_motivo').append(`<option value="${motivo}">${motivo}</option>`);
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @stop

@@ -3,13 +3,24 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Schema; // Asegúrate de agregar esto
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        Schema::defaultStringLength(191);  // Aquí ya está bien
+        // Ajuste para el campo de correo en la tabla users
+        Schema::defaultStringLength(191);
+
+        //------------------------------------------------//
+        //               ROLES Y PERMISOS                 //
+        //------------------------------------------------//
+
+        // ROL ADMINISTRADOR (OFICINA CENTRAL)
+        Gate::define('isAdmin', function ($user) {
+            return $user->role === 'admin';
+        });
     }
 
     public function register(): void
