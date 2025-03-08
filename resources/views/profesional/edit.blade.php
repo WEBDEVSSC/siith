@@ -10,7 +10,7 @@
     
 <div class="card">
         <div class="card-header">
-
+            <a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
         </div>
 
         <form action="{{ route('profesionalUpdate', $profesional->id) }}" method="POST">

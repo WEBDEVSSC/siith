@@ -110,6 +110,8 @@
 <div class="card">
         <div class="card-header">
 
+            <a href="{{ route('profesionalExport') }}" class="btn btn-success">Exportar Profesionales a Excel</a>
+
         </div>
         <div class="card-body">
 

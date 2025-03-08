@@ -7,8 +7,10 @@
 @stop
 
 @section('content')
+
+<a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
     
-<div class="card">
+<div class="card mt-3">
     <div class="card-header">
         <strong>DATOS GENERALES</strong>
     </div>

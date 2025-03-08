@@ -7,9 +7,24 @@
 @stop
 
 @section('content')
+
+<div class="alert alert-info" role="alert">
+
+    <ul>
+        <li><strong>Nombre</strong> : {{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</li>
+        <li><strong>CURP</strong> : {{ $profesional->curp }}</li>
+    </ul>
+    
+</div>
     
 <div class="card">
         <div class="card-header">
+
+            <a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
+
+        </div>
+
+        <div class="card-body">
 
             <div class="row">
                 <div class="col-md-3">
@@ -27,15 +42,13 @@
                 </div>
                 <div class="col-md-9">
 
-                    <ul>
-                        <li><strong>Nombre</strong> : {{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</li>
-                        <li><strong>CURP</strong> : {{ $profesional->curp }}</li>
-                    </ul>
+                   
 
                 </div>
             </div>
 
         </div>
+
 
         <form action="{{ route('storeCredencializacion') }}" method="POST" enctype="multipart/form-data">
 

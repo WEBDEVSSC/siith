@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProfesionalExport;
 use App\Models\Entidad;
 use App\Models\EstadoConyugal;
 use App\Models\Municipio;
 use App\Models\Profesional;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProfesionalController extends Controller
 {
@@ -399,5 +401,12 @@ class ProfesionalController extends Controller
             'salidaFestivo',
         ));
     }
+
+    public function export()
+    {
+        // Exporta los datos usando la clase CluesExport
+        return Excel::download(new ProfesionalExport, 'REPORTE.xlsx');
+    }
+
 
 }

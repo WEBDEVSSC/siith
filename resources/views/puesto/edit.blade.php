@@ -7,14 +7,20 @@
 @stop
 
 @section('content')
+
+<div class="alert alert-info" role="alert">
+
+    <ul>
+        <li><strong>Nombre</strong> : {{ $profesionalData->nombre }} {{ $profesionalData->apellido_paterno }} {{ $profesionalData->apellido_materno }}</li>
+        <li><strong>CURP</strong> : {{ $profesionalData->curp }}</li>
+    </ul>
+    
+</div>
     
 <div class="card">
         <div class="card-header">
 
-            <ul>
-                <li><strong>Nombre</strong> : {{ $profesionalData->nombre }} {{ $profesionalData->apellido_paterno }} {{ $profesionalData->apellido_materno }}</li>
-                <li><strong>CURP</strong> : {{ $profesionalData->curp }}</li>
-            </ul>
+            <a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
 
         </div>
 

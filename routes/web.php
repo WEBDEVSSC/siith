@@ -121,3 +121,5 @@ Route::post('admin/profesionales/horario/storeHorario', [ProfesionalHorarioContr
 Route::get('admin/profesionales/horario/editHorario/{id}', [ProfesionalHorarioController::class,'editHorario'])->name('editHorario');
 
 Route::put('admin/profesionales/horario/updateHorario/{id}', [ProfesionalHorarioController::class, 'updateHorario'])->name('updateHorario');
+
+Route::get('export-clues', [ProfesionalController::class, 'export'])->name('profesionalExport');
