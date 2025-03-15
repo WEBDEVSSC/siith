@@ -36,16 +36,26 @@ class Profesional extends Model
 
     public function puesto()
     {
-        return $this->hasMany(ProfesionalPuesto::class, 'id_profesional');
+        return $this->hasOne(ProfesionalPuesto::class, 'id_profesional');
     }
 
     public function credencializacion()
     {
-        return $this->hasMany(ProfesionalCredencializacion::class, 'id_profesional');
+        return $this->hasOne(ProfesionalCredencializacion::class, 'id_profesional');
     }
 
     public function horario()
     {
-        return $this->hasMany(ProfesionalHorario::class, 'id_profesional');
+        return $this->hasOne(ProfesionalHorario::class, 'id_profesional');
+    }
+
+    public function sueldo()
+    {
+        return $this->hasOne(ProfesionalSueldo::class,'id_profesional');
+    }
+
+    public function gradoAcademico()
+    {
+        return $this->hasOne(ProfesionalGradoAcademico::class,'id_profesional');
     }
 }

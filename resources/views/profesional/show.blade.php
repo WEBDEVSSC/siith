@@ -225,6 +225,44 @@
 
         </div>
     </div>
+</div>
+
+    <!-- --------------------------------------------------------------- -->
+
+    <div class="card mt-3">
+        <div class="card-header"><strong>SUELDO</strong></div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <p><strong>SUELDO MENSUAL</strong></p>
+                    $ {{ $sueldoMensual }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>COMPENSACIONES</strong></p>
+                    $ {{ $compensaciones }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>PRESTACIONES MANDATO DE LEY</strong></p>
+                    $ {{ $prestacionesMandatoLey }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>PRESTACIONES CGT</strong></p>
+                    $ {{ $prestacionesCgt }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>ESTIMULOS</strong></p>
+                    $ {{ $estimulos }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>TOTAL</strong></p>
+                    $ {{ $totalSueldo }}
+                </div>
+            </div>
+        </div>
+        <div class="card-footer"></div>
+    </div>
+
+    <!-- --------------------------------------------------------------- -->
 
 @stop
 

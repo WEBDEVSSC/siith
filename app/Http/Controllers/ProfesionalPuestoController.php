@@ -176,6 +176,7 @@ class ProfesionalPuestoController extends Controller
         $puesto->clues_adscripcion_nombre = $cluesAdscripcion->nombre;
         $puesto->clues_adscripcion_municipio = $cluesAdscripcion->municipio;
         $puesto->clues_adscripcion_jurisdiccion	 = $cluesAdscripcion->clave_jurisdiccion;
+        $puesto->clues_adscripcion_tipo	 = $cluesAdscripcion->clave_establecimiento;
 
         $puesto->area_trabajo= $request->area_trabajo;
         $puesto->ocupacion= $request->ocupacion;

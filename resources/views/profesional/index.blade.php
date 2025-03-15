@@ -105,6 +105,62 @@
     </script>
 @endif
 
+<!-- NOTIFICACIONES SUELDO -->
+
+@if(session('successSueldo'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Éxito',
+                text: "{{ session('successSueldo') }}",
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            });
+        });
+    </script>
+@endif
+
+@if(session('updateSueldo'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Éxito',
+                text: "{{ session('updateSueldo') }}",
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            });
+        });
+    </script>
+@endif
+
+<!-- NOTIFICACIONES GRADO ACADEMICO -->
+
+@if(session('successGradoAcademico'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Éxito',
+                text: "{{ session('successGradoAcademico') }}",
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            });
+        });
+    </script>
+@endif
+
+@if(session('updateGradoAcademico'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Éxito',
+                text: "{{ session('updateGradoAcademico') }}",
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            });
+        });
+    </script>
+@endif
+
 <!-- -->
     
 <div class="card">
@@ -135,7 +191,7 @@
                 @foreach ($profesionalesData as $data)
                     <tr>
                         <td>
-                            <a href="{{ route('profesionalShow', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="DETALLES">
+                            <a href="{{ route('profesionalShow', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="DETALLES">
                                 <i class="fa fa-info" aria-hidden="true"></i>
                             </a>
                         </td>
@@ -151,7 +207,7 @@
                             <!-- ------------------------- -->
 
                             @if($data['profesional']->mdl_datos_generales == 1)
-                                <a href="{{ route('profesionalEdit', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="DATOS GENERALES">
+                                <a href="{{ route('profesionalEdit', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="DATOS GENERALES">
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                 </a>
                             @else
@@ -165,8 +221,8 @@
                             <!-- ------------------------- -->
                             <!-- ------------------------- -->
 
-                            @if(optional($data['profesional']->puesto->first())->mdl_puesto == 1)
-                                <a href="{{ route('editPuesto', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="PUESTO">
+                            @if(optional($data['profesional']->puesto)->mdl_puesto == 1)
+                                <a href="{{ route('editPuesto', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="PUESTO">
                                     <i class="fa fa-archive" aria-hidden="true"></i>
                                 </a>
                             @else
@@ -181,8 +237,8 @@
                             <!-- --------------------------- -->
                             <!-- --------------------------- -->
 
-                            @if(optional($data['profesional']->credencializacion->first())->mdl_credencializacion == 1)
-                                <a href="{{ route('editCredencializacion', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="CREDENCIALIZACIÓN">
+                            @if(optional($data['profesional']->credencializacion)->mdl_credencializacion == 1)
+                                <a href="{{ route('editCredencializacion', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="CREDENCIALIZACIÓN">
                                     <i class="fa fa-camera" aria-hidden="true"></i>
                                 </a>
                             @else
@@ -197,8 +253,8 @@
                             <!-- --------------------------- -->
                             <!-- --------------------------- -->
 
-                            @if(optional($data['profesional']->horario->first())->mdl_horario == 1)
-                                <a href="{{ route('editHorario', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="HORARIO">
+                            @if(optional($data['profesional']->horario)->mdl_horario == 1)
+                                <a href="{{ route('editHorario', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="HORARIO">
                                     <i class="fa fa-clock" aria-hidden="true"></i>
                                 </a>
                             @else
@@ -207,7 +263,40 @@
                                 </a>
                             @endif
 
+                            <!-- --------------------------- -->
+                            <!-- --------------------------- -->
+                            <!--      MODULO DE SUELDO       -->
+                            <!-- --------------------------- -->
+                            <!-- --------------------------- -->
+
+                            @if(optional($data['profesional']->sueldo)->mdl_sueldo == 1)
+                            <a href="{{ route('editSueldo', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="SUELDO">
+                                <i class="fa fa-credit-card" aria-hidden="true"></i>
+                            </a>
+                            @else
+                                <a href="{{ route('createSueldo', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="SUELDO">
+                                    <i class="fa fa-credit-card" aria-hidden="true"></i>
+                                </a>
+                            @endif
+
+                            <!-- --------------------------- -->
+                            <!-- --------------------------- -->
+                            <!--  MODULO DE GRADO ACADEMICO  -->
+                            <!-- --------------------------- -->
+                            <!-- --------------------------- -->
+
+                            @if(optional($data['profesional']->gradoAcademico)->mdl_grado_academico == 1)
+                            <a href="{{ route('editGrado', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="GRADO ACADEMICO">
+                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                            </a>
+                            @else
+                                <a href="{{ route('createGrado', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="GRADO ACADEMICO">
+                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                </a>
+                            @endif
+
                         </td>
+                        
                     </tr>
                 @endforeach
             </tbody>

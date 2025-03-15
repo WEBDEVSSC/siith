@@ -190,18 +190,17 @@ class ProfesionalController extends Controller
      * 
      * 
      */
+
     public function profesionalIndex()
     {
-        // Consultamos todos los usuarios
-        $profesionales = Profesional::all();
+        // Consultamos todos los profesionales con sus relaciones
+        $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico'])->get();
 
         // Creamos un array para almacenar los datos adicionales
         $profesionalesData = $profesionales->map(function ($profesional) {
-            
-            $puesto = $profesional->puesto->first();
             return [
                 'profesional' => $profesional,
-                'cluesAdscripcionNombre' => $puesto ? $puesto->clues_adscripcion_nombre : null,
+                'cluesAdscripcionNombre' => optional($profesional->puesto)->clues_adscripcion_nombre,
             ];
         });
 
@@ -309,6 +308,7 @@ class ProfesionalController extends Controller
 
         // Cargamos los datos del MODULO PUESTO
         $puesto = $profesional->puesto->first();
+
         $fiel = $puesto ? $puesto->fiel : null;
         $fiel_vigencia = $puesto ? $puesto->fiel_vigencia : null;
         $actividad = $puesto ? $puesto->actividad : null;
@@ -361,6 +361,15 @@ class ProfesionalController extends Controller
         $entradaFestivo = $horario && $horario->entrada_festivo ? Carbon::parse($horario->entrada_festivo)->format('h:i A') : null;
         $salidaFestivo = $horario && $horario->salida_festivo ? Carbon::parse($horario->salida_festivo)->format('h:i A') : null;
 
+        // Cargamos los datos del modulo sueldo
+        $sueldo = $profesional->sueldo->first();
+
+        $sueldoMensual = $sueldo ? $sueldo->sueldo_mensual : null;
+        $compensaciones = $sueldo ? $sueldo->compensaciones : null;
+        $prestacionesMandatoLey = $sueldo ? $sueldo->prestaciones_mandato_ley : null;
+        $prestacionesCgt = $sueldo ? $sueldo->prestaciones_cgt : null;
+        $estimulos = $sueldo ? $sueldo->estimulos : null;
+        $totalSueldo = $sueldo ? $sueldo->total : null;
 
         // Regresamos la vista con el arreglo
         return view('profesional.show', compact(
@@ -399,8 +408,15 @@ class ProfesionalController extends Controller
             'salidaDomingo',
             'entradaFestivo',
             'salidaFestivo',
+            'sueldoMensual',
+            'compensaciones',
+            'prestacionesMandatoLey',
+            'prestacionesCgt',
+            'estimulos',
+            'totalSueldo',
         ));
     }
+
 
     public function export()
     {

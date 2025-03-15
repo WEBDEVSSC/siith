@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\ProfesionalController;
 use App\Http\Controllers\ProfesionalCredencializacionController;
+use App\Http\Controllers\ProfesionalGradoAcademicoController;
 use App\Http\Controllers\ProfesionalHorarioController;
 use App\Http\Controllers\ProfesionalPuestoController;
+use App\Http\Controllers\ProfesionalSueldoController;
+use App\Models\GradoAcademico;
 use App\Models\VigenciaMotivo;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -92,7 +95,9 @@ Route::middleware(['auth'])->group(function ()
     Route::put('admin/profesionales/puesto/updatePuesto/{id}', [ProfesionalPuestoController::class, 'updatePuesto'])->name('updatePuesto');
 
     // Ruta dinamica para mostrar los motivos de vigencia
-    Route::get('/get-motivos/{id}', function ($id) { return response()->json(VigenciaMotivo::where('id_vigencia', $id)->get()); });
+    //Route::get('/get-motivos/{id}', function ($id) { return response()->json(VigenciaMotivo::where('id_vigencia', $id)->get()); });
+
+    Route::get('/vigencias-motivos/{vigencia}', [ProfesionalPuestoController::class, 'getMotivos']);
 
     /**
      * 
@@ -143,7 +148,43 @@ Route::middleware(['auth'])->group(function ()
 
     Route::get('export-clues', [ProfesionalController::class, 'export'])->name('profesionalExport');
 
-    Route::get('/vigencias-motivos/{vigencia}', [ProfesionalPuestoController::class, 'getMotivos']);
+    
+
+    /**
+     * 
+     * 
+     * SUELDO MODULO
+     * 
+     * 
+     */
+
+    Route::get('admin/profesionales/sueldo/createSueldo/{id}', [ProfesionalSueldoController::class,'createSueldo'])->name('createSueldo');
+
+    Route::post('admin/profesionales/sueldo/storeSueldo', [ProfesionalSueldoController::class,'storeSueldo'])->name('storeSueldo');
+
+    Route::get('admin/profesionales/sueldo/editSueldo/{id}', [ProfesionalSueldoController::class, 'editSueldo'])->name('editSueldo');
+
+    Route::put('admin/profesionales/sueldo/updateSueldo/{id}', [ProfesionalSueldoController::class, 'updateSueldo'])->name('updateSueldo');
+
+    
+    /**
+     * 
+     * 
+     * GRADO ACADEMICO MODULO
+     * 
+     * 
+     */
+
+     Route::get('admin/profesionales/gradoAcademico/createGrado/{id}', [ProfesionalGradoAcademicoController::class,'createGrado'])->name('createGrado');
+
+     Route::post('admin/profesionales/gradoAcademico/storeGrado', [ProfesionalGradoAcademicoController::class,'storeGrado'])->name('storeGrado');
+ 
+     Route::get('admin/profesionales/gradoAcademico/editGrado/{id}', [ProfesionalGradoAcademicoController::class, 'editGrado'])->name('editGrado');
+ 
+     Route::put('admin/profesionales/gradoAcademico/updateGrado/{id}', [ProfesionalGradoAcademicoController::class, 'updateGrado'])->name('updateGrado');
+
+    // Ruta dinamica para mostrar
+    Route::get('/titulos/{cve}', [ProfesionalGradoAcademicoController::class, 'getTitulos']);
 
 });
 
