@@ -194,7 +194,7 @@ class ProfesionalController extends Controller
     public function profesionalIndex()
     {
         // Consultamos todos los profesionales con sus relaciones
-        $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico'])->get();
+        $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])->get();
 
         // Creamos un array para almacenar los datos adicionales
         $profesionalesData = $profesionales->map(function ($profesional) {
@@ -307,7 +307,7 @@ class ProfesionalController extends Controller
         $edad = Carbon::parse($profesional->fecha_nacimiento)->age;
 
         // Cargamos los datos del MODULO PUESTO
-        $puesto = $profesional->puesto->first();
+        $puesto = $profesional->puesto;
 
         $fiel = $puesto ? $puesto->fiel : null;
         $fiel_vigencia = $puesto ? $puesto->fiel_vigencia : null;
@@ -334,7 +334,7 @@ class ProfesionalController extends Controller
         $fotoUrl = $fotografia ? url('/foto/' . basename($fotografia)) : null;
 
         // Cargamos los datos del MODULO DE HORARIO
-        $horario = $profesional->horario->first();
+        $horario = $profesional->horario;
         $jornada = $horario ? $horario->jornada : null;
         
         $entradaLunes = $horario && $horario->entrada_lunes ? Carbon::parse($horario->entrada_lunes)->format('h:i A') : null;
@@ -362,7 +362,7 @@ class ProfesionalController extends Controller
         $salidaFestivo = $horario && $horario->salida_festivo ? Carbon::parse($horario->salida_festivo)->format('h:i A') : null;
 
         // Cargamos los datos del modulo sueldo
-        $sueldo = $profesional->sueldo->first();
+        $sueldo = $profesional->sueldo;
 
         $sueldoMensual = $sueldo ? $sueldo->sueldo_mensual : null;
         $compensaciones = $sueldo ? $sueldo->compensaciones : null;
@@ -370,6 +370,28 @@ class ProfesionalController extends Controller
         $prestacionesCgt = $sueldo ? $sueldo->prestaciones_cgt : null;
         $estimulos = $sueldo ? $sueldo->estimulos : null;
         $totalSueldo = $sueldo ? $sueldo->total : null;
+
+        // Cargamos los datos del modulo de GRADO ACADEMICO
+        $gradoAcademico = $profesional->gradoAcademico;
+
+        $cveGradoUno = $gradoAcademico ? $gradoAcademico->cve_grado_uno : null;
+        $gradoAcademicoUno = $gradoAcademico ? $gradoAcademico->grado_academico_uno : null;
+        $tituloUno = $gradoAcademico ? $gradoAcademico->titulo_uno : null;
+        $institucionEducativaUno = $gradoAcademico ? $gradoAcademico->institucion_educativa_uno : null;
+        $cedulaUno = $gradoAcademico ? $gradoAcademico->cedula_uno : null;
+        $numeroCedulaUno = $gradoAcademico ? $gradoAcademico->numero_cedula_uno : null;
+        $regNacProfUno = $gradoAcademico ? $gradoAcademico->reg_nac_prof_uno : null;
+
+        $cveGradoDos = $gradoAcademico ? $gradoAcademico->cve_grado_dos : null;
+        $gradoAcademicoDos = $gradoAcademico ? $gradoAcademico->grado_academico_dos : null;
+        $tituloDos = $gradoAcademico ? $gradoAcademico->titulo_dos : null;
+        $institucionEducativaDos = $gradoAcademico ? $gradoAcademico->institucion_educativa_dos : null;
+        $cedulaDos = $gradoAcademico ? $gradoAcademico->cedula_dos : null;
+        $numeroCedulaDos = $gradoAcademico ? $gradoAcademico->numero_cedula_dos : null;
+        $regNacProfDos = $gradoAcademico ? $gradoAcademico->reg_nac_prof_dos : null;
+
+
+        // Cargamos los datos para el modulo
 
         // Regresamos la vista con el arreglo
         return view('profesional.show', compact(
@@ -414,6 +436,21 @@ class ProfesionalController extends Controller
             'prestacionesCgt',
             'estimulos',
             'totalSueldo',
+
+            'cveGradoUno',
+            'gradoAcademicoUno',
+            'tituloUno',
+            'institucionEducativaUno',
+            'cedulaUno',
+            'numeroCedulaUno',
+            'regNacProfUno',
+            'cveGradoDos',
+            'gradoAcademicoDos',
+            'tituloDos',
+            'institucionEducativaDos',
+            'cedulaDos',
+            'numeroCedulaDos',
+            'regNacProfDos'
         ));
     }
 

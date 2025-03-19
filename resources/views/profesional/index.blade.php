@@ -4,6 +4,8 @@
 
 @section('plugins.Sweetalert2', true)
 
+@section('plugins.Datatables', true)
+
 @section('content_header')
     <h1><strong>Profesionales</strong> <small>Panel de Control</small></h1>
 @stop
@@ -176,7 +178,7 @@
             No hay registros disponibles.
         </div>
     @else
-        <table class="table table-bordered">
+        <table id="profesionalesTable" class="table table-bordered">
             <thead>
                 <tr>
                     <th></th>
@@ -295,6 +297,22 @@
                                 </a>
                             @endif
 
+                            <!-- --------------------------- -->
+                            <!-- --------------------------- -->
+                            <!--    MODULO DE AREA MEDICA    -->
+                            <!-- --------------------------- -->
+                            <!-- --------------------------- -->
+
+                            @if(optional($data['profesional']->areaMedica)->mdl_area_medica == 1)
+                            <a href="{{ route('editAreaMedica', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="AREA MEDICA">
+                                <i class="fa fa-stethoscope" aria-hidden="true"></i>
+                            </a>
+                            @else
+                                <a href="{{ route('createAreaMedica', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="AREA MEDICA">
+                                    <i class="fa fa-stethoscope" aria-hidden="true"></i>
+                                </a>
+                            @endif
+
                         </td>
                         
                     </tr>
@@ -321,8 +339,22 @@
 
     <script>
         $(document).ready(function() {
-    // Inicializa todos los tooltips de la página
-    $('[data-toggle="tooltip"]').tooltip();
-});
+            // Inicializa todos los tooltips de la página
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            // Inicializa DataTables
+            $('#profesionalesTable').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json" // Traducción al español
+                }
+            });
+
+            // Inicializar todos los tooltips de la página
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 @stop

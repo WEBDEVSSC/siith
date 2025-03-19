@@ -16,7 +16,7 @@ class ProfesionalExport implements FromView, WithStyles
     public function view(): View
     {
         // Consultamos todos los profesionales con sus relaciones (puesto y horario)
-        $profesionales = Profesional::with(['puesto', 'horario', 'sueldo'])->get();
+        $profesionales = Profesional::with(['puesto', 'horario', 'sueldo', 'gradoAcademico'])->get();
 
         // Pasamos los datos a la vista
         return view('export.profesionales-export', [
@@ -95,7 +95,15 @@ class ProfesionalExport implements FromView, WithStyles
             'BB1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'C7D36F']]],
             'BC1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'C7D36F']]],
 
-
+            // Estilo para el modulo de GRADO ACADEMICO
+            'BD1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
+            'BE1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
+            'BF1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
+            'BG1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
+            'BH1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
+            'BI1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
+            'BJ1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
+            'BK1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
         ];
     }
 

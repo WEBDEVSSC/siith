@@ -221,11 +221,11 @@
                     </table>
                 </div>
         </div>
+    </div>
         <div class="card-footer">
 
         </div>
     </div>
-</div>
 
     <!-- --------------------------------------------------------------- -->
 
@@ -261,8 +261,94 @@
         </div>
         <div class="card-footer"></div>
     </div>
+</div>
 
     <!-- --------------------------------------------------------------- -->
+
+    <!-- --------------------------------------------------------------- -->
+
+    <div class="card mt-3">
+        <div class="card-header"><strong>GRADO ACADEMICO</strong></div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <p><strong>GRADO ACADEMICO UNO</strong></p>
+                    {{ $cveGradoUno }} - {{$gradoAcademicoUno}}
+                </div>
+                <div class="col-md-4">
+                    <p><strong>TITULO</strong></p>
+                    {{ $tituloUno }}
+                </div>
+                <div class="col-md-6">
+                    <p><strong>INSTITUCIÓN EDUCATIVA</strong></p>
+                    {{ $institucionEducativaUno }}
+                </div>
+                
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-2">
+                    <p><strong>CEDULA</strong></p>
+                    {{ $cedulaUno }} - {{ $numeroCedulaUno }}
+                </div>
+                <div class="col-md-10">
+                    <p><strong>REGISTRO NACIONAL DE PROFESIONALES</strong></p>
+                    <!-- Cambié el enlace para que active el modal en lugar de abrir el PDF en una nueva pestaña -->
+                    <a href="javascript:void(0);" class="btn btn-primary openModal" id="openModal" data-pdf="{{ asset('storage/' . $regNacProfUno) }}">Abrir documento</a>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-2">
+                    <p><strong>GRADO ACADEMICO DOS</strong></p>
+                    {{ $cveGradoDos }} - {{$gradoAcademicoDos }}
+                </div>
+                <div class="col-md-4">
+                    <p><strong>TITULO</strong></p>
+                    {{ $tituloDos }}
+                </div>
+                <div class="col-md-6">
+                    <p><strong>INSTITUCIÓN EDUCATIVA</strong></p>
+                    {{ $institucionEducativaDos }}
+                </div>
+                
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-2">
+                    <p><strong>CEDULA</strong></p>
+                    {{ $cedulaDos }} - {{ $numeroCedulaDos }}
+                </div>
+                <div class="col-md-10">
+                    <p><strong>REGISTRO NACIONAL DE PROFESIONALES</strong></p>
+                    <!-- Cambié el enlace para que active el modal en lugar de abrir el PDF en una nueva pestaña -->
+                    <a href="javascript:void(0);" class="btn btn-primary openModal" id="openModal" data-pdf="{{ asset('storage/' . $regNacProfDos) }}">Abrir documento</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer"></div>
+    </div>
+
+    <!-- --------------------------------------------------------------- -->
+
+    <!-- Modal -->
+<div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="pdfModalLabel">Documento PDF</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Aquí se insertará el iframe con el documento PDF -->
+          <iframe id="pdfViewer" width="100%" height="700px" frameborder="0"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
 
 @stop
 
@@ -273,4 +359,31 @@
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+
+    <script>
+        $(document).ready(function() {
+    // Cuando cualquiera de los enlaces con clase 'openModal' sea clickeado
+    $('.openModal').click(function() {
+        // Obtener la ruta del archivo PDF desde el atributo 'data-pdf'
+        var pdfUrl = $(this).data('pdf');
+        
+        // Establecer la URL del PDF en el iframe
+        $('#pdfViewer').attr('src', pdfUrl);
+        
+        // Mostrar el modal
+        $('#pdfModal').modal('show');
+    });
+
+    // Limpiar el iframe cuando se cierre el modal
+    $('#pdfModal').on('hidden.bs.modal', function () {
+        $('#pdfViewer').attr('src', '');  // Limpiar el iframe
+    });
+});
+
+    </script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS (si no lo tienes) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 @stop

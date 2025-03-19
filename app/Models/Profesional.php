@@ -58,4 +58,9 @@ class Profesional extends Model
     {
         return $this->hasOne(ProfesionalGradoAcademico::class,'id_profesional');
     }
+
+    public function areaMedica()
+    {
+        return $this->hasOne(ProfesionalAreaMedica::class,'id_profesional');
+    }
 }

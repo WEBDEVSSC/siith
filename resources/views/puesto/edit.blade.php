@@ -137,7 +137,7 @@
                     </div>
                     <div class="col-md-3">
                         <p>CLUES Adscripcion</p>
-                        <select name="clues_adscripcion" id="clues_adscripcion" class="form-control">
+                        <select name="clue_adscripcion" id="clue_adscripcion" class="form-control" disabled>
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($clues as $clue)
                                 <option value="{{ $clue->clues }}" {{ old('clues_adscripcion', $profesional->clues_adscripcion) == $clue->clues ? 'selected' : '' }}>
@@ -150,6 +150,8 @@
                         @enderror
                     </div>
                 </div>
+
+                <input type="hidden" name="clues_adscripcion" value="{{ $profesional->clues_adscripcion }}">
 
                 <!-- -->
 

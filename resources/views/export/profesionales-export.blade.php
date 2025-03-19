@@ -69,6 +69,15 @@
                 <th><strong>ESTIMULOS</strong></th>
                 <th><strong>TOTAL</strong></th>
 
+                <th><strong>GRADO ACADEMICO</strong></th>
+                <th><strong>TITULO</strong></th>
+                <th><strong>INSTITUCION EDUCATIVA</strong></th>
+                <th><strong>CEDULA</strong></th>
+                <th><strong>GRADO ACADEMICO</strong></th>
+                <th><strong>TITULO</strong></th>
+                <th><strong>INSTITUCION EDUCATIVA</strong></th>
+                <th><strong>CEDULA</strong></th>
+
             </tr>
         </thead>
         <tbody>
@@ -133,6 +142,15 @@
                     <td>{{ $profesional->sueldo->prestaciones_cgt ?? '' }}</td>
                     <td>{{ $profesional->sueldo->estimulos ?? '' }}</td>
                     <td>{{ $profesional->sueldo->total ?? '' }}</td>
+
+                    <td>{{ $profesional->gradoAcademico->cve_grado_uno ?? '' }} - {{ $profesional->gradoAcademico->grado_academico_uno ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->titulo_uno ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->institucion_educativa_uno ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->cedula_uno ?? '' }} - {{ $profesional->gradoAcademico->numero_cedula_uno ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->cve_grado_dos ?? '' }} - {{ $profesional->gradoAcademico->grado_academico_dos ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->titulo_dos ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->institucion_educativa_dos ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->cedula_dos ?? '' }} - {{ $profesional->gradoAcademico->numero_cedula_dos ?? '' }}</td>
 
 
                 </tr>

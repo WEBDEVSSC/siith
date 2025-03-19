@@ -1,18 +1,22 @@
 <?php
 
+use App\Http\Controllers\ProfesionalAreaMedicaController;
 use App\Http\Controllers\ProfesionalController;
 use App\Http\Controllers\ProfesionalCredencializacionController;
 use App\Http\Controllers\ProfesionalGradoAcademicoController;
 use App\Http\Controllers\ProfesionalHorarioController;
 use App\Http\Controllers\ProfesionalPuestoController;
 use App\Http\Controllers\ProfesionalSueldoController;
-use App\Models\GradoAcademico;
-use App\Models\VigenciaMotivo;
+use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
+});*/
+
+Route::get('/', function () {
+    return redirect()->route('login');
 });
 
 /*******************************************************************************************
@@ -95,8 +99,6 @@ Route::middleware(['auth'])->group(function ()
     Route::put('admin/profesionales/puesto/updatePuesto/{id}', [ProfesionalPuestoController::class, 'updatePuesto'])->name('updatePuesto');
 
     // Ruta dinamica para mostrar los motivos de vigencia
-    //Route::get('/get-motivos/{id}', function ($id) { return response()->json(VigenciaMotivo::where('id_vigencia', $id)->get()); });
-
     Route::get('/vigencias-motivos/{vigencia}', [ProfesionalPuestoController::class, 'getMotivos']);
 
     /**
@@ -146,10 +148,6 @@ Route::middleware(['auth'])->group(function ()
 
     Route::put('admin/profesionales/horario/updateHorario/{id}', [ProfesionalHorarioController::class, 'updateHorario'])->name('updateHorario');
 
-    Route::get('export-clues', [ProfesionalController::class, 'export'])->name('profesionalExport');
-
-    
-
     /**
      * 
      * 
@@ -185,6 +183,51 @@ Route::middleware(['auth'])->group(function ()
 
     // Ruta dinamica para mostrar
     Route::get('/titulos/{cve}', [ProfesionalGradoAcademicoController::class, 'getTitulos']);
+
+    /**
+     * 
+     * 
+     * GRADO ACADEMMICO MODULO
+     * 
+     * 
+     */
+
+     Route::get('admin/profesionales/area-medica/createAreaMedica/{id}', [ProfesionalAreaMedicaController::class,'createAreaMedica'])->name('createAreaMedica');
+
+     Route::post('admin/profesionales/area-medica/storeAreaMedica', [ProfesionalAreaMedicaController::class,'storeAreaMedica'])->name('storeAreaMedica');
+ 
+     Route::get('admin/profesionales/area-medica/editAreaMedica/{id}', [ProfesionalAreaMedicaController::class, 'editAreaMedica'])->name('editAreaMedica');
+ 
+     Route::put('admin/profesionales/area-medica/updateAreaMedica/{id}', [ProfesionalAreaMedicaController::class, 'updateAreaMedica'])->name('updateAreaMedica');
+
+    /**
+     * 
+     * 
+     * MODULO DE REPORTES
+     * 
+     * 
+     */
+    
+    Route::get('export-clues', [ProfesionalController::class, 'export'])->name('profesionalExport');
+
+    /**
+     * 
+     * 
+     * MODULOS ADMINISRATIVOS
+     * USUARIOS
+     * 
+     * 
+     */
+
+     Route::get('admin/usuarios/indexUsuario', [UsuarioController::class,'indexUsuario'])->name('indexUsuario');
+
+     Route::get('admin/usuarios/createUsuario', [UsuarioController::class,'createUsuario'])->name('createUsuario');
+
+     Route::post('admin/usuarios/storeUsuario', [UsuarioController::class,'storeUsuario'])->name('storeUsuario');
+ 
+     Route::get('admin/usuarios/editUsuario/{id}', [UsuarioController::class, 'editAreaMedica'])->name('editAreaMedica');
+ 
+     Route::put('admin/usuarios/updateUsuario/{id}', [UsuarioController::class, 'updateAreaMedica'])->name('updateAreaMedica');
 
 });
 
