@@ -2,6 +2,8 @@
 
 @section('title', 'Dashboard')
 
+@section('plugins.Select2', true)
+
 @section('content_header')
     <h1><strong>Profesionales</strong> <small>Datos Generales</small></h1>
 @stop
@@ -107,7 +109,7 @@
                     </div>
                     <div class="col-md-3">
                         <p>Municipio de nacimiento</p>
-                        <select name="municipio_nacimiento" id="municipio_nacimiento" class="form-control">
+                        <select name="municipio_nacimiento" id="municipio_nacimiento" class="form-control select2">
                             <option value="">-- Selecciona una opción --</option>
                             @foreach($municipios as $municipio)
                                 <option value="{{ $municipio->nombre }}" 
@@ -183,8 +185,40 @@
 @section('css')
     {{-- Add here extra stylesheets --}}
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+
+    <style>
+        /* Asegura que Select2 tenga el mismo alto y bordes redondeados */
+        .select2-container--default .select2-selection--single {
+            height: calc(2.25rem + 2px) !important; /* Ajuste de altura */
+            border-radius: 0.25rem !important; /* Bordes redondeados */
+            border: 1px solid #ced4da !important; /* Color del borde */
+        }
+        
+        /* Alineación del texto */
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: calc(2.25rem - 2px) !important;
+            padding-left: 0.75rem !important;
+        }
+        
+        /* Ajuste del ícono desplegable */
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: calc(2.25rem + 2px) !important;
+        }
+    </style>
+
 @stop
 
 @section('js')
-    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+    
+<script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#municipio_nacimiento').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script>
+
 @stop

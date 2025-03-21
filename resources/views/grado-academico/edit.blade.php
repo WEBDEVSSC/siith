@@ -2,6 +2,8 @@
 
 @section('title', 'Dashboard')
 
+@section('plugins.Select2', true)
+
 @section('content_header')
     <h1><strong>Profesionales</strong> <small>Grado Academico</small></h1>
 @stop
@@ -61,7 +63,7 @@
                     <div class="col-md-9">
                         <p>Título 1</p>
                         <input type="hidden" name="titulo_uno" id="titulo_uno_hidden" value="{{ old('titulo_uno', $gradoAcademico->titulo_uno_id ?? '') }}">
-                        <select name="titulo_uno" id="titulo_uno" class="form-control" disabled>
+                        <select name="titulo_uno" id="titulo_uno" class="form-control select2" disabled>
                             <option value="">Seleccione un título</option>
                             @foreach($titulos as $titulo)
                                 <option value="{{ $titulo->id }}" {{ old('titulo_uno', $gradoAcademico->titulo_uno_id ?? '') == $titulo->id ? 'selected' : '' }}>
@@ -83,7 +85,7 @@
                     
                     <div class="col-md-3">
                         <p>Institucion Educativa 1</p>
-                        <select name="institucion_educativa_uno" id="institucion_educativa_uno" class="form-control">
+                        <select name="institucion_educativa_uno" id="institucion_educativa_uno" class="form-control select2">
                             <option value="">-- Seleccione una opción --</option>
                             @foreach($institucionesEducativas as $institucioneEducativa)
                                 <option value="{{ $institucioneEducativa->id }}" 
@@ -150,7 +152,7 @@
             <div class="col-md-9">
                 <p>Título 2</p>
                 <input type="hidden" name="titulo_dos" id="titulo_dos_hidden" value="{{ old('titulo_dos', $gradoAcademico->titulo_dos_id ?? '') }}">
-                <select name="titulo_dos" id="titulo_dos" class="form-control" disabled>
+                <select name="titulo_dos" id="titulo_dos" class="form-control select2" disabled>
                     <option value="">Seleccione un título</option>
                     @foreach($titulos as $titulo)
                         <option value="{{ $titulo->id }}" {{ old('titulo_dos', $gradoAcademico->titulo_dos_id ?? '') == $titulo->id ? 'selected' : '' }}>
@@ -171,7 +173,7 @@
             
             <div class="col-md-3">
                 <p>Institucion Educativa 2</p>
-                <select name="institucion_educativa_dos" id="institucion_educativa_dos" class="form-control">
+                <select name="institucion_educativa_dos" id="institucion_educativa_dos" class="form-control select2">
                     <option value="">-- Seleccione una opción --</option>
                     @foreach($institucionesEducativas as $institucioneEducativa)
                         <option value="{{ $institucioneEducativa->id }}" 
@@ -230,11 +232,30 @@
 @section('css')
     {{-- Add here extra stylesheets --}}
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+    <style>
+        /* Asegura que Select2 tenga el mismo alto y bordes redondeados */
+        .select2-container--default .select2-selection--single {
+            height: calc(2.25rem + 2px) !important; /* Ajuste de altura */
+            border-radius: 0.25rem !important; /* Bordes redondeados */
+            border: 1px solid #ced4da !important; /* Color del borde */
+        }
+        
+        /* Alineación del texto */
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: calc(2.25rem - 2px) !important;
+            padding-left: 0.75rem !important;
+        }
+        
+        /* Ajuste del ícono desplegable */
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: calc(2.25rem + 2px) !important;
+        }
+    </style>
 @stop
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
 
     <script>
         $(document).ready(function() {
@@ -293,8 +314,40 @@
         });
     </script>
     
+    <script>
+        $(document).ready(function() {
+            $('#titulo_uno').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script>  
     
-    
-    
+    <script>
+        $(document).ready(function() {
+            $('#titulo_dos').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script>   
+
+    <script>
+        $(document).ready(function() {
+            $('#institucion_educativa_uno').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script>   
+
+    <script>
+        $(document).ready(function() {
+            $('#institucion_educativa_dos').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script>   
     
 @stop
