@@ -107,8 +107,15 @@ class ProfesionalGradoAcademicoController extends Controller
         // Activamos el registro el modulo
         $mdl_grado_academico = 1;
 
-        $rutaUno = $request->file('reg_nac_prof_uno')->store('reg-nac-prof', 'public');
-        $rutaDos = $request->file('reg_nac_prof_dos')->store('reg-nac-prof', 'public');
+        // Consultamos el CURP del profesional
+        $profesional = Profesional::findOrFail($request->id_profesional);
+
+        // Renombramos y subimos la imagen
+        $nombreArchivoUno = $profesional->curp .'-'. $request->cedula_numero_uno . '.' . $request->file('reg_nac_prof_uno')->getClientOriginalExtension();
+        $nombreArchivoDos = $profesional->curp .'-'. $request->cedula_numero_dos . '.' . $request->file('reg_nac_prof_dos')->getClientOriginalExtension();
+
+        $rutaUno = $request->file('reg_nac_prof_uno')->storeAs('reg-nac-prof', $nombreArchivoUno, 'public');
+        $rutaDos = $request->file('reg_nac_prof_dos')->storeAs('reg-nac-prof', $nombreArchivoDos, 'public');
 
         // Creamos el objeto para almacenar los datos
         $grado = new ProfesionalGradoAcademico();

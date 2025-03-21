@@ -12,6 +12,8 @@ class ProfesionalAreaMedica extends Model
     protected $fillable = [
         'id_profesional',
         'tipo_formacion',
+        'tipo_formacion_id',
+        'tipo_formacion_label',
         'carrera_id',
         'carrera_label',
         'institucion_educativa_id',

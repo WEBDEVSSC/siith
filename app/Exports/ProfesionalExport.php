@@ -16,7 +16,7 @@ class ProfesionalExport implements FromView, WithStyles
     public function view(): View
     {
         // Consultamos todos los profesionales con sus relaciones (puesto y horario)
-        $profesionales = Profesional::with(['puesto', 'horario', 'sueldo', 'gradoAcademico'])->get();
+        $profesionales = Profesional::with(['puesto', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])->get();
 
         // Pasamos los datos a la vista
         return view('export.profesionales-export', [
@@ -104,6 +104,18 @@ class ProfesionalExport implements FromView, WithStyles
             'BI1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
             'BJ1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
             'BK1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
+
+            //Estilos para el modulo de AREA MEDICA
+            'BL1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
+            'BM1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
+            'BN1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
+            'BO1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
+            'BP1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
+            'BQ1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
+            'BR1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
+            'BS1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
+            'BT1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
+
         ];
     }
 

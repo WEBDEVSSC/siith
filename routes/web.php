@@ -187,7 +187,7 @@ Route::middleware(['auth'])->group(function ()
     /**
      * 
      * 
-     * GRADO ACADEMMICO MODULO
+     * AREA MEDICA MODULO
      * 
      * 
      */
@@ -224,10 +224,6 @@ Route::middleware(['auth'])->group(function ()
      Route::get('admin/usuarios/createUsuario', [UsuarioController::class,'createUsuario'])->name('createUsuario');
 
      Route::post('admin/usuarios/storeUsuario', [UsuarioController::class,'storeUsuario'])->name('storeUsuario');
- 
-     Route::get('admin/usuarios/editUsuario/{id}', [UsuarioController::class, 'editAreaMedica'])->name('editAreaMedica');
- 
-     Route::put('admin/usuarios/updateUsuario/{id}', [UsuarioController::class, 'updateAreaMedica'])->name('updateAreaMedica');
 
 });
 

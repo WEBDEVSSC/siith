@@ -163,6 +163,36 @@
     </script>
 @endif
 
+
+
+<!-- NOTIFICACIONES AREA MEDICA -->
+
+@if(session('successAreaMedica'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Éxito',
+                text: "{{ session('successAreaMedica') }}",
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            });
+        });
+    </script>
+@endif
+
+@if(session('updateAreaMedica'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Éxito',
+                text: "{{ session('updateAreaMedica') }}",
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            });
+        });
+    </script>
+@endif
+
 <!-- -->
     
 <div class="card">
@@ -304,9 +334,9 @@
                             <!-- --------------------------- -->
 
                             @if(optional($data['profesional']->areaMedica)->mdl_area_medica == 1)
-                            <a href="{{ route('editAreaMedica', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="AREA MEDICA">
-                                <i class="fa fa-stethoscope" aria-hidden="true"></i>
-                            </a>
+                                <a href="{{ route('editAreaMedica', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="AREA MEDICA">
+                                    <i class="fa fa-stethoscope" aria-hidden="true"></i>
+                                </a>
                             @else
                                 <a href="{{ route('createAreaMedica', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="AREA MEDICA">
                                     <i class="fa fa-stethoscope" aria-hidden="true"></i>

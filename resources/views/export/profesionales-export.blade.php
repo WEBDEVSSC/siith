@@ -77,6 +77,12 @@
                 <th><strong>TITULO</strong></th>
                 <th><strong>INSTITUCION EDUCATIVA</strong></th>
                 <th><strong>CEDULA</strong></th>
+                
+                <th><strong>TIPO DE FORMACION</strong></th>
+                <th><strong>CARRERA</strong></th>
+                <th><strong>INSTITUCION EDUCATIVA</strong></th>
+                <th><strong>AÑO EN CURSO</strong></th>
+                <th><strong>DURACION</strong></th>
 
             </tr>
         </thead>
@@ -151,6 +157,12 @@
                     <td>{{ $profesional->gradoAcademico->titulo_dos ?? '' }}</td>
                     <td>{{ $profesional->gradoAcademico->institucion_educativa_dos ?? '' }}</td>
                     <td>{{ $profesional->gradoAcademico->cedula_dos ?? '' }} - {{ $profesional->gradoAcademico->numero_cedula_dos ?? '' }}</td>
+
+                    <td>{{ $profesional->areaMedica->tipo_formacion ?? '' }} - {{ $profesional->areaMedica->tipo_formacion_label ?? '' }}</td>
+                    <td>{{ $profesional->areaMedica->carrera_label ?? '' }}</td>
+                    <td>{{ $profesional->areaMedica->institucion_educativa_label ?? '' }}</td>
+                    <td>{{ $profesional->areaMedica->anio_cursa ?? '' }}</td>
+                    <td>{{ $profesional->areaMedica->duracion_formacion ?? '' }}</td>
 
 
                 </tr>

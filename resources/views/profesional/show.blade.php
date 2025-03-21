@@ -294,7 +294,7 @@
                 <div class="col-md-10">
                     <p><strong>REGISTRO NACIONAL DE PROFESIONALES</strong></p>
                     <!-- Cambié el enlace para que active el modal en lugar de abrir el PDF en una nueva pestaña -->
-                    <a href="javascript:void(0);" class="btn btn-primary openModal" id="openModal" data-pdf="{{ asset('storage/' . $regNacProfUno) }}">Abrir documento</a>
+                    <a href="javascript:void(0);" class="btn btn-info btn-sm openModal" id="openModal" data-pdf="{{ asset('storage/' . $regNacProfUno) }}">Abrir documento</a>
                 </div>
             </div>
 
@@ -322,7 +322,7 @@
                 <div class="col-md-10">
                     <p><strong>REGISTRO NACIONAL DE PROFESIONALES</strong></p>
                     <!-- Cambié el enlace para que active el modal en lugar de abrir el PDF en una nueva pestaña -->
-                    <a href="javascript:void(0);" class="btn btn-primary openModal" id="openModal" data-pdf="{{ asset('storage/' . $regNacProfDos) }}">Abrir documento</a>
+                    <a href="javascript:void(0);" class="btn btn-info btn-sm openModal" id="openModal" data-pdf="{{ asset('storage/' . $regNacProfDos) }}">Abrir documento</a>
                 </div>
             </div>
 
