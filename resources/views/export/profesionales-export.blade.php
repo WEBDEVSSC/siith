@@ -9,6 +9,18 @@
     <table>
         <thead>
             <tr>
+                <!-- Título grande que abarca todas las columnas -->
+                <th colspan="1" style="text-align: center; font-size: 20px; font-weight: bold;"></th>
+                <th colspan="16" style="text-align: center; font-size: 20px; font-weight: bold;">DATOS GENERALES</th>
+                <th colspan="22" style="text-align: center; font-size: 20px; font-weight: bold;">PUESTO</th>
+                <th colspan="9" style="text-align: center; font-size: 20px; font-weight: bold;">JORNADA LABORAL</th>
+                <th colspan="1" style="text-align: center; font-size: 20px; font-weight: bold;">CREDENCIALIZACION</th>
+                <th colspan="6" style="text-align: center; font-size: 20px; font-weight: bold;">SUELDO</th>
+                <th colspan="8" style="text-align: center; font-size: 20px; font-weight: bold;">GRADO ACADEMICO</th>
+                <th colspan="5" style="text-align: center; font-size: 20px; font-weight: bold;">PERSONAL EN FORMACION</th>
+                <th colspan="6" style="text-align: center; font-size: 20px; font-weight: bold;">CERTIFICACIONES</th>
+            </tr>
+            <tr>
                 <th><strong>ID</strong></th>
                 <th><strong>CURP</strong></th>
                 <th><strong>RFC</strong></th>
@@ -26,7 +38,7 @@
                 <th><strong>TELEFONO</strong></th>
                 <th><strong>CELULAR</strong></th>
                 <th><strong>EMAIL</strong></th>
-
+  
                 <th><strong>FIEL</strong></th>
                 <th><strong>ACTIVIDAD</strong></th>
                 <th><strong>ADICIONAL</strong></th>
@@ -83,6 +95,13 @@
                 <th><strong>INSTITUCION EDUCATIVA</strong></th>
                 <th><strong>AÑO EN CURSO</strong></th>
                 <th><strong>DURACION</strong></th>
+
+                <th><strong>COLEGIACION</strong></th>
+                <th><strong>CERTIFICACION</strong></th>
+                <th><strong>IDIOMA</strong></th>
+                <th><strong>NIVEL</strong></th>
+                <th><strong>LENGUA INDIGENA</strong></th>
+                <th><strong>NIVEL</strong></th>
 
             </tr>
         </thead>
@@ -163,6 +182,13 @@
                     <td>{{ $profesional->areaMedica->institucion_educativa_label ?? '' }}</td>
                     <td>{{ $profesional->areaMedica->anio_cursa ?? '' }}</td>
                     <td>{{ $profesional->areaMedica->duracion_formacion ?? '' }}</td>
+
+                    <td>{{ $profesional->certificacion->colegiacion_label ?? '' }}</td>
+                    <td>{{ $profesional->certificacion->certificacion_label ?? '' }}</td>
+                    <td>{{ $profesional->certificacion->idioma_label ?? '' }}</td>
+                    <td>{{ $profesional->certificacion->idioma_nivel_de_dominio ?? '' }}</td>
+                    <td>{{ $profesional->certificacion->lengua_indigena_label ?? '' }}</td>
+                    <td>{{ $profesional->certificacion->lengua_nivel_de_dominio ?? '' }}</td>
 
 
                 </tr>

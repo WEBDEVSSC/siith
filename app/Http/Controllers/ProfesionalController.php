@@ -10,6 +10,7 @@ use App\Models\Profesional;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Gate;
 
 class ProfesionalController extends Controller
 {
@@ -193,6 +194,16 @@ class ProfesionalController extends Controller
 
     public function profesionalIndex()
     {
+        // Conficionamos a los roles 
+        if (Gate::allows('isAdmin'))
+        {
+            
+        }
+        else
+        {
+
+        }  
+        
         // Consultamos todos los profesionales con sus relaciones
         $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])->get();
 
@@ -203,6 +214,7 @@ class ProfesionalController extends Controller
                 'cluesAdscripcionNombre' => optional($profesional->puesto)->clues_adscripcion_nombre,
             ];
         });
+        
 
         // Regresamos la vista con los datos
         return view('profesional.index', compact('profesionalesData'));
@@ -390,8 +402,24 @@ class ProfesionalController extends Controller
         $numeroCedulaDos = $gradoAcademico ? $gradoAcademico->numero_cedula_dos : null;
         $regNacProfDos = $gradoAcademico ? $gradoAcademico->reg_nac_prof_dos : null;
 
+        // Cargamos los datos para el modulo de AREA MEDICA
+        $areaMedica = $profesional->areaMedica;
 
-        // Cargamos los datos para el modulo
+        $tipoFormacion = $areaMedica ? $areaMedica->tipo_formacion_label : null;
+        $carrera = $areaMedica ? $areaMedica->carrera_label : null;
+        $institucionEducativa = $areaMedica ? $areaMedica->institucion_educativa_label : null;
+        $anioCursa = $areaMedica ? $areaMedica->anio_cursa : null;
+        $duracionFormacion = $areaMedica ? $areaMedica->duracion_formacion : null;
+
+        // Cargamos los datos para el modulo de CERTIFICACIONES
+        $certificacion = $profesional->certificacion;
+
+        $colegiacion = $certificacion ? $certificacion->colegiacion_label : null;
+        $certificacio = $certificacion ? $certificacion->certificacion_label : null;
+        $idioma = $certificacion ? $certificacion->idioma_label : null;
+        $idiomaNivelDominio = $certificacion ? $certificacion->idioma_nivel_de_dominio : null;
+        $lenguaIndigena = $certificacion ? $certificacion->lengua_indigena_label : null;
+        $lenguaIndigenaDominio = $certificacion ? $certificacion->lengua_nivel_de_dominio : null;
 
         // Regresamos la vista con el arreglo
         return view('profesional.show', compact(
@@ -450,10 +478,22 @@ class ProfesionalController extends Controller
             'institucionEducativaDos',
             'cedulaDos',
             'numeroCedulaDos',
-            'regNacProfDos'
+            'regNacProfDos',
+
+            'tipoFormacion',
+            'carrera',
+            'institucionEducativa',
+            'anioCursa',
+            'duracionFormacion',
+
+            'colegiacion',
+            'certificacio',
+            'idioma',
+            'idiomaNivelDominio',
+            'lenguaIndigena',
+            'lenguaIndigenaDominio',
         ));
     }
-
 
     public function export()
     {

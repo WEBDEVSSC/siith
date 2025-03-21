@@ -332,6 +332,62 @@
 
     <!-- --------------------------------------------------------------- -->
 
+    <div class="card mt-3">
+        <div class="card-header"><strong>PERSONAL EN FORMACIÓN</strong></div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <p><strong>TIPO DE FORMACION</strong></p>
+                    {{ $tipoFormacion }}
+                </div>
+                <div class="col-md-3">
+                    <p><strong>CARRERA</strong></p>
+                    {{ $carrera }}
+                </div>
+                <div class="col-md-3">
+                    <p><strong>INSTITUCIÓN EDUCATIVA</strong></p>
+                    {{ $carrera }}
+                </div>
+                <div class="col-md-3">
+                    <p><strong>AÑO EN CURSO / DURACIÓN</strong></p>
+                    {{ $anioCursa }} - {{ $duracionFormacion }}
+                </div>
+            </div>
+        </div>
+        <div class="card-footer"></div>
+    </div>
+    
+    
+    <!-- --------------------------------------------------------------- -->
+
+    <div class="card mt-3">
+        <div class="card-header"><strong>CERTIFICACIONES</strong></div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <p><strong>COLEGIACIÓN</strong></p>
+                    {{ $colegiacion }}
+                </div>
+                <div class="col-md-4">
+                    <p><strong>CERTIFICACION</strong></p>
+                    {{ $certificacio }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>IDIOMA</strong></p>
+                    {{ $idioma }} - {{ $idiomaNivelDominio }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>LENGUA INDIGENA</strong></p>
+                    {{ $lenguaIndigena }} - {{ $lenguaIndigenaDominio }}
+                </div>
+            </div>
+        </div>
+        <div class="card-footer"></div>
+    </div>
+    
+    
+    <!-- --------------------------------------------------------------- -->
+
     <!-- Modal -->
 <div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="pdfModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">

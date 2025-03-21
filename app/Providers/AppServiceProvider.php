@@ -17,9 +17,14 @@ class AppServiceProvider extends ServiceProvider
         //               ROLES Y PERMISOS                 //
         //------------------------------------------------//
 
-        // ROL ADMINISTRADOR (OFICINA CENTRAL)
+        // ROL ADMINISTRADOR (OFICINA CENTRAL) CATALOGO 6
         Gate::define('isAdmin', function ($user) {
             return $user->role === 'admin';
+        });
+
+        // ROL ADMINISTRADOR (ALMACEN) CATALOGO 7
+        Gate::define('isAlmacen', function ($user) {
+            return $user->role === 'almacen';
         });
     }
 

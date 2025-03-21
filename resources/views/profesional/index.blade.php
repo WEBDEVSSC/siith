@@ -194,6 +194,36 @@
 @endif
 
 <!-- -->
+
+<!-- NOTIFICACIONES CERTIFICACIONES -->
+
+@if(session('successCertificacion'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Éxito',
+                text: "{{ session('successCertificacion') }}",
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            });
+        });
+    </script>
+@endif
+
+@if(session('updateCertificacion'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Éxito',
+                text: "{{ session('updateCertificacion') }}",
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            });
+        });
+    </script>
+@endif
+
+<!-- -->
     
 <div class="card">
         <div class="card-header">
@@ -343,6 +373,22 @@
                                 </a>
                             @endif
 
+                            <!-- --------------------------- -->
+                            <!-- --------------------------- -->
+                            <!--  MODULO DE CERTIFICACIONES  -->
+                            <!-- --------------------------- -->
+                            <!-- --------------------------- -->
+
+                            @if(optional($data['profesional']->certificacion)->mdl_certificacion == 1)
+                                <a href="{{ route('editCertificacion', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="CERTIFICACIONES">
+                                    <i class="fa fa-certificate" aria-hidden="true"></i>
+                                </a>
+                            @else
+                                <a href="{{ route('createCertificacion', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="CERTIFICACIONES">
+                                    <i class="fa fa-certificate" aria-hidden="true"></i>
+                                </a>
+                            @endif
+
                         </td>
                         
                     </tr>
@@ -359,6 +405,10 @@
 
 @stop
 
+@section('footer')
+<p>Copyright © <?php echo date('Y') ?> <strong>Servicios de Salud de Coahuila de Zaragoza</strong></p>
+@stop
+
 @section('css')
     {{-- Add here extra stylesheets --}}
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
@@ -369,22 +419,40 @@
 
     <script>
         $(document).ready(function() {
-            // Inicializa todos los tooltips de la página
+            // Inicializar todos los tooltips de la página
             $('[data-toggle="tooltip"]').tooltip();
         });
     </script>
 
-    <script>
+    <script>$(document).ready( function () {
         $(document).ready(function() {
-            // Inicializa DataTables
-            $('#profesionalesTable').DataTable({
-                "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.19/i18n/Spanish.json" // Traducción al español
+        $('#profesionalesTable').DataTable({
+            "language": {
+                "sProcessing":     "Procesando...",
+                "sLengthMenu":     "Mostrar _MENU_ registros",
+                "sZeroRecords":    "No se encontraron resultados",
+                "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix":    "",
+                "sSearch":         "Buscar:",
+                "sUrl":            "",
+                "sInfoThousands":  ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst":    "Primero",
+                    "sLast":     "Último",
+                    "sNext":     "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending":  ": activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": activar para ordenar la columna de manera descendente"
                 }
-            });
-
-            // Inicializar todos los tooltips de la página
-            $('[data-toggle="tooltip"]').tooltip();
+            }
         });
+    });
+    } );
     </script>
 @stop

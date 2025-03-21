@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfesionalAreaMedicaController;
+use App\Http\Controllers\ProfesionalCertificacionController;
 use App\Http\Controllers\ProfesionalController;
 use App\Http\Controllers\ProfesionalCredencializacionController;
 use App\Http\Controllers\ProfesionalGradoAcademicoController;
@@ -199,6 +200,22 @@ Route::middleware(['auth'])->group(function ()
      Route::get('admin/profesionales/area-medica/editAreaMedica/{id}', [ProfesionalAreaMedicaController::class, 'editAreaMedica'])->name('editAreaMedica');
  
      Route::put('admin/profesionales/area-medica/updateAreaMedica/{id}', [ProfesionalAreaMedicaController::class, 'updateAreaMedica'])->name('updateAreaMedica');
+
+     /**
+     * 
+     * 
+     * CERTIFICACIONES MODULO
+     * 
+     * 
+     */
+
+     Route::get('admin/profesionales/certificaciones/createCertificacion/{id}', [ProfesionalCertificacionController::class,'createCertificacion'])->name('createCertificacion');
+
+     Route::post('admin/profesionales/certificaciones/storeCertificacion', [ProfesionalCertificacionController::class,'storeCertificacion'])->name('storeCertificacion');
+ 
+     Route::get('admin/profesionales/certificaciones/editCertificacion/{id}', [ProfesionalCertificacionController::class, 'editCertificacion'])->name('editCertificacion');
+ 
+     Route::put('admin/profesionales/certificaciones/updateCertificacion/{id}', [ProfesionalCertificacionController::class, 'updateCertificacion'])->name('updateCertificacion');
 
     /**
      * 
