@@ -43,7 +43,7 @@
                         <select name="colegiacion_id" id="colegiacion_id" class="form-control">
                             <option value="" disabled selected>Selecciona un tipo de formación</option>
                             @foreach ($colegiaciones as $colegiacion)
-                                <option value="{{ $colegiacion->id }}" {{ old('tipo_formacion') == $colegiacion->id ? 'selected' : '' }}>
+                                <option value="{{ $colegiacion->id }}" {{ old('colegiacion_id') == $colegiacion->id ? 'selected' : '' }}>
                                     {{ $colegiacion->colegio }}
                                 </option>
                             @endforeach
@@ -77,7 +77,7 @@
                         <select name="idioma_id" id="idioma_id" class="form-control select2">
                             <option value="" disabled selected>-- Seleccione una opción --</option>
                             @foreach ($idiomas as $idioma)
-                                <option value="{{ $idioma->id }}" {{ old('idioma') == $idioma->id ? 'selected' : '' }}>
+                                <option value="{{ $idioma->id }}" {{ old('idioma_id') == $idioma->id ? 'selected' : '' }}>
                                     {{ $idioma->idioma }}
                                 </option>
                             @endforeach

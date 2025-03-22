@@ -14,214 +14,39 @@
 
 <!-- -->
 
-@if(session('success'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'Éxito',
-                text: "{{ session('success') }}",
-                icon: 'success',
-                confirmButtonText: 'Ok'
+@php
+    $alerts = [
+        'success',
+        'successCredencializacion',
+        'updateCredencializacion',
+        'successHorario',
+        'successUpdateHorario',
+        'successUpdatePuesto',
+        'successSueldo',
+        'updateSueldo',
+        'successGradoAcademico',
+        'updateGradoAcademico',
+        'successAreaMedica',
+        'updateAreaMedica',
+        'successCertificacion',
+        'updateCertificacion',
+    ];
+@endphp
+
+@foreach ($alerts as $alert)
+    @if(session($alert))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Éxito',
+                    text: "{{ session($alert) }}",
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                });
             });
-        });
-    </script>
-@endif
-
-@if(session('successCredencializacion'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'Éxito',
-                text: "{{ session('successCredencializacion') }}",
-                icon: 'success',
-                confirmButtonText: 'Ok'
-            });
-        });
-    </script>
-@endif
-
-@if(session('updateCredencializacion'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'Éxito',
-                text: "{{ session('updateCredencializacion') }}",
-                icon: 'success',
-                confirmButtonText: 'Ok'
-            });
-        });
-    </script>
-@endif
-
-@if(session('successHorario'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'Éxito',
-                text: "{{ session('successHorario') }}",
-                icon: 'success',
-                confirmButtonText: 'Ok'
-            });
-        });
-    </script>
-@endif
-
-@if(session('successUpdateHorario'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'Éxito',
-                text: "{{ session('successUpdateHorario') }}",
-                icon: 'success',
-                confirmButtonText: 'Ok'
-            });
-        });
-    </script>
-@endif
-
-<!-- NOTIFICACIONES PUESTO -->
-
-@if(session('successHorario'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'Éxito',
-                text: "{{ session('successHorario') }}",
-                icon: 'success',
-                confirmButtonText: 'Ok'
-            });
-        });
-    </script>
-@endif
-
-@if(session('successUpdatePuesto'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'Éxito',
-                text: "{{ session('successUpdatePuesto') }}",
-                icon: 'success',
-                confirmButtonText: 'Ok'
-            });
-        });
-    </script>
-@endif
-
-<!-- NOTIFICACIONES SUELDO -->
-
-@if(session('successSueldo'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'Éxito',
-                text: "{{ session('successSueldo') }}",
-                icon: 'success',
-                confirmButtonText: 'Ok'
-            });
-        });
-    </script>
-@endif
-
-@if(session('updateSueldo'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'Éxito',
-                text: "{{ session('updateSueldo') }}",
-                icon: 'success',
-                confirmButtonText: 'Ok'
-            });
-        });
-    </script>
-@endif
-
-<!-- NOTIFICACIONES GRADO ACADEMICO -->
-
-@if(session('successGradoAcademico'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'Éxito',
-                text: "{{ session('successGradoAcademico') }}",
-                icon: 'success',
-                confirmButtonText: 'Ok'
-            });
-        });
-    </script>
-@endif
-
-@if(session('updateGradoAcademico'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'Éxito',
-                text: "{{ session('updateGradoAcademico') }}",
-                icon: 'success',
-                confirmButtonText: 'Ok'
-            });
-        });
-    </script>
-@endif
-
-
-
-<!-- NOTIFICACIONES AREA MEDICA -->
-
-@if(session('successAreaMedica'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'Éxito',
-                text: "{{ session('successAreaMedica') }}",
-                icon: 'success',
-                confirmButtonText: 'Ok'
-            });
-        });
-    </script>
-@endif
-
-@if(session('updateAreaMedica'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'Éxito',
-                text: "{{ session('updateAreaMedica') }}",
-                icon: 'success',
-                confirmButtonText: 'Ok'
-            });
-        });
-    </script>
-@endif
-
-<!-- -->
-
-<!-- NOTIFICACIONES CERTIFICACIONES -->
-
-@if(session('successCertificacion'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'Éxito',
-                text: "{{ session('successCertificacion') }}",
-                icon: 'success',
-                confirmButtonText: 'Ok'
-            });
-        });
-    </script>
-@endif
-
-@if(session('updateCertificacion'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            Swal.fire({
-                title: 'Éxito',
-                text: "{{ session('updateCertificacion') }}",
-                icon: 'success',
-                confirmButtonText: 'Ok'
-            });
-        });
-    </script>
-@endif
+        </script>
+    @endif
+@endforeach
 
 <!-- -->
     
@@ -262,135 +87,140 @@
                         <td>{{ $data['profesional']->nombre }} {{ $data['profesional']->apellido_paterno }} {{ $data['profesional']->apellido_materno }}</td>
                         <td>{{ $data['cluesAdscripcionNombre'] ?? 'N/A' }}</td>
                         <td>
-                            <!-- ------------------------- -->
-                            <!-- ------------------------- -->
-                            <!-- MODULO DE DATOS GENERALES -->
-                            <!-- ------------------------- -->
-                            <!-- ------------------------- -->
 
-                            @if($data['profesional']->mdl_datos_generales == 1)
-                                <a href="{{ route('profesionalEdit', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="DATOS GENERALES">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                </a>
-                            @else
-                                <a href="#!" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="DATOS GENERALES">
-                                    <i class="fa fa-user" aria-hidden="true"></i>
-                                </a>
-                            @endif
-                            <!-- ------------------------- -->
-                            <!-- ------------------------- -->
-                            <!--      MODULO DE PUESTOS    -->
-                            <!-- ------------------------- -->
-                            <!-- ------------------------- -->
+                            @if(Auth::user()->role != 'directivo')
 
-                            @if(optional($data['profesional']->puesto)->mdl_puesto == 1)
-                                <a href="{{ route('editPuesto', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="PUESTO">
-                                    <i class="fa fa-archive" aria-hidden="true"></i>
-                                </a>
-                            @else
-                                <a href="{{ route('createPuesto', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="PUESTO">
-                                    <i class="fa fa-archive" aria-hidden="true"></i>
-                                </a>
-                            @endif
+                                <!-- ------------------------- -->
+                                <!-- ------------------------- -->
+                                <!-- MODULO DE DATOS GENERALES -->
+                                <!-- ------------------------- -->
+                                <!-- ------------------------- -->
 
-                            <!-- --------------------------- -->
-                            <!-- --------------------------- -->
-                            <!-- MODULO DE CREDENCIALIZACION -->
-                            <!-- --------------------------- -->
-                            <!-- --------------------------- -->
+                                @if($data['profesional']->mdl_datos_generales == 1)
+                                    <a href="{{ route('profesionalEdit', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="DATOS GENERALES">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    </a>
+                                @else
+                                    <a href="#!" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="DATOS GENERALES">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    </a>
+                                @endif
+                                <!-- ------------------------- -->
+                                <!-- ------------------------- -->
+                                <!--      MODULO DE PUESTOS    -->
+                                <!-- ------------------------- -->
+                                <!-- ------------------------- -->
 
-                            @if(optional($data['profesional']->credencializacion)->mdl_credencializacion == 1)
-                                <a href="{{ route('editCredencializacion', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="CREDENCIALIZACIÓN">
-                                    <i class="fa fa-camera" aria-hidden="true"></i>
-                                </a>
-                            @else
-                                <a href="{{ route('createCredencializacion', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="CREDENCIALIZACIÓN">
-                                    <i class="fa fa-camera" aria-hidden="true"></i>
-                                </a>
-                            @endif
+                                @if(optional($data['profesional']->puesto)->mdl_puesto == 1)
+                                    <a href="{{ route('editPuesto', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="PUESTO">
+                                        <i class="fa fa-archive" aria-hidden="true"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('createPuesto', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="PUESTO">
+                                        <i class="fa fa-archive" aria-hidden="true"></i>
+                                    </a>
+                                @endif
 
-                            <!-- --------------------------- -->
-                            <!-- --------------------------- -->
-                            <!--      MODULO DE HORARIO      -->
-                            <!-- --------------------------- -->
-                            <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                <!-- MODULO DE CREDENCIALIZACION -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
 
-                            @if(optional($data['profesional']->horario)->mdl_horario == 1)
-                                <a href="{{ route('editHorario', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="HORARIO">
-                                    <i class="fa fa-clock" aria-hidden="true"></i>
-                                </a>
-                            @else
-                                <a href="{{ route('createHorario', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="HORARIO">
-                                    <i class="fa fa-clock" aria-hidden="true"></i>
-                                </a>
-                            @endif
+                                @if(optional($data['profesional']->credencializacion)->mdl_credencializacion == 1)
+                                    <a href="{{ route('editCredencializacion', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="CREDENCIALIZACIÓN">
+                                        <i class="fa fa-camera" aria-hidden="true"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('createCredencializacion', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="CREDENCIALIZACIÓN">
+                                        <i class="fa fa-camera" aria-hidden="true"></i>
+                                    </a>
+                                @endif
 
-                            <!-- --------------------------- -->
-                            <!-- --------------------------- -->
-                            <!--      MODULO DE SUELDO       -->
-                            <!-- --------------------------- -->
-                            <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                <!--      MODULO DE HORARIO      -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
 
-                            @if(optional($data['profesional']->sueldo)->mdl_sueldo == 1)
-                            <a href="{{ route('editSueldo', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="SUELDO">
-                                <i class="fa fa-credit-card" aria-hidden="true"></i>
-                            </a>
-                            @else
-                                <a href="{{ route('createSueldo', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="SUELDO">
+                                @if(optional($data['profesional']->horario)->mdl_horario == 1)
+                                    <a href="{{ route('editHorario', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="HORARIO">
+                                        <i class="fa fa-clock" aria-hidden="true"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('createHorario', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="HORARIO">
+                                        <i class="fa fa-clock" aria-hidden="true"></i>
+                                    </a>
+                                @endif
+
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                <!--      MODULO DE SUELDO       -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+
+                                @if(optional($data['profesional']->sueldo)->mdl_sueldo == 1)
+                                <a href="{{ route('editSueldo', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="SUELDO">
                                     <i class="fa fa-credit-card" aria-hidden="true"></i>
                                 </a>
-                            @endif
+                                @else
+                                    <a href="{{ route('createSueldo', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="SUELDO">
+                                        <i class="fa fa-credit-card" aria-hidden="true"></i>
+                                    </a>
+                                @endif
 
-                            <!-- --------------------------- -->
-                            <!-- --------------------------- -->
-                            <!--  MODULO DE GRADO ACADEMICO  -->
-                            <!-- --------------------------- -->
-                            <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                <!--  MODULO DE GRADO ACADEMICO  -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
 
-                            @if(optional($data['profesional']->gradoAcademico)->mdl_grado_academico == 1)
-                            <a href="{{ route('editGrado', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="GRADO ACADEMICO">
-                                <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                            </a>
-                            @else
-                                <a href="{{ route('createGrado', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="GRADO ACADEMICO">
+                                @if(optional($data['profesional']->gradoAcademico)->mdl_grado_academico == 1)
+                                <a href="{{ route('editGrado', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="GRADO ACADEMICO">
                                     <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                                 </a>
+                                @else
+                                    <a href="{{ route('createGrado', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="GRADO ACADEMICO">
+                                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                    </a>
+                                @endif
+
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                <!--    MODULO DE AREA MEDICA    -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+
+                                @if(optional($data['profesional']->areaMedica)->mdl_area_medica == 1)
+                                    <a href="{{ route('editAreaMedica', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="AREA MEDICA">
+                                        <i class="fa fa-stethoscope" aria-hidden="true"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('createAreaMedica', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="AREA MEDICA">
+                                        <i class="fa fa-stethoscope" aria-hidden="true"></i>
+                                    </a>
+                                @endif
+
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                <!--  MODULO DE CERTIFICACIONES  -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+
+                                @if(optional($data['profesional']->certificacion)->mdl_certificacion == 1)
+                                    <a href="{{ route('editCertificacion', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="CERTIFICACIONES">
+                                        <i class="fa fa-certificate" aria-hidden="true"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('createCertificacion', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="CERTIFICACIONES">
+                                        <i class="fa fa-certificate" aria-hidden="true"></i>
+                                    </a>
+                                @endif
+                                
                             @endif
-
-                            <!-- --------------------------- -->
-                            <!-- --------------------------- -->
-                            <!--    MODULO DE AREA MEDICA    -->
-                            <!-- --------------------------- -->
-                            <!-- --------------------------- -->
-
-                            @if(optional($data['profesional']->areaMedica)->mdl_area_medica == 1)
-                                <a href="{{ route('editAreaMedica', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="AREA MEDICA">
-                                    <i class="fa fa-stethoscope" aria-hidden="true"></i>
-                                </a>
-                            @else
-                                <a href="{{ route('createAreaMedica', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="AREA MEDICA">
-                                    <i class="fa fa-stethoscope" aria-hidden="true"></i>
-                                </a>
-                            @endif
-
-                            <!-- --------------------------- -->
-                            <!-- --------------------------- -->
-                            <!--  MODULO DE CERTIFICACIONES  -->
-                            <!-- --------------------------- -->
-                            <!-- --------------------------- -->
-
-                            @if(optional($data['profesional']->certificacion)->mdl_certificacion == 1)
-                                <a href="{{ route('editCertificacion', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="CERTIFICACIONES">
-                                    <i class="fa fa-certificate" aria-hidden="true"></i>
-                                </a>
-                            @else
-                                <a href="{{ route('createCertificacion', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="CERTIFICACIONES">
-                                    <i class="fa fa-certificate" aria-hidden="true"></i>
-                                </a>
-                            @endif
-
+                            
                         </td>
-                        
+                    
                     </tr>
                 @endforeach
             </tbody>
@@ -406,7 +236,7 @@
 @stop
 
 @section('footer')
-<p>Copyright © <?php echo date('Y') ?> <strong>Servicios de Salud de Coahuila de Zaragoza</strong></p>
+<p>Copyright © <?php echo date('Y') ?> <strong>Servicios de Salud de Coahuila de Zaragoza</strong><small> Subdirección de Recursos Humanos | Unidad de Planeacioón</small></p>
 @stop
 
 @section('css')

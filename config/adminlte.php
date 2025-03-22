@@ -313,7 +313,6 @@ return [
             'url' => 'admin/profesionales/profesionalIndex',
             'icon' => 'far fa-fw fa-file',
             'label_color' => 'success',
-            'can' => 'isAdmin', 
         ],
         ['header' => 'account_settings'],
         [

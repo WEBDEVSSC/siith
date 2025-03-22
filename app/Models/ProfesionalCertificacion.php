@@ -17,9 +17,10 @@ class ProfesionalCertificacion extends Model
         'certificacion_label',
         'idioma_id',
         'idioma_label',
-        'nivel_de_dominio',
+        'idioma_nivel_de_dominio',
         'lengua_indigena_id',
         'lengua_indigena_label',
+        'lengua_nivel_de_dominio',
         'mdl_certificacion',
     ];
 }

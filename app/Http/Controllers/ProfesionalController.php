@@ -339,7 +339,7 @@ class ProfesionalController extends Controller
         $cluesAdscripcionJurisdiccion = $puesto ? $puesto->clues_adscripcion_jurisdiccion : null;
 
         // Cargamos los datos del MODULO CREDENCIALIZACION
-        $credencializacion = $profesional->credencializacion->first();
+        $credencializacion = $profesional->credencializacion;
         $fotografia = $credencializacion ? $credencializacion->fotografia : null;
 
         // Generamos la URL de la fotografía
