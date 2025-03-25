@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfesionalController;
 use App\Http\Controllers\ProfesionalCredencializacionController;
 use App\Http\Controllers\ProfesionalGradoAcademicoController;
 use App\Http\Controllers\ProfesionalHorarioController;
+use App\Http\Controllers\ProfesionalOcupacionController;
 use App\Http\Controllers\ProfesionalPuestoController;
 use App\Http\Controllers\ProfesionalSueldoController;
 use App\Http\Controllers\UsuarioController;
@@ -78,6 +79,12 @@ Route::middleware(['auth'])->group(function ()
 
     // Ruta para mostrar el perfil del trabajador
     Route::get('admin/profesionales/profesionalShow/{id}', [ProfesionalController::class, 'profesionalShow'])->name('profesionalShow');
+
+    // Ruta para generar el PDF
+    Route::get('admin/profesionales/profesionalPDF/{id}', [ProfesionalController::class, 'profesionalPDF'])->name('profesionalPDF');
+
+    // Ruta para el formlario de OCUPACION
+    Route::get('admin/profesionales/profesionalOcupacionCreate/{id}',[ProfesionalController::class,'profesionalOcupacionCreate'])->name('profesionalOcupacionCreate');
 
     /**
      * 
@@ -216,6 +223,20 @@ Route::middleware(['auth'])->group(function ()
      Route::get('admin/profesionales/certificaciones/editCertificacion/{id}', [ProfesionalCertificacionController::class, 'editCertificacion'])->name('editCertificacion');
  
      Route::put('admin/profesionales/certificaciones/updateCertificacion/{id}', [ProfesionalCertificacionController::class, 'updateCertificacion'])->name('updateCertificacion');
+
+     /**
+     * 
+     * 
+     * CATALOGO DE OCUPACIONES MODULO
+     * 
+     * 
+     */
+
+     /** RUTAS PARA EL CATALOGO 1 - CENTROS DE SALUD URBANOS Y RURALES */
+
+     Route::get('admin/profesionales/ocupaciones/createCentrosDeSalud/{id}', [ProfesionalOcupacionController::class, 'createCentrosDeSalud'])->name('createCentrosDeSalud');
+
+     Route::post('admin/profesionales/ocupaciones/storeCentrosDeSalud', [ProfesionalOcupacionController::class, 'storeCentrosDeSalud'])->name('storeCentrosDeSalud');
 
     /**
      * 

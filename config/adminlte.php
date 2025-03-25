@@ -305,13 +305,19 @@ return [
         [
             'text' => 'Nuevo registro',
             'url' => 'admin/profesionales/buscarCurp',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'fas fa-plus',
             'label_color' => 'success',
         ],
         [
             'text' => 'Panel de Control',
             'url' => 'admin/profesionales/profesionalIndex',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'fa-solid fa-list',
+            'label_color' => 'success',
+        ],
+        [
+            'text' => 'Cambio de Unidad',
+            'url' => 'admin/profesionales/cambioUnidad',
+            'icon' => 'fa-solid fa-building-circle-arrow-right',
             'label_color' => 'success',
         ],
         ['header' => 'account_settings'],
@@ -430,6 +436,17 @@ return [
                     'type' => 'js',
                     'asset' => false,
                     'location' => '//cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/pace.min.js',
+                ],
+            ],
+        ],
+        // Agregar Font Awesome
+        'FontAwesome' => [
+            'active' => true, // Si deseas que esté activo
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css', 
                 ],
             ],
         ],

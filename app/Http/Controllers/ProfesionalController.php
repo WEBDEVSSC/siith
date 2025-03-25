@@ -7,6 +7,7 @@ use App\Models\Entidad;
 use App\Models\EstadoConyugal;
 use App\Models\Municipio;
 use App\Models\Profesional;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -205,7 +206,7 @@ class ProfesionalController extends Controller
         }  
         
         // Consultamos todos los profesionales con sus relaciones
-        $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])->get();
+        $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica','ocupacionCentroSalud'])->get();
 
         // Creamos un array para almacenar los datos adicionales
         $profesionalesData = $profesionales->map(function ($profesional) {
@@ -501,5 +502,41 @@ class ProfesionalController extends Controller
         return Excel::download(new ProfesionalExport, 'REPORTE.xlsx');
     }
 
+    public function profesionalPDF($id)
+    {
+        // Buscar el profesional por ID
+        $profesional = Profesional::findOrFail($id);
 
+        // Generamos la variable a base 64
+        $fotoBase64 = null;
+
+        // Detectamos si la imagen existe y la codificamos
+        if ($profesional->credencializacion && $profesional->credencializacion->fotografia) {
+            $rutaImagen = storage_path('app/private/' . $profesional->credencializacion->fotografia);
+
+            if (file_exists($rutaImagen)) {
+                // Leer la imagen
+                $fotoData = file_get_contents($rutaImagen);
+
+                // Detectar el tipo MIME
+                $mimeType = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $rutaImagen);
+
+                // Convertir la imagen a base64
+                $fotoBase64 = 'data:' . $mimeType . ';base64,' . base64_encode($fotoData);
+            }
+        }
+
+        // Pasar los datos a la vista
+        $pdf = Pdf::loadView('pdf.profesional', compact('profesional','fotoBase64'));
+
+         // Configurar la orientación de la página a horizontal
+        //$pdf->setPaper('a4', 'landscape');  // 'a4' es el tamaño de la página y 'landscape' es la orientación horizontal
+
+        return $pdf->stream('SIITH_'.$profesional->curp.'.pdf'); // Mostrar en el navegador
+    }
+
+    public function profesionalOcupacionCreate($id)
+    {
+        dd($id);
+    }
 }

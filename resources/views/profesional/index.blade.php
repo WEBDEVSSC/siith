@@ -30,6 +30,7 @@
         'updateAreaMedica',
         'successCertificacion',
         'updateCertificacion',
+        'successCentrosDeSalud'
     ];
 @endphp
 
@@ -53,7 +54,7 @@
 <div class="card">
         <div class="card-header">
 
-            <a href="{{ route('profesionalExport') }}" class="btn btn-success">Exportar Profesionales a Excel</a>
+            <a href="{{ route('profesionalExport') }}" class="btn btn-success"><i class="fa-solid fa-chart-simple"></i> Exportar Profesionales a Excel</a>
 
         </div>
         <div class="card-body">
@@ -71,7 +72,9 @@
                     <th>RFC</th>
                     <th>NOMBRE COMPLETO</th>
                     <th>CLUES ADSCRIPCIÓN</th>
+                    <th>CATALOGO</th>
                     <th>MODULOS</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -79,15 +82,21 @@
                     <tr>
                         <td>
                             <a href="{{ route('profesionalShow', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="DETALLES">
-                                <i class="fa fa-info" aria-hidden="true"></i>
+                                <i class="fa-solid fa-address-card"></i>
+                            </a>
+                            <a target='_blank' href="{{ route('profesionalPDF', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="PDF">
+                                <i class="fa-solid fa-file-lines"></i>
                             </a>
                         </td>
                         <td>{{ $data['profesional']->curp }}</td>
                         <td>{{ $data['profesional']->rfc }}</td>
                         <td>{{ $data['profesional']->nombre }} {{ $data['profesional']->apellido_paterno }} {{ $data['profesional']->apellido_materno }}</td>
                         <td>{{ $data['cluesAdscripcionNombre'] ?? 'N/A' }}</td>
+                        <td>{{ $data['profesional']->puesto->clues_adscripcion_tipo }}</td>
                         <td>
 
+                            <!-- SI EL ROL ES DIFERENTE A DIRECTIVO SE MUESTRAN LOS BOTONES DE EDICION DE LOS MODULOS  -->
+                            <!-- PARA EL DIRECTIVO SOLO SE MUESTRA EL BOTON DE VER DETALLES  -->
                             @if(Auth::user()->role != 'directivo')
 
                                 <!-- ------------------------- -->
@@ -216,6 +225,31 @@
                                         <i class="fa fa-certificate" aria-hidden="true"></i>
                                     </a>
                                 @endif
+
+                                <div class="mt-2"></div>
+
+                                <!-- --------------------------------------- -->
+                                <!-- --------------------------------------- -->
+                                <!--    MODULO DE CATALOGO DE OCUPACIONES    -->
+                                <!-- --------------------------------------- -->
+                                <!-- --------------------------------------- -->
+
+                                <!-- CATALOGO PARA CENTROS DE SALUD URBANOS Y RURALES -->
+
+                                @if ( $data['profesional']->puesto->clues_adscripcion_tipo == 1)
+
+                                    @if(optional($data['profesional']->ocupacionCentroSalud)->mdl_status == 1)
+                                        <a href="{{ route('editCertificacion', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OCUPACIÓN CENTROS DE SALUD U y R">
+                                            <i class="fa-solid fa-hand-holding-medical"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('createCentrosDeSalud', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OCUPACIÓN CENTROS DE SALUD U y R">
+                                            <i class="fa-solid fa-hand-holding-medical"></i>
+                                        </a>
+                                    @endif
+                                                                                                   
+                                @endif
+                                
                                 
                             @endif
                             
