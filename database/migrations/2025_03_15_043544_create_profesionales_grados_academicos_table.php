@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('institucion_educativa_dos')->nullable();
             $table->string('cedula_dos')->nullable();
             $table->string('numero_cedula_dos')->nullable();
-            $table->foreign('id_profesional')->references('id')->on('profesionales')->onDelete('cascade');
+            $table->foreign('id_profesional')->references('id')->on('profesionales_datos_generales')->onDelete('cascade');
             $table->timestamps();
         });
     }
