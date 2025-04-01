@@ -5,7 +5,7 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Centro de Salud Urbano y Rural</small></h1>
+    <h1><strong>Profesionales</strong> <small>Hospital</small></h1>
 @stop
 
 @section('content')
@@ -26,11 +26,11 @@
 
         </div>
 
-        <form action="{{ route('storeCentrosDeSalud') }}" method="POST">
+        <form action="{{ route('updateHospital',$profesional->id) }}" method="POST">
 
         @csrf 
 
-        <input type="hidden" name="id_profesional" value="{{ $profesional->id }}">
+        @method('PUT')
             
             <div class="card-body">
 
@@ -43,11 +43,13 @@
                         <select name="ocupacion_uno" id="ocupacion_uno" class="form-control select2">
                             <option value="">-- Seleccione una opción --</option>
                             @foreach($ocupaciones as $ocupacion)
-                                <option value="{{ $ocupacion->id }}">
-                                    {{ $ocupacion->unidad }} - {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->ocupacion }}                                  
+                                <option value="{{ $ocupacion->id }}" 
+                                    {{ old('ocupacion_uno', optional($profesionalOcupaciones)->id_catalogo_uno) == $ocupacion->id ? 'selected' : '' }}>
+                                    {{ $ocupacion->unidad }} - {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->puesto }}
                                 </option>
                             @endforeach
                         </select>
+                        
                         @error('ocupacion_uno')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -58,8 +60,9 @@
                         <select name="ocupacion_dos" id="ocupacion_dos" class="form-control select2">
                             <option value="">-- Seleccione una opción --</option>
                             @foreach($ocupaciones as $ocupacion)
-                                <option value="{{ $ocupacion->id }}">
-                                    {{ $ocupacion->unidad }} - {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->ocupacion }}                                  
+                                <option value="{{ $ocupacion->id }}" 
+                                    {{ old('ocupacion_dos', optional($profesionalOcupaciones)->id_catalogo_dos) == $ocupacion->id ? 'selected' : '' }}>
+                                    {{ $ocupacion->unidad }} - {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->puesto }}
                                 </option>
                             @endforeach
                         </select>

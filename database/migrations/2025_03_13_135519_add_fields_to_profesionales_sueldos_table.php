@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('profesionales_sueldos', function (Blueprint $table) {
             $table->unsignedBigInteger('id_profesional')->after('id');
-            $table->foreign('id_profesional')->references('id')->on('profesionales')->onDelete('cascade');
+            $table->foreign('id_profesional')->references('id')->on('profesionales_datos_generales')->onDelete('cascade');
             $table->integer('mdl_sueldo')->after('id_profesional');
         });
     }

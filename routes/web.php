@@ -238,6 +238,20 @@ Route::middleware(['auth'])->group(function ()
 
      Route::post('admin/profesionales/ocupaciones/storeCentrosDeSalud', [ProfesionalOcupacionController::class, 'storeCentrosDeSalud'])->name('storeCentrosDeSalud');
 
+     Route::get('admin/profesionales/ocupaciones/editCentrosDeSalud/{id}', [ProfesionalOcupacionController::class, 'editCentrosDeSalud'])->name('editCentrosDeSalud');
+
+     Route::put('admin/profesionales/ocupaciones/updateCentrosDeSalud/{id}', [ProfesionalOcupacionController::class, 'updateCentrosDeSalud'])->name('updateCentrosDeSalud');
+
+     /**RUTAS PARA EL CATALOGO 2 - HOSPITALES */
+
+     Route::get('admin/profesionales/ocupaciones/createHospital/{id}', [ProfesionalOcupacionController::class, 'createHospital'])->name('createHospital');
+
+     Route::post('admin/profesionales/ocupaciones/storeHospital', [ProfesionalOcupacionController::class, 'storeHospital'])->name('storeHospital');
+
+     Route::get('admin/profesionales/ocupaciones/editHospital/{id}', [ProfesionalOcupacionController::class, 'editHospital'])->name('editHospital');
+
+     Route::put('admin/profesionales/ocupaciones/updateHospital/{id}', [ProfesionalOcupacionController::class, 'updateHospital'])->name('updateHospital');
+
     /**
      * 
      * 

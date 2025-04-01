@@ -5,7 +5,7 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Centro de Salud Urbano y Rural</small></h1>
+    <h1><strong>Profesionales</strong> <small>Hospital</small></h1>
 @stop
 
 @section('content')
@@ -26,7 +26,7 @@
 
         </div>
 
-        <form action="{{ route('storeCentrosDeSalud') }}" method="POST">
+        <form action="{{ route('storeHospital') }}" method="POST">
 
         @csrf 
 
@@ -44,7 +44,7 @@
                             <option value="">-- Seleccione una opción --</option>
                             @foreach($ocupaciones as $ocupacion)
                                 <option value="{{ $ocupacion->id }}">
-                                    {{ $ocupacion->unidad }} - {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->ocupacion }}                                  
+                                    {{ $ocupacion->unidad }} - {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->puesto }}                                  
                                 </option>
                             @endforeach
                         </select>
@@ -59,7 +59,7 @@
                             <option value="">-- Seleccione una opción --</option>
                             @foreach($ocupaciones as $ocupacion)
                                 <option value="{{ $ocupacion->id }}">
-                                    {{ $ocupacion->unidad }} - {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->ocupacion }}                                  
+                                    {{ $ocupacion->unidad }} - {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->puesto }}                                  
                                 </option>
                             @endforeach
                         </select>
@@ -69,10 +69,6 @@
                     </div>  
 
                 </div>
-
-                
-
-
 
         <!-- ---------------------------------------------------------------------- --> 
         </div>

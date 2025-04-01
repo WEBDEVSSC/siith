@@ -30,7 +30,9 @@
         'updateAreaMedica',
         'successCertificacion',
         'updateCertificacion',
-        'successCentrosDeSalud'
+        'successCentrosDeSalud',
+        'updateCentrosDeSalud',
+        'successHospital'
     ];
 @endphp
 
@@ -234,17 +236,33 @@
                                 <!-- --------------------------------------- -->
                                 <!-- --------------------------------------- -->
 
-                                <!-- CATALOGO PARA CENTROS DE SALUD URBANOS Y RURALES -->
+                                <!-- CATALOGO PARA CENTROS DE SALUD URBANOS Y RURALES (1) -->
 
                                 @if ( $data['profesional']->puesto->clues_adscripcion_tipo == 1)
 
                                     @if(optional($data['profesional']->ocupacionCentroSalud)->mdl_status == 1)
-                                        <a href="{{ route('editCertificacion', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OCUPACIÓN CENTROS DE SALUD U y R">
+                                        <a href="{{ route('editCentrosDeSalud', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OCUPACIÓN CENTROS DE SALUD U y R">
                                             <i class="fa-solid fa-hand-holding-medical"></i>
                                         </a>
                                     @else
                                         <a href="{{ route('createCentrosDeSalud', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OCUPACIÓN CENTROS DE SALUD U y R">
                                             <i class="fa-solid fa-hand-holding-medical"></i>
+                                        </a>
+                                    @endif
+                                                                                                   
+                                @endif
+
+                                <!-- CATALOGO PARA HOSPITALES (2) -->
+
+                                @if ( $data['profesional']->puesto->clues_adscripcion_tipo == 2)
+
+                                    @if(optional($data['profesional']->ocupacionHospital)->mdl_status == 1)
+                                        <a href="{{ route('editHospital', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OCUPACIÓN HOSPITALES">
+                                            <i class="fa-solid fa-hospital"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('createHospital', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OCUPACIÓN HOSPITALES">
+                                            <i class="fa-solid fa-hospital"></i>
                                         </a>
                                     @endif
                                                                                                    
