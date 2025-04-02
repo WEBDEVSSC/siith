@@ -2,6 +2,8 @@
 
 @section('title', 'Dashboard')
 
+@section('plugins.Select2', true)
+
 @section('content_header')
     <h1><strong>Profesionales</strong> <small>Puesto</small></h1>
 @stop
@@ -109,7 +111,7 @@
                     </div>
                     <div class="col-md-3">
                         <p>Código de puesto</p>
-                        <select name="codigo_puesto" id="codigo_puesto" class="form-control">
+                        <select name="codigo_puesto" id="codigo_puesto" class="form-control select2">
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($codigosPuesto as $codigoPuesto)
                                 <option value="{{ $codigoPuesto->codigo_puesto }}" {{ old('codigo_puesto') == $codigoPuesto->codigo_puesto ? 'selected' : '' }}>
@@ -123,7 +125,7 @@
                     </div>
                     <div class="col-md-3">
                         <p>CLUES Nomina</p>
-                        <select name="clues_nomina" id="clues_nomina" class="form-control">
+                        <select name="clues_nomina" id="clues_nomina" class="form-control select2">
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($clues as $clue)
                                 <option value="{{ $clue->id }}" {{ old('clues_nomina') == $clue->id ? 'selected' : '' }}>
@@ -137,7 +139,7 @@
                     </div>
                     <div class="col-md-3">
                         <p>CLUES Adscripcion</p>
-                        <select name="clues_adscripcion" id="clues_adscripcion" class="form-control">
+                        <select name="clues_adscripcion" id="clues_adscripcion" class="form-control select2">
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($clues as $clue)
                                 <option value="{{ $clue->id }}" {{ old('clues_adscripcion') == $clue->id ? 'selected' : '' }}>
@@ -157,7 +159,7 @@
 
                         <div class="col-md-3">
                             <p>Área de trabajo</p>
-                            <select name="area_trabajo" id="area_trabajo" class="form-control">
+                            <select name="area_trabajo" id="area_trabajo" class="form-control select2">
                                 <option value="">-- Selecciona una opción --</option>
                                 @foreach ($areasTrabajo as $areaTrabajo)
                                     <option value="{{ $areaTrabajo->area_trabajo }}" {{ old('area_trabajo') == $areaTrabajo->area_trabajo ? 'selected' : '' }}>
@@ -347,11 +349,35 @@
 @section('css')
     {{-- Add here extra stylesheets --}}
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+
+    {{-- Add here extra stylesheets --}}
+    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+
+    <style>
+        /* Asegura que Select2 tenga el mismo alto y bordes redondeados */
+        .select2-container--default .select2-selection--single {
+            height: calc(2.25rem + 2px) !important; /* Ajuste de altura */
+            border-radius: 0.25rem !important; /* Bordes redondeados */
+            border: 1px solid #ced4da !important; /* Color del borde */
+        }
+        
+        /* Alineación del texto */
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: calc(2.25rem - 2px) !important;
+            padding-left: 0.75rem !important;
+        }
+        
+        /* Ajuste del ícono desplegable */
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: calc(2.25rem + 2px) !important;
+        }
+    </style>
+
 @stop
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
 
     <script>
         $(document).ready(function(){
@@ -370,6 +396,51 @@
                         }
                     });
                 }
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#codigo_puesto').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#clues_nomina').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#clues_adscripcion').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#area_trabajo').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#ocupacion').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
             });
         });
     </script>

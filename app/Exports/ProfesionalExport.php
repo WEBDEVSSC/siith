@@ -16,7 +16,15 @@ class ProfesionalExport implements FromView, WithStyles
     public function view(): View
     {
         // Consultamos todos los profesionales con sus relaciones (puesto y horario)
-        $profesionales = Profesional::with(['puesto', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])->get();
+        
+        // Consulta de todos los registros
+        //$profesionales = Profesional::with(['puesto', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])->get();
+
+        $profesionales = Profesional::with(['puesto', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+        ->whereHas('puesto', function ($query) {
+            $query->where('vigencia', 'ACTIVO');
+        })
+        ->get();
 
         // Pasamos los datos a la vista
         return view('export.profesionales-export', [

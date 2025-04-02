@@ -260,7 +260,11 @@ Route::middleware(['auth'])->group(function ()
      * 
      */
     
+     // Ruta para el reporte de Excel
     Route::get('export-clues', [ProfesionalController::class, 'export'])->name('profesionalExport');
+
+    // Ruta para el envio de correos
+    Route::get('admin/profesionales/cumpleanos',[ProfesionalController::class,'enviarFelicitaciones'])->name('enviarFelicitaciones');
 
     /**
      * 

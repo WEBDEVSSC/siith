@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ProfesionalExport;
+use App\Mail\FelicitacionCumpleanos;
 use App\Models\Entidad;
 use App\Models\EstadoConyugal;
 use App\Models\Municipio;
@@ -12,6 +13,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 
 class ProfesionalController extends Controller
 {
@@ -538,5 +540,24 @@ class ProfesionalController extends Controller
     public function profesionalOcupacionCreate($id)
     {
         dd($id);
+    }
+
+    public function enviarFelicitaciones()
+    {
+        $hoy = Carbon::now()->format('m-d');
+
+        $cumpleañeros = Profesional::whereRaw("DATE_FORMAT(fecha_nacimiento, '%m-%d') = ?", [$hoy])->get();
+
+        foreach ($cumpleañeros as $persona) {
+            $datos = [
+                'nombre' => $persona->nombre,
+                'apellido_paterno' => $persona->apellido_paterno,
+                'apellido_materno' => $persona->apellido_materno,
+            ];
+    
+            Mail::to($persona->email)->send(new FelicitacionCumpleanos($datos));
+        }
+    
+        return "Correos enviados a los cumpleañeros de hoy.";
     }
 }

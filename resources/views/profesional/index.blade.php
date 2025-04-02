@@ -58,6 +58,8 @@
 
             <a href="{{ route('profesionalExport') }}" class="btn btn-success"><i class="fa-solid fa-chart-simple"></i> Exportar Profesionales a Excel</a>
 
+            <a href="{{ route('enviarFelicitaciones') }}" class="btn btn-success">ENVIAR FELICITACIONES</a>
+
         </div>
         <div class="card-body">
 
@@ -94,7 +96,7 @@
                         <td>{{ $data['profesional']->rfc }}</td>
                         <td>{{ $data['profesional']->nombre }} {{ $data['profesional']->apellido_paterno }} {{ $data['profesional']->apellido_materno }}</td>
                         <td>{{ $data['cluesAdscripcionNombre'] ?? 'N/A' }}</td>
-                        <td>{{ $data['profesional']->puesto->clues_adscripcion_tipo }}</td>
+                        <td>{{ $data['profesional']->puesto?->clues_adscripcion_tipo }}</td>
                         <td>
 
                             <!-- SI EL ROL ES DIFERENTE A DIRECTIVO SE MUESTRAN LOS BOTONES DE EDICION DE LOS MODULOS  -->
@@ -238,7 +240,7 @@
 
                                 <!-- CATALOGO PARA CENTROS DE SALUD URBANOS Y RURALES (1) -->
 
-                                @if ( $data['profesional']->puesto->clues_adscripcion_tipo == 1)
+                                @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 1)
 
                                     @if(optional($data['profesional']->ocupacionCentroSalud)->mdl_status == 1)
                                         <a href="{{ route('editCentrosDeSalud', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OCUPACIÓN CENTROS DE SALUD U y R">
@@ -254,7 +256,7 @@
 
                                 <!-- CATALOGO PARA HOSPITALES (2) -->
 
-                                @if ( $data['profesional']->puesto->clues_adscripcion_tipo == 2)
+                                @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 2)
 
                                     @if(optional($data['profesional']->ocupacionHospital)->mdl_status == 1)
                                         <a href="{{ route('editHospital', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OCUPACIÓN HOSPITALES">

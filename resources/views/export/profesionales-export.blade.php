@@ -126,28 +126,28 @@
                     <td>{{ $profesional->celular ?? ''  }}</td>
                     <td>{{ $profesional->email ?? ''  }}</td>
 
-                    <td>{{ $profesional->puesto->fiel ?? '' }} - {{ $profesional->puesto->fiel_vigencia ?? '' }}</td>
-                    <td>{{ $profesional->puesto->actividad ?? '' }}</td>
-                    <td>{{ $profesional->puesto->adicional ?? '' }}</td>
-                    <td>{{ $profesional->puesto->tipo_personal ?? '' }}</td>
-                    <td>{{ $profesional->puesto->codigo_puesto ?? '' }}</td>
-                    <td>{{ $profesional->puesto->clues_nomina ?? '' }} - {{$profesional->puesto->clues_nomina_nombre}}</td>
-                    <td>{{ $profesional->puesto->clues_nomina_municipio ?? '' }}</td>
-                    <td>{{ $profesional->puesto->clues_nomina_jurisdiccion ?? '' }}</td>
-                    <td>{{ $profesional->puesto->clues_adscripcion ?? '' }} - {{$profesional->puesto->clues_adscripcion_nombre}}</td>
-                    <td>{{ $profesional->puesto->clues_adscripcion_municipio ?? '' }}</td>
-                    <td>{{ $profesional->puesto->clues_adscripcion_jurisdiccion ?? '' }}</td>
-                    <td>{{ $profesional->puesto->area_trabajo ?? '' }}</td>
-                    <td>{{ $profesional->puesto->ocupacion ?? '' }}</td>
-                    <td>{{ $profesional->puesto->nomina_pago ?? '' }}</td>
-                    <td>{{ $profesional->puesto->tipo_contrato ?? '' }}</td>
-                    <td>{{ $profesional->puesto->fecha_ingreso ?? '' }}</td>
-                    <td>{{ $profesional->puesto->tipo_plaza ?? '' }}</td>
-                    <td>{{ $profesional->puesto->institucion_puesto ?? '' }}</td>
-                    <td>{{ $profesional->puesto->vigencia ?? '' }} - {{ $profesional->puesto->vigencia_motivo ?? '' }}</td>
-                    <td>{{ $profesional->puesto->temporalidad ?? '' }}</td>
-                    <td>{{ $profesional->puesto->licencia_maternidad ?? '' }}</td>
-                    <td>{{ $profesional->puesto->seguro_salud ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->fiel ?? '' }} - {{ $profesional->puesto->fiel_vigencia ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->actividad ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->adicional ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->tipo_personal ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->codigo_puesto ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->clues_nomina ?? '' }} - {{$profesional->puesto?->clues_nomina_nombre}}</td>
+                    <td>{{ $profesional->puesto?->clues_nomina_municipio ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->clues_nomina_jurisdiccion ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->clues_adscripcion ?? '' }} - {{$profesional->puesto?->clues_adscripcion_nombre}}</td>
+                    <td>{{ $profesional->puesto?->clues_adscripcion_municipio ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->clues_adscripcion_jurisdiccion ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->area_trabajo ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->ocupacion ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->nomina_pago ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->tipo_contrato ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->fecha_ingreso ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->tipo_plaza ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->institucion_puesto ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->vigencia ?? '' }} - {{ $profesional->puesto->vigencia_motivo ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->temporalidad ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->licencia_maternidad ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->seguro_salud ?? '' }}</td>
 
                     <td>{{ $profesional->horario->jornada ?? '' }}</td>
                     <td>{{ $profesional->horario->entrada_lunes ?? '' }} - {{ $profesional->horario->salida_lunes ?? '' }}</td>
