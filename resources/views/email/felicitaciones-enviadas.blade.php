@@ -1,0 +1,1 @@
+<p>Los correos de felicitación han sido enviados correctamente.</p>

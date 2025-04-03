@@ -3,7 +3,10 @@
 namespace App\Console\Commands;
 
 use App\Http\Controllers\ProfesionalController;
+use App\Mail\FelicitacionCumpleanos;
+use App\Mail\FelicitacionesEnviadas;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Mail;
 
 class EnviarFelicitacionesDiarias extends Command
 {
@@ -19,6 +22,8 @@ class EnviarFelicitacionesDiarias extends Command
     {
         $controller = new ProfesionalController();
         $controller->enviarFelicitaciones();
+
+        Mail::to('soportewebssc@gmail.com')->send(new FelicitacionesEnviadas());
 
         $this->info('Correos de felicitación enviados exitosamente.');
     }
