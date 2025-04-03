@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class ProfesionalController extends Controller
 {
@@ -549,15 +550,24 @@ class ProfesionalController extends Controller
         $cumpleañeros = Profesional::whereRaw("DATE_FORMAT(fecha_nacimiento, '%m-%d') = ?", [$hoy])->get();
 
         foreach ($cumpleañeros as $persona) {
-            $datos = [
-                'nombre' => $persona->nombre,
-                'apellido_paterno' => $persona->apellido_paterno,
-                'apellido_materno' => $persona->apellido_materno,
-            ];
-    
-            Mail::to($persona->email)->send(new FelicitacionCumpleanos($datos));
+            try {
+                if (empty($persona->email) || !filter_var($persona->email, FILTER_VALIDATE_EMAIL)) {
+                    throw new \Exception("Correo inválido: " . ($persona->email ?? 'NULL'));
+                }
+
+                $datos = [
+                    'nombre' => $persona->nombre,
+                    'apellido_paterno' => $persona->apellido_paterno,
+                    'apellido_materno' => $persona->apellido_materno,
+                ];
+
+                Mail::to($persona->email)->send(new FelicitacionCumpleanos($datos));
+                Log::info("Correo enviado a: " . $persona->email);
+            } catch (\Exception $e) {
+                Log::error("Error al enviar correo a {$persona->email}: " . $e->getMessage());
+            }
         }
-    
+
         return "Correos enviados a los cumpleañeros de hoy.";
     }
 }
