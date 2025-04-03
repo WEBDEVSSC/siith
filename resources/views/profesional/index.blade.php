@@ -58,8 +58,6 @@
 
             <a href="{{ route('profesionalExport') }}" class="btn btn-success"><i class="fa-solid fa-chart-simple"></i> Exportar Profesionales a Excel</a>
 
-            <a href="{{ route('enviarFelicitaciones') }}" class="btn btn-success">ENVIAR FELICITACIONES</a>
-
         </div>
         <div class="card-body">
 
