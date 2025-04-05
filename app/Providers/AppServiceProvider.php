@@ -22,9 +22,9 @@ class AppServiceProvider extends ServiceProvider
             return $user->role === 'admin';
         });
 
-        // ROL ADMINISTRADOR (ALMACEN) CATALOGO 7
-        Gate::define('isAlmacen', function ($user) {
-            return $user->role === 'almacen';
+        // ROL HOSPITAL (CATALOGO 1)
+        Gate::define('isHospital', function ($user) {
+            return $user->role === 'hospital';
         });
     }
 

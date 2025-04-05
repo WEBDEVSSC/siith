@@ -203,15 +203,19 @@ class ProfesionalController extends Controller
         // Conficionamos a los roles 
         if (Gate::allows('isAdmin'))
         {
-            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica','ocupacionCentroSalud'])->get();
         }
-        else
+        elseif(Gate::allows('isAdmin'))
         {
 
         }  
+        else
+        {
+
+        }
         
         // Consultamos todos los profesionales con sus relaciones
-        $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica','ocupacionCentroSalud'])->get();
+        //$profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica','ocupacionCentroSalud'])->get();
 
         // Creamos un array para almacenar los datos adicionales
         $profesionalesData = $profesionales->map(function ($profesional) {

@@ -33,6 +33,7 @@
         'successCentrosDeSalud',
         'updateCentrosDeSalud',
         'successHospital',
+        'updateHospital',
         'successOfJurisdiccional',
         'updateOfJurisdiccional'
     ];

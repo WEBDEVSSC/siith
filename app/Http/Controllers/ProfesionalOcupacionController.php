@@ -202,8 +202,49 @@ class ProfesionalOcupacionController extends Controller
         $profesionalOcupaciones = ProfesionalOcupacionHospital::where('id_profesional',$id)->first();
 
         // Retornamos la vista con todos los objetos
-        return view('ocupacion.csuyr-edit', compact('profesional','ocupaciones','profesionalOcupaciones'));
+        return view('ocupacion.hospital-edit', compact('profesional','ocupaciones','profesionalOcupaciones'));
     }
+
+    public function updateHospital(Request $request, $id)
+    {            
+        // Validamos los datos
+        $request->validate([
+            'ocupacion_uno' => 'required',
+            'ocupacion_dos' => 'nullable'
+        ],[]);
+
+         // Consultamos los datos para registrar
+         $ocupacionUno = CatOcupacionHospital::where('id',$request->ocupacion_uno)->first();
+
+         $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionHospital::where('id',$request->ocupacion_dos)->first();
+        }
+
+         // Consultamos el id
+         $ocupacion = ProfesionalOcupacionHospital::findOrFail($id);
+
+         // Asignamos los valores al registro
+         $ocupacion->update([
+            'id_catalogo_uno'=>$request->ocupacion_uno,
+            'unidad_uno'=>$ocupacionUno->unidad_uno,
+            'area_uno'=>$ocupacionUno->area_uno,
+            'subarea_uno'=>$ocupacionUno->subarea_uno,
+            'puesto_uno'=>$ocupacionUno->puesto_uno,
+
+            'id_catalogo_dos'=>$request?->ocupacion_dos,
+            'unidad_dos'=>$ocupacionDos?->unidad_dos,
+            'area_dos'=>$ocupacionDos?->area_dos,
+            'subarea_dos'=>$ocupacionDos?->subarea_dos,
+            'puesto_dos'=>$ocupacionDos?->ocupacion_dos,
+         ]);
+
+         // Regresamos a la vista con su mensaje
+        return redirect()->route('profesionalIndex')->with('updateHospital', 'Ocupaciones actualizadas correctamente.');
+    }
+
 
     /** ************************************************************************************************************************************************
      * 

@@ -26,7 +26,7 @@
 
         </div>
 
-        <form action="{{ route('updateCentrosDeSalud',$profesional->id) }}" method="POST">
+        <form action="{{ route('updateCentrosDeSalud',$profesionalOcupaciones->id) }}" method="POST">
 
         @csrf 
 

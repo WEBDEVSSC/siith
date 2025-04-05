@@ -26,7 +26,7 @@
 
         </div>
 
-        <form action="{{ route('updateOfJurisdiccional',$profesional->id) }}" method="POST">
+        <form action="{{ route('updateOfJurisdiccional',$profesionalOcupaciones->id) }}" method="POST">
 
         @csrf 
 
