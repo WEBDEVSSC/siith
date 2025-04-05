@@ -198,6 +198,8 @@ class ProfesionalController extends Controller
 
     public function profesionalIndex()
     {
+        ini_set('memory_limit', '-1');
+        
         // Conficionamos a los roles 
         if (Gate::allows('isAdmin'))
         {
