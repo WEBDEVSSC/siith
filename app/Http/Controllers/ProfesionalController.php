@@ -563,9 +563,11 @@ class ProfesionalController extends Controller
 
                 Mail::to($persona->email)->send(new FelicitacionCumpleanos($datos));
                 Log::info("Correo enviado a: " . $persona->email);
-            } catch (\Exception $e) {
-                Log::error("Error al enviar correo a {$persona->email}: " . $e->getMessage());
-            }
+                } 
+                catch (\Exception $e) 
+                {
+                    Log::error("Error al enviar correo a {$persona->email}: " . $e->getMessage());
+                }
         }
 
         return "Correos enviados a los cumpleañeros de hoy.";

@@ -32,7 +32,9 @@
         'updateCertificacion',
         'successCentrosDeSalud',
         'updateCentrosDeSalud',
-        'successHospital'
+        'successHospital',
+        'successOfJurisdiccional',
+        'updateOfJurisdiccional'
     ];
 @endphp
 
@@ -263,6 +265,22 @@
                                     @else
                                         <a href="{{ route('createHospital', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OCUPACIÓN HOSPITALES">
                                             <i class="fa-solid fa-hospital"></i>
+                                        </a>
+                                    @endif
+                                                                                                   
+                                @endif
+
+                                <!-- CATALOGO PARA OFICINAS JURISDICCIONALES (3) -->
+
+                                @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 3)
+
+                                    @if(optional($data['profesional']->ocupacionOfJurisidccion)->mdl_status == 1)
+                                        <a href="{{ route('editOfJurisdiccional', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
+                                            <i class="fa-solid fa-building-user"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('createOfJurisdiccional', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
+                                            <i class="fa-solid fa-building-user"></i>
                                         </a>
                                     @endif
                                                                                                    

@@ -80,4 +80,9 @@ class Profesional extends Model
     {
         return $this->hasOne(ProfesionalOcupacionHospital::class,'id_profesional');
     }
+
+    public function ocupacionOfJurisidccion()
+    {
+        return $this->hasOne(ProfesionalOcupacionOfJurisdiccional::class,'id_profesional');
+    }
 }

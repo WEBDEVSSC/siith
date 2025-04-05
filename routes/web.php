@@ -252,6 +252,16 @@ Route::middleware(['auth'])->group(function ()
 
      Route::put('admin/profesionales/ocupaciones/updateHospital/{id}', [ProfesionalOcupacionController::class, 'updateHospital'])->name('updateHospital');
 
+      /**RUTAS PARA EL CATALOGO 3 - OFICINAS JURISDICCIONALES */
+
+      Route::get('admin/profesionales/ocupaciones/createOfJurisdiccional/{id}', [ProfesionalOcupacionController::class, 'createOfJurisdiccional'])->name('createOfJurisdiccional');
+
+      Route::post('admin/profesionales/ocupaciones/storeOfJurisdiccional', [ProfesionalOcupacionController::class, 'storeOfJurisdiccional'])->name('storeOfJurisdiccional');
+ 
+      Route::get('admin/profesionales/ocupaciones/editOfJurisdiccional/{id}', [ProfesionalOcupacionController::class, 'editOfJurisdiccional'])->name('editOfJurisdiccional');
+ 
+      Route::put('admin/profesionales/ocupaciones/updateOfJurisdiccional/{id}', [ProfesionalOcupacionController::class, 'updateOfJurisdiccional'])->name('updateOfJurisdiccional');
+
     /**
      * 
      * 
