@@ -11,77 +11,61 @@
 @section('content')
 
 <div class="alert alert-info" role="alert">
-
     <ul>
-        <li><strong>Nombre</strong> : {{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</li>
-        <li><strong>CURP</strong> : {{ $profesional->curp }}</li>
+        <li><strong>Nombre</strong>: {{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</li>
+        <li><strong>CURP</strong>: {{ $profesional->curp }}</li>
     </ul>
-    
 </div>
-    
+
 <div class="card">
-        <div class="card-header">
+    <div class="card-header">
+        <a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
+    </div>
 
-            <a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
-
-        </div>
-
-        <form action="{{ route('storeCentrosDeSalud') }}" method="POST">
-
-        @csrf 
-
+    <form action="{{ route('storeCentrosDeSalud') }}" method="POST">
+        @csrf
         <input type="hidden" name="id_profesional" value="{{ $profesional->id }}">
-            
-            <div class="card-body">
 
-                <!-- ---------------------------------- -->
-
-                <div class="row mt-3">      
-
-                    <div class="col-md-6">
-                        <p>Ocupacion</p>
-                        <select name="ocupacion_uno" id="ocupacion_uno" class="form-control select2">
-                            <option value="">-- Seleccione una opción --</option>
-                            @foreach($ocupaciones as $ocupacion)
-                                <option value="{{ $ocupacion->id }}">
-                                    {{ $ocupacion->unidad }} - {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->ocupacion }}                                  
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('ocupacion_uno')
+        <div class="card-body">
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <label for="ocupacion_uno">Ocupación 1</label>
+                    <select name="ocupacion_uno" id="ocupacion_uno" class="form-control select2">
+                        <option value="">-- Seleccione una opción --</option>
+                        @foreach($ocupaciones as $ocupacion)
+                            <option value="{{ $ocupacion->id }}">
+                                {{ $ocupacion->unidad }} - {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->ocupacion }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('ocupacion_uno')
                         <br><div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>   
-
-                    <div class="col-md-6">
-                        <p>Ocupacion</p>
-                        <select name="ocupacion_dos" id="ocupacion_dos" class="form-control select2">
-                            <option value="">-- Seleccione una opción --</option>
-                            @foreach($ocupaciones as $ocupacion)
-                                <option value="{{ $ocupacion->id }}">
-                                    {{ $ocupacion->unidad }} - {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->ocupacion }}                                  
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('ocupacion_dos')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>  
-
+                    @enderror
                 </div>
+            </div>
 
-                
-
-
-
-        <!-- ---------------------------------------------------------------------- --> 
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <label for="ocupacion_dos">Ocupación 2</label>
+                    <select name="ocupacion_dos" id="ocupacion_dos" class="form-control select2">
+                        <option value="">-- Seleccione una opción --</option>
+                        @foreach($ocupaciones as $ocupacion)
+                            <option value="{{ $ocupacion->id }}">
+                                {{ $ocupacion->unidad }} - {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->ocupacion }}
+                            </option>
+                        @endforeach
+                    </select>
+                    @error('ocupacion_dos')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
         </div>
+
         <div class="card-footer">
-            <button type="submit" class="btn btn-success btn-sm btn-info">REGISTRAR DATOS DE OCUPACION</button>
+            <button type="submit" class="btn btn-success btn-sm">REGISTRAR DATOS DE OCUPACIÓN</button>
         </div>
-
     </form>
-
 </div>
 
 @stop
