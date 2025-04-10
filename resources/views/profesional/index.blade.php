@@ -35,7 +35,9 @@
         'successHospital',
         'updateHospital',
         'successOfJurisdiccional',
-        'updateOfJurisdiccional'
+        'updateOfJurisdiccional',
+        'successCriCree',
+        'updateCriCree'
     ];
 @endphp
 
@@ -282,6 +284,38 @@
                                     @else
                                         <a href="{{ route('createOfJurisdiccional', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
                                             <i class="fa-solid fa-building-user"></i>
+                                        </a>
+                                    @endif
+                                                                                                   
+                                @endif
+
+                                <!-- CATALOGO PARA CRI CREE (4) -->
+
+                                @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 4)
+
+                                    @if(optional($data['profesional']->ocupacionCriCree)->mdl_status == 1)
+                                        <a href="{{ route('editCriCree', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="CRI CREE">
+                                            <i class="fa-solid fa-wheelchair"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('createCriCree', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="CRI CREE">
+                                            <i class="fa-solid fa-wheelchair"></i>
+                                        </a>
+                                    @endif
+                                                                                                   
+                                @endif
+
+                                <!-- CATALOGO PARA SAMU CRUM (5) -->
+
+                                @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 5)
+
+                                    @if(optional($data['profesional']->ocupacionCriCree)->mdl_status == 1)
+                                        <a href="{{ route('editCriCree', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="CRI CREE">
+                                            <i class="fa-solid fa-wheelchair"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('createCriCree', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="CRI CREE">
+                                            <i class="fa-solid fa-wheelchair"></i>
                                         </a>
                                     @endif
                                                                                                    

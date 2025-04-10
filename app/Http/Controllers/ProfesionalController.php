@@ -8,6 +8,10 @@ use App\Models\Entidad;
 use App\Models\EstadoConyugal;
 use App\Models\Municipio;
 use App\Models\Profesional;
+use App\Models\ProfesionalOcupacionCentroSalud;
+use App\Models\ProfesionalOcupacionCriCree;
+use App\Models\ProfesionalOcupacionHospital;
+use App\Models\ProfesionalOcupacionOfJurisdiccional;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -348,6 +352,35 @@ class ProfesionalController extends Controller
         $cluesAdscripcionMunicipio = $puesto ? $puesto->clues_adscripcion_municipio : null;
         $cluesAdscripcionJurisdiccion = $puesto ? $puesto->clues_adscripcion_jurisdiccion : null;
 
+        $cluesAdscripcionTipo = $puesto ? $puesto->clues_adscripcion_tipo : null;
+
+        // Cargamos los datos del MODULO DE OCUPACION
+        
+        $ocupacion = null;
+
+        $tipo = $profesional->puesto->clues_adscripcion_tipo ?? null;
+
+        // CENTROS DE SALUD URBANOS Y RURALES (1)
+        if ($tipo == 1) 
+        {
+            $ocupacion = ProfesionalOcupacionCentroSalud::where('id_profesional', $id)->first();
+        } 
+        // HOSPITALES (2)
+        elseif ($tipo == 2) 
+        {
+            $ocupacion = ProfesionalOcupacionHospital::where('id_profesional', $id)->first();
+        } 
+        // OFICINA JURISDICCIONAL (3)
+        elseif ($tipo == 3) 
+        {
+            $ocupacion = ProfesionalOcupacionOfJurisdiccional::where('id_profesional', $id)->first();
+        } 
+        // CRI CREE (4)
+        elseif ($tipo == 4) 
+        {
+            $ocupacion = ProfesionalOcupacionCriCree::where('id_profesional', $id)->first();
+        }
+
         // Cargamos los datos del MODULO CREDENCIALIZACION
         $credencializacion = $profesional->credencializacion;
         $fotografia = $credencializacion ? $credencializacion->fotografia : null;
@@ -502,6 +535,9 @@ class ProfesionalController extends Controller
             'idiomaNivelDominio',
             'lenguaIndigena',
             'lenguaIndigenaDominio',
+
+            'cluesAdscripcionTipo',
+            'ocupacion'
         ));
     }
 

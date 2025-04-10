@@ -14,6 +14,13 @@
 <div class="card mt-3">
     <div class="card-header">
         <strong>DATOS GENERALES</strong>
+
+        @if ($profesional->mdl_datos_generales == 1)
+            <p>El módulo de datos generales está activo.</p>
+        @elseif ($profesional->mdl_datos_generales == 0)
+            <p>El módulo de datos generales está inactivo.</p>
+        @endif
+        
     </div>
     <div class="card-body">
 
@@ -87,17 +94,60 @@
     </div>
 
     <!-- -- -->
-
-    
-
-    <!-- -- -->
     
     <div class="card-footer">
-            
+
     </div>
 
 </div>
 
+    <!-- -- -->
+
+    <div class="card">
+        <div class="card-header"><strong>OCUPACIÓN</strong></div>
+        <div class="card-body">
+
+            <!-- OCUPACION PARA CENTROS DE SALUD URBANOS Y RURALES (1) -->
+
+            @if ($cluesAdscripcionTipo == 1)
+                <ul>
+                    <li>{{ optional($ocupacion)->unidad_uno }} - {{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_uno }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
+                    <li>{{ optional($ocupacion)->unidad_dos }} - {{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
+                </ul>
+            @endif
+
+            <!-- OCUPACION PARA HOSPITALES (2) -->
+
+            @if ($cluesAdscripcionTipo == 2)
+                <ul>
+                    <li>{{ optional($ocupacion)->unidad_uno }} - {{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_uno }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
+                    <li>{{ optional($ocupacion)->unidad_dos }} - {{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
+                </ul>
+            @endif
+
+            <!-- OCUPACION PARA OFICINAS JURISDICCIONALES (3) -->
+
+            @if ($cluesAdscripcionTipo == 3)
+                <ul>
+                    <li>{{ optional($ocupacion)->unidad_uno }} - {{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_uno }} - {{ optional($ocupacion)->servicio_uno }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
+                    <li>{{ optional($ocupacion)->unidad_dos }} - {{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_dos }} - {{ optional($ocupacion)->servicio_dos }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
+                </ul>
+            @endif
+
+            <!-- OCUPACION PARA CRI CREE (4) -->
+
+            @if ($cluesAdscripcionTipo == 4)
+                <ul>
+                    <li>{{ optional($ocupacion)->unidad_uno }} - {{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_uno }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
+                    <li>{{ optional($ocupacion)->unidad_dos }} - {{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
+                </ul>
+            @endif
+            
+        </div>
+        <div class="card-footer"></div>
+    </div>
+
+    <!-- -- -->
     <!-- -- -->
 
     <div class="card">

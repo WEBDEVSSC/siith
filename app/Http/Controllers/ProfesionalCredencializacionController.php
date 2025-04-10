@@ -26,7 +26,7 @@ class ProfesionalCredencializacionController extends Controller
         $profesional = Profesional::findOrFail($id);
 
         // Generamos la URL de la fotografía
-        $credencializacion = $profesional->credencializacion->first();
+        $credencializacion = $profesional->credencializacion;
         $fotografia = $credencializacion ? $credencializacion->fotografia : null;
         $fotoUrl = $fotografia ? url('/foto/' . basename($fotografia)) : null;
 

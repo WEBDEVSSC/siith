@@ -262,6 +262,26 @@ Route::middleware(['auth'])->group(function ()
  
       Route::put('admin/profesionales/ocupaciones/updateOfJurisdiccional/{id}', [ProfesionalOcupacionController::class, 'updateOfJurisdiccional'])->name('updateOfJurisdiccional');
 
+      /**RUTAS PARA EL CATALOGO 4 - CRI CREE */
+
+      Route::get('admin/profesionales/ocupaciones/createCriCree/{id}', [ProfesionalOcupacionController::class, 'createCriCree'])->name('createCriCree');
+
+      Route::post('admin/profesionales/ocupaciones/storeCriCree', [ProfesionalOcupacionController::class, 'storeCriCree'])->name('storeCriCree');
+ 
+      Route::get('admin/profesionales/ocupaciones/editCriCree/{id}', [ProfesionalOcupacionController::class, 'editCriCree'])->name('editCriCree');
+ 
+      Route::put('admin/profesionales/ocupaciones/updateCriCree/{id}', [ProfesionalOcupacionController::class, 'updateCriCree'])->name('updateCriCree');
+
+      /**RUTAS PARA EL CATALOGO 5 - SAMU CRUM */
+
+      Route::get('admin/profesionales/ocupaciones/createSamuCrum/{id}', [ProfesionalOcupacionController::class, 'createSamuCrum'])->name('createSamuCrum');
+
+      Route::post('admin/profesionales/ocupaciones/storeSamuCrum', [ProfesionalOcupacionController::class, 'storeSamuCrum'])->name('storeSamuCrum');
+ 
+      Route::get('admin/profesionales/ocupaciones/editSamuCrum/{id}', [ProfesionalOcupacionController::class, 'editSamuCrum'])->name('editSamuCrum');
+ 
+      Route::put('admin/profesionales/ocupaciones/updateSamuCrum/{id}', [ProfesionalOcupacionController::class, 'updateSamuCrum'])->name('updateSamuCrum');
+
     /**
      * 
      * 

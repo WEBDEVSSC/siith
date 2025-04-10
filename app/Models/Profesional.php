@@ -85,4 +85,9 @@ class Profesional extends Model
     {
         return $this->hasOne(ProfesionalOcupacionOfJurisdiccional::class,'id_profesional');
     }
+
+    public function ocupacionCriCree()
+    {
+        return $this->hasOne(ProfesionalOcupacionCriCree::class,'id_profesional');
+    }
 }
