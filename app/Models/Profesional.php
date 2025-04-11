@@ -90,4 +90,15 @@ class Profesional extends Model
     {
         return $this->hasOne(ProfesionalOcupacionCriCree::class,'id_profesional');
     }
+
+    public function ocupacionSamuCrum()
+    {
+        return $this->hasOne(ProfesionalOcupacionSamuCrum::class,'id_profesional');
+    }
+
+    public function ocupacionOficinaCentral()
+    {
+        return $this->hasOne(ProfesionalOcupacionOficinaCentral::class,'id_profesional');
+    }
+
 }

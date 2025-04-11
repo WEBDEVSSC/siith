@@ -5,7 +5,7 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>CRI CREE</small></h1>
+    <h1><strong>Profesionales</strong> <small>Oficina Central</small></h1>
 @stop
 
 @section('content')
@@ -22,7 +22,7 @@
         <a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
     </div>
 
-    <form action="{{ route('storeCriCree') }}" method="POST">
+    <form action="{{ route('storeOficinaCentral') }}" method="POST">
         @csrf
         <input type="hidden" name="id_profesional" value="{{ $profesional->id }}">
 
@@ -34,7 +34,7 @@
                         <option value="">-- Seleccione una opción --</option>
                         @foreach($ocupaciones as $ocupacion)
                             <option value="{{ $ocupacion->id }}">
-                                {{ $ocupacion->unidad }} - {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->ocupacion }}
+                                {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->programa }} - {{ $ocupacion->componente }} - {{ $ocupacion->ocupacion }}
                             </option>
                         @endforeach
                     </select>
@@ -51,7 +51,7 @@
                         <option value="">-- Seleccione una opción --</option>
                         @foreach($ocupaciones as $ocupacion)
                             <option value="{{ $ocupacion->id }}">
-                                {{ $ocupacion->unidad }} - {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->ocupacion }}
+                                {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->programa }} - {{ $ocupacion->componente }} - {{ $ocupacion->ocupacion }}
                             </option>
                         @endforeach
                     </select>
@@ -70,6 +70,8 @@
 
 
 @stop
+
+@include('partials.footer')
 
 @section('css')
     {{-- Add here extra stylesheets --}}
@@ -94,8 +96,6 @@
         }
     </style>
 @stop
-
-@include('partials.footer')
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>

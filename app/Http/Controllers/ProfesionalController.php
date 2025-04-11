@@ -205,11 +205,11 @@ class ProfesionalController extends Controller
         ini_set('memory_limit', '-1');
         
         // Conficionamos a los roles 
-        if (Gate::allows('isAdmin'))
+        if (Gate::allows('admin'))
         {
-            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica','ocupacionCentroSalud'])->get();
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])->get();
         }
-        elseif(Gate::allows('isAdmin'))
+        elseif(Gate::allows('almacen'))
         {
 
         }  

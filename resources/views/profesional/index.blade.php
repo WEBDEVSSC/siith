@@ -37,7 +37,11 @@
         'successOfJurisdiccional',
         'updateOfJurisdiccional',
         'successCriCree',
-        'updateCriCree'
+        'updateCriCree',
+        'successSamuCrum',
+        'updateSamuCrum',
+        'successOficinaCentral',
+        'updateOficinaCentral',
     ];
 @endphp
 
@@ -96,7 +100,7 @@
                             </a>
                         </td>
                         <td>{{ $data['profesional']->curp }}</td>
-                        <td>{{ $data['profesional']->rfc }}</td>
+                        <td>{{ $data['profesional']->rfc }}{{ $data['profesional']->homoclave }}</td>
                         <td>{{ $data['profesional']->nombre }} {{ $data['profesional']->apellido_paterno }} {{ $data['profesional']->apellido_materno }}</td>
                         <td>{{ $data['cluesAdscripcionNombre'] ?? 'N/A' }}</td>
                         <td>{{ $data['profesional']->puesto?->clues_adscripcion_tipo }}</td>
@@ -309,13 +313,29 @@
 
                                 @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 5)
 
-                                    @if(optional($data['profesional']->ocupacionCriCree)->mdl_status == 1)
-                                        <a href="{{ route('editCriCree', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="CRI CREE">
-                                            <i class="fa-solid fa-wheelchair"></i>
+                                    @if(optional($data['profesional']->ocupacionSamuCrum)->mdl_status == 1)
+                                        <a href="{{ route('editSamuCrum', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="SAMU CRUM">
+                                            <i class="fa-solid fa-truck-medical"></i>
                                         </a>
                                     @else
-                                        <a href="{{ route('createCriCree', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="CRI CREE">
-                                            <i class="fa-solid fa-wheelchair"></i>
+                                        <a href="{{ route('createSamuCrum', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="SAMU CRUM">
+                                            <i class="fa-solid fa-truck-medical"></i>
+                                        </a>
+                                    @endif
+                                                                                                   
+                                @endif
+
+                                <!-- CATALOGO PARA OFICINA CENTRAL (6) -->
+
+                                @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 6)
+
+                                    @if(optional($data['profesional']->ocupacionOficinaCentral)->mdl_status == 1)
+                                        <a href="{{ route('editOficinaCentral', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OFICINA CENTRAL">
+                                            <i class="fa-solid fa-building-flag"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('createOficinaCentral', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OFICINA CENTRAL">
+                                            <i class="fa-solid fa-building-flag"></i>
                                         </a>
                                     @endif
                                                                                                    

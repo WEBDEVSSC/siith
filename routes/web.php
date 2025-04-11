@@ -282,6 +282,16 @@ Route::middleware(['auth'])->group(function ()
  
       Route::put('admin/profesionales/ocupaciones/updateSamuCrum/{id}', [ProfesionalOcupacionController::class, 'updateSamuCrum'])->name('updateSamuCrum');
 
+      /**RUTAS PARA EL CATALOGO 6 - OFICINA CENTRAL */
+
+      Route::get('admin/profesionales/ocupaciones/createOficinaCentral/{id}', [ProfesionalOcupacionController::class, 'createOficinaCentral'])->name('createOficinaCentral');
+
+      Route::post('admin/profesionales/ocupaciones/storeOficinaCentral', [ProfesionalOcupacionController::class, 'storeOficinaCentral'])->name('storeOficinaCentral');
+ 
+      Route::get('admin/profesionales/ocupaciones/editOficinaCentral/{id}', [ProfesionalOcupacionController::class, 'editOficinaCentral'])->name('editOficinaCentral');
+ 
+      Route::put('admin/profesionales/ocupaciones/updateOficinaCentral/{id}', [ProfesionalOcupacionController::class, 'updateOficinaCentral'])->name('updateOficinaCentral');
+
     /**
      * 
      * 
