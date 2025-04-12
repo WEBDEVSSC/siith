@@ -42,6 +42,8 @@
         'updateSamuCrum',
         'successOficinaCentral',
         'updateOficinaCentral',
+        'successAlmacen',
+        'updateAlmacen'
     ];
 @endphp
 
@@ -336,6 +338,22 @@
                                     @else
                                         <a href="{{ route('createOficinaCentral', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OFICINA CENTRAL">
                                             <i class="fa-solid fa-building-flag"></i>
+                                        </a>
+                                    @endif
+                                                                                                   
+                                @endif
+
+                                <!-- CATALOGO PARA ALMACEN (7) -->
+
+                                @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 7)
+
+                                    @if(optional($data['profesional']->ocupacionAlmacen)->mdl_status == 1)
+                                        <a href="{{ route('editAlmacen', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="ALMACEN ESTATAL">
+                                            <i class="fa-solid fa-shop-lock"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('createAlmacen', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="ALMACEN ESTATAL">
+                                            <i class="fa-solid fa-shop-lock"></i>
                                         </a>
                                     @endif
                                                                                                    

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CatOcupacionAlmacen;
 use App\Models\CatOcupacionCentroSalud;
 use App\Models\CatOcupacionCriCree;
 use App\Models\CatOcupacionHospital;
@@ -9,6 +10,7 @@ use App\Models\CatOcupacionOficinaCentral;
 use App\Models\CatOcupacionOfJurisdiccional;
 use App\Models\CatOcupacionSamuCrum;
 use App\Models\Profesional;
+use App\Models\ProfesionalOcupacionAlmacen;
 use App\Models\ProfesionalOcupacionCentroSalud;
 use App\Models\ProfesionalOcupacionCriCree;
 use App\Models\ProfesionalOcupacionHospital;
@@ -625,7 +627,7 @@ class ProfesionalOcupacionController extends Controller
      * 
      ***************************************************************************************************************************************************/
 
-     public function createOficinaCentral($id)
+    public function createOficinaCentral($id)
     {
         // Consultamos los datos del profesional
         $profesional = Profesional::findOrFail($id);
@@ -737,6 +739,129 @@ class ProfesionalOcupacionController extends Controller
 
         // Redireccionar con un mensaje de éxito
         return redirect()->route('profesionalIndex')->with('updateOficinaCentral', 'Ocupaciones OFICINA CENTRAL actualizadas correctamente.');
+
+    }
+
+    /** ************************************************************************************************************************************************
+     * 
+     * 
+     * ALMACEN
+     * 
+     * 
+     ***************************************************************************************************************************************************/
+
+    public function createAlmacen($id)
+    {
+        // Consultamos los datos del profesional
+        $profesional = Profesional::findOrFail($id);
+
+        // Llenamos el select de ocupaciones
+        $ocupaciones = CatOcupacionAlmacen::orderBy('orden', 'asc')->get();
+
+        // Retornamos la vista con todos los objetos
+        return view('ocupacion.almacen-create', compact('profesional','ocupaciones'));
+    }
+
+    public function storeAlmacen(Request $request)
+    {
+        // Validamos los datos
+        $request->validate([
+            'id_profesional'=>'required',
+            'ocupacion_uno'=>'required',
+            'ocupacion_dos'=>'nullable'
+        ],[]);
+
+        // Consultamos los datos para registrar
+        $ocupacionUno = CatOcupacionAlmacen::where('id',$request->ocupacion_uno)->first();
+        $ocupacionDos = CatOcupacionAlmacen::where('id',$request->ocupacion_dos)->first();
+
+        // Activamos el modulo
+        $mdl_status = 1;
+
+        // Creamos el objeto
+        $ocupacion = new ProfesionalOcupacionAlmacen();
+
+        // Asignamos los valores
+        $ocupacion->id_profesional = $request->id_profesional;
+
+        $ocupacion->id_catalogo_uno = $request->ocupacion_uno;
+        $ocupacion->area_uno = $ocupacionUno->area;
+        $ocupacion->subarea_uno = $ocupacionUno->subarea;
+        $ocupacion->jefatura_uno = $ocupacionUno->jefatura;
+        $ocupacion->departamento_uno = $ocupacionUno->departamento;
+        $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
+
+        $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
+        $ocupacion->area_dos = $ocupacionDos->area;
+        $ocupacion->subarea_dos = $ocupacionDos->subarea;   
+        $ocupacion->jefatura_dos = $ocupacionDos->jefatura;   
+        $ocupacion->departamento_dos = $ocupacionDos->departamento;   
+        $ocupacion->ocupacion_dos = $ocupacionDos->ocupacion;
+
+        $ocupacion->mdl_status = $mdl_status;
+
+        // Registramos los datos
+        $ocupacion->save();
+
+        // Regresamos a la vista con su mensaje
+        return redirect()->route('profesionalIndex')->with('successAlmacen', 'Ocupaciones ALMACEN ESTATAL registradas correctamente.');
+    }
+
+    public function editAlmacen($id)
+    {
+        // Consultamos los datos del profesional
+        $profesional = Profesional::findOrFail($id);
+
+        // Llenamos el select de ocupaciones
+        $ocupaciones = CatOcupacionAlmacen::orderBy('orden', 'asc')->get();
+
+        // Consultamos si tiene registros en la tabla
+        $profesionalOcupaciones = ProfesionalOcupacionAlmacen::where('id_profesional',$id)->first();
+
+        // Retornamos la vista con todos los objetos
+        return view('ocupacion.almacen-edit', compact('profesional','ocupaciones','profesionalOcupaciones'));
+    }
+
+    public function updateAlmacen(Request $request, $id)
+    {
+        // Validamos los datos
+        $request->validate([
+            'ocupacion_uno'=>'required',
+            'ocupacion_dos'=>'nullable'
+        ],[]);
+
+        // Consultamos los datos para registrar
+        $ocupacionUno = CatOcupacionAlmacen::where('id',$request->ocupacion_uno)->first();
+
+        $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionAlmacen::where('id', $request->ocupacion_dos)->first();
+        }
+
+        // Buscamos el registro a editar
+        $ocupaciones = ProfesionalOcupacionAlmacen::findOrFail($id);
+
+        // Asignamos los valores
+        $ocupaciones->update([
+            'id_catalogo_uno'=>$request->ocupacion_uno,
+            'area_uno'=>$ocupacionUno->area,
+            'subarea_uno'=>$ocupacionUno->subarea,
+            'jefatura_uno'=>$ocupacionUno->jefatura,
+            'departamento_uno'=>$ocupacionUno->departamento,
+            'ocupacion_uno'=>$ocupacionUno->ocupacion,
+
+            'id_catalogo_dos' => $request->ocupacion_dos,
+            'area_dos' => $ocupacionDos?->area,
+            'subarea_dos' => $ocupacionDos?->subarea,
+            'jefatura_dos' => $ocupacionDos?->jefatura,
+            'departamento_dos' => $ocupacionDos?->departamento,
+            'ocupacion_dos' => $ocupacionDos?->ocupacion,
+        ]);
+
+        // Redireccionar con un mensaje de éxito
+        return redirect()->route('profesionalIndex')->with('updateAlmacen', 'Ocupaciones ALMACEN ESTATAL actualizadas correctamente.');
 
     }
 }

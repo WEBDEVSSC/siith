@@ -292,6 +292,16 @@ Route::middleware(['auth'])->group(function ()
  
       Route::put('admin/profesionales/ocupaciones/updateOficinaCentral/{id}', [ProfesionalOcupacionController::class, 'updateOficinaCentral'])->name('updateOficinaCentral');
 
+      /**RUTAS PARA EL CATALOGO 7 - ALMACEN */
+
+      Route::get('admin/profesionales/ocupaciones/createAlmacen/{id}', [ProfesionalOcupacionController::class, 'createAlmacen'])->name('createAlmacen');
+
+      Route::post('admin/profesionales/ocupaciones/storeAlmacen', [ProfesionalOcupacionController::class, 'storeAlmacen'])->name('storeAlmacen');
+ 
+      Route::get('admin/profesionales/ocupaciones/editAlmacen/{id}', [ProfesionalOcupacionController::class, 'editAlmacen'])->name('editAlmacen');
+ 
+      Route::put('admin/profesionales/ocupaciones/updateAlmacen/{id}', [ProfesionalOcupacionController::class, 'updateAlmacen'])->name('updateAlmacen');
+
     /**
      * 
      * 
