@@ -214,6 +214,7 @@ class ProfesionalController extends Controller
         {
             $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
                 ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002064')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
                 ->get();
         }  
         else
