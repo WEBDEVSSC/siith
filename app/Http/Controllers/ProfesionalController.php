@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Log;
 
 class ProfesionalController extends Controller
 {
+    
     /**
      * 
      * 
@@ -211,7 +212,9 @@ class ProfesionalController extends Controller
         }
         elseif(Gate::allows('almacen'))
         {
-
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002064')
+                ->get();
         }  
         else
         {
