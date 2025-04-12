@@ -208,7 +208,9 @@ class ProfesionalController extends Controller
         // Conficionamos a los roles 
         if (Gate::allows('admin'))
         {
-            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])->get();
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
         }
         elseif(Gate::allows('almacen'))
         {
