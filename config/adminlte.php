@@ -303,6 +303,12 @@ return [
 
         ['header' => 'Profesionales'],
         [
+            'text' => 'Dashboard',
+            'url' => '/home',
+            'icon' => 'fa fa-area-chart',
+            'label_color' => 'success',
+        ],
+        [
             'text' => 'Nuevo registro',
             'url' => 'admin/profesionales/buscarCurp',
             'icon' => 'fas fa-plus',
@@ -410,7 +416,7 @@ return [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js',
+                    'location' => '//cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js',
                 ],
             ],
         ],

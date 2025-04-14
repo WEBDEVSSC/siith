@@ -202,7 +202,7 @@
             <td style="width: 5%;"><p><strong>TIPO</strong></p></td>
         </tr>
         <tr>
-            <td><p>{{ $profesional->horario->jornada }}</p></td>
+            <td><p>{{ $profesional->horario?->jornada }}</p></td>
         </tr>
     </table>
 
@@ -214,43 +214,43 @@
         </tr>
         <tr>
             <td><p>LUNES</p></td>
-            <td><p>{{ $profesional->horario->entrada_lunes }}</p></td>
-            <td><p>{{ $profesional->horario->salida_lunes }}</p></td>
+            <td><p>{{ $profesional->horario?->entrada_lunes }}</p></td>
+            <td><p>{{ $profesional->horario?->salida_lunes }}</p></td>
         </tr>
         <tr>
             <td><p>MARTES</p></td>
-            <td><p>{{ $profesional->horario->entrada_martes }}</p></td>
-            <td><p>{{ $profesional->horario->salida_martes }}</p></td>
+            <td><p>{{ $profesional->horario?->entrada_martes }}</p></td>
+            <td><p>{{ $profesional->horario?->salida_martes }}</p></td>
         </tr>
         <tr>
             <td><p>MIERCOLES</p></td>
-            <td><p>{{ $profesional->horario->entrada_miercoles }}</p></td>
-            <td><p>{{ $profesional->horario->salida_miercoles }}</p></td>
+            <td><p>{{ $profesional->horario?->entrada_miercoles }}</p></td>
+            <td><p>{{ $profesional->horario?->salida_miercoles }}</p></td>
         </tr>
         <tr>
             <td><p>JUEVES</p></td>
-            <td><p>{{ $profesional->horario->entrada_jueves }}</p></td>
-            <td><p>{{ $profesional->horario->salida_jueves }}</p></td>
+            <td><p>{{ $profesional->horario?->entrada_jueves }}</p></td>
+            <td><p>{{ $profesional->horario?->salida_jueves }}</p></td>
         </tr>
         <tr>
             <td><p>VIERNES</p></td>
-            <td><p>{{ $profesional->horario->entrada_viernes }}</p></td>
-            <td><p>{{ $profesional->horario->salida_viernes }}</p></td>
+            <td><p>{{ $profesional->horario?->entrada_viernes }}</p></td>
+            <td><p>{{ $profesional->horario?->salida_viernes }}</p></td>
         </tr>
         <tr>
             <td><p>SABADO</p></td>
-            <td><p>{{ $profesional->horario->entrada_sabado }}</p></td>
-            <td><p>{{ $profesional->horario->salida_sabado }}</p></td>
+            <td><p>{{ $profesional->horario?->entrada_sabado }}</p></td>
+            <td><p>{{ $profesional->horario?->salida_sabado }}</p></td>
         </tr>
         <tr>
             <td><p>DOMINGO</p></td>
-            <td><p>{{ $profesional->horario->entrada_domingo }}</p></td>
-            <td><p>{{ $profesional->horario->salida_domingo }}</p></td>
+            <td><p>{{ $profesional->horario?->entrada_domingo }}</p></td>
+            <td><p>{{ $profesional->horario?->salida_domingo }}</p></td>
         </tr>
         <tr>
             <td><p>FESTIVOS</p></td>
-            <td><p>{{ $profesional->horario->entrada_festivo }}</p></td>
-            <td><p>{{ $profesional->horario->salida_festivo }}</p></td>
+            <td><p>{{ $profesional->horario?->entrada_festivo }}</p></td>
+            <td><p>{{ $profesional->horario?->salida_festivo }}</p></td>
         </tr>
     </table>
 
