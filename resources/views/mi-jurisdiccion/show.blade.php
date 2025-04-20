@@ -25,6 +25,7 @@
                         <th>CURP</th>
                         <th>RFC</th>
                         <th>NOMBRE COMPLETO</th>
+                        <th>CATALOGO</th>
                         <th>MODULOS</th>
                     </tr>
                 </thead>
@@ -42,6 +43,7 @@
                             <td>{{ $profesional->curp }}</td>
                             <td>{{ $profesional->rfc}} {{ $profesional->homoclave }}</td>
                             <td>{{ $profesional->nombre}} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
+                            <td>{{ $profesional->puesto->clues_adscripcion_tipo}}</td>
                             <td>
 
                                 <!-- ------------------------- -->
