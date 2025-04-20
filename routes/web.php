@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfesionalAreaMedicaController;
+use App\Http\Controllers\ProfesionalCambioDeUnidadController;
 use App\Http\Controllers\ProfesionalCertificacionController;
 use App\Http\Controllers\ProfesionalController;
 use App\Http\Controllers\ProfesionalCredencializacionController;
@@ -85,6 +86,18 @@ Route::middleware(['auth'])->group(function ()
 
     // Ruta para el formlario de OCUPACION
     Route::get('admin/profesionales/profesionalOcupacionCreate/{id}',[ProfesionalController::class,'profesionalOcupacionCreate'])->name('profesionalOcupacionCreate');
+
+    /**
+     * 
+     * 
+     * MI JURISDICCION
+     * 
+     * 
+     */
+
+     Route::get('admin/profesionales/miJurisdiccion', [ProfesionalController::class, 'miJurisdiccion'])->name('miJurisdiccion');
+
+     Route::post('admin/profesionales/miJurisdiccionShow', [ProfesionalController::class, 'miJurisdiccionShow'])->name('miJurisdiccionShow');
 
     /**
      * 
@@ -223,6 +236,25 @@ Route::middleware(['auth'])->group(function ()
      Route::get('admin/profesionales/certificaciones/editCertificacion/{id}', [ProfesionalCertificacionController::class, 'editCertificacion'])->name('editCertificacion');
  
      Route::put('admin/profesionales/certificaciones/updateCertificacion/{id}', [ProfesionalCertificacionController::class, 'updateCertificacion'])->name('updateCertificacion');
+
+    /**
+     * 
+     * 
+     * CAMBIO DE UNIDAD
+     * 
+     * 
+     */
+
+     Route::get('admin/profesionales/cambioDeUnidad/findProfesional', [ProfesionalCambioDeUnidadController::class,'findProfesional'])->name('findProfesional');
+
+     Route::post('admin/profesionales/cambioDeUnidad/showProfesional', [ProfesionalCambioDeUnidadController::class, 'showProfesional'])->name('showProfesional');
+
+     Route::post('admin/profesionales/cambioDeUnidad/storeCambioDeUnidad', [ProfesionalCambioDeUnidadController::class, 'storeCambioDeUnidad'])->name('storeCambioDeUnidad');
+
+    
+
+     
+
 
      /**
      * 

@@ -72,11 +72,11 @@
         </div>
         <div class="card-body">
 
-            @if($profesionalesData->isEmpty())
-        <div class="alert alert-warning" role="alert">
-            No hay registros disponibles.
-        </div>
-    @else
+        @if($profesionalesData->isEmpty())
+            <div class="alert alert-warning" role="alert">
+                No hay registros disponibles.
+            </div>
+        @else
         <table id="profesionalesTable" class="table table-bordered">
             <thead>
                 <tr>
@@ -378,9 +378,7 @@
 
 @stop
 
-@section('footer')
-<p>Copyright © <?php echo date('Y') ?> <strong>Servicios de Salud de Coahuila de Zaragoza</strong><small> Subdirección de Recursos Humanos | Unidad de Planeacioón</small></p>
-@stop
+@include('partials.footer')
 
 @section('css')
     {{-- Add here extra stylesheets --}}

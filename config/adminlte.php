@@ -321,8 +321,15 @@ return [
             'label_color' => 'success',
         ],
         [
+            'text' => 'Mi Jurisdicción',
+            'url' => 'admin/profesionales/miJurisdiccion',
+            'icon' => 'fa-solid fa-building-user',
+            'label_color' => 'success',
+            'can' => 'ofJurisdiccional',
+        ],
+        [
             'text' => 'Cambio de Unidad',
-            'url' => 'admin/profesionales/cambioUnidad',
+            'url' => 'admin/profesionales/cambioDeUnidad/findProfesional',
             'icon' => 'fa-solid fa-building-circle-arrow-right',
             'label_color' => 'success',
         ],

@@ -4,6 +4,9 @@
 
 @section('plugins.Chartjs', true)
 
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+
 @section('content_header')
     <h1><strong>Sistema Integral de Información y Talento Humano</strong></h1>
 @stop
@@ -20,7 +23,7 @@
               <p>Trabajadores Activos</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion-android-contacts"></i>
             </div>
           </div>
     </div>
@@ -28,12 +31,12 @@
       <!-- small box -->
       <div class="small-box bg-info">
           <div class="inner">
-            <h3>{{$profesionalesActivos}}</h3>
+            <h3>{{$profesionalesBajaTemporal}}</h3>
 
-            <p>Trabajadores Activos</p>
+            <p>Baja Temporal</p>
           </div>
           <div class="icon">
-            <i class="ion ion-bag"></i>
+            <i class="ion-ios-minus"></i>
           </div>
         </div>
   </div>
@@ -41,12 +44,12 @@
     <!-- small box -->
     <div class="small-box bg-info">
         <div class="inner">
-          <h3>{{$profesionalesActivos}}</h3>
+          <h3>{{$profesionalesActivosMasculino}}</h3>
 
-          <p>Trabajadores Activos</p>
+          <p>Hombres</p>
         </div>
         <div class="icon">
-          <i class="ion ion-bag"></i>
+          <i class="ion-male"></i>
         </div>
       </div>
 </div>
@@ -54,12 +57,12 @@
   <!-- small box -->
   <div class="small-box bg-info">
       <div class="inner">
-        <h3>{{$profesionalesActivos}}</h3>
+        <h3>{{$profesionalesActivosFemenino}}</h3>
 
-        <p>Trabajadores Activos</p>
+        <p>Mujeres</p>
       </div>
       <div class="icon">
-        <i class="ion ion-bag"></i>
+        <i class="ion-female"></i>
       </div>
     </div>
 </div>

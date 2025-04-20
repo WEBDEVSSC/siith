@@ -27,6 +27,8 @@ class HomeController extends Controller
         // Contador para el total de registro activos
         $profesionalesActivos = Profesional::whereRelation('puesto', 'vigencia', 'ACTIVO')->count();
 
+        $profesionalesBajaTemporal = Profesional::whereRelation('puesto', 'vigencia', 'BAJA TEMPORAL')->count();
+
         $profesionalesActivosMasculino = Profesional::where('sexo','M')
                 ->whereRelation('puesto', 'vigencia', 'ACTIVO')
                 ->count();
@@ -66,6 +68,7 @@ class HomeController extends Controller
 
         return view('home', compact(
             'profesionalesActivos',
+            'profesionalesBajaTemporal',
             'profesionalesActivosMasculino',
             'profesionalesActivosFemenino',
             'profesionalesJurisdiccion1',

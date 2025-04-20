@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\ProfesionalExport;
 use App\Mail\FelicitacionCumpleanos;
+use App\Models\Clue;
 use App\Models\Entidad;
 use App\Models\EstadoConyugal;
 use App\Models\Municipio;
@@ -19,6 +20,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class ProfesionalController extends Controller
 {
@@ -216,6 +218,16 @@ class ProfesionalController extends Controller
         {
             $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
                 ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002064')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        }  
+        elseif(Gate::allows('ofJurisdiccional'))
+        {
+            $user = Auth::user();
+            $userJurisdiccion = $user->clues_unidad;
+            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', $userJurisdiccion)
                 ->whereRelation('puesto', 'vigencia', 'ACTIVO')
                 ->get();
         }  
@@ -619,5 +631,40 @@ class ProfesionalController extends Controller
         }
 
         return "Correos enviados a los cumpleañeros de hoy.";
+    }
+
+    public function miJurisdiccion()
+    {
+        // Cargamos los datos del usuario
+        $usuario = Auth::user();
+
+        // Cargamos todas las clues de la jurisdiccion
+        $clues = Clue::where('clave_jurisdiccion',$usuario->jurisdiccion_unidad)
+                ->orderBy('nombre', 'asc')
+                ->get();
+
+        // Retornamos la vista con la lista de clues
+        return view('mi-jurisdiccion.index', compact('clues'));
+    }
+
+    public function miJurisdiccionShow(Request $request)
+    {
+        // Validamos los datos
+        $request->validate([
+            'clues'=>'required'
+        ],[]);
+
+        // Consultamos los datos de la clues
+        $clues = Clue::where('clues',$request->clues)->first();
+
+        // Consultamos todos los usuarios con esa clues adscripcion
+        $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', $request->clues)
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+
+        // Regresamos a la vista con el arreglo de objetos
+        return view('mi-jurisdiccion.show', compact('clues','profesionales'));
+
     }
 }
