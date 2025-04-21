@@ -482,6 +482,9 @@ class ProfesionalController extends Controller
         $lenguaIndigena = $certificacion ? $certificacion->lengua_indigena_label : null;
         $lenguaIndigenaDominio = $certificacion ? $certificacion->lengua_nivel_de_dominio : null;
 
+        // Cargamos los datos para el modulo de CAMBIOI DE UNIDAD
+        $cambiosDeUnidad = $profesional->cambiosDeUnidad()->orderBy('created_at', 'desc')->get();
+
         // Regresamos la vista con el arreglo
         return view('profesional.show', compact(
             'profesional',
@@ -555,7 +558,9 @@ class ProfesionalController extends Controller
             'lenguaIndigenaDominio',
 
             'cluesAdscripcionTipo',
-            'ocupacion'
+            'ocupacion',
+
+            'cambiosDeUnidad'
         ));
     }
 

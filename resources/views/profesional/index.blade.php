@@ -109,8 +109,8 @@
                         <td>
 
                             <!-- SI EL ROL ES DIFERENTE A DIRECTIVO SE MUESTRAN LOS BOTONES DE EDICION DE LOS MODULOS  -->
-                            <!-- PARA EL DIRECTIVO SOLO SE MUESTRA EL BOTON DE VER DETALLES  -->
-                            @if(Auth::user()->role != 'directivo')
+                                <!-- PARA EL DIRECTIVO SOLO SE MUESTRA EL BOTON DE VER DETALLES  -->
+                                @if(Auth::user()->role != 'directivo')
 
                                 <!-- ------------------------- -->
                                 <!-- ------------------------- -->

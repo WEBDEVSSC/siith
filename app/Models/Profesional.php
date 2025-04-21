@@ -69,6 +69,12 @@ class Profesional extends Model
         return $this->hasOne(ProfesionalCertificacion::class,'id_profesional');
     }
 
+    public function cambiosDeUnidad()
+    {
+        return $this->hasMany(ProfesionalCambioDeUnidad::class, 'id_profesional');
+    }
+
+
     // MODELOS PARA ASIGANCIONES DE OCUPACION
 
     public function ocupacionCentroSalud()

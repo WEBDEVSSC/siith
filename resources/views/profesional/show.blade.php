@@ -212,6 +212,55 @@
 
     <div class="card">
         <div class="card-header">
+            <strong>MOVIMIENTOS</strong>
+        </div>
+        <div class="card-body">
+
+            @if ($cambiosDeUnidad->isEmpty())
+                <p>No hay cambios registrados.</p>
+            @else
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>FECHA</th>
+                            <th>TIPO</th>
+                            <th>ORIGEN</th>
+                            <th>DESTINO</th>
+                            <th>INICIO</th>
+                            <th>TERMINO</th>
+                            <th>DOC.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($cambiosDeUnidad as $cambio)
+                            <tr>
+                                <td>{{ \Carbon\Carbon::parse($cambio->created_at)->format('d/m/Y') }}</td>
+                                <td>{{ $cambio->tipo_movimiento }}</td>
+                                <td>J. {{ $cambio->unidad_origen_jurisdiccion }} - {{ $cambio->unidad_origen_clues }} - {{ $cambio->unidad_origen_nombre }}</td>
+                                <td>J. {{ $cambio->unidad_destino_jurisdiccion }} - {{ $cambio->unidad_destino_clues }} - {{ $cambio->unidad_destino_nombre }}</td>
+                                <td>{{ \Carbon\Carbon::parse($cambio->fecha_inicio)->format('d/m/Y') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($cambio->fecha_final)->format('d/m/Y') }}</td>
+                                <td>
+                                    @if ($cambio->documento_respaldo)
+                                        <a href="{{ asset('storage/' . $cambio->documento_respaldo) }}" target="_blank">Ver documento</a>
+                                    @else
+                                        No disponible
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @endif
+
+        </div>
+        <div class="card-footer"></div>
+    </div>
+
+    <!-- -- -->
+
+    <div class="card">
+        <div class="card-header">
             <strong>HORARIO</strong>
         </div>
         <div class="card-body">
@@ -311,7 +360,6 @@
         </div>
         <div class="card-footer"></div>
     </div>
-</div>
 
     <!-- --------------------------------------------------------------- -->
 
@@ -463,6 +511,8 @@
   </div>
 
 @stop
+
+@include('partials.footer')
 
 @section('css')
     {{-- Add here extra stylesheets --}}

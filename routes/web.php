@@ -249,12 +249,9 @@ Route::middleware(['auth'])->group(function ()
 
      Route::post('admin/profesionales/cambioDeUnidad/showProfesional', [ProfesionalCambioDeUnidadController::class, 'showProfesional'])->name('showProfesional');
 
+     Route::get('admin/profesionales/cambioDeUnidad/createCambioDeUnidad/{id}', [ProfesionalCambioDeUnidadController::class, 'createCambioDeUnidad'])->name('createCambioDeUnidad');
+
      Route::post('admin/profesionales/cambioDeUnidad/storeCambioDeUnidad', [ProfesionalCambioDeUnidadController::class, 'storeCambioDeUnidad'])->name('storeCambioDeUnidad');
-
-    
-
-     
-
 
      /**
      * 
