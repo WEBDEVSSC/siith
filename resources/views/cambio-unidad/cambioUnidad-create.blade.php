@@ -120,6 +120,8 @@
 
 @stop
 
+@include('partials.footer')
+
 @section('css')
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
 @stop

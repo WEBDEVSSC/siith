@@ -15,11 +15,7 @@
     <div class="card-header">
         <strong>DATOS GENERALES</strong>
 
-        @if ($profesional->mdl_datos_generales == 1)
-            <p>El módulo de datos generales está activo.</p>
-        @elseif ($profesional->mdl_datos_generales == 0)
-            <p>El módulo de datos generales está inactivo.</p>
-        @endif
+        
         
     </div>
     <div class="card-body">
@@ -97,6 +93,12 @@
     
     <div class="card-footer">
 
+        @if ($profesional->mdl_datos_generales == 1)
+            <a href="{{ route('profesionalEdit', $profesional->id) }}" class="btn btn-info btn-sm"> EDITAR DATOS</a>
+        @elseif ($profesional->mdl_datos_generales == 0)
+            <p>El módulo de datos generales está inactivo.</p>
+        @endif
+
     </div>
 
 </div>
@@ -144,7 +146,11 @@
             @endif
             
         </div>
-        <div class="card-footer"></div>
+        <div class="card-footer">
+
+            <p>CATALOGO {{ $profesional->puesto->clues_adscripcion_tipo }}</p>
+
+        </div>
     </div>
 
     <!-- -- -->
@@ -205,7 +211,15 @@
             </div>
 
         </div>
-        <div class="card-footer"></div>
+        <div class="card-footer">
+
+            @if ($profesional->puesto->mdl_puesto == 1)
+                <a href="{{ route('editPuesto', $profesional->id) }}" class="btn btn-info btn-sm"> EDITAR DATOS</a>
+            @elseif ($profesional->mdl_datos_generales == 0)
+                <p>El módulo de datos generales está inactivo.</p>
+            @endif
+    
+        </div>
     </div>
 
     <!-- -- -->

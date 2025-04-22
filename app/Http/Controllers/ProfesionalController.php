@@ -193,7 +193,10 @@ class ProfesionalController extends Controller
         $profesional->save();
 
         // Retornar o redirigir a donde lo necesites, por ejemplo:
-        return redirect()->route('profesionalIndex')->with('success', 'Registro realizado correctamente.');
+        //return redirect()->route('profesionalIndex')->with('success', 'Registro realizado correctamente.');
+
+        return redirect()->route('profesionalShow', ['id' => $profesional->id])
+                 ->with('success', 'Registro realizado correctamente.');
     }
 
     /**
