@@ -358,6 +358,22 @@
                                     @endif
                                                                                                    
                                 @endif
+
+                                <!-- CATALOGO PARA ALMACEN (9) -->
+
+                                @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 9)
+
+                                    @if(optional($data['profesional']->ocupacionCors)->mdl_status == 1)
+                                        <a href="{{ route('editCors', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="C.O.R.S.">
+                                            <i class="fa-solid fa-virus-covid"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('createCors', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="C.O.R.S.">
+                                            <i class="fa-solid fa-virus-covid"></i>
+                                        </a>
+                                    @endif
+                                                                                                   
+                                @endif
                                 
                                 
                             @endif

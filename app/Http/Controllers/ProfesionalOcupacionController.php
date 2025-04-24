@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CatOcupacionAlmacen;
 use App\Models\CatOcupacionCentroSalud;
+use App\Models\CatOcupacionCors;
 use App\Models\CatOcupacionCriCree;
 use App\Models\CatOcupacionHospital;
 use App\Models\CatOcupacionOficinaCentral;
@@ -12,6 +13,7 @@ use App\Models\CatOcupacionSamuCrum;
 use App\Models\Profesional;
 use App\Models\ProfesionalOcupacionAlmacen;
 use App\Models\ProfesionalOcupacionCentroSalud;
+use App\Models\ProfesionalOcupacionCors;
 use App\Models\ProfesionalOcupacionCriCree;
 use App\Models\ProfesionalOcupacionHospital;
 use App\Models\ProfesionalOcupacionOficinaCentral;
@@ -80,7 +82,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalIndex')->with('successCentrosDeSalud', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('successCentrosDeSalud', 'Ocupaciones registradas correctamente.');
     }
 
     public function editCentrosDeSalud($id)
@@ -131,7 +133,7 @@ class ProfesionalOcupacionController extends Controller
          ]);
 
          // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalIndex')->with('updateCentrosDeSalud', 'Ocupaciones actualizadas correctamente.');
+         return redirect()->route('profesionalShow',$ocupacion->id_profesional)->with('successCentrosDeSalud', 'Ocupaciones registradas correctamente.');
     }
 
     /** ************************************************************************************************************************************************
@@ -195,7 +197,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalIndex')->with('successHospital', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('successCentrosDeSalud', 'Ocupaciones registradas correctamente.');
     }
 
     public function editHospital($id)
@@ -250,7 +252,7 @@ class ProfesionalOcupacionController extends Controller
          ]);
 
          // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalIndex')->with('updateHospital', 'Ocupaciones actualizadas correctamente.');
+         return redirect()->route('profesionalShow',$ocupacion->id_profesional)->with('successCentrosDeSalud', 'Ocupaciones registradas correctamente.');
     }
 
 
@@ -316,7 +318,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalIndex')->with('successOfJurisdiccional', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('successCentrosDeSalud', 'Ocupaciones registradas correctamente.');
     }
 
     public function editOfJurisdiccional($id)
@@ -373,7 +375,7 @@ class ProfesionalOcupacionController extends Controller
         ]);
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalIndex')->with('updateOfJurisdiccional', 'Ocupaciones actualizadas correctamente.');
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('successCentrosDeSalud', 'Ocupaciones registradas correctamente.');
 
     }
 
@@ -437,7 +439,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalIndex')->with('successCriCree', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('successCentrosDeSalud', 'Ocupaciones registradas correctamente.');
     }
 
     public function editCriCree($id)
@@ -492,7 +494,7 @@ class ProfesionalOcupacionController extends Controller
         ]);
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalIndex')->with('updateCriCree', 'Ocupaciones actualizadas correctamente.');
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('successCentrosDeSalud', 'Ocupaciones registradas correctamente.');
 
     }
 
@@ -558,7 +560,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalIndex')->with('successSamuCrum', 'Ocupaciones SAMU CRUM registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('successCentrosDeSalud', 'Ocupaciones registradas correctamente.');
     }
 
     public function editSamuCrum($id)
@@ -615,7 +617,7 @@ class ProfesionalOcupacionController extends Controller
         ]);
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalIndex')->with('updateSamuCrum', 'Ocupaciones SAMU CRUM actualizadas correctamente.');
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('successCentrosDeSalud', 'Ocupaciones registradas correctamente.');
 
     }
 
@@ -681,7 +683,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalIndex')->with('successOficinaCentral', 'Ocupaciones OFICINA CENTRAL registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('successCentrosDeSalud', 'Ocupaciones registradas correctamente.');
     }
 
     public function editOficinaCentral($id)
@@ -738,7 +740,7 @@ class ProfesionalOcupacionController extends Controller
         ]);
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalIndex')->with('updateOficinaCentral', 'Ocupaciones OFICINA CENTRAL actualizadas correctamente.');
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('successCentrosDeSalud', 'Ocupaciones registradas correctamente.');
 
     }
 
@@ -804,7 +806,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalIndex')->with('successAlmacen', 'Ocupaciones ALMACEN ESTATAL registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('successCentrosDeSalud', 'Ocupaciones registradas correctamente.');
     }
 
     public function editAlmacen($id)
@@ -861,7 +863,131 @@ class ProfesionalOcupacionController extends Controller
         ]);
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalIndex')->with('updateAlmacen', 'Ocupaciones ALMACEN ESTATAL actualizadas correctamente.');
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('successCentrosDeSalud', 'Ocupaciones registradas correctamente.');
+
+    }
+
+     /** ************************************************************************************************************************************************
+     * 
+     * 
+     * CENTRO ONCOLOGICO DE LA REGION SURESTE
+     * 
+     * 
+     ***************************************************************************************************************************************************/
+
+     public function createCors($id)
+    {
+        // Consultamos los datos del profesional
+        $profesional = Profesional::findOrFail($id);
+
+        // Llenamos el select de ocupaciones
+        $ocupaciones = CatOcupacionCors::orderBy('orden', 'asc')->get();
+
+        // Retornamos la vista con todos los objetos
+        return view('ocupacion.cors-create', compact('profesional','ocupaciones'));
+    }
+
+    public function storeCors(Request $request)
+    {
+        // Validamos los datos
+        $request->validate([
+            'id_profesional'=>'required',
+            'ocupacion_uno'=>'required',
+            'ocupacion_dos'=>'nullable'
+        ],[]);
+
+        // Consultamos los datos para registrar
+        $ocupacionUno = CatOcupacionCors::where('id',$request->ocupacion_uno)->first();
+        $ocupacionDos = CatOcupacionCors::where('id',$request->ocupacion_dos)->first();
+
+        // Activamos el modulo
+        $mdl_status = 1;
+
+        // Creamos el objeto
+        $ocupacion = new ProfesionalOcupacionCors();
+
+        // Asignamos los valores
+        $ocupacion->id_profesional = $request->id_profesional;
+
+        $ocupacion->id_catalogo_uno = $request->ocupacion_uno;
+        $ocupacion->unidad_uno = $ocupacionUno->unidad;
+        $ocupacion->area_uno = $ocupacionUno->area;
+        $ocupacion->subarea_servicio_uno = $ocupacionUno->subarea_servicio;
+        $ocupacion->componente_uno = $ocupacionUno->componente;
+        $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
+
+        $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
+        $ocupacion->unidad_dos = $ocupacionDos->unidad;
+        $ocupacion->area_dos = $ocupacionDos->area;
+        $ocupacion->subarea_servicio_dos = $ocupacionDos->subarea_servicio;   
+        $ocupacion->componente_dos = $ocupacionDos->componente;   
+        $ocupacion->ocupacion_dos = $ocupacionDos->ocupacion;
+
+        $ocupacion->mdl_status = $mdl_status;
+
+        // Registramos los datos
+        $ocupacion->save();
+
+        // Regresamos a la vista con su mensaje
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('successCors', 'Ocupaciones registradas correctamente.');
+    }
+
+    public function editCors($id)
+    {
+        // Consultamos los datos del profesional
+        $profesional = Profesional::findOrFail($id);
+
+        // Llenamos el select de ocupaciones
+        $ocupaciones = CatOcupacionCors::orderBy('orden', 'asc')->get();
+
+        // Consultamos si tiene registros en la tabla
+        $profesionalOcupaciones = ProfesionalOcupacionCors::where('id_profesional',$id)->first();
+
+        // Retornamos la vista con todos los objetos
+        return view('ocupacion.cors-edit', compact('profesional','ocupaciones','profesionalOcupaciones'));
+    }
+
+    public function updateCors(Request $request, $id)
+    {
+        // Validamos los datos
+        $request->validate([
+            'ocupacion_uno'=>'required',
+            'ocupacion_dos'=>'nullable'
+        ],[]);
+
+        // Consultamos los datos para registrar
+        $ocupacionUno = CatOcupacionCors::where('id',$request->ocupacion_uno)->first();
+
+        $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionCors::where('id', $request->ocupacion_dos)->first();
+        }
+
+        // Buscamos el registro a editar
+        $ocupaciones = ProfesionalOcupacionCors::findOrFail($id);
+
+        // Asignamos los valores
+        $ocupaciones->update([
+
+            'id_catalogo_uno'=>$request->ocupacion_uno,
+            'unidad_uno'=>$ocupacionUno->unidad,
+            'area_uno'=>$ocupacionUno->area,
+            'subarea_servicio_uno'=>$ocupacionUno->subarea_servicio,
+            'componente_uno'=>$ocupacionUno->componente,
+            'ocupacion_uno'=>$ocupacionUno->ocupacion,
+
+            'id_catalogo_dos' => $request->ocupacion_dos,
+            'unidad_dos' => $ocupacionDos?->unidad,
+            'area_dos' => $ocupacionDos?->area,
+            'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
+            'componente_dos' => $ocupacionDos?->componente,
+            'ocupacion_dos' => $ocupacionDos?->ocupacion,
+        ]);
+
+        // Redireccionar con un mensaje de éxito
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('updateCors', 'Ocupaciones registradas correctamente.');
 
     }
 }

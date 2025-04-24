@@ -132,7 +132,7 @@
             @if ($cluesAdscripcionTipo == 3)
                 <ul>
                     <li>{{ optional($ocupacion)->unidad_uno }} - {{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_uno }} - {{ optional($ocupacion)->servicio_uno }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
-                    <li>{{ optional($ocupacion)->unidad_dos }} - {{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_dos }} - {{ optional($ocupacion)->servicio_dos }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
+                    <li>{{ optional($ocupacion)->unidad_dos }} - {{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_dos }} - {{ optional($ocupacion)->servicio_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
                 </ul>
             @endif
 
@@ -144,11 +144,102 @@
                     <li>{{ optional($ocupacion)->unidad_dos }} - {{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
                 </ul>
             @endif
+
+            <!-- OCUPACION PARA SAMU CRUM (5) -->
+
+            @if ($cluesAdscripcionTipo == 5)
+                <ul>
+                    <li>{{ optional($ocupacion)->unidad_uno }} - {{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_uno }} - {{ optional($ocupacion)->componente_uno }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
+                    <li>{{ optional($ocupacion)->unidad_dos }} - {{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_dos }} - {{ optional($ocupacion)->componente_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
+                </ul>
+            @endif
+
+            <!-- OCUPACION PARA OFICINA CENTRAL (6) -->
+
+            @if ($cluesAdscripcionTipo == 6)
+                <ul>
+                    <li>{{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_uno }} - {{ optional($ocupacion)->programa_uno }} - {{ optional($ocupacion)->componente_uno }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
+                    <li>{{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_dos }} - {{ optional($ocupacion)->programa_dos }} - {{ optional($ocupacion)->componente_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
+                </ul>
+            @endif
+
+            <!-- OCUPACION PARA ALMACEN (7) -->
+
+            @if ($cluesAdscripcionTipo == 7)
+                <ul>
+                    <li>{{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_uno }} - {{ optional($ocupacion)->jefatura_uno }} - {{ optional($ocupacion)->departamento_uno }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
+                    <li>{{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_dos }} - {{ optional($ocupacion)->jefatura_dos }} - {{ optional($ocupacion)->departamento_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
+                </ul>
+            @endif
+
+            <!-- OCUPACION PARA CORS (9) -->
+
+            @if ($cluesAdscripcionTipo == 9)
+                <ul>
+                    <li>{{ optional($ocupacion)->unidad_uno }} - {{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_servicio_uno }} - {{ optional($ocupacion)->componente_uno }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
+                    <li>{{ optional($ocupacion)->unidad_dos }} - {{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_servicio_dos }} - {{ optional($ocupacion)->componente_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
+                </ul>
+            @endif
             
         </div>
         <div class="card-footer">
 
-            <p>CATALOGO {{ $profesional->puesto->clues_adscripcion_tipo }}</p>
+            @if ($profesional->puesto->clues_adscripcion_tipo == 1)
+
+                @if ($profesional->ocupacionCentroSalud?->mdl_status == 1)
+                    <a href="{{ route('editCentrosDeSalud', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
+                        <i class="fa-solid fa-building-user"></i> EDITAR OCUPACIÓN
+                    </a>
+                @else  
+                    <a href="{{ route('createCentrosDeSalud', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
+                        <i class="fa-solid fa-building-user"></i> CARGAR OCUPACIÓN
+                    </a>
+                @endif
+                
+            @endif
+
+            @if ($profesional->puesto->clues_adscripcion_tipo == 2)
+
+                @if ($profesional->ocupacionHospital?->mdl_status == 1)
+                    <a href="{{ route('editHospital', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
+                        <i class="fa-solid fa-building-user"></i> EDITAR OCUPACIÓN
+                    </a>
+                @else  
+                    <a href="{{ route('createHospital', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
+                        <i class="fa-solid fa-building-user"></i> CARGAR OCUPACIÓN
+                    </a>
+                @endif
+                
+            @endif
+
+            @if ($profesional->puesto->clues_adscripcion_tipo == 3)
+
+                @if ($profesional->ocupacionOfJurisidccion?->mdl_status == 1)
+                    <a href="{{ route('editOfJurisdiccional', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
+                        <i class="fa-solid fa-building-user"></i> EDITAR OCUPACIÓN
+                    </a>
+                @else  
+                    <a href="{{ route('createOfJurisdiccional', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
+                        <i class="fa-solid fa-building-user"></i> CARGAR OCUPACIÓN
+                    </a>
+                @endif
+                
+            @endif
+
+            <!-- CORS -->
+            @if ($profesional->puesto->clues_adscripcion_tipo == 9)
+
+                @if ($profesional->ocupacionCors?->mdl_status == 1)
+                    <a href="{{ route('editCors', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="C.O.R.S.">
+                        <i class="fa-solid fa-virus-covid"></i> EDITAR OCUPACIÓN
+                    </a>
+                @else  
+                    <a href="{{ route('createCors', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="C.O.R.S.">
+                        <i class="fa-solid fa-virus-covid"></i> CARGAR OCUPACIÓN
+                    </a>
+                @endif
+                
+            @endif
 
         </div>
     </div>
@@ -255,8 +346,10 @@
                                 <td>{{ \Carbon\Carbon::parse($cambio->fecha_inicio)->format('d/m/Y') }}</td>
                                 <td>{{ \Carbon\Carbon::parse($cambio->fecha_final)->format('d/m/Y') }}</td>
                                 <td>
+
+                                    {{ $cambio->documento_respaldo }}
                                     @if ($cambio->documento_respaldo)
-                                        <a href="{{ asset('storage/' . $cambio->documento_respaldo) }}" target="_blank">Ver documento</a>
+                                        <a href="{{ route('descargar.documento', $cambio->id) }}">Ver documento</a>
                                     @else
                                         No disponible
                                     @endif
@@ -266,6 +359,8 @@
                     </tbody>
                 </table>
             @endif
+
+            
 
         </div>
         <div class="card-footer"></div>

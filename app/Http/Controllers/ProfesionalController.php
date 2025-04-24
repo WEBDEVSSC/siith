@@ -9,10 +9,14 @@ use App\Models\Entidad;
 use App\Models\EstadoConyugal;
 use App\Models\Municipio;
 use App\Models\Profesional;
+use App\Models\ProfesionalOcupacionAlmacen;
 use App\Models\ProfesionalOcupacionCentroSalud;
+use App\Models\ProfesionalOcupacionCors;
 use App\Models\ProfesionalOcupacionCriCree;
 use App\Models\ProfesionalOcupacionHospital;
+use App\Models\ProfesionalOcupacionOficinaCentral;
 use App\Models\ProfesionalOcupacionOfJurisdiccional;
+use App\Models\ProfesionalOcupacionSamuCrum;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -234,6 +238,13 @@ class ProfesionalController extends Controller
                 ->whereRelation('puesto', 'vigencia', 'ACTIVO')
                 ->get();
         }  
+        elseif(Gate::allows('oncologico'))
+        {            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002932')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        }  
         else
         {
 
@@ -400,6 +411,27 @@ class ProfesionalController extends Controller
         elseif ($tipo == 4) 
         {
             $ocupacion = ProfesionalOcupacionCriCree::where('id_profesional', $id)->first();
+        }
+        // SAMU CRUM (5)
+        elseif ($tipo == 5) 
+        {
+            $ocupacion = ProfesionalOcupacionSamuCrum::where('id_profesional', $id)->first();
+        }
+        // OFICINA CENTRAL (6)
+        elseif ($tipo == 6) 
+        {
+            $ocupacion = ProfesionalOcupacionOficinaCentral::where('id_profesional', $id)->first();
+        }
+        // ALMACEN (7)
+        elseif ($tipo == 7) 
+        {
+            $ocupacion = ProfesionalOcupacionAlmacen::where('id_profesional', $id)->first();
+        }
+
+        // CORS (9)
+        elseif ($tipo == 9) 
+        {
+            $ocupacion = ProfesionalOcupacionCors::where('id_profesional', $id)->first();
         }
 
         // Cargamos los datos del MODULO CREDENCIALIZACION

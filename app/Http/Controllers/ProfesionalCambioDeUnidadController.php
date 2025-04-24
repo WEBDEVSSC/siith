@@ -5,11 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\Clue;
 use App\Models\Profesional;
 use App\Models\ProfesionalCambioDeUnidad;
+use App\Models\ProfesionalOcupacionAlmacen;
+use App\Models\ProfesionalOcupacionCentroSalud;
+use App\Models\ProfesionalOcupacionCriCree;
 use App\Models\ProfesionalOcupacionHospital;
+use App\Models\ProfesionalOcupacionOficinaCentral;
+use App\Models\ProfesionalOcupacionOfJurisdiccional;
+use App\Models\ProfesionalOcupacionSamuCrum;
 use App\Models\ProfesionalPuesto;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProfesionalCambioDeUnidadController extends Controller
 {
@@ -166,14 +173,47 @@ class ProfesionalCambioDeUnidadController extends Controller
 
         // Eliminar registros de las OCUPACIONES
 
-        // Catalogo 1 - HOSPITALES
-        //$buscarOcupacionHospital = ProfesionalOcupacionHospital::where('id_profesional',$request->id_profesional)->first()?->delete();
+        // Catalogo 1 - CENTROS DE SALUD URBANOS Y RURALES
+        $buscarOcupacionCentroSalud = ProfesionalOcupacionCentroSalud::where('id_profesional',$request->id_profesional)->first()?->delete();
 
         // Catalogo 2 - HOSPITALES
-        //$buscarOcupacionHospital = ProfesionalOcupacionHospital::where('id_profesional',$request->id_profesional)->first()?->delete();
+        $buscarOcupacionHospital = ProfesionalOcupacionHospital::where('id_profesional',$request->id_profesional)->first()?->delete();
 
+        // Catalogo 3 - OFICINAS JURISDICCIONALES
+        $buscarOcupacionOficinaCentral = ProfesionalOcupacionOfJurisdiccional::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 4 - CRI CREE
+        $buscarOcupacionCriCree = ProfesionalOcupacionCriCree::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 5 - SAMU CRUM
+        $buscarOcupacionSamuCrum = ProfesionalOcupacionSamuCrum::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 6 - OFICINA CENTRAL
+        $buscarOcupacionOficinaCentral = ProfesionalOcupacionOficinaCentral::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 7 - ALMACEN
+        $buscarOcupacionAlmacen = ProfesionalOcupacionAlmacen::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Redireccionamos al perfil del usuario
         return redirect()->route('profesionalShow',$profesional->id)->with('successCambioDeUnidad', 'Cambio de unidad registrada correctamente');
 
 
+    }
+
+    public function descargar($id)
+    {
+        $cambio = ProfesionalCambioDeUnidad::findOrFail($id);
+
+        dd($cambio->documento_respaldo);
+
+        // Aquí puedes poner lógica para verificar permisos si hace falta
+
+        $path = 'private/' . $cambio->documento_respaldo;
+
+        if (Storage::exists($path)) {
+            return Storage::download($path);
+        }
+
+        abort(404, 'Archivo no encontrado');
     }
 }

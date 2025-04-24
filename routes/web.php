@@ -253,6 +253,8 @@ Route::middleware(['auth'])->group(function ()
 
      Route::post('admin/profesionales/cambioDeUnidad/storeCambioDeUnidad', [ProfesionalCambioDeUnidadController::class, 'storeCambioDeUnidad'])->name('storeCambioDeUnidad');
 
+     Route::get('/descargar-documento/{id}', [ProfesionalCambioDeUnidadController::class, 'descargar'])->name('descargar.documento');
+
      /**
      * 
      * 
@@ -330,6 +332,16 @@ Route::middleware(['auth'])->group(function ()
       Route::get('admin/profesionales/ocupaciones/editAlmacen/{id}', [ProfesionalOcupacionController::class, 'editAlmacen'])->name('editAlmacen');
  
       Route::put('admin/profesionales/ocupaciones/updateAlmacen/{id}', [ProfesionalOcupacionController::class, 'updateAlmacen'])->name('updateAlmacen');
+
+      /**RUTAS PARA EL CATALOGO 9 - CENTRO ONCOLOGICO DE LA REGION SURESTE */
+
+      Route::get('admin/profesionales/ocupaciones/createCors/{id}', [ProfesionalOcupacionController::class, 'createCors'])->name('createCors');
+
+      Route::post('admin/profesionales/ocupaciones/storeCors', [ProfesionalOcupacionController::class, 'storeCors'])->name('storeCors');
+ 
+      Route::get('admin/profesionales/ocupaciones/editCors/{id}', [ProfesionalOcupacionController::class, 'editCors'])->name('editCors');
+ 
+      Route::put('admin/profesionales/ocupaciones/updateCors/{id}', [ProfesionalOcupacionController::class, 'updateCors'])->name('updateCors');
 
     /**
      * 

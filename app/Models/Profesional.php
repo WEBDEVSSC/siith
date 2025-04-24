@@ -112,4 +112,9 @@ class Profesional extends Model
         return $this->hasOne(ProfesionalOcupacionAlmacen::class,'id_profesional');
     }
 
+    public function ocupacionCors()
+    {
+        return $this->hasOne(ProfesionalOcupacionCors::class,'id_profesional');
+    }
+
 }
