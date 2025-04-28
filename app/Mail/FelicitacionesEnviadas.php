@@ -11,14 +11,28 @@ class FelicitacionesEnviadas extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct()
+    public $profesionales;
+    public $fecha;
+
+    public function __construct($profesionales)
     {
-        //
+        $this->profesionales = $profesionales;
+        $this->fecha = \Carbon\Carbon::now()->format('Y-m-d');
     }
 
-    public function build()
+    /*public function build()
     {
         return $this->subject('Notificación de Envío de Correos de Felicitación')
                     ->view('email.felicitaciones-enviadas');
+    }*/
+
+    public function build()
+    {
+        return $this->subject('Resumen de felicitaciones enviadas')
+                    ->view('email.felicitaciones-enviadas')
+                    ->with([
+                        'profesionales' => $this->profesionales,
+                        'fecha' => $this->fecha,
+                    ]);
     }
 }

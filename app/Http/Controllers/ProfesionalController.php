@@ -701,20 +701,25 @@ class ProfesionalController extends Controller
 
         $cumpleañeros = Profesional::whereRaw("DATE_FORMAT(fecha_nacimiento, '%m-%d') = ?", [$hoy])->get();
 
+        $enviados = [];
+
         foreach ($cumpleañeros as $persona) {
             try {
-                if (empty($persona->email) || !filter_var($persona->email, FILTER_VALIDATE_EMAIL)) {
-                    throw new \Exception("Correo inválido: " . ($persona->email ?? 'NULL'));
-                }
+                    if (empty($persona->email) || !filter_var($persona->email, FILTER_VALIDATE_EMAIL)) {
+                        throw new \Exception("Correo inválido: " . ($persona->email ?? 'NULL'));
+                    }
 
-                $datos = [
-                    'nombre' => $persona->nombre,
-                    'apellido_paterno' => $persona->apellido_paterno,
-                    'apellido_materno' => $persona->apellido_materno,
-                ];
+                    $datos = [
+                        'nombre' => $persona->nombre,
+                        'apellido_paterno' => $persona->apellido_paterno,
+                        'apellido_materno' => $persona->apellido_materno,
+                    ];
 
-                Mail::to($persona->email)->send(new FelicitacionCumpleanos($datos));
-                Log::info("Correo enviado a: " . $persona->email);
+                    Mail::to($persona->email)->send(new FelicitacionCumpleanos($datos));
+                    Log::info("Correo enviado a: " . $persona->email);
+
+                    // Guardamos la persona felicitada
+                    $enviados[] = $persona;
                 } 
                 catch (\Exception $e) 
                 {
@@ -722,7 +727,7 @@ class ProfesionalController extends Controller
                 }
         }
 
-        return "Correos enviados a los cumpleañeros de hoy.";
+        return $enviados;
     }
 
     /**

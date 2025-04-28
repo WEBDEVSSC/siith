@@ -21,9 +21,12 @@ class EnviarFelicitacionesDiarias extends Command
     public function handle()
     {
         $controller = new ProfesionalController();
-        $controller->enviarFelicitaciones();
+        $profesionalesFelicitados = $controller->enviarFelicitaciones();
 
-        Mail::to('soportewebssc@gmail.com')->send(new FelicitacionesEnviadas());
+        // Enviar resumen solo si hay felicitados
+        if (!empty($profesionalesFelicitados)) {
+            Mail::to('soportewebssc@gmail.com')->send(new FelicitacionesEnviadas($profesionalesFelicitados));
+        }
 
         $this->info('Correos de felicitación enviados exitosamente.');
     }
