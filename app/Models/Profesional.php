@@ -122,4 +122,9 @@ class Profesional extends Model
         return $this->hasOne(ProfesionalOcupacionCors::class,'id_profesional');
     }
 
+    public function ocupacionCesame()
+    {
+        return $this->hasOne(ProfesionalOcupacionCesame::class,'id_profesional');
+    }
+
 }

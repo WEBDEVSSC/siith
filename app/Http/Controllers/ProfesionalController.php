@@ -11,6 +11,7 @@ use App\Models\Municipio;
 use App\Models\Profesional;
 use App\Models\ProfesionalOcupacionAlmacen;
 use App\Models\ProfesionalOcupacionCentroSalud;
+use App\Models\ProfesionalOcupacionCesame;
 use App\Models\ProfesionalOcupacionCetsLesp;
 use App\Models\ProfesionalOcupacionCors;
 use App\Models\ProfesionalOcupacionCriCree;
@@ -272,6 +273,13 @@ class ProfesionalController extends Controller
                 ->whereRelation('puesto', 'vigencia', 'ACTIVO')
                 ->get();
         }  
+        elseif(Gate::allows('cesame'))
+        {            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA001141')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        }  
         else
         {
 
@@ -463,6 +471,11 @@ class ProfesionalController extends Controller
         elseif ($tipo == 9) 
         {
             $ocupacion = ProfesionalOcupacionCors::where('id_profesional', $id)->first();
+        }
+        // CESAME (11)
+        elseif ($tipo == 11) 
+        {
+            $ocupacion = ProfesionalOcupacionCesame::where('id_profesional', $id)->first();
         }
 
         // Cargamos los datos del MODULO CREDENCIALIZACION

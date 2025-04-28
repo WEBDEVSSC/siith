@@ -390,6 +390,22 @@
                                     @endif
                                                                                                    
                                 @endif
+
+                                <!-- CATALOGO PARA CETS (11) -->
+
+                                @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 11)
+
+                                    @if(optional($data['profesional']->ocupacionCesame)->mdl_status == 1)
+                                        <a href="{{ route('editCesame', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="C.E.S.A.M.E.">
+                                            <i class="fa-solid fa-brain"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('createCesame', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="C.E.S.A.M.E.">
+                                            <i class="fa-solid fa-brain"></i>
+                                        </a>
+                                    @endif
+                                                                                                   
+                                @endif
                                 
                                 
                             @endif

@@ -353,6 +353,16 @@ Route::middleware(['auth'])->group(function ()
  
       Route::put('admin/profesionales/ocupaciones/updateCors/{id}', [ProfesionalOcupacionController::class, 'updateCors'])->name('updateCors');
 
+      /**RUTAS PARA EL CATALOGO 11 - CESAME */
+
+      Route::get('admin/profesionales/ocupaciones/createCesame/{id}', [ProfesionalOcupacionController::class, 'createCesame'])->name('createCesame');
+
+      Route::post('admin/profesionales/ocupaciones/storeCesame', [ProfesionalOcupacionController::class, 'storeCesame'])->name('storeCesame');
+ 
+      Route::get('admin/profesionales/ocupaciones/editCesame/{id}', [ProfesionalOcupacionController::class, 'editCesame'])->name('editCesame');
+ 
+      Route::put('admin/profesionales/ocupaciones/updateCesame/{id}', [ProfesionalOcupacionController::class, 'updateCesame'])->name('updateCesame');
+
     /**
      * 
      * 

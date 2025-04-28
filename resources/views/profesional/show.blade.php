@@ -175,15 +175,24 @@
              <!-- OCUPACION PARA CETS LESP (8) -->
 
              @if ($cluesAdscripcionTipo == 8)
-             <ul>
-                 <li>{{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_uno }} - {{ optional($ocupacion)->jefatura_programa_uno }} - {{ optional($ocupacion)->componente_uno }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
-                 <li>{{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_dos }} - {{ optional($ocupacion)->jefatura_programa_dos }} - {{ optional($ocupacion)->componente_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
-             </ul>
-         @endif
+                <ul>
+                    <li>{{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_uno }} - {{ optional($ocupacion)->jefatura_programa_uno }} - {{ optional($ocupacion)->componente_uno }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
+                    <li>{{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_dos }} - {{ optional($ocupacion)->jefatura_programa_dos }} - {{ optional($ocupacion)->componente_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
+                </ul>
+            @endif
 
             <!-- OCUPACION PARA CORS (9) -->
 
             @if ($cluesAdscripcionTipo == 9)
+                <ul>
+                    <li>{{ optional($ocupacion)->unidad_uno }} - {{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_servicio_uno }} - {{ optional($ocupacion)->componente_uno }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
+                    <li>{{ optional($ocupacion)->unidad_dos }} - {{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_servicio_dos }} - {{ optional($ocupacion)->componente_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
+                </ul>
+            @endif
+
+            <!-- OCUPACION PARA CESAME (11) -->
+
+            @if ($cluesAdscripcionTipo == 11)
                 <ul>
                     <li>{{ optional($ocupacion)->unidad_uno }} - {{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_servicio_uno }} - {{ optional($ocupacion)->componente_uno }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
                     <li>{{ optional($ocupacion)->unidad_dos }} - {{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_servicio_dos }} - {{ optional($ocupacion)->componente_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
@@ -260,6 +269,21 @@
                 @else  
                     <a href="{{ route('createCors', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="C.O.R.S.">
                         <i class="fa-solid fa-virus-covid"></i> CARGAR OCUPACIÓN
+                    </a>
+                @endif
+                
+            @endif
+
+            <!-- CESAME -->
+            @if ($profesional->puesto->clues_adscripcion_tipo == 11)
+
+                @if ($profesional->ocupacionCesame?->mdl_status == 1)
+                    <a href="{{ route('editCesame', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="C.E.S.A.M.E.">
+                        <i class="fa-solid fa-brain"></i> EDITAR OCUPACIÓN
+                    </a>
+                @else  
+                    <a href="{{ route('createCesame', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="C.E.S.A.M.E.">
+                        <i class="fa-solid fa-brain"></i> CARGAR OCUPACIÓN
                     </a>
                 @endif
                 
