@@ -359,6 +359,22 @@
                                                                                                    
                                 @endif
 
+                                <!-- CATALOGO PARA CETS LESP (8) -->
+
+                                @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 8)
+
+                                    @if(optional($data['profesional']->ocupacionCetsLesp)->mdl_status == 1)
+                                        <a href="{{ route('editCetsLesp', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="CETS LESP">
+                                            <i class="fa-solid fa-droplet"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('createCetsLesp', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="CETS LESP">
+                                            <i class="fa-solid fa-droplet"></i>
+                                        </a>
+                                    @endif
+                                                                                                   
+                                @endif
+
                                 <!-- CATALOGO PARA ALMACEN (9) -->
 
                                 @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 9)

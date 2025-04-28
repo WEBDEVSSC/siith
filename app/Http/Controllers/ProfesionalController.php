@@ -11,6 +11,7 @@ use App\Models\Municipio;
 use App\Models\Profesional;
 use App\Models\ProfesionalOcupacionAlmacen;
 use App\Models\ProfesionalOcupacionCentroSalud;
+use App\Models\ProfesionalOcupacionCetsLesp;
 use App\Models\ProfesionalOcupacionCors;
 use App\Models\ProfesionalOcupacionCriCree;
 use App\Models\ProfesionalOcupacionHospital;
@@ -32,8 +33,7 @@ class ProfesionalController extends Controller
     /**
      * 
      * 
-     * FORMULARIO PARA BUSCAR LA CURP
-     * 
+     * METODO PARA MOSTRAR EL FORMULARIO DE INGRESAR CURP
      * 
      */
     
@@ -45,8 +45,7 @@ class ProfesionalController extends Controller
     /**
      * 
      * 
-     * BUSCAMOS LA CURP 
-     * 
+     * METODO PARA VALIDAR Y BUSCAR LA CURP EN LA BASE DE DATOS
      * 
      */
 
@@ -76,6 +75,13 @@ class ProfesionalController extends Controller
             ]);
         }
     }
+
+    /**
+     * 
+     * 
+     * METODO PARA MOSTRAR EL FORMULARIO DE DATOS GENERALES CON LOS DATOS DE LA CURP EXTRAIDOS
+     * 
+     */
 
     public function datosGenerales($curp)
     {
@@ -121,6 +127,13 @@ class ProfesionalController extends Controller
             'estadosConyuales',
         ));
     }
+
+    /**
+     * 
+     * 
+     * METODO PARA GUARDAR LOS DATOS GENERALES DEL PROFESIONAL
+     * 
+     */
 
     public function datosGeneralesStore(Request $request)
     {
@@ -206,7 +219,7 @@ class ProfesionalController extends Controller
     /**
      * 
      * 
-     * 
+     * METODO PARA MOSTRAR EL PANEL DE CONTROL, SE MUESTRAN LOS REGISTROS SEGUN EL NIVEL DE CADA USUARIO
      * 
      */
 
@@ -225,6 +238,20 @@ class ProfesionalController extends Controller
         {
             $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
                 ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002064')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        }  
+        elseif(Gate::allows('cets'))
+        {
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002076')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        }  
+        elseif(Gate::allows('lesp'))
+        {
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002052')
                 ->whereRelation('puesto', 'vigencia', 'ACTIVO')
                 ->get();
         }  
@@ -269,10 +296,10 @@ class ProfesionalController extends Controller
     /**
      * 
      * 
-     * 
-     * 
+     * METODO PARA MOSTRAR EL FORMULARIO DE EDICION DE DATOS GENERALES
      * 
      */
+
     public function profesionalEdit($id)
     {
         // Buscamos el registro por el ID
@@ -294,10 +321,10 @@ class ProfesionalController extends Controller
     /**
      * 
      * 
-     * 
-     * 
+     * METODO PARA ACTUALIZAR LOS DATOS GENERALES DEL PROFESIONAL
      * 
      */
+
     public function profesionalUpdate(Request $request, $id)
     {
         // Validamos los datos
@@ -352,10 +379,10 @@ class ProfesionalController extends Controller
     /**
      * 
      * 
-     * 
-     * 
+     * METODO PARA MOSTRAR LOS DETALLES DE CADA REGISTRO
      * 
      */
+
     public function profesionalShow($id)
     {
         // Buscamos el registro por el ID
@@ -427,7 +454,11 @@ class ProfesionalController extends Controller
         {
             $ocupacion = ProfesionalOcupacionAlmacen::where('id_profesional', $id)->first();
         }
-
+        // CETS LESP (8)
+        elseif ($tipo == 8) 
+        {
+            $ocupacion = ProfesionalOcupacionCetsLesp::where('id_profesional', $id)->first();
+        }
         // CORS (9)
         elseif ($tipo == 9) 
         {
@@ -599,11 +630,25 @@ class ProfesionalController extends Controller
         ));
     }
 
+    /**
+     * 
+     * 
+     * METODO PARA EXPORTAR EN EXCEL LOS REGISTOS DE PROFESIONALES
+     * 
+     */
+
     public function export()
     {
         // Exporta los datos usando la clase CluesExport
         return Excel::download(new ProfesionalExport, 'REPORTE.xlsx');
     }
+
+    /**
+     * 
+     * 
+     * METODO PARA MOSTRAR UN DOCUMENTO EN PDF CON EL ARCHIVO DEL PROFESIONAL
+     * 
+     */
 
     public function profesionalPDF($id)
     {
@@ -643,6 +688,13 @@ class ProfesionalController extends Controller
         dd($id);
     }
 
+    /**
+     * 
+     * 
+     * METODO PARA ENVIAR FELICITACIONES DE CUMPLEAÑOS A LOS PROFESIONALES
+     * 
+     */
+
     public function enviarFelicitaciones()
     {
         $hoy = Carbon::now()->format('m-d');
@@ -673,6 +725,12 @@ class ProfesionalController extends Controller
         return "Correos enviados a los cumpleañeros de hoy.";
     }
 
+    /**
+     * 
+     * 
+     * METODO PARA MOSTRAR EL FORMULARIO DE LAS UNIDADES DE LA JURISDICCION SEGUN CADA USUARIO
+     * 
+     */
     public function miJurisdiccion()
     {
         // Cargamos los datos del usuario
@@ -687,6 +745,12 @@ class ProfesionalController extends Controller
         return view('mi-jurisdiccion.index', compact('clues'));
     }
 
+    /**
+     * 
+     * 
+     * METODO PARA MOSTRAR LOS REGISTROS DE LA UNIDAD SELECCIONADA POR JURISDICCION
+     * 
+     */
     public function miJurisdiccionShow(Request $request)
     {
         // Validamos los datos

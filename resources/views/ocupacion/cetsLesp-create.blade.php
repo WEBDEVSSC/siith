@@ -5,15 +5,15 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Almacen Estatal</small></h1>
+    <h1><strong>Profesionales</strong> <small>CETS LESP</small></h1>
 @stop
 
 @section('content')
 
 <div class="alert alert-info" role="alert">
     <ul>
-        <li><strong>Nombre</strong> : {{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</li>
-        <li><strong>CURP</strong> : {{ $profesional->curp }}</li>
+        <li><strong>Nombre</strong>: {{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</li>
+        <li><strong>CURP</strong>: {{ $profesional->curp }}</li>
     </ul>
 </div>
 
@@ -22,27 +22,26 @@
         <a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
     </div>
 
-    <form action="{{ route('updateCetsLesp', $profesionalOcupaciones->id) }}" method="POST">
-        @csrf 
-        @method('PUT')
+    <form action="{{ route('storeCetsLesp') }}" method="POST">
+        @csrf
+        <input type="hidden" name="id_profesional" value="{{ $profesional->id }}">
 
         <div class="card-body">
-            <div class="row mt-3">      
+            <div class="row mt-3">
                 <div class="col-md-12">
                     <label for="ocupacion_uno">Ocupación 1</label>
                     <select name="ocupacion_uno" id="ocupacion_uno" class="form-control select2">
                         <option value="">-- Seleccione una opción --</option>
                         @foreach($ocupaciones as $ocupacion)
-                            <option value="{{ $ocupacion->id }}" 
-                                {{ old('ocupacion_uno', optional($profesionalOcupaciones)->id_catalogo_uno) == $ocupacion->id ? 'selected' : '' }}>
-                                {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->jefatura }} - {{ $ocupacion->departamento }} - {{ $ocupacion->ocupacion }}
+                            <option value="{{ $ocupacion->id }}">
+                                {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->jefatura_programa }} - {{ $ocupacion->componente }} - {{ $ocupacion->ocupacion }}
                             </option>
                         @endforeach
                     </select>
                     @error('ocupacion_uno')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                </div>  
+                </div>
             </div>
 
             <div class="row mt-3">
@@ -51,16 +50,15 @@
                     <select name="ocupacion_dos" id="ocupacion_dos" class="form-control select2">
                         <option value="">-- Seleccione una opción --</option>
                         @foreach($ocupaciones as $ocupacion)
-                            <option value="{{ $ocupacion->id }}" 
-                                {{ old('ocupacion_dos', optional($profesionalOcupaciones)->id_catalogo_dos) == $ocupacion->id ? 'selected' : '' }}>
-                                {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->jefatura }} - {{ $ocupacion->departamento }} - {{ $ocupacion->ocupacion }}
+                            <option value="{{ $ocupacion->id }}">
+                                {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->jefatura_programa }} - {{ $ocupacion->componente }} - {{ $ocupacion->ocupacion }}
                             </option>
                         @endforeach
                     </select>
                     @error('ocupacion_dos')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                </div>  
+                </div>
             </div>
         </div>
 
@@ -96,6 +94,8 @@
         }
     </style>
 @stop
+
+@include('partials.footer')
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>

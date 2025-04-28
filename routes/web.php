@@ -333,6 +333,16 @@ Route::middleware(['auth'])->group(function ()
  
       Route::put('admin/profesionales/ocupaciones/updateAlmacen/{id}', [ProfesionalOcupacionController::class, 'updateAlmacen'])->name('updateAlmacen');
 
+      /**RUTAS PARA EL CATALOGO 8 - CETS LESP */
+
+      Route::get('admin/profesionales/ocupaciones/createCetsLesp/{id}', [ProfesionalOcupacionController::class, 'createCetsLesp'])->name('createCetsLesp');
+
+      Route::post('admin/profesionales/ocupaciones/storeCetsLesp', [ProfesionalOcupacionController::class, 'storeCetsLesp'])->name('storeCetsLesp');
+ 
+      Route::get('admin/profesionales/ocupaciones/editCetsLesp/{id}', [ProfesionalOcupacionController::class, 'editCetsLesp'])->name('editCetsLesp');
+ 
+      Route::put('admin/profesionales/ocupaciones/updateCetsLesp/{id}', [ProfesionalOcupacionController::class, 'updateCetsLesp'])->name('updateCetsLesp');
+
       /**RUTAS PARA EL CATALOGO 9 - CENTRO ONCOLOGICO DE LA REGION SURESTE */
 
       Route::get('admin/profesionales/ocupaciones/createCors/{id}', [ProfesionalOcupacionController::class, 'createCors'])->name('createCors');

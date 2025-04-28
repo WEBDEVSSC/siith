@@ -58,8 +58,13 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // ROL OFICINAS JURISDICCIONALES (CATALOGO 3)
-        Gate::define('lespCets', function ($user) {
-            return $user->role === 'lespCets';
+        Gate::define('lesp', function ($user) {
+            return $user->role === 'lesp';
+        });
+
+        // ROL OFICINAS JURISDICCIONALES (CATALOGO 3)
+        Gate::define('cets', function ($user) {
+            return $user->role === 'cets';
         });
 
         // ROL OFICINAS JURISDICCIONALES (CATALOGO 3)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CatOcupacionAlmacen;
 use App\Models\CatOcupacionCentroSalud;
+use App\Models\CatOcupacionCetsLesp;
 use App\Models\CatOcupacionCors;
 use App\Models\CatOcupacionCriCree;
 use App\Models\CatOcupacionHospital;
@@ -13,6 +14,7 @@ use App\Models\CatOcupacionSamuCrum;
 use App\Models\Profesional;
 use App\Models\ProfesionalOcupacionAlmacen;
 use App\Models\ProfesionalOcupacionCentroSalud;
+use App\Models\ProfesionalOcupacionCetsLesp;
 use App\Models\ProfesionalOcupacionCors;
 use App\Models\ProfesionalOcupacionCriCree;
 use App\Models\ProfesionalOcupacionHospital;
@@ -988,6 +990,130 @@ class ProfesionalOcupacionController extends Controller
 
         // Redireccionar con un mensaje de éxito
         return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('updateCors', 'Ocupaciones registradas correctamente.');
+
+    }
+
+     /** ************************************************************************************************************************************************
+     * 
+     * 
+     * CETS LESP
+     * 
+     * 
+     ***************************************************************************************************************************************************/
+
+     public function createCetsLesp($id)
+    {
+        // Consultamos los datos del profesional
+        $profesional = Profesional::findOrFail($id);
+
+        // Llenamos el select de ocupaciones
+        $ocupaciones = CatOcupacionCetsLesp::orderBy('orden', 'asc')->get();
+
+        // Retornamos la vista con todos los objetos
+        return view('ocupacion.cetsLesp-create', compact('profesional','ocupaciones'));
+    }
+
+    public function storeCetsLesp(Request $request)
+    {
+        // Validamos los datos
+        $request->validate([
+            'id_profesional'=>'required',
+            'ocupacion_uno'=>'required',
+            'ocupacion_dos'=>'nullable'
+        ],[]);
+
+        // Consultamos los datos para registrar
+        $ocupacionUno = CatOcupacionCetsLesp::where('id',$request->ocupacion_uno)->first();
+        $ocupacionDos = CatOcupacionCetsLesp::where('id',$request->ocupacion_dos)->first();
+
+        // Activamos el modulo
+        $mdl_status = 1;
+
+        // Creamos el objeto
+        $ocupacion = new ProfesionalOcupacionCetsLesp();
+
+        // Asignamos los valores
+        $ocupacion->id_profesional = $request->id_profesional;
+
+        $ocupacion->id_catalogo_uno = $request->ocupacion_uno;
+        $ocupacion->area_uno = $ocupacionUno->area;
+        $ocupacion->subarea_uno = $ocupacionUno->subarea;
+        $ocupacion->jefatura_programa_uno = $ocupacionUno->jefatura_programa;
+        $ocupacion->componente_uno = $ocupacionUno->componente;
+        $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
+
+        $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
+        $ocupacion->area_dos = $ocupacionDos->area;
+        $ocupacion->subarea_dos = $ocupacionDos->subarea;
+        $ocupacion->jefatura_programa_dos = $ocupacionDos->jefatura_programa;
+        $ocupacion->componente_dos = $ocupacionDos->componente;
+        $ocupacion->ocupacion_dos = $ocupacionDos->ocupacion;
+
+        $ocupacion->mdl_status = $mdl_status;
+
+        // Registramos los datos
+        $ocupacion->save();
+
+        // Regresamos a la vista con su mensaje
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('successCetsLesp', 'Ocupaciones registradas correctamente.');
+    }
+
+    public function editCetsLesp($id)
+    {
+        // Consultamos los datos del profesional
+        $profesional = Profesional::findOrFail($id);
+
+        // Llenamos el select de ocupaciones
+        $ocupaciones = CatOcupacionCetsLesp::orderBy('orden', 'asc')->get();
+
+        // Consultamos si tiene registros en la tabla
+        $profesionalOcupaciones = ProfesionalOcupacionCetsLesp::where('id_profesional',$id)->first();
+
+        // Retornamos la vista con todos los objetos
+        return view('ocupacion.cetsLesp-edit', compact('profesional','ocupaciones','profesionalOcupaciones'));
+    }
+
+    public function updateCetsLesp(Request $request, $id)
+    {
+        // Validamos los datos
+        $request->validate([
+            'ocupacion_uno'=>'required',
+            'ocupacion_dos'=>'nullable'
+        ],[]);
+
+        // Consultamos los datos para registrar
+        $ocupacionUno = CatOcupacionCetsLesp::where('id',$request->ocupacion_uno)->first();
+
+        $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionCetsLesp::where('id', $request->ocupacion_dos)->first();
+        }
+
+        // Buscamos el registro a editar
+        $ocupaciones = ProfesionalOcupacionCetsLesp::findOrFail($id);
+
+        // Asignamos los valores
+        $ocupaciones->update([
+
+            'id_catalogo_uno'=>$request->ocupacion_uno,
+            'area_uno'=>$ocupacionUno->area,
+            'subarea_uno'=>$ocupacionUno->subarea,
+            'jefatura_programa_uno'=>$ocupacionUno->jefatura_programa,
+            'componente_uno'=>$ocupacionUno->componente,
+            'ocupacion_uno'=>$ocupacionUno->ocupacion,
+
+            'id_catalogo_dos' => $request->ocupacion_dos,
+            'area_dos' => $ocupacionDos?->area,
+            'subarea_dos' => $ocupacionDos?->subarea,
+            'jefatura_programa_dos' => $ocupacionDos?->jefatura_programa,
+            'componente_dos' => $ocupacionDos?->componente,
+            'ocupacion_dos' => $ocupacionDos?->ocupacion,
+        ]);
+
+        // Redireccionar con un mensaje de éxito
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('updateCetsLesp', 'Ocupaciones registradas correctamente.');
 
     }
 }

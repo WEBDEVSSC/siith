@@ -5,7 +5,7 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Almacen Estatal</small></h1>
+    <h1><strong>Profesionales</strong> <small>CETS LESP</small></h1>
 @stop
 
 @section('content')
@@ -35,7 +35,7 @@
                         @foreach($ocupaciones as $ocupacion)
                             <option value="{{ $ocupacion->id }}" 
                                 {{ old('ocupacion_uno', optional($profesionalOcupaciones)->id_catalogo_uno) == $ocupacion->id ? 'selected' : '' }}>
-                                {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->jefatura }} - {{ $ocupacion->departamento }} - {{ $ocupacion->ocupacion }}
+                                {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->jefatura_programa }} - {{ $ocupacion->componente }} - {{ $ocupacion->ocupacion }}
                             </option>
                         @endforeach
                     </select>
@@ -53,7 +53,7 @@
                         @foreach($ocupaciones as $ocupacion)
                             <option value="{{ $ocupacion->id }}" 
                                 {{ old('ocupacion_dos', optional($profesionalOcupaciones)->id_catalogo_dos) == $ocupacion->id ? 'selected' : '' }}>
-                                {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->jefatura }} - {{ $ocupacion->departamento }} - {{ $ocupacion->ocupacion }}
+                                {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->jefatura_programa }} - {{ $ocupacion->componente }} - {{ $ocupacion->ocupacion }}
                             </option>
                         @endforeach
                     </select>

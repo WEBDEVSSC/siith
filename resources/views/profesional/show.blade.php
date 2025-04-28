@@ -172,6 +172,15 @@
                 </ul>
             @endif
 
+             <!-- OCUPACION PARA CETS LESP (8) -->
+
+             @if ($cluesAdscripcionTipo == 8)
+             <ul>
+                 <li>{{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_uno }} - {{ optional($ocupacion)->jefatura_programa_uno }} - {{ optional($ocupacion)->componente_uno }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
+                 <li>{{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_dos }} - {{ optional($ocupacion)->jefatura_programa_dos }} - {{ optional($ocupacion)->componente_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
+             </ul>
+         @endif
+
             <!-- OCUPACION PARA CORS (9) -->
 
             @if ($cluesAdscripcionTipo == 9)
@@ -221,6 +230,21 @@
                 @else  
                     <a href="{{ route('createOfJurisdiccional', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
                         <i class="fa-solid fa-building-user"></i> CARGAR OCUPACIÓN
+                    </a>
+                @endif
+                
+            @endif
+
+            <!-- CETS LESP -->
+            @if ($profesional->puesto->clues_adscripcion_tipo == 8)
+
+                @if ($profesional->ocupacionCetsLesp?->mdl_status == 1)
+                    <a href="{{ route('editCetsLesp', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="CETS LESP">
+                        <i class="fa-solid fa-droplet"></i> EDITAR OCUPACIÓN
+                    </a>
+                @else  
+                    <a href="{{ route('createCetsLesp', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="CETS LESP">
+                        <i class="fa-solid fa-droplet"></i> CARGAR OCUPACIÓN
                     </a>
                 @endif
                 
