@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CatalogoCentroDeSaludUrbanoYRuralController;
 use App\Http\Controllers\ProfesionalAreaMedicaController;
 use App\Http\Controllers\ProfesionalCambioDeUnidadController;
 use App\Http\Controllers\ProfesionalCertificacionController;
@@ -391,6 +392,26 @@ Route::middleware(['auth'])->group(function ()
      Route::get('admin/usuarios/createUsuario', [UsuarioController::class,'createUsuario'])->name('createUsuario');
 
      Route::post('admin/usuarios/storeUsuario', [UsuarioController::class,'storeUsuario'])->name('storeUsuario');
+
+    /**
+     * 
+     * 
+     * OCUPACIONES CENTROS DE SALUD URBANOS Y RURALES
+     * 
+     * 
+     */
+     Route::get('admin/settings/ocupacion/csuyr/index', [CatalogoCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrIndex'])->name('ocupacionCsuyrIndex'); 
+
+     Route::get('admin/settings/ocupacion/csuyr/create', [CatalogoCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrCreate'])->name('ocupacionCsuyrCreate');  
+
+     Route::post('admin/settings/ocupacion/csuyr/store', [CatalogoCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrStore'])->name('ocupacionCsuyrStore'); 
+
+     Route::get('admin/settings/ocupacion/csuyr/edit/{id}', [CatalogoCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrEdit'])->name('ocupacionCsuyrEdit');  
+
+     Route::put('admin/settings/ocupacion/csuyr/update/{id}', [CatalogoCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrUpdate'])->name('ocupacionCsuyrUpdate');
+     
+     Route::delete('admin/settings/ocupacion/csuyr/delete/{id}', [CatalogoCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrDestroy'])->name('ocupacionCsuyrDestroy');
+
 
 });
 

@@ -105,9 +105,7 @@ class ProfesionalOcupacionController extends Controller
     }
 
     public function updateCentrosDeSalud(Request $request, $id)
-    {        
-        dd($request->ocupacion_dos);
-        
+    {                
         // Validamos los datos
         $request->validate([
             'ocupacion_uno' => 'required',

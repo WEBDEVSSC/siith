@@ -243,6 +243,21 @@
                 @endif
                 
             @endif
+            
+            <!-- ALMACEN -->
+            @if ($profesional->puesto->clues_adscripcion_tipo == 7)
+
+                @if ($profesional->ocupacionAlmacen?->mdl_status == 1)
+                    <a href="{{ route('editAlmacen', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="ALMACEN">
+                        <i class="fa-solid fa-shop-lock"></i> EDITAR OCUPACIÓN
+                    </a>
+                @else  
+                    <a href="{{ route('createAlmacen', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="ALMACENL">
+                        <i class="fa-solid fa-shop-lock"></i> CARGAR OCUPACIÓN
+                    </a>
+                @endif
+                
+            @endif
 
             <!-- CETS LESP -->
             @if ($profesional->puesto->clues_adscripcion_tipo == 8)

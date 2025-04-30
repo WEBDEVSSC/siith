@@ -343,7 +343,23 @@ return [
             'text' => 'Usuarios',
             'url' => 'admin/usuarios/indexUsuario',
             'icon' => 'fas fa-fw fa-lock',
-            'can' => 'isAdmin', 
+            'can' => 'admin', 
+        ],
+
+        [
+            'text' => 'Catalogo Ocupaciones',
+            'icon' => 'fas fa-fw fa-lock',
+            'can' => 'admin',
+            'submenu' => [
+                [
+                    'text' => 'C.S.U. y R.',
+                    'url' => 'admin/settings/ocupacion/csuyr/index',
+                ],
+                [
+                    'text' => 'Hospitales',
+                    'url' => 'admin/usuarios/create',
+                ],
+            ],
         ],
     ],
 
