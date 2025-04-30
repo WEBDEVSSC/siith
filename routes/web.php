@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\CatalogoCentroDeSaludUrbanoYRuralController;
+use App\Http\Controllers\CatalogoOcupacionCentroDeSaludUrbanoYRuralController;
+use App\Http\Controllers\CatalogoOcupacionHospitalController;
+use App\Http\Controllers\CatalogoOcupacionOfJurisdiccionalController;
 use App\Http\Controllers\ProfesionalAreaMedicaController;
 use App\Http\Controllers\ProfesionalCambioDeUnidadController;
 use App\Http\Controllers\ProfesionalCertificacionController;
@@ -400,17 +403,55 @@ Route::middleware(['auth'])->group(function ()
      * 
      * 
      */
-     Route::get('admin/settings/ocupacion/csuyr/index', [CatalogoCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrIndex'])->name('ocupacionCsuyrIndex'); 
+     Route::get('admin/settings/ocupacion/csuyr/index', [CatalogoOcupacionCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrIndex'])->name('ocupacionCsuyrIndex'); 
 
-     Route::get('admin/settings/ocupacion/csuyr/create', [CatalogoCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrCreate'])->name('ocupacionCsuyrCreate');  
+     Route::get('admin/settings/ocupacion/csuyr/create', [CatalogoOcupacionCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrCreate'])->name('ocupacionCsuyrCreate');  
 
-     Route::post('admin/settings/ocupacion/csuyr/store', [CatalogoCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrStore'])->name('ocupacionCsuyrStore'); 
+     Route::post('admin/settings/ocupacion/csuyr/store', [CatalogoOcupacionCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrStore'])->name('ocupacionCsuyrStore'); 
 
-     Route::get('admin/settings/ocupacion/csuyr/edit/{id}', [CatalogoCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrEdit'])->name('ocupacionCsuyrEdit');  
+     Route::get('admin/settings/ocupacion/csuyr/edit/{id}', [CatalogoOcupacionCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrEdit'])->name('ocupacionCsuyrEdit');  
 
-     Route::put('admin/settings/ocupacion/csuyr/update/{id}', [CatalogoCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrUpdate'])->name('ocupacionCsuyrUpdate');
+     Route::put('admin/settings/ocupacion/csuyr/update/{id}', [CatalogoOcupacionCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrUpdate'])->name('ocupacionCsuyrUpdate');
      
-     Route::delete('admin/settings/ocupacion/csuyr/delete/{id}', [CatalogoCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrDestroy'])->name('ocupacionCsuyrDestroy');
+     Route::delete('admin/settings/ocupacion/csuyr/delete/{id}', [CatalogoOcupacionCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrDestroy'])->name('ocupacionCsuyrDestroy');
+
+     /**
+     * 
+     * 
+     * OCUPACIONES HOSPITALES
+     * 
+     * 
+     */
+    Route::get('admin/settings/ocupacion/hospital/index', [CatalogoOcupacionHospitalController::class, 'ocupacionHospitalIndex'])->name('ocupacionHospitalIndex'); 
+
+    Route::get('admin/settings/ocupacion/hospital/create', [CatalogoOcupacionHospitalController::class, 'ocupacionHospitalCreate'])->name('ocupacionHospitalCreate');  
+
+    Route::post('admin/settings/ocupacion/hospital/store', [CatalogoOcupacionHospitalController::class, 'ocupacionHospitalStore'])->name('ocupacionHospitalStore'); 
+
+    Route::get('admin/settings/ocupacion/hospital/edit/{id}', [CatalogoOcupacionHospitalController::class, 'ocupacionHospitalEdit'])->name('ocupacionHospitalEdit');  
+
+    Route::put('admin/settings/ocupacion/hospital/update/{id}', [CatalogoOcupacionHospitalController::class, 'ocupacionHospitalUpdate'])->name('ocupacionHospitalUpdate');
+
+    Route::delete('admin/settings/ocupacion/hospital/delete/{id}', [CatalogoOcupacionHospitalController::class, 'ocupacionHospitalDestroy'])->name('ocupacionHospitalDestroy');
+
+     /**
+     * 
+     * 
+     * OCUPACIONES OFICINAS JURISDICCIONALES
+     * 
+     * 
+     */
+    Route::get('admin/settings/ocupacion/ofJurisdiccional/index', [CatalogoOcupacionOfJurisdiccionalController::class, 'ocupacionOfJurisdiccionalIndex'])->name('ocupacionOfJurisdiccionalIndex'); 
+
+    Route::get('admin/settings/ocupacion/ofJurisdiccional/create', [CatalogoOcupacionOfJurisdiccionalController::class, 'ocupacionOfJurisdiccionalCreate'])->name('ocupacionOfJurisdiccionalCreate');  
+
+    Route::post('admin/settings/ocupacion/ofJurisdiccional/store', [CatalogoOcupacionOfJurisdiccionalController::class, 'ocupacionOfJurisdiccionalStore'])->name('ocupacionOfJurisdiccionalStore'); 
+
+    Route::get('admin/settings/ocupacion/ofJurisdiccional/edit/{id}', [CatalogoOcupacionOfJurisdiccionalController::class, 'ocupacionOfJurisdiccionalEdit'])->name('ocupacionOfJurisdiccionalEdit');  
+
+    Route::put('admin/settings/ocupacion/ofJurisdiccional/update/{id}', [CatalogoOcupacionOfJurisdiccionalController::class, 'ocupacionOfJurisdiccionalUpdate'])->name('ocupacionOfJurisdiccionalUpdate');
+
+    Route::delete('admin/settings/ocupacion/ofJurisdiccional/delete/{id}', [CatalogoOcupacionOfJurisdiccionalController::class, 'ocupacionOfJurisdiccionalDestroy'])->name('ocupacionOfJurisdiccionalDestroy');
 
 
 });

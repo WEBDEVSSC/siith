@@ -352,12 +352,16 @@ return [
             'can' => 'admin',
             'submenu' => [
                 [
-                    'text' => 'C.S.U. y R.',
+                    'text' => 'C.S.U. y R. (1)',
                     'url' => 'admin/settings/ocupacion/csuyr/index',
                 ],
                 [
-                    'text' => 'Hospitales',
-                    'url' => 'admin/usuarios/create',
+                    'text' => 'Hospitales (2)',
+                    'url' => 'admin/settings/ocupacion/hospital/index',
+                ],
+                [
+                    'text' => 'Of. Jurisdiccional (3)',
+                    'url' => 'admin/settings/ocupacion/ofJurisdiccional/index',
                 ],
             ],
         ],
