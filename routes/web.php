@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CatalogoCentroDeSaludUrbanoYRuralController;
 use App\Http\Controllers\CatalogoOcupacionCentroDeSaludUrbanoYRuralController;
+use App\Http\Controllers\CatalogoOcupacionCriCreeController;
 use App\Http\Controllers\CatalogoOcupacionHospitalController;
 use App\Http\Controllers\CatalogoOcupacionOfJurisdiccionalController;
 use App\Http\Controllers\ProfesionalAreaMedicaController;
@@ -452,6 +453,25 @@ Route::middleware(['auth'])->group(function ()
     Route::put('admin/settings/ocupacion/ofJurisdiccional/update/{id}', [CatalogoOcupacionOfJurisdiccionalController::class, 'ocupacionOfJurisdiccionalUpdate'])->name('ocupacionOfJurisdiccionalUpdate');
 
     Route::delete('admin/settings/ocupacion/ofJurisdiccional/delete/{id}', [CatalogoOcupacionOfJurisdiccionalController::class, 'ocupacionOfJurisdiccionalDestroy'])->name('ocupacionOfJurisdiccionalDestroy');
+
+    /**
+     * 
+     * 
+     * OCUPACIONES CRI CREE
+     * 
+     * 
+     */
+    Route::get('admin/settings/ocupacion/CriCree/index', [CatalogoOcupacionCriCreeController::class, 'ocupacionCriCreeIndex'])->name('ocupacionCriCreeIndex'); 
+
+    Route::get('admin/settings/ocupacion/CriCree/create', [CatalogoOcupacionCriCreeController::class, 'ocupacionCriCreeCreate'])->name('ocupacionCriCreeCreate');  
+
+    Route::post('admin/settings/ocupacion/CriCree/store', [CatalogoOcupacionCriCreeController::class, 'ocupacionCriCreeStore'])->name('ocupacionCriCreeStore'); 
+
+    Route::get('admin/settings/ocupacion/CriCree/edit/{id}', [CatalogoOcupacionCriCreeController::class, 'ocupacionCriCreeEdit'])->name('ocupacionCriCreeEdit');  
+
+    Route::put('admin/settings/ocupacion/CriCree/update/{id}', [CatalogoOcupacionCriCreeController::class, 'ocupacionCriCreeUpdate'])->name('ocupacionCriCreeUpdate');
+
+    Route::delete('admin/settings/ocupacion/CriCree/delete/{id}', [CatalogoOcupacionCriCreeController::class, 'ocupacionCriCreeDestroy'])->name('ocupacionCriCreeDestroy');
 
 
 });

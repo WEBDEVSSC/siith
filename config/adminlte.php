@@ -363,6 +363,10 @@ return [
                     'text' => 'Of. Jurisdiccional (3)',
                     'url' => 'admin/settings/ocupacion/ofJurisdiccional/index',
                 ],
+                [
+                    'text' => 'CRI CREE (4)',
+                    'url' => 'admin/settings/ocupacion/CriCree/index',
+                ],
             ],
         ],
     ],
