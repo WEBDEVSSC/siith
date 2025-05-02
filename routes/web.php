@@ -5,6 +5,7 @@ use App\Http\Controllers\CatalogoOcupacionCentroDeSaludUrbanoYRuralController;
 use App\Http\Controllers\CatalogoOcupacionCriCreeController;
 use App\Http\Controllers\CatalogoOcupacionHospitalController;
 use App\Http\Controllers\CatalogoOcupacionOfJurisdiccionalController;
+use App\Http\Controllers\CatalogoOcupacionSamuCrumController;
 use App\Http\Controllers\ProfesionalAreaMedicaController;
 use App\Http\Controllers\ProfesionalCambioDeUnidadController;
 use App\Http\Controllers\ProfesionalCertificacionController;
@@ -400,7 +401,7 @@ Route::middleware(['auth'])->group(function ()
     /**
      * 
      * 
-     * OCUPACIONES CENTROS DE SALUD URBANOS Y RURALES
+     * 1 - OCUPACIONES CENTROS DE SALUD URBANOS Y RURALES
      * 
      * 
      */
@@ -419,7 +420,7 @@ Route::middleware(['auth'])->group(function ()
      /**
      * 
      * 
-     * OCUPACIONES HOSPITALES
+     * 2 - OCUPACIONES HOSPITALES
      * 
      * 
      */
@@ -438,7 +439,7 @@ Route::middleware(['auth'])->group(function ()
      /**
      * 
      * 
-     * OCUPACIONES OFICINAS JURISDICCIONALES
+     * 3 - OCUPACIONES OFICINAS JURISDICCIONALES
      * 
      * 
      */
@@ -457,10 +458,11 @@ Route::middleware(['auth'])->group(function ()
     /**
      * 
      * 
-     * OCUPACIONES CRI CREE
+     * 4 OCUPACIONES CRI CREE
      * 
      * 
      */
+
     Route::get('admin/settings/ocupacion/CriCree/index', [CatalogoOcupacionCriCreeController::class, 'ocupacionCriCreeIndex'])->name('ocupacionCriCreeIndex'); 
 
     Route::get('admin/settings/ocupacion/CriCree/create', [CatalogoOcupacionCriCreeController::class, 'ocupacionCriCreeCreate'])->name('ocupacionCriCreeCreate');  
@@ -472,6 +474,26 @@ Route::middleware(['auth'])->group(function ()
     Route::put('admin/settings/ocupacion/CriCree/update/{id}', [CatalogoOcupacionCriCreeController::class, 'ocupacionCriCreeUpdate'])->name('ocupacionCriCreeUpdate');
 
     Route::delete('admin/settings/ocupacion/CriCree/delete/{id}', [CatalogoOcupacionCriCreeController::class, 'ocupacionCriCreeDestroy'])->name('ocupacionCriCreeDestroy');
+
+    /**
+     * 
+     * 
+     * 5 OCUPACIONES SAMU CRUM
+     * 
+     * 
+     */
+    
+     Route::get('admin/settings/ocupacion/samuCrum/index', [CatalogoOcupacionSamuCrumController::class, 'ocupacionSamuCrumIndex'])->name('ocupacionSamuCrumIndex'); 
+
+     Route::get('admin/settings/ocupacion/samuCrum/create', [CatalogoOcupacionSamuCrumController::class, 'ocupacionSamuCrumCreate'])->name('ocupacionSamuCrumCreate');  
+ 
+     Route::post('admin/settings/ocupacion/samuCrum/store', [CatalogoOcupacionSamuCrumController::class, 'ocupacionSamuCrumStore'])->name('ocupacionSamuCrumStore'); 
+ 
+     Route::get('admin/settings/ocupacion/samuCrum/edit/{id}', [CatalogoOcupacionSamuCrumController::class, 'ocupacionSamuCrumEdit'])->name('ocupacionSamuCrumEdit');  
+ 
+     Route::put('admin/settings/ocupacion/samuCrum/update/{id}', [CatalogoOcupacionSamuCrumController::class, 'ocupacionSamuCrumUpdate'])->name('ocupacionSamuCrumUpdate');
+ 
+     Route::delete('admin/settings/ocupacion/samuCrum/delete/{id}', [CatalogoOcupacionSamuCrumController::class, 'ocupacionSamuCrumDestroy'])->name('ocupacionSamuCrumDestroy');
 
 
 });

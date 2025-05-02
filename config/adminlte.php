@@ -367,6 +367,10 @@ return [
                     'text' => 'CRI CREE (4)',
                     'url' => 'admin/settings/ocupacion/CriCree/index',
                 ],
+                [
+                    'text' => 'SAMU CRUM (5)',
+                    'url' => 'admin/settings/ocupacion/samuCrum/index',
+                ],
             ],
         ],
     ],
