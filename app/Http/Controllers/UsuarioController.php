@@ -74,6 +74,7 @@ class UsuarioController extends Controller
         $usuario->id_unidad = $request->clue_id;
         $usuario->clues_unidad = $clues->clues;
         $usuario->nombre_unidad = $clues->nombre;
+        $usuario->jurisdiccion_unidad = $clues->clave_jurisdiccion;
         $usuario->role = $rol->rol;
 
         // Guardamos el registro

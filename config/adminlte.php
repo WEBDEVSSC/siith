@@ -371,6 +371,10 @@ return [
                     'text' => 'SAMU CRUM (5)',
                     'url' => 'admin/settings/ocupacion/samuCrum/index',
                 ],
+                [
+                    'text' => 'Of. Central (6)',
+                    'url' => 'admin/settings/ocupacion/oficinaCentral/index',
+                ],
             ],
         ],
     ],

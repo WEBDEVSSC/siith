@@ -4,6 +4,7 @@ use App\Http\Controllers\CatalogoCentroDeSaludUrbanoYRuralController;
 use App\Http\Controllers\CatalogoOcupacionCentroDeSaludUrbanoYRuralController;
 use App\Http\Controllers\CatalogoOcupacionCriCreeController;
 use App\Http\Controllers\CatalogoOcupacionHospitalController;
+use App\Http\Controllers\CatalogoOcupacionOficinaCentralController;
 use App\Http\Controllers\CatalogoOcupacionOfJurisdiccionalController;
 use App\Http\Controllers\CatalogoOcupacionSamuCrumController;
 use App\Http\Controllers\ProfesionalAreaMedicaController;
@@ -494,6 +495,27 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/settings/ocupacion/samuCrum/update/{id}', [CatalogoOcupacionSamuCrumController::class, 'ocupacionSamuCrumUpdate'])->name('ocupacionSamuCrumUpdate');
  
      Route::delete('admin/settings/ocupacion/samuCrum/delete/{id}', [CatalogoOcupacionSamuCrumController::class, 'ocupacionSamuCrumDestroy'])->name('ocupacionSamuCrumDestroy');
+
+     /**
+     * 
+     * 
+     * 6 OCUPACIONES OFICINA CENTRAL
+     * 
+     * 
+     */
+    
+     Route::get('admin/settings/ocupacion/oficinaCentral/index', [CatalogoOcupacionOficinaCentralController::class, 'ocupacionOficinaCentralIndex'])->name('ocupacionOficinaCentralIndex'); 
+
+     Route::get('admin/settings/ocupacion/oficinaCentral/create', [CatalogoOcupacionOficinaCentralController::class, 'ocupacionOficinaCentralCreate'])->name('ocupacionOficinaCentralCreate');  
+ 
+     Route::post('admin/settings/ocupacion/oficinaCentral/store', [CatalogoOcupacionOficinaCentralController::class, 'ocupacionOficinaCentralStore'])->name('ocupacionOficinaCentralStore'); 
+ 
+     Route::get('admin/settings/ocupacion/oficinaCentral/edit/{id}', [CatalogoOcupacionOficinaCentralController::class, 'ocupacionOficinaCentralEdit'])->name('ocupacionOficinaCentralEdit');  
+ 
+     Route::put('admin/settings/ocupacion/oficinaCentral/update/{id}', [CatalogoOcupacionOficinaCentralController::class, 'ocupacionOficinaCentralUpdate'])->name('ocupacionOficinaCentralUpdate');
+
+     Route::delete('admin/settings/ocupacion/oficinaCentral/delete/{id}', [CatalogoOcupacionOficinaCentralController::class, 'ocupacionOficinaCentralDestroy'])->name('ocupacionOficinaCentralDestroy');
+ 
 
 
 });

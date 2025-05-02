@@ -280,6 +280,13 @@ class ProfesionalController extends Controller
                 ->whereRelation('puesto', 'vigencia', 'ACTIVO')
                 ->get();
         }  
+        elseif(Gate::allows('ofCentral'))
+        {            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002093')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        }  
         else
         {
 
