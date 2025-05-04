@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CatalogoCentroDeSaludUrbanoYRuralController;
+use App\Http\Controllers\CatalogoOcupacionAlmacenController;
 use App\Http\Controllers\CatalogoOcupacionCentroDeSaludUrbanoYRuralController;
 use App\Http\Controllers\CatalogoOcupacionCriCreeController;
 use App\Http\Controllers\CatalogoOcupacionHospitalController;
@@ -515,6 +516,26 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/settings/ocupacion/oficinaCentral/update/{id}', [CatalogoOcupacionOficinaCentralController::class, 'ocupacionOficinaCentralUpdate'])->name('ocupacionOficinaCentralUpdate');
 
      Route::delete('admin/settings/ocupacion/oficinaCentral/delete/{id}', [CatalogoOcupacionOficinaCentralController::class, 'ocupacionOficinaCentralDestroy'])->name('ocupacionOficinaCentralDestroy');
+
+     /**
+     * 
+     * 
+     * 7 ALMACEN
+     * 
+     * 
+     */
+    
+     Route::get('admin/settings/ocupacion/almacen/index', [CatalogoOcupacionAlmacenController::class, 'ocupacionAlmacenIndex'])->name('ocupacionAlmacenIndex'); 
+
+     Route::get('admin/settings/ocupacion/almacen/create', [CatalogoOcupacionAlmacenController::class, 'ocupacionAlmacenCreate'])->name('ocupacionAlmacenCreate');  
+ 
+     Route::post('admin/settings/ocupacion/almacen/store', [CatalogoOcupacionAlmacenController::class, 'ocupacionAlmacenStore'])->name('ocupacionAlmacenStore'); 
+ 
+     Route::get('admin/settings/ocupacion/almacen/edit/{id}', [CatalogoOcupacionAlmacenController::class, 'ocupacionAlmacenEdit'])->name('ocupacionAlmacenEdit');  
+ 
+     Route::put('admin/settings/ocupacion/almacen/update/{id}', [CatalogoOcupacionAlmacenController::class, 'ocupacionAlmacenUpdate'])->name('ocupacionAlmacenUpdate');
+
+     Route::delete('admin/settings/ocupacion/almacen/delete/{id}', [CatalogoOcupacionAlmacenController::class, 'ocupacionAlmacenDestroy'])->name('ocupacionAlmacenDestroy');
  
 
 

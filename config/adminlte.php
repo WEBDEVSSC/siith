@@ -375,6 +375,10 @@ return [
                     'text' => 'Of. Central (6)',
                     'url' => 'admin/settings/ocupacion/oficinaCentral/index',
                 ],
+                [
+                    'text' => 'Almacen (7)',
+                    'url' => 'admin/settings/ocupacion/almacen/index',
+                ],
             ],
         ],
     ],
