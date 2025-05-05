@@ -379,6 +379,10 @@ return [
                     'text' => 'Almacen (7)',
                     'url' => 'admin/settings/ocupacion/almacen/index',
                 ],
+                [
+                    'text' => 'CETS / LESP (8)',
+                    'url' => 'admin/settings/ocupacion/cetsLesp/index',
+                ],
             ],
         ],
     ],

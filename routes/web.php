@@ -3,6 +3,7 @@
 use App\Http\Controllers\CatalogoCentroDeSaludUrbanoYRuralController;
 use App\Http\Controllers\CatalogoOcupacionAlmacenController;
 use App\Http\Controllers\CatalogoOcupacionCentroDeSaludUrbanoYRuralController;
+use App\Http\Controllers\CatalogoOcupacionCetsLespController;
 use App\Http\Controllers\CatalogoOcupacionCriCreeController;
 use App\Http\Controllers\CatalogoOcupacionHospitalController;
 use App\Http\Controllers\CatalogoOcupacionOficinaCentralController;
@@ -536,6 +537,26 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/settings/ocupacion/almacen/update/{id}', [CatalogoOcupacionAlmacenController::class, 'ocupacionAlmacenUpdate'])->name('ocupacionAlmacenUpdate');
 
      Route::delete('admin/settings/ocupacion/almacen/delete/{id}', [CatalogoOcupacionAlmacenController::class, 'ocupacionAlmacenDestroy'])->name('ocupacionAlmacenDestroy');
+
+     /**
+     * 
+     * 
+     * 8 CETS LESP
+     * 
+     * 
+     */
+    
+     Route::get('admin/settings/ocupacion/cetsLesp/index', [CatalogoOcupacionCetsLespController::class, 'ocupacionCetsLespIndex'])->name('ocupacionCetsLespIndex'); 
+
+     Route::get('admin/settings/ocupacion/cetsLesp/create', [CatalogoOcupacionCetsLespController::class, 'ocupacionCetsLespCreate'])->name('ocupacionCetsLespCreate');  
+ 
+     Route::post('admin/settings/ocupacion/cetsLesp/store', [CatalogoOcupacionCetsLespController::class, 'ocupacionCetsLespStore'])->name('ocupacionCetsLespStore'); 
+ 
+     Route::get('admin/settings/ocupacion/cetsLesp/edit/{id}', [CatalogoOcupacionCetsLespController::class, 'ocupacionCetsLespEdit'])->name('ocupacionCetsLespEdit');  
+ 
+     Route::put('admin/settings/ocupacion/cetsLesp/update/{id}', [CatalogoOcupacionCetsLespController::class, 'ocupacionCetsLespUpdate'])->name('ocupacionCetsLespUpdate');
+
+     Route::delete('admin/settings/ocupacion/cetsLesp/delete/{id}', [CatalogoOcupacionCetsLespController::class, 'ocupacionCetsLespDestroy'])->name('ocupacionCetsLespDestroy');
  
 
 
