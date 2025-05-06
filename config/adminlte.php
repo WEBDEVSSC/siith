@@ -383,6 +383,10 @@ return [
                     'text' => 'CETS / LESP (8)',
                     'url' => 'admin/settings/ocupacion/cetsLesp/index',
                 ],
+                [
+                    'text' => 'CORS (9)',
+                    'url' => 'admin/settings/ocupacion/cors/index',
+                ],
             ],
         ],
     ],

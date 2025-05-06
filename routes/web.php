@@ -4,6 +4,7 @@ use App\Http\Controllers\CatalogoCentroDeSaludUrbanoYRuralController;
 use App\Http\Controllers\CatalogoOcupacionAlmacenController;
 use App\Http\Controllers\CatalogoOcupacionCentroDeSaludUrbanoYRuralController;
 use App\Http\Controllers\CatalogoOcupacionCetsLespController;
+use App\Http\Controllers\CatalogoOcupacionCorsController;
 use App\Http\Controllers\CatalogoOcupacionCriCreeController;
 use App\Http\Controllers\CatalogoOcupacionHospitalController;
 use App\Http\Controllers\CatalogoOcupacionOficinaCentralController;
@@ -557,6 +558,26 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/settings/ocupacion/cetsLesp/update/{id}', [CatalogoOcupacionCetsLespController::class, 'ocupacionCetsLespUpdate'])->name('ocupacionCetsLespUpdate');
 
      Route::delete('admin/settings/ocupacion/cetsLesp/delete/{id}', [CatalogoOcupacionCetsLespController::class, 'ocupacionCetsLespDestroy'])->name('ocupacionCetsLespDestroy');
+
+     /**
+     * 
+     * 
+     * 8 CORS
+     * 
+     * 
+     */
+    
+     Route::get('admin/settings/ocupacion/cors/index', [CatalogoOcupacionCorsController::class, 'ocupacionCorsIndex'])->name('ocupacionCorsIndex'); 
+
+     Route::get('admin/settings/ocupacion/cors/create', [CatalogoOcupacionCorsController::class, 'ocupacionCorsCreate'])->name('ocupacionCorsCreate');  
+ 
+     Route::post('admin/settings/ocupacion/cors/store', [CatalogoOcupacionCorsController::class, 'ocupacionCorsStore'])->name('ocupacionCorsStore'); 
+ 
+     Route::get('admin/settings/ocupacion/cors/edit/{id}', [CatalogoOcupacionCorsController::class, 'ocupacionCorsEdit'])->name('ocupacionCorsEdit');  
+ 
+     Route::put('admin/settings/ocupacion/cors/update/{id}', [CatalogoOcupacionCorsController::class, 'ocupacionCorsUpdate'])->name('ocupacionCorsUpdate');
+
+     Route::delete('admin/settings/ocupacion/cors/delete/{id}', [CatalogoOcupacionCorsController::class, 'ocupacionCorsDestroy'])->name('ocupacionCorsDestroy');
  
 
 
