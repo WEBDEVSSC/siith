@@ -10,6 +10,7 @@ use App\Http\Controllers\CatalogoOcupacionCriCreeController;
 use App\Http\Controllers\CatalogoOcupacionHospitalController;
 use App\Http\Controllers\CatalogoOcupacionOficinaCentralController;
 use App\Http\Controllers\CatalogoOcupacionOfJurisdiccionalController;
+use App\Http\Controllers\CatalogoOcupacionPsiParrasController;
 use App\Http\Controllers\CatalogoOcupacionSamuCrumController;
 use App\Http\Controllers\ProfesionalAreaMedicaController;
 use App\Http\Controllers\ProfesionalCambioDeUnidadController;
@@ -374,6 +375,16 @@ Route::middleware(['auth'])->group(function ()
  
       Route::put('admin/profesionales/ocupaciones/updateCesame/{id}', [ProfesionalOcupacionController::class, 'updateCesame'])->name('updateCesame');
 
+      /**RUTAS PARA EL CATALOGO 12 - PSI PARRAS */
+
+      Route::get('admin/profesionales/ocupaciones/createPsiParras/{id}', [ProfesionalOcupacionController::class, 'createPsiParras'])->name('createPsiParras');
+
+      Route::post('admin/profesionales/ocupaciones/storePsiParras', [ProfesionalOcupacionController::class, 'storePsiParras'])->name('storePsiParras');
+ 
+      Route::get('admin/profesionales/ocupaciones/editPsiParras/{id}', [ProfesionalOcupacionController::class, 'editPsiParras'])->name('editPsiParras');
+ 
+      Route::put('admin/profesionales/ocupaciones/updatePsiParras/{id}', [ProfesionalOcupacionController::class, 'updatePsiParras'])->name('updatePsiParras');
+
     /**
      * 
      * 
@@ -607,6 +618,26 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/settings/ocupacion/cesame/update/{id}', [CatalogoOcupacionCesameController::class, 'ocupacionCesameUpdate'])->name('ocupacionCesameUpdate');
 
      Route::delete('admin/settings/ocupacion/cesame/delete/{id}', [CatalogoOcupacionCesameController::class, 'ocupacionCesameDestroy'])->name('ocupacionCesameDestroy');
+
+     /**
+     * 
+     * 
+     * 12 PSI PARRAS
+     * 
+     * 
+     */
+    
+     Route::get('admin/settings/ocupacion/psiParras/index', [CatalogoOcupacionPsiParrasController::class, 'ocupacionPsiParrasIndex'])->name('ocupacionPsiParrasIndex'); 
+
+     Route::get('admin/settings/ocupacion/psiParras/create', [CatalogoOcupacionPsiParrasController::class, 'ocupacionPsiParrasCreate'])->name('ocupacionPsiParrasCreate');  
+ 
+     Route::post('admin/settings/ocupacion/psiParras/store', [CatalogoOcupacionPsiParrasController::class, 'ocupacionPsiParrasStore'])->name('ocupacionPsiParrasStore'); 
+ 
+     Route::get('admin/settings/ocupacion/psiParras/edit/{id}', [CatalogoOcupacionPsiParrasController::class, 'ocupacionPsiParrasEdit'])->name('ocupacionPsiParrasEdit');  
+ 
+     Route::put('admin/settings/ocupacion/psiParras/update/{id}', [CatalogoOcupacionPsiParrasController::class, 'ocupacionPsiParrasUpdate'])->name('ocupacionPsiParrasUpdate');
+
+     Route::delete('admin/settings/ocupacion/psiParras/delete/{id}', [CatalogoOcupacionPsiParrasController::class, 'ocupacionPsiParrasDestroy'])->name('ocupacionPsiParrasDestroy');
  
 
 

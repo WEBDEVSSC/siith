@@ -2,11 +2,39 @@
 
 @section('title', 'Profesionales')
 
+@section('plugins.Sweetalert2', true)
+
 @section('content_header')
     <h1><strong>Profesionales</strong> <small>Perfil del Trabajador</small></h1>
 @stop
 
 @section('content')
+
+<!-- -->
+
+@php
+    $alerts = [
+        'ocupacionSuccess',
+        'ocupacionUpdate',
+    ];
+@endphp
+
+@foreach ($alerts as $alert)
+    @if(session($alert))
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                Swal.fire({
+                    title: 'Éxito',
+                    text: "{{ session($alert) }}",
+                    icon: 'success',
+                    confirmButtonText: 'Ok'
+                });
+            });
+        </script>
+    @endif
+@endforeach
+
+<!-- -->
 
 <a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
     
@@ -198,6 +226,15 @@
                     <li>{{ optional($ocupacion)->unidad_dos }} - {{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_servicio_dos }} - {{ optional($ocupacion)->componente_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
                 </ul>
             @endif
+
+            <!-- OCUPACION PARA PSI PARRAS (12) -->
+
+            @if ($cluesAdscripcionTipo == 12)
+                <ul>
+                    <li>{{ optional($ocupacion)->unidad_uno }} - {{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_servicio_uno }} - {{ optional($ocupacion)->componente_uno }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
+                    <li>{{ optional($ocupacion)->unidad_dos }} - {{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_servicio_dos }} - {{ optional($ocupacion)->componente_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
+                </ul>
+            @endif
             
         </div>
         <div class="card-footer">
@@ -298,6 +335,21 @@
                     </a>
                 @else  
                     <a href="{{ route('createCesame', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="C.E.S.A.M.E.">
+                        <i class="fa-solid fa-brain"></i> CARGAR OCUPACIÓN
+                    </a>
+                @endif
+                
+            @endif
+
+            <!-- PSI PARRAS -->
+            @if ($profesional->puesto->clues_adscripcion_tipo == 12)
+
+                @if ($profesional->ocupacionPsiParras?->mdl_status == 1)
+                    <a href="{{ route('editPsiParras', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="PSI PARRAS">
+                        <i class="fa-solid fa-brain"></i> EDITAR OCUPACIÓN
+                    </a>
+                @else  
+                    <a href="{{ route('createPsiParras', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="PSI PARRAS">
                         <i class="fa-solid fa-brain"></i> CARGAR OCUPACIÓN
                     </a>
                 @endif
@@ -717,7 +769,7 @@
     </script>
 
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <!-- Bootstrap JS (si no lo tienes) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 @stop

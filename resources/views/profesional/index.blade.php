@@ -406,6 +406,22 @@
                                     @endif
                                                                                                    
                                 @endif
+
+                                <!-- CATALOGO PARA PSI PARRAS (12) -->
+
+                                @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 12)
+
+                                    @if(optional($data['profesional']->ocupacionPsiParras)->mdl_status == 1)
+                                        <a href="{{ route('editPsiParras', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="PSI PARRAS">
+                                            <i class="fa-solid fa-brain"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('createPsiParras', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="PSI PARRAS">
+                                            <i class="fa-solid fa-brain"></i>
+                                        </a>
+                                    @endif
+                                                                                                   
+                                @endif
                                 
                                 
                             @endif

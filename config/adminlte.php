@@ -391,6 +391,10 @@ return [
                     'text' => 'CESAME (11)',
                     'url' => 'admin/settings/ocupacion/cesame/index',
                 ],
+                [
+                    'text' => 'PSI PARRAS (12)',
+                    'url' => 'admin/settings/ocupacion/psiParras/index',
+                ],
             ],
         ],
     ],
