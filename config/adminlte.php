@@ -387,6 +387,10 @@ return [
                     'text' => 'CORS (9)',
                     'url' => 'admin/settings/ocupacion/cors/index',
                 ],
+                [
+                    'text' => 'CESAME (11)',
+                    'url' => 'admin/settings/ocupacion/cesame/index',
+                ],
             ],
         ],
     ],

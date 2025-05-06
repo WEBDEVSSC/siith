@@ -3,6 +3,7 @@
 use App\Http\Controllers\CatalogoCentroDeSaludUrbanoYRuralController;
 use App\Http\Controllers\CatalogoOcupacionAlmacenController;
 use App\Http\Controllers\CatalogoOcupacionCentroDeSaludUrbanoYRuralController;
+use App\Http\Controllers\CatalogoOcupacionCesameController;
 use App\Http\Controllers\CatalogoOcupacionCetsLespController;
 use App\Http\Controllers\CatalogoOcupacionCorsController;
 use App\Http\Controllers\CatalogoOcupacionCriCreeController;
@@ -562,7 +563,7 @@ Route::middleware(['auth'])->group(function ()
      /**
      * 
      * 
-     * 8 CORS
+     * 9 CORS
      * 
      * 
      */
@@ -578,6 +579,34 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/settings/ocupacion/cors/update/{id}', [CatalogoOcupacionCorsController::class, 'ocupacionCorsUpdate'])->name('ocupacionCorsUpdate');
 
      Route::delete('admin/settings/ocupacion/cors/delete/{id}', [CatalogoOcupacionCorsController::class, 'ocupacionCorsDestroy'])->name('ocupacionCorsDestroy');
+
+      /**
+     * 
+     * 
+     * 10 NUMERO SEPARADO
+     * 
+     * 
+     */
+
+     /**
+     * 
+     * 
+     * 11 CESAME
+     * 
+     * 
+     */
+    
+     Route::get('admin/settings/ocupacion/cesame/index', [CatalogoOcupacionCesameController::class, 'ocupacionCesameIndex'])->name('ocupacionCesameIndex'); 
+
+     Route::get('admin/settings/ocupacion/cesame/create', [CatalogoOcupacionCesameController::class, 'ocupacionCesameCreate'])->name('ocupacionCesameCreate');  
+ 
+     Route::post('admin/settings/ocupacion/cesame/store', [CatalogoOcupacionCesameController::class, 'ocupacionCesameStore'])->name('ocupacionCesameStore'); 
+ 
+     Route::get('admin/settings/ocupacion/cesame/edit/{id}', [CatalogoOcupacionCesameController::class, 'ocupacionCesameEdit'])->name('ocupacionCesameEdit');  
+ 
+     Route::put('admin/settings/ocupacion/cesame/update/{id}', [CatalogoOcupacionCesameController::class, 'ocupacionCesameUpdate'])->name('ocupacionCesameUpdate');
+
+     Route::delete('admin/settings/ocupacion/cesame/delete/{id}', [CatalogoOcupacionCesameController::class, 'ocupacionCesameDestroy'])->name('ocupacionCesameDestroy');
  
 
 
