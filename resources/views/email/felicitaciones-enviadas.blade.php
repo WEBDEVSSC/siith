@@ -17,8 +17,8 @@
                 <tr>
                     <td>{{ $persona->nombre }} {{ $persona->apellido_paterno }} {{ $persona->apellido_materno }}</td>
                     <td>{{ $persona->email }}</td>
-                    <td>{{ $persona->puesto->clues_adscripcion }}</td>
-                    <td>{{ $persona->puesto->clues_adscripcion_nombre }}</td>
+                    <td>{{ $persona->puesto->clues_adscripcion ?? 'N/A' }}</td>
+                    <td>{{ $persona->puesto->clues_adscripcion_nombre ?? 'N/A' }}</td>
                 </tr>
             @endforeach
         </tbody>
