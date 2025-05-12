@@ -66,6 +66,109 @@ class HomeController extends Controller
         ->whereRelation('puesto', 'vigencia', 'ACTIVO')
         ->count();
 
+        // CONTADOR PARA GRAFICA DE TIPO DE NOMINA
+        $nominaRegularizado = Profesional::whereRelation('puesto', 'nomina_pago', 'REG - Regularizado')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominaFormalizadoUno = Profesional::whereRelation('puesto', 'nomina_pago', 'FOR - Formalizado 1')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominaFormalizadoDos = Profesional::whereRelation('puesto', 'nomina_pago', 'FO2 - Formalizado 2')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominaFormalizadoTres = Profesional::whereRelation('puesto', 'nomina_pago', 'FO3 - Formalizado 3')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominaPasanteServicioSocial = Profesional::whereRelation('puesto', 'nomina_pago', '610 - Pasante en Servicio Social')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominaMedicoResidente = Profesional::whereRelation('puesto', 'nomina_pago', '6MR - Médico Residente')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominaFederal420 = Profesional::whereRelation('puesto', 'nomina_pago', 'FED - Federal (Unidad 420)')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominaEventual = Profesional::whereRelation('puesto', 'nomina_pago', 'EVE - Eventual')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominaHomogado = Profesional::whereRelation('puesto', 'nomina_pago', 'HOM - Homologado')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominaBurocrata = Profesional::whereRelation('puesto', 'nomina_pago', 'BUR - Burócrata')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominaImssBienestar = Profesional::whereRelation('puesto', 'nomina_pago', 'IB - IMSS-BIENESTAR')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominaUnemes = Profesional::whereRelation('puesto', 'nomina_pago', 'UNE - UNEMES')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominaDifPs = Profesional::whereRelation('puesto', 'nomina_pago', 'DIF PS')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominaDifOc = Profesional::whereRelation('puesto', 'nomina_pago', 'DIF O.F. CENTRAL')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominaRamoDoce = Profesional::whereRelation('puesto', 'nomina_pago', 'Ramo 12')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+        
+        $nominaPasanteSinPago = Profesional::whereRelation('puesto', 'nomina_pago', 'Pasante - Sin pago')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominaHonorarios = Profesional::whereRelation('puesto', 'nomina_pago', 'HON - Honorarios')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominaIssreei = Profesional::whereRelation('puesto', 'nomina_pago', 'ISSREEI - Nomina')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominaUmmFam = Profesional::whereRelation('puesto', 'nomina_pago', 'UMM - FAM')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        // GRAFICA POR TIPO DE CONTRATO
+        $contratoConfianza = Profesional::whereRelation('puesto', 'tipo_contrato', 'CONFIANZA')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $contratoBase = Profesional::whereRelation('puesto', 'tipo_contrato', 'BASE')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $contratoEventual = Profesional::whereRelation('puesto', 'tipo_contrato', 'EVENTUAL')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $contratoHonorarios = Profesional::whereRelation('puesto', 'tipo_contrato', 'HONORARIOS')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $contratoBecas = Profesional::whereRelation('puesto', 'tipo_contrato', 'BECAS')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $contratoOtros = Profesional::whereRelation('puesto', 'tipo_contrato', 'OTROS')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+
         return view('home', compact(
             'profesionalesActivos',
             'profesionalesBajaTemporal',
@@ -80,6 +183,32 @@ class HomeController extends Controller
             'profesionalesJurisdiccion7',
             'profesionalesJurisdiccion8',
             'profesionalesJurisdiccion9',
+
+            'nominaRegularizado',
+            'nominaFormalizadoUno',
+            'nominaFormalizadoDos',
+            'nominaFormalizadoTres',
+            'nominaPasanteServicioSocial',
+            'nominaMedicoResidente',
+            'nominaFederal420',
+            'nominaEventual',
+            'nominaHomogado',
+            'nominaBurocrata',
+            'nominaImssBienestar',
+            'nominaUnemes',
+            'nominaDifOc',
+            'nominaRamoDoce',
+            'nominaPasanteSinPago',
+            'nominaHonorarios',
+            'nominaIssreei',
+            'nominaUmmFam',
+
+            'contratoConfianza',
+            'contratoBase',
+            'contratoEventual',
+            'contratoHonorarios',
+            'contratoBecas',
+            'contratoOtros',
         ));
     }
 }

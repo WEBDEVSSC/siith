@@ -68,79 +68,46 @@
 </div>
 </div>
 
+<div class="row mt-4">
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><strong>Jurisdicción</strong></h3>
+      </div>
+      <div class="card-body">
+        <canvas id="profesionalesPorJurisdiccion" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><strong>Nómina de Pago</strong></h3>
+      </div>
+      <div class="card-body">
+        <canvas id="profesionalesNominaDePago" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><strong>Tipo de Contrato</strong></h3>
+      </div>
+      <div class="card-body">
+        <canvas id="profesionalesContratos" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
 <!-- ---------------------------------------------------------- -->
 
-
-<div class="row mt-3">
-  <div class="col-md-6">
-
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title"><strong>Jurisdicción</strong></h3>
-        </div>
-        <div class="card-body">
-
-          <div class="row">
-            <div class="col-md-6">
-
-              <div>
-                <canvas id="profesionalesPorJurisdiccion" width="400" height="400"></canvas>
-              </div>
-
-            </div>
-            <div class="col-md-6">
-
-              <table class="table">
-                <tr>
-                  <td>Jurisdiccion 1- Piedras Negras</td>
-                  <td>{{ $profesionalesJurisdiccion1 }}</td>
-                </tr>
-                <tr>
-                  <td>Jurisdiccion 2- Piedras Negras</td>
-                  <td>{{ $profesionalesJurisdiccion2 }}</td>
-                </tr>
-                <tr>
-                  <td>Jurisdiccion 3- Piedras Negras</td>
-                  <td>{{ $profesionalesJurisdiccion3 }}</td>
-                </tr>
-                <tr>
-                  <td>Jurisdiccion 4- Piedras Negras</td>
-                  <td>{{ $profesionalesJurisdiccion4 }}</td>
-                </tr>
-                <tr>
-                  <td>Jurisdiccion 5- Piedras Negras</td>
-                  <td>{{ $profesionalesJurisdiccion5 }}</td>
-                </tr>
-                <tr>
-                  <td>Jurisdiccion 6- Piedras Negras</td>
-                  <td>{{ $profesionalesJurisdiccion6 }}</td>
-                </tr>
-                <tr>
-                  <td>Jurisdiccion 7- Piedras Negras</td>
-                  <td>{{ $profesionalesJurisdiccion7 }}</td>
-                </tr>
-                <tr>
-                  <td>Jurisdiccion 8- Piedras Negras</td>
-                  <td>{{ $profesionalesJurisdiccion8 }}</td>
-                </tr>
-                <tr>
-                  <td>Jurisdiccion 9- Piedras Negras</td>
-                  <td>{{ $profesionalesJurisdiccion9 }}</td>
-                </tr>
-              </table>
-
-            </div>
-          </div>
-        
-            
-
-            
-
-        </div>
-    </div>
-
-</div>
-</div>
 
 
 <!-- ---------------------------------------------------------- -->
@@ -165,34 +132,164 @@
       
       // Crea la gráfica de dona
       var myDoughnutChart = new Chart(ctx, {
-          type: 'doughnut',
+          type: 'pie',
           data: {
               labels: ['J1','J2','J3','J4','J5','J6','J7','J8','J9'],
               datasets: [{
                   label: 'Número de votos',
                   data: [{{$profesionalesJurisdiccion1}}, {{$profesionalesJurisdiccion2}}, {{$profesionalesJurisdiccion3}}, {{$profesionalesJurisdiccion4}}, {{$profesionalesJurisdiccion5}}, {{$profesionalesJurisdiccion6}}, {{$profesionalesJurisdiccion7}}, {{$profesionalesJurisdiccion8}}, {{$profesionalesJurisdiccion9}}], 
                   backgroundColor: [
-                    'rgba(133, 193, 233, 0.2)',  // Azul cielo
-                    'rgba(195, 155, 211, 0.2)',  // Lila
-                    'rgba(249, 231, 159, 0.2)',  // Amarillo pastel
-                    'rgba(125, 206, 160, 0.2)',  // Verde suave
-                    'rgba(245, 183, 177, 0.2)',  // Rosa tenue
-                    'rgba(240, 178, 122, 0.2)',  // Naranja claro
-                    'rgba(255, 205, 210, 0.2)',  // Rosa claro
-                    'rgba(174, 214, 241, 0.2)',  // Azul claro
-                    'rgba(253, 253, 150, 0.2)'   // Amarillo claro
-                ],
-                borderColor: [
-                    'rgba(133, 193, 233, 1)',
-                    'rgba(195, 155, 211, 1)',
-                    'rgba(249, 231, 159, 1)',
-                    'rgba(125, 206, 160, 1)',
-                    'rgba(245, 183, 177, 1)',
-                    'rgba(240, 178, 122, 1)',
-                    'rgba(255, 205, 210, 1)',
-                    'rgba(174, 214, 241, 1)',
-                    'rgba(253, 253, 150, 1)'
-                ],
+                    'rgba(255, 99, 132, 0.6)',   // Rojo fresa
+                    'rgba(255, 159, 64, 0.6)',   // Naranja vibrante
+                    'rgba(255, 205, 86, 0.6)',   // Amarillo fuerte
+                    'rgba(75, 192, 192, 0.6)',   // Verde-azulado
+                    'rgba(54, 162, 235, 0.6)',   // Azul vivo
+                    'rgba(153, 102, 255, 0.6)',  // Morado claro
+                    'rgba(0, 204, 102, 0.6)',    // Verde menta
+                    'rgba(255, 102, 255, 0.6)',  // Fucsia claro
+                    'rgba(102, 204, 255, 0.6)'   // Celeste brillante
+                  ],
+                  borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 205, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(0, 204, 102, 1)',
+                    'rgba(255, 102, 255, 1)',
+                    'rgba(102, 204, 255, 1)'
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              responsive: true,
+              plugins: {
+                  legend: {
+                      position: 'right',
+                  },
+                  tooltip: {
+                      callbacks: {
+                          label: function(tooltipItem) {
+                              return tooltipItem.label + ': ' + tooltipItem.raw;
+                          }
+                      }
+                  }
+              }
+          }
+      });
+  });
+  
+  </script>
+
+  <script>
+      // Espera a que el contenido del DOM esté cargado
+      document.addEventListener('DOMContentLoaded', function() {
+      // Obtén el contexto del canvas
+      var ctx = document.getElementById('profesionalesNominaDePago').getContext('2d');
+      
+      // Crea la gráfica de dona
+      var myDoughnutChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+              labels: ['REG','FOR','FOR2','FOR3','610','6MR','FED','EVE','HOM','BUR','IB','UNE','DIF PS', 'DIF OC','RAMO 12','PASANTE SP', 'HON', 'ISSREEI', 'UMM'],
+              datasets: [{
+                  label: 'Número de votos',
+                  data: [{{$nominaRegularizado}}, {{$nominaFormalizadoUno}}, {{$nominaFormalizadoDos}}, {{$nominaFormalizadoTres}}, {{$nominaPasanteServicioSocial}}, {{$nominaMedicoResidente}}, {{$nominaFederal420}}, {{$nominaEventual}}, {{$nominaHomogado}}, {{$nominaBurocrata}}, {{$nominaImssBienestar}}, {{$nominaUnemes}}, {{$nominaDifOc}}, {{$nominaRamoDoce}}, {{$nominaPasanteSinPago}}, {{$nominaHonorarios}}, {{$nominaIssreei}}, {{$nominaUmmFam}}], 
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.6)',   // Rojo fresa
+                'rgba(255, 159, 64, 0.6)',   // Naranja vibrante
+                'rgba(255, 205, 86, 0.6)',   // Amarillo fuerte
+                'rgba(75, 192, 192, 0.6)',   // Verde-azulado
+                'rgba(54, 162, 235, 0.6)',   // Azul vivo
+                'rgba(153, 102, 255, 0.6)',  // Morado claro
+                'rgba(255, 102, 255, 0.6)',  // Fucsia claro
+                'rgba(0, 204, 102, 0.6)',    // Verde menta
+                'rgba(255, 153, 204, 0.6)',  // Rosa pastel
+                'rgba(255, 204, 102, 0.6)',  // Amarillo naranja
+                'rgba(102, 204, 255, 0.6)',  // Celeste brillante
+                'rgba(204, 153, 255, 0.6)',  // Lavanda fuerte
+                'rgba(255, 153, 153, 0.6)',  // Coral claro
+                'rgba(204, 255, 153, 0.6)',  // Verde lima pálido
+                'rgba(153, 255, 204, 0.6)',  // Verde aguamarina
+                'rgba(255, 102, 102, 0.6)',  // Rojo coral
+                'rgba(102, 255, 255, 0.6)',  // Cian claro
+                'rgba(255, 178, 102, 0.6)'   // Melón suave
+              ],
+              borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 205, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 102, 255, 1)',
+                'rgba(0, 204, 102, 1)',
+                'rgba(255, 153, 204, 1)',
+                'rgba(255, 204, 102, 1)',
+                'rgba(102, 204, 255, 1)',
+                'rgba(204, 153, 255, 1)',
+                'rgba(255, 153, 153, 1)',
+                'rgba(204, 255, 153, 1)',
+                'rgba(153, 255, 204, 1)',
+                'rgba(255, 102, 102, 1)',
+                'rgba(102, 255, 255, 1)',
+                'rgba(255, 178, 102, 1)'
+              ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              responsive: true,
+              plugins: {
+                  legend: {
+                      position: 'right',
+                  },
+                  tooltip: {
+                      callbacks: {
+                          label: function(tooltipItem) {
+                              return tooltipItem.label + ': ' + tooltipItem.raw;
+                          }
+                      }
+                  }
+              }
+          }
+      });
+  });
+  
+  </script>
+
+  <script>
+      // Espera a que el contenido del DOM esté cargado
+      document.addEventListener('DOMContentLoaded', function() {
+      // Obtén el contexto del canvas
+      var ctx = document.getElementById('profesionalesContratos').getContext('2d');
+      
+      // Crea la gráfica de dona
+      var myDoughnutChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+              labels: ['CONFIANZA','BASE','EVENTUAL','HONORARIOS','BECAS','OTROS'],
+              datasets: [{
+                  label: 'Número de votos',
+                  data: [{{$contratoConfianza}}, {{$contratoBase}}, {{$contratoEventual}}, {{$contratoHonorarios}}, {{$contratoBecas}}, {{$contratoOtros}}], 
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.6)',   // Rojo fresa
+                'rgba(255, 159, 64, 0.6)',   // Naranja vibrante
+                'rgba(255, 205, 86, 0.6)',   // Amarillo fuerte
+                'rgba(75, 192, 192, 0.6)',   // Verde-azulado
+                'rgba(54, 162, 235, 0.6)',   // Azul vivo
+                'rgba(153, 102, 255, 0.6)',  // Morado claro
+              ],
+              borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(255, 205, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(153, 102, 255, 1)',
+              ],
                   borderWidth: 1
               }]
           },
