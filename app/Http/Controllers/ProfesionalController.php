@@ -16,6 +16,7 @@ use App\Models\ProfesionalOcupacionCetsLesp;
 use App\Models\ProfesionalOcupacionCors;
 use App\Models\ProfesionalOcupacionCriCree;
 use App\Models\ProfesionalOcupacionHospital;
+use App\Models\ProfesionalOcupacionHospitalNino;
 use App\Models\ProfesionalOcupacionOficinaCentral;
 use App\Models\ProfesionalOcupacionOfJurisdiccional;
 use App\Models\ProfesionalOcupacionPsiParras;
@@ -295,9 +296,16 @@ class ProfesionalController extends Controller
                 ->whereRelation('puesto', 'vigencia', 'ACTIVO')
                 ->get();
         }  
+        elseif(Gate::allows('hospitalNino'))
+        {            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA001136')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        }  
         else
         {
-
+            $profesionales = collect(); // colección vacía para evitar errores
         }
         
         // Consultamos todos los profesionales con sus relaciones
@@ -496,6 +504,11 @@ class ProfesionalController extends Controller
         elseif ($tipo == 12) 
         {
             $ocupacion = ProfesionalOcupacionPsiParras::where('id_profesional', $id)->first();
+        }
+        // CESAME (14)
+        elseif ($tipo == 14) 
+        {
+            $ocupacion = ProfesionalOcupacionHospitalNino::where('id_profesional', $id)->first();
         }
 
         // Cargamos los datos del MODULO CREDENCIALIZACION

@@ -9,6 +9,7 @@ use App\Models\CatOcupacionCetsLesp;
 use App\Models\CatOcupacionCors;
 use App\Models\CatOcupacionCriCree;
 use App\Models\CatOcupacionHospital;
+use App\Models\CatOcupacionHospitalNino;
 use App\Models\CatOcupacionOficinaCentral;
 use App\Models\CatOcupacionOfJurisdiccional;
 use App\Models\CatOcupacionPsiParras;
@@ -21,6 +22,7 @@ use App\Models\ProfesionalOcupacionCetsLesp;
 use App\Models\ProfesionalOcupacionCors;
 use App\Models\ProfesionalOcupacionCriCree;
 use App\Models\ProfesionalOcupacionHospital;
+use App\Models\ProfesionalOcupacionHospitalNino;
 use App\Models\ProfesionalOcupacionOficinaCentral;
 use App\Models\ProfesionalOcupacionOfJurisdiccional;
 use App\Models\ProfesionalOcupacionPsiParras;
@@ -1359,6 +1361,126 @@ class ProfesionalOcupacionController extends Controller
             'area_dos' => $ocupacionDos?->area,
             'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
             'componente_dos' => $ocupacionDos?->componente,
+            'ocupacion_dos' => $ocupacionDos?->ocupacion,
+        ]);
+
+        // Redireccionar con un mensaje de éxito
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('ocupacionUpdate', 'Ocupaciones actualizadas correctamente.');
+
+    }
+
+    /** ************************************************************************************************************************************************
+     * 
+     * 
+     * HOSPITAL DEL NIÑO
+     * 
+     * 
+     ***************************************************************************************************************************************************/
+
+     public function createHospitalNino($id)
+    {
+        // Consultamos los datos del profesional
+        $profesional = Profesional::findOrFail($id);
+
+        // Llenamos el select de ocupaciones
+        $ocupaciones = CatOcupacionHospitalNino::orderBy('orden', 'asc')->get();
+
+        // Retornamos la vista con todos los objetos
+        return view('ocupacion.hospitalNino-create', compact('profesional','ocupaciones'));
+    }
+
+    public function storeHospitalNino(Request $request)
+    {
+        // Validamos los datos
+        $request->validate([
+            'id_profesional'=>'required',
+            'ocupacion_uno'=>'required',
+            'ocupacion_dos'=>'nullable'
+        ],[]);
+
+        // Consultamos los datos para registrar
+        $ocupacionUno = CatOcupacionHospitalNino::where('id',$request->ocupacion_uno)->first();
+        $ocupacionDos = CatOcupacionHospitalNino::where('id',$request->ocupacion_dos)->first();
+
+        // Activamos el modulo
+        $mdl_status = 1;
+
+        // Creamos el objeto
+        $ocupacion = new ProfesionalOcupacionHospitalNino();
+
+        // Asignamos los valores
+        $ocupacion->id_profesional = $request->id_profesional;
+
+        $ocupacion->id_catalogo_uno = $request->ocupacion_uno;
+        $ocupacion->unidad_uno = $ocupacionUno->unidad;
+        $ocupacion->area_uno = $ocupacionUno->area;
+        $ocupacion->subarea_uno = $ocupacionUno->subarea;
+        $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
+
+        $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
+        $ocupacion->unidad_dos = $ocupacionDos->unidad;
+        $ocupacion->area_dos = $ocupacionDos->area;
+        $ocupacion->subarea_dos = $ocupacionDos->subarea;
+        $ocupacion->ocupacion_dos = $ocupacionDos->ocupacion;
+
+        $ocupacion->mdl_status = $mdl_status;
+
+        // Registramos los datos
+        $ocupacion->save();
+
+        // Regresamos a la vista con su mensaje
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('ocupacionSuccess', 'Ocupaciones registradas correctamente.');
+    }
+
+    public function editHospitalNino($id)
+    {
+        // Consultamos los datos del profesional
+        $profesional = Profesional::findOrFail($id);
+
+        // Llenamos el select de ocupaciones
+        $ocupaciones = CatOcupacionHospitalNino::orderBy('orden', 'asc')->get();
+
+        // Consultamos si tiene registros en la tabla
+        $profesionalOcupaciones = ProfesionalOcupacionHospitalNino::where('id_profesional',$id)->first();
+
+        // Retornamos la vista con todos los objetos
+        return view('ocupacion.hospitalNino-edit', compact('profesional','ocupaciones','profesionalOcupaciones'));
+    }
+
+    public function updateHospitalNino(Request $request, $id)
+    {
+        // Validamos los datos
+        $request->validate([
+            'ocupacion_uno'=>'required',
+            'ocupacion_dos'=>'nullable'
+        ],[]);
+
+        // Consultamos los datos para registrar
+        $ocupacionUno = CatOcupacionHospitalNino::where('id',$request->ocupacion_uno)->first();
+
+        $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionHospitalNino::where('id', $request->ocupacion_dos)->first();
+        }
+
+        // Buscamos el registro a editar
+        $ocupaciones = ProfesionalOcupacionHospitalNino::findOrFail($id);
+
+        // Asignamos los valores
+        $ocupaciones->update([
+
+            'id_catalogo_uno'=>$request->ocupacion_uno,
+            'unidad_uno'=>$ocupacionUno->unidad,
+            'area_uno'=>$ocupacionUno->area,
+            'subarea_uno'=>$ocupacionUno->subarea,
+            'ocupacion_uno'=>$ocupacionUno->ocupacion,
+
+            'id_catalogo_dos' => $request->ocupacion_dos,
+            'unidad_dos' => $ocupacionDos?->unidad,
+            'area_dos' => $ocupacionDos?->area,
+            'subarea_dos' => $ocupacionDos?->subarea,
             'ocupacion_dos' => $ocupacionDos?->ocupacion,
         ]);
 

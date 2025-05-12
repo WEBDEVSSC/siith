@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\CatalogoCentroDeSaludUrbanoYRuralController;
 use App\Http\Controllers\CatalogoOcupacionAlmacenController;
+use App\Http\Controllers\CatalogoOcupacionCeamController;
 use App\Http\Controllers\CatalogoOcupacionCentroDeSaludUrbanoYRuralController;
 use App\Http\Controllers\CatalogoOcupacionCesameController;
 use App\Http\Controllers\CatalogoOcupacionCetsLespController;
 use App\Http\Controllers\CatalogoOcupacionCorsController;
 use App\Http\Controllers\CatalogoOcupacionCriCreeController;
 use App\Http\Controllers\CatalogoOcupacionHospitalController;
+use App\Http\Controllers\CatalogoOcupacionHospitalNinoController;
 use App\Http\Controllers\CatalogoOcupacionOficinaCentralController;
 use App\Http\Controllers\CatalogoOcupacionOfJurisdiccionalController;
 use App\Http\Controllers\CatalogoOcupacionPsiParrasController;
@@ -385,6 +387,16 @@ Route::middleware(['auth'])->group(function ()
  
       Route::put('admin/profesionales/ocupaciones/updatePsiParras/{id}', [ProfesionalOcupacionController::class, 'updatePsiParras'])->name('updatePsiParras');
 
+      /**RUTAS PARA EL CATALOGO 14 - HOSPITAL DEL NIÑO */
+
+      Route::get('admin/profesionales/ocupaciones/createHospitalNino/{id}', [ProfesionalOcupacionController::class, 'createHospitalNino'])->name('createHospitalNino');
+
+      Route::post('admin/profesionales/ocupaciones/storeHospitalNino', [ProfesionalOcupacionController::class, 'storeHospitalNino'])->name('storeHospitalNino');
+ 
+      Route::get('admin/profesionales/ocupaciones/editHospitalNino/{id}', [ProfesionalOcupacionController::class, 'editHospitalNino'])->name('editHospitalNino');
+ 
+      Route::put('admin/profesionales/ocupaciones/updateHospitalNino/{id}', [ProfesionalOcupacionController::class, 'updateHospitalNino'])->name('updateHospitalNino');
+
     /**
      * 
      * 
@@ -638,6 +650,46 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/settings/ocupacion/psiParras/update/{id}', [CatalogoOcupacionPsiParrasController::class, 'ocupacionPsiParrasUpdate'])->name('ocupacionPsiParrasUpdate');
 
      Route::delete('admin/settings/ocupacion/psiParras/delete/{id}', [CatalogoOcupacionPsiParrasController::class, 'ocupacionPsiParrasDestroy'])->name('ocupacionPsiParrasDestroy');
+
+     /**
+     * 
+     * 
+     * 13 CEAM
+     * 
+     * 
+     */
+    
+     Route::get('admin/settings/ocupacion/ceam/index', [CatalogoOcupacionCeamController::class, 'ocupacionCeamIndex'])->name('ocupacionCeamIndex'); 
+
+     Route::get('admin/settings/ocupacion/ceam/create', [CatalogoOcupacionCeamController::class, 'ocupacionCeamCreate'])->name('ocupacionCeamCreate');  
+ 
+     Route::post('admin/settings/ocupacion/ceam/store', [CatalogoOcupacionCeamController::class, 'ocupacionCeamStore'])->name('ocupacionCeamStore'); 
+ 
+     Route::get('admin/settings/ocupacion/ceam/edit/{id}', [CatalogoOcupacionCeamController::class, 'ocupacionCeamEdit'])->name('ocupacionCeamEdit');  
+ 
+     Route::put('admin/settings/ocupacion/ceam/update/{id}', [CatalogoOcupacionCeamController::class, 'ocupacionCeamUpdate'])->name('ocupacionCeamUpdate');
+
+     Route::delete('admin/settings/ocupacion/ceam/delete/{id}', [CatalogoOcupacionCeamController::class, 'ocupacionCeamDestroy'])->name('ocupacionCeamDestroy');
+
+     /**
+     * 
+     * 
+     * 14 HOSPITAL DEL NIÑO
+     * 
+     * 
+     */
+    
+     Route::get('admin/settings/ocupacion/hospitalNino/index', [CatalogoOcupacionHospitalNinoController::class, 'ocupacionHospitalNinoIndex'])->name('ocupacionHospitalNinoIndex'); 
+
+     Route::get('admin/settings/ocupacion/hospitalNino/create', [CatalogoOcupacionHospitalNinoController::class, 'ocupacionHospitalNinoCreate'])->name('ocupacionHospitalNinoCreate');  
+ 
+     Route::post('admin/settings/ocupacion/hospitalNino/store', [CatalogoOcupacionHospitalNinoController::class, 'ocupacionHospitalNinoStore'])->name('ocupacionHospitalNinoStore'); 
+ 
+     Route::get('admin/settings/ocupacion/hospitalNino/edit/{id}', [CatalogoOcupacionHospitalNinoController::class, 'ocupacionHospitalNinoEdit'])->name('ocupacionHospitalNinoEdit');  
+ 
+     Route::put('admin/settings/ocupacion/hospitalNino/update/{id}', [CatalogoOcupacionHospitalNinoController::class, 'ocupacionHospitalNinoUpdate'])->name('ocupacionHospitalNinoUpdate');
+
+     Route::delete('admin/settings/ocupacion/hospitalNino/delete/{id}', [CatalogoOcupacionHospitalNinoController::class, 'ocupacionHospitalNinoDestroy'])->name('ocupacionHospitalNinoDestroy');
  
 
 

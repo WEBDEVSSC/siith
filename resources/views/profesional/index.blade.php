@@ -422,6 +422,22 @@
                                     @endif
                                                                                                    
                                 @endif
+
+                                <!-- CATALOGO PARA HOSPITAL DEL NIÑO (14) -->
+
+                                @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 14)
+
+                                    @if(optional($data['profesional']->ocupacionHospitalNino)->mdl_status == 1)
+                                        <a href="{{ route('editHospitalNino', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="HOSPITAL DEL NIÑO">
+                                            <i class="fa-solid fa-children"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('createHospitalNino', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="HOSPITAL DEL NIÑO">
+                                            <i class="fa-solid fa-children"></i>
+                                        </a>
+                                    @endif
+                                                                                                   
+                                @endif
                                 
                                 
                             @endif

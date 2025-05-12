@@ -235,6 +235,15 @@
                     <li>{{ optional($ocupacion)->unidad_dos }} - {{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_servicio_dos }} - {{ optional($ocupacion)->componente_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
                 </ul>
             @endif
+
+            <!-- OCUPACION PARA HOSPITAL DEL NINO (14) -->
+
+            @if ($cluesAdscripcionTipo == 14)
+                <ul>
+                    <li>{{ optional($ocupacion)->unidad_uno }} - {{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_uno }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
+                    <li>{{ optional($ocupacion)->unidad_dos }} - {{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
+                </ul>
+            @endif
             
         </div>
         <div class="card-footer">
@@ -351,6 +360,21 @@
                 @else  
                     <a href="{{ route('createPsiParras', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="PSI PARRAS">
                         <i class="fa-solid fa-brain"></i> CARGAR OCUPACIÓN
+                    </a>
+                @endif
+                
+            @endif
+
+            <!-- HOSPITAL DEL NIÑO -->
+            @if ($profesional->puesto->clues_adscripcion_tipo == 14)
+
+                @if ($profesional->ocupacionHospitalNino?->mdl_status == 1)
+                    <a href="{{ route('editHospitalNino', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="HOSPITAL DEL NIÑO">
+                        <i class="fa-solid fa-children"></i> EDITAR OCUPACIÓN
+                    </a>
+                @else  
+                    <a href="{{ route('createHospitalNino', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="HOSPITAL DEL NIÑO">
+                        <i class="fa-solid fa-children"></i> CARGAR OCUPACIÓN
                     </a>
                 @endif
                 

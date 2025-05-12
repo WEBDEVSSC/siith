@@ -395,6 +395,10 @@ return [
                     'text' => 'PSI PARRAS (12)',
                     'url' => 'admin/settings/ocupacion/psiParras/index',
                 ],
+                [
+                    'text' => 'H. NIÑO (14)',
+                    'url' => 'admin/settings/ocupacion/hospitalNino/index',
+                ],
             ],
         ],
     ],
