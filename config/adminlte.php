@@ -396,6 +396,10 @@ return [
                     'url' => 'admin/settings/ocupacion/psiParras/index',
                 ],
                 [
+                    'text' => 'CEAM (13)',
+                    'url' => 'admin/settings/ocupacion/ceam/index',
+                ],
+                [
                     'text' => 'H. NIÑO (14)',
                     'url' => 'admin/settings/ocupacion/hospitalNino/index',
                 ],
