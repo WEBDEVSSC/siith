@@ -236,6 +236,15 @@
                 </ul>
             @endif
 
+            <!-- OCUPACION PARA CEAM (13) -->
+
+            @if ($cluesAdscripcionTipo == 13)
+                <ul>
+                    <li>{{ optional($ocupacion)->unidad_uno }} - {{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_servicio_uno }} - {{ optional($ocupacion)->componente_uno }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
+                    <li>{{ optional($ocupacion)->unidad_dos }} - {{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_servicio_dos }} - {{ optional($ocupacion)->componente_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
+                </ul>
+            @endif
+
             <!-- OCUPACION PARA HOSPITAL DEL NINO (14) -->
 
             @if ($cluesAdscripcionTipo == 14)
@@ -360,6 +369,21 @@
                 @else  
                     <a href="{{ route('createPsiParras', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="PSI PARRAS">
                         <i class="fa-solid fa-brain"></i> CARGAR OCUPACIÓN
+                    </a>
+                @endif
+                
+            @endif
+
+            <!-- CEAM -->
+            @if ($profesional->puesto->clues_adscripcion_tipo == 13)
+
+                @if ($profesional->ocupacionCeam?->mdl_status == 1)
+                    <a href="{{ route('editCeam', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="PSI PARRAS">
+                        <i class="fa-solid fa-person-walking-with-cane"></i> EDITAR OCUPACIÓN
+                    </a>
+                @else  
+                    <a href="{{ route('createCeam', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="PSI PARRAS">
+                        <i class="fa-solid fa-person-walking-with-cane"></i> CARGAR OCUPACIÓN
                     </a>
                 @endif
                 

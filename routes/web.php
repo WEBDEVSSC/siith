@@ -387,6 +387,16 @@ Route::middleware(['auth'])->group(function ()
  
       Route::put('admin/profesionales/ocupaciones/updatePsiParras/{id}', [ProfesionalOcupacionController::class, 'updatePsiParras'])->name('updatePsiParras');
 
+      /**RUTAS PARA EL CATALOGO 13 - CEAM */
+
+      Route::get('admin/profesionales/ocupaciones/createCeam/{id}', [ProfesionalOcupacionController::class, 'createCeam'])->name('createCeam');
+
+      Route::post('admin/profesionales/ocupaciones/storeCeam', [ProfesionalOcupacionController::class, 'storeCeam'])->name('storeCeam');
+ 
+      Route::get('admin/profesionales/ocupaciones/editCeam/{id}', [ProfesionalOcupacionController::class, 'editCeam'])->name('editCeam');
+ 
+      Route::put('admin/profesionales/ocupaciones/updateCeam/{id}', [ProfesionalOcupacionController::class, 'updateCeam'])->name('updateCeam');
+
       /**RUTAS PARA EL CATALOGO 14 - HOSPITAL DEL NIÑO */
 
       Route::get('admin/profesionales/ocupaciones/createHospitalNino/{id}', [ProfesionalOcupacionController::class, 'createHospitalNino'])->name('createHospitalNino');

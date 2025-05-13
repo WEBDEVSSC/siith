@@ -132,6 +132,11 @@ class Profesional extends Model
         return $this->hasOne(ProfesionalOcupacionPsiParras::class,'id_profesional');
     }
 
+    public function ocupacionCeam()
+    {
+        return $this->hasOne(ProfesionalOcupacionCeam::class,'id_profesional');
+    }
+
     public function ocupacionHospitalNino()
     {
         return $this->hasOne(ProfesionalOcupacionHospitalNino::class,'id_profesional');

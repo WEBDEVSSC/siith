@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CatOcupacionAlmacen;
+use App\Models\CatOcupacionCeam;
 use App\Models\CatOcupacionCentroSalud;
 use App\Models\CatOcupacionCesame;
 use App\Models\CatOcupacionCetsLesp;
@@ -16,6 +17,7 @@ use App\Models\CatOcupacionPsiParras;
 use App\Models\CatOcupacionSamuCrum;
 use App\Models\Profesional;
 use App\Models\ProfesionalOcupacionAlmacen;
+use App\Models\ProfesionalOcupacionCeam;
 use App\Models\ProfesionalOcupacionCentroSalud;
 use App\Models\ProfesionalOcupacionCesame;
 use App\Models\ProfesionalOcupacionCetsLesp;
@@ -1481,6 +1483,130 @@ class ProfesionalOcupacionController extends Controller
             'unidad_dos' => $ocupacionDos?->unidad,
             'area_dos' => $ocupacionDos?->area,
             'subarea_dos' => $ocupacionDos?->subarea,
+            'ocupacion_dos' => $ocupacionDos?->ocupacion,
+        ]);
+
+        // Redireccionar con un mensaje de éxito
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('ocupacionUpdate', 'Ocupaciones actualizadas correctamente.');
+
+    }
+
+    /** ************************************************************************************************************************************************
+     * 
+     * 
+     * CEAM
+     * 
+     * 
+     ***************************************************************************************************************************************************/
+
+     public function createCeam($id)
+    {
+        // Consultamos los datos del profesional
+        $profesional = Profesional::findOrFail($id);
+
+        // Llenamos el select de ocupaciones
+        $ocupaciones = CatOcupacionCeam::orderBy('orden', 'asc')->get();
+
+        // Retornamos la vista con todos los objetos
+        return view('ocupacion.ceam-create', compact('profesional','ocupaciones'));
+    }
+
+    public function storeCeam(Request $request)
+    {
+        // Validamos los datos
+        $request->validate([
+            'id_profesional'=>'required',
+            'ocupacion_uno'=>'required',
+            'ocupacion_dos'=>'nullable'
+        ],[]);
+
+        // Consultamos los datos para registrar
+        $ocupacionUno = CatOcupacionCeam::where('id',$request->ocupacion_uno)->first();
+        $ocupacionDos = CatOcupacionCeam::where('id',$request->ocupacion_dos)->first();
+
+        // Activamos el modulo
+        $mdl_status = 1;
+
+        // Creamos el objeto
+        $ocupacion = new ProfesionalOcupacionCeam();
+
+        // Asignamos los valores
+        $ocupacion->id_profesional = $request->id_profesional;
+
+        $ocupacion->id_catalogo_uno = $request->ocupacion_uno;
+        $ocupacion->unidad_uno = $ocupacionUno->unidad;
+        $ocupacion->area_uno = $ocupacionUno->area;
+        $ocupacion->subarea_servicio_uno = $ocupacionUno->subarea_servicio;
+        $ocupacion->componente_uno = $ocupacionUno->componente;
+        $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
+
+        $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
+        $ocupacion->unidad_dos = $ocupacionDos->unidad;
+        $ocupacion->area_dos = $ocupacionDos->area;
+        $ocupacion->subarea_servicio_dos = $ocupacionDos->subarea_servicio;
+        $ocupacion->componente_dos = $ocupacionDos->componente;
+        $ocupacion->ocupacion_dos = $ocupacionDos->ocupacion;
+
+        $ocupacion->mdl_status = $mdl_status;
+
+        // Registramos los datos
+        $ocupacion->save();
+
+        // Regresamos a la vista con su mensaje
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('ocupacionSuccess', 'Ocupaciones registradas correctamente.');
+    }
+
+    public function editCeam($id)
+    {
+        // Consultamos los datos del profesional
+        $profesional = Profesional::findOrFail($id);
+
+        // Llenamos el select de ocupaciones
+        $ocupaciones = CatOcupacionCeam::orderBy('orden', 'asc')->get();
+
+        // Consultamos si tiene registros en la tabla
+        $profesionalOcupaciones = ProfesionalOcupacionCeam::where('id_profesional',$id)->first();
+
+        // Retornamos la vista con todos los objetos
+        return view('ocupacion.ceam-edit', compact('profesional','ocupaciones','profesionalOcupaciones'));
+    }
+
+    public function updateCeam(Request $request, $id)
+    {
+        // Validamos los datos
+        $request->validate([
+            'ocupacion_uno'=>'required',
+            'ocupacion_dos'=>'nullable'
+        ],[]);
+
+        // Consultamos los datos para registrar
+        $ocupacionUno = CatOcupacionCeam::where('id',$request->ocupacion_uno)->first();
+
+        $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionCeam::where('id', $request->ocupacion_dos)->first();
+        }
+
+        // Buscamos el registro a editar
+        $ocupaciones = ProfesionalOcupacionCeam::findOrFail($id);
+
+        // Asignamos los valores
+        $ocupaciones->update([
+
+            'id_catalogo_uno'=>$request->ocupacion_uno,
+            'unidad_uno'=>$ocupacionUno->unidad,
+            'area_uno'=>$ocupacionUno->area,
+            'subarea_servicio_uno'=>$ocupacionUno->subarea_servicio,
+            'componente_uno'=>$ocupacionUno->componente,
+            'ocupacion_uno'=>$ocupacionUno->ocupacion,
+
+            'id_catalogo_dos' => $request->ocupacion_dos,
+            'unidad_dos' => $ocupacionDos?->unidad,
+            'area_dos' => $ocupacionDos?->area,
+            'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
+            'componente_dos' => $ocupacionDos?->componente,
             'ocupacion_dos' => $ocupacionDos?->ocupacion,
         ]);
 

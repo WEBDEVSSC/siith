@@ -423,6 +423,22 @@
                                                                                                    
                                 @endif
 
+                                <!-- CATALOGO PARA CENTRO ESTATAL DEL ADULTO MAYOR (13) -->
+
+                                @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 13)
+
+                                    @if(optional($data['profesional']->ocupacionCeam)->mdl_status == 1)
+                                        <a href="{{ route('editCeam', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="C.E.A.M.">
+                                            <i class="fa-solid fa-person-walking-with-cane"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('createCeam', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="C.E.A.M.">
+                                            <i class="fa-solid fa-person-walking-with-cane"></i>
+                                        </a>
+                                    @endif
+                                                                                                   
+                                @endif
+
                                 <!-- CATALOGO PARA HOSPITAL DEL NIÑO (14) -->
 
                                 @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 14)

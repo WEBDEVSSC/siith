@@ -10,6 +10,7 @@ use App\Models\EstadoConyugal;
 use App\Models\Municipio;
 use App\Models\Profesional;
 use App\Models\ProfesionalOcupacionAlmacen;
+use App\Models\ProfesionalOcupacionCeam;
 use App\Models\ProfesionalOcupacionCentroSalud;
 use App\Models\ProfesionalOcupacionCesame;
 use App\Models\ProfesionalOcupacionCetsLesp;
@@ -303,6 +304,13 @@ class ProfesionalController extends Controller
                 ->whereRelation('puesto', 'vigencia', 'ACTIVO')
                 ->get();
         }  
+        elseif(Gate::allows('ceam'))
+        {            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002192')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        }  
         else
         {
             $profesionales = collect(); // colección vacía para evitar errores
@@ -504,6 +512,11 @@ class ProfesionalController extends Controller
         elseif ($tipo == 12) 
         {
             $ocupacion = ProfesionalOcupacionPsiParras::where('id_profesional', $id)->first();
+        }
+        // CEAM (13)
+        elseif ($tipo == 13) 
+        {
+            $ocupacion = ProfesionalOcupacionCeam::where('id_profesional', $id)->first();
         }
         // CESAME (14)
         elseif ($tipo == 14) 
