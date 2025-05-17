@@ -19,6 +19,7 @@
                 <th colspan="8" style="text-align: center; font-size: 20px; font-weight: bold;">GRADO ACADEMICO</th>
                 <th colspan="5" style="text-align: center; font-size: 20px; font-weight: bold;">PERSONAL EN FORMACION</th>
                 <th colspan="6" style="text-align: center; font-size: 20px; font-weight: bold;">CERTIFICACIONES</th>
+                <th colspan="7" style="text-align: center; font-size: 20px; font-weight: bold;">OCUPACIONES</th>
             </tr>
             <tr>
                 <th><strong>ID</strong></th>
@@ -102,6 +103,12 @@
                 <th><strong>NIVEL</strong></th>
                 <th><strong>LENGUA INDIGENA</strong></th>
                 <th><strong>NIVEL</strong></th>
+
+                <th><strong>AREA</strong></th>
+                <th><strong>SUBAREA</strong></th>
+                <th><strong>JEFATURA</strong></th>
+                <th><strong>DEPARTAMENTO</strong></th>
+                <th><strong>OCUPACION</strong></th>
 
             </tr>
         </thead>
@@ -190,6 +197,11 @@
                     <td>{{ $profesional->certificacion->lengua_indigena_label ?? '' }}</td>
                     <td>{{ $profesional->certificacion->lengua_nivel_de_dominio ?? '' }}</td>
 
+                    <td>{{ $profesional->ocupacionAlmacen->area_uno ?? '' }}</td>
+                    <td>{{ $profesional->ocupacionAlmacen->subarea_uno ?? '' }}</td>
+                    <td>{{ $profesional->ocupacionAlmacen->jefatura_uno ?? '' }}</td>
+                    <td>{{ $profesional->ocupacionAlmacen->departamento_uno ?? '' }}</td>
+                    <td>{{ $profesional->ocupacionAlmacen->ocupacion_uno ?? '' }}</td>
 
                 </tr>
             @endforeach

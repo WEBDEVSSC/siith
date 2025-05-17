@@ -20,7 +20,16 @@ class ProfesionalExport implements FromView, WithStyles
         // Consulta de todos los registros
         //$profesionales = Profesional::with(['puesto', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])->get();
 
-        $profesionales = Profesional::with(['puesto', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+        $profesionales = Profesional::with([
+            'puesto', 
+            'horario', 
+            'sueldo', 
+            'gradoAcademico', 
+            'areaMedica', 
+            
+            'ocupacionCeam',
+            'ocupacionAlmacen'
+            ])
         ->whereHas('puesto', function ($query) {
             $query->where('vigencia', 'ACTIVO');
         })
@@ -137,6 +146,9 @@ class ProfesionalExport implements FromView, WithStyles
             'BU2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6BA66B']]],
             'BV2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6BA66B']]],
 
+            // Estilos para el modulo de OCUPACIONES
+            'BW1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66BA6']]],
+            'BW2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66BA6']]],
         ];
     }
 

@@ -37,6 +37,7 @@
         .page-break {
             page-break-before: always; /* Fuerza el salto de página antes del elemento */
         }
+
     </style>
 </head>
 <body>
@@ -47,11 +48,9 @@
     <!-- ---------------------------------------------- -->
 
     <table>
-        <tr>
+        <tr class="header-row">
             <td>
-                <h3>Secretaría de Salud del Estado de Coahuila de Zaragoza</h3>
-                <h3>Subdirección de Recursos Humanos</h3>
-                <h4>Expediente Digital del Trabajador</h4>
+                <h4>SECRETARÍA DE SALUD DE COAHUILA DE ZARAGOZA <br> SUBDIRECCIÓN DE RECURSOS HUMANOS <br> EXPEDIENTE DIGITAL DEL TRABAJADOR</h4>
             </td>
             <td class="centered">
                 @if($fotoBase64)
@@ -134,24 +133,25 @@
     <table>
         <tr class="header-row">
             <td style="width: 15%;"><p><strong>CLUES NOMINA</strong></p></td>
-            <td style="width: 15%;"><p><strong>CLUES ADSCRIPCION</strong></p></td>
+            <td style="width: 5%;"><p><strong>MUNICIPIO</strong></p></td>
+            <td style="width: 5%;"><p><strong>JURISDICCION</strong></p></td>
+            
         </tr>
         <tr>
             <td><p>{{ $profesional->puesto->clues_nomina }} {{ $profesional->puesto->clues_nomina_nombre }}</p></td>
-            <td><p>{{ $profesional->puesto->clues_adscripcion }} {{ $profesional->puesto->clues_adscripcion_nombre }}</p></td>
+            <td><p>{{ $profesional->puesto->clues_nomina_municipio }}</p></td>
+            <td><p>{{ $profesional->puesto->clues_nomina_jurisdiccion }}</p></td>
         </tr>
     </table>
 
     <table>
         <tr class="header-row">
-            <td style="width: 5%;"><p><strong>MUNICIPIO</strong></p></td>
-            <td style="width: 5%;"><p><strong>JURISDICCION</strong></p></td>
+            <td style="width: 15%;"><p><strong>CLUES ADSCRIPCION</strong></p></td>
             <td style="width: 5%;"><p><strong>MUNICIPIO</strong></p></td>
             <td style="width: 5%;"><p><strong>JURISDICCION</strong></p></td>
         </tr>
         <tr>
-            <td><p>{{ $profesional->puesto->clues_nomina_municipio }}</p></td>
-            <td><p>{{ $profesional->puesto->clues_nomina_jurisdiccion }}</p></td>
+            <td><p>{{ $profesional->puesto->clues_adscripcion }} {{ $profesional->puesto->clues_adscripcion_nombre }}</p></td>            
             <td><p>{{ $profesional->puesto->clues_adscripcion_municipio }}</p></td>
             <td><p>{{ $profesional->puesto->clues_adscripcion_jurisdiccion }}</p></td>
         </tr>

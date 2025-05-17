@@ -238,6 +238,34 @@ class ProfesionalController extends Controller
                 ->whereRelation('puesto', 'vigencia', 'ACTIVO')
                 ->get();
         }
+        elseif(Gate::allows('csuyr'))
+        {
+            $user = Auth::user();
+            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', $user->clues_unidad)
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        }  
+        elseif(Gate::allows('hospital'))
+        {
+            $user = Auth::user();
+            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', $user->clues_unidad)
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        }  
+        elseif(Gate::allows('ofJurisdiccional'))
+        {
+            $user = Auth::user();
+            $userJurisdiccion = $user->clues_unidad;
+            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', $userJurisdiccion)
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        }  
         elseif(Gate::allows('almacen'))
         {
             $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
@@ -259,16 +287,7 @@ class ProfesionalController extends Controller
                 ->whereRelation('puesto', 'vigencia', 'ACTIVO')
                 ->get();
         }  
-        elseif(Gate::allows('ofJurisdiccional'))
-        {
-            $user = Auth::user();
-            $userJurisdiccion = $user->clues_unidad;
-            
-            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
-                ->whereRelation('puesto', 'clues_adscripcion', $userJurisdiccion)
-                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-                ->get();
-        }  
+        
         elseif(Gate::allows('oncologico'))
         {            
             $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
@@ -315,9 +334,6 @@ class ProfesionalController extends Controller
         {
             $profesionales = collect(); // colección vacía para evitar errores
         }
-        
-        // Consultamos todos los profesionales con sus relaciones
-        //$profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica','ocupacionCentroSalud'])->get();
 
         // Creamos un array para almacenar los datos adicionales
         $profesionalesData = $profesionales->map(function ($profesional) {
@@ -698,6 +714,11 @@ class ProfesionalController extends Controller
 
     public function export()
     {
+        
+        ini_set('memory_limit', '-1');
+
+        ini_set('max_execution_time', 300); // 300 segundos = 5 minutos
+        
         // Exporta los datos usando la clase CluesExport
         return Excel::download(new ProfesionalExport, 'REPORTE.xlsx');
     }
