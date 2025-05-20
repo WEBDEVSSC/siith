@@ -142,4 +142,10 @@ class Profesional extends Model
         return $this->hasOne(ProfesionalOcupacionHospitalNino::class,'id_profesional');
     }
 
+    /** FIRMA DE NOMINA */
+    public function firmasNominas()
+    {
+        return $this->hasMany(ProfesionalFirmaNomina::class, 'curp', 'curp');
+    }
+
 }

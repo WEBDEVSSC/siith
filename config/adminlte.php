@@ -333,6 +333,14 @@ return [
             'icon' => 'fa-solid fa-building-circle-arrow-right',
             'label_color' => 'success',
         ],
+
+        [
+            'text' => 'Firmas de Nomina',
+            'url' => 'admin/profesionales/firmaNomina/firmaIndex',
+            'icon' => 'fa-solid fa-building-circle-arrow-right',
+            'label_color' => 'success',
+        ],
+
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

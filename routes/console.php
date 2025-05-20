@@ -10,3 +10,5 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Schedule::command('felicitaciones:enviar')->dailyAt('10:00');
+
+Schedule::command('correo:firma-nomina-pendiente')->dailyAt('10:00');

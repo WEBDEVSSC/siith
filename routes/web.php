@@ -19,6 +19,7 @@ use App\Http\Controllers\ProfesionalCambioDeUnidadController;
 use App\Http\Controllers\ProfesionalCertificacionController;
 use App\Http\Controllers\ProfesionalController;
 use App\Http\Controllers\ProfesionalCredencializacionController;
+use App\Http\Controllers\ProfesionalFirmaNominaController;
 use App\Http\Controllers\ProfesionalGradoAcademicoController;
 use App\Http\Controllers\ProfesionalHorarioController;
 use App\Http\Controllers\ProfesionalOcupacionController;
@@ -62,6 +63,14 @@ Route::middleware(['auth'])->group(function ()
 {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::get('admin/profesionales/firmaNomina/firmaIndex', [ProfesionalFirmaNominaController::class, 'firmaIndex'])->name('firmaIndex');
+
+    Route::get('admin/profesionales/firmaNomina/firmaCreate/{token}', [ProfesionalFirmaNominaController::class, 'firmaCreate'])->name('firmaCreate');
+
+    Route::post('admin/profesionales/firmaNomina/firmaStore', [ProfesionalFirmaNominaController::class, 'firmaStore'])->name('firmaStore');
+
+    Route::post('admin/profesionales/firmaNomina/subirLayout', [ProfesionalFirmaNominaController::class, 'subirLayout'])->name('subirLayout');
 
     /**
      * 
