@@ -1,0 +1,35 @@
+Date: 30/5/2025
+Time: 21:21
+Phone Number: +528442081939
+Message: Hola, este es un mensaje automático
+--------------------
+Date: 30/5/2025
+Time: 21:25
+Phone Number: +528442081939
+Message: Hola, este es un mensaje enviado con Python a múltiples contactos 😊
+--------------------
+Date: 30/5/2025
+Time: 21:26
+Phone Number: +528446761042
+Message: Hola, este es un mensaje enviado con Python a múltiples contactos 😊
+--------------------
+Date: 30/5/2025
+Time: 21:42
+Phone Number: +528442081939
+Message: 🎉 ¡Feliz cumpleaños! Te desea todo el equipo. 🥳
+--------------------
+Date: 30/5/2025
+Time: 21:43
+Phone Number: +528446761042
+Message: 🎉 ¡Feliz cumpleaños! Te desea todo el equipo. 🥳
+--------------------
+Date: 30/5/2025
+Time: 21:44
+Phone Number: +528442081939
+Message: 🎉 ¡Feliz cumpleaños, CESAR ALEJANDRO TORRES GUILLERMO! 🥳Te deseamos un día lleno de alegría y éxitos. 🎂🎁
+--------------------
+Date: 30/5/2025
+Time: 21:45
+Phone Number: +528446761042
+Message: 🎉 ¡Feliz cumpleaños, CHATBOT REGULACION SANITARIA! 🥳Te deseamos un día lleno de alegría y éxitos. 🎂🎁
+--------------------

@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Mail;
 
 class EnviarCorreosFirmaPendiente extends Command
 {
-   protected $signature = 'correo:firma-nomina-pendiente';
+    protected $signature = 'correo:firma-nomina-pendiente';
 
     protected $description = 'Enviar correos diarios a profesionales con firma pendiente';
 

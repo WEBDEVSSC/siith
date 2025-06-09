@@ -148,4 +148,11 @@ class Profesional extends Model
         return $this->hasMany(ProfesionalFirmaNomina::class, 'curp', 'curp');
     }
 
+    /** PASES DE SALIDA */
+    public function pasesDeSalida()
+    {
+        return $this->hasMany(ProfesionalPaseDeSalida::class, 'id_profesional')
+                    ->orderBy('created_at', 'desc');;
+    }
+
 }

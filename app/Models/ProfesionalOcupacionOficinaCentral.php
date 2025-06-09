@@ -24,4 +24,10 @@ class ProfesionalOcupacionOficinaCentral extends Model
         'componente_dos',
         'ocupacion_dos',
     ];
+
+    // Relación con la tabla profesionales_datos_generales
+    public function profesional()
+    {
+        return $this->belongsTo(Profesional::class, 'id_profesional');
+    }
 }

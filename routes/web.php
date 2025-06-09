@@ -23,6 +23,7 @@ use App\Http\Controllers\ProfesionalFirmaNominaController;
 use App\Http\Controllers\ProfesionalGradoAcademicoController;
 use App\Http\Controllers\ProfesionalHorarioController;
 use App\Http\Controllers\ProfesionalOcupacionController;
+use App\Http\Controllers\ProfesionalPaseDeSalidaController;
 use App\Http\Controllers\ProfesionalPuestoController;
 use App\Http\Controllers\ProfesionalSueldoController;
 use App\Http\Controllers\UsuarioController;
@@ -32,6 +33,14 @@ use Illuminate\Support\Facades\Route;
 /*Route::get('/', function () {
     return view('welcome');
 });*/
+
+Route::get('/pase-de-salida',[ProfesionalPaseDeSalidaController::class,'paseDeSalidaIndex'])->name('paseDeSalidaIndex');
+
+Route::get('/pase-de-salida-create',[ProfesionalPaseDeSalidaController::class,'paseDeSalidaCreate'])->name('paseDeSalidaCreate');
+
+Route::post('/pase-de-salida-store',[ProfesionalPaseDeSalidaController::class,'paseDeSalidaStore'])->name('paseDeSalidaStore');
+
+//Route::get('admin/profesionales/firmaNomina/firmaIndex', [ProfesionalFirmaNominaController::class, 'firmaIndex'])->name('firmaIndex');
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -62,6 +71,10 @@ Auth::routes([
 Route::middleware(['auth'])->group(function () 
 {
 
+    Route::post('/procesar-qr', [ProfesionalController::class, 'procesar']);
+
+    Route::post('/guardar-qr', [ProfesionalController::class, 'guardar'])->name('guardar.qr');
+    
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     Route::get('admin/profesionales/firmaNomina/firmaIndex', [ProfesionalFirmaNominaController::class, 'firmaIndex'])->name('firmaIndex');
@@ -71,6 +84,13 @@ Route::middleware(['auth'])->group(function ()
     Route::post('admin/profesionales/firmaNomina/firmaStore', [ProfesionalFirmaNominaController::class, 'firmaStore'])->name('firmaStore');
 
     Route::post('admin/profesionales/firmaNomina/subirLayout', [ProfesionalFirmaNominaController::class, 'subirLayout'])->name('subirLayout');
+
+    Route::get('admin/telegram', [ProfesionalController::class, 'enviarTelegram'])->name('enviarTelegram');
+
+    Route::get('admin/enviar-saludos', [ProfesionalController::class, 'enviarSaludoTelegram']);
+
+    Route::get('admin/enviar-wh', [ProfesionalController::class, 'enviarMensajes']);
+
 
     /**
      * 

@@ -30,13 +30,67 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 
 
 class ProfesionalController extends Controller
 {
     
-    
+    public function guardar(Request $request)
+    {
+        $data = explode('|', $request->input('qr'));
+
+        // Validar cantidad mínima de campos
+        if (count($data) < 10) {
+            return response()->json(['success' => false, 'mensaje' => 'Formato de QR no válido']);
+        }
+
+        $curp = $data[0];
+        $rfc = substr($curp, 0, 10);
+        $fechaNacimiento =  $data[6];
+        $fechaFormateada = Carbon::createFromFormat('d/m/Y', $fechaNacimiento)->format('Y-m-d');
+        $nombre = $data[4];
+        $apellidoPaterno = $data[2];
+        $apellidoMaterno = $data[3];
+        $entidadNacimiento = substr($curp, 11, 2);
+        $sexo = substr($curp, 10, 1);  
+
+        // Ajustamos la nacionalidad
+        if($entidadNacimiento === 'X')
+        {
+             $paisNacimiento = 'EXTRANGERO';
+             $nacionalidad = 'EXTRANGERA';
+        }
+        else
+        {
+             $paisNacimiento = 'MÉXICO';
+             $nacionalidad = 'MEXICANA';
+        }
+
+        $entidad = Entidad::where('abreviacion',$entidadNacimiento)->first();
+
+        $municipios = Municipio::where('relacion',$entidad->id)->get();
+
+        $estadosConyuales = EstadoConyugal::all();
+
+         return view('profesional.create',compact(
+            'curp',
+            'rfc',
+            'sexo',
+            'fechaFormateada',
+            'paisNacimiento',
+            'entidad',
+            'municipios',
+            'nacionalidad',
+            'estadosConyuales',
+            'nombre',
+            'apellidoPaterno',
+            'apellidoMaterno'
+        ));
+
+    }
+
     /**
      * 
      * 
@@ -60,10 +114,14 @@ class ProfesionalController extends Controller
     {
         // Validación para CURP
         $request->validate([
-            'curp' => 'required|regex:/^[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{2}$/', // Expresión regular para CURP
+            'curp' => 'required|regex:/^[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{2}$/',
+            'curp_confirma' => 'required|same:curp|regex:/^[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{2}$/',
         ], [
             'curp.required' => 'La CURP es obligatoria.',
             'curp.regex' => 'La CURP debe tener un formato válido.',
+            'curp_confirma.required' => 'La confirmación de la CURP es obligatoria.',
+            'curp_confirma.same' => 'La confirmación de la CURP no coincide.',
+            'curp_confirma.regex' => 'La CURP de confirmación debe tener un formato válido.',
         ]);
 
         // Buscamos el profesional por CURP
@@ -858,5 +916,69 @@ class ProfesionalController extends Controller
         // Regresamos a la vista con el arreglo de objetos
         return view('mi-jurisdiccion.show', compact('clues','profesionales'));
 
+    }
+
+    public function enviarTelegram()
+    {
+        $token = '7718774587:AAF67jTIaVpjUEOBoO6DDqGTMEfsGvfX08k';
+        $chat_id = '13673422';
+        $mensaje = 'Mensaje de prueba ignorando SSL 🛠️';
+
+        $response = Http::withOptions([
+            'verify' => false, // <--- desactiva verificación SSL
+        ])->post("https://api.telegram.org/bot{$token}/sendMessage", [
+            'chat_id' => $chat_id,
+            'text' => $mensaje,
+        ]);
+
+        dd($response->json());
+    }
+
+    public function enviarSaludoTelegram()
+    {
+        $token = '7718774587:AAF67jTIaVpjUEOBoO6DDqGTMEfsGvfX08k'; // reemplaza con tu token real
+
+        $usuarios = Profesional::whereNotNull('chat_id')->get();
+
+        foreach ($usuarios as $persona) {
+            $mensaje = "Hola {$persona->nombre} {$persona->apellido_paterno} {$persona->apellido_materno} , Te recordamos que tienes nominas pendientes para firmar";
+
+            Http::withOptions([
+                'verify' => false, // solo en desarrollo
+            ])->post("https://api.telegram.org/bot{$token}/sendMessage", [
+                'chat_id' => $persona->chat_id,
+                'text' => $mensaje,
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'Mensajes enviados',
+            'total' => $usuarios->count()
+        ]);
+    }
+
+    public function enviarMensajes()
+    {
+        $output = [];
+        $retorno = 0;
+
+        exec("python C:/wamp64/www/siith/python/whatsapp.py 2>&1", $rawOutput, $retorno);
+
+        // Convertir a UTF-8 forzadamente
+        foreach ($rawOutput as $line) {
+            $output[] = mb_convert_encoding($line, 'UTF-8', 'auto');
+        }
+
+        if ($retorno === 0) {
+        return response()->json([
+            'mensaje' => 'Mensajes enviados',
+            'salida' => $output
+        ], 200, [], JSON_UNESCAPED_UNICODE);
+        } else {
+            return response()->json([
+                'error' => 'Error al ejecutar Python',
+                'salida' => $output
+            ], 500, [], JSON_UNESCAPED_UNICODE);
+        }
     }
 }
