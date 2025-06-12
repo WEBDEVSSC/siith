@@ -341,6 +341,14 @@ return [
             'label_color' => 'success',
         ],
 
+        [
+            'text' => 'Pases de Salida',
+            'url' => 'admin/profesionales/paseDeSalida/autorizarIndex',
+            'icon' => 'fa-solid fa-building-circle-arrow-right',
+            'label_color' => 'success',
+            'can' => 'jefeDepartamento',
+        ],
+
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

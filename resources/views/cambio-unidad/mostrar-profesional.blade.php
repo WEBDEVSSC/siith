@@ -31,12 +31,17 @@
                 <p><strong>CLUES Adscripción:</strong> {{ $profesional->puesto->clues_adscripcion }} - {{ $profesional->puesto->clues_adscripcion_nombre }}</p>
             </div>
         </div>
+        
+    </div>
+    <div class="card-footer">
+          <a class="btn btn-danger btn-sm" href="{{ route('findProfesional') }}"> BUSCAR OTRO PROFESIONAL</a>
+          <a class="btn btn-success btn-sm" href="{{ route('createCambioDeUnidad', $profesional->id) }}"> SELECCIONAR PROFESIONAL</a>
     </div>
 </div>
 
 <!-- --------------------------------------------- -->
 
-<a href="{{ route('createCambioDeUnidad', $profesional->id) }}"> SELECCIONAR TRABAJADOR</a>
+
 
 <!-- --------------------------------------------- -->
 

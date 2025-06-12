@@ -71,6 +71,28 @@ Auth::routes([
 Route::middleware(['auth'])->group(function () 
 {
 
+    /*******************************************************************************************
+     * 
+     * 
+     * PASES DE SALIDA
+     * 
+     * 
+     ******************************************************************************************/
+
+    Route::get('admin/profesionales/paseDeSalida/autorizarIndex',[ProfesionalPaseDeSalidaController::class,'autorizarIndex'])->name('autorizarIndex');
+
+    Route::post('admin/profesionales/paseDeSalida/paseAutorizado/{id}',[ProfesionalPaseDeSalidaController::class,'paseAutorizado'])->name('paseAutorizado');
+
+    Route::post('admin/profesionales/paseDeSalida/paseCancelado/{id}',[ProfesionalPaseDeSalidaController::class,'paseCancelado'])->name('paseCancelado');
+
+    /*******************************************************************************************
+     * 
+     * 
+     * PASES DE SALIDA
+     * 
+     * 
+     ******************************************************************************************/
+    
     Route::post('/procesar-qr', [ProfesionalController::class, 'procesar']);
 
     Route::post('/guardar-qr', [ProfesionalController::class, 'guardar'])->name('guardar.qr');

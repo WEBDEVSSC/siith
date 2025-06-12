@@ -28,8 +28,8 @@ class ProfesionalPaseDeSalida extends Model
 
     protected $casts = [
         'fecha' => 'date',
-        'hora_inicio' => 'datetime:H:i',
-        'hora_final' => 'datetime:H:i',
+        'hora_inicio' => 'datetime:H:i:s',
+        'hora_final' => 'datetime:H:i:s',
         'status' => 'boolean',
     ];
 

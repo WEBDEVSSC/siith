@@ -45,4 +45,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function profesional()
+    {
+        return $this->belongsTo(Profesional::class, 'id');
+    }
 }

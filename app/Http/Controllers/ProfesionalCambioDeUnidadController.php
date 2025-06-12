@@ -43,7 +43,9 @@ class ProfesionalCambioDeUnidadController extends Controller
 
         // Si no se encontró el profesional, regresamos con un mensaje de error
         if (!$profesional) {
-            return redirect()->back()->with('error', 'No se encontró ningún profesional con esa CURP.');
+            return redirect()->back()
+                            ->with('error', 'No se encontró ningún profesional con esa CURP.')
+                            ->withInput();
         }
 
         // Cargamos los datos del MODULO CREDENCIALIZACION

@@ -298,6 +298,20 @@
                 @endif
                 
             @endif
+
+             @if ($profesional->puesto->clues_adscripcion_tipo == 6)
+
+                @if ($profesional->ocupacionOficinaCentral?->mdl_status == 1)
+                    <a href="{{ route('editOficinaCentral', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
+                        <i class="fa-solid fa-building-user"></i> EDITAR OCUPACIÓN
+                    </a>
+                @else  
+                    <a href="{{ route('createOficinaCentral', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
+                        <i class="fa-solid fa-building-user"></i> CARGAR OCUPACIÓN
+                    </a>
+                @endif
+                
+            @endif
             
             <!-- ALMACEN -->
             @if ($profesional->puesto->clues_adscripcion_tipo == 7)

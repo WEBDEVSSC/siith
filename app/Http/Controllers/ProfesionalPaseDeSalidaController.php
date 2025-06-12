@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PaseDeSalidaAutorizado;
 use App\Mail\PaseDeSalidaSolicitud;
 use App\Models\Profesional;
 use App\Models\ProfesionalOcupacionOficinaCentral;
 use App\Models\ProfesionalPaseDeSalida;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 
 class ProfesionalPaseDeSalidaController extends Controller
 {
@@ -119,7 +121,57 @@ class ProfesionalPaseDeSalidaController extends Controller
         // Notificamos por email su solicitud
         Mail::to($autoriza->email)->send(new PaseDeSalidaSolicitud($nombreCompleto,$nombreCompletoAutoriza));
 
-
         return redirect()->route('paseDeSalidaIndex')->with('success', 'Pase de Salida solicitado correctamente, en espera de autorización');        
+    }
+
+    public function autorizarIndex()
+    {
+        // Cargamos los datos del usuario que inicio sesion
+        $user = Auth::user();
+
+        // Cargamos todos los pases relacionados a firma
+        $pasesDeSalida = ProfesionalPaseDeSalida::where('id_autoriza',$user->id_profesional)
+        ->orderBy('folio','desc')                
+        ->get();
+
+        // Redirigimos la vista con los datos
+        return view('pase-salida.autorizar', compact('user','pasesDeSalida'));
+    }
+
+    public function paseAutorizado($id)
+    {
+        // Buscamos el registro
+        $paseDeSalida = ProfesionalPaseDeSalida::findOrFail($id);
+        $folio = $paseDeSalida->folio;
+        $nombreProfesional = $paseDeSalida->nombre.' '.$paseDeSalida->apellido_paterno.' '.$paseDeSalida->apellido_materno;
+
+        // Asignamos los valores del formulario al modelo
+        $paseDeSalida->status = 1;
+
+        // Guardamos los cambios
+        $paseDeSalida->save();
+
+        // Notificamos al usuario
+        $profesional = Profesional::findOrFail($paseDeSalida->id_profesional);
+
+        Mail::to($profesional->email)->send(new PaseDeSalidaAutorizado($folio,$nombreProfesional));
+
+        // Regresamos a la vista con el mensaje
+        return redirect()->route('autorizarIndex')->with('paseAutorizado', 'Pase de salida autorizado');
+    }
+
+    public function paseCancelado($id)
+    {
+        // Buscamos el registro
+        $paseDeSalida = ProfesionalPaseDeSalida::findOrFail($id);
+
+        // Asignamos los valores del formulario al modelo
+        $paseDeSalida->status = 2;
+
+        // Guardamos los cambios
+        $paseDeSalida->save();
+
+        // Regresamos a la vista con el mensaje
+        return redirect()->route('autorizarIndex')->with('paseCancelado', 'Pase de salida cancelado');
     }
 }

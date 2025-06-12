@@ -34,6 +34,15 @@ class Profesional extends Model
         'fecha_nacimiento',
     ];
 
+    /****************************************************************************************** */
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id_profesional');
+    }
+
+    /****************************************************************************************** */
+
     public function puesto()
     {
         return $this->hasOne(ProfesionalPuesto::class, 'id_profesional');
