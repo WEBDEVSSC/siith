@@ -315,6 +315,12 @@ return [
             'label_color' => 'success',
         ],
         [
+            'text' => 'Buscador',
+            'url' => 'admin/profesionales/profesionalBuscadorForm',
+            'icon' => 'fa-solid fa-magnifying-glass',
+            'label_color' => 'success',
+        ],
+        [
             'text' => 'Panel de Control',
             'url' => 'admin/profesionales/profesionalIndex',
             'icon' => 'fa-solid fa-list',
@@ -333,18 +339,10 @@ return [
             'icon' => 'fa-solid fa-building-circle-arrow-right',
             'label_color' => 'success',
         ],
-
-        [
-            'text' => 'Firmas de Nomina',
-            'url' => 'admin/profesionales/firmaNomina/firmaIndex',
-            'icon' => 'fa-solid fa-building-circle-arrow-right',
-            'label_color' => 'success',
-        ],
-
         [
             'text' => 'Pases de Salida',
             'url' => 'admin/profesionales/paseDeSalida/autorizarIndex',
-            'icon' => 'fa-solid fa-building-circle-arrow-right',
+            'icon' => 'fa-solid fa-clipboard',
             'label_color' => 'success',
             'can' => 'jefeDepartamento',
         ],

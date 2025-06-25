@@ -96,22 +96,10 @@ Route::middleware(['auth'])->group(function ()
     Route::post('/procesar-qr', [ProfesionalController::class, 'procesar']);
 
     Route::post('/guardar-qr', [ProfesionalController::class, 'guardar'])->name('guardar.qr');
+
+
     
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-    Route::get('admin/profesionales/firmaNomina/firmaIndex', [ProfesionalFirmaNominaController::class, 'firmaIndex'])->name('firmaIndex');
-
-    Route::get('admin/profesionales/firmaNomina/firmaCreate/{token}', [ProfesionalFirmaNominaController::class, 'firmaCreate'])->name('firmaCreate');
-
-    Route::post('admin/profesionales/firmaNomina/firmaStore', [ProfesionalFirmaNominaController::class, 'firmaStore'])->name('firmaStore');
-
-    Route::post('admin/profesionales/firmaNomina/subirLayout', [ProfesionalFirmaNominaController::class, 'subirLayout'])->name('subirLayout');
-
-    Route::get('admin/telegram', [ProfesionalController::class, 'enviarTelegram'])->name('enviarTelegram');
-
-    Route::get('admin/enviar-saludos', [ProfesionalController::class, 'enviarSaludoTelegram']);
-
-    Route::get('admin/enviar-wh', [ProfesionalController::class, 'enviarMensajes']);
 
 
     /**
@@ -151,6 +139,12 @@ Route::middleware(['auth'])->group(function ()
 
     // Ruta para el formlario de OCUPACION
     Route::get('admin/profesionales/profesionalOcupacionCreate/{id}',[ProfesionalController::class,'profesionalOcupacionCreate'])->name('profesionalOcupacionCreate');
+
+    // Ruta para mostrar los formularios de buscador
+    Route::get('admin/profesionales/profesionalBuscadorForm',[ProfesionalController::class,'profesionalBuscadorForm'])->name('profesionalBuscadorForm');
+
+    // Buscador por CURP
+    Route::get('admin/profesionales/profesionalBuscadorCurp',[ProfesionalController::class,'profesionalBuscadorCurp'])->name('profesionalBuscadorCurp');
 
     /**
      * 

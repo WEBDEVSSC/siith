@@ -13,6 +13,9 @@
 
 @section('content')
 
+@auth
+@if(auth()->user()->role === 'root' || auth()->user()->role === 'admin')
+
 <div class="row">
     <div class="col-md-3">
         <!-- small box -->
@@ -68,7 +71,7 @@
 </div>
 </div>
 
-<div class="row mt-4">
+<div class="row mt-2">
 
   <div class="col-md-4">
     <div class="card">
@@ -107,14 +110,34 @@
 
 
 <!-- ---------------------------------------------------------- -->
+<div class="row mt-2">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header">
+        <strong>Nóminas por rangos de edad</strong>
+      </div>
 
+      <div class="card-body">
+        
+      </div> <!-- cierre de card-body -->
+
+      <div class="card-footer">
+        <!-- Footer opcional -->
+      </div>
+    </div> <!-- cierre de card -->
+  </div> <!-- cierre de col-12 -->
+</div> <!-- cierre de row -->
 
 
 <!-- ---------------------------------------------------------- -->
+@endif
+@endauth
+
+@include('partials.footer')
 
 @stop
 
-@include('partials.footer')
+
 
 @section('css')
     {{-- Add here extra stylesheets --}}

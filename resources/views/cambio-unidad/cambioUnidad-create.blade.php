@@ -2,6 +2,8 @@
 
 @section('title', 'Dashboard')
 
+@section('plugins.Select2', true)
+
 @section('content_header')
     <h1><strong>Profesionales</strong> <small>Cambio de Unidad</small></h1>
 @stop
@@ -16,6 +18,12 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-3 text-center">
+
+                @if($fotoUrl)
+                    <img src="{{ $fotoUrl }}" alt="Fotografía del profesional" width="200" class="img-thumbnail"/>
+                @else
+                    <p>No se ha cargado una fotografía.</p>
+                @endif
                 
             </div>
 
@@ -27,10 +35,7 @@
                 <p><strong>CLUES Adscripción:</strong> {{ $profesional->puesto->clues_adscripcion }} - {{ $profesional->puesto->clues_adscripcion_nombre }}</p>
             </div>
             <div class="col-md-3">
-                <p><strong>Destino :</strong>  {{$clues->clues}} - {{ $clues->nombre }}</p>
-                <p><strong>Municipio :</strong>  {{$clues->municipio}}</p>
-                <p><strong>Jurisdicción :</strong>  {{$clues->clave_jurisdiccion}}</p>
-                <p><strong>Catalogo ocupación :</strong>  {{$clues->clave_establecimiento}}</p>
+                
             </div>
         </div>
     </div>
@@ -56,26 +61,38 @@
                     @csrf
 
                     <input type="hidden" name="id_profesional" value="{{ $profesional->id }}">
-                    <input type="hidden" name="clues_adscripcion" value="{{ $clues->clues }}">
-                    <input type="hidden" name="clues_adscripcion_nombre" value="{{ $clues->nombre }}">
-                    <input type="hidden" name="clues_adscripcion_municipio" value="{{ $clues->municipio }}">
-                    <input type="hidden" name="clues_adscripcion_jurisdiccion" value="{{ $clues->clave_jurisdiccion }}">
-                    <input type="hidden" name="clues_adscripcion_tipo" value="{{$clues->clave_establecimiento}}">
 
                     <div class="row">
-                        <div class="col-md-12">
-                            <p><strong>Tipo de movimiento :</strong></p>
+                        <div class="col-md-6">
+                            <p><strong>Tipo de movimiento</strong></p>
                             <select name="tipo_movimiento" id="tipo_movimiento" class="form-control">
                                 <option value="">[-- Seleccione una opción --]</option>
                                 <option value="1" {{ old('tipo_movimiento') == '1' ? 'selected' : '' }}>Regresa a su unidad de origen</option>
                                 <option value="2" {{ old('tipo_movimiento') == '2' ? 'selected' : '' }}>Comisionado a otra unidad</option>
                                 <option value="3" {{ old('tipo_movimiento') == '3' ? 'selected' : '' }}>Movimiento Escalafonario</option>
                             </select>
+
+                            @error('tipo_movimiento')
+                                <br><div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Unidad de destino</strong></p>
+                            <select id="clues" name="clues" class="form-control select2">
+                                <option value="">-- Selecciona una unidad --</option>
+                                @foreach($clues as $clue)
+                                    <option value="{{ $clue->id }}" {{ old('clues') == $clue->id ? 'selected' : '' }}>
+                                        {{ $clue->clues }} - {{ $clue->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                            @error('clues')
+                                <br><div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
-                    @error('tipo_movimiento')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
+                    
 
                     <div class="row mt-3">
 
@@ -124,8 +141,36 @@
 
 @section('css')
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+    <style>
+        /* Asegura que Select2 tenga el mismo alto y bordes redondeados */
+        .select2-container--default .select2-selection--single {
+            height: calc(2.25rem + 2px) !important; /* Ajuste de altura */
+            border-radius: 0.25rem !important; /* Bordes redondeados */
+            border: 1px solid #ced4da !important; /* Color del borde */
+        }
+        
+        /* Alineación del texto */
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: calc(2.25rem - 2px) !important;
+            padding-left: 0.75rem !important;
+        }
+        
+        /* Ajuste del ícono desplegable */
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: calc(2.25rem + 2px) !important;
+        }
+    </style>
 @stop
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#clues').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script>  
 @stop

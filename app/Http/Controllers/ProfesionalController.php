@@ -274,6 +274,8 @@ class ProfesionalController extends Controller
         // Guardar el nuevo profesional
         $profesional->save();
 
+        
+
         // Retornar o redirigir a donde lo necesites, por ejemplo:
         //return redirect()->route('profesionalIndex')->with('success', 'Registro realizado correctamente.');
 
@@ -538,66 +540,79 @@ class ProfesionalController extends Controller
         // CENTROS DE SALUD URBANOS Y RURALES (1)
         if ($tipo == 1) 
         {
+            $catalogoLabel = "CENTROS DE SALUD URBANOS Y RURALES";
             $ocupacion = ProfesionalOcupacionCentroSalud::where('id_profesional', $id)->first();
         } 
         // HOSPITALES (2)
         elseif ($tipo == 2) 
         {
+            $catalogoLabel = "HOSPITALES";
             $ocupacion = ProfesionalOcupacionHospital::where('id_profesional', $id)->first();
         } 
         // OFICINA JURISDICCIONAL (3)
         elseif ($tipo == 3) 
         {
+            $catalogoLabel = "OFICINA JURISDICCIONAL";
             $ocupacion = ProfesionalOcupacionOfJurisdiccional::where('id_profesional', $id)->first();
         } 
         // CRI CREE (4)
         elseif ($tipo == 4) 
         {
+            $catalogoLabel = "DIF CRI CREE";
             $ocupacion = ProfesionalOcupacionCriCree::where('id_profesional', $id)->first();
         }
         // SAMU CRUM (5)
         elseif ($tipo == 5) 
         {
+            $catalogoLabel = "SAMU CRUM";
             $ocupacion = ProfesionalOcupacionSamuCrum::where('id_profesional', $id)->first();
         }
         // OFICINA CENTRAL (6)
         elseif ($tipo == 6) 
         {
+            $catalogoLabel = "OFICINA CENTRAL";
             $ocupacion = ProfesionalOcupacionOficinaCentral::where('id_profesional', $id)->first();
         }
         // ALMACEN (7)
         elseif ($tipo == 7) 
         {
+            $catalogoLabel = "ALMACEN";
             $ocupacion = ProfesionalOcupacionAlmacen::where('id_profesional', $id)->first();
         }
         // CETS LESP (8)
         elseif ($tipo == 8) 
         {
+            $catalogoLabel = "CETS LESP";
             $ocupacion = ProfesionalOcupacionCetsLesp::where('id_profesional', $id)->first();
         }
         // CORS (9)
         elseif ($tipo == 9) 
         {
+            $catalogoLabel = "CORS";
             $ocupacion = ProfesionalOcupacionCors::where('id_profesional', $id)->first();
         }
         // CESAME (11)
         elseif ($tipo == 11) 
         {
+            $catalogoLabel = "CESAME";
             $ocupacion = ProfesionalOcupacionCesame::where('id_profesional', $id)->first();
         }
-        // CESAME (12)
+        // PSI PARRAS (12)
         elseif ($tipo == 12) 
         {
+            $catalogoLabel = "PSI PARRAS";
             $ocupacion = ProfesionalOcupacionPsiParras::where('id_profesional', $id)->first();
         }
         // CEAM (13)
         elseif ($tipo == 13) 
         {
+            $catalogoLabel = "CEAM";
             $ocupacion = ProfesionalOcupacionCeam::where('id_profesional', $id)->first();
         }
         // CESAME (14)
         elseif ($tipo == 14) 
         {
+            $catalogoLabel = "CESAME";
             $ocupacion = ProfesionalOcupacionHospitalNino::where('id_profesional', $id)->first();
         }
 
@@ -687,6 +702,9 @@ class ProfesionalController extends Controller
         // Cargamos los datos para el modulo de CAMBIOI DE UNIDAD
         $cambiosDeUnidad = $profesional->cambiosDeUnidad()->orderBy('created_at', 'desc')->get();
 
+        // Cargamos todos los pases de salida
+        $pases = $profesional->pasesDeSalida;
+
         // Regresamos la vista con el arreglo
         return view('profesional.show', compact(
             'profesional',
@@ -762,7 +780,10 @@ class ProfesionalController extends Controller
             'cluesAdscripcionTipo',
             'ocupacion',
 
-            'cambiosDeUnidad'
+            'cambiosDeUnidad',
+
+            'pases',
+            'catalogoLabel'
         ));
     }
 
@@ -918,67 +939,62 @@ class ProfesionalController extends Controller
 
     }
 
-    public function enviarTelegram()
+    // Muesta la vista con las opciones del buscador
+    public function profesionalBuscadorForm()
     {
-        $token = '7718774587:AAF67jTIaVpjUEOBoO6DDqGTMEfsGvfX08k';
-        $chat_id = '13673422';
-        $mensaje = 'Mensaje de prueba ignorando SSL 🛠️';
+        // Consultamos todas las clues
+        $clues = Clue::orderBy('clave_jurisdiccion')
+             ->orderBy('nombre')
+             ->get();
 
-        $response = Http::withOptions([
-            'verify' => false, // <--- desactiva verificación SSL
-        ])->post("https://api.telegram.org/bot{$token}/sendMessage", [
-            'chat_id' => $chat_id,
-            'text' => $mensaje,
-        ]);
-
-        dd($response->json());
+        // Llamamos la vista con las clues
+        return view('buscador.index', compact('clues'));
     }
 
-    public function enviarSaludoTelegram()
+    public function profesionalBuscadorCurp(Request $request)
     {
-        $token = '7718774587:AAF67jTIaVpjUEOBoO6DDqGTMEfsGvfX08k'; // reemplaza con tu token real
+        // Validamos los datos
+        $request->validate([
+            'curp'=>'required'
+        ],[]);
 
-        $usuarios = Profesional::whereNotNull('chat_id')->get();
+        $busqueda=$request->curp;
+        /*$profesionales = Profesional::where('curp', $request->curp)
+            ->orWhere('nombre', 'like', '%' . $request->curp . '%')
+            ->orWhere('apellido_paterno', 'like', '%' . $request->curp . '%')
+            ->orWhere('apellido_materno', 'like', '%' . $request->curp . '%')
+            ->get();*/
 
-        foreach ($usuarios as $persona) {
-            $mensaje = "Hola {$persona->nombre} {$persona->apellido_paterno} {$persona->apellido_materno} , Te recordamos que tienes nominas pendientes para firmar";
+        /*$profesionales = Profesional::where('curp', 'like', '%' . $busqueda . '%')
+            ->orWhereRaw("CONCAT(nombre, ' ', apellido_paterno, ' ', apellido_materno) LIKE ?", ["%$busqueda%"])
+            ->get();*/
+        $terminos = explode(' ', strtolower($busqueda));
+            
+        $profesionales = Profesional::where(function($query) use ($terminos) {
+            
+        foreach ($terminos as $termino) 
+        {
+            $query->where(function($subquery) use ($termino) {
+                $subquery->whereRaw("LOWER(nombre) LIKE ?", ["%$termino%"])
+                        ->orWhereRaw("LOWER(apellido_paterno) LIKE ?", ["%$termino%"])
+                        ->orWhereRaw("LOWER(apellido_materno) LIKE ?", ["%$termino%"])
+                        ->orWhereRaw("LOWER(curp) LIKE ?", ["%$termino%"]);
+            });
+        }
+        })->get();
 
-            Http::withOptions([
-                'verify' => false, // solo en desarrollo
-            ])->post("https://api.telegram.org/bot{$token}/sendMessage", [
-                'chat_id' => $persona->chat_id,
-                'text' => $mensaje,
-            ]);
+        // Si no se encuentra, redirige con mensaje de error
+        if (!$profesionales) {
+            return back()
+                ->with('error', 'No se encontró ningún profesional con ese CURP.')
+                ->withInput();
         }
 
-        return response()->json([
-            'status' => 'Mensajes enviados',
-            'total' => $usuarios->count()
-        ]);
+        // Si se encuentra, lo enviamos a la vista
+        return view('buscador.show', compact('profesionales'));
     }
 
-    public function enviarMensajes()
-    {
-        $output = [];
-        $retorno = 0;
+    
 
-        exec("python C:/wamp64/www/siith/python/whatsapp.py 2>&1", $rawOutput, $retorno);
 
-        // Convertir a UTF-8 forzadamente
-        foreach ($rawOutput as $line) {
-            $output[] = mb_convert_encoding($line, 'UTF-8', 'auto');
-        }
-
-        if ($retorno === 0) {
-        return response()->json([
-            'mensaje' => 'Mensajes enviados',
-            'salida' => $output
-        ], 200, [], JSON_UNESCAPED_UNICODE);
-        } else {
-            return response()->json([
-                'error' => 'Error al ejecutar Python',
-                'salida' => $output
-            ], 500, [], JSON_UNESCAPED_UNICODE);
-        }
-    }
 }

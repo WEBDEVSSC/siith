@@ -98,10 +98,6 @@
             
           <div class="row mt-3">
             <div class="col-md-4">
-              <p><strong>Tiempo autorizado</strong></p>
-              <input type="text" name="tiempo_autorizado" id="tiempo_autorizado" class="form-control" value="{{ old('tiempo_autorizado') }}">
-            </div>
-            <div class="col-md-4">
               <p><strong>Hora inicio</strong></p>
               <input type="time" name="hora_inicio" id="hora_inicio" class="form-control" value="{{ old('hora_inicio') }}">
             </div>
@@ -116,6 +112,18 @@
           <div class="card-footer text-end">
             <button type="submit" class="btn btn-success btn-sm">SOLICITAR PASE DE SALIDA</button>
             </form>
+          </div>
+        </div>
+
+        <!-- -->
+
+        <div class="row mt-3">
+          <div class="col-md-12">
+            @if ($errors->has('hora_final'))
+                <div class="alert alert-danger">
+                    {{ $errors->first('hora_final') }}
+                </div>
+            @endif
           </div>
         </div>
 

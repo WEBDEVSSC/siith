@@ -6,11 +6,17 @@ use App\Models\Clue;
 use App\Models\Profesional;
 use App\Models\ProfesionalCambioDeUnidad;
 use App\Models\ProfesionalOcupacionAlmacen;
+use App\Models\ProfesionalOcupacionCeam;
 use App\Models\ProfesionalOcupacionCentroSalud;
+use App\Models\ProfesionalOcupacionCesame;
+use App\Models\ProfesionalOcupacionCetsLesp;
+use App\Models\ProfesionalOcupacionCors;
 use App\Models\ProfesionalOcupacionCriCree;
 use App\Models\ProfesionalOcupacionHospital;
+use App\Models\ProfesionalOcupacionHospitalNino;
 use App\Models\ProfesionalOcupacionOficinaCentral;
 use App\Models\ProfesionalOcupacionOfJurisdiccional;
+use App\Models\ProfesionalOcupacionPsiParras;
 use App\Models\ProfesionalOcupacionSamuCrum;
 use App\Models\ProfesionalPuesto;
 use Illuminate\Auth\Events\Validated;
@@ -68,9 +74,38 @@ class ProfesionalCambioDeUnidadController extends Controller
         $user = Auth::user();
 
         // Cargamos los datos de la clues del usuario
-        $clues = Clue::findOrFail($user->id_unidad);
+        //$clues = Clue::findOrFail($user->id_unidad);
+
+        // Cargamos los datos del MODULO CREDENCIALIZACION
+        $credencializacion = $profesional?->credencializacion;
+        $fotografia = $credencializacion ? $credencializacion->fotografia : null;
+
+        // Generamos la URL de la fotografía
+        $fotoUrl = $fotografia ? url('/foto/' . basename($fotografia)) : null;
+
         
-        return view('cambio-unidad.cambioUnidad-create', compact('profesional', 'clues'));
+
+        // Cargamos las clues que le corresponden al usuario
+        // Clues para administrador - muestra todas las clues
+        if($user->role == 'admin')
+        {   
+            // Cargamos los clues
+            $clues = Clue::all();
+        }
+        // Para oficina jurisdiccional muestra solo las clues de su jurisdiccion
+        elseif($user->role == 'ofJurisdiccional')
+        {
+            // Cargamos los clues
+            $clues = Clue::where('clave_jurisdiccion',$user->jurisdiccion_unidad)->get();
+        }
+        // Para los otros muestra solo la clues que le pertenece al usuario
+        else
+        {
+            // Cargamos los clues
+            $clues = Clue::where('id',$user->id_unidad)->get();
+        }
+        
+        return view('cambio-unidad.cambioUnidad-create', compact('profesional', 'clues','fotoUrl'));
     }
 
     public function storeCambioDeUnidad(Request $request)
@@ -78,16 +113,13 @@ class ProfesionalCambioDeUnidadController extends Controller
         // Primero validamos
         $request->validate([
             'id_profesional' => 'required',
-            'clues_adscripcion' => 'required',
-            'clues_adscripcion_nombre' => 'required',
-            'clues_adscripcion_municipio' => 'required',
-            'clues_adscripcion_jurisdiccion' => 'required',
-            'clues_adscripcion_tipo' => 'required',
             'tipo_movimiento' => 'required',
+            'clues' => 'required',
             'documento_respaldo' => 'required|mimes:pdf|max:5120',
             'fecha_inicio' => 'required|date',
             'fecha_termino' => 'required|date|after:fecha_inicio',
         ], [
+            'clues.required'=>'La unidad de destino es obligatoria',
             'tipo_movimiento.required' => 'El tipo de movimiento es obligatorio.',
             'documento_respaldo.required' => 'El documento de respaldo es obligatorio.',
             'documento_respaldo.mimes' => 'El documento de respaldo debe ser un archivo PDF.',
@@ -99,6 +131,9 @@ class ProfesionalCambioDeUnidadController extends Controller
             'fecha_termino.date' => 'La fecha de término debe ser una fecha válida.',
             'fecha_termino.after' => 'La fecha de término debe ser posterior a la fecha de inicio.',
         ]);
+
+        // Consultamos los datos de la CLUES
+        $clues = Clue::findOrFail($request->clues);
 
         // Consultamos la curp del profesional
         $profesional = Profesional::findOrFail($request->id_profesional);
@@ -136,8 +171,8 @@ class ProfesionalCambioDeUnidadController extends Controller
         else
         {
 
-        }
-
+        }       
+        
         // Almacenar el archivo en la carpeta 'documents' en el almacenamiento local
         $archivoPath = $request->documento_respaldo->storeAs('cambio-unidad', $archivoNombre, 'local');
 
@@ -152,10 +187,9 @@ class ProfesionalCambioDeUnidadController extends Controller
         $cambioDeUnidad->unidad_origen_clues = $profesional->puesto->clues_adscripcion;
         $cambioDeUnidad->unidad_origen_nombre = $profesional->puesto->clues_adscripcion_nombre;
         $cambioDeUnidad->unidad_origen_jurisdiccion = $profesional->puesto->clues_adscripcion_jurisdiccion;
-        $cambioDeUnidad->unidad_destino_clues = $request->clues_adscripcion;
-        $cambioDeUnidad->unidad_destino_nombre = $request->clues_adscripcion_nombre;
-        $cambioDeUnidad->unidad_destino_jurisdiccion = $request->clues_adscripcion_jurisdiccion;
-        
+        $cambioDeUnidad->unidad_destino_clues = $clues->clues;
+        $cambioDeUnidad->unidad_destino_nombre = $clues->nombre;
+        $cambioDeUnidad->unidad_destino_jurisdiccion = $clues->clave_jurisdiccion;
 
         $cambioDeUnidad->save();
 
@@ -164,11 +198,11 @@ class ProfesionalCambioDeUnidadController extends Controller
 
         if ($puesto) 
         {
-            $puesto->clues_adscripcion = $request->clues_adscripcion;
-            $puesto->clues_adscripcion_nombre = $request->clues_adscripcion_nombre;
-            $puesto->clues_adscripcion_municipio = $request->clues_adscripcion_municipio;
-            $puesto->clues_adscripcion_jurisdiccion = $request->clues_adscripcion_jurisdiccion;
-            $puesto->clues_adscripcion_tipo = $request->clues_adscripcion_tipo;
+            $puesto->clues_adscripcion = $clues->clues;
+            $puesto->clues_adscripcion_nombre = $clues->nombre;
+            $puesto->clues_adscripcion_municipio = $clues->municipio;
+            $puesto->clues_adscripcion_jurisdiccion = $clues->clave_jurisdiccion;
+            $puesto->clues_adscripcion_tipo = $clues->clave_establecimiento;
 
             $puesto->save();
         }
@@ -196,26 +230,44 @@ class ProfesionalCambioDeUnidadController extends Controller
         // Catalogo 7 - ALMACEN
         $buscarOcupacionAlmacen = ProfesionalOcupacionAlmacen::where('id_profesional',$request->id_profesional)->first()?->delete();
 
+        // Catalogo 8 - LESP CETS
+        $buscarOcupacionCetsLesp = ProfesionalOcupacionCetsLesp::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 9 - CORS
+        $buscarOcupacionCors = ProfesionalOcupacionCors::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 11 - CESAME
+        $buscarOcupacionCesame = ProfesionalOcupacionCesame::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 12 - PSI PARRAS
+        $buscarOcupacionPsiParras = ProfesionalOcupacionPsiParras::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 13 - CEAM
+        $buscarOcupacionCeam = ProfesionalOcupacionCeam::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 14 - HOSPITAL DEL NIÑO
+        $buscarOcupacionHospitalNino = ProfesionalOcupacionHospitalNino::where('id_profesional',$request->id_profesional)->first()?->delete();
+
         // Redireccionamos al perfil del usuario
         return redirect()->route('profesionalShow',$profesional->id)->with('successCambioDeUnidad', 'Cambio de unidad registrada correctamente');
-
 
     }
 
     public function descargar($id)
-    {
-        $cambio = ProfesionalCambioDeUnidad::findOrFail($id);
+{
+    $cambio = ProfesionalCambioDeUnidad::findOrFail($id);
+    $path = $cambio->documento_respaldo;
 
-        dd($cambio->documento_respaldo);
+    if (Storage::disk('local')->exists($path)) {
+        // Obtener contenido
+        $file = Storage::disk('local')->get($path);
+        $mime = Storage::disk('local')->mimeType($path);
 
-        // Aquí puedes poner lógica para verificar permisos si hace falta
-
-        $path = 'private/' . $cambio->documento_respaldo;
-
-        if (Storage::exists($path)) {
-            return Storage::download($path);
-        }
-
-        abort(404, 'Archivo no encontrado');
+        return response($file, 200)
+            ->header('Content-Type', $mime)
+            ->header('Content-Disposition', 'inline; filename="' . basename($path) . '"');
     }
+
+    abort(404, 'Archivo no encontrado');
+}
 }

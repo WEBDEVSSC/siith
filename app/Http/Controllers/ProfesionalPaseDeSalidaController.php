@@ -10,6 +10,7 @@ use App\Models\ProfesionalPaseDeSalida;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class ProfesionalPaseDeSalidaController extends Controller
 {
@@ -21,6 +22,7 @@ class ProfesionalPaseDeSalidaController extends Controller
 
     public function paseDeSalidaCreate(Request $request)
     {
+        // Validamos los datos
         $request->validate([
             'curp' => 'required|exists:profesionales_datos_generales,curp',
         ], [
@@ -28,24 +30,8 @@ class ProfesionalPaseDeSalidaController extends Controller
             'curp.exists' => 'No se encontró ningún profesional con esa CURP.',
         ]);
 
+        // Buscamos el profesional
         $profesional = Profesional::where('curp',$request->curp)->first();
-
-        // Ocupacion
-        if ($profesional->puesto && $profesional->puesto->clues_adscripcion_tipo == 6) {
-
-            $ocupacion = ProfesionalOcupacionOficinaCentral::where('id_profesional', $profesional->id)->first();
-
-            if ($ocupacion) {
-                $consultaJefes = ProfesionalOcupacionOficinaCentral::where('programa_uno', $ocupacion->programa_uno)
-                    ->whereIn('ocupacion_uno', ['JEFE(A)', 'TITULAR','COORDINADOR(A)'])
-                    ->get();
-            } else {
-                $consultaJefes = collect(); // colección vacía para evitar errores más adelante
-            }
-        } else {
-            $ocupacion = "SIN DATO";
-            $consultaJefes = collect(); // por si necesitas usarlo más adelante
-        }
 
         // Si no se encontró, regresar con mensaje de error
         if (!$profesional) 
@@ -55,6 +41,27 @@ class ProfesionalPaseDeSalidaController extends Controller
                 ->with('error', 'No se encontró ningún profesional con ese CURP.');
         }
 
+        // Consultamos la ocupacion del solicitante en Oficina Central
+        if ($profesional->puesto && $profesional->puesto->clues_adscripcion_tipo == 6) 
+        {
+            $ocupacion = ProfesionalOcupacionOficinaCentral::where('id_profesional', $profesional->id)->first();
+
+            if ($ocupacion) 
+            {
+                $consultaJefes = ProfesionalOcupacionOficinaCentral::where('programa_uno', $ocupacion->programa_uno)
+                    ->whereIn('ocupacion_uno', ['JEFE(A)', 'TITULAR','COORDINADOR(A)','JEFE(A) DEPTO.'])
+                    ->get();
+            } else {
+                $consultaJefes = collect(); // colección vacía para evitar errores más adelante
+            }
+        } 
+        else 
+        {
+            $ocupacion = "SIN DATO";
+            $consultaJefes = collect(); // por si necesitas usarlo más adelante
+        }
+
+        // Consultamos la fecha
         $fecha = date('Y-m-d');
 
         // Consultamos todos los pases que tiene el profesional
@@ -72,6 +79,13 @@ class ProfesionalPaseDeSalidaController extends Controller
 
     public function paseDeSalidaStore(Request $request)
     {
+        setlocale(LC_TIME, 'es_MX.UTF-8');
+        Carbon::setLocale('es');
+
+        $dia = Carbon::now()->translatedFormat('l'); // Ej: "lunes"
+
+        dd($dia);
+        
         // Validamos los datos
         $request->validate([
             'id_profesional'=>'required',
@@ -79,10 +93,30 @@ class ProfesionalPaseDeSalidaController extends Controller
             'fecha'=>'required',
             'jefe'=>'required',
             'tipo'=>'required',
-            'tiempo_autorizado'=>'required',
             'hora_inicio'=>'required',
             'hora_final'=>'required',
         ],[]);
+
+        // Crear objetos Carbon desde los inputs
+        $inicio = Carbon::createFromFormat('H:i', $request->hora_inicio);
+        $fin = Carbon::createFromFormat('H:i', $request->hora_final);
+
+        // Obtener diferencia en minutos
+        $minutos = $inicio->diffInMinutes($fin);
+
+        // Validamos que el tiempo no sea mayor de dos horas
+        if ($minutos > 120) 
+        {
+            return back()
+                ->withErrors(['hora_final' => 'El tiempo no puede ser mayor a 2 horas.'])
+                ->withInput();
+        }
+
+        // Convertir a horas y minutos
+        $horas = floor($minutos / 60);
+        $restoMinutos = $minutos % 60;
+
+        $tiempoAutorizado = "$horas horas $restoMinutos minutos";
 
         // Consultamos los datos del profesional
         $profesional = Profesional::findOrFail($request->id_profesional);
@@ -110,7 +144,7 @@ class ProfesionalPaseDeSalidaController extends Controller
         $paseDeSalida->nombre_autoriza = $autoriza->nombre." ".$autoriza->apellido_paterno." ".$autoriza->apellido_materno;
         $paseDeSalida->tipo = $request->tipo;
         $paseDeSalida->fecha = $request->fecha;
-        $paseDeSalida->tiempo_autorizado = $request->tiempo_autorizado;
+        $paseDeSalida->tiempo_autorizado = $tiempoAutorizado;
         $paseDeSalida->hora_inicio = $request->hora_inicio;
         $paseDeSalida->hora_final = $request->hora_final;
         $paseDeSalida->status = $status;

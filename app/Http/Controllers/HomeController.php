@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Profesional;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -168,6 +169,63 @@ class HomeController extends Controller
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
             ->count();
 
+        // GRAFICA POR EDADES
+        $hoy = Carbon::now();
+
+        $edadMenor20 = Profesional::where('fecha_nacimiento', '>', $hoy->copy()->subYears(20))
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $edad20a29 = Profesional::whereBetween('fecha_nacimiento', [
+            $hoy->copy()->subYears(30),
+            $hoy->copy()->subYears(20)->subDay()
+        ])
+        ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+        ->count();
+
+        $edad30a39 = Profesional::whereBetween('fecha_nacimiento', [
+            $hoy->copy()->subYears(40),
+            $hoy->copy()->subYears(30)->subDay()
+        ])
+        ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+        ->count();
+
+        $edad40a49 = Profesional::whereBetween('fecha_nacimiento', [
+            $hoy->copy()->subYears(50),
+            $hoy->copy()->subYears(40)->subDay()
+        ])
+        ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+        ->count();
+
+        $edad50a59 = Profesional::whereBetween('fecha_nacimiento', [
+            $hoy->copy()->subYears(60),
+            $hoy->copy()->subYears(50)->subDay()
+        ])
+        ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+        ->count();
+
+        $edad60a69 = Profesional::whereBetween('fecha_nacimiento', [
+            $hoy->copy()->subYears(70),
+            $hoy->copy()->subYears(60)->subDay()
+        ])
+        ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+        ->count();
+
+        $edad70a79 = Profesional::whereBetween('fecha_nacimiento', [
+            $hoy->copy()->subYears(80),
+            $hoy->copy()->subYears(70)->subDay()
+        ])
+        ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+        ->count();
+
+        $edad80a89 = Profesional::whereBetween('fecha_nacimiento', [
+            $hoy->copy()->subYears(90),
+            $hoy->copy()->subYears(80)->subDay()
+        ])
+        ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+        ->count();
+
+
 
         return view('home', compact(
             'profesionalesActivos',
@@ -209,6 +267,15 @@ class HomeController extends Controller
             'contratoHonorarios',
             'contratoBecas',
             'contratoOtros',
+
+            'edadMenor20',
+            'edad20a29',
+            'edad30a39',
+            'edad40a49',
+            'edad50a59',
+            'edad60a69',
+            'edad70a79',
+            'edad80a89',
         ));
     }
 }

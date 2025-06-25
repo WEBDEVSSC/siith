@@ -16,6 +16,7 @@
     $alerts = [
         'ocupacionSuccess',
         'ocupacionUpdate',
+        'successCambioDeUnidad'
     ];
 @endphp
 
@@ -134,7 +135,7 @@
     <!-- -- -->
 
     <div class="card">
-        <div class="card-header"><strong>OCUPACIÓN</strong></div>
+        <div class="card-header"><strong>OCUPACIÓN</strong> {{ $catalogoLabel }}  </div>
         <div class="card-body">
 
             <!-- OCUPACION PARA CENTROS DE SALUD URBANOS Y RURALES (1) -->
@@ -523,10 +524,8 @@
                                 <td>{{ \Carbon\Carbon::parse($cambio->fecha_inicio)->format('d/m/Y') }}</td>
                                 <td>{{ \Carbon\Carbon::parse($cambio->fecha_final)->format('d/m/Y') }}</td>
                                 <td>
-
-                                    {{ $cambio->documento_respaldo }}
                                     @if ($cambio->documento_respaldo)
-                                        <a href="{{ route('descargar.documento', $cambio->id) }}">Ver documento</a>
+                                    <a href="{{ route('descargar.documento', $cambio->id) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
                                     @else
                                         No disponible
                                     @endif
@@ -608,6 +607,12 @@
         </div>
     </div>
         <div class="card-footer">
+
+            @if ($profesional->horario && $profesional->horario->mdl_horario == 1)
+                <a href="{{ route('editHorario', $profesional->id) }}" class="btn btn-info btn-sm"> EDITAR DATOS</a>
+            @else
+                <a href="{{ route('createHorario', $profesional->id) }}" class="btn btn-info btn-sm"> REGISTRAR DATOS</a>
+            @endif
 
         </div>
     </div>
@@ -775,8 +780,57 @@
         <div class="card-footer"></div>
     </div>
     
+    <!-- --------------------------------------------------------------- -->
+    <!-- --------------------------------------------------------------- -->
+
+    <div class="card mt-3">
+        <div class="card-header"><strong>PASES DE SALIDA</strong></div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Folio</th>
+                                <th>Autoriza</th>
+                                <th>Tipo</th>
+                                <th>Fecha</th>
+                                <th>Tiempo autorizado</th>
+                                <th>Hora inicio</th>
+                                <th>Hora final</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($pases as $pase)
+                                <tr>
+                                    <td>{{ $pase->folio }}</td>
+                                    <td>{{ $pase->nombre_autoriza }}</td>
+                                    <td>{{ $pase->tipo }}</td>
+                                    <td>{{ $pase->fecha->format('d-m-Y') }}</td>
+                                    <td>{{ $pase->tiempo_autorizado }}</td>
+                                    <td>{{ $pase->hora_inicio->format('H:i') }}</td>
+                                    <td>{{ $pase->hora_final->format('H:i') }}</td>
+                                    <td>{{ $pase->status == 0 ? 'PENDIENTE' : 'AUTORIZADO' }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center">No hay pases de salida registrados.</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                   
+                </div>
+            </div>
+        </div>
+        <div class="card-footer"></div>
+    </div>
     
     <!-- --------------------------------------------------------------- -->
+
+    <br>
 
     <!-- Modal -->
 <div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="pdfModalLabel" aria-hidden="true">
