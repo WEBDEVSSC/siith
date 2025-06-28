@@ -314,6 +314,10 @@ Route::middleware(['auth'])->group(function ()
 
      Route::get('/descargar-documento/{id}', [ProfesionalCambioDeUnidadController::class, 'descargar'])->name('descargar.documento');
 
+     Route::get('/reg-nac-prof-uno/{id}', [ProfesionalGradoAcademicoController::class, 'regNacProfUno'])->name('regNacProfUno');
+
+     Route::get('/reg-nac-prof-dos/{id}', [ProfesionalGradoAcademicoController::class, 'regNacProfDos'])->name('regNacProfDos');
+
      /**
      * 
      * 

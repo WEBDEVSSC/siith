@@ -72,22 +72,14 @@ class ProfesionalCredencializacionController extends Controller
         $profesional -> save();
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalIndex')->with('successCredencializacion', 'Registro actualizado correctamente.');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        return redirect()->route('profesionalShow',$profesional->id_profesional)->with('successCredencializacion', 'Registro actualizado correctamente.');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function editCredencializacion($id)
-    {
+    {        
         // Buscamos el registro utilizando el id
         $credencializacion = ProfesionalCredencializacion::where('id_profesional', $id)->first();
 
@@ -146,14 +138,6 @@ class ProfesionalCredencializacionController extends Controller
             'fotografia'=>$archivoPath,
         ]);
 
-        return redirect()->route('profesionalIndex')->with('updateCredencializacion', 'Fotografía actualizada correctamente');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('successCredencializacion', 'Registro actualizado correctamente.');
     }
 }

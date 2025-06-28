@@ -70,8 +70,9 @@
     </form>
 </div>
 
-
 @stop
+
+@include('partials.footer')
 
 @section('css')
     {{-- Add here extra stylesheets --}}

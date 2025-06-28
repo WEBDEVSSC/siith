@@ -254,20 +254,20 @@ class ProfesionalCambioDeUnidadController extends Controller
     }
 
     public function descargar($id)
-{
-    $cambio = ProfesionalCambioDeUnidad::findOrFail($id);
-    $path = $cambio->documento_respaldo;
+    {
+        $cambio = ProfesionalCambioDeUnidad::findOrFail($id);
+        $path = $cambio->documento_respaldo;
 
-    if (Storage::disk('local')->exists($path)) {
-        // Obtener contenido
-        $file = Storage::disk('local')->get($path);
-        $mime = Storage::disk('local')->mimeType($path);
+        if (Storage::disk('local')->exists($path)) {
+            // Obtener contenido
+            $file = Storage::disk('local')->get($path);
+            $mime = Storage::disk('local')->mimeType($path);
 
-        return response($file, 200)
-            ->header('Content-Type', $mime)
-            ->header('Content-Disposition', 'inline; filename="' . basename($path) . '"');
+            return response($file, 200)
+                ->header('Content-Type', $mime)
+                ->header('Content-Disposition', 'inline; filename="' . basename($path) . '"');
+        }
+
+        abort(404, 'Archivo no encontrado');
     }
-
-    abort(404, 'Archivo no encontrado');
-}
 }

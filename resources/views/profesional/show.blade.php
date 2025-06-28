@@ -16,7 +16,8 @@
     $alerts = [
         'ocupacionSuccess',
         'ocupacionUpdate',
-        'successCambioDeUnidad'
+        'successCambioDeUnidad',
+        'successCredencializacion'
     ];
 @endphp
 
@@ -42,10 +43,7 @@
 
 <div class="card mt-3">
     <div class="card-header">
-        <strong>DATOS GENERALES</strong>
-
-        
-        
+        <strong><i class="fa fa-user" aria-hidden="true"></i> DATOS GENERALES</strong>        
     </div>
     <div class="card-body">
 
@@ -74,9 +72,11 @@
                     </div>
                     <div class="col-md-3">
                         <p><strong>Fecha de nacimiento </strong></p>
-                        {{ $profesional->fecha_nacimiento }} ( {{ $edad }} Años )
+                        {{ \Carbon\Carbon::parse($profesional->fecha_nacimiento)->format('d/m/Y') }} ( {{ $edad }} Años )
                     </div>
                 </div>
+
+                <hr>
         
                 <div class="row mt-3">
                     <div class="col-md-3">
@@ -96,6 +96,8 @@
                         {{ $profesional->estado_conyugal }}
                     </div>
                 </div>
+
+                <hr>
         
                 <div class="row mt-3">
                     <div class="col-md-3">
@@ -123,9 +125,15 @@
     <div class="card-footer">
 
         @if ($profesional->mdl_datos_generales == 1)
-            <a href="{{ route('profesionalEdit', $profesional->id) }}" class="btn btn-info btn-sm"> EDITAR DATOS</a>
+            <a href="{{ route('profesionalEdit', $profesional->id) }}" class="btn btn-info btn-sm"> <i class="fa-solid fa-pen"></i> EDITAR DATOS GENERALES</a>
         @elseif ($profesional->mdl_datos_generales == 0)
             <p>El módulo de datos generales está inactivo.</p>
+        @endif
+
+        @if ($profesional->credencializacion?->mdl_credencializacion == 1)
+            <a href="{{ route('editCredencializacion', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR CREDENCIALIZACION</a>
+        @elseif ($profesional->credencializacion?->mdl_credencializacion == 0)
+            <a href="{{ route('createCredencializacion', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> CREAR CREDENCIALIZACION</a>
         @endif
 
     </div>
@@ -426,7 +434,7 @@
     <!-- -- -->
 
     <div class="card">
-        <div class="card-header"><strong>PUESTO</strong></div>
+        <div class="card-header"><i class="fa fa-archive" aria-hidden="true"></i> <strong>PUESTO</strong></div>
         <div class="card-body">
 
             <div class="row">
@@ -434,7 +442,7 @@
                     <p><strong>FIEL </strong></p>
                     {{ $fiel }} {{ $fiel_vigencia }}
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <p><strong>Actividad</strong></p>
                     {{ $actividad }}
                 </div>
@@ -442,50 +450,112 @@
                     <p><strong>Adicional</strong></p>
                     {{ $adicional }}
                 </div>
-                
-            </div>
-
-            <div class="row mt-3">
                 <div class="col-md-3">
                     <p><strong>Tipo de personal</strong></p>
                     {{ $tipoPersonal }}
                 </div>
+                
+            </div>
+
+            <hr>
+
+            <div class="row mt-3">
+                
                 <div class="col-md-3">
                     <p><strong>Código de puesto </strong></p>
                     {{ $codigoPuesto }}
                 </div>
-                <div class="col-md-6">
-                    <p><strong>Actividad</strong></p>
-                    {{ $actividad }}
+                <div class="col-md-3">
+                    <p><strong>Área de trabajo</strong></p>
+                    {{ $areaTrabajo }}
+                </div>
+                <div class="col-md-3">
+                    <p><strong>Ocupación</strong></p>
+                    {{ $ocupacionPuesto }}
+                </div>
+                <div class="col-md-3">
+                    <p><strong>Nómina de pago</strong></p>
+                    {{ $nominaPago }}
                 </div>
             </div>
 
+            <hr>
+
             <div class="row mt-3">
+                
                 <div class="col-md-3">
+                    <p><strong>Tipo de contrato </strong></p>
+                    {{ $tipoContrato }}
+                </div>
+                <div class="col-md-3">
+                    <p><strong>Fecha de ingreso</strong></p>
+                    {{ \Carbon\Carbon::parse($fechaIngreso)->format('d/m/Y') }}
+                </div>
+                <div class="col-md-3">
+                    <p><strong>Tipo plaza</strong></p>
+                    {{ $tipoPlaza }}
+                </div>
+                <div class="col-md-3">
+                    <p><strong>Institución puesto</strong></p>
+                    {{ $institucionPuesto }}
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row mt-3">
+                
+                <div class="col-md-3">
+                    <p><strong>Vigencia </strong></p>
+                    {{ $vigencia }} - {{ $vigenciaMotivo }}
+                </div>
+                <div class="col-md-3">
+                    <p><strong>Fecha de ingreso</strong></p>
+                    {{ $fechaIngreso }}
+                </div>
+                <div class="col-md-3">
+                    <p><strong>Temporalidad</strong></p>
+                    {{ $temporalidad }}
+                </div>
+                <div class="col-md-3">
+                    <p><strong>Licencia de maternidad</strong></p>
+                    {{ $licenciaMaternidad }}
+                </div>
+            </div>
+
+            <hr>
+
+            <div class="row mt-3">
+                
+                <div class="col-md-3">
+                    <p><strong>Seguro de salud </strong></p>
+                    {{ $seguroSalud }}
+                </div>
+                
+            </div>
+
+            <hr>
+
+            <div class="row mt-3">
+                <div class="col-md-6">
                     <p><strong>CLUES Nomina</strong></p>
-                    {{ $cluesNomina }} <br> {{ $cluesNominaNombre }}
+                    {{ $cluesNomina }} - {{ $cluesNominaNombre }} | {{ $cluesNominaMunicipio }} - JURISDICCIÓN {{ $cluesNominaJurisdiccion }}
                 </div>
-                <div class="col-md-3">
-                    <p><strong>Municipio</strong></p>
-                    {{ $cluesNominaMunicipio }} <br> JURISDICCIÓN {{ $cluesNominaJurisdiccion }}
-                </div>
-                <div class="col-md-3">
+                <div class="col-md-6">
                     <p><strong>CLUES Adscripción</strong></p>
-                    {{ $cluesAdscripcion }} <br> {{ $cluesAdscripcionNombre }}
-                </div>
-                <div class="col-md-3">
-                    <p><strong>Municipio</strong></p>
-                    {{ $cluesNominaMunicipio }} <br> JURISDICCIÓN {{ $cluesNominaJurisdiccion }}
+                    {{ $cluesAdscripcion }} - {{ $cluesAdscripcionNombre }} | {{ $cluesNominaMunicipio }} - JURISDICCIÓN {{ $cluesNominaJurisdiccion }}
                 </div>
             </div>
 
         </div>
+
+        
         <div class="card-footer">
 
             @if ($profesional->puesto->mdl_puesto == 1)
-                <a href="{{ route('editPuesto', $profesional->id) }}" class="btn btn-info btn-sm"> EDITAR DATOS</a>
+                <a href="{{ route('editPuesto', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
             @elseif ($profesional->mdl_datos_generales == 0)
-                <p>El módulo de datos generales está inactivo.</p>
+                <a href="{{ route('createPuesto', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
             @endif
     
         </div>
@@ -546,7 +616,7 @@
 
     <div class="card">
         <div class="card-header">
-            <strong>HORARIO</strong>
+            <i class="fa fa-clock" aria-hidden="true"></i> <strong>HORARIO</strong>
         </div>
         <div class="card-body">
             <div class="row">
@@ -611,7 +681,7 @@
             @if ($profesional->horario && $profesional->horario->mdl_horario == 1)
                 <a href="{{ route('editHorario', $profesional->id) }}" class="btn btn-info btn-sm"> EDITAR DATOS</a>
             @else
-                <a href="{{ route('createHorario', $profesional->id) }}" class="btn btn-info btn-sm"> REGISTRAR DATOS</a>
+                <a href="{{ route('createHorario', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa fa-check" aria-hidden="true"></i> REGISTRAR DATOS</a>
             @endif
 
         </div>
@@ -620,7 +690,8 @@
     <!-- --------------------------------------------------------------- -->
 
     <div class="card mt-3">
-        <div class="card-header"><strong>SUELDO</strong></div>
+        <div class="card-header">
+            <i class="fa fa-credit-card" aria-hidden="true"></i> <strong>SUELDO</strong></div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-2">
@@ -649,7 +720,15 @@
                 </div>
             </div>
         </div>
-        <div class="card-footer"></div>
+        <div class="card-footer">
+
+            @if ($profesional->sueldo?->mdl_sueldo == 1)
+                <a href="{{ route('editSueldo', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
+            @elseif ($profesional->sueldo?->mdl_sueldo == 0)
+                <a href="{{ route('createSueldo', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
+            @endif
+    
+        </div>
     </div>
 
     <!-- --------------------------------------------------------------- -->
@@ -657,7 +736,9 @@
     <!-- --------------------------------------------------------------- -->
 
     <div class="card mt-3">
-        <div class="card-header"><strong>GRADO ACADEMICO</strong></div>
+        <div class="card-header">
+            <i class="fa fa-graduation-cap" aria-hidden="true"></i> <strong>GRADO ACADEMICO</strong>
+        </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-2">
@@ -683,8 +764,10 @@
                 <div class="col-md-10">
                     <p><strong>REGISTRO NACIONAL DE PROFESIONALES</strong></p>
 
-                    @if($regNacProfUno != "")
-                        <a href="javascript:void(0);" class="btn btn-info btn-sm openModal" id="openModal" data-pdf="{{ asset('storage/' . $regNacProfUno) }}">Abrir documento</a>
+                    @if ($regNacProfUno)
+                        <a href="{{ route('regNacProfUno', $gradoAcademicoUnoId) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
+                    @else
+                        
                     @endif
                     
                 </div>
@@ -714,15 +797,23 @@
                 <div class="col-md-10">
                     <p><strong>REGISTRO NACIONAL DE PROFESIONALES</strong></p>
 
-                    @if($regNacProfDos != "")
-                        <a href="javascript:void(0);" class="btn btn-info btn-sm openModal" id="openModal" data-pdf="{{ asset('storage/' . $regNacProfDos) }}">Abrir documento</a>
+                    @if ($regNacProfDos)
+                        <a href="{{ route('regNacProfDos', $gradoAcademicoDosId) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
+                    @else
+                        
                     @endif
 
                 </div>
             </div>
 
         </div>
-        <div class="card-footer"></div>
+        <div class="card-footer">
+            @if ($profesional->gradoAcademico?->mdl_grado_academico == 1)
+                <a href="{{ route('editGrado', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
+            @elseif ($profesional->gradoAcademico?->mdl_grado_academico == 0)
+                <a href="{{ route('createGrado', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
+            @endif
+        </div>
     </div>
 
     <!-- --------------------------------------------------------------- -->

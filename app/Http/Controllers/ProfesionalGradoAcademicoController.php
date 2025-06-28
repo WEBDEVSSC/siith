@@ -9,6 +9,7 @@ use App\Models\InstitucionEducativa;
 use App\Models\Profesional;
 use App\Models\ProfesionalGradoAcademico;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProfesionalGradoAcademicoController extends Controller
 {
@@ -111,11 +112,39 @@ class ProfesionalGradoAcademicoController extends Controller
         $profesional = Profesional::findOrFail($request->id_profesional);
 
         // Renombramos y subimos la imagen
-        $nombreArchivoUno = $profesional->curp .'-'. $request->cedula_numero_uno . '.' . $request->file('reg_nac_prof_uno')->getClientOriginalExtension();
-        $nombreArchivoDos = $profesional->curp .'-'. $request->cedula_numero_dos . '.' . $request->file('reg_nac_prof_dos')->getClientOriginalExtension();
+        //$nombreArchivoUno = $profesional->curp .'-'. $request->cedula_numero_uno . '.' . $request->file('reg_nac_prof_uno')->getClientOriginalExtension();
+        //$nombreArchivoDos = $profesional->curp .'-'. $request->cedula_numero_dos . '.' . $request->file('reg_nac_prof_dos')->getClientOriginalExtension();
 
-        $rutaUno = $request->file('reg_nac_prof_uno')->storeAs('reg-nac-prof', $nombreArchivoUno, 'public');
-        $rutaDos = $request->file('reg_nac_prof_dos')->storeAs('reg-nac-prof', $nombreArchivoDos, 'public');
+        //$rutaUno = $request->reg_nac_prof_uno->storeAs('reg-nac-prof', $nombreArchivoUno, 'local');
+        //$rutaDos = $request->reg_nac_prof_dos->storeAs('reg-nac-prof', $nombreArchivoDos, 'local');
+
+        $rutaUno = null; 
+
+        if ($request->hasFile('reg_nac_prof_uno') && $request->file('reg_nac_prof_uno')->isValid()) 
+        {
+            $extension = $request->file('reg_nac_prof_uno')->getClientOriginalExtension();
+            $nombreArchivoUno = $profesional->curp . '-' . $request->cedula_numero_uno . '.' . $extension;
+
+            $rutaUno = $request->reg_nac_prof_uno->storeAs('reg-nac-prof', $nombreArchivoUno, 'local');
+        } 
+        else 
+        {
+            $nombreArchivoUno = null;
+        }
+
+        $rutaDos = null; 
+        
+        if ($request->hasFile('reg_nac_prof_dos') && $request->file('reg_nac_prof_dos')->isValid()) 
+        {
+            $extension = $request->file('reg_nac_prof_dos')->getClientOriginalExtension();
+            $nombreArchivoDos = $profesional->curp . '-' . $request->cedula_numero_dos . '.' . $extension;
+
+             $rutaDos = $request->reg_nac_prof_dos->storeAs('reg-nac-prof', $nombreArchivoDos, 'local');
+        } 
+        else 
+        {
+            $nombreArchivoDos = null;
+        }
 
         // Creamos el objeto para almacenar los datos
         $grado = new ProfesionalGradoAcademico();
@@ -258,5 +287,45 @@ class ProfesionalGradoAcademicoController extends Controller
 
         // Redireccionamos con un mensaje de éxito
         return redirect()->route('profesionalIndex')->with('updateGradoAcademico', 'Grado Academico actualizado correctamente.');
+    }
+
+    public function regNacProfUno ($id)
+    {
+        $grado = ProfesionalGradoAcademico::findOrFail($id);
+        $path = $grado->reg_nac_prof_uno;
+
+        //dd($path);
+
+        if (Storage::disk('local')->exists($path)) {
+            // Obtener contenido
+            $file = Storage::disk('local')->get($path);
+            $mime = Storage::disk('local')->mimeType($path);
+
+            return response($file, 200)
+                ->header('Content-Type', $mime)
+                ->header('Content-Disposition', 'inline; filename="' . basename($path) . '"');
+        }
+
+        abort(404, 'Archivo no encontrado');
+    }
+
+    public function regNacProfDos ($id)
+    {
+        $grado = ProfesionalGradoAcademico::findOrFail($id);
+        $path = $grado->reg_nac_prof_dos;
+
+        //dd($path);
+
+        if (Storage::disk('local')->exists($path)) {
+            // Obtener contenido
+            $file = Storage::disk('local')->get($path);
+            $mime = Storage::disk('local')->mimeType($path);
+
+            return response($file, 200)
+                ->header('Content-Type', $mime)
+                ->header('Content-Disposition', 'inline; filename="' . basename($path) . '"');
+        }
+
+        abort(404, 'Archivo no encontrado');
     }
 }

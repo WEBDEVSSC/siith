@@ -34,6 +34,8 @@
                             <p>No se ha cargado una fotografía.</p>
                         @endif
 
+                        {{ $fotoUrl }}
+
                     </center>
 
                 </div>
@@ -78,6 +80,8 @@
 </div>
 
 @stop
+
+@include('partials.footer')
 
 @section('css')
     {{-- Add here extra stylesheets --}}

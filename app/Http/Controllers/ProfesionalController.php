@@ -531,6 +531,19 @@ class ProfesionalController extends Controller
 
         $cluesAdscripcionTipo = $puesto ? $puesto->clues_adscripcion_tipo : null;
 
+        $areaTrabajo = $puesto ? $puesto->area_trabajo : null;
+        $ocupacionPuesto = $puesto ? $puesto->ocupacion : null;
+        $nominaPago = $puesto ? $puesto->nomina_pago : null;
+        $tipoContrato = $puesto ? $puesto->tipo_contrato : null;
+        $fechaIngreso = $puesto ? $puesto->fecha_ingreso : null;
+        $tipoPlaza = $puesto ? $puesto->tipo_plaza : null;
+        $institucionPuesto = $puesto ? $puesto->institucion_puesto : null;
+        $vigencia = $puesto ? $puesto->vigencia : null;
+        $vigenciaMotivo = $puesto ? $puesto->vigencia_motivo : null;
+        $temporalidad = $puesto ? $puesto->temporalidad : null;
+        $licenciaMaternidad = $puesto ? $puesto->licencia_maternidad : null;
+        $seguroSalud = $puesto ? $puesto->seguro_salud : null;
+
         // Cargamos los datos del MODULO DE OCUPACION
         
         $ocupacion = null;
@@ -664,6 +677,7 @@ class ProfesionalController extends Controller
         // Cargamos los datos del modulo de GRADO ACADEMICO
         $gradoAcademico = $profesional->gradoAcademico;
 
+        $gradoAcademicoUnoId = $gradoAcademico ? $gradoAcademico->id : null;
         $cveGradoUno = $gradoAcademico ? $gradoAcademico->cve_grado_uno : null;
         $gradoAcademicoUno = $gradoAcademico ? $gradoAcademico->grado_academico_uno : null;
         $tituloUno = $gradoAcademico ? $gradoAcademico->titulo_uno : null;
@@ -672,6 +686,7 @@ class ProfesionalController extends Controller
         $numeroCedulaUno = $gradoAcademico ? $gradoAcademico->numero_cedula_uno : null;
         $regNacProfUno = $gradoAcademico ? $gradoAcademico->reg_nac_prof_uno : null;
 
+        $gradoAcademicoDosId = $gradoAcademico ? $gradoAcademico->id : null;
         $cveGradoDos = $gradoAcademico ? $gradoAcademico->cve_grado_dos : null;
         $gradoAcademicoDos = $gradoAcademico ? $gradoAcademico->grado_academico_dos : null;
         $tituloDos = $gradoAcademico ? $gradoAcademico->titulo_dos : null;
@@ -723,6 +738,19 @@ class ProfesionalController extends Controller
             'cluesAdscripcionNombre',
             'cluesAdscripcionMunicipio',
             'cluesAdscripcionJurisdiccion',
+            'areaTrabajo',
+            'ocupacionPuesto',
+            'nominaPago',
+            'tipoContrato',
+            'fechaIngreso',
+            'tipoPlaza',
+            'institucionPuesto',
+            'vigencia',
+            'vigenciaMotivo',
+            'temporalidad',
+            'licenciaMaternidad',
+            'seguroSalud',
+
             'fotografia',
             'fotoUrl',
             'jornada',
@@ -763,6 +791,8 @@ class ProfesionalController extends Controller
             'cedulaDos',
             'numeroCedulaDos',
             'regNacProfDos',
+            'gradoAcademicoUnoId',
+            'gradoAcademicoDosId',
 
             'tipoFormacion',
             'carrera',
