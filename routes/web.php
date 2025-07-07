@@ -125,6 +125,9 @@ Route::middleware(['auth'])->group(function ()
     // Ruta para ver los registros
     Route::get('admin/profesionales/profesionalIndex',[ProfesionalController::class, 'profesionalIndex'])->name('profesionalIndex');
 
+    // Ruta para mostrar los registros en baja temporal y definitva
+    Route::get('admin/profesionales/profesionalBajasIndex',[ProfesionalController::class, 'profesionalBajasIndex'])->name('profesionalBajasIndex');
+
     // Ruta para mostrar el formulario de edicion
     Route::get('admin/profesionales/profesionalEdit/{id}', [ProfesionalController::class, 'profesionalEdit'])->name('profesionalEdit');
 

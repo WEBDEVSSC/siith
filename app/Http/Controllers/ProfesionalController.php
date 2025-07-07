@@ -414,6 +414,141 @@ class ProfesionalController extends Controller
     /**
      * 
      * 
+     *  METODO PARA MOSTRAR EL PANEL CON BAJAS TEMPORALES Y DEFINITIVAS
+     * 
+     * 
+     */
+
+     public function profesionalBajasIndex()
+    {
+        ini_set('memory_limit', '-1');
+        
+        // Conficionamos a los roles 
+        if (Gate::allows('admin'))
+        {
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->where(function ($query) {
+                    $query->whereRelation('puesto', 'vigencia', 'BAJA TEMPORAL')
+                        ->orWhereRelation('puesto', 'vigencia', 'BAJA DEFINITIVA');
+                })
+                ->get();
+        }
+        elseif(Gate::allows('csuyr'))
+        {
+            $user = Auth::user();
+            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', $user->clues_unidad)
+                ->whereRelation('puesto', 'vigencia', ['BAJA TEMPORAL','BAJA DEFINITIVA'])
+                ->get();
+        }  
+        elseif(Gate::allows('hospital'))
+        {
+            $user = Auth::user();
+            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', $user->clues_unidad)
+                ->whereRelation('puesto', 'vigencia', ['BAJA TEMPORAL','BAJA DEFINITIVA'])
+                ->get();
+        }  
+        elseif(Gate::allows('ofJurisdiccional'))
+        {
+            $user = Auth::user();
+            $userJurisdiccion = $user->clues_unidad;
+            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', $userJurisdiccion)
+                ->whereRelation('puesto', 'vigencia', ['BAJA TEMPORAL','BAJA DEFINITIVA'])
+                ->get();
+        }  
+        elseif(Gate::allows('almacen'))
+        {
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002064')
+                ->where(function ($query) {
+                    $query->whereRelation('puesto', 'vigencia', 'BAJA TEMPORAL')
+                        ->orWhereRelation('puesto', 'vigencia', 'BAJA DEFINITIVA');
+                })
+                ->get();
+        }  
+        elseif(Gate::allows('cets'))
+        {
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002076')
+                ->whereRelation('puesto', 'vigencia', ['BAJA TEMPORAL','BAJA DEFINITIVA'])
+                ->get();
+        }  
+        elseif(Gate::allows('lesp'))
+        {
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002052')
+                ->whereRelation('puesto', 'vigencia', ['BAJA TEMPORAL','BAJA DEFINITIVA'])
+                ->get();
+        }  
+        
+        elseif(Gate::allows('oncologico'))
+        {            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002932')
+                ->whereRelation('puesto', 'vigencia', ['BAJA TEMPORAL','BAJA DEFINITIVA'])
+                ->get();
+        }  
+        elseif(Gate::allows('cesame'))
+        {            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA001141')
+                ->whereRelation('puesto', 'vigencia', ['BAJA TEMPORAL','BAJA DEFINITIVA'])
+                ->get();
+        }  
+        elseif(Gate::allows('ofCentral'))
+        {            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002093')
+                ->whereRelation('puesto', 'vigencia', ['BAJA TEMPORAL','BAJA DEFINITIVA'])
+                ->get();
+        }  
+        elseif(Gate::allows('psiParras'))
+        {            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA000832')
+                ->whereRelation('puesto', 'vigencia', ['BAJA TEMPORAL','BAJA DEFINITIVA'])
+                ->get();
+        }  
+        elseif(Gate::allows('hospitalNino'))
+        {            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA001136')
+                ->whereRelation('puesto', 'vigencia', ['BAJA TEMPORAL','BAJA DEFINITIVA'])
+                ->get();
+        }  
+        elseif(Gate::allows('ceam'))
+        {            
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002192')
+                ->whereRelation('puesto', 'vigencia', ['BAJA TEMPORAL','BAJA DEFINITIVA'])
+                ->get();
+        }  
+        else
+        {
+            $profesionales = collect(); // colección vacía para evitar errores
+        }
+
+        // Creamos un array para almacenar los datos adicionales
+        $profesionalesData = $profesionales->map(function ($profesional) {
+            return [
+                'profesional' => $profesional,
+                'cluesAdscripcionNombre' => optional($profesional->puesto)->clues_adscripcion_nombre,
+            ];
+        });
+        
+
+        // Regresamos la vista con los datos
+        return view('profesional.bajas-index', compact('profesionalesData'));
+    }
+
+    /**
+     * 
+     * 
      * METODO PARA MOSTRAR EL FORMULARIO DE EDICION DE DATOS GENERALES
      * 
      */

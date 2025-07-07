@@ -86,11 +86,8 @@ class ProfesionalCredencializacionController extends Controller
         // Consultamos los datos del usuario para la tarjeta
         $profesional = Profesional::findOrFail($id);
 
-        // Obtenemos la primera credencialización asociada al profesional
-        $credencializacionRelacionado = $profesional->credencializacion->first();
-
         // Generamos la URL de la fotografía
-        $fotografia = $credencializacionRelacionado ? $credencializacionRelacionado->fotografia : null;
+        $fotografia = $credencializacion ? $credencializacion->fotografia : null;
         $fotoUrl = $fotografia ? url('/foto/' . basename($fotografia)) : null;
 
         // Retornamos la vista

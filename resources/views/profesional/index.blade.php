@@ -68,6 +68,7 @@
         <div class="card-header">
 
             <a href="{{ route('profesionalExport') }}" class="btn btn-success"><i class="fa-solid fa-chart-simple"></i> Exportar Profesionales a Excel</a>
+            <a href="{{ route('profesionalBajasIndex') }}" class="btn btn-success"><i class="fa-solid fa-chart-simple"></i> Bajas Temporales / Definitivas</a>
 
         </div>
         <div class="card-body">
@@ -174,6 +175,7 @@
                                         <i class="fa fa-clock" aria-hidden="true"></i>
                                     </a>
                                 @endif
+                                
 
                                 <!-- --------------------------- -->
                                 <!-- --------------------------- -->
@@ -190,6 +192,12 @@
                                         <i class="fa fa-credit-card" aria-hidden="true"></i>
                                     </a>
                                 @endif
+
+                                <!-- -------------------------------------------------------------------------------------- -->
+
+                                <hr>
+
+                                <!-- -------------------------------------------------------------------------------------- -->
 
                                 <!-- --------------------------- -->
                                 <!-- --------------------------- -->
@@ -239,8 +247,7 @@
                                     </a>
                                 @endif
 
-                                <div class="mt-2"></div>
-
+                                
                                 <!-- --------------------------------------- -->
                                 <!-- --------------------------------------- -->
                                 <!--    MODULO DE CATALOGO DE OCUPACIONES    -->

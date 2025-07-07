@@ -215,6 +215,8 @@
 <!-- ---------------------------------------------------------------------- --> 
         </div>
         <div class="card-footer">
+            
+            <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm">PERFIL DEL TRABAJADOR</a>
             <button type="submit" class="btn btn-success btn-sm btn-info">REGISTRAR DATOS DE GRADO ACADEMICO</button>
         </div>
 
@@ -248,6 +250,8 @@
         }
     </style>
 @stop
+
+
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>

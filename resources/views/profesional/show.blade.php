@@ -819,7 +819,9 @@
     <!-- --------------------------------------------------------------- -->
 
     <div class="card mt-3">
-        <div class="card-header"><strong>PERSONAL EN FORMACIÓN</strong></div>
+        <div class="card-header">
+            <i class="fa fa-stethoscope" aria-hidden="true"></i><strong> ÁREA MÉDICA</strong>
+        </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-md-3">
@@ -840,7 +842,13 @@
                 </div>
             </div>
         </div>
-        <div class="card-footer"></div>
+        <div class="card-footer">
+            @if ($profesional->areaMedica?->mdl_area_medica == 1)
+                <a href="{{ route('editAreaMedica', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
+            @elseif ($profesional->areaMedica?->mdl_area_medica == 0)
+                <a href="{{ route('createAreaMedica', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
+            @endif
+        </div>
     </div>
     
     
@@ -868,7 +876,13 @@
                 </div>
             </div>
         </div>
-        <div class="card-footer"></div>
+        <div class="card-footer">
+            @if ($profesional->certificacion?->mdl_certificacion == 1)
+                <a href="{{ route('editCertificacion', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
+            @elseif ($profesional->certificacion?->mdl_certificacion == 0)
+                <a href="{{ route('createCertificacion', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
+            @endif
+        </div>
     </div>
     
     <!-- --------------------------------------------------------------- -->

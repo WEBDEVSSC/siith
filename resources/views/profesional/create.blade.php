@@ -67,21 +67,41 @@
                 <div class="row mt-3">
                     <div class="col-md-3">
                         <p>Nombre(s)</p>
-                        <input type="text" name="nombre" id='nombre' class="form-control" value="{{ $nombre }}" disabled>
+
+                        @if (empty($nombre))
+                            <input type="text" name="nombre" id='nombre' class="form-control">
+                        @else
+                            <input type="text" name="nombre" id='nombre' class="form-control" value="{{ $nombre }}" disabled>
+                        @endif
+                        
                         @error('nombre')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col-md-3">
                         <p>Apellido paterno</p>
-                        <input type="text" name="apellido_paterno" id='apellido_paterno' class="form-control" value="{{ $apellidoPaterno }}" disabled>
+
+                        @if (empty($apellidoPaterno))
+                            <input type="text" name="apellido_paterno" id='apellido_paterno' class="form-control">
+                        @else
+                            <input type="text" name="apellido_paterno" id='apellido_paterno' class="form-control" value="{{ $apellidoPaterno }}" disabled>
+                        @endif
+
+                        
                         @error('apellido_paterno')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col-md-3">
                         <p>Apellido materno</p>
-                        <input type="text" name="apellido_materno" id='apellido_materno' class="form-control" value="{{ $apellidoMaterno }}" disabled>
+
+                        @if (empty($apellidoPaterno))
+                            <input type="text" name="apellido_materno" id='apellido_materno' class="form-control">
+                        @else
+                            <input type="text" name="apellido_materno" id='apellido_materno' class="form-control" value="{{ $apellidoMaterno }}" disabled>
+                        @endif
+
+                        
                         @error('apellido_materno')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
