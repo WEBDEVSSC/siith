@@ -7,6 +7,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithStyles;
+use Illuminate\Support\Facades\Auth;
 
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
@@ -15,12 +16,63 @@ class ProfesionalExport implements FromView, WithStyles
 
     public function view(): View
     {
-        // Consultamos todos los profesionales con sus relaciones (puesto y horario)
-        
-        // Consulta de todos los registros
-        //$profesionales = Profesional::with(['puesto', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])->get();
+        // Cargamos los datos del usuario que inicio sesion
+        $user = Auth::user();
 
-        $profesionales = Profesional::with([
+        $userRol = $user->role;
+
+        // Filtramos la consulta por el nivel del usuario
+
+        $profesionalesQuery = Profesional::with([
+            'puesto', 
+            'horario', 
+            'sueldo', 
+            'gradoAcademico', 
+            'areaMedica', 
+            'ocupacionCeam',
+            'ocupacionAlmacen'
+        ]);
+
+            $profesionalesQuery->whereHas('puesto', function ($query) use ($user) {
+            $query->where('vigencia', 'ACTIVO');
+
+            // Agregamos el filtro por rol
+
+            // Catalogo 2 - Hospitales
+            if ($user->role == 'hospital') 
+            {
+                $query->where('clues_adscripcion', $user->clues_unidad);
+            }
+            // Catalogo 3 - Oficina Jurisdiccional
+            elseif ($user->role == 'ofJurisdiccional') 
+            {
+                $query->where('clues_adscripcion_jurisdiccion', $user->jurisdiccion_unidad);
+            }
+            // Catalogo 4 - CRI CREE
+            elseif ($user->role == 'ofJurisdiccional') 
+            {
+                $query->where('clues_adscripcion_jurisdiccion', $user->jurisdiccion_unidad);
+            }
+            // Catalogo 6 - Oficina Central
+            elseif ($user->role == 'ofCentral') 
+            {
+                $query->where('clues_adscripcion', 'CLSSA002093');
+            }
+            // Catalogo 7 - Almacen
+            elseif ($user->role == 'almacen') 
+            {
+                $query->where('clues_adscripcion', 'CLSSA002064');
+            }
+            // Catalogo 9 - Oncologico
+            elseif ($user->role == 'oncologico') 
+            {
+                $query->where('clues_adscripcion', 'CLSSA002932');
+            }
+        });
+
+        $profesionales = $profesionalesQuery->get();
+
+        /*$profesionales = Profesional::with([
             'puesto', 
             'horario', 
             'sueldo', 
@@ -33,7 +85,7 @@ class ProfesionalExport implements FromView, WithStyles
         ->whereHas('puesto', function ($query) {
             $query->where('vigencia', 'ACTIVO');
         })
-        ->get();
+        ->get();*/
 
         // Pasamos los datos a la vista
         return view('export.profesionales-export', [
