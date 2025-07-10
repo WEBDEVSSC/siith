@@ -8,7 +8,7 @@
 
 
 @section('content_header')
-    <h1><strong>Sistema Integral de Información y Talento Humano</strong></h1>
+    <h1><strong>Sistema Integral de Información de Talento Humano</strong></h1>
 @stop
 
 @section('content')
