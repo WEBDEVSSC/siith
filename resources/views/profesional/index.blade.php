@@ -7,7 +7,7 @@
 @section('plugins.Datatables', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Panel de Control</small></h1>
+    <h1><strong>PANEL DE CONTROL</strong><small>ACTIVOS</small></h1>
 @stop
 
 @section('content')
@@ -67,8 +67,8 @@
 <div class="card">
         <div class="card-header">
 
-            <a href="{{ route('profesionalExport') }}" class="btn btn-success"><i class="fa-solid fa-chart-simple"></i> Exportar Profesionales a Excel</a>
-            <a href="{{ route('profesionalBajasIndex') }}" class="btn btn-success"><i class="fa-solid fa-chart-simple"></i> Bajas Temporales / Definitivas</a>
+            MODULO EN : <button class="btn btn-success btn-sm">COMPLETO</button>
+            <button class="btn btn-danger btn-sm">INCOMPLETO</button>
 
         </div>
         <div class="card-body">
@@ -98,7 +98,7 @@
                             <a href="{{ route('profesionalShow', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="DETALLES">
                                 <i class="fa-solid fa-address-card"></i>
                             </a>
-                            <a target='_blank' href="{{ route('profesionalPDF', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="PDF">
+                            <a target='_blank' href="{{ route('profesionalPDF', $data['profesional']->id) }}" class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="top" title="PDF">
                                 <i class="fa-solid fa-file-lines"></i>
                             </a>
                         </td>
@@ -475,7 +475,9 @@
 
         </div>
         <div class="card-footer">
-
+            <a href="{{ route('profesionalesBajasTemporalesIndex') }}">Trabajadores Con Baja Temporal</a>
+            <br>
+            <a href="{{ route('profesionalesBajasDefinitivasIndex') }}">Trabajadores Con Baja Definitiva</a>
         </div>
 </div>
 

@@ -125,8 +125,11 @@ Route::middleware(['auth'])->group(function ()
     // Ruta para ver los registros
     Route::get('admin/profesionales/profesionalIndex',[ProfesionalController::class, 'profesionalIndex'])->name('profesionalIndex');
 
-    // Ruta para mostrar los registros en baja temporal y definitva
-    Route::get('admin/profesionales/profesionalBajasIndex',[ProfesionalController::class, 'profesionalBajasIndex'])->name('profesionalBajasIndex');
+    // Ruta para mostrar los registros en baja temporal
+    Route::get('admin/profesionales/profesionalesBajasTemporalesIndex',[ProfesionalController::class, 'profesionalesBajasTemporalesIndex'])->name('profesionalesBajasTemporalesIndex');
+
+    // Ruta para mostrar los registros en baja definitiva
+    Route::get('admin/profesionales/profesionalesBajasDefinitivasIndex',[ProfesionalController::class, 'profesionalesBajasDefinitivasIndex'])->name('profesionalesBajasDefinitivasIndex');
 
     // Ruta para mostrar el formulario de edicion
     Route::get('admin/profesionales/profesionalEdit/{id}', [ProfesionalController::class, 'profesionalEdit'])->name('profesionalEdit');
@@ -468,7 +471,7 @@ Route::middleware(['auth'])->group(function ()
      */
     
      // Ruta para el reporte de Excel
-    Route::get('export-clues', [ProfesionalController::class, 'export'])->name('profesionalExport');
+    Route::get('admin/profesionales/reportes/reporteExcel', [ProfesionalController::class, 'export'])->name('profesionalExport');
 
     // Ruta para el envio de correos
     Route::get('admin/profesionales/cumpleanos',[ProfesionalController::class,'enviarFelicitaciones'])->name('enviarFelicitaciones');

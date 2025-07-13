@@ -125,7 +125,7 @@
                         @enderror
                     </div>
                     <div class="col-md-3">
-                        <p>CLUES Nomina</p>
+                        <p>CLUES Nómina</p>
                         <select name="clues_nomina" id="clues_nomina" class="form-control select2">
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($clues as $clue)
@@ -139,7 +139,7 @@
                         @enderror
                     </div>
                     <div class="col-md-3">
-                        <p>CLUES Adscripcion</p>
+                        <p>CLUES Adscripción Física</p>
                         <select name="clue_adscripcion" id="clue_adscripcion" class="form-control" disabled>
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($clues as $clue)
@@ -161,7 +161,7 @@
                 <div class="row mt-3">
 
                         <div class="col-md-3">
-                            <p>Área de trabajo</p>
+                            <p><strong>Área de Trabajo</strong></p>
                             <select name="area_trabajo" id="area_trabajo" class="form-control select2">
                                 <option value="">-- Selecciona una opción --</option>
                                 @foreach ($areasTrabajo as $areaTrabajo)

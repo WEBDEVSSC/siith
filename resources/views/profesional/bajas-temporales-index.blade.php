@@ -7,7 +7,7 @@
 @section('plugins.Datatables', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Panel de Control Bajas</small></h1>
+    <h1><strong>PANEL DE CONTROL</strong> <small>BAJAS TEMPORALES</small></h1>
 @stop
 
 @section('content')
@@ -114,7 +114,9 @@
 
         </div>
         <div class="card-footer">
-
+            <a href="{{ route('profesionalIndex') }}">Trabajadores Activos</a>
+            <br>
+            <a href="{{ route('profesionalIndex') }}">Trabajadores Con Baja Definitiva</a>
         </div>
 </div>
 

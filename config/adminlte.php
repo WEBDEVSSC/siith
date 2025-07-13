@@ -340,6 +340,12 @@ return [
             'label_color' => 'success',
         ],
         [
+            'text' => 'Reporte Excel',
+            'url' => 'admin/profesionales/reportes/reporteExcel',
+            'icon' => 'fa-solid fa-file-excel',
+            'label_color' => 'success',
+        ],
+        [
             'text' => 'Pases de Salida',
             'url' => 'admin/profesionales/paseDeSalida/autorizarIndex',
             'icon' => 'fa-solid fa-clipboard',
