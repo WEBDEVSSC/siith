@@ -42,6 +42,8 @@ class UsuarioController extends Controller
             'password'=>'required|string',
             'clue_id'=>'required|string',
             'rol'=>'required|string',
+            'responsable'=>'string',
+            'contacto'=>'email',
         ],[
             'name.required' => 'El nombre es obligatorio.',
             'name.string' => 'El nombre debe ser una cadena de texto.',
@@ -76,6 +78,9 @@ class UsuarioController extends Controller
         $usuario->nombre_unidad = $clues->nombre;
         $usuario->jurisdiccion_unidad = $clues->clave_jurisdiccion;
         $usuario->role = $rol->rol;
+        $usuario->responsable = $request->responsable;
+        $usuario->contacto = $request->contacto;
+
 
         // Guardamos el registro
         $usuario -> save();

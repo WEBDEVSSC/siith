@@ -86,9 +86,8 @@
                     <th>RFC</th>
                     <th>NOMBRE COMPLETO</th>
                     <th>CLUES ADSCRIPCIÓN</th>
-                    <th>CATALOGO</th>
+                    <th>NÓMINA</th>
                     <th>MODULOS</th>
-                    
                 </tr>
             </thead>
             <tbody>
@@ -106,7 +105,7 @@
                         <td>{{ $data['profesional']->rfc }}{{ $data['profesional']->homoclave }}</td>
                         <td>{{ $data['profesional']->nombre }} {{ $data['profesional']->apellido_paterno }} {{ $data['profesional']->apellido_materno }}</td>
                         <td>{{ $data['cluesAdscripcionNombre'] ?? 'N/A' }}</td>
-                        <td>{{ $data['profesional']->puesto?->clues_adscripcion_tipo }}</td>
+                        <td>{{ $data['profesional']->puesto?->nomina_pago }}</td>
                         <td>
 
                             <!-- SI EL ROL ES DIFERENTE A DIRECTIVO SE MUESTRAN LOS BOTONES DE EDICION DE LOS MODULOS  -->
@@ -259,11 +258,11 @@
                                 @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 1)
 
                                     @if(optional($data['profesional']->ocupacionCentroSalud)->mdl_status == 1)
-                                        <a href="{{ route('editCentrosDeSalud', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OCUPACIÓN CENTROS DE SALUD U y R">
+                                        <a href="{{ route('editCentrosDeSalud', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="OCUPACIÓN CENTROS DE SALUD U y R">
                                             <i class="fa-solid fa-hand-holding-medical"></i>
                                         </a>
                                     @else
-                                        <a href="{{ route('createCentrosDeSalud', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OCUPACIÓN CENTROS DE SALUD U y R">
+                                        <a href="{{ route('createCentrosDeSalud', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="OCUPACIÓN CENTROS DE SALUD U y R">
                                             <i class="fa-solid fa-hand-holding-medical"></i>
                                         </a>
                                     @endif
@@ -275,11 +274,11 @@
                                 @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 2)
 
                                     @if(optional($data['profesional']->ocupacionHospital)->mdl_status == 1)
-                                        <a href="{{ route('editHospital', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OCUPACIÓN HOSPITALES">
+                                        <a href="{{ route('editHospital', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="OCUPACIÓN HOSPITALES">
                                             <i class="fa-solid fa-hospital"></i>
                                         </a>
                                     @else
-                                        <a href="{{ route('createHospital', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OCUPACIÓN HOSPITALES">
+                                        <a href="{{ route('createHospital', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="OCUPACIÓN HOSPITALES">
                                             <i class="fa-solid fa-hospital"></i>
                                         </a>
                                     @endif
@@ -291,11 +290,11 @@
                                 @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 3)
 
                                     @if(optional($data['profesional']->ocupacionOfJurisidccion)->mdl_status == 1)
-                                        <a href="{{ route('editOfJurisdiccional', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
+                                        <a href="{{ route('editOfJurisdiccional', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
                                             <i class="fa-solid fa-building-user"></i>
                                         </a>
                                     @else
-                                        <a href="{{ route('createOfJurisdiccional', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
+                                        <a href="{{ route('createOfJurisdiccional', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
                                             <i class="fa-solid fa-building-user"></i>
                                         </a>
                                     @endif
@@ -307,11 +306,11 @@
                                 @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 4)
 
                                     @if(optional($data['profesional']->ocupacionCriCree)->mdl_status == 1)
-                                        <a href="{{ route('editCriCree', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="CRI CREE">
+                                        <a href="{{ route('editCriCree', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="CRI CREE">
                                             <i class="fa-solid fa-wheelchair"></i>
                                         </a>
                                     @else
-                                        <a href="{{ route('createCriCree', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="CRI CREE">
+                                        <a href="{{ route('createCriCree', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="CRI CREE">
                                             <i class="fa-solid fa-wheelchair"></i>
                                         </a>
                                     @endif
@@ -323,11 +322,11 @@
                                 @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 5)
 
                                     @if(optional($data['profesional']->ocupacionSamuCrum)->mdl_status == 1)
-                                        <a href="{{ route('editSamuCrum', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="SAMU CRUM">
+                                        <a href="{{ route('editSamuCrum', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="SAMU CRUM">
                                             <i class="fa-solid fa-truck-medical"></i>
                                         </a>
                                     @else
-                                        <a href="{{ route('createSamuCrum', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="SAMU CRUM">
+                                        <a href="{{ route('createSamuCrum', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="SAMU CRUM">
                                             <i class="fa-solid fa-truck-medical"></i>
                                         </a>
                                     @endif
@@ -339,11 +338,11 @@
                                 @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 6)
 
                                     @if(optional($data['profesional']->ocupacionOficinaCentral)->mdl_status == 1)
-                                        <a href="{{ route('editOficinaCentral', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OFICINA CENTRAL">
+                                        <a href="{{ route('editOficinaCentral', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="OFICINA CENTRAL">
                                             <i class="fa-solid fa-building-flag"></i>
                                         </a>
                                     @else
-                                        <a href="{{ route('createOficinaCentral', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OFICINA CENTRAL">
+                                        <a href="{{ route('createOficinaCentral', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="OFICINA CENTRAL">
                                             <i class="fa-solid fa-building-flag"></i>
                                         </a>
                                     @endif
@@ -355,11 +354,11 @@
                                 @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 7)
 
                                     @if(optional($data['profesional']->ocupacionAlmacen)->mdl_status == 1)
-                                        <a href="{{ route('editAlmacen', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="ALMACEN ESTATAL">
+                                        <a href="{{ route('editAlmacen', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="ALMACEN ESTATAL">
                                             <i class="fa-solid fa-shop-lock"></i>
                                         </a>
                                     @else
-                                        <a href="{{ route('createAlmacen', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="ALMACEN ESTATAL">
+                                        <a href="{{ route('createAlmacen', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="ALMACEN ESTATAL">
                                             <i class="fa-solid fa-shop-lock"></i>
                                         </a>
                                     @endif
@@ -371,11 +370,11 @@
                                 @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 8)
 
                                     @if(optional($data['profesional']->ocupacionCetsLesp)->mdl_status == 1)
-                                        <a href="{{ route('editCetsLesp', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="CETS LESP">
+                                        <a href="{{ route('editCetsLesp', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="CETS LESP">
                                             <i class="fa-solid fa-droplet"></i>
                                         </a>
                                     @else
-                                        <a href="{{ route('createCetsLesp', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="CETS LESP">
+                                        <a href="{{ route('createCetsLesp', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="CETS LESP">
                                             <i class="fa-solid fa-droplet"></i>
                                         </a>
                                     @endif
@@ -387,11 +386,11 @@
                                 @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 9)
 
                                     @if(optional($data['profesional']->ocupacionCors)->mdl_status == 1)
-                                        <a href="{{ route('editCors', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="C.O.R.S.">
+                                        <a href="{{ route('editCors', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="C.O.R.S.">
                                             <i class="fa-solid fa-virus-covid"></i>
                                         </a>
                                     @else
-                                        <a href="{{ route('createCors', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="C.O.R.S.">
+                                        <a href="{{ route('createCors', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="C.O.R.S.">
                                             <i class="fa-solid fa-virus-covid"></i>
                                         </a>
                                     @endif
@@ -403,11 +402,11 @@
                                 @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 11)
 
                                     @if(optional($data['profesional']->ocupacionCesame)->mdl_status == 1)
-                                        <a href="{{ route('editCesame', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="C.E.S.A.M.E.">
+                                        <a href="{{ route('editCesame', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="C.E.S.A.M.E.">
                                             <i class="fa-solid fa-brain"></i>
                                         </a>
                                     @else
-                                        <a href="{{ route('createCesame', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="C.E.S.A.M.E.">
+                                        <a href="{{ route('createCesame', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="C.E.S.A.M.E.">
                                             <i class="fa-solid fa-brain"></i>
                                         </a>
                                     @endif
@@ -419,11 +418,11 @@
                                 @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 12)
 
                                     @if(optional($data['profesional']->ocupacionPsiParras)->mdl_status == 1)
-                                        <a href="{{ route('editPsiParras', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="PSI PARRAS">
+                                        <a href="{{ route('editPsiParras', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="PSI PARRAS">
                                             <i class="fa-solid fa-brain"></i>
                                         </a>
                                     @else
-                                        <a href="{{ route('createPsiParras', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="PSI PARRAS">
+                                        <a href="{{ route('createPsiParras', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="PSI PARRAS">
                                             <i class="fa-solid fa-brain"></i>
                                         </a>
                                     @endif
@@ -435,11 +434,11 @@
                                 @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 13)
 
                                     @if(optional($data['profesional']->ocupacionCeam)->mdl_status == 1)
-                                        <a href="{{ route('editCeam', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="C.E.A.M.">
+                                        <a href="{{ route('editCeam', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="C.E.A.M.">
                                             <i class="fa-solid fa-person-walking-with-cane"></i>
                                         </a>
                                     @else
-                                        <a href="{{ route('createCeam', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="C.E.A.M.">
+                                        <a href="{{ route('createCeam', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="C.E.A.M.">
                                             <i class="fa-solid fa-person-walking-with-cane"></i>
                                         </a>
                                     @endif
@@ -451,11 +450,11 @@
                                 @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 14)
 
                                     @if(optional($data['profesional']->ocupacionHospitalNino)->mdl_status == 1)
-                                        <a href="{{ route('editHospitalNino', $data['profesional']->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="HOSPITAL DEL NIÑO">
+                                        <a href="{{ route('editHospitalNino', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="HOSPITAL DEL NIÑO">
                                             <i class="fa-solid fa-children"></i>
                                         </a>
                                     @else
-                                        <a href="{{ route('createHospitalNino', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="HOSPITAL DEL NIÑO">
+                                        <a href="{{ route('createHospitalNino', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="HOSPITAL DEL NIÑO">
                                             <i class="fa-solid fa-children"></i>
                                         </a>
                                     @endif

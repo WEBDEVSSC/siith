@@ -5,7 +5,7 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Area Médica</small></h1>
+    <h1><strong>Usuarios</strong> <small>Nuevo registro</small></h1>
 @stop
 
 @section('content')
@@ -28,7 +28,7 @@
                 <div class="row mt-3">      
 
                     <div class="col-md-3">
-                        <p>Nombre</p>
+                        <p>Unidad</p>
                         <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">                       
                     
                         @error('name')
@@ -73,6 +73,22 @@
                 <!-- -->
 
                 <div class="row mt-3">
+
+                    <div class="col-md-3">
+                        <p>Responsable</p>
+                        <input type="text" name="responsable" id="responsable" class="form-control" value="{{ old('responsable') }}">                        
+                        @error('responsable')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-3">
+                        <p>Contacto</p>
+                        <input type="email" name="contacto" id="contacto" class="form-control" value="{{ old('contacto') }}">                        
+                        @error('contacto')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
                     <div class="col-md-3">
                         <p>Rol</p>
