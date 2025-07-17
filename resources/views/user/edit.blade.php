@@ -5,7 +5,7 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Usuarios</strong> <small>Nuevo registro</small></h1>
+    <h1><strong>Usuarios</strong> <small>Editar registro</small></h1>
 @stop
 
 @section('content')
@@ -17,9 +17,11 @@
 
         </div>
 
-        <form action="{{ route('storeUsuario') }}" method="POST">
+        <form action="{{ route('updateUsuario', $usuario->id) }}" method="POST">
 
         @csrf 
+
+        @method('PUT')
             
             <div class="card-body">
 
@@ -29,7 +31,7 @@
 
                     <div class="col-md-3">
                         <p><strong>Nombre</strong></p>
-                        <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">                       
+                        <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $usuario->name) }}">                       
                     
                         @error('name')
                         <br><div class="alert alert-danger">{{ $message }}</div>
@@ -38,15 +40,15 @@
 
                     <div class="col-md-3">
                         <p><strong>Email</strong></p>
-                        <input type="text" name="email" id="email" class="form-control" value="{{ old('email') }}">                        
+                        <input type="text" name="email" id="email" class="form-control" value="{{ old('email', $usuario->email) }}">                        
                         @error('email')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-3">
-                        <p><strong>Password</strong></p>
-                        <input type="text" name="password" id="password" class="form-control">    
+                        <p><strong>Password</strong> <small>* No se muestra por motivos de seguridad</small></p>
+                        <input type="text" name="password" id="password" class="form-control" value="{{ old('password') }}">         
                         @error('password')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -56,11 +58,11 @@
                         <p><strong>Unidad</strong></p>
                         <select name="clue_id" id="clue_id" class="form-control select2">
                             <option value="">-- Selecciona una unidad --</option>
-                            @foreach ($clues as $clue)
-                                <option value="{{ $clue->id }}" {{ old('clue_id') == $clue->id ? 'selected' : '' }}>
-                                    {{ $clue->nombre }}
-                                </option>
-                            @endforeach
+                            @foreach ($clues as $clue)                            
+                                <option value="{{ $clue->id }}" {{ (old('clue_id') ?? $usuario->id_unidad) == $clue->id ? 'selected' : '' }}>
+                                {{ $clue->nombre }}
+                            </option>
+                        @endforeach
                         </select>
                         @error('clue_id')
                         <br><div class="alert alert-danger">{{ $message }}</div>
@@ -76,7 +78,7 @@
 
                     <div class="col-md-3">
                         <p><strong>Responsable</strong></p>
-                        <input type="text" name="responsable" id="responsable" class="form-control" value="{{ old('responsable') }}">                        
+                        <input type="text" name="responsable" id="responsable" class="form-control" value="{{ old('responsable', $usuario->responsable) }}">              
                         @error('responsable')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -84,7 +86,7 @@
 
                     <div class="col-md-3">
                         <p><strong>Contacto</strong></p>
-                        <input type="email" name="contacto" id="contacto" class="form-control" value="{{ old('contacto') }}">                        
+                        <input type="email" name="contacto" id="contacto" class="form-control" value="{{ old('contacto',$usuario->contacto) }}">              
                         @error('contacto')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -95,7 +97,8 @@
                         <select name="rol" id="rol" class="form-control">
                             <option value="">-- Selecciona una unidad --</option>
                             @foreach ($roles as $role)
-                                <option value="{{ $role->id }}" {{ old('rol') == $role->id ? 'selected' : '' }}>
+                                <option value="{{ $role->rol }}"
+                                    {{ (old('rol') ?? $usuario->role) == $role->rol ? 'selected' : '' }}>
                                     {{ $role->label_rol }}
                                 </option>
                             @endforeach
@@ -107,18 +110,11 @@
 
                 </div>
 
-                
-                
-                
-                
-                
-
-                
 
         <!-- ---------------------------------------------------------------------- --> 
         </div>
         <div class="card-footer">
-            <button type="submit" class="btn btn-success btn-sm btn-info">REGISTRAR DATOS DE USUARIO</button>
+            <button type="submit" class="btn btn-success btn-sm btn-info">ACTUALIZAR DATOS DE USUARIO</button>
         </div>
 
     </form>

@@ -27,13 +27,38 @@
     </script>
 @endif
 
+@if(session('update'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Éxito',
+                text: "{{ session('update') }}",
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            });
+        });
+    </script>
+@endif
+
+@if(session('delete'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Éxito',
+                text: "{{ session('delete') }}",
+                icon: 'success',
+                confirmButtonText: 'Ok'
+            });
+        });
+    </script>
+@endif
 
 <!-- -->
     
 <div class="card">
         <div class="card-header">
 
-            <a href="{{ route('createUsuario') }}" class="btn btn-info btn-sm">Nuevo registro</a>
+            <a href="{{ route('createUsuario') }}" class="btn btn-info btn-sm">NUEVO REGISTRO</a>
 
         </div>
         <div class="card-body">
@@ -46,28 +71,40 @@
         <table id="usuariosTable" class="table table-bordered">
             <thead>
                 <tr>
-                    <th></th>
                     <th>NOMBRE</th>
                     <th>EMAIL</th>
                     <th>UNIDAD</th>
-                    <th>ROL</th>
+                    <th>RESPONSABLE</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($usuarios as $usuario)
                     <tr>
-                        <td>
-                            <a href="{{ route('profesionalShow', $usuario->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="DETALLES">
-                                <i class="fa fa-info" aria-hidden="true"></i>
-                            </a>
-                        </td>
                         <td>{{ $usuario->name }}</td>
                         <td>{{ $usuario->email }}</td>
                         <td>{{ $usuario->clues_unidad }} - {{ $usuario->nombre_unidad }}</td>
-                        <td>{{ $usuario->role }}</td>
+                        <td>{{ $usuario->responsable }} - {{ $usuario->contacto }}</td>
 
-                        <td></td>
+                        <td>
+
+                            <a href="{{ route('showUsuario', $usuario->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="DETALLES">
+                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                            </a>
+                            
+                            <a href="{{ route('editUsuario', $usuario->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="EDITAR">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </a>
+
+                            <form action="{{ route('deleteUsuario', $usuario->id) }}" method="POST" class="d-inline form-eliminar">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="ELIMINAR">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        </td>
+
                         
                     </tr>
                 @endforeach
@@ -82,6 +119,8 @@
 </div>
 
 @stop
+
+@include('partials.footer')
 
 @section('css')
     {{-- Add here extra stylesheets --}}
@@ -112,4 +151,32 @@
         $('[data-toggle="tooltip"]').tooltip();
     });
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const forms = document.querySelectorAll('.form-eliminar');
+    
+        forms.forEach(form => {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault(); // Detener el envío inmediato
+    
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "Esta acción no se puede deshacer.",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit(); // Enviar el formulario si el usuario confirma
+                    }
+                });
+            });
+        });
+    });
+    </script>
+
 @stop

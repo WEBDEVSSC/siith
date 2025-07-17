@@ -487,9 +487,17 @@ Route::middleware(['auth'])->group(function ()
 
      Route::get('admin/usuarios/indexUsuario', [UsuarioController::class,'indexUsuario'])->name('indexUsuario');
 
+     Route::get('admin/usuarios/showUsuario/{id}', [UsuarioController::class,'showUsuario'])->name('showUsuario');
+
      Route::get('admin/usuarios/createUsuario', [UsuarioController::class,'createUsuario'])->name('createUsuario');
 
      Route::post('admin/usuarios/storeUsuario', [UsuarioController::class,'storeUsuario'])->name('storeUsuario');
+
+     Route::get('admin/usuarios/editUsuario/{id}', [UsuarioController::class,'editUsuario'])->name('editUsuario');
+
+     Route::put('admin/usuarios/updateUsuario/{id}', [UsuarioController::class,'updateUsuario'])->name('updateUsuario');
+
+     Route::delete('admin/usuarios/deleteUsuario/{id}', [UsuarioController::class, 'deleteUsuario'])->name('deleteUsuario');
 
     /**
      * 
