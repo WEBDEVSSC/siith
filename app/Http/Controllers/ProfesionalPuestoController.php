@@ -11,6 +11,7 @@ use App\Models\InstitucionPuesto;
 use App\Models\NominaPago;
 use App\Models\Ocupacion;
 use App\Models\Profesional;
+use App\Models\ProfesionalBitacora;
 use App\Models\ProfesionalPuesto;
 use App\Models\TipoContrato;
 use App\Models\TipoPersonal;
@@ -18,6 +19,7 @@ use App\Models\TipoPlaza;
 use App\Models\Vigencia;
 use App\Models\VigenciaMotivo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfesionalPuestoController extends Controller
 {
@@ -198,7 +200,7 @@ class ProfesionalPuestoController extends Controller
         $puesto->save();
 
         // Retornar o redirigir a donde lo necesites, por ejemplo:
-        return redirect()->route('profesionalIndex')->with('success', 'Registro realizado correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Registro realizado correctamente.');
     }
 
     /** *******************************************************************************************************************************
@@ -380,7 +382,19 @@ class ProfesionalPuestoController extends Controller
 
         ]);
 
+        $usuario = Auth::user();
+
+        // Guaradmos la bitacora
+        $bitacora = new ProfesionalBitacora();
+
+        $bitacora->id_capturista = $usuario->id;
+        $bitacora->capturista_label = $usuario->responsable;
+        $bitacora->accion = "ACTUALIZACION DEL MODULO PUESTO";
+        $bitacora->id_profesional = $request->id_profesional;
+
+        $bitacora->save();
+
          // Retornar o redirigir a donde lo necesites, por ejemplo:
-         return redirect()->route('profesionalIndex')->with('successUpdatePuesto', 'Registro realizado correctamente.');
+         return redirect()->route('profesionalShow',$request->id_profesional)->with('successUpdatePuesto', 'Registro actualizado correctamente.');
     }
 }

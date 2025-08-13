@@ -352,6 +352,12 @@ return [
             'label_color' => 'success',
             'can' => 'jefeDepartamento',
         ],
+        [
+            'text' => 'Registros incompletos',
+            'url' => 'admin/profesionales/profesionalIncompletosIndex',
+            'icon' => 'fa-solid fa-clipboard',
+            'label_color' => 'success',
+        ],
 
         ['header' => 'account_settings'],
         

@@ -39,8 +39,8 @@
                 <div class="row mt-3">
                     
 
-                    <div class="col-md-3">
-                        <p>Jornada</p>
+                    <div class="col-md-2">
+                        <p><strong>Jornada</strong></p>
                         <select name="jornada" id="jornada" class="form-control">
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($jornadas as $jornada)

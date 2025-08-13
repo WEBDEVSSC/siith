@@ -5,7 +5,7 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Area Médica</small></h1>
+    <h1><strong>Personal en Formación</strong></h1>
 @stop
 
 @section('content')
@@ -37,12 +37,12 @@
 
                 <!-- ---------------------------------- -->
 
+
                 <div class="row mt-3">      
 
                     <div class="col-md-3">
-                        <p>Tipo de formación Area médica-enfermeria-profesional</p>
-                        
-                        <select name="tipo_formacion" id="tipo_formacion" class="form-control">
+                        <p>Tipo de formación</p>                        
+                        <select name="tipo_formacion" id="tipoFormacion" class="form-control">
                             <option value="" disabled selected>Selecciona un tipo de formación</option>
                             @foreach ($tiposFormacion as $tipo)
                                 <option value="{{ $tipo->id }}" {{ old('tipo_formacion') == $tipo->id ? 'selected' : '' }}>
@@ -57,7 +57,7 @@
 
                     <div class="col-md-3">
                         <p>Carrera</p>
-                        <select name="carrera_id" id="carrera_id" class="form-control select2">
+                        <select name="carrera_id" id="carrera" class="form-control select2">
                             <option value="" disabled selected>-- Seleccione una opción --</option>
                             @foreach ($carreras as $carrera)
                                 <option value="{{ $carrera->id }}" {{ old('carrera_id') == $carrera->id ? 'selected' : '' }}>
@@ -70,7 +70,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <p>Institución Educativa Formadora</p>
                         <select name="institucion_educativa_id" id="institucion_educativa_id" class="form-control select2">
                             <option value="" disabled selected>-- Seleccione una opción --</option>
@@ -85,19 +85,21 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-3">
-                        <p>Año que cursa</p>
-                        <input type="text" name="anio_cursa" id="anio_cursa" class="form-control" value="{{ old('anio_cursa') }}">                 
-                        @error('anio_cursa')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>                   
+                               
 
                 </div>
 
                 <!-- -->
 
                 <div class="row mt-3">
+
+                    <div class="col-md-3">
+                        <p>Año que cursa</p>
+                        <input type="text" name="anio_cursa" id="anio_cursa" class="form-control" value="{{ old('anio_cursa') }}">                 
+                        @error('anio_cursa')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>        
                     
                     <div class="col-md-3">
                         <p>Duración de Años de Formación</p>
@@ -112,7 +114,7 @@
         <!-- ---------------------------------------------------------------------- --> 
         </div>
         <div class="card-footer">
-            <button type="submit" class="btn btn-success btn-sm btn-info">REGISTRAR DATOS DE AREA MEDICA</button>
+            <button type="submit" class="btn btn-success btn-sm btn-info">REGISTRAR DATOS DE PERSONAL EN FORMACIÓN</button>
         </div>
 
     </form>
@@ -148,6 +150,26 @@
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+
+    
+<script>
+    $('#tipoFormacion').on('change', function () {
+        let tipoId = $(this).val();
+
+        $('#carrera').empty().append('<option value="">Cargando...</option>');
+
+        if (tipoId) {
+            $.get('/get-carreras/' + tipoId, function (data) {
+                $('#carrera').empty().append('<option value="">Selecciona una carrera</option>');
+                data.forEach(function (item) {
+                    $('#carrera').append(`<option value="${item.id}">${item.carrera}</option>`);
+                });
+            });
+        } else {
+            $('#carrera').empty().append('<option value="">Selecciona una carrera</option>');
+        }
+    });
+</script>
 
     <script>
         $(document).ready(function() {

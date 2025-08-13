@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profesional;
+use App\Models\ProfesionalBitacora;
 use App\Models\ProfesionalCredencializacion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProfesionalCredencializacionController extends Controller
@@ -31,7 +33,7 @@ class ProfesionalCredencializacionController extends Controller
         $fotoUrl = $fotografia ? url('/foto/' . basename($fotografia)) : null;
 
         // Regresamos a la vista
-        return view('credencializacion.index', compact('profesional','fotoUrl'));
+        return view('credencializacion.create', compact('profesional','fotoUrl'));
     }
 
     /**
@@ -70,6 +72,18 @@ class ProfesionalCredencializacionController extends Controller
         $profesional->mdl_credencializacion = $mdl_credencializacion;
 
         $profesional -> save();
+
+        $usuario = Auth::user();
+
+        // Guaradmos la bitacora
+        $bitacora = new ProfesionalBitacora();
+
+        $bitacora->id_capturista = $usuario->id;
+        $bitacora->capturista_label = $usuario->responsable;
+        $bitacora->accion = "NUEVO REGISTRO EN MODULO CREDENCIALIZACION";
+        $bitacora->id_profesional = $request->id_profesional;
+
+        $bitacora->save();
 
         // Redireccionar con un mensaje de éxito
         return redirect()->route('profesionalShow',$profesional->id_profesional)->with('successCredencializacion', 'Registro actualizado correctamente.');
@@ -134,6 +148,18 @@ class ProfesionalCredencializacionController extends Controller
         $credencializacion->update([
             'fotografia'=>$archivoPath,
         ]);
+
+        $usuario = Auth::user();
+
+        // Guaradmos la bitacora
+        $bitacora = new ProfesionalBitacora();
+
+        $bitacora->id_capturista = $usuario->id;
+        $bitacora->capturista_label = $usuario->responsable;
+        $bitacora->accion = "ACTUALIZACION EN MODULO CREDENCIALIZACION";
+        $bitacora->id_profesional = $credencializacion->id_profesional;
+
+        $bitacora->save();
 
         return redirect()->route('profesionalShow',$request->id_profesional)->with('successCredencializacion', 'Registro actualizado correctamente.');
     }

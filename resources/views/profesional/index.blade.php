@@ -83,11 +83,11 @@
                 <tr>
                     <th></th>
                     <th>CURP</th>
-                    <th>RFC</th>
                     <th>NOMBRE COMPLETO</th>
-                    <th>CLUES ADSCRIPCIÓN</th>
+                    <th>ADSCRIPCIÓN FÍSICA</th>
                     <th>NÓMINA</th>
-                    <th>MODULOS</th>
+                    <th>STATUS</th>
+                    <th>MÓDULOS</th>
                 </tr>
             </thead>
             <tbody>
@@ -102,10 +102,24 @@
                             </a>
                         </td>
                         <td>{{ $data['profesional']->curp }}</td>
-                        <td>{{ $data['profesional']->rfc }}{{ $data['profesional']->homoclave }}</td>
                         <td>{{ $data['profesional']->nombre }} {{ $data['profesional']->apellido_paterno }} {{ $data['profesional']->apellido_materno }}</td>
                         <td>{{ $data['cluesAdscripcionNombre'] ?? 'N/A' }}</td>
                         <td>{{ $data['profesional']->puesto?->nomina_pago }}</td>
+                        <td>
+                            @if ($data['profesional']->puesto?->vigencia == "ACTIVO")
+
+                                <button class="btn btn-success btn-sm btn-block">ACTIVO</button>
+
+                            @elseif ($data['profesional']->puesto?->vigencia == "BAJA TEMPORAL")
+
+                                <button class="btn btn-success btn-sm btn-block">BAJA TEMPORAL</button>
+
+                            @else
+
+                                <button class="btn btn-success btn-sm btn-block">BAJA DEFINITIVA</button>
+
+                            @endif
+                            {{ $data['profesional']->puesto?->vigencia }}</td>
                         <td>
 
                             <!-- SI EL ROL ES DIFERENTE A DIRECTIVO SE MUESTRAN LOS BOTONES DE EDICION DE LOS MODULOS  -->
@@ -214,18 +228,18 @@
                                     </a>
                                 @endif
 
-                                <!-- --------------------------- -->
-                                <!-- --------------------------- -->
-                                <!--    MODULO DE AREA MEDICA    -->
-                                <!-- --------------------------- -->
-                                <!-- --------------------------- -->
+                                <!-- ------------------------------------- -->
+                                <!-- ------------------------------------- -->
+                                <!--    MODULO DE PERSONAL EN FORMACION    -->
+                                <!-- ------------------------------------- -->
+                                <!-- ------------------------------------- -->
 
                                 @if(optional($data['profesional']->areaMedica)->mdl_area_medica == 1)
-                                    <a href="{{ route('editAreaMedica', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="AREA MEDICA">
+                                    <a href="{{ route('editAreaMedica', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="PERSONAL EN FORMACIÓN">
                                         <i class="fa fa-stethoscope" aria-hidden="true"></i>
                                     </a>
                                 @else
-                                    <a href="{{ route('createAreaMedica', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="AREA MEDICA">
+                                    <a href="{{ route('createAreaMedica', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="PERSONAL EN FORMACIÓN">
                                         <i class="fa fa-stethoscope" aria-hidden="true"></i>
                                     </a>
                                 @endif
@@ -243,6 +257,22 @@
                                 @else
                                     <a href="{{ route('createCertificacion', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="CERTIFICACIONES">
                                         <i class="fa fa-certificate" aria-hidden="true"></i>
+                                    </a>
+                                @endif
+
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                <!--   MODULO DE EMERGENCIAS     -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+
+                                @if(optional($data['profesional']->emergencia)->mdl_emergencia == 1)
+                                    <a href="{{ route('editEmergencia', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="EMERGENCIA">
+                                        <i class="fa fa-h-square" aria-hidden="true"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('createEmergencia', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="EMERGENCIA">
+                                        <i class="fa fa-h-square" aria-hidden="true"></i>
                                     </a>
                                 @endif
 

@@ -11,14 +11,12 @@ use Illuminate\Http\Request;
 
 class ProfesionalAreaMedicaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function getCarreras($tipoFormacionId)
     {
-        //
+        $carreras = Carrera::where('tipo_formacion', $tipoFormacionId)->orderBy('carrera')->get();
+        return response()->json($carreras);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
@@ -28,7 +26,7 @@ class ProfesionalAreaMedicaController extends Controller
         $profesional = Profesional::findOrFail($id);
 
         // Llenamos el select de TIPO DE FORMACION
-        $tiposFormacion = TiposFormacionMedica::all();
+        $tiposFormacion = TiposFormacionMedica::orderBy('orden', 'asc')->get();
 
         // Llenamos el select de Carrera
         $carreras = Carrera::all();

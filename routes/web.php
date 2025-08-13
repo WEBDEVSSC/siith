@@ -19,6 +19,7 @@ use App\Http\Controllers\ProfesionalCambioDeUnidadController;
 use App\Http\Controllers\ProfesionalCertificacionController;
 use App\Http\Controllers\ProfesionalController;
 use App\Http\Controllers\ProfesionalCredencializacionController;
+use App\Http\Controllers\ProfesionalEmergenciaController;
 use App\Http\Controllers\ProfesionalFirmaNominaController;
 use App\Http\Controllers\ProfesionalGradoAcademicoController;
 use App\Http\Controllers\ProfesionalHorarioController;
@@ -151,6 +152,10 @@ Route::middleware(['auth'])->group(function ()
 
     // Buscador por CURP
     Route::get('admin/profesionales/profesionalBuscadorCurp',[ProfesionalController::class,'profesionalBuscadorCurp'])->name('profesionalBuscadorCurp');
+
+    // Registros incompletos
+
+    Route::get('admin/profesionales/profesionalIncompletosIndex',[ProfesionalController::class,'profesionalIncompletosIndex'])->name('profesionalIncompletosIndex');
 
     /**
      * 
@@ -286,6 +291,8 @@ Route::middleware(['auth'])->group(function ()
  
      Route::put('admin/profesionales/area-medica/updateAreaMedica/{id}', [ProfesionalAreaMedicaController::class, 'updateAreaMedica'])->name('updateAreaMedica');
 
+     Route::get('/get-carreras/{id}', [ProfesionalAreaMedicaController::class, 'getCarreras']);
+
      /**
      * 
      * 
@@ -301,6 +308,22 @@ Route::middleware(['auth'])->group(function ()
      Route::get('admin/profesionales/certificaciones/editCertificacion/{id}', [ProfesionalCertificacionController::class, 'editCertificacion'])->name('editCertificacion');
  
      Route::put('admin/profesionales/certificaciones/updateCertificacion/{id}', [ProfesionalCertificacionController::class, 'updateCertificacion'])->name('updateCertificacion');
+
+     /**
+     * 
+     * 
+     * EMERGENCIAS MODULO
+     * 
+     * 
+     */
+
+     Route::get('admin/profesionales/emergencias/createEmergencia/{id}', [ProfesionalEmergenciaController::class,'createEmergencia'])->name('createEmergencia');
+
+     Route::post('admin/profesionales/emergencias/storeEmergencia', [ProfesionalEmergenciaController::class,'storeEmergencia'])->name('storeEmergencia');
+ 
+     Route::get('admin/profesionales/emergencias/editEmergencia/{id}', [ProfesionalEmergenciaController::class, 'editEmergencia'])->name('editEmergencia');
+ 
+     Route::put('admin/profesionales/emergencias/updateEmergencia/{id}', [ProfesionalEmergenciaController::class, 'updateEmergencia'])->name('updateEmergencia');
 
     /**
      * 

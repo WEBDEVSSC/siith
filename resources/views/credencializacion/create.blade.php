@@ -63,7 +63,7 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <p>Fotografía</p>
+                        <p><strong>Fotografía</strong></p>
                         <input type="file" name="foto" class="form-control-file">
                         @error('foto')
                         <br><div class="alert alert-danger">{{ $message }}</div>

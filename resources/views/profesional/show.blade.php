@@ -14,10 +14,34 @@
 
 @php
     $alerts = [
-        'ocupacionSuccess',
-        'ocupacionUpdate',
-        'successCambioDeUnidad',
-        'successCredencializacion'
+        'success',
+        'successCredencializacion',
+        'updateCredencializacion',
+        'successHorario',
+        'successUpdateHorario',
+        'successUpdatePuesto',
+        'successSueldo',
+        'updateSueldo',
+        'successGradoAcademico',
+        'updateGradoAcademico',
+        'successAreaMedica',
+        'updateAreaMedica',
+        'successCertificacion',
+        'updateCertificacion',
+        'successCentrosDeSalud',
+        'updateCentrosDeSalud',
+        'successHospital',
+        'updateHospital',
+        'successOfJurisdiccional',
+        'updateOfJurisdiccional',
+        'successCriCree',
+        'updateCriCree',
+        'successSamuCrum',
+        'updateSamuCrum',
+        'successOficinaCentral',
+        'updateOficinaCentral',
+        'successAlmacen',
+        'updateAlmacen'
     ];
 @endphp
 
@@ -39,6 +63,18 @@
 <!-- -->
 
 <a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
+
+@if ($usuario->role=="admin")
+
+ADMINISTRADOR
+
+@elseif ($usuario->role == 'ofJurisdiccional')
+
+
+
+@else
+    
+@endif
     
 
 <div class="card mt-3">
@@ -111,6 +147,10 @@
                     <div class="col-md-3">
                         <p><strong>E-mail</strong></p>
                         {{ $profesional->email }}
+                    </div>
+                    <div class="col-md-3">
+                        <p><strong>Padre / Madre de familia</strong></p>
+                        {{ $profesional->padre_madre_familia }}
                     </div>
                 </div>
 

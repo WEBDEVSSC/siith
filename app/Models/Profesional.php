@@ -78,9 +78,19 @@ class Profesional extends Model
         return $this->hasOne(ProfesionalCertificacion::class,'id_profesional');
     }
 
+    public function emergencia()
+    {
+        return $this->hasOne(ProfesionalEmergencia::class,'id_profesional');
+    }
+
     public function cambiosDeUnidad()
     {
         return $this->hasMany(ProfesionalCambioDeUnidad::class, 'id_profesional');
+    }
+
+    public function bitacoras()
+    {
+        return $this->hasMany(ProfesionalBitacora::class, 'id_profesional');
     }
 
 

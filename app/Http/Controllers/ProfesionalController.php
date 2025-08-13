@@ -9,6 +9,7 @@ use App\Models\Entidad;
 use App\Models\EstadoConyugal;
 use App\Models\Municipio;
 use App\Models\Profesional;
+use App\Models\ProfesionalBitacora;
 use App\Models\ProfesionalOcupacionAlmacen;
 use App\Models\ProfesionalOcupacionCeam;
 use App\Models\ProfesionalOcupacionCentroSalud;
@@ -22,6 +23,7 @@ use App\Models\ProfesionalOcupacionOficinaCentral;
 use App\Models\ProfesionalOcupacionOfJurisdiccional;
 use App\Models\ProfesionalOcupacionPsiParras;
 use App\Models\ProfesionalOcupacionSamuCrum;
+use App\Models\ProfesionalPuesto;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -220,7 +222,7 @@ class ProfesionalController extends Controller
             'telefono_casa' => 'required|size:10',
             'celular' => 'required|size:10',
             'email' => 'required|email',
-            
+            'padre_madre_familia' => 'required',
         ], [
             'homoclave.required' => 'La homoclave es obligatoria.',
             'homoclave.size' => 'La homoclave debe ser de 3 caracteres.',            
@@ -235,6 +237,7 @@ class ProfesionalController extends Controller
             'email.required' => 'El correo electrónico es obligatorio.',
             'email.email' => 'El correo electrónico debe ser una dirección válida.',
             'estado_conyugal.required' => 'El estado conyugal es obligatorio.',
+            'padre_madre_familia.required' => 'El campo Padre / Madre de familia es obligatorio.',
         ]);
 
         // Formateamos el valor de SEXO
@@ -249,6 +252,9 @@ class ProfesionalController extends Controller
 
         // Consultamos el municipio de nacimiento
         $municipio = Municipio::findOrFail($request->municipio_nacimiento);
+        
+        // Datos del capturista
+        $usuario = Auth::user();
 
         // Ahora que los datos están validados, puedes guardarlos en la base de datos
         $profesional = new Profesional();
@@ -269,16 +275,25 @@ class ProfesionalController extends Controller
         $profesional->telefono_casa = $request->telefono_casa;
         $profesional->celular = $request->celular;
         $profesional->email = $request->email;
+        $profesional->padre_madre_familia = $request->padre_madre_familia;
+        $profesional->capturado_id = $usuario->id;
+        $profesional->capturado_label = $usuario->responsable;
         $profesional->mdl_datos_generales = 1;
 
         // Guardar el nuevo profesional
         $profesional->save();
 
-        
+        // Guaradmos la bitacora
+        $bitacora = new ProfesionalBitacora();
 
-        // Retornar o redirigir a donde lo necesites, por ejemplo:
-        //return redirect()->route('profesionalIndex')->with('success', 'Registro realizado correctamente.');
+        $bitacora->id_capturista = $usuario->id;
+        $bitacora->capturista_label = $usuario->responsable;
+        $bitacora->accion = "NUEVO REGISTRO DE PROFESIONAL";
+        $bitacora->id_profesional = $profesional->id;
 
+        $bitacora->save();
+
+        // Redireccionamos
         return redirect()->route('profesionalShow', ['id' => $profesional->id])
                  ->with('success', 'Registro realizado correctamente.');
     }
@@ -427,6 +442,28 @@ class ProfesionalController extends Controller
         // Regresamos la vista con los datos
         return view('profesional.index', compact('profesionalesData'));
     }
+
+     /**
+     * 
+     * 
+     *  METODO PARA MOSTRAR EL PANEL CON BAJAS TEMPORALES Y DEFINITIVAS
+     * 
+     * 
+     */
+
+     public function profesionalIncompletosIndex()
+     {
+        // Datos del capturista
+        $usuario = Auth::user();
+
+        // Consultamos los registros
+        $profesionalesIncompletos = Profesional::where('capturado_id',$usuario->id)->get();
+
+        // Regresamos a la vista con el objeto
+        return view('profesional.incompletos-index', compact('profesionalesIncompletos'));
+
+
+     }
 
     /**
      * 
@@ -745,6 +782,7 @@ class ProfesionalController extends Controller
             'telefono_casa' => 'required|size:10',
             'celular' => 'required|size:10',
             'email' => 'required|email',
+            'padre_madre_familia' => 'required',
             
         ], [
             'homoclave.required' => 'La homoclave es obligatoria.',
@@ -760,6 +798,7 @@ class ProfesionalController extends Controller
             'email.required' => 'El correo electrónico es obligatorio.',
             'email.email' => 'El correo electrónico debe ser una dirección válida.',
             'estado_conyugal.required' => 'El estado conyugal es obligatorio.',
+            'padre_madre_familia.required' => 'El campo Padre / Madre de familia es obligatorio.',
         ]);
 
         // Buscamos el registro
@@ -776,10 +815,24 @@ class ProfesionalController extends Controller
             'telefono_casa' => $request->telefono_casa,
             'celular' => $request->celular,
             'email' => $request->email,
+            'padre_madre_familia' => $request->padre_madre_familia,
         ]);
 
+        $usuario = Auth::user();
+
+        // Guaradmos la bitacora
+        $bitacora = new ProfesionalBitacora();
+
+        $bitacora->id_capturista = $usuario->id;
+        $bitacora->capturista_label = $usuario->responsable;
+        $bitacora->accion = "ACTUALIZACION DEL MODULO DE DATOS GENERALES";
+        $bitacora->id_profesional = $profesional->id;
+
+        $bitacora->save();
+
+
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalIndex')->with('success', 'Registro actualizado correctamente.');
+        return redirect()->route('profesionalShow', $profesional->id)->with('success', 'Registro actualizado correctamente.');
 
     }
 
@@ -917,6 +970,10 @@ class ProfesionalController extends Controller
             $catalogoLabel = "CESAME";
             $ocupacion = ProfesionalOcupacionHospitalNino::where('id_profesional', $id)->first();
         }
+        else
+        {
+            $catalogoLabel = "SIN UNIDAD ASIGNADA";
+        }
 
         // Cargamos los datos del MODULO CREDENCIALIZACION
         $credencializacion = $profesional->credencializacion;
@@ -1008,6 +1065,9 @@ class ProfesionalController extends Controller
 
         // Cargamos todos los pases de salida
         $pases = $profesional->pasesDeSalida;
+
+        // Cargamos los datos del usuario logeado
+        $usuario = Auth::user();
 
         // Regresamos la vista con el arreglo
         return view('profesional.show', compact(
@@ -1102,7 +1162,9 @@ class ProfesionalController extends Controller
             'cambiosDeUnidad',
 
             'pases',
-            'catalogoLabel'
+            'catalogoLabel',
+            
+            'usuario'
         ));
     }
 

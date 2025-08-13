@@ -41,7 +41,7 @@
 
                 <div class="row mt-3">
                     <div class="col-md-3">
-                        <p>Fiel</p>
+                        <p><strong>Fiel</strong></p>
                         <select name="fiel" id="fiel" class="form-control">
                             <option value="">-- Seleccione una opción --</option>
                             <option value="SI" {{ old('fiel', $profesional->fiel) == 'SI' ? 'selected' : '' }}>SI</option>
@@ -53,7 +53,7 @@
                         @enderror
                     </div>
                     <div class="col-md-3">
-                        <p>Vigencia</p>
+                        <p><strong>Vigencia</strong></p>
                         <input type="date" name="fiel_vigencia" id='fiel_vigencia' class="form-control" value="{{ old('fiel_vigencia', $profesional->fiel_vigencia) }}">
 
                         @error('fiel_vigencia')
@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <p>Actividad</p>
+                        <p><strong>Actividad</strong></p>
                         <select name="actividad" id="actividad" class="form-control">
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($actividades as $actividad)
@@ -77,7 +77,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <p>Adicional</p>
+                        <p><strong>Adicional</strong></p>
                         <select name="adicional" id="adicional" class="form-control">
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($adicionales as $adicional)
@@ -97,7 +97,7 @@
 
                 <div class="row mt-3">
                     <div class="col-md-3">
-                        <p>Tipo de personal</p>
+                        <p><strong>Tipo de personal</strong></p>
                         <select name="tipo_personal" id="tipo_personal" class="form-control">
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($tiposPersonal as $tipoPersonal)
@@ -111,7 +111,7 @@
                         @enderror
                     </div>
                     <div class="col-md-3">
-                        <p>Código de puesto</p>
+                        <p><strong>Código de puesto</strong></p>
                         <select name="codigo_puesto" id="codigo_puesto" class="form-control select2">
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($codigosPuesto as $codigoPuesto)
@@ -125,7 +125,7 @@
                         @enderror
                     </div>
                     <div class="col-md-3">
-                        <p>CLUES Nómina</p>
+                        <p><strong>CLUES Nómina</strong></p>
                         <select name="clues_nomina" id="clues_nomina" class="form-control select2">
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($clues as $clue)
@@ -139,7 +139,7 @@
                         @enderror
                     </div>
                     <div class="col-md-3">
-                        <p>CLUES Adscripción Física</p>
+                        <p><strong>CLUES Adscripción Física</strong></p>
                         <select name="clue_adscripcion" id="clue_adscripcion" class="form-control" disabled>
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($clues as $clue)
@@ -161,7 +161,7 @@
                 <div class="row mt-3">
 
                         <div class="col-md-3">
-                            <p><strong>Área de Trabajo</strong></p>
+                            <p><strong><strong>Área de Trabajo</strong></strong></p>
                             <select name="area_trabajo" id="area_trabajo" class="form-control select2">
                                 <option value="">-- Selecciona una opción --</option>
                                 @foreach ($areasTrabajo as $areaTrabajo)
@@ -176,7 +176,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <p>Ocupación</p>
+                            <p><strong>Ocupación</strong></p>
                             <select name="ocupacion" id="ocupacion" class="form-control select2">
                                 <option value="">-- Selecciona una opción --</option>
                                 @foreach ($ocupaciones as $ocupacion)
@@ -191,7 +191,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <p>Nomina de pago</p>
+                            <p><strong>Nomina de pago</strong></p>
                             <select name="nomina_pago" id="nomina_pago" class="form-control">
                                 <option value="">-- Selecciona una opción --</option>
                                 @foreach ($nominasPago as $nominaPago)
@@ -206,7 +206,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <p>Tipo de contrato</p>
+                            <p><strong>Tipo de contrato</strong></p>
                             <select name="tipo_contrato" id="tipo_contrato" class="form-control">
                                 <option value="">-- Selecciona una opción --</option>
                                 @foreach ($tiposContrato as $tipoContrato)
@@ -225,14 +225,14 @@
             
         <div class="row mt-3">
             <div class="col-md-3">
-                <p>Fecha de ingreso</p>
+                <p><strong>Fecha de ingreso</strong></p>
                 <input type="date" name="fecha_ingreso" id="fecha_ingreso" class="form-control" value="{{ old('fecha_ingreso' ,$profesional->fecha_ingreso) }}">
                 @error('fecha_ingreso')
                 <br><div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="col-md-3">
-                <p>Tipo de plaza</p>
+                <p><strong>Tipo de plaza</strong></p>
                 <select name="tipo_plaza" id="tipo_plaza" class="form-control">
                     <option value="">-- Selecciona una opción --</option>
                     @foreach ($tiposPlaza as $tipoPlaza)
@@ -246,7 +246,7 @@
                 @enderror
             </div>
             <div class="col-md-6">
-                <p>Institución a la que pertenece el puesto</p>
+                <p><strong>Institución a la que pertenece el puesto</strong></p>
                 <select name="institucion_puesto" id="institucion_puesto" class="form-control">
                     <option value="">-- Selecciona una opción --</option>
                     @foreach ($institucionesPuesto as $institucionPuesto)
@@ -268,7 +268,7 @@
 
         <div class="row mt-3">
             <div class="col-md-3">
-                <p>Vigencia</p>
+                <p><strong>Vigencia</strong></p>
                 <select name="vigencia" id="vigencia" class="form-control">
                     <option value="">Seleccione una vigencia</option>
                     @foreach($vigencias as $vigencia)
@@ -282,7 +282,7 @@
                 @enderror
             </div>
             <div class="col-md-3">
-                <p>Motivo</p>
+                <p><strong>Motivo</strong></p>
                 <select name="vigencia_motivo" id="vigencia_motivo" class="form-control">
                     <option value="">Seleccione una vigencia</option>
                     @foreach($vigenciasMotivos as $vigenciaMotivo)
@@ -296,7 +296,7 @@
                 @enderror
             </div>
             <div class="col-md-3">
-                <p>Temporalidad</p>
+                <p><strong>Temporalidad</strong></p>
                 <select name="temporalidad" id="temporalidad" class="form-control">
                     <option value="">-- Seleccione un motivo --</option>
                     <option value="SI" {{ old('temporalidad' ,$profesional->temporalidad) == 'SI' ? 'selected' : '' }}>SI</option>
@@ -307,7 +307,7 @@
                 @enderror
             </div>
             <div class="col-md-3">
-                <p>Licencia de Maternidad</p>
+                <p><strong>Licencia de Maternidad</strong></p>
                 <select name="licencia_maternidad" id="licencia_maternidad" class="form-control">
                     <option value="">-- Seleccione un motivo --</option>
                     <option value="SI" {{ old('licencia_maternidad' ,$profesional->licencia_maternidad) == 'SI' ? 'selected' : '' }}>SI</option>
@@ -324,7 +324,7 @@
         
         <div class="row mt-3">
             <div class="col-md-3">
-                <p>Seguro de Salud</p>
+                <p><strong>Seguro de Salud</strong></p>
                 <select name="seguro_salud" id="seguro_salud" class="form-control">
                     <option value="">-- Seleccione un motivo --</option>
                     <option value="SI" {{ old('seguro_salud' ,$profesional->seguro_salud) == 'SI' ? 'selected' : '' }}>SI</option>
