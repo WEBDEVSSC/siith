@@ -93,6 +93,11 @@ class Profesional extends Model
         return $this->hasMany(ProfesionalBitacora::class, 'id_profesional');
     }
 
+    public function vigencias()
+    {
+        return $this->hasMany(ProfesionalVigencia::class, 'id_profesional', 'id');
+    }
+
 
     // MODELOS PARA ASIGANCIONES DE OCUPACION
 

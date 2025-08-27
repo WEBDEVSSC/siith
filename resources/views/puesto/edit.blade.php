@@ -5,7 +5,7 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Puesto</small></h1>
+    <h1><strong>Puesto</strong></h1>
 @stop
 
 @section('content')
@@ -23,7 +23,6 @@
         <div class="card-header">
 
             <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm">PERFIL DEL TRABAJADOR</a>
-            <a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
             
         </div>
 
@@ -116,7 +115,7 @@
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($codigosPuesto as $codigoPuesto)
                                 <option value="{{ $codigoPuesto->codigo_puesto }}" {{ old('codigo_puesto', $profesional->codigo_puesto) == $codigoPuesto->codigo_puesto ? 'selected' : '' }}>
-                                    {{ $codigoPuesto->codigo_puesto }}
+                                    {{ $codigoPuesto->codigo_puesto }} - {{ $codigoPuesto->codigo }}
                                 </option>
                             @endforeach
                         </select>
@@ -191,7 +190,7 @@
                         </div>
 
                         <div class="col-md-3">
-                            <p><strong>Nomina de pago</strong></p>
+                            <p><strong>Nómina de pago</strong></p>
                             <select name="nomina_pago" id="nomina_pago" class="form-control">
                                 <option value="">-- Selecciona una opción --</option>
                                 @foreach ($nominasPago as $nominaPago)

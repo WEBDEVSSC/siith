@@ -5,7 +5,7 @@
 @section('plugins.Sweetalert2', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Perfil del Trabajador</small></h1>
+    <h1><strong>Perfil del Trabajador</strong> <small></small></h1>
 @stop
 
 @section('content')
@@ -61,8 +61,6 @@
 @endforeach
 
 <!-- -->
-
-<a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
 
 @if ($usuario->role=="admin")
 
@@ -171,9 +169,9 @@ ADMINISTRADOR
         @endif
 
         @if ($profesional->credencializacion?->mdl_credencializacion == 1)
-            <a href="{{ route('editCredencializacion', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR CREDENCIALIZACION</a>
+            <a href="{{ route('editCredencializacion', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR FOTOGRAFÍA</a>
         @elseif ($profesional->credencializacion?->mdl_credencializacion == 0)
-            <a href="{{ route('createCredencializacion', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> CREAR CREDENCIALIZACION</a>
+            <a href="{{ route('createCredencializacion', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> SUBIR FOTOGRAFÍA</a>
         @endif
 
     </div>
@@ -601,58 +599,7 @@ ADMINISTRADOR
         </div>
     </div>
 
-    <!-- -- -->
-
-    <div class="card">
-        <div class="card-header">
-            <strong>MOVIMIENTOS</strong>
-        </div>
-        <div class="card-body">
-
-            @if ($cambiosDeUnidad->isEmpty())
-                <p>No hay cambios registrados.</p>
-            @else
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>FECHA</th>
-                            <th>TIPO</th>
-                            <th>ORIGEN</th>
-                            <th>DESTINO</th>
-                            <th>INICIO</th>
-                            <th>TERMINO</th>
-                            <th>DOC.</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($cambiosDeUnidad as $cambio)
-                            <tr>
-                                <td>{{ \Carbon\Carbon::parse($cambio->created_at)->format('d/m/Y') }}</td>
-                                <td>{{ $cambio->tipo_movimiento }}</td>
-                                <td>J. {{ $cambio->unidad_origen_jurisdiccion }} - {{ $cambio->unidad_origen_clues }} - {{ $cambio->unidad_origen_nombre }}</td>
-                                <td>J. {{ $cambio->unidad_destino_jurisdiccion }} - {{ $cambio->unidad_destino_clues }} - {{ $cambio->unidad_destino_nombre }}</td>
-                                <td>{{ \Carbon\Carbon::parse($cambio->fecha_inicio)->format('d/m/Y') }}</td>
-                                <td>{{ \Carbon\Carbon::parse($cambio->fecha_final)->format('d/m/Y') }}</td>
-                                <td>
-                                    @if ($cambio->documento_respaldo)
-                                    <a href="{{ route('descargar.documento', $cambio->id) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
-                                    @else
-                                        No disponible
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @endif
-
-            
-
-        </div>
-        <div class="card-footer"></div>
-    </div>
-
-    <!-- -- -->
+    {{-- ---------------------------------------------------------------------------------------------- --}}
 
     <div class="card">
         <div class="card-header">
@@ -728,7 +675,7 @@ ADMINISTRADOR
     </div>
 
     <!-- --------------------------------------------------------------- -->
-
+    {{--
     <div class="card mt-3">
         <div class="card-header">
             <i class="fa fa-credit-card" aria-hidden="true"></i> <strong>SUELDO</strong></div>
@@ -769,7 +716,7 @@ ADMINISTRADOR
             @endif
     
         </div>
-    </div>
+    </div> --}}
 
     <!-- --------------------------------------------------------------- -->
 
@@ -926,6 +873,108 @@ ADMINISTRADOR
     </div>
     
     <!-- --------------------------------------------------------------- -->
+
+    <!-- -- -->
+
+    <div class="card">
+        <div class="card-header">
+            <i class="fa-solid fa-tags"></i> <strong>VIGENCIAS</strong>
+        </div>
+        <div class="card-body">
+
+            <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Motivo</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Final</th>
+                    <th>Registro</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($vigencias as $vigencia)
+                <tr>
+                    <td>{{ $vigencia->vigencia ?? 'N/A' }}</td>
+                    <td>{{ $vigencia->vigencia_motivo ?? 'N/A' }}</td>
+                    <td>{{ $vigencia->fecha_inicio ? \Carbon\Carbon::parse($vigencia->fecha_inicio)->format('d-m-Y') : 'N/A' }}</td>
+                    <td>{{ ($vigencia->fecha_final && $vigencia->fecha_final != '0000-00-00') 
+                    ? \Carbon\Carbon::parse($vigencia->fecha_final)->format('d-m-Y') 
+                    : 'N/A' }}</td>
+                    {{-- <td>{{ $vigencia->fecha_final ? \Carbon\Carbon::parse($vigencia->fecha_final)->format('d-m-Y') : 'N/A' }}</td> --}}
+                    <td>{{ $vigencia->created_at ? \Carbon\Carbon::parse($vigencia->created_at)->format('d-m-Y') : 'N/A' }}</td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="5" class="text-center">No hay registros de vigencias</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+
+        </div>
+        <div class="card-footer">
+            
+            <a href="{{ route('createVigencia', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
+
+        </div>
+    </div>
+
+    <!-- -- -->
+    
+    <!-- -- -->
+
+    <div class="card">
+        <div class="card-header">
+            <strong>MOVIMIENTOS</strong>
+        </div>
+        <div class="card-body">
+
+            @if ($cambiosDeUnidad->isEmpty())
+                <p>No hay cambios registrados.</p>
+            @else
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>FECHA</th>
+                            <th>TIPO</th>
+                            <th>ORIGEN</th>
+                            <th>DESTINO</th>
+                            <th>INICIO</th>
+                            <th>TERMINO</th>
+                            <th>DOC.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($cambiosDeUnidad as $cambio)
+                            <tr>
+                                <td>{{ \Carbon\Carbon::parse($cambio->created_at)->format('d/m/Y') }}</td>
+                                <td>{{ $cambio->tipo_movimiento }}</td>
+                                <td>J. {{ $cambio->unidad_origen_jurisdiccion }} - {{ $cambio->unidad_origen_clues }} - {{ $cambio->unidad_origen_nombre }}</td>
+                                <td>J. {{ $cambio->unidad_destino_jurisdiccion }} - {{ $cambio->unidad_destino_clues }} - {{ $cambio->unidad_destino_nombre }}</td>
+                                <td>{{ \Carbon\Carbon::parse($cambio->fecha_inicio)->format('d/m/Y') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($cambio->fecha_final)->format('d/m/Y') }}</td>
+                                <td>
+                                    @if ($cambio->documento_respaldo)
+                                    <a href="{{ route('descargar.documento', $cambio->id) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
+                                    @else
+                                        No disponible
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @endif
+
+            
+
+        </div>
+        <div class="card-footer"></div>
+    </div>
+
+    <!-- -- -->
+
     <!-- --------------------------------------------------------------- -->
 
     <div class="card mt-3">

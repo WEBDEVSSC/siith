@@ -5,7 +5,7 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Puesto</small></h1>
+    <h1><strong>Puesto</strong></h1>
 @stop
 
 @section('content')
@@ -21,8 +21,6 @@
     
 <div class="card">
         <div class="card-header">
-
-            
 
             <a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
 
@@ -115,7 +113,7 @@
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($codigosPuesto as $codigoPuesto)
                                 <option value="{{ $codigoPuesto->codigo_puesto }}" {{ old('codigo_puesto') == $codigoPuesto->codigo_puesto ? 'selected' : '' }}>
-                                    {{ $codigoPuesto->codigo_puesto }}
+                                    {{ $codigoPuesto->codigo_puesto }} - {{ $codigoPuesto->codigo }}
                                 </option>
                             @endforeach
                         </select>

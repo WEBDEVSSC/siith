@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Datos Generales</small></h1>
+    <h1><strong>Datos Generales</strong></h1>
 @stop
 
 @section('content')
@@ -160,7 +160,7 @@
 
                 <div class="row mt-3">
                     <div class="col-md-3">
-                        <p><strong>Estado conyugal</strong></p>
+                        <p><strong>Estado civil</strong></p>
                         <select name="estado_conyugal" id="estado_conyugal" class="form-control">
                             <option value="">-- Selecciona una opción --</option>
                             @foreach($estadosConyuales as $estadoConyuale)
@@ -209,6 +209,13 @@
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="col-md-3">
+                        <p><strong>Fecha de ingreso a la Institución</strong></p>
+                        <input type="date" name="fecha_inicio" id='fecha_inicio' class="form-control" value="{{ old('fecha_inicio') }}">
+                        @error('fecha_inicio')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
         
         </div>
@@ -218,6 +225,8 @@
 
     </form>
 </div>
+
+<br>
 
 @stop
 

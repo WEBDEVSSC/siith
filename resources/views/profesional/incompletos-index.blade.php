@@ -109,9 +109,7 @@
 
         </div>
         <div class="card-footer">
-            <a href="{{ route('profesionalIndex') }}">Trabajadores Activos</a>
-            <br>
-            <a href="{{ route('profesionalesBajasTemporalesIndex') }}">Trabajadores Con Baja Temporal</a>
+            
         </div>
 </div>
 

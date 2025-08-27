@@ -24,6 +24,7 @@ use App\Models\ProfesionalOcupacionOfJurisdiccional;
 use App\Models\ProfesionalOcupacionPsiParras;
 use App\Models\ProfesionalOcupacionSamuCrum;
 use App\Models\ProfesionalPuesto;
+use App\Models\ProfesionalVigencia;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -219,10 +220,11 @@ class ProfesionalController extends Controller
             'municipio_nacimiento' => 'required',
             'nacionalidad' => 'required',
             'estado_conyugal' => 'required',
-            'telefono_casa' => 'required|size:10',
+            'telefono_casa' => 'nullable|size:10',
             'celular' => 'required|size:10',
             'email' => 'required|email',
             'padre_madre_familia' => 'required',
+            'fecha_inicio' => 'required',
         ], [
             'homoclave.required' => 'La homoclave es obligatoria.',
             'homoclave.size' => 'La homoclave debe ser de 3 caracteres.',            
@@ -238,6 +240,7 @@ class ProfesionalController extends Controller
             'email.email' => 'El correo electrónico debe ser una dirección válida.',
             'estado_conyugal.required' => 'El estado conyugal es obligatorio.',
             'padre_madre_familia.required' => 'El campo Padre / Madre de familia es obligatorio.',
+            'fecha_inicio.required' => 'El campo es obligatorio.',
         ]);
 
         // Formateamos el valor de SEXO
@@ -292,6 +295,17 @@ class ProfesionalController extends Controller
         $bitacora->id_profesional = $profesional->id;
 
         $bitacora->save();
+
+        // Generamos un el status de vigencia ACTIVO
+
+        $vigencia = new ProfesionalVigencia();
+
+        $vigencia->id_profesional = $profesional->id;
+        $vigencia->vigencia = "ACTIVO";
+        $vigencia->vigencia_motivo = "ACTIVO";
+        $vigencia->fecha_inicio = $request->fecha_inicio;
+
+        $vigencia->save();
 
         // Redireccionamos
         return redirect()->route('profesionalShow', ['id' => $profesional->id])
@@ -1066,6 +1080,9 @@ class ProfesionalController extends Controller
         // Cargamos todos los pases de salida
         $pases = $profesional->pasesDeSalida;
 
+        // Cargamos el historico de vigencias
+        $vigencias = $profesional->vigencias()->orderBy('id', 'desc')->get();
+
         // Cargamos los datos del usuario logeado
         $usuario = Auth::user();
 
@@ -1164,7 +1181,9 @@ class ProfesionalController extends Controller
             'pases',
             'catalogoLabel',
             
-            'usuario'
+            'usuario',
+
+            'vigencias'
         ));
     }
 

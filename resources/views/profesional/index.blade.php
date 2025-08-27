@@ -7,7 +7,7 @@
 @section('plugins.Datatables', true)
 
 @section('content_header')
-    <h1><strong>PANEL DE CONTROL</strong><small>ACTIVOS</small></h1>
+    <h1><strong>PANEL DE CONTROL</strong></h1>
 @stop
 
 @section('content')
@@ -43,7 +43,8 @@
         'successOficinaCentral',
         'updateOficinaCentral',
         'successAlmacen',
-        'updateAlmacen'
+        'updateAlmacen',
+        'successVigencia'
     ];
 @endphp
 
@@ -67,8 +68,19 @@
 <div class="card">
         <div class="card-header">
 
-            MODULO EN : <button class="btn btn-success btn-sm">COMPLETO</button>
-            <button class="btn btn-danger btn-sm">INCOMPLETO</button>
+           <div class="d-flex justify-content-end gap-2">
+                <a href="{{ route('profesionalesBajasTemporalesIndex') }}" 
+                class="btn btn-warning text-white fw-bold">
+                    <i class="fa-solid fa-chart-column"></i> Trabajadores Con Baja Temporal
+                </a>
+
+                <span style="color: white;">|||</span>
+
+                <a href="{{ route('profesionalesBajasDefinitivasIndex') }}" 
+                class="btn btn-danger text-white fw-bold">
+                    <i class="fa-solid fa-chart-gantt"></i> Trabajadores Con Baja Definitiva
+                </a>
+            </div>
 
         </div>
         <div class="card-body">
@@ -86,7 +98,6 @@
                     <th>NOMBRE COMPLETO</th>
                     <th>ADSCRIPCIÓN FÍSICA</th>
                     <th>NÓMINA</th>
-                    <th>STATUS</th>
                     <th>MÓDULOS</th>
                 </tr>
             </thead>
@@ -105,21 +116,6 @@
                         <td>{{ $data['profesional']->nombre }} {{ $data['profesional']->apellido_paterno }} {{ $data['profesional']->apellido_materno }}</td>
                         <td>{{ $data['cluesAdscripcionNombre'] ?? 'N/A' }}</td>
                         <td>{{ $data['profesional']->puesto?->nomina_pago }}</td>
-                        <td>
-                            @if ($data['profesional']->puesto?->vigencia == "ACTIVO")
-
-                                <button class="btn btn-success btn-sm btn-block">ACTIVO</button>
-
-                            @elseif ($data['profesional']->puesto?->vigencia == "BAJA TEMPORAL")
-
-                                <button class="btn btn-success btn-sm btn-block">BAJA TEMPORAL</button>
-
-                            @else
-
-                                <button class="btn btn-success btn-sm btn-block">BAJA DEFINITIVA</button>
-
-                            @endif
-                            {{ $data['profesional']->puesto?->vigencia }}</td>
                         <td>
 
                             <!-- SI EL ROL ES DIFERENTE A DIRECTIVO SE MUESTRAN LOS BOTONES DE EDICION DE LOS MODULOS  -->
@@ -164,11 +160,11 @@
                                 <!-- --------------------------- -->
 
                                 @if(optional($data['profesional']->credencializacion)->mdl_credencializacion == 1)
-                                    <a href="{{ route('editCredencializacion', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="CREDENCIALIZACIÓN">
+                                    <a href="{{ route('editCredencializacion', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="FOTOGRAFÍA">
                                         <i class="fa fa-camera" aria-hidden="true"></i>
                                     </a>
                                 @else
-                                    <a href="{{ route('createCredencializacion', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="CREDENCIALIZACIÓN">
+                                    <a href="{{ route('createCredencializacion', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="FOTOGRAFÍA">
                                         <i class="fa fa-camera" aria-hidden="true"></i>
                                     </a>
                                 @endif
@@ -196,6 +192,8 @@
                                 <!-- --------------------------- -->
                                 <!-- --------------------------- -->
 
+                                {{--
+                                
                                 @if(optional($data['profesional']->sueldo)->mdl_sueldo == 1)
                                 <a href="{{ route('editSueldo', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="SUELDO">
                                     <i class="fa fa-credit-card" aria-hidden="true"></i>
@@ -204,11 +202,13 @@
                                     <a href="{{ route('createSueldo', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="SUELDO">
                                         <i class="fa fa-credit-card" aria-hidden="true"></i>
                                     </a>
-                                @endif
+                                @endif 
+                                
+                                --}}
 
                                 <!-- -------------------------------------------------------------------------------------- -->
 
-                                <hr>
+                                
 
                                 <!-- -------------------------------------------------------------------------------------- -->
 
@@ -227,6 +227,8 @@
                                         <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                                     </a>
                                 @endif
+
+                                <hr>
 
                                 <!-- ------------------------------------- -->
                                 <!-- ------------------------------------- -->
@@ -275,6 +277,16 @@
                                         <i class="fa fa-h-square" aria-hidden="true"></i>
                                     </a>
                                 @endif
+
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                <!--   MODULO DE VIGENCIAS       -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+
+                                <a href="{{ route('createVigencia', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="VIGENCIA">
+                                        <i class="fa-solid fa-tags"></i>
+                                    </a>
 
                                 
                                 <!-- --------------------------------------- -->

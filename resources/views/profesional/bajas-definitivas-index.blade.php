@@ -67,6 +67,13 @@
 <div class="card">
         <div class="card-header">
 
+            <div class="d-flex justify-content-end gap-2">
+                <a href="{{ route('profesionalIndex') }}" 
+                class="btn btn-success text-white fw-bold">
+                    <i class="fa-solid fa-chart-simple"></i> Trabajadores Activos 
+                </a>
+            </div>
+
         </div>
         <div class="card-body">
 
@@ -102,7 +109,7 @@
                         <td>{{ $data['profesional']->rfc }}{{ $data['profesional']->homoclave }}</td>
                         <td>{{ $data['profesional']->nombre }} {{ $data['profesional']->apellido_paterno }} {{ $data['profesional']->apellido_materno }}</td>
                         <td>{{ $data['cluesAdscripcionNombre'] ?? 'N/A' }}</td>
-                        <td>{{ $data['profesional']->puesto?->vigencia }} - {{ $data['profesional']->puesto?->vigencia }}</td>
+                        <td>{{ $data['profesional']->puesto?->vigencia }} - {{ $data['profesional']->puesto?->vigencia_motivo }}</td>
                     
                     </tr>
                 @endforeach
@@ -112,9 +119,7 @@
 
         </div>
         <div class="card-footer">
-            <a href="{{ route('profesionalIndex') }}">Trabajadores Activos</a>
-            <br>
-            <a href="{{ route('profesionalesBajasTemporalesIndex') }}">Trabajadores Con Baja Temporal</a>
+            
         </div>
 </div>
 

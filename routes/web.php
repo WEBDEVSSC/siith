@@ -27,6 +27,7 @@ use App\Http\Controllers\ProfesionalOcupacionController;
 use App\Http\Controllers\ProfesionalPaseDeSalidaController;
 use App\Http\Controllers\ProfesionalPuestoController;
 use App\Http\Controllers\ProfesionalSueldoController;
+use App\Http\Controllers\ProfesionalVigenciaController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -324,6 +325,22 @@ Route::middleware(['auth'])->group(function ()
      Route::get('admin/profesionales/emergencias/editEmergencia/{id}', [ProfesionalEmergenciaController::class, 'editEmergencia'])->name('editEmergencia');
  
      Route::put('admin/profesionales/emergencias/updateEmergencia/{id}', [ProfesionalEmergenciaController::class, 'updateEmergencia'])->name('updateEmergencia');
+
+     /**
+     * 
+     * 
+     * VIGENCIAS MODULO
+     * 
+     * 
+     */
+
+     Route::get('admin/profesionales/vigencias/createVigencia/{id}', [ProfesionalVigenciaController::class,'createVigencia'])->name('createVigencia');
+
+     Route::post('admin/profesionales/vigencias/storeVigencia', [ProfesionalVigenciaController::class,'storeVigencia'])->name('storeVigencia');
+ 
+     Route::get('admin/profesionales/vigencias/editVigencia/{id}', [ProfesionalVigenciaController::class, 'editVigencia'])->name('editVigencia');
+ 
+     Route::put('admin/profesionales/vigencias/updateVigencia/{id}', [ProfesionalVigenciaController::class, 'updateVigencia'])->name('updateVigencia');
 
     /**
      * 
