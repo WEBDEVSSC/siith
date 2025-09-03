@@ -39,6 +39,40 @@
                 <!-- ---------------------------------- -->
 
                 <div class="row mt-3">
+                    <div class="col-md-6">
+                        <p><strong>CLUES Nómina</strong></p>
+                        <select name="clues_nomina" id="clues_nomina" class="form-control select2">
+                            <option value="">-- Selecciona una opción --</option>
+                            @foreach ($clues as $clue)
+                                <option value="{{ $clue->clues }}" {{ old('clues_nomina' ,$profesional->clues_nomina) == $clue->clues ? 'selected' : '' }}>
+                                    {{ $clue->clave_jurisdiccion }} - {{ $clue->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('clues_nomina')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    {{-- 
+                    <div class="col-md-6">
+                        <p><strong>CLUES Adscripción Física</strong></p>
+                        <select name="clues_adscripcion" id="clues_adscripcion" class="form-control select2">
+                            <option value="">-- Selecciona una opción --</option>
+                            @foreach ($cluesAdscripcion as $clueAdscripcion)
+                                <option value="{{ $clueAdscripcion->clues }}">
+                                        {{ $clueAdscripcion->clave_jurisdiccion }} - {{ $clueAdscripcion->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('clues_adscripcion')
+                            <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div> --}}
+                </div>
+
+                <!-- ---------------------------------- -->
+
+                <div class="row mt-3">
                     <div class="col-md-3">
                         <p><strong>Fiel</strong></p>
                         <select name="fiel" id="fiel" class="form-control">
@@ -124,42 +158,6 @@
                         @enderror
                     </div>
                     <div class="col-md-3">
-                        <p><strong>CLUES Nómina</strong></p>
-                        <select name="clues_nomina" id="clues_nomina" class="form-control select2">
-                            <option value="">-- Selecciona una opción --</option>
-                            @foreach ($clues as $clue)
-                                <option value="{{ $clue->clues }}" {{ old('clues_nomina' ,$profesional->clues_nomina) == $clue->clues ? 'selected' : '' }}>
-                                    {{ $clue->clave_jurisdiccion }} - {{ $clue->nombre }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('clues_nomina')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="col-md-3">
-                        <p><strong>CLUES Adscripción Física</strong></p>
-                        <select name="clue_adscripcion" id="clue_adscripcion" class="form-control" disabled>
-                            <option value="">-- Selecciona una opción --</option>
-                            @foreach ($clues as $clue)
-                                <option value="{{ $clue->clues }}" {{ old('clues_adscripcion', $profesional->clues_adscripcion) == $clue->clues ? 'selected' : '' }}>
-                                    {{ $clue->clave_jurisdiccion }} - {{ $clue->nombre }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('clues_adscripcion')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-
-                <input type="hidden" name="clues_adscripcion" value="{{ $profesional->clues_adscripcion }}">
-
-                <!-- -->
-
-                <div class="row mt-3">
-
-                        <div class="col-md-3">
                             <p><strong><strong>Área de Trabajo</strong></strong></p>
                             <select name="area_trabajo" id="area_trabajo" class="form-control select2">
                                 <option value="">-- Selecciona una opción --</option>
@@ -173,8 +171,7 @@
                             <br><div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
-
-                        <div class="col-md-3">
+                         <div class="col-md-3">
                             <p><strong>Ocupación</strong></p>
                             <select name="ocupacion" id="ocupacion" class="form-control select2">
                                 <option value="">-- Selecciona una opción --</option>
@@ -188,6 +185,18 @@
                             <br><div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                    
+                </div>
+
+                <input type="hidden" name="clues_adscripcion" value="{{ $profesional->clues_adscripcion }}">
+
+                <!-- -->
+
+                <div class="row mt-3">
+
+                        
+
+                       
 
                         <div class="col-md-3">
                             <p><strong>Nómina de pago</strong></p>
@@ -264,7 +273,7 @@
 
 
         <!-- ---------------------------------------------------------------------- --> 
-
+        {{--
         <div class="row mt-3">
             <div class="col-md-3">
                 <p><strong>Vigencia</strong></p>
@@ -317,7 +326,7 @@
                 @enderror
             </div>
         </div>
-
+        --}}
         <!-- ---------------------------------------------------------------------- --> 
 
         
@@ -427,6 +436,15 @@
     <script>
         $(document).ready(function() {
             $('#clues_nomina').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#clues_adscripcion').select2({
                 placeholder: "-- Seleccione una opcion --",
                 allowClear: true
             });

@@ -285,9 +285,18 @@
                                 <!-- --------------------------- -->
 
                                 <a href="{{ route('createVigencia', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="VIGENCIA">
-                                        <i class="fa-solid fa-tags"></i>
-                                    </a>
+                                    <i class="fa-solid fa-tags"></i>
+                                </a>
 
+                                <!-- ------------------------------------ -->
+                                <!-- ------------------------------------ -->
+                                <!--   MODULO DE CAMBIO TIPO NOMINA       -->
+                                <!-- ------------------------------------ -->
+                                <!-- ------------------------------------ -->
+
+                                <a href="{{ route('createCambioTipoNomina', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="CAMBIO TIPO NÓMINA">
+                                    <i class="fa fa-building" aria-hidden="true"></i>
+                                </a>
                                 
                                 <!-- --------------------------------------- -->
                                 <!-- --------------------------------------- -->
@@ -516,9 +525,7 @@
 
         </div>
         <div class="card-footer">
-            <a href="{{ route('profesionalesBajasTemporalesIndex') }}">Trabajadores Con Baja Temporal</a>
-            <br>
-            <a href="{{ route('profesionalesBajasDefinitivasIndex') }}">Trabajadores Con Baja Definitiva</a>
+    
         </div>
 </div>
 

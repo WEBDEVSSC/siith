@@ -2,6 +2,8 @@
 
 @section('title', 'Dashboard')
 
+@section('plugins.Select2', true)
+
 @section('content_header')
     <h1><strong>Datos Generales</strong></h1>
 @stop
@@ -216,6 +218,24 @@
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="col-md-6">
+                        <p><strong>CLUES Adscripción Física</strong></p>
+                        <select name="clues_adscripcion" id="clues_adscripcion" class="form-control select2">
+                            <option value="">-- Selecciona una opción --</option>
+                            @forelse ($cluesAdscripcion as $clueAdscripcion)
+                                <option value="{{ $clueAdscripcion->clues }}" 
+                                    {{ old('clues_adscripcion', $profesional->clues_adscripcion ?? '') == $clueAdscripcion->clues ? 'selected' : '' }}>
+                                    {{ $clueAdscripcion->clave_jurisdiccion }} - {{ $clueAdscripcion->nombre }}
+                                </option>
+                            @empty
+                                <option value="">No hay registros disponibles</option>
+                            @endforelse
+                        </select>
+
+                        @error('clues_adscripcion')
+                            <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
         
         </div>
@@ -235,8 +255,36 @@
 @section('css')
     {{-- Add here extra stylesheets --}}
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+    <style>
+        /* Asegura que Select2 tenga el mismo alto y bordes redondeados */
+        .select2-container--default .select2-selection--single {
+            height: calc(2.25rem + 2px) !important; /* Ajuste de altura */
+            border-radius: 0.25rem !important; /* Bordes redondeados */
+            border: 1px solid #ced4da !important; /* Color del borde */
+        }
+        
+        /* Alineación del texto */
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: calc(2.25rem - 2px) !important;
+            padding-left: 0.75rem !important;
+        }
+        
+        /* Ajuste del ícono desplegable */
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: calc(2.25rem + 2px) !important;
+        }
+    </style>
 @stop
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#clues_adscripcion').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script>
 @stop

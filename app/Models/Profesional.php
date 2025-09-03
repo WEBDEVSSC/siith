@@ -98,6 +98,11 @@ class Profesional extends Model
         return $this->hasMany(ProfesionalVigencia::class, 'id_profesional', 'id');
     }
 
+    public function cambioTipoNomina()
+    {
+        return $this->hasMany(ProfesionalCambioTipoNomina::class, 'id_profesional', 'id');
+    }
+
 
     // MODELOS PARA ASIGANCIONES DE OCUPACION
 

@@ -183,6 +183,22 @@ class ProfesionalController extends Controller
          // Lista de municipios
          $municipios = Municipio::where('relacion',$entidad->id)->get();
 
+         // Cargamos los datos del usuario que inicio sesion
+        $usuario = Auth::user();
+
+        // Condicionamos para que solo se enlisten las unidades que corresponden
+        if($usuario->role == 'ofJurisdiccional')
+        {
+            $cluesAdscripcion = Clue::where('clave_jurisdiccion', $usuario->jurisdiccion_unidad) 
+                                    ->whereIn('clave_establecimiento', [1, 3])
+                                    ->orderBy('nombre', 'asc')
+                                    ->get();
+        }
+        else
+        {
+            $cluesAdscripcion = Clue::where('id', $usuario->id_unidad)->get();
+        }
+
          return view('profesional.create',compact(
             'curp',
             'rfc',
@@ -193,6 +209,7 @@ class ProfesionalController extends Controller
             'municipios',
             'nacionalidad',
             'estadosConyuales',
+            'cluesAdscripcion'
         ));
     }
 
@@ -224,7 +241,7 @@ class ProfesionalController extends Controller
             'celular' => 'required|size:10',
             'email' => 'required|email',
             'padre_madre_familia' => 'required',
-            'fecha_inicio' => 'required',
+            'clues_adscripcion' => 'required',
         ], [
             'homoclave.required' => 'La homoclave es obligatoria.',
             'homoclave.size' => 'La homoclave debe ser de 3 caracteres.',            
@@ -240,8 +257,9 @@ class ProfesionalController extends Controller
             'email.email' => 'El correo electrónico debe ser una dirección válida.',
             'estado_conyugal.required' => 'El estado conyugal es obligatorio.',
             'padre_madre_familia.required' => 'El campo Padre / Madre de familia es obligatorio.',
-            'fecha_inicio.required' => 'El campo es obligatorio.',
+            'clues_adscripcion.required' => 'La CLUES es obligatorio',
         ]);
+
 
         // Formateamos el valor de SEXO
         if($request->sexo === "H")
@@ -306,6 +324,28 @@ class ProfesionalController extends Controller
         $vigencia->fecha_inicio = $request->fecha_inicio;
 
         $vigencia->save();
+
+        // Generamos el registro en en el modulo de puesto
+
+        $cluesAdscripcion = Clue::where('clues',$request->clues_adscripcion)->firstOrFail();;
+
+        $puesto = new ProfesionalPuesto();
+
+        $puesto->id_profesional = $profesional->id;
+        $puesto->vigencia = "ACTIVO";
+        $puesto->vigencia_motivo = "ACTIVO";
+        $puesto->fecha_ingreso = $request->fecha_inicio;
+
+        $puesto->clues_adscripcion = $request->clues_adscripcion;
+        $puesto->clues_adscripcion_nombre = $cluesAdscripcion->nombre;
+        $puesto->clues_adscripcion_municipio = $cluesAdscripcion->municipio;
+        $puesto->clues_adscripcion_jurisdiccion = $cluesAdscripcion->clave_jurisdiccion;
+        $puesto->clues_adscripcion_tipo = $cluesAdscripcion->clave_establecimiento;
+
+        $puesto->mdl_puesto = 1;
+        
+
+        $puesto->save();
 
         // Redireccionamos
         return redirect()->route('profesionalShow', ['id' => $profesional->id])

@@ -109,7 +109,7 @@ class ProfesionalPuestoController extends Controller
             'tipo_personal' => 'required',
             'codigo_puesto' => 'required',
             'clues_nomina' => 'required',
-            'clues_adscripcion' => 'required',
+            'clues_adscripcion' => 'nullable',
             'area_trabajo' => 'required',
             'ocupacion' => 'required',
             'nomina_pago' => 'required',
@@ -229,12 +229,28 @@ class ProfesionalPuestoController extends Controller
 
         // Llenamos el select de CODIGO DE PUESTO
         $codigosPuesto = CodigoPuesto::orderBy('codigo_puesto', 'asc')->get();
-
+        
         // Llenamos el select de CLUES Nomina y Adscripcion
         $clues = Clue::orderBy('clave_jurisdiccion', 'asc') 
              ->orderBy('nombre', 'asc')
              ->get();
 
+        // Cargamos los datos del usuario que inicio sesion
+        $usuario = Auth::user();
+
+        // Condicionamos para que solo se enlisten las unidades que corresponden
+        if($usuario->role == 'ofJurisdiccional')
+        {
+            $cluesAdscripcion = Clue::where('clave_jurisdiccion', $usuario->jurisdiccion_unidad) 
+                                    ->whereIn('clave_establecimiento', [1, 3])
+                                    ->orderBy('nombre', 'asc')
+                                    ->get();
+        }
+        else
+        {
+            $cluesAdscripcion = Clue::where('id', $usuario->id_unidad)->get();
+        }
+        
         // Llenamos el select de AREA DE TRABAJO
         $areasTrabajo = AreaTrabajo::orderBy('area_trabajo','asc')->get();
 
@@ -269,6 +285,7 @@ class ProfesionalPuestoController extends Controller
             'tiposPersonal',
             'codigosPuesto',
             'clues',
+            'cluesAdscripcion',
             'areasTrabajo',
             'ocupaciones',
             'nominasPago',

@@ -16,6 +16,7 @@ use App\Http\Controllers\CatalogoOcupacionPsiParrasController;
 use App\Http\Controllers\CatalogoOcupacionSamuCrumController;
 use App\Http\Controllers\ProfesionalAreaMedicaController;
 use App\Http\Controllers\ProfesionalCambioDeUnidadController;
+use App\Http\Controllers\ProfesionalCambioTipoNominaController;
 use App\Http\Controllers\ProfesionalCertificacionController;
 use App\Http\Controllers\ProfesionalController;
 use App\Http\Controllers\ProfesionalCredencializacionController;
@@ -341,6 +342,22 @@ Route::middleware(['auth'])->group(function ()
      Route::get('admin/profesionales/vigencias/editVigencia/{id}', [ProfesionalVigenciaController::class, 'editVigencia'])->name('editVigencia');
  
      Route::put('admin/profesionales/vigencias/updateVigencia/{id}', [ProfesionalVigenciaController::class, 'updateVigencia'])->name('updateVigencia');
+
+          /**
+     * 
+     * 
+     * CAMBIO DE TIPO DE NOMINA MODULO
+     * 
+     * 
+     */
+
+     Route::get('admin/profesionales/cambioTipoNomina/createCambioTipoNomina/{id}', [ProfesionalCambioTipoNominaController::class,'createCambioTipoNomina'])->name('createCambioTipoNomina');
+
+     Route::post('admin/profesionales/cambioTipoNomina/storeCambioTipoNomina', [ProfesionalCambioTipoNominaController::class,'storeCambioTipoNomina'])->name('storeCambioTipoNomina');
+ 
+     Route::get('admin/profesionales/cambioTipoNomina/editCambioTipoNomina/{id}', [ProfesionalCambioTipoNominaController::class, 'editCambioTipoNomina'])->name('editCambioTipoNomina');
+ 
+     Route::put('admin/profesionales/cambioTipoNomina/updateCambioTipoNomina/{id}', [ProfesionalCambioTipoNominaController::class, 'updateCambioTipoNomina'])->name('updateCambioTipoNomina');
 
     /**
      * 

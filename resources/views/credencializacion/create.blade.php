@@ -20,14 +20,14 @@
 <div class="card">
         <div class="card-header">
 
-            <a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
+            <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm">PERFIL DEL TRABAJADOR</a>
 
         </div>
 
         <div class="card-body">
 
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-6">
 
                     <center>
 
@@ -40,9 +40,11 @@
                     </center>
 
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-6">
 
-                   
+                   <div class="alert alert-danger" role="alert">
+                    <strong>Nota : </strong> El formato de la fotografía debe ser .JPG, .JPEG, .PNG en un tamaño máximo de 2 Mb.
+                    </div>
 
                 </div>
             </div>
@@ -74,7 +76,7 @@
                 <!-- ---------------------------------------------------------------------- --> 
         </div>
         <div class="card-footer">
-            <button type="submit" class="btn btn-success btn-sm btn-info">REGISTRAR FOTOGRAFÍA PARA CREDENCIALIZACIÓN</button>
+            <button type="submit" class="btn btn-success btn-sm btn-info">REGISTRAR FOTOGRAFÍA</button>
         </div>
 
     </form>

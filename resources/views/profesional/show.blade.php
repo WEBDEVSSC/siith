@@ -304,162 +304,162 @@ ADMINISTRADOR
         </div>
         <div class="card-footer">
 
-            @if ($profesional->puesto->clues_adscripcion_tipo == 1)
+            @if ($profesional->puesto?->clues_adscripcion_tipo == 1)
 
                 @if ($profesional->ocupacionCentroSalud?->mdl_status == 1)
                     <a href="{{ route('editCentrosDeSalud', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
-                        <i class="fa-solid fa-building-user"></i> EDITAR OCUPACIÓN
+                        <i class="fa-solid fa-building-user"></i> EDITAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @else  
                     <a href="{{ route('createCentrosDeSalud', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
-                        <i class="fa-solid fa-building-user"></i> CARGAR OCUPACIÓN
+                        <i class="fa-solid fa-building-user"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @endif
                 
             @endif
 
-            @if ($profesional->puesto->clues_adscripcion_tipo == 2)
+            @if ($profesional->puesto?->clues_adscripcion_tipo == 2)
 
                 @if ($profesional->ocupacionHospital?->mdl_status == 1)
                     <a href="{{ route('editHospital', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
-                        <i class="fa-solid fa-building-user"></i> EDITAR OCUPACIÓN
+                        <i class="fa-solid fa-building-user"></i> EDITAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @else  
                     <a href="{{ route('createHospital', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
-                        <i class="fa-solid fa-building-user"></i> CARGAR OCUPACIÓN
+                        <i class="fa-solid fa-building-user"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @endif
                 
             @endif
 
-            @if ($profesional->puesto->clues_adscripcion_tipo == 3)
+            @if ($profesional->puesto?->clues_adscripcion_tipo == 3)
 
                 @if ($profesional->ocupacionOfJurisidccion?->mdl_status == 1)
                     <a href="{{ route('editOfJurisdiccional', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
-                        <i class="fa-solid fa-building-user"></i> EDITAR OCUPACIÓN
+                        <i class="fa-solid fa-building-user"></i> EDITAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @else  
                     <a href="{{ route('createOfJurisdiccional', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
-                        <i class="fa-solid fa-building-user"></i> CARGAR OCUPACIÓN
+                        <i class="fa-solid fa-building-user"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @endif
                 
             @endif
 
-             @if ($profesional->puesto->clues_adscripcion_tipo == 6)
+             @if ($profesional->puesto?->clues_adscripcion_tipo == 6)
 
                 @if ($profesional->ocupacionOficinaCentral?->mdl_status == 1)
                     <a href="{{ route('editOficinaCentral', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
-                        <i class="fa-solid fa-building-user"></i> EDITAR OCUPACIÓN
+                        <i class="fa-solid fa-building-user"></i> EDITAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @else  
                     <a href="{{ route('createOficinaCentral', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="OF. JURISDICCIONAL">
-                        <i class="fa-solid fa-building-user"></i> CARGAR OCUPACIÓN
+                        <i class="fa-solid fa-building-user"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @endif
                 
             @endif
             
             <!-- ALMACEN -->
-            @if ($profesional->puesto->clues_adscripcion_tipo == 7)
+            @if ($profesional->puesto?->clues_adscripcion_tipo == 7)
 
                 @if ($profesional->ocupacionAlmacen?->mdl_status == 1)
                     <a href="{{ route('editAlmacen', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="ALMACEN">
-                        <i class="fa-solid fa-shop-lock"></i> EDITAR OCUPACIÓN
+                        <i class="fa-solid fa-shop-lock"></i> EDITAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @else  
                     <a href="{{ route('createAlmacen', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="ALMACENL">
-                        <i class="fa-solid fa-shop-lock"></i> CARGAR OCUPACIÓN
+                        <i class="fa-solid fa-shop-lock"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @endif
                 
             @endif
 
             <!-- CETS LESP -->
-            @if ($profesional->puesto->clues_adscripcion_tipo == 8)
+            @if ($profesional->puesto?->clues_adscripcion_tipo == 8)
 
                 @if ($profesional->ocupacionCetsLesp?->mdl_status == 1)
                     <a href="{{ route('editCetsLesp', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="CETS LESP">
-                        <i class="fa-solid fa-droplet"></i> EDITAR OCUPACIÓN
+                        <i class="fa-solid fa-droplet"></i> EDITAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @else  
                     <a href="{{ route('createCetsLesp', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="CETS LESP">
-                        <i class="fa-solid fa-droplet"></i> CARGAR OCUPACIÓN
+                        <i class="fa-solid fa-droplet"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @endif
                 
             @endif
 
             <!-- CORS -->
-            @if ($profesional->puesto->clues_adscripcion_tipo == 9)
+            @if ($profesional->puesto?->clues_adscripcion_tipo == 9)
 
                 @if ($profesional->ocupacionCors?->mdl_status == 1)
                     <a href="{{ route('editCors', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="C.O.R.S.">
-                        <i class="fa-solid fa-virus-covid"></i> EDITAR OCUPACIÓN
+                        <i class="fa-solid fa-virus-covid"></i> EDITAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @else  
                     <a href="{{ route('createCors', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="C.O.R.S.">
-                        <i class="fa-solid fa-virus-covid"></i> CARGAR OCUPACIÓN
+                        <i class="fa-solid fa-virus-covid"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @endif
                 
             @endif
 
             <!-- CESAME -->
-            @if ($profesional->puesto->clues_adscripcion_tipo == 11)
+            @if ($profesional->puesto?->clues_adscripcion_tipo == 11)
 
                 @if ($profesional->ocupacionCesame?->mdl_status == 1)
                     <a href="{{ route('editCesame', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="C.E.S.A.M.E.">
-                        <i class="fa-solid fa-brain"></i> EDITAR OCUPACIÓN
+                        <i class="fa-solid fa-brain"></i> EDITAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @else  
                     <a href="{{ route('createCesame', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="C.E.S.A.M.E.">
-                        <i class="fa-solid fa-brain"></i> CARGAR OCUPACIÓN
+                        <i class="fa-solid fa-brain"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @endif
                 
             @endif
 
             <!-- PSI PARRAS -->
-            @if ($profesional->puesto->clues_adscripcion_tipo == 12)
+            @if ($profesional->puesto?->clues_adscripcion_tipo == 12)
 
                 @if ($profesional->ocupacionPsiParras?->mdl_status == 1)
                     <a href="{{ route('editPsiParras', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="PSI PARRAS">
-                        <i class="fa-solid fa-brain"></i> EDITAR OCUPACIÓN
+                        <i class="fa-solid fa-brain"></i> EDITAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @else  
                     <a href="{{ route('createPsiParras', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="PSI PARRAS">
-                        <i class="fa-solid fa-brain"></i> CARGAR OCUPACIÓN
+                        <i class="fa-solid fa-brain"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @endif
                 
             @endif
 
             <!-- CEAM -->
-            @if ($profesional->puesto->clues_adscripcion_tipo == 13)
+            @if ($profesional->puesto?->clues_adscripcion_tipo == 13)
 
                 @if ($profesional->ocupacionCeam?->mdl_status == 1)
                     <a href="{{ route('editCeam', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="PSI PARRAS">
-                        <i class="fa-solid fa-person-walking-with-cane"></i> EDITAR OCUPACIÓN
+                        <i class="fa-solid fa-person-walking-with-cane"></i> EDITAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @else  
                     <a href="{{ route('createCeam', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="PSI PARRAS">
-                        <i class="fa-solid fa-person-walking-with-cane"></i> CARGAR OCUPACIÓN
+                        <i class="fa-solid fa-person-walking-with-cane"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @endif
                 
             @endif
 
             <!-- HOSPITAL DEL NIÑO -->
-            @if ($profesional->puesto->clues_adscripcion_tipo == 14)
+            @if ($profesional->puesto?->clues_adscripcion_tipo == 14)
 
                 @if ($profesional->ocupacionHospitalNino?->mdl_status == 1)
                     <a href="{{ route('editHospitalNino', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="HOSPITAL DEL NIÑO">
-                        <i class="fa-solid fa-children"></i> EDITAR OCUPACIÓN
+                        <i class="fa-solid fa-children"></i> EDITAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @else  
                     <a href="{{ route('createHospitalNino', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="HOSPITAL DEL NIÑO">
-                        <i class="fa-solid fa-children"></i> CARGAR OCUPACIÓN
+                        <i class="fa-solid fa-children"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @endif
                 
@@ -526,8 +526,8 @@ ADMINISTRADOR
                     {{ $tipoContrato }}
                 </div>
                 <div class="col-md-3">
-                    <p><strong>Fecha de ingreso</strong></p>
-                    {{ \Carbon\Carbon::parse($fechaIngreso)->format('d/m/Y') }}
+                    {{-- <p><strong>Fecha de ingreso</strong></p>
+                    {{ \Carbon\Carbon::parse($fechaIngreso)->format('d/m/Y') }} --}}
                 </div>
                 <div class="col-md-3">
                     <p><strong>Tipo plaza</strong></p>
@@ -576,12 +576,12 @@ ADMINISTRADOR
 
             <div class="row mt-3">
                 <div class="col-md-6">
-                    <p><strong>CLUES Nomina</strong></p>
+                    <p><strong>CLUES Nómina</strong></p>
                     {{ $cluesNomina }} - {{ $cluesNominaNombre }} | {{ $cluesNominaMunicipio }} - JURISDICCIÓN {{ $cluesNominaJurisdiccion }}
                 </div>
                 <div class="col-md-6">
                     <p><strong>CLUES Adscripción</strong></p>
-                    {{ $cluesAdscripcion }} - {{ $cluesAdscripcionNombre }} | {{ $cluesNominaMunicipio }} - JURISDICCIÓN {{ $cluesNominaJurisdiccion }}
+                    {{ $cluesAdscripcion }} - {{ $cluesAdscripcionNombre }} | {{ $cluesAdscripcionMunicipio }} - JURISDICCIÓN {{ $cluesAdscripcionJurisdiccion }}
                 </div>
             </div>
 
@@ -590,10 +590,10 @@ ADMINISTRADOR
         
         <div class="card-footer">
 
-            @if ($profesional->puesto->mdl_puesto == 1)
+            @if ($profesional->puesto?->mdl_puesto == 1)
                 <a href="{{ route('editPuesto', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
-            @elseif ($profesional->mdl_datos_generales == 0)
-                <a href="{{ route('createPuesto', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
+            @elseif ($profesional->puesto?->mdl_puesto == 0)
+                <a href="{{ route('editPuesto', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
             @endif
     
         </div>
