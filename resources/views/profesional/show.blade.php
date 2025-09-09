@@ -41,7 +41,8 @@
         'successOficinaCentral',
         'updateOficinaCentral',
         'successAlmacen',
-        'updateAlmacen'
+        'updateAlmacen',
+        'successCambioTipoNomina'
     ];
 @endphp
 
@@ -179,6 +180,8 @@ ADMINISTRADOR
 </div>
 
     <!-- -- -->
+
+    <h1>NCKJSNCSDBCHDSBHJ</h1>{{ $cluesAdscripcionTipo }}
 
     <div class="card">
         <div class="card-header"><strong>OCUPACIÓN</strong> {{ $catalogoLabel }}  </div>
@@ -346,6 +349,8 @@ ADMINISTRADOR
                 
             @endif
 
+            {{-- FALTA LA 4 --}}
+
              @if ($profesional->puesto?->clues_adscripcion_tipo == 6)
 
                 @if ($profesional->ocupacionOficinaCentral?->mdl_status == 1)
@@ -469,6 +474,48 @@ ADMINISTRADOR
     </div>
 
     <!-- -- -->
+
+    <div class="card">
+        <div class="card-header">
+            <i class="fa fa-building" aria-hidden="true"></i> <strong>Cambios de Tipo de Nómina</strong>
+        </div>
+        <div class="card-body">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nómina de Pago</th>
+                        <th>Tipo de Contrato</th>
+                        <th>Tipo de Plaza</th>
+                        <th>Seguro de Salud</th>
+                        <th>Código de Puesto</th>
+                        <th>Fecha de Ingreso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($tiposDeNomina as $tipoDeNomina)
+                        <tr>
+                            <td>{{ $tipoDeNomina->nomina_pago ?? 'N/A' }}</td>
+                            <td>{{ $tipoDeNomina->tipo_contrato ?? 'N/A' }}</td>
+                            <td>{{ $tipoDeNomina->tipo_plaza ?? 'N/A' }}</td>
+                            <td>{{ $tipoDeNomina->seguro_salud ?? 'N/A' }}</td>
+                            <td>{{ $tipoDeNomina->codigo_puesto ?? 'N/A' }} -
+                                {{ $tipoDeNomina->codigo_puesto_label ?? 'N/A' }}</td>
+
+                            <td>{{ $tipoDeNomina->fecha_ingreso ? \Carbon\Carbon::parse($tipoDeNomina->fecha_ingreso)->format('d-m-Y') : 'N/A' }}
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="text-center">No hay registros de vigencias</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+
+        </div>
+        <div class="card-footer"></div>
+    </div>
     <!-- -- -->
 
     <div class="card">

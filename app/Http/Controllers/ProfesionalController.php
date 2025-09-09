@@ -1123,6 +1123,9 @@ class ProfesionalController extends Controller
         // Cargamos el historico de vigencias
         $vigencias = $profesional->vigencias()->orderBy('id', 'desc')->get();
 
+        // Cargamos los tipos de nomina
+        $tiposDeNomina = $profesional->cambioTipoNomina()->orderBy('id','desc')->get();
+
         // Cargamos los datos del usuario logeado
         $usuario = Auth::user();
 
@@ -1223,7 +1226,9 @@ class ProfesionalController extends Controller
             
             'usuario',
 
-            'vigencias'
+            'vigencias',
+
+            'tiposDeNomina'
         ));
     }
 

@@ -10,6 +10,22 @@
 
 @section('content')
 
+<div class="alert alert-danger" role="alert">
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>Ups!</strong> Hubo algunos problemas con tus datos:<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+
+</div>
+
 <div class="alert alert-info" role="alert">
 
     <ul>
@@ -53,26 +69,6 @@
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    {{-- 
-                    <div class="col-md-6">
-                        <p><strong>CLUES Adscripción Física</strong></p>
-                        <select name="clues_adscripcion" id="clues_adscripcion" class="form-control select2">
-                            <option value="">-- Selecciona una opción --</option>
-                            @foreach ($cluesAdscripcion as $clueAdscripcion)
-                                <option value="{{ $clueAdscripcion->clues }}">
-                                        {{ $clueAdscripcion->clave_jurisdiccion }} - {{ $clueAdscripcion->nombre }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('clues_adscripcion')
-                            <br><div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div> --}}
-                </div>
-
-                <!-- ---------------------------------- -->
-
-                <div class="row mt-3">
                     <div class="col-md-3">
                         <p><strong>Fiel</strong></p>
                         <select name="fiel" id="fiel" class="form-control">
@@ -93,6 +89,27 @@
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    {{-- 
+                    <div class="col-md-6">
+                        <p><strong>CLUES Adscripción Física</strong></p>
+                        <select name="clues_adscripcion" id="clues_adscripcion" class="form-control select2">
+                            <option value="">-- Selecciona una opción --</option>
+                            @foreach ($cluesAdscripcion as $clueAdscripcion)
+                                <option value="{{ $clueAdscripcion->clues }}">
+                                        {{ $clueAdscripcion->clave_jurisdiccion }} - {{ $clueAdscripcion->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('clues_adscripcion')
+                            <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div> --}}
+                </div>
+
+                <!-- ---------------------------------- -->
+
+                <div class="row mt-3">
+                    
 
                     <div class="col-md-3">
                         <p><strong>Actividad</strong></p>
@@ -124,11 +141,6 @@
                         @enderror
                     </div>
 
-                </div>
-
-                <!-- -->
-
-                <div class="row mt-3">
                     <div class="col-md-3">
                         <p><strong>Tipo de personal</strong></p>
                         <select name="tipo_personal" id="tipo_personal" class="form-control">
@@ -143,20 +155,7 @@
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="col-md-3">
-                        <p><strong>Código de puesto</strong></p>
-                        <select name="codigo_puesto" id="codigo_puesto" class="form-control select2">
-                            <option value="">-- Selecciona una opción --</option>
-                            @foreach ($codigosPuesto as $codigoPuesto)
-                                <option value="{{ $codigoPuesto->codigo_puesto }}" {{ old('codigo_puesto', $profesional->codigo_puesto) == $codigoPuesto->codigo_puesto ? 'selected' : '' }}>
-                                    {{ $codigoPuesto->codigo_puesto }} - {{ $codigoPuesto->codigo }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('codigo_puesto')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
+
                     <div class="col-md-3">
                             <p><strong><strong>Área de Trabajo</strong></strong></p>
                             <select name="area_trabajo" id="area_trabajo" class="form-control select2">
@@ -171,6 +170,10 @@
                             <br><div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
+
+                </div>
+
+                <div class="row mt-3">
                          <div class="col-md-3">
                             <p><strong>Ocupación</strong></p>
                             <select name="ocupacion" id="ocupacion" class="form-control select2">
@@ -185,75 +188,8 @@
                             <br><div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                    
-                </div>
 
-                <input type="hidden" name="clues_adscripcion" value="{{ $profesional->clues_adscripcion }}">
-
-                <!-- -->
-
-                <div class="row mt-3">
-
-                        
-
-                       
-
-                        <div class="col-md-3">
-                            <p><strong>Nómina de pago</strong></p>
-                            <select name="nomina_pago" id="nomina_pago" class="form-control">
-                                <option value="">-- Selecciona una opción --</option>
-                                @foreach ($nominasPago as $nominaPago)
-                                    <option value="{{ $nominaPago->nomina }}" {{ old('nomina_pago', $profesional->nomina_pago) == $nominaPago->nomina ? 'selected' : '' }}>
-                                        {{ $nominaPago->nomina }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('nomina_pago')
-                            <br><div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="col-md-3">
-                            <p><strong>Tipo de contrato</strong></p>
-                            <select name="tipo_contrato" id="tipo_contrato" class="form-control">
-                                <option value="">-- Selecciona una opción --</option>
-                                @foreach ($tiposContrato as $tipoContrato)
-                                    <option value="{{ $tipoContrato->tipo_contrato }}" {{ old('tipo_contrato', $profesional->tipo_contrato) == $tipoContrato->tipo_contrato ? 'selected' : '' }}>
-                                        {{ $tipoContrato->tipo_contrato }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('tipo_contrato')
-                            <br><div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                </div>
-        <!-- ---------------------------------------------------------------------- --> 
-            
-        <div class="row mt-3">
-            <div class="col-md-3">
-                <p><strong>Fecha de ingreso</strong></p>
-                <input type="date" name="fecha_ingreso" id="fecha_ingreso" class="form-control" value="{{ old('fecha_ingreso' ,$profesional->fecha_ingreso) }}">
-                @error('fecha_ingreso')
-                <br><div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="col-md-3">
-                <p><strong>Tipo de plaza</strong></p>
-                <select name="tipo_plaza" id="tipo_plaza" class="form-control">
-                    <option value="">-- Selecciona una opción --</option>
-                    @foreach ($tiposPlaza as $tipoPlaza)
-                        <option value="{{ $tipoPlaza->tipo_plaza }}" {{ old('tipo_plaza', $profesional->tipo_plaza) == $tipoPlaza->tipo_plaza ? 'selected' : '' }}>
-                            {{ $tipoPlaza->tipo_plaza }}
-                        </option>
-                    @endforeach
-                </select>
-                @error('tipo_plaza')
-                <br><div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-            </div>
-            <div class="col-md-6">
+                        <div class="col-md-9">
                 <p><strong>Institución a la que pertenece el puesto</strong></p>
                 <select name="institucion_puesto" id="institucion_puesto" class="form-control">
                     <option value="">-- Selecciona una opción --</option>
@@ -267,6 +203,97 @@
                 <br><div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
+
+                </div>
+
+                <!-- -->
+
+                <div class="row mt-3">
+                    
+                    {{-- <div class="col-md-3">
+                        <p><strong>Código de puesto</strong></p>
+                        <select name="codigo_puesto" id="codigo_puesto" class="form-control select2">
+                            <option value="">-- Selecciona una opción --</option>
+                            @foreach ($codigosPuesto as $codigoPuesto)
+                                <option value="{{ $codigoPuesto->codigo_puesto }}" {{ old('codigo_puesto', $profesional->codigo_puesto) == $codigoPuesto->codigo_puesto ? 'selected' : '' }}>
+                                    {{ $codigoPuesto->codigo_puesto }} - {{ $codigoPuesto->codigo }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('codigo_puesto')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div> --}}
+                    
+                    
+                </div>
+
+                <input type="hidden" name="clues_adscripcion" value="{{ $profesional->clues_adscripcion }}">
+
+                <!-- -->
+
+                <div class="row mt-3">
+
+                        
+
+                       
+
+                        {{-- <div class="col-md-3">
+                            <p><strong>Nómina de pago</strong></p>
+                            <select name="nomina_pago" id="nomina_pago" class="form-control">
+                                <option value="">-- Selecciona una opción --</option>
+                                @foreach ($nominasPago as $nominaPago)
+                                    <option value="{{ $nominaPago->nomina }}" {{ old('nomina_pago', $profesional->nomina_pago) == $nominaPago->nomina ? 'selected' : '' }}>
+                                        {{ $nominaPago->nomina }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('nomina_pago')
+                            <br><div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div> --}}
+
+                        {{-- <div class="col-md-3">
+                            <p><strong>Tipo de contrato</strong></p>
+                            <select name="tipo_contrato" id="tipo_contrato" class="form-control">
+                                <option value="">-- Selecciona una opción --</option>
+                                @foreach ($tiposContrato as $tipoContrato)
+                                    <option value="{{ $tipoContrato->tipo_contrato }}" {{ old('tipo_contrato', $profesional->tipo_contrato) == $tipoContrato->tipo_contrato ? 'selected' : '' }}>
+                                        {{ $tipoContrato->tipo_contrato }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('tipo_contrato')
+                            <br><div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div> --}}
+
+                </div>
+        <!-- ---------------------------------------------------------------------- --> 
+            
+        <div class="row mt-3">
+             {{--<div class="col-md-3">
+                <p><strong>Fecha de ingreso a la intitución</strong></p>
+                <input type="date" name="fecha_ingreso" id="fecha_ingreso" class="form-control" value="{{ old('fecha_ingreso' ,$profesional->fecha_ingreso) }}">
+                @error('fecha_ingreso')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div> --}}
+            {{-- <div class="col-md-3">
+                <p><strong>Tipo de plaza</strong></p>
+                <select name="tipo_plaza" id="tipo_plaza" class="form-control">
+                    <option value="">-- Selecciona una opción --</option>
+                    @foreach ($tiposPlaza as $tipoPlaza)
+                        <option value="{{ $tipoPlaza->tipo_plaza }}" {{ old('tipo_plaza', $profesional->tipo_plaza) == $tipoPlaza->tipo_plaza ? 'selected' : '' }}>
+                            {{ $tipoPlaza->tipo_plaza }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('tipo_plaza')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div> --}}
+            
             
 
         </div>
@@ -330,7 +357,7 @@
         <!-- ---------------------------------------------------------------------- --> 
 
         
-        <div class="row mt-3">
+        {{-- <div class="row mt-3">
             <div class="col-md-3">
                 <p><strong>Seguro de Salud</strong></p>
                 <select name="seguro_salud" id="seguro_salud" class="form-control">
@@ -342,7 +369,7 @@
                 <br><div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
-        </div>
+        </div> --}}
         
 
 

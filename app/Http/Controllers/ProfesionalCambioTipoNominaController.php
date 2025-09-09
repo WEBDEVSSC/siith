@@ -87,5 +87,7 @@ class ProfesionalCambioTipoNominaController extends Controller
 
         $cambioTipoNomina->save();
 
+        return redirect()->route('profesionalShow', $request->id_profesional)->with('successCambioTipoNomina', 'Cambio de Tipo de Nómina registrada correctamente.');
+
     }
 }

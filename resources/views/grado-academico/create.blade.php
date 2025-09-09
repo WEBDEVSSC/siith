@@ -5,7 +5,7 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Grado Academico</small></h1>
+    <h1><strong>Grado Academico</strong>></h1>
 @stop
 
 @section('content')
