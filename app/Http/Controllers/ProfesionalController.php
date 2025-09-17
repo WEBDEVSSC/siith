@@ -242,6 +242,7 @@ class ProfesionalController extends Controller
             'email' => 'required|email',
             'padre_madre_familia' => 'required',
             'clues_adscripcion' => 'required',
+            'fecha_inicio'=>'required'
         ], [
             'homoclave.required' => 'La homoclave es obligatoria.',
             'homoclave.size' => 'La homoclave debe ser de 3 caracteres.',            
@@ -1030,11 +1031,20 @@ class ProfesionalController extends Controller
         }
 
         // Cargamos los datos del MODULO CREDENCIALIZACION
+        //$credencializacion = $profesional->credencializacion;
+        //$fotografia = $credencializacion ? $credencializacion->fotografia : null;
+
+        // Generamos la URL de la fotografía
+        //$fotoUrl = $fotografia ? url('/foto/' . basename($fotografia)) : null;
+
+        // Cargamos los datos del MODULO CREDENCIALIZACION
         $credencializacion = $profesional->credencializacion;
         $fotografia = $credencializacion ? $credencializacion->fotografia : null;
 
-        // Generamos la URL de la fotografía
-        $fotoUrl = $fotografia ? url('/foto/' . basename($fotografia)) : null;
+        // Generamos la URL de la fotografía desde storage
+        $fotoUrl = $fotografia 
+            ? asset('storage/credencializacion/thumbs/' . $fotografia) 
+            : null;
 
         // Cargamos los datos del MODULO DE HORARIO
         $horario = $profesional->horario;

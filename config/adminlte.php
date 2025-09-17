@@ -319,6 +319,7 @@ return [
             'url' => 'admin/profesionales/profesionalBuscadorForm',
             'icon' => 'fa-solid fa-magnifying-glass',
             'label_color' => 'success',
+            'can' => 'admin'
         ],
         [
             'text' => 'Panel de Control',

@@ -226,6 +226,9 @@ Route::middleware(['auth'])->group(function ()
         return abort(404); // Si el archivo no existe, devuelve un error 404
     });
 
+    Route::get('/credencializacion/descargar/{id}', [ProfesionalCredencializacionController::class, 'descargarFoto'])
+     ->name('credencializacion.descargar');
+
     /**
      * 
      * 

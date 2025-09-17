@@ -267,7 +267,7 @@ class ProfesionalPuestoController extends Controller
         $tiposPlaza = TipoPlaza::orderBy('tipo_plaza','asc')->get();
 
         // Llenamos el select de INSTITUCION PUESTO
-        $institucionesPuesto = InstitucionPuesto::all();
+        $institucionesPuesto = InstitucionPuesto::where('status',1)->get();
 
         // Llenamos el select de Vigencia
         $vigencias = Vigencia::all();
@@ -316,21 +316,21 @@ class ProfesionalPuestoController extends Controller
             'actividad' => 'required',
             'adicional' => 'required',
             'tipo_personal' => 'required',
-            'codigo_puesto' => 'required',
+            //'codigo_puesto' => 'required',
             'clues_nomina' => 'required',
             'clues_adscripcion' => 'required',
             'area_trabajo' => 'required',
             'ocupacion' => 'required',
-            'nomina_pago' => 'required',
-            'tipo_contrato' => 'required',
-            'fecha_ingreso' => 'nullable|date',
-            'tipo_plaza' => 'required',
+            //'nomina_pago' => 'required',
+            //'tipo_contrato' => 'required',
+            //'fecha_ingreso' => 'nullable|date',
+            //'tipo_plaza' => 'required',
             'institucion_puesto' => 'required',
-            'vigencia' => 'required',
-            'vigencia_motivo' => 'required',
-            'temporalidad' => 'required',
-            'licencia_maternidad' => 'required',
-            'seguro_salud' => 'required',
+            //'vigencia' => 'required',
+            //'vigencia_motivo' => 'required',
+            //'temporalidad' => 'required',
+            //'licencia_maternidad' => 'required',
+            //'seguro_salud' => 'required',
         ], [
             'id_profesional.required' => 'El ID del profesional es obligatorio.',
             'fiel.required' => 'El campo FIEL es obligatorio.',
@@ -372,7 +372,7 @@ class ProfesionalPuestoController extends Controller
             'adicional' => $request->adicional,
 
             'tipo_personal' => $request->tipo_personal,
-            'codigo_puesto' => $request->codigo_puesto,
+            //'codigo_puesto' => $request->codigo_puesto,
 
             'clues_nomina' => $request->clues_nomina,
             'clues_nomina_nombre' => $cluesNomina->nombre,
@@ -386,16 +386,16 @@ class ProfesionalPuestoController extends Controller
 
             'area_trabajo' => $request->area_trabajo,
             'ocupacion' => $request->ocupacion,
-            'nomina_pago' => $request->nomina_pago,
-            'tipo_contrato' => $request->tipo_contrato,
-            'fecha_ingreso' => $request->fecha_ingreso,
-            'tipo_plaza' => $request->tipo_plaza,
+            //'nomina_pago' => $request->nomina_pago,
+            //'tipo_contrato' => $request->tipo_contrato,
+            //'fecha_ingreso' => $request->fecha_ingreso,
+            //'tipo_plaza' => $request->tipo_plaza,
             'institucion_puesto' => $request->institucion_puesto,
-            'vigencia' => $request->vigencia,
-            'vigencia_motivo' => $request->vigencia_motivo,
-            'temporalidad' => $request->temporalidad,
-            'licencia_maternidad' => $request->licencia_maternidad,
-            'seguro_salud' => $request->seguro_salud,
+            //'vigencia' => $request->vigencia,
+            //'vigencia_motivo' => $request->vigencia_motivo,
+            //'temporalidad' => $request->temporalidad,
+            //'licencia_maternidad' => $request->licencia_maternidad,
+            //'seguro_salud' => $request->seguro_salud,
 
         ]);
 

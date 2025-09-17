@@ -10,12 +10,15 @@ class ProfesionalPuesto extends Model
     protected $table = 'profesionales_puesto';
 
     protected $fillable = [
+        'id_profesional',
         'fiel', 
         'fiel_vigencia', 
         'actividad', 
         'adicional',
         'tipo_personal', 
+        'codigo_puesto_id',
         'codigo_puesto',
+        'codigo_puesto_label',
         'clues_nomina', 
         'clues_nomina_nombre', 
         'clues_nomina_municipio', 

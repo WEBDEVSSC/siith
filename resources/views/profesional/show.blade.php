@@ -84,11 +84,23 @@ ADMINISTRADOR
 
         <div class="row">
             <div class="col-md-2">
-                @if($fotoUrl)
-                    <img src="{{ $fotoUrl }}" alt="Fotografía del profesional" width="200" class="img-thumbnail"/>
-                @else
-                    <p>No se ha cargado una fotografía.</p>
-                @endif
+                <center>
+                    @if($fotoUrl)
+                        <img src="{{ $fotoUrl }}" alt="Fotografía del profesional" width="200" class="img-thumbnail"/>
+                    @else
+                        <img src="{{ asset('images/avatar-placeholder.png') }}" alt="Sin foto" width="200" class="img-thumbnail"/>
+                    @endif
+
+                    <br>
+                    <br>
+
+                    @if($profesional->credencializacion && $profesional->credencializacion->fotografia)
+                        <a href="{{ route('credencializacion.descargar', $profesional->credencializacion->id) }}" 
+                        class="btn btn-info btn-sm" target="_blank">
+                        Descargar fotografía original
+                        </a>
+                    @endif
+                </center>
             </div>
             <div class="col-md-10">
 
@@ -180,8 +192,6 @@ ADMINISTRADOR
 </div>
 
     <!-- -- -->
-
-    <h1>NCKJSNCSDBCHDSBHJ</h1>{{ $cluesAdscripcionTipo }}
 
     <div class="card">
         <div class="card-header"><strong>OCUPACIÓN</strong> {{ $catalogoLabel }}  </div>
@@ -477,7 +487,7 @@ ADMINISTRADOR
 
     <div class="card">
         <div class="card-header">
-            <i class="fa fa-building" aria-hidden="true"></i> <strong>Cambios de Tipo de Nómina</strong>
+            <i class="fa fa-building" aria-hidden="true"></i> <strong>TIPO DE NÓMINA</strong>
         </div>
         <div class="card-body">
 
@@ -489,7 +499,7 @@ ADMINISTRADOR
                         <th>Tipo de Plaza</th>
                         <th>Seguro de Salud</th>
                         <th>Código de Puesto</th>
-                        <th>Fecha de Ingreso</th>
+                        <th>Fecha de Inicio</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -499,23 +509,76 @@ ADMINISTRADOR
                             <td>{{ $tipoDeNomina->tipo_contrato ?? 'N/A' }}</td>
                             <td>{{ $tipoDeNomina->tipo_plaza ?? 'N/A' }}</td>
                             <td>{{ $tipoDeNomina->seguro_salud ?? 'N/A' }}</td>
-                            <td>{{ $tipoDeNomina->codigo_puesto ?? 'N/A' }} -
-                                {{ $tipoDeNomina->codigo_puesto_label ?? 'N/A' }}</td>
-
-                            <td>{{ $tipoDeNomina->fecha_ingreso ? \Carbon\Carbon::parse($tipoDeNomina->fecha_ingreso)->format('d-m-Y') : 'N/A' }}
-                            </td>
+                            <td>{{ $tipoDeNomina->codigo_puesto ?? 'N/A' }} - {{ $tipoDeNomina->codigo_puesto_label ?? 'N/A' }}</td>
+                            <td>{{ $tipoDeNomina->fecha_ingreso ? \Carbon\Carbon::parse($tipoDeNomina->fecha_ingreso)->format('d-m-Y') : 'N/A' }}</td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center">No hay registros de vigencias</td>
+                            <td colspan="6" class="text-center">No hay registros</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
 
         </div>
-        <div class="card-footer"></div>
+        <div class="card-footer">
+
+            @if ($profesional->puesto?->mdl_puesto == 1)
+                <a href="{{ route('createCambioTipoNomina', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
+            @elseif ($profesional->puesto?->mdl_puesto == 0)
+                <a href="{{ route('createCambioTipoNomina', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
+            @endif
+    
+        </div>
     </div>
+    <!-- -- -->
+
+    <!-- -- -->
+
+    <div class="card">
+        <div class="card-header">
+            <i class="fa-solid fa-tags"></i> <strong>VIGENCIAS</strong>
+        </div>
+        <div class="card-body">
+
+            <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Motivo</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Final</th>
+                    <th>Registro</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($vigencias as $vigencia)
+                <tr>
+                    <td>{{ $vigencia->vigencia ?? 'N/A' }}</td>
+                    <td>{{ $vigencia->vigencia_motivo ?? 'N/A' }}</td>
+                    <td>{{ $vigencia->fecha_inicio ? \Carbon\Carbon::parse($vigencia->fecha_inicio)->format('d-m-Y') : 'N/A' }}</td>
+                    <td>{{ ($vigencia->fecha_final && $vigencia->fecha_final != '0000-00-00') 
+                    ? \Carbon\Carbon::parse($vigencia->fecha_final)->format('d-m-Y') 
+                    : 'N/A' }}</td>
+                    {{-- <td>{{ $vigencia->fecha_final ? \Carbon\Carbon::parse($vigencia->fecha_final)->format('d-m-Y') : 'N/A' }}</td> --}}
+                    <td>{{ $vigencia->created_at ? \Carbon\Carbon::parse($vigencia->created_at)->format('d-m-Y') : 'N/A' }}</td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="5" class="text-center">No hay registros de vigencias</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+
+        </div>
+        <div class="card-footer">
+            
+            <a href="{{ route('createVigencia', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
+
+        </div>
+    </div>
+
     <!-- -- -->
 
     <div class="card">
@@ -525,7 +588,7 @@ ADMINISTRADOR
             <div class="row">
                 <div class="col-md-3">
                     <p><strong>FIEL </strong></p>
-                    {{ $fiel }} {{ $fiel_vigencia }}
+                    {{ $fiel }} {{ \Carbon\Carbon::parse($fiel_vigencia)->format('d-m-Y') }}
                 </div>
                 <div class="col-md-3">
                     <p><strong>Actividad</strong></p>
@@ -547,8 +610,10 @@ ADMINISTRADOR
             <div class="row mt-3">
                 
                 <div class="col-md-3">
-                    <p><strong>Código de puesto </strong></p>
-                    {{ $codigoPuesto }}
+                    <p><strong>Fecha de ingreso a la Institución</strong></p>
+                    {{ \Carbon\Carbon::parse($fechaIngreso)->format('d-m-Y') }}
+                    {{-- <p><strong>Código de puesto </strong></p>
+                    {{ $codigoPuesto }} --}}
                 </div>
                 <div class="col-md-3">
                     <p><strong>Área de trabajo</strong></p>
@@ -559,56 +624,57 @@ ADMINISTRADOR
                     {{ $ocupacionPuesto }}
                 </div>
                 <div class="col-md-3">
-                    <p><strong>Nómina de pago</strong></p>
-                    {{ $nominaPago }}
+                    <p><strong>Institución puesto</strong></p>
+                    {{ $institucionPuesto }}
+                    {{-- <p><strong>Nómina de pago</strong></p>
+                    {{ $nominaPago }} --}}
                 </div>
             </div>
 
-            <hr>
+            {{-- <hr>
 
+            
             <div class="row mt-3">
                 
                 <div class="col-md-3">
                     <p><strong>Tipo de contrato </strong></p>
-                    {{ $tipoContrato }}
+                    {{ $tipoContrato }} 
                 </div>
                 <div class="col-md-3">
-                    {{-- <p><strong>Fecha de ingreso</strong></p>
-                    {{ \Carbon\Carbon::parse($fechaIngreso)->format('d/m/Y') }} --}}
+                     <p><strong>Fecha de ingreso</strong></p>
+                    {{ \Carbon\Carbon::parse($fechaIngreso)->format('d/m/Y') }} 
                 </div>
                 <div class="col-md-3">
-                    <p><strong>Tipo plaza</strong></p>
-                    {{ $tipoPlaza }}
+                     <p><strong>Tipo plaza</strong></p>
+                    {{ $tipoPlaza }} 
                 </div>
                 <div class="col-md-3">
-                    <p><strong>Institución puesto</strong></p>
-                    {{ $institucionPuesto }}
+                    
                 </div>
-            </div>
+            </div> --}}
 
-            <hr>
+            {{-- <hr>
 
             <div class="row mt-3">
                 
                 <div class="col-md-3">
-                    <p><strong>Vigencia </strong></p>
-                    {{ $vigencia }} - {{ $vigenciaMotivo }}
+                     <p><strong>Vigencia </strong></p>
+                    {{ $vigencia }} - {{ $vigenciaMotivo }} 
                 </div>
                 <div class="col-md-3">
-                    <p><strong>Fecha de ingreso</strong></p>
-                    {{ $fechaIngreso }}
+                    
                 </div>
                 <div class="col-md-3">
-                    <p><strong>Temporalidad</strong></p>
-                    {{ $temporalidad }}
+                     <p><strong>Temporalidad</strong></p>
+                    {{ $temporalidad }} 
                 </div>
                 <div class="col-md-3">
-                    <p><strong>Licencia de maternidad</strong></p>
-                    {{ $licenciaMaternidad }}
+                     <p><strong>Licencia de maternidad</strong></p>
+                    {{ $licenciaMaternidad }} 
                 </div>
-            </div>
+            </div> --}}
 
-            <hr>
+            {{-- <hr>
 
             <div class="row mt-3">
                 
@@ -617,7 +683,7 @@ ADMINISTRADOR
                     {{ $seguroSalud }}
                 </div>
                 
-            </div>
+            </div> --}}
 
             <hr>
 
@@ -921,53 +987,7 @@ ADMINISTRADOR
     
     <!-- --------------------------------------------------------------- -->
 
-    <!-- -- -->
-
-    <div class="card">
-        <div class="card-header">
-            <i class="fa-solid fa-tags"></i> <strong>VIGENCIAS</strong>
-        </div>
-        <div class="card-body">
-
-            <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Status</th>
-                    <th>Motivo</th>
-                    <th>Fecha Inicio</th>
-                    <th>Fecha Final</th>
-                    <th>Registro</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($vigencias as $vigencia)
-                <tr>
-                    <td>{{ $vigencia->vigencia ?? 'N/A' }}</td>
-                    <td>{{ $vigencia->vigencia_motivo ?? 'N/A' }}</td>
-                    <td>{{ $vigencia->fecha_inicio ? \Carbon\Carbon::parse($vigencia->fecha_inicio)->format('d-m-Y') : 'N/A' }}</td>
-                    <td>{{ ($vigencia->fecha_final && $vigencia->fecha_final != '0000-00-00') 
-                    ? \Carbon\Carbon::parse($vigencia->fecha_final)->format('d-m-Y') 
-                    : 'N/A' }}</td>
-                    {{-- <td>{{ $vigencia->fecha_final ? \Carbon\Carbon::parse($vigencia->fecha_final)->format('d-m-Y') : 'N/A' }}</td> --}}
-                    <td>{{ $vigencia->created_at ? \Carbon\Carbon::parse($vigencia->created_at)->format('d-m-Y') : 'N/A' }}</td>
-                </tr>
-                @empty
-                <tr>
-                    <td colspan="5" class="text-center">No hay registros de vigencias</td>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
-
-        </div>
-        <div class="card-footer">
-            
-            <a href="{{ route('createVigencia', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
-
-        </div>
-    </div>
-
-    <!-- -- -->
+    
     
     <!-- -- -->
 
@@ -1023,7 +1043,7 @@ ADMINISTRADOR
     <!-- -- -->
 
     <!-- --------------------------------------------------------------- -->
-
+    {{--
     <div class="card mt-3">
         <div class="card-header"><strong>PASES DE SALIDA</strong></div>
         <div class="card-body">
@@ -1068,7 +1088,7 @@ ADMINISTRADOR
         </div>
         <div class="card-footer"></div>
     </div>
-    
+    --}}
     <!-- --------------------------------------------------------------- -->
 
     <br>

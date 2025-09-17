@@ -39,7 +39,7 @@
                     
 
                     <div class="col-md-3">
-                        <p>Jornada</p>
+                        <p><strong>Jornada</strong></p>
                         <select name="jornada" id="jornada" class="form-control">
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($jornadas as $jornada)

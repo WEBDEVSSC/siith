@@ -6,6 +6,7 @@ use App\Models\CodigoPuesto;
 use App\Models\NominaPago;
 use App\Models\Profesional;
 use App\Models\ProfesionalCambioTipoNomina;
+use App\Models\ProfesionalPuesto;
 use App\Models\TipoContrato;
 use App\Models\TipoPlaza;
 use Illuminate\Http\Request;
@@ -31,9 +32,11 @@ class ProfesionalCambioTipoNominaController extends Controller
         $codigosPuesto = CodigoPuesto::orderBy('codigo_puesto', 'asc')->get();
 
         // Llenamos la tabla
-        $cambiosTipoNomina = ProfesionalCambioTipoNomina::findOrFail($id)
+        $cambiosTipoNomina = ProfesionalCambioTipoNomina::where('id_profesional',$id)
                         ->orderBy('created_at','desc')
                         ->get();
+
+        
 
         // Regresamos al form con el objeto
         return view('tipo-nomina.create', compact(
@@ -68,8 +71,6 @@ class ProfesionalCambioTipoNominaController extends Controller
             'seguro_salud.required' => 'El campo Seguro de Salud es obligatorio.',
         ]);
 
-        
-
         // Consultamos los datos del Codigo de Puesto
         $codigoDePuesto = CodigoPuesto::findOrFail($request->codigo_puesto);
 
@@ -86,6 +87,20 @@ class ProfesionalCambioTipoNominaController extends Controller
         $cambioTipoNomina->fecha_ingreso = $request->fecha_ingreso; 
 
         $cambioTipoNomina->save();
+
+        // Actualizamos el modulo de PUESTO
+
+        $puesto = ProfesionalPuesto::where('id_profesional',$request->id_profesional)->first();
+
+        $puesto->nomina_pago = $request->nomina_pago;
+        $puesto->tipo_contrato = $request->tipo_contrato;
+        $puesto->tipo_plaza = $request->tipo_plaza;
+        $puesto->seguro_salud = $request->seguro_salud;
+        $puesto->codigo_puesto_id = $request->codigo_puesto; 
+        $puesto->codigo_puesto = $codigoDePuesto->codigo; 
+        $puesto->codigo_puesto_label = $codigoDePuesto->codigo_puesto; 
+
+        $puesto->save();
 
         return redirect()->route('profesionalShow', $request->id_profesional)->with('successCambioTipoNomina', 'Cambio de Tipo de Nómina registrada correctamente.');
 
