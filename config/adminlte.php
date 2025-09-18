@@ -313,19 +313,21 @@ return [
             'url' => 'admin/profesionales/buscarCurp',
             'icon' => 'fas fa-plus',
             'label_color' => 'success',
+            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino'],
         ],
         [
             'text' => 'Buscador',
             'url' => 'admin/profesionales/profesionalBuscadorForm',
             'icon' => 'fa-solid fa-magnifying-glass',
             'label_color' => 'success',
-            'can' => 'admin'
+            'can' => ['admin', 'directivo', 'credencializacion'],
         ],
         [
             'text' => 'Panel de Control',
             'url' => 'admin/profesionales/profesionalIndex',
             'icon' => 'fa-solid fa-list',
             'label_color' => 'success',
+            'can' => ['directivo', 'admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino'],
         ],
         [
             'text' => 'Mi Jurisdicción',
@@ -339,12 +341,14 @@ return [
             'url' => 'admin/profesionales/cambioDeUnidad/findProfesional',
             'icon' => 'fa-solid fa-building-circle-arrow-right',
             'label_color' => 'success',
+            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino'],
         ],
         [
             'text' => 'Reporte Excel',
             'url' => 'admin/profesionales/reportes/reporteExcel',
             'icon' => 'fa-solid fa-file-excel',
             'label_color' => 'success',
+            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino'],
         ],
         [
             'text' => 'Pases de Salida',
@@ -353,12 +357,13 @@ return [
             'label_color' => 'success',
             'can' => 'jefeDepartamento',
         ],
-        [
-            'text' => 'Registros incompletos',
-            'url' => 'admin/profesionales/profesionalIncompletosIndex',
-            'icon' => 'fa-solid fa-clipboard',
-            'label_color' => 'success',
-        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | PERMISOS PARA RH
+        |--------------------------------------------------------------------------
+        |
+        */
 
         ['header' => 'account_settings'],
         
@@ -441,6 +446,8 @@ return [
                 ],
             ],
         ],
+
+        
     ],
 
     /*

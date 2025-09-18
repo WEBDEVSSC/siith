@@ -5,7 +5,7 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Buscador</small></h1>
+    <h1><strong>Buscador</strong></h1>
 @stop
 
 @section('content')
@@ -42,6 +42,8 @@
 
     </div>
 </div>
+
+{{--
     
 <div class="card">
         <div class="card-header">
@@ -80,6 +82,8 @@
 
     </form>
 </div>
+
+--}}
 
 @stop
 

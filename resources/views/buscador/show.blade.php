@@ -7,7 +7,7 @@
 @section('plugins.Datatables', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Buscador</small></h1>
+    <h1><strong>Buscador</strong> <small></small></h1>
 @stop
 
 @section('content')
@@ -35,19 +35,28 @@
                         <th>NOMINA DE PAGO</th>
                         <th>TIPO DE CONTRATO</th>
                         <th>VIGENCIA</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($profesionales as $profesional)
                         <tr>
                             <td>
+                                @if($profesional->credencializacion && $profesional->credencializacion->fotografia)
+                                    <img src="{{ asset('storage/credencializacion/thumbs/' . $profesional->credencializacion->fotografia) }}" 
+                                        alt="Miniatura" width="100"  class="img-thumbnail">
+                                @else
+                                    <img src="{{ asset('images/avatar-placeholder.png') }}" alt="Sin foto" width="100">
+                                @endif
+                            </td>
+                            {{-- <td>
                                 <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="DETALLES">
                                     <i class="fa-solid fa-address-card"></i>
                                 </a>
                                 <a target="_blank" href="{{ route('profesionalPDF', $profesional->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="PDF">
                                     <i class="fa-solid fa-file-lines"></i>
                                 </a>
-                            </td>
+                            </td> --}}
                             <td>{{ $profesional->curp }}</td>
                             <td>{{ $profesional->rfc }}{{ $profesional->homoclave }}</td>
                             <td>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
@@ -59,6 +68,14 @@
                             <td>{{ $profesional->puesto->nomina_pago ?? '-' }}</td>
                             <td>{{ $profesional->puesto->tipo_contrato ?? '-' }}</td>
                             <td>{{ $profesional->puesto->vigencia ?? '-' }}</td>
+                            <td>
+                                @if($profesional->credencializacion && $profesional->credencializacion->fotografia)
+                                    <a href="{{ route('credencializacion.descargar', $profesional->credencializacion->id) }}" 
+                                    class="btn btn-info btn-sm" target="_blank">
+                                    Descargar fotografía original
+                                    </a>
+                                @endif
+                            </td>
                         </tr>
                     @empty
                         <tr>

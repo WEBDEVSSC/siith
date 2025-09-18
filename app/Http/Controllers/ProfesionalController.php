@@ -1414,34 +1414,26 @@ class ProfesionalController extends Controller
         ],[]);
 
         $busqueda=$request->curp;
-        /*$profesionales = Profesional::where('curp', $request->curp)
-            ->orWhere('nombre', 'like', '%' . $request->curp . '%')
-            ->orWhere('apellido_paterno', 'like', '%' . $request->curp . '%')
-            ->orWhere('apellido_materno', 'like', '%' . $request->curp . '%')
-            ->get();*/
 
-        /*$profesionales = Profesional::where('curp', 'like', '%' . $busqueda . '%')
-            ->orWhereRaw("CONCAT(nombre, ' ', apellido_paterno, ' ', apellido_materno) LIKE ?", ["%$busqueda%"])
-            ->get();*/
         $terminos = explode(' ', strtolower($busqueda));
             
-        $profesionales = Profesional::where(function($query) use ($terminos) {
-            
-        foreach ($terminos as $termino) 
-        {
-            $query->where(function($subquery) use ($termino) {
-                $subquery->whereRaw("LOWER(nombre) LIKE ?", ["%$termino%"])
-                        ->orWhereRaw("LOWER(apellido_paterno) LIKE ?", ["%$termino%"])
-                        ->orWhereRaw("LOWER(apellido_materno) LIKE ?", ["%$termino%"])
-                        ->orWhereRaw("LOWER(curp) LIKE ?", ["%$termino%"]);
-            });
-        }
+        $profesionales = Profesional::where(function($query) use ($terminos) 
+        {  
+            foreach ($terminos as $termino) 
+            {
+                $query->where(function($subquery) use ($termino) {
+                    $subquery->whereRaw("LOWER(nombre) LIKE ?", ["%$termino%"])
+                            ->orWhereRaw("LOWER(apellido_paterno) LIKE ?", ["%$termino%"])
+                            ->orWhereRaw("LOWER(apellido_materno) LIKE ?", ["%$termino%"])
+                            ->orWhereRaw("LOWER(curp) LIKE ?", ["%$termino%"]);
+                });
+            }
         })->get();
 
         // Si no se encuentra, redirige con mensaje de error
         if (!$profesionales) {
             return back()
-                ->with('error', 'No se encontró ningún profesional con ese CURP.')
+                ->with('error', 'No se encontró ningún profesional con ese dato.')
                 ->withInput();
         }
 
