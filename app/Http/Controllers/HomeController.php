@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Profesional;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -225,7 +226,34 @@ class HomeController extends Controller
         ->whereRelation('puesto', 'vigencia', 'ACTIVO')
         ->count();
 
+        /*
+        *
+        *
+        * CONSULTAS PARA UNIDADES
+        *
+        *
+        */
 
+        $usuario = Auth::user();
+
+        // Contador para el total de registro activos
+        $profesionalesActivosUnidad = Profesional::whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->whereRelation('puesto', 'clues_adscripcion', $usuario->clues_unidad)
+                ->count();
+
+        $profesionalesBajaTemporalUnidad = Profesional::whereRelation('puesto', 'vigencia', 'BAJA TEMPORAL')
+                ->whereRelation('puesto', 'clues_adscripcion', $usuario->clues_unidad)
+                ->count();
+
+        $profesionalesActivosMasculinoUnidad = Profesional::where('sexo','M')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->whereRelation('puesto', 'clues_adscripcion', $usuario->clues_unidad)
+                ->count();
+
+        $profesionalesActivosFemeninoUnidad = Profesional::where('sexo','F')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->whereRelation('puesto', 'clues_adscripcion', $usuario->clues_unidad)
+                ->count();
 
         return view('home', compact(
             'profesionalesActivos',
@@ -276,6 +304,12 @@ class HomeController extends Controller
             'edad60a69',
             'edad70a79',
             'edad80a89',
+
+            'profesionalesActivosUnidad',
+            'profesionalesBajaTemporalUnidad',
+            'profesionalesActivosMasculinoUnidad',
+            'profesionalesActivosFemeninoUnidad',
+
         ));
     }
 }

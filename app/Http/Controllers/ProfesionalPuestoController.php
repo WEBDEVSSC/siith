@@ -23,13 +23,34 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfesionalPuestoController extends Controller
 {
+    /*
     public function getMotivos($vigencia)
     {
         $motivos = VigenciaMotivo::where('label_vigencia', $vigencia)->pluck('motivo', 'id');
         return response()->json($motivos);
         
-    }
-    
+    }*/
+
+        public function getMotivos($vigencia, Request $request)
+        {
+            $nomina = $request->input('nomina');
+
+            if($nomina === "IB - IMSS-BIENESTAR"){
+                // Cargar todos los motivos sin filtro
+                $motivos = VigenciaMotivo::where('label_vigencia', $vigencia)
+                            ->orderBy('motivo', 'asc')
+                            ->pluck('motivo');
+            } else {
+                // Cargar solo los que tienen ib = 0
+                $motivos = VigenciaMotivo::where('label_vigencia', $vigencia)
+                            ->where('ib', 0)
+                            ->orderBy('motivo', 'asc')
+                            ->pluck('motivo');
+            }
+
+            return response()->json($motivos);
+        }
+            
     //
     public function createPuesto($id)
     {

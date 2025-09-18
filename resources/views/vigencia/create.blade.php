@@ -23,7 +23,6 @@
         <div class="card-header">
 
             <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm">PERFIL DEL TRABAJADOR</a>
-            <a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
             
         </div>
 
@@ -159,7 +158,7 @@
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
     
-
+    {{--
     <script>
         $(document).ready(function(){
             let vigenciaSeleccionada = $('#vigencia').val();
@@ -194,6 +193,43 @@
             });
         });
     </script>
+    --}}
+
+    <script>
+$(document).ready(function(){
+    let vigenciaSeleccionada = $('#vigencia').val();
+    let motivoSeleccionado = "{{ old('vigencia_motivo', $profesional->vigencia_motivo) }}";
+    let tipoNomina = "{{ $profesional->puesto->nomina_pago }}"; // Tipo de nómina
+
+    function cargarMotivos(vigencia, motivoSeleccionado = null) {
+        $('#vigencia_motivo').empty().append('<option value="">Seleccione un motivo</option>');
+
+        if(vigencia) {
+            $.ajax({
+                url: `/vigencias-motivos/${vigencia}`,
+                type: 'GET',
+                data: { nomina: tipoNomina },
+                success: function(response) {
+                    $.each(response, function(index, motivo){
+                        let selected = (motivoSeleccionado && motivoSeleccionado == motivo) ? 'selected' : '';
+                        $('#vigencia_motivo').append(`<option value="${motivo}" ${selected}>${motivo}</option>`);
+                    });
+                }
+            });
+        }
+    }
+
+    if (vigenciaSeleccionada) {
+        cargarMotivos(vigenciaSeleccionada, motivoSeleccionado);
+    }
+
+    $('#vigencia').change(function(){
+        let nuevaVigencia = $(this).val();
+        cargarMotivos(nuevaVigencia);
+    });
+});
+</script>
+
 
     <script>
         $(document).ready(function() {

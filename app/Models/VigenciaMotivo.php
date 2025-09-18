@@ -3,12 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class VigenciaMotivo extends Model
 {
+    use SoftDeletes;
+    
     protected $table = 'cat_vigencias_motivos';
 
-    protected $fillable = ['id_vigencia', 'motivo'];
+    protected $fillable = [
+        'id_vigencia', 
+        'motivo'
+    ];
 
     public function vigencia()
     {

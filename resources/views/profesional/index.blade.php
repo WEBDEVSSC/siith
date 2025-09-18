@@ -94,7 +94,7 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>CURP</th>
+                    <th>FOTOGRAFÍA</th>
                     <th>NOMBRE COMPLETO</th>
                     <th>ADSCRIPCIÓN FÍSICA</th>
                     <th>NÓMINA</th>

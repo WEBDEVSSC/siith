@@ -14,6 +14,7 @@ use App\Http\Controllers\CatalogoOcupacionOficinaCentralController;
 use App\Http\Controllers\CatalogoOcupacionOfJurisdiccionalController;
 use App\Http\Controllers\CatalogoOcupacionPsiParrasController;
 use App\Http\Controllers\CatalogoOcupacionSamuCrumController;
+use App\Http\Controllers\CatalogosController;
 use App\Http\Controllers\ProfesionalAreaMedicaController;
 use App\Http\Controllers\ProfesionalCambioDeUnidadController;
 use App\Http\Controllers\ProfesionalCambioTipoNominaController;
@@ -825,7 +826,25 @@ Route::middleware(['auth'])->group(function ()
 
      Route::delete('admin/settings/ocupacion/hospitalNino/delete/{id}', [CatalogoOcupacionHospitalNinoController::class, 'ocupacionHospitalNinoDestroy'])->name('ocupacionHospitalNinoDestroy');
  
+     /**
+     * 
+     * 
+     * CATALOGO DE VIGENCIAS
+     * 
+     * 
+     */
+    
+     Route::get('admin/settings/vigencias/vigenciasIndex', [CatalogosController::class, 'vigenciasIndex'])->name('vigenciasIndex'); 
 
+     Route::get('admin/settings/vigencias/vigenciasCreate', [CatalogosController::class, 'vigenciasCreate'])->name('vigenciasCreate');  
+ 
+     Route::post('admin/settings/vigencias/vigenciasStore', [CatalogosController::class, 'vigenciasStore'])->name('vigenciasStore'); 
+ 
+     Route::get('admin/settings/vigencias/vigenciasEdit/{id}', [CatalogosController::class, 'vigenciasEdit'])->name('vigenciasEdit');  
+ 
+     Route::put('admin/settings/vigencias/vigenciasUpdate/{id}', [CatalogosController::class, 'vigenciasUpdate'])->name('vigenciasUpdate');
+
+     Route::delete('admin/settings/vigencias/vigenciasDestroy/{id}', [CatalogosController::class, 'vigenciasDestroy'])->name('vigenciasDestroy');
 
 });
 

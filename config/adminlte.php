@@ -427,6 +427,19 @@ return [
                     'url' => 'admin/settings/ocupacion/hospitalNino/index',
                 ],
             ],
+
+            
+        ],
+        [
+            'text' => 'Catálogo',
+            'icon' => 'fas fa-fw fa-lock',
+            'can' => 'admin',
+            'submenu' => [
+                [
+                    'text' => 'Vigencias',
+                    'url' => 'admin/settings/vigencias/vigenciasIndex',
+                ],
+            ],
         ],
     ],
 
