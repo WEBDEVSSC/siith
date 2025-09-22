@@ -6,6 +6,7 @@ use App\Models\Jornada;
 use App\Models\Profesional;
 use App\Models\ProfesionalHorario;
 use Carbon\Carbon;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class ProfesionalHorarioController extends Controller
@@ -25,7 +26,319 @@ class ProfesionalHorarioController extends Controller
 
     public function storeHorario(Request $request)
     {
+        $request->validate([
+            'jornada' => 'required',
+            'id_profesional' => 'required',
+            'horario_entrada' => 'required',
+            'horario_salida' => 'required',
+        ],[
+            'jornada.required' => 'El campo es obligatorio',
+            'horario_entrada.required' => 'El campo es obligatorio',
+            'horario_salida.required' => 'El campo es obligatorio',
+        ]);
+
+        /**********************************************************************************
+         * 
+         * 
+         * ARREGLO PARA ASIGNAR LOS VALORES A CADA DIA
+         * 
+         * 
+         ***********************************************************************************/
+
+        // 1 -> JORNADA DIURNA MATUTINA L - V
+
+        if($request->jornada == 1)
+        {
+            $entrada_lunes = $request->horario_entrada;
+            $salida_lunes = $request->horario_salida;
+            $entrada_martes = $request->horario_entrada;
+            $salida_martes = $request->horario_salida;
+            $entrada_miercoles = $request->horario_entrada;
+            $salida_miercoles = $request->horario_salida;
+            $entrada_jueves = $request->horario_entrada;
+            $salida_jueves = $request->horario_salida;
+            $entrada_viernes = $request->horario_entrada;
+            $salida_viernes = $request->horario_salida;
+            $entrada_sabado = NULL;
+            $salida_sabado = NULL;
+            $entrada_domingo = NULL;
+            $salida_domingo = NULL;
+            $entrada_festivo = NULL;
+            $salida_festivo =NULL;
+
+            $label_jornada = "Jornada Diurna (Matutina L-V)";
+        }
+
+        // 2 -> JORNADA MIXTA VESPERTINO L - V
+
+        elseif($request->jornada == 2)
+        {
+            $entrada_lunes = $request->horario_entrada;
+            $salida_lunes = $request->horario_salida;
+            $entrada_martes = $request->horario_entrada;
+            $salida_martes = $request->horario_salida;
+            $entrada_miercoles = $request->horario_entrada;
+            $salida_miercoles = $request->horario_salida;
+            $entrada_jueves = $request->horario_entrada;
+            $salida_jueves = $request->horario_salida;
+            $entrada_viernes = $request->horario_entrada;
+            $salida_viernes = $request->horario_salida;
+            $entrada_sabado = NULL;
+            $salida_sabado = NULL;
+            $entrada_domingo = NULL;
+            $salida_domingo = NULL;
+            $entrada_festivo = NULL;
+            $salida_festivo =NULL;
+
+            $label_jornada = "Jornada Mixta (Vespertino L-V)";
+        }
+
+        // 3 -> JORNADA ESPECIAL NOCTURNO A L - M - V
+
+        elseif($request->jornada == 3)
+        {
+            $entrada_lunes = $request->horario_entrada;
+            $salida_lunes = $request->horario_salida;
+            $entrada_martes = NULL;
+            $salida_martes = NULL;
+            $entrada_miercoles = $request->horario_entrada;
+            $salida_miercoles = $request->horario_salida;
+            $entrada_jueves = NULL;
+            $salida_jueves = NULL;
+            $entrada_viernes = $request->horario_entrada;
+            $salida_viernes = $request->horario_salida;
+            $entrada_sabado = NULL;
+            $salida_sabado = NULL;
+            $entrada_domingo = NULL;
+            $salida_domingo = NULL;
+            $entrada_festivo = NULL;
+            $salida_festivo =NULL;
+
+            $label_jornada = "Jornada Especial (Nocturno A LUN-MIE-VIE)";
+        }
+
+        // 4 -> JORNADA ESPECIAL NOCTURNO B M - J - S
+
+        elseif($request->jornada == 6)
+        {
+            $entrada_lunes = NULL;
+            $salida_lunes = NULL;
+            $entrada_martes = $request->horario_entrada;
+            $salida_martes = $request->horario_salida;
+            $entrada_miercoles = NULL;
+            $salida_miercoles = NULL;
+            $entrada_jueves = $request->horario_entrada;
+            $salida_jueves = $request->horario_salida;
+            $entrada_viernes = NULL;
+            $salida_viernes = NULL;
+            $entrada_sabado = $request->horario_entrada;
+            $salida_sabado = $request->horario_salida;
+            $entrada_domingo = NULL;
+            $salida_domingo = NULL;
+            $entrada_festivo = NULL;
+            $salida_festivo =NULL;
+
+            $label_jornada = "Jornada Especial (Nocturno B MAR-JUE-SAB)";
+        }
+
+        // 5 -> JORNADA ESPECIAL NOCTURNO C M - J - d
+
+        elseif($request->jornada == 7)
+        {
+            $entrada_lunes = NULL;
+            $salida_lunes = NULL;
+            $entrada_martes = $request->horario_entrada;
+            $salida_martes = $request->horario_salida;
+            $entrada_miercoles = NULL;
+            $salida_miercoles = NULL;
+            $entrada_jueves = $request->horario_entrada;
+            $salida_jueves = $request->horario_salida;
+            $entrada_viernes = NULL;
+            $salida_viernes = NULL;
+            $entrada_sabado = NULL;
+            $salida_sabado = NULL;
+            $entrada_domingo = $request->horario_entrada;
+            $salida_domingo = $request->horario_salida;
+            $entrada_festivo = NULL;
+            $salida_festivo =NULL;
+
+            $label_jornada = "Jornada Especial (Nocturno C MAR-JUE-DOM)";
+        }
+
+        // 6 -> JORNADA ESPECIAL NOCTURNO D M - V - D
+
+        elseif($request->jornada == 8)
+        {
+            $entrada_lunes = NULL;
+            $salida_lunes = NULL;
+            $entrada_martes = NULL;
+            $salida_martes = NULL;
+            $entrada_miercoles = $request->horario_entrada;
+            $salida_miercoles = $request->horario_salida;
+            $entrada_jueves = NULL;
+            $salida_jueves = NULL;
+            $entrada_viernes = $request->horario_entrada;
+            $salida_viernes = $request->horario_salida;
+            $entrada_sabado = NULL;
+            $salida_sabado = NULL;
+            $entrada_domingo = $request->horario_entrada;
+            $salida_domingo = $request->horario_salida;
+            $entrada_festivo = NULL;
+            $salida_festivo =NULL;
+
+            $label_jornada = "Jornada Especial (Nocturno D MIE-VIE-DOM)";
+        }
+
+        // 7 -> JORNADA ESPECIAL S - D - F
+
+        elseif($request->jornada == 9)
+        {
+            $entrada_lunes = NULL;
+            $salida_lunes = NULL;
+            $entrada_martes = NULL;
+            $salida_martes = NULL;
+            $entrada_miercoles = NULL;
+            $salida_miercoles = NULL;
+            $entrada_jueves = NULL;
+            $salida_jueves = NULL;
+            $entrada_viernes = NULL;
+            $salida_viernes = NULL;
+            $entrada_sabado = $request->horario_entrada;
+            $salida_sabado = $request->horario_salida;
+            $entrada_domingo = $request->horario_entrada;
+            $salida_domingo = $request->horario_salida;
+            $entrada_festivo = $request->horario_entrada;
+            $salida_festivo =$request->horario_salida;
+
+            $label_jornada = "Jornada Especial (Acumulada Diurno S-D-F)";
+        }
+
+         // 8 -> JORNADA ESPECIAL S - D - F
+
+        elseif($request->jornada == 11)
+        {
+            $entrada_lunes = NULL;
+            $salida_lunes = NULL;
+            $entrada_martes = NULL;
+            $salida_martes = NULL;
+            $entrada_miercoles = NULL;
+            $salida_miercoles = NULL;
+            $entrada_jueves = NULL;
+            $salida_jueves = NULL;
+            $entrada_viernes = NULL;
+            $salida_viernes = NULL;
+            $entrada_sabado = $request->horario_entrada;
+            $salida_sabado = $request->horario_salida;
+            $entrada_domingo = $request->horario_entrada;
+            $salida_domingo = $request->horario_salida;
+            $entrada_festivo = $request->horario_entrada;
+            $salida_festivo =$request->horario_salida;
+
+            $label_jornada = "Jornada Especial (Acumulada Nocturno S-D-F)";
+        }   
+
+        // JORNADA ESPECIAL
+
+        elseif($request->jornada == 4)
+        {
+            $entrada_lunes = $request->horario_entrada;
+            $salida_lunes = $request->horario_salida;
+            $entrada_martes = $request->horario_entrada;
+            $salida_martes = $request->horario_salida;
+            $entrada_miercoles = $request->horario_entrada;
+            $salida_miercoles = $request->horario_salida;
+            $entrada_jueves = $request->horario_entrada;
+            $salida_jueves = $request->horario_salida;
+            $entrada_viernes = $request->horario_entrada;
+            $salida_viernes = $request->horario_salida;
+            $entrada_sabado = $request->horario_entrada;
+            $salida_sabado = $request->horario_salida;
+            $entrada_domingo = $request->horario_entrada;
+            $salida_domingo = $request->horario_salida;
+            $entrada_festivo = $request->horario_entrada;
+            $salida_festivo =$request->horario_salida;
+
+            $label_jornada = "Jornada Especial";
+        }
+
+        // ROLADOR
+
+        elseif($request->jornada == 10)
+        {
+            $entrada_lunes = $request->horario_entrada;
+            $salida_lunes = $request->horario_salida;
+            $entrada_martes = $request->horario_entrada;
+            $salida_martes = $request->horario_salida;
+            $entrada_miercoles = $request->horario_entrada;
+            $salida_miercoles = $request->horario_salida;
+            $entrada_jueves = $request->horario_entrada;
+            $salida_jueves = $request->horario_salida;
+            $entrada_viernes = $request->horario_entrada;
+            $salida_viernes = $request->horario_salida;
+            $entrada_sabado = $request->horario_entrada;
+            $salida_sabado = $request->horario_salida;
+            $entrada_domingo = $request->horario_entrada;
+            $salida_domingo = $request->horario_salida;
+            $entrada_festivo = $request->horario_entrada;
+            $salida_festivo =$request->horario_salida;
+
+            $label_jornada = "Rolador";
+        }
+
+        else
+        {
+            $entrada_lunes = NULL;
+            $salida_lunes = NULL;
+            $entrada_martes = NULL;
+            $salida_martes = NULL;
+            $entrada_miercoles = NULL;
+            $salida_miercoles = NULL;
+            $entrada_jueves = NULL;
+            $salida_jueves = NULL;
+            $entrada_viernes = NULL;
+            $salida_viernes = NULL;
+            $entrada_sabado = NULL;
+            $salida_sabado = NULL;
+            $entrada_domingo = NULL;
+            $salida_domingo = NULL;
+            $entrada_festivo = NULL;
+            $salida_festivo = NULL;
+
+            $label_jornada = "ERROR - VALIDACION DE JORNADA";
+        }
         
+        $horario_status = 1;
+
+        $horario = new ProfesionalHorario();
+
+        $horario->id_profesional = $request->id_profesional;
+        $horario->id_jornada = $request->jornada;
+        $horario->jornada = $label_jornada;
+
+        $horario->entrada_lunes = $entrada_lunes;
+        $horario->salida_lunes = $salida_lunes;
+        $horario->entrada_martes = $entrada_martes;
+        $horario->salida_martes = $salida_martes;
+        $horario->entrada_miercoles = $entrada_miercoles;
+        $horario->salida_miercoles = $salida_miercoles;
+        $horario->entrada_jueves = $entrada_jueves;
+        $horario->salida_jueves = $salida_jueves;
+        $horario->entrada_viernes = $entrada_viernes;
+        $horario->salida_viernes = $salida_viernes;
+        $horario->entrada_sabado = $entrada_sabado;
+        $horario->salida_sabado = $salida_sabado;
+        $horario->entrada_domingo = $entrada_domingo;
+        $horario->salida_domingo = $salida_domingo;
+        $horario->entrada_festivo = $entrada_festivo;
+        $horario->salida_festivo = $salida_festivo;
+
+        $horario->mdl_horario = $horario_status;
+
+        $horario -> save();
+
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('successHorario', 'Registro realizado correctamente.');
+
+        /*
         //Validamos los datos
         $validated = $request->validate([
             'id_profesional' => 'required',
@@ -94,7 +407,7 @@ class ProfesionalHorarioController extends Controller
         $horario -> save();
 
         return redirect()->route('profesionalIndex')->with('successHorario', 'Registro realizado correctamente.');
-
+        */
     }
 
     public function editHorario($id)
@@ -112,8 +425,325 @@ class ProfesionalHorarioController extends Controller
     }
 
     public function updateHorario(Request $request, $id)
-    {     
+    {             
+        $request->validate([
+            'jornada' => 'required',
+            'horario_entrada' => 'required',
+            'horario_salida' => 'required',
+        ],[
+            'jornada.required' => 'El campo es obligatorio',
+            'horario_entrada.required' => 'El campo es obligatorio',
+            'horario_salida.required' => 'El campo es obligatorio',
+        ]);
 
+        
+
+        /**********************************************************************************
+         * 
+         * 
+         * ARREGLO PARA ASIGNAR LOS VALORES A CADA DIA
+         * 
+         * 
+         ***********************************************************************************/
+
+        // 1 -> JORNADA DIURNA MATUTINA L - V
+
+        if($request->jornada == 1)
+        {
+            $entrada_lunes = $request->horario_entrada;
+            $salida_lunes = $request->horario_salida;
+            $entrada_martes = $request->horario_entrada;
+            $salida_martes = $request->horario_salida;
+            $entrada_miercoles = $request->horario_entrada;
+            $salida_miercoles = $request->horario_salida;
+            $entrada_jueves = $request->horario_entrada;
+            $salida_jueves = $request->horario_salida;
+            $entrada_viernes = $request->horario_entrada;
+            $salida_viernes = $request->horario_salida;
+            $entrada_sabado = NULL;
+            $salida_sabado = NULL;
+            $entrada_domingo = NULL;
+            $salida_domingo = NULL;
+            $entrada_festivo = NULL;
+            $salida_festivo =NULL;
+
+            $label_jornada = "Jornada Diurna (Matutina L-V)";
+        }
+
+        // 2 -> JORNADA MIXTA VESPERTINO L - V
+
+        elseif($request->jornada == 2)
+        {
+            $entrada_lunes = $request->horario_entrada;
+            $salida_lunes = $request->horario_salida;
+            $entrada_martes = $request->horario_entrada;
+            $salida_martes = $request->horario_salida;
+            $entrada_miercoles = $request->horario_entrada;
+            $salida_miercoles = $request->horario_salida;
+            $entrada_jueves = $request->horario_entrada;
+            $salida_jueves = $request->horario_salida;
+            $entrada_viernes = $request->horario_entrada;
+            $salida_viernes = $request->horario_salida;
+            $entrada_sabado = NULL;
+            $salida_sabado = NULL;
+            $entrada_domingo = NULL;
+            $salida_domingo = NULL;
+            $entrada_festivo = NULL;
+            $salida_festivo =NULL;
+
+            $label_jornada = "Jornada Mixta (Vespertino L-V)";
+        }
+
+        // 3 -> JORNADA ESPECIAL NOCTURNO A L - M - V
+
+        elseif($request->jornada == 3)
+        {
+            $entrada_lunes = $request->horario_entrada;
+            $salida_lunes = $request->horario_salida;
+            $entrada_martes = NULL;
+            $salida_martes = NULL;
+            $entrada_miercoles = $request->horario_entrada;
+            $salida_miercoles = $request->horario_salida;
+            $entrada_jueves = NULL;
+            $salida_jueves = NULL;
+            $entrada_viernes = $request->horario_entrada;
+            $salida_viernes = $request->horario_salida;
+            $entrada_sabado = NULL;
+            $salida_sabado = NULL;
+            $entrada_domingo = NULL;
+            $salida_domingo = NULL;
+            $entrada_festivo = NULL;
+            $salida_festivo =NULL;
+
+            $label_jornada = "Jornada Especial (Nocturno A LUN-MIE-VIE)";
+        }
+
+        // 4 -> JORNADA ESPECIAL NOCTURNO B M - J - S
+
+        elseif($request->jornada == 6)
+        {
+            $entrada_lunes = NULL;
+            $salida_lunes = NULL;
+            $entrada_martes = $request->horario_entrada;
+            $salida_martes = $request->horario_salida;
+            $entrada_miercoles = NULL;
+            $salida_miercoles = NULL;
+            $entrada_jueves = $request->horario_entrada;
+            $salida_jueves = $request->horario_salida;
+            $entrada_viernes = NULL;
+            $salida_viernes = NULL;
+            $entrada_sabado = $request->horario_entrada;
+            $salida_sabado = $request->horario_salida;
+            $entrada_domingo = NULL;
+            $salida_domingo = NULL;
+            $entrada_festivo = NULL;
+            $salida_festivo =NULL;
+
+            $label_jornada = "Jornada Especial (Nocturno B MAR-JUE-SAB)";
+        }
+
+        // 5 -> JORNADA ESPECIAL NOCTURNO C M - J - d
+
+        elseif($request->jornada == 7)
+        {
+            $entrada_lunes = NULL;
+            $salida_lunes = NULL;
+            $entrada_martes = $request->horario_entrada;
+            $salida_martes = $request->horario_salida;
+            $entrada_miercoles = NULL;
+            $salida_miercoles = NULL;
+            $entrada_jueves = $request->horario_entrada;
+            $salida_jueves = $request->horario_salida;
+            $entrada_viernes = NULL;
+            $salida_viernes = NULL;
+            $entrada_sabado = NULL;
+            $salida_sabado = NULL;
+            $entrada_domingo = $request->horario_entrada;
+            $salida_domingo = $request->horario_salida;
+            $entrada_festivo = NULL;
+            $salida_festivo =NULL;
+
+            $label_jornada = "Jornada Especial (Nocturno C MAR-JUE-DOM)";
+        }
+
+        // 6 -> JORNADA ESPECIAL NOCTURNO D M - V - D
+
+        elseif($request->jornada == 8)
+        {
+            $entrada_lunes = NULL;
+            $salida_lunes = NULL;
+            $entrada_martes = NULL;
+            $salida_martes = NULL;
+            $entrada_miercoles = $request->horario_entrada;
+            $salida_miercoles = $request->horario_salida;
+            $entrada_jueves = NULL;
+            $salida_jueves = NULL;
+            $entrada_viernes = $request->horario_entrada;
+            $salida_viernes = $request->horario_salida;
+            $entrada_sabado = NULL;
+            $salida_sabado = NULL;
+            $entrada_domingo = $request->horario_entrada;
+            $salida_domingo = $request->horario_salida;
+            $entrada_festivo = NULL;
+            $salida_festivo =NULL;
+
+            $label_jornada = "Jornada Especial (Nocturno D MIE-VIE-DOM)";
+        }
+
+        // 7 -> JORNADA ESPECIAL S - D - F
+
+        elseif($request->jornada == 9)
+        {
+            $entrada_lunes = NULL;
+            $salida_lunes = NULL;
+            $entrada_martes = NULL;
+            $salida_martes = NULL;
+            $entrada_miercoles = NULL;
+            $salida_miercoles = NULL;
+            $entrada_jueves = NULL;
+            $salida_jueves = NULL;
+            $entrada_viernes = NULL;
+            $salida_viernes = NULL;
+            $entrada_sabado = $request->horario_entrada;
+            $salida_sabado = $request->horario_salida;
+            $entrada_domingo = $request->horario_entrada;
+            $salida_domingo = $request->horario_salida;
+            $entrada_festivo = $request->horario_entrada;
+            $salida_festivo =$request->horario_salida;
+
+            $label_jornada = "Jornada Especial (Acumulada Diurno S-D-F)";
+        }
+
+         // 8 -> JORNADA ESPECIAL S - D - F
+
+        elseif($request->jornada == 11)
+        {
+            $entrada_lunes = NULL;
+            $salida_lunes = NULL;
+            $entrada_martes = NULL;
+            $salida_martes = NULL;
+            $entrada_miercoles = NULL;
+            $salida_miercoles = NULL;
+            $entrada_jueves = NULL;
+            $salida_jueves = NULL;
+            $entrada_viernes = NULL;
+            $salida_viernes = NULL;
+            $entrada_sabado = $request->horario_entrada;
+            $salida_sabado = $request->horario_salida;
+            $entrada_domingo = $request->horario_entrada;
+            $salida_domingo = $request->horario_salida;
+            $entrada_festivo = $request->horario_entrada;
+            $salida_festivo =$request->horario_salida;
+
+            $label_jornada = "Jornada Especial (Acumulada Nocturno S-D-F)";
+        }   
+
+        // JORNADA ESPECIAL
+
+        elseif($request->jornada == 4)
+        {
+            $entrada_lunes = $request->horario_entrada;
+            $salida_lunes = $request->horario_salida;
+            $entrada_martes = $request->horario_entrada;
+            $salida_martes = $request->horario_salida;
+            $entrada_miercoles = $request->horario_entrada;
+            $salida_miercoles = $request->horario_salida;
+            $entrada_jueves = $request->horario_entrada;
+            $salida_jueves = $request->horario_salida;
+            $entrada_viernes = $request->horario_entrada;
+            $salida_viernes = $request->horario_salida;
+            $entrada_sabado = $request->horario_entrada;
+            $salida_sabado = $request->horario_salida;
+            $entrada_domingo = $request->horario_entrada;
+            $salida_domingo = $request->horario_salida;
+            $entrada_festivo = $request->horario_entrada;
+            $salida_festivo =$request->horario_salida;
+
+            $label_jornada = "Jornada Especial";
+        }
+
+        // ROLADOR
+
+        elseif($request->jornada == 10)
+        {
+            $entrada_lunes = $request->horario_entrada;
+            $salida_lunes = $request->horario_salida;
+            $entrada_martes = $request->horario_entrada;
+            $salida_martes = $request->horario_salida;
+            $entrada_miercoles = $request->horario_entrada;
+            $salida_miercoles = $request->horario_salida;
+            $entrada_jueves = $request->horario_entrada;
+            $salida_jueves = $request->horario_salida;
+            $entrada_viernes = $request->horario_entrada;
+            $salida_viernes = $request->horario_salida;
+            $entrada_sabado = $request->horario_entrada;
+            $salida_sabado = $request->horario_salida;
+            $entrada_domingo = $request->horario_entrada;
+            $salida_domingo = $request->horario_salida;
+            $entrada_festivo = $request->horario_entrada;
+            $salida_festivo =$request->horario_salida;
+
+            $label_jornada = "Rolador";
+        }
+
+        else
+        {
+            $entrada_lunes = NULL;
+            $salida_lunes = NULL;
+            $entrada_martes = NULL;
+            $salida_martes = NULL;
+            $entrada_miercoles = NULL;
+            $salida_miercoles = NULL;
+            $entrada_jueves = NULL;
+            $salida_jueves = NULL;
+            $entrada_viernes = NULL;
+            $salida_viernes = NULL;
+            $entrada_sabado = NULL;
+            $salida_sabado = NULL;
+            $entrada_domingo = NULL;
+            $salida_domingo = NULL;
+            $entrada_festivo = NULL;
+            $salida_festivo = NULL;
+
+            $label_jornada = "ERROR - VALIDACION DE JORNADA";
+        }
+        
+        $horario_status = 1;
+        
+        // Buscamos el registro
+
+        $horario = ProfesionalHorario::findOrFail($id);
+        
+        // Buscamos al profesional
+        $profesional = Profesional::where('id', $horario->id_profesional)->first();
+
+        $horario->id_jornada = $request->jornada;
+        $horario->jornada = $label_jornada;
+
+        $horario->entrada_lunes = $entrada_lunes;
+        $horario->salida_lunes = $salida_lunes;
+        $horario->entrada_martes = $entrada_martes;
+        $horario->salida_martes = $salida_martes;
+        $horario->entrada_miercoles = $entrada_miercoles;
+        $horario->salida_miercoles = $salida_miercoles;
+        $horario->entrada_jueves = $entrada_jueves;
+        $horario->salida_jueves = $salida_jueves;
+        $horario->entrada_viernes = $entrada_viernes;
+        $horario->salida_viernes = $salida_viernes;
+        $horario->entrada_sabado = $entrada_sabado;
+        $horario->salida_sabado = $salida_sabado;
+        $horario->entrada_domingo = $entrada_domingo;
+        $horario->salida_domingo = $salida_domingo;
+        $horario->entrada_festivo = $entrada_festivo;
+        $horario->salida_festivo = $salida_festivo;
+
+        $horario->mdl_horario = $horario_status;
+
+        $horario -> save();
+
+        return redirect()->route('profesionalShow',$profesional->id)->with('successHorario', 'Registro realizado correctamente.');
+        
+        /*
         //Validamos los datos
         $validated = $request->validate([
             'id_profesional' => 'required',
@@ -182,6 +812,6 @@ class ProfesionalHorarioController extends Controller
         ]);
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalIndex')->with('successUpdateHorario', 'Registro actualizado correctamente.');
+        return redirect()->route('profesionalIndex')->with('successUpdateHorario', 'Registro actualizado correctamente.');*/
     }
 }

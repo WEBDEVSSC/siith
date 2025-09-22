@@ -11,7 +11,8 @@ class ProfesionalHorario extends Model
 
     // Asignamos los campos de asignacion masiva
     protected $fillable = [
-        'profesional_id',
+        'id_profesional',
+        'id_jornada',
         'jornada',
         'entrada_lunes',
         'salida_lunes',

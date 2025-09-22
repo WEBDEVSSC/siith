@@ -11,6 +11,7 @@ class Profesional extends Model
 
     // Definir los campos que pueden ser llenados (asignación masiva)
     protected $fillable = [
+        'id',
         'curp',
         'rfc',
         'homoclave',

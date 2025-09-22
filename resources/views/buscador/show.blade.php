@@ -35,12 +35,15 @@
                         <th>NOMINA DE PAGO</th>
                         <th>TIPO DE CONTRATO</th>
                         <th>VIGENCIA</th>
+                        <th>OCUPACUÓN</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @forelse ($profesionales as $profesional)
                         <tr>
+                            @if ($usuario->role == 'credencializacion')
+
                             <td>
                                 @if($profesional->credencializacion && $profesional->credencializacion->fotografia)
                                     <img src="{{ asset('storage/credencializacion/thumbs/' . $profesional->credencializacion->fotografia) }}" 
@@ -49,6 +52,20 @@
                                     <img src="{{ asset('images/avatar-placeholder.png') }}" alt="Sin foto" width="100">
                                 @endif
                             </td>
+                            
+                            @elseif($usuario->role == 'admin')
+
+                            <td>
+                                <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="DETALLES">
+                                    <i class="fa-solid fa-address-card"></i>
+                                </a>
+                                <a target="_blank" href="{{ route('profesionalPDF', $profesional->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="PDF">
+                                    <i class="fa-solid fa-file-lines"></i>
+                                </a>
+                            </td>
+                            
+                            @endif
+                            
                             {{-- <td>
                                 <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="DETALLES">
                                     <i class="fa-solid fa-address-card"></i>

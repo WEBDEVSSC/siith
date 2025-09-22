@@ -1408,6 +1408,8 @@ class ProfesionalController extends Controller
 
     public function profesionalBuscadorCurp(Request $request)
     {
+        $usuario = Auth::user();
+        
         // Validamos los datos
         $request->validate([
             'curp'=>'required'
@@ -1438,7 +1440,7 @@ class ProfesionalController extends Controller
         }
 
         // Si se encuentra, lo enviamos a la vista
-        return view('buscador.show', compact('profesionales'));
+        return view('buscador.show', compact('profesionales','usuario'));
     }
 
     

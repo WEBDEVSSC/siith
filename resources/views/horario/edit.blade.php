@@ -37,21 +37,36 @@
                 <!-- ---------------------------------- -->
 
                 <div class="row mt-3">
-                    
 
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <p><strong>Jornada</strong></p>
                         <select name="jornada" id="jornada" class="form-control">
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($jornadas as $jornada)
-                                <option value="{{ $jornada->jornada }}" 
-                                    {{ (old('jornada', $horario->jornada) == $jornada->jornada) ? 'selected' : '' }}>
+                                <option value="{{ $jornada->id }}" 
+                                    {{ (old('jornada', $horario->id_jornada) == $jornada->id) ? 'selected' : '' }}>
                                     {{ $jornada->jornada }}
                                 </option>
                             @endforeach
                         </select>
                         
                         @error('jornada')
+                            <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-4">
+                        <p><strong>Entrada</strong></p>
+                        <input type="time" class="form-control" name="horario_entrada" id="horario_entrada" value="{{ old('horario_entrada') }}">
+                        @error('horario_entrada')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-4">
+                        <p><strong>Salida</strong></p>
+                        <input type="time" class="form-control" name="horario_salida" id="horario_salida" value="{{ old('horario_salida') }}">
+                        @error('horario_salida')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
@@ -59,7 +74,7 @@
                 </div>
 
                 <!-- -->
-
+                {{--
                 <div class="row mt-3">
                     
                     
@@ -197,29 +212,12 @@
                     </table>
                     
                     
-                </div>
-
-                <!-- -->
-
-        <!-- ---------------------------------------------------------------------- --> 
-            
-
-
-
-        <!-- ---------------------------------------------------------------------- --> 
-
-
-
-        <!-- ---------------------------------------------------------------------- --> 
-
-
-        
-
+                </div> --}}
 
         <!-- ---------------------------------------------------------------------- --> 
         </div>
         <div class="card-footer">
-            <button type="submit" class="btn btn-success btn-sm btn-info">REGISTRAR DATOS DE HORARIO</button>
+            <button type="submit" class="btn btn-success btn-sm btn-info">ACTUALIZAR DATOS DE HORARIO</button>
         </div>
 
     </form>
