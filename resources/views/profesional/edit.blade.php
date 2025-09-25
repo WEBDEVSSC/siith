@@ -137,7 +137,7 @@
 
                 <div class="row mt-3">
                     <div class="col-md-3">
-                        <p><strong>Estado conyugal</strong></p>
+                        <p><strong>Estado civil</strong></p>
                         <select name="estado_conyugal" id="estado_conyugal" class="form-control">
                             <option value="">-- Selecciona una opción --</option>
                             @foreach($estadosConyuales as $estadoConyuale)
@@ -166,7 +166,7 @@
                         @enderror
                     </div>
                     <div class="col-md-3">
-                        <p><strong>Correo eléctronico</strong></p>
+                        <p><strong>Correo electrónico</strong></p>
                         <input type="email" name="email" id='email' class="form-control" value="{{ old('email' , $profesional->email) }}">
                         @error('email')
                         <br><div class="alert alert-danger">{{ $message }}</div>

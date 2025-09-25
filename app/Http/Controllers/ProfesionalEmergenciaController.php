@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CatAlergia;
+use App\Models\CatRelacionEmergencia;
 use App\Models\CatTipoDeSangre;
 use App\Models\Municipio;
 use App\Models\Profesional;
@@ -14,6 +15,25 @@ use Illuminate\Support\Facades\Auth;
 class ProfesionalEmergenciaController extends Controller
 {
     //
+
+    public function storeDatosGeneralesEmergencia(Request $request)
+    {
+        $request->validate([
+            'id_profesional'=>'required',
+            'telefono_celular'=>'required|digits:10',
+            'correo_electronico'=>'required|email|max:100',
+        ],[
+            'telefono_celular.required' => 'El número de teléfono es obligatorio.',
+            'telefono_celular.digits'   => 'El número de teléfono debe tener exactamente 10 dígitos.',
+            'correo_electronico.required' => 'El correo electrónico es obligatorio.',
+            'correo_electronico.email'    => 'Debe ser un correo electrónico válido.',
+            'correo_electronico.max'      => 'El correo electrónico no debe exceder los 100 caracteres.',
+        ]);
+
+        dd($request->id_profesional);
+
+
+    }
 
     public function createEmergencia($id)
     {
@@ -29,138 +49,149 @@ class ProfesionalEmergenciaController extends Controller
         // Llenamos el select de municipios de Coahuila
         $municipios = Municipio::where('relacion',7)->get();
 
+        // Llenamos el select de Contactos de Emergencia
+        $relacionesDeEmergencia = CatRelacionEmergencia::all();
+
         // Retornamos la vista con todos los objetos
-        return view('emergencia.create', compact('profesional','tiposDeSangre','tiposDeAlergia','municipios'));
+        return view('emergencia.create', compact('profesional','tiposDeSangre','tiposDeAlergia','municipios','relacionesDeEmergencia'));
         
     }
 
     public function storeEmergencia(Request $request)
     {        
-        //dd($request->tipo_alergia_id);
-        
-        $request->validate([
-            'id_profesional'                    =>'required',
-            'tipo_sangre'                       =>'nullable',
+        // Validación
+    $request->validate([
+        'id_profesional' => 'required',
 
-            //'tipo_alergia_id'=> 'required|integer',
-            //'alergia_descripcion'=> 'nullable|string',
+        'telefono_celular'   => 'required|digits:10',
+        'correo_electronico' => 'required|email|max:100',
 
-            'tipo_alergia_id' => 'required|integer|in:1,2,3,4,5,6',
-            'alergia_descripcion' => 'nullable|string|max:255|required_if:tipo_alergia_id,1,2,3,4,5',
+        'tipo_sangre' => 'nullable',
+        'tipo_alergia_id' => 'required|integer|in:1,2,3,4,5,6',
+        'alergia_descripcion' => 'nullable|string|max:255|required_if:tipo_alergia_id,1,2,3,4,5',
 
-            'enfermedad'                        =>'nullable|string',
-            'medicamentos'                      =>'nullable|string',
-            'tratamiento'                       =>'nullable|string',
-            'medico_nombre'                     =>'nullable|string',
-            'medico_telefono'                   =>'nullable|string',
-            
-            'emergencia_nombre'                 =>'required|string',
-            'emergencia_relacion'               =>'required|string',
-            'emergencia_telefono_uno'           =>'required|string',
-            'emergencia_telefono_dos'           =>'required|string',
-            'emergencia_email'                  =>'required|string',
-            'emergencia_calle'                  =>'required|string',
-            'emergencia_numero'                 =>'required|string',
-            'emergencia_colonia'                =>'required|string',
-            'emergencia_municipio'              =>'required|string',
-        ],[
-            'id_profesional.required'           => 'El campo profesional es obligatorio.',
-            
-            'tipo_alergia_id.required'          => 'El campo es obligatorio',
-            'tipo_alergia_id.in'                => 'El tipo de alergia seleccionado no es válido.',
-            'alergia_descripcion.required_if'   => 'La descripción de la alergia es obligatoria',
-            'alergia_descripcion.string'        => 'La descripción de la alergia debe ser texto.',
-            'alergia_descripcion.max'           => 'La descripción de la alergia no debe exceder los 255 caracteres.',
-            
-            'enfermedad.string'                 => 'La enfermedad debe ser texto.',
-            'medicamentos.string'               => 'Los medicamentos deben ser texto.',
-            'tratamiento.string'                => 'El tratamiento debe ser texto.',
-            'medico_nombre.string'              => 'El nombre del médico debe ser texto.',
-            'medico_telefono.string'            => 'El teléfono del médico debe ser texto.',
-            
-            'emergencia_nombre.required'       => 'Este campo es obligatorio.',
-            'emergencia_nombre.string'         => 'El nombre de contacto de emergencia debe ser un texto.',
-            
-            'emergencia_relacion.required'     => 'Este campo es obligatorio.',
-            'emergencia_relacion.string'       => 'La relación debe ser un texto.',
+        'enfermedad'    => 'nullable|string',
+        'medicamentos'  => 'nullable|string',
+        'tratamiento'   => 'nullable|string',
+        'medico_nombre' => 'nullable|string',
+        'medico_telefono' => 'nullable|string',
 
-            'emergencia_telefono_uno.required' => 'Este campo es obligatorio.',
-            'emergencia_telefono_uno.string'   => 'El teléfono principal debe ser un texto.',
+        // Emergencias UNO, DOS, TRES
+        'emergencia_nombre_uno' => 'nullable|string',
+        'emergencia_relacion_uno' => 'nullable|string',
+        'emergencia_telefono_uno_uno' => 'nullable|string',
+        'emergencia_telefono_dos_uno' => 'nullable|string',
+        'emergencia_email_uno' => 'nullable|string',
+        'emergencia_calle_uno' => 'nullable|string',
+        'emergencia_numero_uno' => 'nullable|string',
+        'emergencia_colonia_uno' => 'nullable|string',
+        'emergencia_municipio_uno' => 'nullable|integer',
 
-            'emergencia_telefono_dos.required' => 'Este campo es obligatorio.',
-            'emergencia_telefono_dos.string'   => 'El teléfono secundario debe ser un texto.',
+        'emergencia_nombre_dos' => 'nullable|string',
+        'emergencia_relacion_dos' => 'nullable|string',
+        'emergencia_telefono_uno_dos' => 'nullable|string',
+        'emergencia_telefono_dos_dos' => 'nullable|string',
+        'emergencia_email_dos' => 'nullable|string',
+        'emergencia_calle_dos' => 'nullable|string',
+        'emergencia_numero_dos' => 'nullable|string',
+        'emergencia_colonia_dos' => 'nullable|string',
+        'emergencia_municipio_dos' => 'nullable|integer',
 
-            'emergencia_email.required'        => 'Este campo es obligatorio.',
-            'emergencia_email.string'          => 'El correo electrónico debe ser un texto.',
+        'emergencia_nombre_tres' => 'nullable|string',
+        'emergencia_relacion_tres' => 'nullable|string',
+        'emergencia_telefono_uno_tres' => 'nullable|string',
+        'emergencia_telefono_dos_tres' => 'nullable|string',
+        'emergencia_email_tres' => 'nullable|string',
+        'emergencia_calle_tres' => 'nullable|string',
+        'emergencia_numero_tres' => 'nullable|string',
+        'emergencia_colonia_tres' => 'nullable|string',
+        'emergencia_municipio_tres' => 'nullable|integer',
+    ]);
 
-            'emergencia_calle.required'        => 'Este campo es obligatorio.',
-            'emergencia_calle.string'          => 'La calle debe ser un texto.',
+    // Tipo de alergia
+    $tipoAlergia = null;
+    if (!is_null($request->tipo_alergia_id) && $request->tipo_alergia_id != 6) {
+        $tipoAlergia = CatAlergia::find($request->tipo_alergia_id);
+    }
 
-            'emergencia_numero.required'       => 'Este campo es obligatorio.',
-            'emergencia_numero.string'         => 'El número debe ser un texto.',
+    // Municipios
+    $municipio_uno = $request->emergencia_municipio_uno ? Municipio::find($request->emergencia_municipio_uno) : null;
+    $municipio_dos = $request->emergencia_municipio_dos ? Municipio::find($request->emergencia_municipio_dos) : null;
+    $municipio_tres = $request->emergencia_municipio_tres ? Municipio::find($request->emergencia_municipio_tres) : null;
 
-            'emergencia_colonia.required'      => 'Este campo es obligatorio.',
-            'emergencia_colonia.string'        => 'La colonia debe ser un texto.',
+    // Guardamos Emergencia
+    $emergencia = new ProfesionalEmergencia();
 
-            'emergencia_municipio.required'    => 'Este campo es obligatorio.',
-            'emergencia_municipio.string'      => 'El municipio debe ser un texto.',
-        ]);
+    $emergencia->id_profesional = $request->id_profesional;
+    $emergencia->telefono = $request->telefono_celular;
+    $emergencia->correo_electronico = $request->correo_electronico;
+    $emergencia->tipo_sangre = $request->tipo_sangre;
+    $emergencia->tipo_alergia_id = $request->tipo_alergia_id;
+    $emergencia->alergia_descripcion = $tipoAlergia ? $tipoAlergia->tipo_alergia : $request->alergia_descripcion;
 
-        // Consultamos el tipo de alergia
-        $tipoAlergia = null;
+    $emergencia->enfermedad = $request->enfermedad;
+    $emergencia->medicamentos = $request->medicamentos;
+    $emergencia->tratamiento = $request->tratamiento;
+    $emergencia->medico_nombre = $request->medico_nombre;
+    $emergencia->medico_telefono = $request->medico_telefono;
 
-        if (!is_null($request->tipo_alergia_id) && $request->tipo_alergia_id != 6) 
-        {
-            $tipoAlergia = CatAlergia::findOrFail($request->tipo_alergia_id);
-        }
+    // Emergencia UNO
+    $emergencia->emergencia_nombre_uno = $request->emergencia_nombre_uno;
+    $emergencia->emergencia_relacion_uno = $request->emergencia_relacion_uno;
+    $emergencia->emergencia_telefono_uno_uno = $request->emergencia_telefono_uno_uno;
+    $emergencia->emergencia_telefono_dos_uno = $request->emergencia_telefono_dos_uno;
+    $emergencia->emergencia_email_uno = $request->emergencia_email_uno;
+    $emergencia->emergencia_calle_uno = $request->emergencia_calle_uno;
+    $emergencia->emergencia_numero_uno = $request->emergencia_numero_uno;
+    $emergencia->emergencia_colonia_uno = $request->emergencia_colonia_uno;
+    $emergencia->emergencia_municipio_id_uno = $request->emergencia_municipio_uno;
+    $emergencia->emergencia_municipio_label_uno = $municipio_uno?->nombre;
 
-        // Consultamos el nombre del municipio
-        $municipio = Municipio::findOrFail($request->emergencia_municipio);
+    // Emergencia DOS
+    $emergencia->emergencia_nombre_dos = $request->emergencia_nombre_dos;
+    $emergencia->emergencia_relacion_dos = $request->emergencia_relacion_dos;
+    $emergencia->emergencia_telefono_uno_dos = $request->emergencia_telefono_uno_dos;
+    $emergencia->emergencia_telefono_dos_dos = $request->emergencia_telefono_dos_dos;
+    $emergencia->emergencia_email_dos = $request->emergencia_email_dos;
+    $emergencia->emergencia_calle_dos = $request->emergencia_calle_dos;
+    $emergencia->emergencia_numero_dos = $request->emergencia_numero_dos;
+    $emergencia->emergencia_colonia_dos = $request->emergencia_colonia_dos;
+    $emergencia->emergencia_municipio_id_dos = $request->emergencia_municipio_dos;
+    $emergencia->emergencia_municipio_label_dos = $municipio_dos?->nombre;
 
-        // Creamos el objeto para asignar los valores
+    // Emergencia TRES
+    $emergencia->emergencia_nombre_tres = $request->emergencia_nombre_tres;
+    $emergencia->emergencia_relacion_tres = $request->emergencia_relacion_tres;
+    $emergencia->emergencia_telefono_uno_tres = $request->emergencia_telefono_uno_tres;
+    $emergencia->emergencia_telefono_dos_tres = $request->emergencia_telefono_dos_tres;
+    $emergencia->emergencia_email_tres = $request->emergencia_email_tres;
+    $emergencia->emergencia_calle_tres = $request->emergencia_calle_tres;
+    $emergencia->emergencia_numero_tres = $request->emergencia_numero_tres;
+    $emergencia->emergencia_colonia_tres = $request->emergencia_colonia_tres;
+    $emergencia->emergencia_municipio_id_tres = $request->emergencia_municipio_tres;
+    $emergencia->emergencia_municipio_label_tres = $municipio_tres?->nombre;
 
-        $emergencia = new ProfesionalEmergencia();
+    $emergencia->mdl_emergencia = 1;
+    $emergencia->save();
 
-        $emergencia->id_profesional = $request->id_profesional;
-        $emergencia->tipo_sangre = $request->tipo_sangre;
-        $emergencia->tipo_alergia_id = $request->tipo_alergia_id;
-        $emergencia->alergia_descripcion = $tipoAlergia->tipo_alergia;
+    // Bitácora
+    $usuario = Auth::user();
 
-        $emergencia->alergia_descripcion = $tipoAlergia ? $request->alergia_descripcion : null;
-        
-        $emergencia->enfermedad = $request->enfermedad;
-        $emergencia->medicamentos = $request->medicamentos;
-        $emergencia->tratamiento = $request->tratamiento;
-        $emergencia->medico_nombre = $request->medico_nombre;
-        $emergencia->medico_telefono = $request->medico_telefono;
-        $emergencia->emergencia_nombre = $request->emergencia_nombre;
-        $emergencia->emergencia_relacion = $request->emergencia_relacion;
-        $emergencia->emergencia_telefono_uno = $request->emergencia_telefono_uno;
-        $emergencia->emergencia_telefono_dos = $request->emergencia_telefono_dos;
-        $emergencia->emergencia_email = $request->emergencia_email;
-        $emergencia->emergencia_calle = $request->emergencia_calle;
-        $emergencia->emergencia_numero = $request->emergencia_numero;
-        $emergencia->emergencia_colonia = $request->emergencia_colonia;
-        $emergencia->emergencia_municipio_id = $request->emergencia_municipio;
-        $emergencia->emergencia_municipio_label = $municipio->nombre;
-        $emergencia->mdl_emergencia = 1;
+    ProfesionalBitacora::create([
+        'id_capturista' => $usuario->id,
+        'capturista_label' => $usuario->responsable,
+        'accion' => "NUEVO REGISTRO EN MODULO EMERGENCIA",
+        'id_profesional' => $request->id_profesional,
+    ]);
 
-        $emergencia -> save();
+    // Actualizamos Datos Generales
+    $datosGenerales = Profesional::findOrFail($request->id_profesional);
+    $datosGenerales->celular = $request->telefono_celular;
+    $datosGenerales->email = $request->correo_electronico;
+    $datosGenerales->save();
 
-        $usuario = Auth::user();
-
-        // Guaradmos la bitacora
-        $bitacora = new ProfesionalBitacora();
-
-        $bitacora->id_capturista = $usuario->id;
-        $bitacora->capturista_label = $usuario->responsable;
-        $bitacora->accion = "NUEVO REGISTRO EN MODULO EMERGENCIA";
-        $bitacora->id_profesional = $request->id_profesional;
-
-        $bitacora->save();
-
-        // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalShow',$emergencia->id_profesional)->with('success', 'Registro realizado correctamente.');
+    return redirect()->route('profesionalShow', $request->id_profesional)
+        ->with('success', 'Registro realizado correctamente.');
         
     }
 }

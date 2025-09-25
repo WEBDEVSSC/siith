@@ -23,7 +23,6 @@
         <div class="card-header">
 
             <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm">PERFIL DEL TRABAJADOR</a>
-            <a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
 
         </div>
 
@@ -41,7 +40,7 @@
                 <div class="row mt-3">      
 
                     <div class="col-md-3">
-                        <p>Tipo de formación</p>                        
+                        <p><strong>Tipo de Formación</strong></p>                        
                         <select name="tipo_formacion" id="tipoFormacion" class="form-control">
                             <option value="" disabled selected>Selecciona un tipo de formación</option>
                             @foreach ($tiposFormacion as $tipo)
@@ -56,7 +55,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <p>Carrera</p>
+                        <p><strong>Carrera</strong></p>
                         <select name="carrera_id" id="carrera" class="form-control select2">
                             <option value="" disabled selected>-- Seleccione una opción --</option>
                             @foreach ($carreras as $carrera)
@@ -71,7 +70,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <p>Institución Educativa Formadora</p>
+                        <p><strong>Institución Educativa Formadora</strong></p>
                         <select name="institucion_educativa_id" id="institucion_educativa_id" class="form-control select2">
                             <option value="" disabled selected>-- Seleccione una opción --</option>
                             @foreach ($institucionesEducativas as $institucionEducativa)
@@ -94,7 +93,7 @@
                 <div class="row mt-3">
 
                     <div class="col-md-3">
-                        <p>Año que cursa</p>
+                        <p><strong>Año que Cursa</strong></p>
                         <input type="text" name="anio_cursa" id="anio_cursa" class="form-control" value="{{ old('anio_cursa') }}">                 
                         @error('anio_cursa')
                         <br><div class="alert alert-danger">{{ $message }}</div>
@@ -102,7 +101,7 @@
                     </div>        
                     
                     <div class="col-md-3">
-                        <p>Duración de Años de Formación</p>
+                        <p><strong>Duración de Años de Formación</strong></p>
                         <input type="text" name="duracion_formacion" id="duracion_formacion" class="form-control" value="{{ old('duracion_formacion') }}">                     
                         @error('duracion_formacion')
                         <br><div class="alert alert-danger">{{ $message }}</div>
@@ -114,7 +113,7 @@
         <!-- ---------------------------------------------------------------------- --> 
         </div>
         <div class="card-footer">
-            <button type="submit" class="btn btn-success btn-sm btn-info">REGISTRAR DATOS DE PERSONAL EN FORMACIÓN</button>
+            <button type="submit" class="btn btn-success btn-sm btn-info">REGISTRAR DATOS</button>
         </div>
 
     </form>

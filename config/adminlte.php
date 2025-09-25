@@ -300,8 +300,6 @@ return [
 
     'menu' => [
         
-
-        ['header' => 'Profesionales'],
         [
             'text' => 'Dashboard',
             'url' => '/home',
@@ -365,8 +363,6 @@ return [
         |
         */
 
-        ['header' => 'account_settings'],
-        
         [
             'text' => 'Usuarios',
             'url' => 'admin/usuarios/indexUsuario',

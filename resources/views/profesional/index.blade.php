@@ -95,6 +95,7 @@
                 <tr>
                     <th></th>
                     <th>FOTOGRAFÍA</th>
+                    <th>CURP</th>
                     <th>NOMBRE COMPLETO</th>
                     <th>ADSCRIPCIÓN FÍSICA</th>
                     <th>NÓMINA</th>
@@ -166,151 +167,6 @@
                                     </a>
                                 @endif
 
-                                <!-- --------------------------- -->
-                                <!-- --------------------------- -->
-                                <!-- MODULO DE CREDENCIALIZACION -->
-                                <!-- --------------------------- -->
-                                <!-- --------------------------- -->
-
-                                @if(optional($data['profesional']->credencializacion)->mdl_credencializacion == 1)
-                                    <a href="{{ route('editCredencializacion', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="FOTOGRAFÍA">
-                                        <i class="fa fa-camera" aria-hidden="true"></i>
-                                    </a>
-                                @else
-                                    <a href="{{ route('createCredencializacion', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="FOTOGRAFÍA">
-                                        <i class="fa fa-camera" aria-hidden="true"></i>
-                                    </a>
-                                @endif
-
-                                <!-- --------------------------- -->
-                                <!-- --------------------------- -->
-                                <!--      MODULO DE HORARIO      -->
-                                <!-- --------------------------- -->
-                                <!-- --------------------------- -->
-
-                                @if(optional($data['profesional']->horario)->mdl_horario == 1)
-                                    <a href="{{ route('editHorario', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="HORARIO">
-                                        <i class="fa fa-clock" aria-hidden="true"></i>
-                                    </a>
-                                @else
-                                    <a href="{{ route('createHorario', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="HORARIO">
-                                        <i class="fa fa-clock" aria-hidden="true"></i>
-                                    </a>
-                                @endif
-                                
-
-                                <!-- --------------------------- -->
-                                <!-- --------------------------- -->
-                                <!--      MODULO DE SUELDO       -->
-                                <!-- --------------------------- -->
-                                <!-- --------------------------- -->
-
-                                {{--
-                                
-                                @if(optional($data['profesional']->sueldo)->mdl_sueldo == 1)
-                                <a href="{{ route('editSueldo', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="SUELDO">
-                                    <i class="fa fa-credit-card" aria-hidden="true"></i>
-                                </a>
-                                @else
-                                    <a href="{{ route('createSueldo', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="SUELDO">
-                                        <i class="fa fa-credit-card" aria-hidden="true"></i>
-                                    </a>
-                                @endif 
-                                
-                                --}}
-
-                                <!-- -------------------------------------------------------------------------------------- -->
-
-                                
-
-                                <!-- -------------------------------------------------------------------------------------- -->
-
-                                <!-- --------------------------- -->
-                                <!-- --------------------------- -->
-                                <!--  MODULO DE GRADO ACADEMICO  -->
-                                <!-- --------------------------- -->
-                                <!-- --------------------------- -->
-
-                                @if(optional($data['profesional']->gradoAcademico)->mdl_grado_academico == 1)
-                                <a href="{{ route('editGrado', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="GRADO ACADEMICO">
-                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                </a>
-                                @else
-                                    <a href="{{ route('createGrado', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="GRADO ACADEMICO">
-                                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                                    </a>
-                                @endif
-
-                                <hr>
-
-                                <!-- ------------------------------------- -->
-                                <!-- ------------------------------------- -->
-                                <!--    MODULO DE PERSONAL EN FORMACION    -->
-                                <!-- ------------------------------------- -->
-                                <!-- ------------------------------------- -->
-
-                                @if(optional($data['profesional']->areaMedica)->mdl_area_medica == 1)
-                                    <a href="{{ route('editAreaMedica', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="PERSONAL EN FORMACIÓN">
-                                        <i class="fa fa-stethoscope" aria-hidden="true"></i>
-                                    </a>
-                                @else
-                                    <a href="{{ route('createAreaMedica', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="PERSONAL EN FORMACIÓN">
-                                        <i class="fa fa-stethoscope" aria-hidden="true"></i>
-                                    </a>
-                                @endif
-
-                                <!-- --------------------------- -->
-                                <!-- --------------------------- -->
-                                <!--  MODULO DE CERTIFICACIONES  -->
-                                <!-- --------------------------- -->
-                                <!-- --------------------------- -->
-
-                                @if(optional($data['profesional']->certificacion)->mdl_certificacion == 1)
-                                    <a href="{{ route('editCertificacion', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="CERTIFICACIONES">
-                                        <i class="fa fa-certificate" aria-hidden="true"></i>
-                                    </a>
-                                @else
-                                    <a href="{{ route('createCertificacion', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="CERTIFICACIONES">
-                                        <i class="fa fa-certificate" aria-hidden="true"></i>
-                                    </a>
-                                @endif
-
-                                <!-- --------------------------- -->
-                                <!-- --------------------------- -->
-                                <!--   MODULO DE EMERGENCIAS     -->
-                                <!-- --------------------------- -->
-                                <!-- --------------------------- -->
-
-                                @if(optional($data['profesional']->emergencia)->mdl_emergencia == 1)
-                                    <a href="{{ route('editEmergencia', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="EMERGENCIA">
-                                        <i class="fa fa-h-square" aria-hidden="true"></i>
-                                    </a>
-                                @else
-                                    <a href="{{ route('createEmergencia', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="EMERGENCIA">
-                                        <i class="fa fa-h-square" aria-hidden="true"></i>
-                                    </a>
-                                @endif
-
-                                <!-- --------------------------- -->
-                                <!-- --------------------------- -->
-                                <!--   MODULO DE VIGENCIAS       -->
-                                <!-- --------------------------- -->
-                                <!-- --------------------------- -->
-
-                                <a href="{{ route('createVigencia', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="VIGENCIA">
-                                    <i class="fa-solid fa-tags"></i>
-                                </a>
-
-                                <!-- ------------------------------------ -->
-                                <!-- ------------------------------------ -->
-                                <!--   MODULO DE CAMBIO TIPO NOMINA       -->
-                                <!-- ------------------------------------ -->
-                                <!-- ------------------------------------ -->
-
-                                <a href="{{ route('createCambioTipoNomina', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="CAMBIO TIPO NÓMINA">
-                                    <i class="fa fa-building" aria-hidden="true"></i>
-                                </a>
-                                
                                 <!-- --------------------------------------- -->
                                 <!-- --------------------------------------- -->
                                 <!--    MODULO DE CATALOGO DE OCUPACIONES    -->
@@ -527,6 +383,155 @@
                                 
                                 
                             @endif
+
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                <!-- MODULO DE CREDENCIALIZACION -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+
+                                @if(optional($data['profesional']->credencializacion)->mdl_credencializacion == 1)
+                                    <a href="{{ route('editCredencializacion', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="FOTOGRAFÍA">
+                                        <i class="fa fa-camera" aria-hidden="true"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('createCredencializacion', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="FOTOGRAFÍA">
+                                        <i class="fa fa-camera" aria-hidden="true"></i>
+                                    </a>
+                                @endif
+
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                <!--      MODULO DE HORARIO      -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+
+                                @if(optional($data['profesional']->horario)->mdl_horario == 1)
+                                    <a href="{{ route('editHorario', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="HORARIO">
+                                        <i class="fa fa-clock" aria-hidden="true"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('createHorario', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="HORARIO">
+                                        <i class="fa fa-clock" aria-hidden="true"></i>
+                                    </a>
+                                @endif
+                                
+
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                <!--      MODULO DE SUELDO       -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+
+                                {{--
+                                
+                                @if(optional($data['profesional']->sueldo)->mdl_sueldo == 1)
+                                <a href="{{ route('editSueldo', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="SUELDO">
+                                    <i class="fa fa-credit-card" aria-hidden="true"></i>
+                                </a>
+                                @else
+                                    <a href="{{ route('createSueldo', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="SUELDO">
+                                        <i class="fa fa-credit-card" aria-hidden="true"></i>
+                                    </a>
+                                @endif 
+                                
+                                --}}
+
+                                <!-- -------------------------------------------------------------------------------------- -->
+
+                                
+
+                                <!-- -------------------------------------------------------------------------------------- -->
+
+                                
+                                <hr>
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                <!--  MODULO DE GRADO ACADEMICO  -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+
+                                @if(optional($data['profesional']->gradoAcademico)->mdl_grado_academico == 1)
+                                <a href="{{ route('editGrado', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="GRADO ACADEMICO">
+                                    <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                </a>
+                                @else
+                                    <a href="{{ route('createGrado', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="GRADO ACADEMICO">
+                                        <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                                    </a>
+                                @endif
+
+                                
+
+                                <!-- ------------------------------------- -->
+                                <!-- ------------------------------------- -->
+                                <!--    MODULO DE PERSONAL EN FORMACION    -->
+                                <!-- ------------------------------------- -->
+                                <!-- ------------------------------------- -->
+
+                                @if(optional($data['profesional']->areaMedica)->mdl_area_medica == 1)
+                                    <a href="{{ route('editAreaMedica', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="PERSONAL EN FORMACIÓN">
+                                        <i class="fa fa-stethoscope" aria-hidden="true"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('createAreaMedica', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="PERSONAL EN FORMACIÓN">
+                                        <i class="fa fa-stethoscope" aria-hidden="true"></i>
+                                    </a>
+                                @endif
+
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                <!--  MODULO DE CERTIFICACIONES  -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+
+                                @if(optional($data['profesional']->certificacion)->mdl_certificacion == 1)
+                                    <a href="{{ route('editCertificacion', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="CERTIFICACIONES">
+                                        <i class="fa fa-certificate" aria-hidden="true"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('createCertificacion', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="CERTIFICACIONES">
+                                        <i class="fa fa-certificate" aria-hidden="true"></i>
+                                    </a>
+                                @endif
+
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                <!--   MODULO DE EMERGENCIAS     -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+
+                                @if(optional($data['profesional']->emergencia)->mdl_emergencia == 1)
+                                    <a href="{{ route('editEmergencia', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="EMERGENCIA">
+                                        <i class="fa fa-h-square" aria-hidden="true"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('createEmergencia', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="EMERGENCIA">
+                                        <i class="fa fa-h-square" aria-hidden="true"></i>
+                                    </a>
+                                @endif
+
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                <!--   MODULO DE VIGENCIAS       -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+
+                                <a href="{{ route('createVigencia', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="VIGENCIA">
+                                    <i class="fa-solid fa-tags"></i>
+                                </a>
+
+                                <!-- ------------------------------------ -->
+                                <!-- ------------------------------------ -->
+                                <!--   MODULO DE CAMBIO TIPO NOMINA       -->
+                                <!-- ------------------------------------ -->
+                                <!-- ------------------------------------ -->
+
+                                <a href="{{ route('createCambioTipoNomina', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="CAMBIO TIPO NÓMINA">
+                                    <i class="fa fa-building" aria-hidden="true"></i>
+                                </a>
+                                
+                                
                             
                         </td>
                     
