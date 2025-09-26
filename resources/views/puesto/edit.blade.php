@@ -56,7 +56,7 @@
                         @enderror
                     </div>
                     <div class="col-md-3">
-                        <p><strong>Fiel</strong></p>
+                        <p><strong>Fiel (SAT)</strong></p>
                         <select name="fiel" id="fiel" class="form-control">
                             <option value="">-- Seleccione una opción --</option>
                             <option value="SI" {{ old('fiel', $profesional->fiel) == 'SI' ? 'selected' : '' }}>SI</option>

@@ -23,7 +23,7 @@
         <a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
     </div>
 
-    <form action="{{ route('updateCetsLesp', $profesionalOcupaciones->id) }}" method="POST">
+    <form action="{{ route('updateAlmacen', $profesionalOcupaciones->id) }}" method="POST">
         @csrf 
         @method('PUT')
 
