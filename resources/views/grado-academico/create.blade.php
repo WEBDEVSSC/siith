@@ -5,7 +5,7 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Grado Academico</strong>></h1>
+    <h1><strong>Grado Academico</strong></h1>
 @stop
 
 @section('content')
@@ -40,7 +40,9 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <h5><strong>Grado Académico 1</strong></h5>
+                        <blockquote class="quote-secondary">
+                            <h4>Grado Académico 1</h4>
+                        </blockquote>
                     </div>
                 </div>
 
@@ -135,7 +137,9 @@
 
                 <div class="row mt-3">
                     <div class="col-md-12">
-                        <h5><strong>Grado Académico 2</strong></h5>
+                        <blockquote class="quote-secondary">
+                            <h4>Grado Académico 2</h4>
+                        </blockquote>
                     </div>
                 </div>
 
@@ -232,7 +236,11 @@
 
                 <div class="row mt-3">
                     <div class="col-md-12">
-                        <h5><strong>Grado Académico 3</strong></h5>
+
+                        <blockquote class="quote-secondary">
+                            <h4>Grado Académico 3</h4>
+                        </blockquote>
+
                     </div>
                 </div>
 
@@ -329,38 +337,40 @@
 
                 <div class="row mt-3">
                     <div class="col-md-12">
-                        <h5><strong>Grado Académico 4</strong></h5>
+                        <blockquote class="quote-secondary">
+                            <h4>Grado Académico 4</h4>
+                        </blockquote>
                     </div>
                 </div>
 
         <div class="row mt-3">      
 
             <div class="col-md-3">
-                <p><strong>Grado Académico 2</strong></p>
-                <select name="grado_academico_dos" id="grado_academico_dos" class="form-control">
+                <p><strong>Grado Académico 4</strong></p>
+                <select name="grado_academico_cuatro" id="grado_academico_cuatro" class="form-control">
                     <option value="">-- Seleccione una opción --</option>
                     @foreach($gradosAcademicos as $gradoAcademico)
-                        <option value="{{ $gradoAcademico->cve }}" {{ old('grado_academico_dos') == $gradoAcademico->cve ? 'selected' : '' }}>
+                        <option value="{{ $gradoAcademico->cve }}" {{ old('grado_academico_cuatro') == $gradoAcademico->cve ? 'selected' : '' }}>
                             {{ $gradoAcademico->grado }}
                         </option>
                     @endforeach
                 </select>
-                @error('grado_academico_dos')
+                @error('grado_academico_cuatro')
                 <br><div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>     
             
             <div class="col-md-9">
-                <p><strong>Título 2</strong></p>
-                <select name="titulo_dos" id="titulo_dos" class="form-control">
+                <p><strong>Título 4</strong></p>
+                <select name="titulo_cuatro" id="titulo_cuatro" class="form-control">
                     <option value="">-- Seleccione una opcion --</option>
                     @foreach($titulos as $titulo)
-                        <option value="{{ $titulo->titulo }}" {{ old('titulo_dos') == $titulo->titulo ? 'selected' : '' }}>
+                        <option value="{{ $titulo->titulo }}" {{ old('titulo_cuatro') == $titulo->titulo ? 'selected' : '' }}>
                             {{ $titulo->titulo }}
                         </option>
                     @endforeach
                 </select>
-                @error('titulo')
+                @error('titulo_cuatro')
                 <br><div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
@@ -372,45 +382,45 @@
         <div class="row mt-3">
             
             <div class="col-md-3">
-                <p><strong>Institución Educativa 2</strong></p>
-                <select name="institucion_educativa_dos" id="institucion_educativa_dos" class="form-control select2">
+                <p><strong>Institución Educativa 4</strong></p>
+                <select name="institucion_educativa_cuatro" id="institucion_educativa_cuatro" class="form-control select2">
                     <option value="">-- Seleccione una opción --</option>
                     @foreach($institucionesEducativas as $institucioneEducativa)
-                        <option value="{{ $institucioneEducativa->id }}" {{ old('institucion_educativa_dos') == $institucioneEducativa->id ? 'selected' : '' }}>
+                        <option value="{{ $institucioneEducativa->id }}" {{ old('institucion_educativa_cuatro') == $institucioneEducativa->id ? 'selected' : '' }}>
                             {{ $institucioneEducativa->institucion }}
                         </option>
                     @endforeach
                 </select>
-                @error('institucion_educativa_dos')
+                @error('institucion_educativa_cuatro')
                 <br><div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>    
             
             <div class="col-md-3">
-                <p><strong>Cédula 2</strong></p>
-                <select name="cedula_dos" id="cedula_dos" class="form-control">
+                <p><strong>Cédula 4</strong></p>
+                <select name="cedula_cuatro" id="cedula_cuatro" class="form-control">
                     <option value="">-- Seleccione una opción --</option>
-                    <option value="SI" {{ old('cedula_uno') == 'SI' ? 'selected' : '' }}>SI</option>
-                    <option value="NO" {{ old('cedula_uno') == 'NO' ? 'selected' : '' }}>NO</option>
-                    <option value="EN TRAMITE" {{ old('cedula_uno') == 'EN TRAMITE' ? 'selected' : '' }}>EN TRAMITE</option>
+                    <option value="SI" {{ old('cedula_cuatro') == 'SI' ? 'selected' : '' }}>SI</option>
+                    <option value="NO" {{ old('cedula_cuatro') == 'NO' ? 'selected' : '' }}>NO</option>
+                    <option value="EN TRAMITE" {{ old('cedula_cuatro') == 'EN TRAMITE' ? 'selected' : '' }}>EN TRAMITE</option>
                 </select>
-                @error('cedula_dos')
+                @error('cedula_cuatro')
                 <br><div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>    
 
             <div class="col-md-3">
                 <p><strong>Número 2</strong></p>
-                <input type="text" name="cedula_numero_dos" id="cedula_numero_dos" class="form-control">
-                @error('cedula_numero_dos')
+                <input type="text" name="cedula_numero_cuatro" id="cedula_numero_cuatro" class="form-control">
+                @error('cedula_numero_cuatro')
                 <br><div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>   
             
             <div class="col-md-3">
                 <p><strong>Registro Nacional de Profesionales</strong></p>
-                <input type="file" name="reg_nac_prof_dos" class="form-control-file">
-                @error('reg_nac_prof_dos')
+                <input type="file" name="reg_nac_prof_cuatro" class="form-control-file">
+                @error('reg_nac_prof_cuatro')
                 <br><div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
@@ -475,7 +485,7 @@
     <script>
         $(document).ready(function(){
             // Deshabilitar los select de títulos al cargar la página
-            $('#titulo_uno, #titulo_dos').prop('disabled', true);
+            $('#titulo_uno, #titulo_dos, #titulo_tres, #titulo_cuatro').prop('disabled', true);
     
             function cargarTitulos(gradoSelect, tituloSelect) {
                 let gradoCve = $(gradoSelect).val(); // Obtener el valor seleccionado
@@ -509,6 +519,16 @@
             // Evento para el segundo grado académico
             $('#grado_academico_dos').change(function(){
                 cargarTitulos('#grado_academico_dos', '#titulo_dos');
+            });
+
+            // Evento para el segundo grado académico
+            $('#grado_academico_tres').change(function(){
+                cargarTitulos('#grado_academico_tres', '#titulo_tres');
+            });
+
+            // Evento para el segundo grado académico
+            $('#grado_academico_cuatro').change(function(){
+                cargarTitulos('#grado_academico_cuatro', '#titulo_cuatro');
             });
         });
     </script>

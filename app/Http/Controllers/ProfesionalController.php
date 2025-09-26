@@ -1105,6 +1105,24 @@ class ProfesionalController extends Controller
         $numeroCedulaDos = $gradoAcademico ? $gradoAcademico->numero_cedula_dos : null;
         $regNacProfDos = $gradoAcademico ? $gradoAcademico->reg_nac_prof_dos : null;
 
+        $gradoAcademicoTresId = $gradoAcademico ? $gradoAcademico->id : null;
+        $cveGradoTres = $gradoAcademico ? $gradoAcademico->cve_grado_tres : null;
+        $gradoAcademicoTres = $gradoAcademico ? $gradoAcademico->grado_academico_tres : null;
+        $tituloTres = $gradoAcademico ? $gradoAcademico->titulo_tres : null;
+        $institucionEducativaTres = $gradoAcademico ? $gradoAcademico->institucion_educativa_tres : null;
+        $cedulaTres = $gradoAcademico ? $gradoAcademico->cedula_tres : null;
+        $numeroCedulaTres = $gradoAcademico ? $gradoAcademico->numero_cedula_tres : null;
+        $regNacProfTres = $gradoAcademico ? $gradoAcademico->reg_nac_prof_tres : null;
+
+        $gradoAcademicoCuatroId = $gradoAcademico ? $gradoAcademico->id : null;
+        $cveGradoCuatro = $gradoAcademico ? $gradoAcademico->cve_grado_cuatro : null;
+        $gradoAcademicoCuatro = $gradoAcademico ? $gradoAcademico->grado_academico_cuatro : null;
+        $tituloCuatro = $gradoAcademico ? $gradoAcademico->titulo_cuatro : null;
+        $institucionEducativaCuatro = $gradoAcademico ? $gradoAcademico->institucion_educativa_cuatro : null;
+        $cedulaCuatro = $gradoAcademico ? $gradoAcademico->cedula_cuatro : null;
+        $numeroCedulaCuatro = $gradoAcademico ? $gradoAcademico->numero_cedula_cuatro : null;
+        $regNacProfCuatro = $gradoAcademico ? $gradoAcademico->reg_nac_prof_cuatro : null;
+
         // Cargamos los datos para el modulo de AREA MEDICA
         $areaMedica = $profesional->areaMedica;
 
@@ -1203,6 +1221,7 @@ class ProfesionalController extends Controller
             'cedulaUno',
             'numeroCedulaUno',
             'regNacProfUno',
+
             'cveGradoDos',
             'gradoAcademicoDos',
             'tituloDos',
@@ -1210,8 +1229,27 @@ class ProfesionalController extends Controller
             'cedulaDos',
             'numeroCedulaDos',
             'regNacProfDos',
+
+            'cveGradoTres',
+            'gradoAcademicoTres',
+            'tituloTres',
+            'institucionEducativaTres',
+            'cedulaTres',
+            'numeroCedulaTres',
+            'regNacProfTres',
+
+            'cveGradoCuatro',
+            'gradoAcademicoCuatro',
+            'tituloCuatro',
+            'institucionEducativaCuatro',
+            'cedulaCuatro',
+            'numeroCedulaCuatro',
+            'regNacProfCuatro',
+
             'gradoAcademicoUnoId',
             'gradoAcademicoDosId',
+            'gradoAcademicoTresId',
+            'gradoAcademicoCuatroId',
 
             'tipoFormacion',
             'carrera',

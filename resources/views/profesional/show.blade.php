@@ -840,69 +840,75 @@ ADMINISTRADOR
             <i class="fa fa-graduation-cap" aria-hidden="true"></i> <strong>GRADO ACADEMICO</strong>
         </div>
         <div class="card-body">
+
             <div class="row">
-                <div class="col-md-2">
-                    <p><strong>GRADO ACADEMICO UNO</strong></p>
-                    {{ $cveGradoUno }} - {{$gradoAcademicoUno}}
-                </div>
-                <div class="col-md-4">
-                    <p><strong>TITULO</strong></p>
-                    {{ $tituloUno }}
-                </div>
-                <div class="col-md-6">
-                    <p><strong>INSTITUCIÓN EDUCATIVA</strong></p>
-                    {{ $institucionEducativaUno }}
-                </div>
-                
-            </div>
-
-            <div class="row mt-3">
-                <div class="col-md-2">
-                    <p><strong>CEDULA</strong></p>
-                    {{ $cedulaUno }} - {{ $numeroCedulaUno }}
-                </div>
-                <div class="col-md-10">
-                    <p><strong>REGISTRO NACIONAL DE PROFESIONALES</strong></p>
-
-                    @if ($regNacProfUno)
-                        <a href="{{ route('regNacProfUno', $gradoAcademicoUnoId) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
-                    @else
-                        
-                    @endif
-                    
-                </div>
-            </div>
-
-            <div class="row mt-5">
-                <div class="col-md-2">
-                    <p><strong>GRADO ACADEMICO DOS</strong></p>
-                    {{ $cveGradoDos }} - {{$gradoAcademicoDos }}
-                </div>
-                <div class="col-md-4">
-                    <p><strong>TITULO</strong></p>
-                    {{ $tituloDos }}
-                </div>
-                <div class="col-md-6">
-                    <p><strong>INSTITUCIÓN EDUCATIVA</strong></p>
-                    {{ $institucionEducativaDos }}
-                </div>
-                
-            </div>
-
-            <div class="row mt-3">
-                <div class="col-md-2">
-                    <p><strong>CEDULA</strong></p>
-                    {{ $cedulaDos }} - {{ $numeroCedulaDos }}
-                </div>
-                <div class="col-md-10">
-                    <p><strong>REGISTRO NACIONAL DE PROFESIONALES</strong></p>
-
-                    @if ($regNacProfDos)
-                        <a href="{{ route('regNacProfDos', $gradoAcademicoDosId) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
-                    @else
-                        
-                    @endif
-
+                <div class="col-md-12">
+                    <table class="table table-striped table-bordered">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Grado Académico</th>
+                                <th>Titulo</th>
+                                <th>Institución Educativa</th>
+                                <th>Cedula</th>
+                                <th>R.N.P.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>{{ $cveGradoUno }} - {{$gradoAcademicoUno}}</td>
+                                <td>{{ $tituloUno }}</td>
+                                <td>{{ $institucionEducativaUno }}</td>
+                                <td>{{ $cedulaUno }} - {{ $numeroCedulaUno }}</td>
+                                <td>@if ($regNacProfUno)
+                                        <a href="{{ route('regNacProfUno', $gradoAcademicoUnoId) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
+                                    @else
+                                        
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>{{ $cveGradoDos }} - {{$gradoAcademicoDos}}</td>
+                                <td>{{ $tituloDos }}</td>
+                                <td>{{ $institucionEducativaDos }}</td>
+                                <td>{{ $cedulaDos }} - {{ $numeroCedulaDos }}</td>
+                                <td>@if ($regNacProfDos)
+                                        <a href="{{ route('regNacProfDos', $gradoAcademicoDosId) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
+                                    @else
+                                        
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>{{ $cveGradoTres }} - {{$gradoAcademicoTres}}</td>
+                                <td>{{ $tituloTres }}</td>
+                                <td>{{ $institucionEducativaTres }}</td>
+                                <td>{{ $cedulaTres }} - {{ $numeroCedulaTres }}</td>
+                                <td>@if ($regNacProfTres)
+                                        <a href="{{ route('regNacProfTres', $gradoAcademicoTresId) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
+                                    @else
+                                        
+                                    @endif
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>{{ $cveGradoCuatro }} - {{$gradoAcademicoCuatro}}</td>
+                                <td>{{ $tituloCuatro }}</td>
+                                <td>{{ $institucionEducativaCuatro }}</td>
+                                <td>{{ $cedulaCuatro }} - {{ $numeroCedulaCuatro }}</td>
+                                <td>@if ($regNacProfCuatro)
+                                        <a href="{{ route('regNacProfCuatro', $gradoAcademicoCuatroId) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
+                                    @else
+                                        
+                                    @endif
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 

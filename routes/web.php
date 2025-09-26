@@ -385,6 +385,10 @@ Route::middleware(['auth'])->group(function ()
 
      Route::get('/reg-nac-prof-dos/{id}', [ProfesionalGradoAcademicoController::class, 'regNacProfDos'])->name('regNacProfDos');
 
+     Route::get('/reg-nac-prof-tres/{id}', [ProfesionalGradoAcademicoController::class, 'regNacProfTres'])->name('regNacProfTres');
+
+     Route::get('/reg-nac-prof-cuatro/{id}', [ProfesionalGradoAcademicoController::class, 'regNacProfCuatro'])->name('regNacProfCuatro');
+
      /**
      * 
      * 

@@ -23,11 +23,10 @@
         <div class="card-header">
             
             <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm">PERFIL DEL TRABAJADOR</a>
-            <a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
 
         </div>
 
-        <form action="{{ route('updateGrado', $gradoAcademico->id) }}" method="POST">
+        <form action="{{ route('updateGrado', $gradoAcademico->id) }}" method="POST" enctype="multipart/form-data">
 
         @csrf 
 
@@ -41,10 +40,18 @@
                 <!-- 1 -->
                 <!-- ---------------------------------- -->
 
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <blockquote class="quote-secondary">
+                            <h4>Grado Académico 1</h4>
+                        </blockquote>
+                    </div>
+                </div>
+
                 <div class="row mt-3">  
 
                     <div class="col-md-3">
-                        <p>Grado académico 1</p>
+                        <p><strong>Nivel académico</strong></p>
                         <select name="grado_academico_uno" id="grado_academico_uno" class="form-control">
                             <option value="">-- Seleccione una opción --</option>
                             @foreach($gradosAcademicos as $grado)
@@ -62,7 +69,7 @@
                     
                     
                     <div class="col-md-9">
-                        <p>Título 1</p>
+                        <p><strong>Título</strong></p>
                         <input type="hidden" name="titulo_uno" id="titulo_uno_hidden" value="{{ old('titulo_uno', $gradoAcademico->titulo_uno_id ?? '') }}">
                         <select name="titulo_uno" id="titulo_uno" class="form-control select2" disabled>
                             <option value="">Seleccione un título</option>
@@ -85,7 +92,7 @@
                 <div class="row mt-3">
                     
                     <div class="col-md-3">
-                        <p>Institucion Educativa 1</p>
+                        <p><strong>Institucion Educativa</strong></p>
                         <select name="institucion_educativa_uno" id="institucion_educativa_uno" class="form-control select2">
                             <option value="">-- Seleccione una opción --</option>
                             @foreach($institucionesEducativas as $institucioneEducativa)
@@ -101,7 +108,7 @@
                     </div>    
                     
                     <div class="col-md-3">
-                        <p>Cedula 1</p>
+                        <p><strong>Cedula</strong></p>
                         <select name="cedula_uno" id="cedula_uno" class="form-control">
                             <option value="">-- Seleccione una opción --</option>
                             <option value="SI" {{ old('cedula_uno', $gradoAcademico->cedula_uno ?? '') == "SI" ? 'selected' : '' }}>SI</option>
@@ -113,7 +120,7 @@
                     </div> 
 
                     <div class="col-md-3">
-                        <p>Número 1</p>
+                        <p><strong>Número</strong></p>
                         <input type="text" name="cedula_numero_uno" id="cedula_numero_uno" class="form-control" value="{{ old('cedula_numero_uno', $gradoAcademico->numero_cedula_uno)}}">
                         @error('cedula_numero_uno')
                         <br><div class="alert alert-danger">{{ $message }}</div>
@@ -121,8 +128,21 @@
                     </div>    
 
                     <div class="col-md-3">
-                        <p>Registro Nacional de Profesionales</p>
+                        <p>
+                            <strong>Registro Nacional de Profesionales</strong> 
+                            
+                            @if ($gradoAcademico->reg_nac_prof_uno == NULL)
+                                <i class="fa-solid fa-ban"></i>
+                            @else
+                                <i class="fa-solid fa-circle-check"></i>
+                            @endif
+
+                        </p>
                         <input type="file" name="reg_nac_prof_uno" class="form-control-file">
+                         
+                        @error('reg_nac_prof_uno')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>                   
                     
                 </div>
@@ -132,10 +152,18 @@
                 <!-- 2 -->
                 <!-- ---------------------------------- -->
 
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <blockquote class="quote-secondary">
+                            <h4>Grado Académico 2</h4>
+                        </blockquote>
+                    </div>
+                </div>
+
         <div class="row mt-3">   
             
             <div class="col-md-3">
-                <p>Grado académico 2</p>
+                <p><strong>Nivel académico</strong></p>
                 <select name="grado_academico_dos" id="grado_academico_dos" class="form-control">
                     <option value="">-- Seleccione una opción --</option>
                     @foreach($gradosAcademicos as $grado)
@@ -151,7 +179,7 @@
             </div>   
             
             <div class="col-md-9">
-                <p>Título 2</p>
+                <p><strong>Título</strong></p>
                 <input type="hidden" name="titulo_dos" id="titulo_dos_hidden" value="{{ old('titulo_dos', $gradoAcademico->titulo_dos_id ?? '') }}">
                 <select name="titulo_dos" id="titulo_dos" class="form-control select2" disabled>
                     <option value="">Seleccione un título</option>
@@ -173,7 +201,7 @@
         <div class="row mt-3">
             
             <div class="col-md-3">
-                <p>Institucion Educativa 2</p>
+                <p><strong>Institucion Educativa</strong></p>
                 <select name="institucion_educativa_dos" id="institucion_educativa_dos" class="form-control select2">
                     <option value="">-- Seleccione una opción --</option>
                     @foreach($institucionesEducativas as $institucioneEducativa)
@@ -189,7 +217,7 @@
             </div>    
             
             <div class="col-md-3">
-                <p>Cedula 2</p>
+                <p><strong>Cedula</strong></p>
                 <select name="cedula_dos" id="cedula_dos" class="form-control">
                         <option value="">-- Seleccione una opción --</option>
                         <option value="SI" {{ old('cedula_dos', $gradoAcademico->cedula_dos ?? '') == "SI" ? 'selected' : '' }}>SI</option>
@@ -201,7 +229,7 @@
             </div>    
 
             <div class="col-md-3">
-                <p>Número 2</p>
+                <p><strong>Número</strong></p>
                 <input type="text" name="cedula_numero_dos" id="cedula_numero_dos" class="form-control" value="{{ old('cedula_numero_dos', $gradoAcademico->numero_cedula_dos)}}">
                 @error('cedula_numero_dos')
                 <br><div class="alert alert-danger">{{ $message }}</div>
@@ -209,8 +237,238 @@
             </div> 
             
             <div class="col-md-3">
-                <p>Registro Nacional de Profesionales</p>
+                <p>
+                    <strong>Registro Nacional de Profesionales</strong>
+
+                    @if ($gradoAcademico->reg_nac_prof_dos == NULL)
+                        <i class="fa-solid fa-ban"></i>
+                    @else
+                        <i class="fa-solid fa-circle-check"></i>
+                    @endif
+
+                </p>
                 <input type="file" name="reg_nac_prof_dos" class="form-control-file">
+                @error('reg_nac_prof_dos')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            
+            
+            
+        </div>
+
+                <!-- ---------------------------------- -->
+                <!-- 3 -->
+                <!-- ---------------------------------- -->
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <blockquote class="quote-secondary">
+                            <h4>Grado Académico 3</h4>
+                        </blockquote>
+                    </div>
+                </div>
+
+        <div class="row mt-3">   
+            
+            <div class="col-md-3">
+                <p><strong>Nivel académico</strong></p>
+                <select name="grado_academico_tres" id="grado_academico_tres" class="form-control">
+                    <option value="">-- Seleccione una opción --</option>
+                    @foreach($gradosAcademicos as $grado)
+                        <option value="{{ $grado->cve }}" 
+                            {{ old('grado_academico_tres', $gradoAcademico->cve_grado_tres ?? '') == $grado->cve ? 'selected' : '' }}>
+                            {{ $grado->grado }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('grado_academico_tres')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>   
+            
+            <div class="col-md-9">
+                <p><strong>Título</strong></p>
+                <input type="hidden" name="titulo_tres" id="titulo_tres_hidden" value="{{ old('titulo_tres', $gradoAcademico->titulo_tres_id ?? '') }}">
+                <select name="titulo_tres" id="titulo_tres" class="form-control select2" disabled>
+                    <option value="">Seleccione un título</option>
+                    @foreach($titulos as $titulo)
+                        <option value="{{ $titulo->id }}" {{ old('titulo_tres', $gradoAcademico->titulo_tres_id ?? '') == $titulo->id ? 'selected' : '' }}>
+                            {{ $titulo->titulo }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('titulo_tres')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
+        </div>
+
+        <!-- -->
+
+        <div class="row mt-3">
+            
+            <div class="col-md-3">
+                <p><strong>Institucion Educativa</strong></p>
+                <select name="institucion_educativa_tres" id="institucion_educativa_tres" class="form-control select2">
+                    <option value="">-- Seleccione una opción --</option>
+                    @foreach($institucionesEducativas as $institucioneEducativa)
+                        <option value="{{ $institucioneEducativa->id }}" 
+                            {{ old('institucion_educativa_tres', $gradoAcademico->institucion_educativa_tres_id) == $institucioneEducativa->id ? 'selected' : '' }}>
+                            {{ $institucioneEducativa->institucion }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('institucion_educativa_tres')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>    
+            
+            <div class="col-md-3">
+                <p><strong>Cedula</strong></p>
+                <select name="cedula_tres" id="cedula_tres" class="form-control">
+                        <option value="">-- Seleccione una opción --</option>
+                        <option value="SI" {{ old('cedula_tres', $gradoAcademico->cedula_tres ?? '') == "SI" ? 'selected' : '' }}>SI</option>
+                        <option value="NO" {{ old('cedula_tres', $gradoAcademico->cedula_tres ?? '') == "NO" ? 'selected' : '' }}>NO</option>
+                </select>
+                @error('cedula_tres')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>    
+
+            <div class="col-md-3">
+                <p><strong>Número</strong></p>
+                <input type="text" name="cedula_numero_tres" id="cedula_numero_tres" class="form-control" value="{{ old('cedula_numero_tres', $gradoAcademico->numero_cedula_tres)}}">
+                @error('cedula_numero_tres')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div> 
+            
+            <div class="col-md-3">
+                <p>
+                    <strong>Registro Nacional de Profesionales</strong>
+
+                    @if ($gradoAcademico->reg_nac_prof_tres == NULL)
+                        <i class="fa-solid fa-ban"></i>
+                    @else
+                        <i class="fa-solid fa-circle-check"></i>
+                    @endif
+
+                </p>
+                <input type="file" name="reg_nac_prof_tres" class="form-control-file">
+                @error('reg_nac_prof_tres')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            
+            
+            
+        </div>
+
+                <!-- ---------------------------------- -->
+                <!-- 4 -->
+                <!-- ---------------------------------- -->
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <blockquote class="quote-secondary">
+                            <h4>Grado Académico 4</h4>
+                        </blockquote>
+                    </div>
+                </div>
+
+        <div class="row mt-3">   
+            
+            <div class="col-md-3">
+                <p><strong>Nivel académico </strong></p>
+                <select name="grado_academico_cuatro" id="grado_academico_cuatro" class="form-control">
+                    <option value="">-- Seleccione una opción --</option>
+                    @foreach($gradosAcademicos as $grado)
+                        <option value="{{ $grado->cve }}" 
+                            {{ old('grado_academico_cuatro', $gradoAcademico->cve_grado_cuatro ?? '') == $grado->cve ? 'selected' : '' }}>
+                            {{ $grado->grado }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('grado_academico_cuatro')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>   
+            
+            <div class="col-md-9">
+                <p><strong>Título</strong></p>
+                <input type="hidden" name="titulo_cuatro" id="titulo_cuatro_hidden" value="{{ old('titulo_cuatro', $gradoAcademico->titulo_cuatro_id ?? '') }}">
+                <select name="titulo_cuatro" id="titulo_cuatro" class="form-control select2" disabled>
+                    <option value="">Seleccione un título</option>
+                    @foreach($titulos as $titulo)
+                        <option value="{{ $titulo->id }}" {{ old('titulo_cuatro', $gradoAcademico->titulo_cuatro_id ?? '') == $titulo->id ? 'selected' : '' }}>
+                            {{ $titulo->titulo }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('titulo_cuatro')
+                    <span class="text-danger">{{ $message }}</span>
+                @enderror
+            </div>
+
+        </div>
+
+        <!-- -->
+
+        <div class="row mt-3">
+            
+            <div class="col-md-3">
+                <p><strong>Institucion Educativa</strong></p>
+                <select name="institucion_educativa_cuatro" id="institucion_educativa_cuatro" class="form-control select2">
+                    <option value="">-- Seleccione una opción --</option>
+                    @foreach($institucionesEducativas as $institucioneEducativa)
+                        <option value="{{ $institucioneEducativa->id }}" 
+                            {{ old('institucion_educativa_cuatro', $gradoAcademico->institucion_educativa_cuatro_id) == $institucioneEducativa->id ? 'selected' : '' }}>
+                            {{ $institucioneEducativa->institucion }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('institucion_educativa_cuatro')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>    
+            
+            <div class="col-md-3">
+                <p><strong>Cedula</strong></p>
+                <select name="cedula_cuatro" id="cedula_cuatro" class="form-control">
+                        <option value="">-- Seleccione una opción --</option>
+                        <option value="SI" {{ old('cedula_cuatro', $gradoAcademico->cedula_cuatro ?? '') == "SI" ? 'selected' : '' }}>SI</option>
+                        <option value="NO" {{ old('cedula_cuatro', $gradoAcademico->cedula_cuatro ?? '') == "NO" ? 'selected' : '' }}>NO</option>
+                </select>
+                @error('cedula_cuatro')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>    
+
+            <div class="col-md-3">
+                <p><strong>Número</strong></p>
+                <input type="text" name="cedula_numero_cuatro" id="cedula_numero_cuatro" class="form-control" value="{{ old('cedula_numero_cuatro', $gradoAcademico->numero_cedula_cuatro)}}">
+                @error('cedula_numero_cuatro')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div> 
+            
+            <div class="col-md-3">
+                <p>
+                    <strong>Registro Nacional de Profesionales</strong>
+                    
+                    @if ($gradoAcademico->reg_nac_prof_cuatro == NULL)
+                        <i class="fa-solid fa-ban"></i>
+                    @else
+                        <i class="fa-solid fa-circle-check"></i>
+                    @endif
+
+                </p>
+                <input type="file" name="reg_nac_prof_cuatro" class="form-control-file">
+                @error('reg_nac_prof_cuatro')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             
             
