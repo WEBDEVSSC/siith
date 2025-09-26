@@ -242,7 +242,7 @@ class ProfesionalController extends Controller
             'email' => 'required|email',
             'padre_madre_familia' => 'required',
             'clues_adscripcion' => 'required',
-            'fecha_inicio'=>'required'
+            'fecha_inicio' => 'required|date|before_or_equal:today',
         ], [
             'homoclave.required' => 'La homoclave es obligatoria.',
             'homoclave.size' => 'La homoclave debe ser de 3 caracteres.',            
@@ -259,6 +259,9 @@ class ProfesionalController extends Controller
             'estado_conyugal.required' => 'El estado conyugal es obligatorio.',
             'padre_madre_familia.required' => 'El campo Padre / Madre de familia es obligatorio.',
             'clues_adscripcion.required' => 'La CLUES es obligatorio',
+            'fecha_inicio.required' => 'La fecha de inicio es obligatoria.',
+            'fecha_inicio.date' => 'La fecha de inicio debe ser una fecha válida.',
+            'fecha_inicio.before_or_equal' => 'La fecha de inicio no puede ser mayor al día de hoy.',
         ]);
 
 

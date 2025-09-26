@@ -3,13 +3,15 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Buscar CURP</small></h1>
+    <h1><strong>Nuevo Registro de Trabajador</strong></h1>
 @stop
 
 @section('content')
     
 <div class="card">
         <div class="card-header">
+
+            <p><strong>Ingresa la CURP</strong></p>
 
         </div>
 
@@ -21,8 +23,7 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <p>Ingresa la CURP</p>
-                        <input type="text" name="curp" id='curp' class="form-control" value="{{ old('curp') }}">
+                        <input type="text" name="curp" id='curp' class="form-control" value="{{ old('curp') }}" onpaste="return false;">
                         @error('curp')
                             <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -34,8 +35,7 @@
                         @endif
                     </div>
                     <div class="col-md-6">
-                        <p>*</p>
-                        <input type="text" name="curp_confirma" id='curp_confirma' class="form-control" value="{{ old('curp_confirma') }}">
+                        <input type="text" name="curp_confirma" id='curp_confirma' class="form-control" value="{{ old('curp_confirma') }}" onpaste="return false;">
                         @error('curp_confirma')
                             <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -62,7 +62,9 @@
     @csrf
 
     <div class="card">
-        <div class="card-header"></div>
+        <div class="card-header">
+            <strong>Escanee el Código QR de la CURP</strong>
+        </div>
         <div class="card-body">
 
             <div id="reader" style="width: 300px;"></div>

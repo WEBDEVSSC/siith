@@ -128,7 +128,9 @@ ADMINISTRADOR
                 <div class="row mt-3">
                     <div class="col-md-3">
                         <p><strong>Sexo</strong></p>
-                        {{ $profesional->sexo }}
+
+                        {{ $profesional->sexo == "M" ? 'MASCULINO' : 'FEMENINO' }}
+
                     </div>
                     <div class="col-md-3">
                         <p><strong>Nacionalidad</strong></p>

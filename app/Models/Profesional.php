@@ -15,10 +15,10 @@ class Profesional extends Model
         'curp',
         'rfc',
         'homoclave',
+        'sexo',
         'nombre',
         'apellido_paterno',
-        'apellido_materno',
-        'sexo',
+        'apellido_materno',        
         'fecha_nacimiento',
         'entidad_nacimiento',
         'municipio_nacimiento',
@@ -28,12 +28,43 @@ class Profesional extends Model
         'telefono_casa',
         'celular',
         'email',
+        'padre_madre_familia',
+        'capturado_id',
+        'capturado_label',
+        'mdl_datos_generales',
     ];
 
     // Opcional: Definir los campos que deben ser tratados como fechas (Laravel los convierte en objetos Carbon)
     protected $dates = [
         'fecha_nacimiento',
     ];
+
+    // Mutadores para guardar datos
+
+    public function setHomoclaveAttribute($value)
+    {
+        $this->attributes['homoclave'] = strtoupper($value);
+    }
+
+    public function setNombreAttribute($value)
+    {
+        $this->attributes['nombre'] = strtoupper($value);
+    }
+
+    public function setApellidoPaternoAttribute($value)
+    {
+        $this->attributes['apellido_paterno'] = strtoupper($value);
+    }
+
+    public function setApellidoMaternoAttribute($value)
+    {
+        $this->attributes['apellido_materno'] = strtoupper($value);
+    }
+
+    public function setCorreoElectronicoAttribute($value)
+    {
+        $this->attributes['email'] = strtoupper($value);
+    }
 
     /****************************************************************************************** */
 

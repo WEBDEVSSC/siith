@@ -342,7 +342,7 @@ return [
             'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino'],
         ],
         [
-            'text' => 'Reporte Excel',
+            'text' => 'Reportes',
             'url' => 'admin/profesionales/reportes/reporteExcel',
             'icon' => 'fa-solid fa-file-excel',
             'label_color' => 'success',
