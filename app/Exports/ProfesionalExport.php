@@ -176,31 +176,53 @@ class ProfesionalExport implements FromView, WithStyles
             'BE2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
             'BF2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
             'BG2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
+
             'BH2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
             'BI2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
             'BJ2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
             'BK2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
 
+            'BL2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
+            'BM2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
+            'BN2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
+            'BO2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
+
+            'BP2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
+            'BQ2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
+            'BR2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
+            'BS2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '8A98A6']]],
+
             //Estilos para el modulo de AREA MEDICA
-            'BL1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
-            'BL2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
-            'BM2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
-            'BN2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
-            'BO2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
-            'BP2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
+            'BT1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
+            'BT2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
+            'BU2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
+            'BV2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
+            'BW2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
+            'BX2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66B6B']]],
 
             // Estilos para el modulo de CERTIFICAION
-            'BQ1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6BA66B']]],
-            'BQ2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6BA66B']]],
-            'BR2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6BA66B']]],
-            'BS2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6BA66B']]],
-            'BT2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6BA66B']]],
-            'BU2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6BA66B']]],
-            'BV2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6BA66B']]],
+            'BY1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6BA66B']]],
+            'BY2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6BA66B']]],
+            'BZ2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6BA66B']]],
+            'CA2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6BA66B']]],
+            'CB2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6BA66B']]],
+            'CC2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6BA66B']]],
+            'CD2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6BA66B']]],
 
             // Estilos para el modulo de OCUPACIONES
-            'BW1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66BA6']]],
-            'BW2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66BA6']]],
+            'CE1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66BA6']]],
+            'CE2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66BA6']]],
+            'CF2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66BA6']]],
+            'CG2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66BA6']]],
+            'CH2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66BA6']]],
+            'CI2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66BA6']]],
+            'CJ2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66BA6']]],
+            'CK2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66BA6']]],
+            'CL2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66BA6']]],
+            'CM2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66BA6']]],
+            'CN2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66BA6']]],
+            'CO2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66BA6']]],
+            'CP2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'A66BA6']]],
         ];
     }
 

@@ -16,10 +16,10 @@
                 <th colspan="9" style="text-align: center; font-size: 20px; font-weight: bold;">JORNADA LABORAL</th>
                 <th colspan="1" style="text-align: center; font-size: 20px; font-weight: bold;">CREDENCIALIZACION</th>
                 <th colspan="6" style="text-align: center; font-size: 20px; font-weight: bold;">SUELDO</th>
-                <th colspan="8" style="text-align: center; font-size: 20px; font-weight: bold;">GRADO ACADEMICO</th>
+                <th colspan="16" style="text-align: center; font-size: 20px; font-weight: bold;">GRADO ACADEMICO</th>
                 <th colspan="5" style="text-align: center; font-size: 20px; font-weight: bold;">PERSONAL EN FORMACION</th>
                 <th colspan="6" style="text-align: center; font-size: 20px; font-weight: bold;">CERTIFICACIONES</th>
-                <th colspan="7" style="text-align: center; font-size: 20px; font-weight: bold;">OCUPACIONES</th>
+                <th colspan="12" style="text-align: center; font-size: 20px; font-weight: bold;">OCUPACIONES</th>
             </tr>
             <tr>
                 <th><strong>ID</strong></th>
@@ -86,6 +86,17 @@
                 <th><strong>TITULO</strong></th>
                 <th><strong>INSTITUCION EDUCATIVA</strong></th>
                 <th><strong>CEDULA</strong></th>
+
+                <th><strong>GRADO ACADEMICO</strong></th>
+                <th><strong>TITULO</strong></th>
+                <th><strong>INSTITUCION EDUCATIVA</strong></th>
+                <th><strong>CEDULA</strong></th>
+
+                <th><strong>GRADO ACADEMICO</strong></th>
+                <th><strong>TITULO</strong></th>
+                <th><strong>INSTITUCION EDUCATIVA</strong></th>
+                <th><strong>CEDULA</strong></th>
+
                 <th><strong>GRADO ACADEMICO</strong></th>
                 <th><strong>TITULO</strong></th>
                 <th><strong>INSTITUCION EDUCATIVA</strong></th>
@@ -104,11 +115,22 @@
                 <th><strong>LENGUA INDIGENA</strong></th>
                 <th><strong>NIVEL</strong></th>
 
+                {{-- ----------------------------------------------------------------------------------------------------------------- --}}
+                {{-- CATALOGO DE OCUPACIONES --}}
+                {{-- ----------------------------------------------------------------------------------------------------------------- --}}
+
+                <th><strong>UNIDAD</strong></th>
                 <th><strong>AREA</strong></th>
+                <th><strong>SUBAREA SERVICIO</strong></th>
                 <th><strong>SUBAREA</strong></th>
+                <th><strong>JEFATURA PROGRAMA</strong></th>
                 <th><strong>JEFATURA</strong></th>
                 <th><strong>DEPARTAMENTO</strong></th>
+                <th><strong>PROGRAMA</strong></th>
+                <th><strong>COMPONENTE</strong></th>
+                <th><strong>SERVICIO</strong></th>
                 <th><strong>OCUPACION</strong></th>
+                <th><strong>PUESTO</strong></th>
 
             </tr>
         </thead>
@@ -133,6 +155,8 @@
                     <td>{{ $profesional->celular ?? ''  }}</td>
                     <td>{{ $profesional->email ?? ''  }}</td>
 
+                    {{-- ----------------------------------------------------------------------------------------------------------------- --}}
+
                     <td>{{ $profesional->puesto?->fiel ?? '' }} - {{ $profesional->puesto->fiel_vigencia ?? '' }}</td>
                     <td>{{ $profesional->puesto?->actividad ?? '' }}</td>
                     <td>{{ $profesional->puesto?->adicional ?? '' }}</td>
@@ -156,6 +180,8 @@
                     <td>{{ $profesional->puesto?->licencia_maternidad ?? '' }}</td>
                     <td>{{ $profesional->puesto?->seguro_salud ?? '' }}</td>
 
+                    {{-- ----------------------------------------------------------------------------------------------------------------- --}}
+
                     <td>{{ $profesional->horario->jornada ?? '' }}</td>
                     <td>{{ $profesional->horario->entrada_lunes ?? '' }} - {{ $profesional->horario->salida_lunes ?? '' }}</td>
                     <td>{{ $profesional->horario->entrada_martes ?? '' }} - {{ $profesional->horario->salida_martes ?? '' }}</td>
@@ -166,7 +192,11 @@
                     <td>{{ $profesional->horario->entrada_domingo ?? '' }} - {{ $profesional->horario->salida_domingo ?? '' }}</td>
                     <td>{{ $profesional->horario->entrada_festivo ?? '' }} - {{ $profesional->horario->salida_festivo ?? '' }}</td>
 
+                    {{-- ----------------------------------------------------------------------------------------------------------------- --}}
+
                     <td>{{ $profesional->credencializacion->fotografia ?? '' }}</td>
+
+                    {{-- ----------------------------------------------------------------------------------------------------------------- --}}
 
                     <td>{{ $profesional->sueldo->sueldo_mensual ?? '' }}</td>
                     <td>{{ $profesional->sueldo->compensaciones ?? '' }}</td>
@@ -175,14 +205,29 @@
                     <td>{{ $profesional->sueldo->estimulos ?? '' }}</td>
                     <td>{{ $profesional->sueldo->total ?? '' }}</td>
 
+                    {{-- ----------------------------------------------------------------------------------------------------------------- --}}
+
                     <td>{{ $profesional->gradoAcademico->cve_grado_uno ?? '' }} - {{ $profesional->gradoAcademico->grado_academico_uno ?? '' }}</td>
                     <td>{{ $profesional->gradoAcademico->titulo_uno ?? '' }}</td>
                     <td>{{ $profesional->gradoAcademico->institucion_educativa_uno ?? '' }}</td>
                     <td>{{ $profesional->gradoAcademico->cedula_uno ?? '' }} - {{ $profesional->gradoAcademico->numero_cedula_uno ?? '' }}</td>
+
                     <td>{{ $profesional->gradoAcademico->cve_grado_dos ?? '' }} - {{ $profesional->gradoAcademico->grado_academico_dos ?? '' }}</td>
                     <td>{{ $profesional->gradoAcademico->titulo_dos ?? '' }}</td>
                     <td>{{ $profesional->gradoAcademico->institucion_educativa_dos ?? '' }}</td>
                     <td>{{ $profesional->gradoAcademico->cedula_dos ?? '' }} - {{ $profesional->gradoAcademico->numero_cedula_dos ?? '' }}</td>
+
+                    <td>{{ $profesional->gradoAcademico->cve_grado_tres ?? '' }} - {{ $profesional->gradoAcademico->grado_academico_tres ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->titulo_tres ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->institucion_educativa_tres ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->cedula_tres ?? '' }} - {{ $profesional->gradoAcademico->numero_cedula_tres ?? '' }}</td>
+
+                    <td>{{ $profesional->gradoAcademico->cve_grado_cuatro ?? '' }} - {{ $profesional->gradoAcademico->grado_academico_cuatro ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->titulo_cuatro ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->institucion_educativa_cuatro ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->cedula_cuatro ?? '' }} - {{ $profesional->gradoAcademico->numero_cedula_cuatro ?? '' }}</td>
+
+                    {{-- ----------------------------------------------------------------------------------------------------------------- --}}
 
                     <td>{{ $profesional->areaMedica->tipo_formacion ?? '' }} - {{ $profesional->areaMedica->tipo_formacion_label ?? '' }}</td>
                     <td>{{ $profesional->areaMedica->carrera_label ?? '' }}</td>
@@ -190,12 +235,18 @@
                     <td>{{ $profesional->areaMedica->anio_cursa ?? '' }}</td>
                     <td>{{ $profesional->areaMedica->duracion_formacion ?? '' }}</td>
 
+                    {{-- ----------------------------------------------------------------------------------------------------------------- --}}
+
                     <td>{{ $profesional->certificacion->colegiacion_label ?? '' }}</td>
                     <td>{{ $profesional->certificacion->certificacion_label ?? '' }}</td>
                     <td>{{ $profesional->certificacion->idioma_label ?? '' }}</td>
                     <td>{{ $profesional->certificacion->idioma_nivel_de_dominio ?? '' }}</td>
                     <td>{{ $profesional->certificacion->lengua_indigena_label ?? '' }}</td>
                     <td>{{ $profesional->certificacion->lengua_nivel_de_dominio ?? '' }}</td>
+
+                    {{-- ----------------------------------------------------------------------------------------------------------------- --}}
+                    {{-- CATALOGO DE OCUPACIONES --}}
+                    {{-- ----------------------------------------------------------------------------------------------------------------- --}}
 
                     <td>{{ $profesional->ocupacionAlmacen->area_uno ?? '' }}</td>
                     <td>{{ $profesional->ocupacionAlmacen->subarea_uno ?? '' }}</td>
