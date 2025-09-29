@@ -1070,32 +1070,234 @@ ADMINISTRADOR
             <div class="row">
                 <div class="col-md-2">
                     <p><strong>TIPO DE SANDRE</strong></p>
-                    {{ $emergencias->tipo_sangre }}
+                    {{ $emergencias->tipo_sangre ?? ''  }}
                 </div>
                 <div class="col-md-2">
                     <p><strong>ALERGIAS</strong></p>
-                    {{ $emergencias->alergia_descripcion }}
+                    {{ $emergencias->alergia_descripcion ?? ''  }}
                 </div>
                 <div class="col-md-2">
                     <p><strong>ENFERMEDAD</strong></p>
-                    {{ $emergencias->enfermedad }}
+                    {{ $emergencias->enfermedad ?? ''  }}
                 </div>
                 <div class="col-md-2">
                     <p><strong>TRATAMIENTO</strong></p>
-                    {{ $emergencias->tratamiento }}
+                    {{ $emergencias->tratamiento ?? ''  }}
                 </div>
                 <div class="col-md-2">
                     <p><strong>MEDICAMENTOS</strong></p>
-                    {{ $emergencias->medicamentos }}
+                    {{ $emergencias->medicamentos ?? ''  }}
                 </div>
             </div>
+
+            <!-- -------------------------------------------------------- -->
+
+            <!-- -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <blockquote class="quote-secondary">
+                            <h4>Medico de Cabecera</h4>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- -->
+
+            <div class="row">
+                <div class="col-md-2">
+                    <p><strong>NOMBRE</strong></p>
+                    {{ $emergencias->medico_nombre ?? ''  }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>TELEFONO</strong></p>
+                    {{ $emergencias->medico_telefono ?? ''  }}
+                </div>
+            </div>
+
+            <!-- -------------------------------------------------------- -->
+
+            <!-- -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <blockquote class="quote-secondary">
+                            <h4>Contacto de Emergencia 1</h4>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- -->
+            
+            <!-- -------------------------------------------------------- -->
+
+            <div class="row">
+                <div class="col-md-2">
+                    <p><strong>NOMBRE</strong></p>
+                    {{ $emergencias->emergencia_nombre_uno ?? ''  }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>RELACIÓN</strong></p>
+                    {{ $emergencias->emergencia_relacion_uno ?? ''  }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>TELEFONO</strong></p>
+                    {{ $emergencias->emergencia_telefono_uno_uno ?? ''  }} {{ $emergencias->emergencia_telefono_uno_dos ?? ''  }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>E-MAIL</strong></p>
+                    {{ $emergencias->emergencia_email_uno ?? ''  }}
+                </div>
+            </div>
+
+            <!-- -------------------------------------------------------- -->
+
+            <!-- -------------------------------------------------------- -->
+
+            <div class="row mt-3">
+                <div class="col-md-2">
+                    <p><strong>DIRECCIÓN</strong></p>
+                    {{ $emergencias->emergencia_calle_uno ?? ''  }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>#</strong></p>
+                    {{ $emergencias->emergencia_numero_uno ?? ''  }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>COLONIA</strong></p>
+                    {{ $emergencias->emergencia_colonia_uno ?? ''  }} - CP {{ $emergencias->emergencia_codigo_postal_uno ?? ''  }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>MUNICIPIO</strong></p>
+                    {{ $emergencias->emergencia_municipio_label_uno ?? ''  }}
+                </div>
+            </div>
+
+            <!-- -------------------------------------------------------- -->
+
+            <!-- -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <blockquote class="quote-secondary">
+                            <h4>Contacto de Emergencia 2</h4>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- -->
+
+            <!-- -------------------------------------------------------- -->
+
+            <div class="row">
+                <div class="col-md-2">
+                    <p><strong>NOMBRE</strong></p>
+                    {{ $emergencias->emergencia_nombre_dos ?? ''  }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>RELACIÓN</strong></p>
+                    {{ $emergencias->emergencia_relacion_dos ?? ''  }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>TELEFONO</strong></p>
+                    {{ $emergencias->emergencia_telefono_dos_uno ?? ''  }} {{ $emergencias->emergencia_telefono_dos_dos ?? ''  }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>E-MAIL</strong></p>
+                    {{ $emergencias->emergencia_email_dos ?? ''  }}
+                </div>
+            </div>
+
+            <!-- -------------------------------------------------------- -->
+
+            <!-- -------------------------------------------------------- -->
+
+            <div class="row mt-3">
+                <div class="col-md-2">
+                    <p><strong>DIRECCIÓN</strong></p>
+                    {{ $emergencias->emergencia_calle_dos ?? ''  }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>#</strong></p>
+                    {{ $emergencias->emergencia_numero_dos ?? ''  }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>COLONIA</strong></p>
+                    {{ $emergencias->emergencia_colonia_dos ?? ''  }} - CP {{ $emergencias->emergencia_codigo_postal_dos ?? ''  }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>MUNICIPIO</strong></p>
+                    {{ $emergencias->emergencia_municipio_label_dos ?? ''  }}
+                </div>
+            </div>
+
+            <!-- -------------------------------------------------------- -->
+
+            <!-- -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <blockquote class="quote-secondary">
+                            <h4>Contacto de Emergencia 3</h4>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- -->
+
+            <!-- -------------------------------------------------------- -->
+
+            <div class="row">
+                <div class="col-md-2">
+                    <p><strong>NOMBRE</strong></p>
+                    {{ $emergencias->emergencia_nombre_tres ?? '' }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>RELACIÓN</strong></p>
+                    {{ $emergencias->emergencia_relacion_tres ?? ''  }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>TELEFONO</strong></p>
+                    {{ $emergencias->emergencia_telefono_tres_uno ?? ''  }} {{ $emergencias->emergencia_telefono_tres_dos ?? ''  }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>E-MAIL</strong></p>
+                    {{ $emergencias->emergencia_email_tres ?? ''  }}
+                </div>
+            </div>
+
+            <!-- -------------------------------------------------------- -->
+
+            <!-- -------------------------------------------------------- -->
+
+            <div class="row mt-3">
+                <div class="col-md-2">
+                    <p><strong>DIRECCIÓN</strong></p>
+                    {{ $emergencias->emergencia_calle_tres ?? ''  }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>#</strong></p>
+                    {{ $emergencias->emergencia_numero_tres ?? ''  }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>COLONIA</strong></p>
+                    {{ $emergencias->emergencia_colonia_tres ?? ''  }} - CP {{ $emergencias->emergencia_codigo_postal_tres ?? ''  }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>MUNICIPIO</strong></p>
+                    {{ $emergencias->emergencia_municipio_label_tres ?? ''  }}
+                </div>
+            </div>
+
+            <!-- -------------------------------------------------------- -->
+
         </div>
         <div class="card-footer">
 
-            @if ($profesional->sueldo?->mdl_sueldo == 1)
-                <a href="{{ route('editSueldo', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
-            @elseif ($profesional->sueldo?->mdl_sueldo == 0)
-                <a href="{{ route('createSueldo', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
+            @if ($profesional->emergencia?->mdl_emergencia == 1)
+                <a href="{{ route('editEmergencia', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
+            @elseif ($profesional->emergencia?->mdl_emergencia == 0)
+                <a href="{{ route('createEmergencia', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
             @endif
     
         </div>
