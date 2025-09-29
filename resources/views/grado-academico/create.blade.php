@@ -49,7 +49,7 @@
                 <div class="row mt-3">      
 
                     <div class="col-md-3">
-                        <p><strong>Nivel Académico 1</strong></p>
+                        <p><strong>Nivel Académico</strong></p>
                         <select name="grado_academico_uno" id="grado_academico_uno" class="form-control">
                             <option value="">-- Seleccione una opción --</option>
                             @foreach($gradosAcademicos as $gradoAcademico)
@@ -64,7 +64,7 @@
                     </div>     
                     
                     <div class="col-md-9">
-                        <p><strong>Título 1</strong></p>
+                        <p><strong>Título</strong></p>
                         <select name="titulo_uno" id="titulo_uno" class="form-control">
                             <option value="">-- Seleccione una opcion --</option>
                             @foreach($titulos as $titulo)
@@ -85,7 +85,7 @@
                 <div class="row mt-3">
                     
                     <div class="col-md-3">
-                        <p><strong>Institución Educativa 1</strong></p>
+                        <p><strong>Institución Educativa</strong></p>
                         <select name="institucion_educativa_uno" id="institucion_educativa_uno" class="form-control select2">
                             <option value="">-- Seleccione una opción --</option>
                             @foreach($institucionesEducativas as $institucioneEducativa)
@@ -100,7 +100,7 @@
                     </div>    
                     
                     <div class="col-md-3">
-                        <p><strong>Cédula 1</strong></p>
+                        <p><strong>Cédula</strong></p>
                         <select name="cedula_uno" id="cedula_uno" class="form-control">
                             <option value="">-- Seleccione una opción --</option>
                             <option value="SI" {{ old('cedula_uno') == 'SI' ? 'selected' : '' }}>SI</option>
@@ -113,7 +113,7 @@
                     </div>    
 
                     <div class="col-md-3">
-                        <p><strong>Número 1</strong></p>
+                        <p><strong>Número</strong></p>
                         <input type="text" name="cedula_numero_uno" id="cedula_numero_uno" class="form-control">
                         @error('cedula_numero_uno')
                         <br><div class="alert alert-danger">{{ $message }}</div>
@@ -146,7 +146,7 @@
         <div class="row mt-3">      
 
             <div class="col-md-3">
-                <p><strong>Grado Académico 2</strong></p>
+                <p><strong>Grado Académico</strong></p>
                 <select name="grado_academico_dos" id="grado_academico_dos" class="form-control">
                     <option value="">-- Seleccione una opción --</option>
                     @foreach($gradosAcademicos as $gradoAcademico)
@@ -161,7 +161,7 @@
             </div>     
             
             <div class="col-md-9">
-                <p><strong>Título 2</strong></p>
+                <p><strong>Título</strong></p>
                 <select name="titulo_dos" id="titulo_dos" class="form-control">
                     <option value="">-- Seleccione una opcion --</option>
                     @foreach($titulos as $titulo)
@@ -182,7 +182,7 @@
         <div class="row mt-3">
             
             <div class="col-md-3">
-                <p><strong>Institución Educativa 2</strong></p>
+                <p><strong>Institución Educativa</strong></p>
                 <select name="institucion_educativa_dos" id="institucion_educativa_dos" class="form-control select2">
                     <option value="">-- Seleccione una opción --</option>
                     @foreach($institucionesEducativas as $institucioneEducativa)
@@ -197,12 +197,12 @@
             </div>    
             
             <div class="col-md-3">
-                <p><strong>Cédula 2</strong></p>
+                <p><strong>Cédula</strong></p>
                 <select name="cedula_dos" id="cedula_dos" class="form-control">
                     <option value="">-- Seleccione una opción --</option>
-                    <option value="SI" {{ old('cedula_uno') == 'SI' ? 'selected' : '' }}>SI</option>
-                    <option value="NO" {{ old('cedula_uno') == 'NO' ? 'selected' : '' }}>NO</option>
-                    <option value="EN TRAMITE" {{ old('cedula_uno') == 'EN TRAMITE' ? 'selected' : '' }}>EN TRAMITE</option>
+                    <option value="SI" {{ old('cedula_dos') == 'SI' ? 'selected' : '' }}>SI</option>
+                    <option value="NO" {{ old('cedula_dos') == 'NO' ? 'selected' : '' }}>NO</option>
+                    <option value="EN TRAMITE" {{ old('cedula_dos') == 'EN TRAMITE' ? 'selected' : '' }}>EN TRAMITE</option>
                 </select>
                 @error('cedula_dos')
                 <br><div class="alert alert-danger">{{ $message }}</div>
@@ -210,7 +210,7 @@
             </div>    
 
             <div class="col-md-3">
-                <p><strong>Número 2</strong></p>
+                <p><strong>Número</strong></p>
                 <input type="text" name="cedula_numero_dos" id="cedula_numero_dos" class="form-control">
                 @error('cedula_numero_dos')
                 <br><div class="alert alert-danger">{{ $message }}</div>
@@ -247,7 +247,7 @@
         <div class="row mt-3">      
 
             <div class="col-md-3">
-                <p><strong>Grado Académico 3</strong></p>
+                <p><strong>Grado Académico</strong></p>
                 <select name="grado_academico_tres" id="grado_academico_tres" class="form-control">
                     <option value="">-- Seleccione una opción --</option>
                     @foreach($gradosAcademicos as $gradoAcademico)
@@ -262,7 +262,7 @@
             </div>     
             
             <div class="col-md-9">
-                <p><strong>Título 3</strong></p>
+                <p><strong>Título</strong></p>
                 <select name="titulo_tres" id="titulo_tres" class="form-control">
                     <option value="">-- Seleccione una opcion --</option>
                     @foreach($titulos as $titulo)
@@ -283,7 +283,7 @@
         <div class="row mt-3">
             
             <div class="col-md-3">
-                <p><strong>Institución Educativa 3</strong></p>
+                <p><strong>Institución Educativa</strong></p>
                 <select name="institucion_educativa_tres" id="institucion_educativa_tres" class="form-control select2">
                     <option value="">-- Seleccione una opción --</option>
                     @foreach($institucionesEducativas as $institucioneEducativa)
@@ -298,7 +298,7 @@
             </div>    
             
             <div class="col-md-3">
-                <p><strong>Cédula 3</strong></p>
+                <p><strong>Cédula</strong></p>
                 <select name="cedula_tres" id="cedula_tres" class="form-control">
                     <option value="">-- Seleccione una opción --</option>
                     <option value="SI" {{ old('cedula_tres') == 'SI' ? 'selected' : '' }}>SI</option>
@@ -311,7 +311,7 @@
             </div>    
 
             <div class="col-md-3">
-                <p><strong>Número 3</strong></p>
+                <p><strong>Número</strong></p>
                 <input type="text" name="cedula_numero_tres" id="cedula_numero_tres" class="form-control">
                 @error('cedula_numero_tres')
                 <br><div class="alert alert-danger">{{ $message }}</div>
@@ -346,7 +346,7 @@
         <div class="row mt-3">      
 
             <div class="col-md-3">
-                <p><strong>Grado Académico 4</strong></p>
+                <p><strong>Grado Académico</strong></p>
                 <select name="grado_academico_cuatro" id="grado_academico_cuatro" class="form-control">
                     <option value="">-- Seleccione una opción --</option>
                     @foreach($gradosAcademicos as $gradoAcademico)
@@ -361,7 +361,7 @@
             </div>     
             
             <div class="col-md-9">
-                <p><strong>Título 4</strong></p>
+                <p><strong>Título</strong></p>
                 <select name="titulo_cuatro" id="titulo_cuatro" class="form-control">
                     <option value="">-- Seleccione una opcion --</option>
                     @foreach($titulos as $titulo)
@@ -382,7 +382,7 @@
         <div class="row mt-3">
             
             <div class="col-md-3">
-                <p><strong>Institución Educativa 4</strong></p>
+                <p><strong>Institución Educativa</strong></p>
                 <select name="institucion_educativa_cuatro" id="institucion_educativa_cuatro" class="form-control select2">
                     <option value="">-- Seleccione una opción --</option>
                     @foreach($institucionesEducativas as $institucioneEducativa)
@@ -397,7 +397,7 @@
             </div>    
             
             <div class="col-md-3">
-                <p><strong>Cédula 4</strong></p>
+                <p><strong>Cédula</strong></p>
                 <select name="cedula_cuatro" id="cedula_cuatro" class="form-control">
                     <option value="">-- Seleccione una opción --</option>
                     <option value="SI" {{ old('cedula_cuatro') == 'SI' ? 'selected' : '' }}>SI</option>
@@ -410,7 +410,7 @@
             </div>    
 
             <div class="col-md-3">
-                <p><strong>Número 2</strong></p>
+                <p><strong>Número</strong></p>
                 <input type="text" name="cedula_numero_cuatro" id="cedula_numero_cuatro" class="form-control">
                 @error('cedula_numero_cuatro')
                 <br><div class="alert alert-danger">{{ $message }}</div>
@@ -433,7 +433,7 @@
         <div class="card-footer">
             
             
-            <button type="submit" class="btn btn-success btn-sm btn-info">REGISTRAR DATOS DE GRADO ACADEMICO</button>
+            <button type="submit" class="btn btn-success btn-sm btn-info">REGISTRAR DATOS</button>
         </div>
 
     </form>
@@ -471,11 +471,10 @@
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
-    
 
     <script>
         $(document).ready(function() {
-            $('#institucion_educativa_uno, #institucion_educativa_dos').select2({
+            $('#institucion_educativa_uno, #institucion_educativa_dos, #institucion_educativa_tres, #institucion_educativa_cuatro').select2({
                 placeholder: "-- Seleccione una opcion --",
                 allowClear: true
             });
@@ -486,14 +485,14 @@
         $(document).ready(function(){
             // Deshabilitar los select de títulos al cargar la página
             $('#titulo_uno, #titulo_dos, #titulo_tres, #titulo_cuatro').prop('disabled', true);
-    
-            function cargarTitulos(gradoSelect, tituloSelect) {
-                let gradoCve = $(gradoSelect).val(); // Obtener el valor seleccionado
+
+            function cargarTitulos(gradoSelect, tituloSelect, oldValue = null) {
+                let gradoCve = $(gradoSelect).val();
                 $(tituloSelect).empty().append('<option value="">-- Seleccione un título --</option>');
-    
+
                 if(gradoCve) {
                     $(tituloSelect).prop('disabled', false);
-                    
+
                     $.ajax({
                         url: `/titulos/${gradoCve}`,
                         type: 'GET',
@@ -501,6 +500,11 @@
                             $.each(response, function(id, titulo){
                                 $(tituloSelect).append(`<option value="${id}">${titulo}</option>`);
                             });
+
+                            // Si hay un oldValue, lo seleccionamos
+                            if(oldValue){
+                                $(tituloSelect).val(oldValue);
+                            }
                         },
                         error: function() {
                             alert("Error al obtener los títulos.");
@@ -510,31 +514,40 @@
                     $(tituloSelect).prop('disabled', true);
                 }
             }
-    
-            // Evento para el primer grado académico
+
+            // Recuperar valores anteriores de Laravel (old)
+            let oldTituloUno   = @json(old('titulo_uno'));
+            let oldTituloDos   = @json(old('titulo_dos'));
+            let oldTituloTres  = @json(old('titulo_tres'));
+            let oldTituloCuatro= @json(old('titulo_cuatro'));
+
+            // Si había grados seleccionados antes del error, recargamos títulos automáticamente
+            if($('#grado_academico_uno').val()){
+                cargarTitulos('#grado_academico_uno', '#titulo_uno', oldTituloUno);
+            }
+            if($('#grado_academico_dos').val()){
+                cargarTitulos('#grado_academico_dos', '#titulo_dos', oldTituloDos);
+            }
+            if($('#grado_academico_tres').val()){
+                cargarTitulos('#grado_academico_tres', '#titulo_tres', oldTituloTres);
+            }
+            if($('#grado_academico_cuatro').val()){
+                cargarTitulos('#grado_academico_cuatro', '#titulo_cuatro', oldTituloCuatro);
+            }
+
+            // Eventos para recargar dinámicamente
             $('#grado_academico_uno').change(function(){
                 cargarTitulos('#grado_academico_uno', '#titulo_uno');
             });
-    
-            // Evento para el segundo grado académico
             $('#grado_academico_dos').change(function(){
                 cargarTitulos('#grado_academico_dos', '#titulo_dos');
             });
-
-            // Evento para el segundo grado académico
             $('#grado_academico_tres').change(function(){
                 cargarTitulos('#grado_academico_tres', '#titulo_tres');
             });
-
-            // Evento para el segundo grado académico
             $('#grado_academico_cuatro').change(function(){
                 cargarTitulos('#grado_academico_cuatro', '#titulo_cuatro');
             });
         });
     </script>
-    
-    
-    
-    
-    
 @stop

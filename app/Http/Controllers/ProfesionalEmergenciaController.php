@@ -85,6 +85,7 @@ class ProfesionalEmergenciaController extends Controller
         'emergencia_calle_uno' => 'nullable|string',
         'emergencia_numero_uno' => 'nullable|string',
         'emergencia_colonia_uno' => 'nullable|string',
+        'emergencia_codigo_postal_uno' => 'nullable|string',
         'emergencia_municipio_uno' => 'nullable|integer',
 
         'emergencia_nombre_dos' => 'nullable|string',
@@ -95,6 +96,7 @@ class ProfesionalEmergenciaController extends Controller
         'emergencia_calle_dos' => 'nullable|string',
         'emergencia_numero_dos' => 'nullable|string',
         'emergencia_colonia_dos' => 'nullable|string',
+        'emergencia_codigo_postal_dos' => 'nullable|string',
         'emergencia_municipio_dos' => 'nullable|integer',
 
         'emergencia_nombre_tres' => 'nullable|string',
@@ -105,6 +107,7 @@ class ProfesionalEmergenciaController extends Controller
         'emergencia_calle_tres' => 'nullable|string',
         'emergencia_numero_tres' => 'nullable|string',
         'emergencia_colonia_tres' => 'nullable|string',
+        'emergencia_codigo_postal_tres' => 'nullable|string',
         'emergencia_municipio_tres' => 'nullable|integer',
     ]);
 
@@ -144,6 +147,7 @@ class ProfesionalEmergenciaController extends Controller
     $emergencia->emergencia_calle_uno = $request->emergencia_calle_uno;
     $emergencia->emergencia_numero_uno = $request->emergencia_numero_uno;
     $emergencia->emergencia_colonia_uno = $request->emergencia_colonia_uno;
+    $emergencia->emergencia_codigo_postal_uno = $request->emergencia_codigo_postal_uno;
     $emergencia->emergencia_municipio_id_uno = $request->emergencia_municipio_uno;
     $emergencia->emergencia_municipio_label_uno = $municipio_uno?->nombre;
 
@@ -156,6 +160,7 @@ class ProfesionalEmergenciaController extends Controller
     $emergencia->emergencia_calle_dos = $request->emergencia_calle_dos;
     $emergencia->emergencia_numero_dos = $request->emergencia_numero_dos;
     $emergencia->emergencia_colonia_dos = $request->emergencia_colonia_dos;
+    $emergencia->emergencia_codigo_postal_dos = $request->emergencia_codigo_postal_dos;
     $emergencia->emergencia_municipio_id_dos = $request->emergencia_municipio_dos;
     $emergencia->emergencia_municipio_label_dos = $municipio_dos?->nombre;
 
@@ -168,6 +173,7 @@ class ProfesionalEmergenciaController extends Controller
     $emergencia->emergencia_calle_tres = $request->emergencia_calle_tres;
     $emergencia->emergencia_numero_tres = $request->emergencia_numero_tres;
     $emergencia->emergencia_colonia_tres = $request->emergencia_colonia_tres;
+    $emergencia->emergencia_codigo_postal_tres = $request->emergencia_codigo_postal_tres;
     $emergencia->emergencia_municipio_id_tres = $request->emergencia_municipio_tres;
     $emergencia->emergencia_municipio_label_tres = $municipio_tres?->nombre;
 
@@ -193,5 +199,38 @@ class ProfesionalEmergenciaController extends Controller
     return redirect()->route('profesionalShow', $request->id_profesional)
         ->with('success', 'Registro realizado correctamente.');
         
+    }
+
+    public function editEmergencia($id)
+    {   
+        // Consultamos el registro por el id profesional     
+        $emergencia = ProfesionalEmergencia::where('id_profesional',$id)->firstOrFail();
+
+        // Buscamos el profesional
+        $profesional = Profesional::where('id',$emergencia->id_profesional)->firstOrFail();
+
+        $credencializacion = $profesional->credencializacion;
+        $fotografia = $credencializacion ? $credencializacion->fotografia : null;
+
+        // Generamos la URL de la fotografía desde storage
+        $fotoUrl = $fotografia 
+            ? asset('storage/credencializacion/thumbs/' . $fotografia) 
+            : null;
+
+
+        // Llenamos el select de ocupaciones
+        $tiposDeSangre = CatTipoDeSangre::all();
+
+        // Llenamos el select de tipos de alergias
+        $tiposDeAlergia = CatAlergia::all();
+
+        // Llenamos el select de municipios de Coahuila
+        $municipios = Municipio::where('relacion',7)->get();
+
+        // Llenamos el select de Contactos de Emergencia
+        $relacionesDeEmergencia = CatRelacionEmergencia::all();
+
+        // Retornamos la vista con todos los objetos
+        return view('emergencia.edit', compact('profesional','fotoUrl','emergencia','tiposDeSangre','tiposDeAlergia','municipios','relacionesDeEmergencia'));
     }
 }

@@ -21,8 +21,10 @@ class ProfesionalEmergencia extends Model
         'alergia_descripcion',
         'enfermedad',
         'medicamentos',
+
         'medico_nombre',
         'medico_telefono',
+
         'emergencia_nombre_uno',
         'emergencia_relacion_uno',
         'emergencia_telefono_uno_uno',
@@ -31,6 +33,7 @@ class ProfesionalEmergencia extends Model
         'emergencia_calle_uno',
         'emergencia_numero_uno',
         'emergencia_colonia_uno',
+        'emergencia_codigo_postal_uno',
         'emergencia_municipio_id_uno',
         'emergencia_municipio_label_uno',
 
@@ -42,6 +45,7 @@ class ProfesionalEmergencia extends Model
         'emergencia_calle_dos',
         'emergencia_numero_dos',
         'emergencia_colonia_dos',
+        'emergencia_codigo_postal_dos',
         'emergencia_municipio_id_dos',
         'emergencia_municipio_label_dos',
 
@@ -53,6 +57,7 @@ class ProfesionalEmergencia extends Model
         'emergencia_calle_tres',
         'emergencia_numero_tres',
         'emergencia_colonia_tres',
+        'emergencia_codigo_postal_tres',
         'emergencia_municipio_id_tres',
         'emergencia_municipio_label_tres',
         'mdl_emergencia',

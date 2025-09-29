@@ -1145,6 +1145,9 @@ class ProfesionalController extends Controller
         $lenguaIndigena = $certificacion ? $certificacion->lengua_indigena_label : null;
         $lenguaIndigenaDominio = $certificacion ? $certificacion->lengua_nivel_de_dominio : null;
 
+        // Cargar modulo de Emergencias
+        $emergencias = $profesional->emergencia;
+
         // Cargamos los datos para el modulo de CAMBIOI DE UNIDAD
         $cambiosDeUnidad = $profesional->cambiosDeUnidad()->orderBy('created_at', 'desc')->get();
 
@@ -1279,7 +1282,9 @@ class ProfesionalController extends Controller
 
             'vigencias',
 
-            'tiposDeNomina'
+            'tiposDeNomina',
+
+            'emergencias'
         ));
     }
 

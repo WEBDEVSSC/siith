@@ -69,7 +69,7 @@ class CatalogoOcupacionAlmacenController extends Controller
         $ocupacion->save();
 
         // Retornamos a la vista
-        return redirect()->route('ocupacionAlmacenIndex')->with('success', 'Registro realizado correctamente');
+        return redirect()->route('ocupacionAlmacenIndex')->with('successOcupacion', 'Ocupacion registrada correctamente');
     }
 
     public function ocupacionAlmacenEdit($id)
@@ -144,7 +144,7 @@ class CatalogoOcupacionAlmacenController extends Controller
                                         ]);
 
         // Redirigimos con un mensaje de éxito
-        return redirect()->route('ocupacionAlmacenIndex')->with('update', 'Ocupación actualizada correctamente.');
+        return redirect()->route('ocupacionAlmacenIndex')->with('updateOcupacion', 'Ocupación actualizada correctamente.');
     }
 
     public function ocupacionAlmacenDestroy($id)

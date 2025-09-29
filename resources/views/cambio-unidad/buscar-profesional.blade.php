@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Cambio de Unidad</small></h1>
+    <h1><strong>Cambio de Unidad</strong></h1>
 @stop
 
 @section('content')
@@ -21,7 +21,7 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <p>Ingresa la CURP</p>
+                        <p><strong>Ingresa la CURP</strong></p>
                         <input type="text" name="curp" id='curp' class="form-control" value="{{ old('curp') }}">
                         @error('curp')
                             <br><div class="alert alert-danger">{{ $message }}</div>

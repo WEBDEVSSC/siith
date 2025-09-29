@@ -15,6 +15,8 @@
 @php
     $alerts = [
         'success',
+        'successOcupacion',
+        'updateOcupacion',
         'successCredencializacion',
         'updateCredencializacion',
         'successHorario',
@@ -44,22 +46,31 @@
         'updateAlmacen',
         'successCambioTipoNomina'
     ];
+
+    $alertMessage = null;
+    foreach ($alerts as $alert) {
+        if(session($alert)){
+            $alertMessage = session($alert);
+            break; // mostramos solo la primera alerta encontrada
+        }
+    }
 @endphp
 
-@foreach ($alerts as $alert)
-    @if(session($alert))
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                Swal.fire({
-                    title: 'Éxito',
-                    text: "{{ session($alert) }}",
-                    icon: 'success',
-                    confirmButtonText: 'Ok'
-                });
+@if($alertMessage)
+    <!-- Asegúrate de tener SweetAlert cargado -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            Swal.fire({
+                title: 'Éxito',
+                text: @json($alertMessage),
+                icon: 'success',
+                confirmButtonText: 'Ok'
             });
-        </script>
-    @endif
-@endforeach
+        });
+    </script>
+@endif
 
 <!-- -->
 
@@ -1051,6 +1062,48 @@ ADMINISTRADOR
     <!-- -- -->
 
     <!-- --------------------------------------------------------------- -->
+    
+    <div class="card mt-3">
+        <div class="card-header">
+            <i class="fa fa-credit-card" aria-hidden="true"></i> <strong>EMERGENCIAS</strong></div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    <p><strong>TIPO DE SANDRE</strong></p>
+                    {{ $emergencias->tipo_sangre }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>ALERGIAS</strong></p>
+                    {{ $emergencias->alergia_descripcion }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>ENFERMEDAD</strong></p>
+                    {{ $emergencias->enfermedad }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>TRATAMIENTO</strong></p>
+                    {{ $emergencias->tratamiento }}
+                </div>
+                <div class="col-md-2">
+                    <p><strong>MEDICAMENTOS</strong></p>
+                    {{ $emergencias->medicamentos }}
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+
+            @if ($profesional->sueldo?->mdl_sueldo == 1)
+                <a href="{{ route('editSueldo', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
+            @elseif ($profesional->sueldo?->mdl_sueldo == 0)
+                <a href="{{ route('createSueldo', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
+            @endif
+    
+        </div>
+    </div>
+
+    <!-- --------------------------------------------------------------- -->
+
+    <!-- --------------------------------------------------------------- -->
     {{--
     <div class="card mt-3">
         <div class="card-header"><strong>PASES DE SALIDA</strong></div>
@@ -1157,4 +1210,6 @@ ADMINISTRADOR
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <!-- Bootstrap JS (si no lo tienes) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    
 @stop

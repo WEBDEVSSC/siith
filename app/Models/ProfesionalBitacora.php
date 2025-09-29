@@ -13,5 +13,6 @@ class ProfesionalBitacora extends Model
         'id_capturista',
         'capturista_label',
         'accion',
+        'id_profesional'
     ];
 }
