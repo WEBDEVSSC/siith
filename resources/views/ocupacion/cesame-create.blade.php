@@ -5,7 +5,7 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>C.E.S.A.M.E.</small></h1>
+    <h1><strong>Ocupación / Cartera de Servicios</strong> <small>C.E.S.A.M.E.</small></h1>
 @stop
 
 @section('content')
@@ -20,7 +20,6 @@
 <div class="card">
     <div class="card-header">
         <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm">PERFIL DEL TRABAJADOR</a>
-        <a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
     </div>
 
     <form action="{{ route('storeCesame') }}" method="POST">
