@@ -59,8 +59,8 @@ class ProfesionalVigenciaController extends Controller
             'id_profesional'   => 'required',
             'vigencia'         => 'required',
             'vigencia_motivo'  => 'required',
-            'fecha_inicio'     => 'required|date',
-            'fecha_final'      => 'nullable|required_if:vigencia,BAJA TEMPORAL|date|after:fecha_inicio',
+            'fecha_inicio'     => 'required|date_format:Y-m-d',
+            'fecha_final'      => 'nullable|required_if:vigencia,BAJA TEMPORAL|date_format:Y-m-d|after:fecha_inicio',
         ],[
             'id_profesional.required'   => 'El campo profesional es obligatorio.',
             'vigencia.required'         => 'La vigencia es obligatoria.',
@@ -70,6 +70,8 @@ class ProfesionalVigenciaController extends Controller
             'fecha_final.required_if'   => 'La fecha de término es obligatoria cuando la vigencia es BAJA TEMPORAL.',
             'fecha_final.date'          => 'La fecha final debe ser una fecha válida.',
             'fecha_final.after'         => 'La fecha final debe ser posterior a la fecha de inicio.',
+            'fecha_inicio.date_format'  => 'La fecha de inicio debe tener el formato DD-MM-AAAA.',
+            'fecha_final.date_format'   => 'La fecha de termino debe tener el formato DD-MM-AAAA.',
         ]);
 
         $vigencia = new ProfesionalVigencia();
@@ -104,38 +106,6 @@ class ProfesionalVigenciaController extends Controller
         $profesional->puesto->save();
 
         // Retornar o redirigir a donde lo necesites, por ejemplo:
-        return redirect()->route('profesionalIndex')->with('successVigencia', 'Registro realizado correctamente.');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('profesionalShow', $request->id_profesional)->with('successVigencia', 'Registro realizado correctamente.');
     }
 }

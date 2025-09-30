@@ -99,7 +99,7 @@ class ProfesionalCertificacionController extends Controller
         $certificacion->save();
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalIndex')->with('successCertificacion', 'Certificaciones registrada correctamente.');
+        return redirect()->route('profesionalShow', $request->id_profesional)->with('successCertificacion', 'Certificaciones registrada correctamente.');
     }
 
     public function editCertificacion($id)
@@ -182,7 +182,7 @@ class ProfesionalCertificacionController extends Controller
         $certificacion->save();
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalIndex')->with('updateCertificacion', 'Certificaciones actualizadas correctamente.');
+        return redirect()->route('profesionalShow', $request->id_profesional)->with('updateCertificacion', 'Certificaciones actualizadas correctamente.');
         
     }
 

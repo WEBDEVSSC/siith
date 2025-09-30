@@ -102,10 +102,10 @@
                         <p><strong>Fecha de ingreso</strong></p>
                         <input type="date" name="fecha_ingreso" id="fecha_ingreso" class="form-control"
                             value="{{ old('fecha_ingreso') }}">
-                        @error('fecha_ingreso')
-                            <br>
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+                            @error('fecha_ingreso')
+                                <br>
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                     </div>
 
                     <div class="col-md-3">

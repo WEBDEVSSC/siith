@@ -124,7 +124,7 @@ class ProfesionalPuestoController extends Controller
         $validated = $request->validate([
             'id_profesional' => 'required',
             'fiel' => 'required',
-            'fiel_vigencia' => 'required_if:fiel,SI',
+            'fiel_vigencia' => 'date_format:Y-m-d|required_if:fiel,SI',
             'actividad' => 'required',
             'adicional' => 'required',
             'tipo_personal' => 'required',
@@ -147,6 +147,7 @@ class ProfesionalPuestoController extends Controller
             'id_profesional.required' => 'El ID del profesional es obligatorio.',
             'fiel.required' => 'El campo FIEL es obligatorio.',
             'fiel_vigencia.required_if' => 'El campo FIEL Vigencia es obligatorio cuando FIEL está seleccionado como "SI".',
+            'fiel_vigencia.date_format' => 'La fecha de vigencia debe tener el formato AAAA-MM-DD.',
             'actividad.required' => 'El campo Actividad es obligatorio.',
             'adicional.required' => 'El campo Adicional es obligatorio.',
             'tipo_personal.required' => 'El campo Tipo de Personal es obligatorio.',
@@ -333,7 +334,7 @@ class ProfesionalPuestoController extends Controller
         $validated = $request->validate([
             'id_profesional' => 'required',
             'fiel' => 'required',
-            'fiel_vigencia' => 'required_if:fiel,SI',
+            'fiel_vigencia' => 'date_format:Y-m-d|required_if:fiel,SI',
             'actividad' => 'required',
             'adicional' => 'required',
             'tipo_personal' => 'required',
@@ -356,6 +357,7 @@ class ProfesionalPuestoController extends Controller
             'id_profesional.required' => 'El ID del profesional es obligatorio.',
             'fiel.required' => 'El campo FIEL es obligatorio.',
             'fiel_vigencia.required_if' => 'El campo FIEL Vigencia es obligatorio cuando FIEL está seleccionado como "SI".',
+            'fiel_vigencia.date_format' => 'La fecha de vigencia debe tener el formato DD-MM-AAAA.',
             'actividad.required' => 'El campo Actividad es obligatorio.',
             'adicional.required' => 'El campo Adicional es obligatorio.',
             'tipo_personal.required' => 'El campo Tipo de Personal es obligatorio.',

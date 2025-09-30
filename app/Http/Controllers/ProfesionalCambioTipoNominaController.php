@@ -58,7 +58,7 @@ class ProfesionalCambioTipoNominaController extends Controller
             'codigo_puesto' => 'required',
             'nomina_pago' => 'required',
             'tipo_contrato' => 'required',
-            'fecha_ingreso' => 'required',
+            'fecha_ingreso' => 'required|date_format:Y-m-d',
             'tipo_plaza' => 'required',
             'seguro_salud' => 'required',
         ], [
@@ -69,6 +69,7 @@ class ProfesionalCambioTipoNominaController extends Controller
             'fecha_ingreso.required' => 'El campo Fecha de Ingreso es obligatorio.',
             'tipo_plaza.required' => 'El Tipo de Plaza es obligatorio.',
             'seguro_salud.required' => 'El campo Seguro de Salud es obligatorio.',
+            'fecha_ingreso.date_format' => 'La fecha debe tener el formato DD-MM-AAAA.',
         ]);
 
         // Consultamos los datos del Codigo de Puesto
@@ -96,9 +97,13 @@ class ProfesionalCambioTipoNominaController extends Controller
         $puesto->tipo_contrato = $request->tipo_contrato;
         $puesto->tipo_plaza = $request->tipo_plaza;
         $puesto->seguro_salud = $request->seguro_salud;
+
+        $puesto->codigo_puesto = $codigoDePuesto->codigo_puesto; 
         $puesto->codigo_puesto_id = $request->codigo_puesto; 
-        $puesto->codigo_puesto = $codigoDePuesto->codigo; 
-        $puesto->codigo_puesto_label = $codigoDePuesto->codigo_puesto; 
+        $puesto->codigo = $codigoDePuesto->codigo; 
+        $puesto->grupo = $codigoDePuesto->grupo; 
+       
+        //$puesto->codigo_puesto_label = $codigoDePuesto->codigo_puesto; 
 
         $puesto->save();
 

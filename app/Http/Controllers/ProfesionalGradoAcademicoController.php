@@ -273,7 +273,7 @@ class ProfesionalGradoAcademicoController extends Controller
         $grado->save();
 
         // Regresamos la vista con los objetos 
-        return redirect()->route('profesionalIndex')->with('successGradoAcademico', 'Grado Academico registrado correctamente.');
+        return redirect()->route('profesionalShow', $request->id_profesional)->with('successGradoAcademico', 'Grado Academico registrado correctamente.');
 
 
     }
