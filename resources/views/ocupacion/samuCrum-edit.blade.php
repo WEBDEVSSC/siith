@@ -5,7 +5,7 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>SAMU CRUM</small></h1>
+    <h1><strong>Ocupación / Cartera de Servicios</strong> <small>SAMU CRUM</small></h1>
 @stop
 
 @section('content')
