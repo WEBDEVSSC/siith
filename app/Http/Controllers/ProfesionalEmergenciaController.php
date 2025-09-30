@@ -147,6 +147,7 @@ class ProfesionalEmergenciaController extends Controller
     $emergencia->correo_electronico = $request->correo_electronico;
     $emergencia->tipo_sangre = $request->tipo_sangre;
     $emergencia->tipo_alergia_id = $request->tipo_alergia_id;
+    $emergencia->tipo_alergia = $tipoAlergia ? $tipoAlergia->tipo_alergia : $request->tipo_alergia_id;
     $emergencia->alergia_descripcion = $tipoAlergia ? $tipoAlergia->tipo_alergia : $request->alergia_descripcion;
 
     $emergencia->enfermedad = $request->enfermedad;

@@ -228,7 +228,7 @@
                                 <option value="">-- Selecciona una opción --</option>
                                 @foreach ($relacionesDeEmergencia as $relacion)
                                     <option value="{{ $relacion->id }}" 
-                                        {{ old('emergencia_relacion_uno', $emergencia->emergencia_relacion_uno) == $relacion->id ? 'selected' : '' }}>
+                                        {{ old('emergencia_relacion_uno', $emergencia->emergencia_relacion_uno_id) == $relacion->id ? 'selected' : '' }}>
                                         {{ $relacion->relacion }}
                                     </option>
                                 @endforeach
@@ -336,7 +336,7 @@
 
                     <div class="col-md-4">
                         <p><strong>Nombre</strong></p>
-                        <input type="text" name="emergencia_nombre_dos" id="emergencia_nombre_dos" class="form-control" value="{{ old('emergencia_nombre_dos') }}">                     
+                        <input type="text" name="emergencia_nombre_dos" id="emergencia_nombre_dos" class="form-control" value="{{ old('emergencia_nombre_dos',$emergencia->emergencia_nombre_dos) }}">                     
                         @error('emergencia_nombre_dos')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -348,7 +348,7 @@
                                 <option value="">-- Selecciona una opción --</option>
                                 @foreach ($relacionesDeEmergencia as $relacion)
                                     <option value="{{ $relacion->id }}" 
-                                        {{ old('emergencia_relacion_dos') == $relacion->id ? 'selected' : '' }}>
+                                        {{ old('emergencia_relacion_dos', $emergencia->emergencia_relacion_dos_id) == $relacion->id ? 'selected' : '' }}>
                                         {{ $relacion->relacion }}
                                     </option>
                                 @endforeach

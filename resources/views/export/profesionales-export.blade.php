@@ -115,6 +115,13 @@
                 <th><strong>LENGUA INDIGENA</strong></th>
                 <th><strong>NIVEL</strong></th>
 
+                <th><strong>TIPO DE SANGRE</strong></th>
+                <th><strong>CERTIFICACION</strong></th>
+                <th><strong>IDIOMA</strong></th>
+                <th><strong>NIVEL</strong></th>
+                <th><strong>LENGUA INDIGENA</strong></th>
+                <th><strong>NIVEL</strong></th>
+
                 {{-- ----------------------------------------------------------------------------------------------------------------- --}}
                 {{-- CATALOGO DE OCUPACIONES --}}
                 {{-- ----------------------------------------------------------------------------------------------------------------- --}}
@@ -245,6 +252,15 @@
                     <td>{{ $profesional->certificacion->lengua_nivel_de_dominio ?? '' }}</td>
 
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}
+
+                    <td>{{ $profesional->emergencia->tipo_sangre ?? '' }}</td>
+                    <td>{{ $profesional->certificacion->certificacion_label ?? '' }}</td>
+                    <td>{{ $profesional->certificacion->idioma_label ?? '' }}</td>
+                    <td>{{ $profesional->certificacion->idioma_nivel_de_dominio ?? '' }}</td>
+                    <td>{{ $profesional->certificacion->lengua_indigena_label ?? '' }}</td>
+                    <td>{{ $profesional->certificacion->lengua_nivel_de_dominio ?? '' }}</td>
+
+                    {{-- ----------------------------------------------------------------------------------------------------------------- --}}
                     {{-- CATALOGO DE OCUPACIONES --}}
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}
 
@@ -253,6 +269,8 @@
                     <td>{{ $profesional->ocupacionAlmacen->jefatura_uno ?? '' }}</td>
                     <td>{{ $profesional->ocupacionAlmacen->departamento_uno ?? '' }}</td>
                     <td>{{ $profesional->ocupacionAlmacen->ocupacion_uno ?? '' }}</td>
+
+                    
 
                 </tr>
             @endforeach
