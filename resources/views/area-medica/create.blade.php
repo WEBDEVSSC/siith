@@ -56,7 +56,7 @@
 
                     <div class="col-md-3">
                         <p><strong>Carrera</strong></p>
-                        <select name="carrera_id" id="carrera" class="form-control select2">
+                        <select name="carrera_id" id="carrera_id" class="form-control select2">
                             <option value="" disabled selected>-- Seleccione una opción --</option>
                             @foreach ($carreras as $carrera)
                                 <option value="{{ $carrera->id }}" {{ old('carrera_id') == $carrera->id ? 'selected' : '' }}>
