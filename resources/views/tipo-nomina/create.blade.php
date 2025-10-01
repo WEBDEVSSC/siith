@@ -180,7 +180,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center">No hay registros de vigencias</td>
+                            <td colspan="6" class="text-center">No hay registros</td>
                         </tr>
                     @endforelse
                 </tbody>

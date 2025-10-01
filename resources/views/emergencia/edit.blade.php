@@ -39,9 +39,11 @@
 
         </div>
 
-        <form action="{{ route('storeEmergencia') }}" method="POST">
+        <form action="{{ route('updateEmergencia', $profesional->id) }}" method="POST">
 
         @csrf 
+
+        @method('PUT')
 
         <input type="hidden" name="id_profesional" value="{{ $profesional->id }}">
             
@@ -307,7 +309,7 @@
                             <option value="">-- Seleccione una opción --</option>
                             @foreach($municipios as $municipio)
                                 <option value="{{ $municipio->id }}" 
-                                    {{ old('emergencia_municipio_uno') == $municipio->id ? 'selected' : '' }}>
+                                    {{ old('emergencia_municipio_uno', $emergencia->emergencia_municipio_id_uno) == $municipio->id ? 'selected' : '' }}>
                                     {{ $municipio->nombre }}
                                 </option>
                             @endforeach
@@ -361,7 +363,7 @@
                     
                     <div class="col-md-2">
                         <p><strong>Teléfono Principal</strong></p>
-                        <input type="text" name="emergencia_telefono_uno_dos" id="emergencia_telefono_uno_dos" class="form-control" value="{{ old('emergencia_telefono_uno_dos') }}">                     
+                        <input type="text" name="emergencia_telefono_uno_dos" id="emergencia_telefono_uno_dos" class="form-control" value="{{ old('emergencia_telefono_uno_dos', $emergencia->emergencia_telefono_uno_dos) }}">                     
                         @error('emergencia_telefono_uno_dos')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -369,7 +371,7 @@
 
                     <div class="col-md-2">
                         <p><strong>Teléfono Secundario</strong></p>
-                        <input type="text" name="emergencia_telefono_dos_dos" id="emergencia_telefono_dos_dos" class="form-control" value="{{ old('emergencia_telefono_dos_dos') }}">                     
+                        <input type="text" name="emergencia_telefono_dos_dos" id="emergencia_telefono_dos_dos" class="form-control" value="{{ old('emergencia_telefono_dos_dos', $emergencia->emergencia_telefono_dos_dos) }}">              
                         @error('emergencia_telefono_dos_dos')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -377,7 +379,7 @@
 
                     <div class="col-md-2">
                         <p><strong>E-mail</strong></p>
-                        <input type="text" name="emergencia_email_dos" id="emergencia_email_dos" class="form-control" value="{{ old('emergencia_email_dos') }}">                     
+                        <input type="text" name="emergencia_email_dos" id="emergencia_email_dos" class="form-control" value="{{ old('emergencia_email_dos', $emergencia->emergencia_email_dos) }}">                    
                         @error('emergencia_email_dos')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -393,7 +395,7 @@
 
                     <div class="col-md-4">
                         <p><strong>Calle</strong></p>
-                        <input type="text" name="emergencia_calle_dos" id="emergencia_calle_dos" class="form-control" value="{{ old('emergencia_calle_dos') }}">                     
+                        <input type="text" name="emergencia_calle_dos" id="emergencia_calle_dos" class="form-control" value="{{ old('emergencia_calle_dos', $emergencia->emergencia_calle_dos) }}">                
                         @error('emergencia_calle_dos')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -401,7 +403,7 @@
 
                     <div class="col-md-2">
                         <p><strong>Número</strong></p>
-                        <input type="text" name="emergencia_numero_dos" id="emergencia_numero_dos" class="form-control" value="{{ old('emergencia_numero_dos') }}">                     
+                        <input type="text" name="emergencia_numero_dos" id="emergencia_numero_dos" class="form-control" value="{{ old('emergencia_numero_dos', $emergencia->emergencia_numero_dos) }}">                   
                         @error('emergencia_numero_dos')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -409,7 +411,7 @@
 
                     <div class="col-md-2">
                         <p><strong>Colonia</strong></p>
-                        <input type="text" name="emergencia_colonia_dos" id="emergencia_colonia_dos" class="form-control" value="{{ old('emergencia_colonia_dos') }}">                     
+                        <input type="text" name="emergencia_colonia_dos" id="emergencia_colonia_dos" class="form-control" value="{{ old('emergencia_colonia_dos', $emergencia->emergencia_colonia_dos) }}">               
                         @error('emergencia_colonia_dos')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -417,7 +419,7 @@
 
                     <div class="col-md-2">
                         <p><strong>Código Postal</strong></p>
-                        <input type="text" name="emergencia_codigo_postal_dos" id="emergencia_codigo_postal_dos" class="form-control" value="{{ old('emergencia_codigo_postal_dos') }}">                     
+                        <input type="text" name="emergencia_codigo_postal_dos" id="emergencia_codigo_postal_dos" class="form-control" value="{{ old('emergencia_codigo_postal_dos', $emergencia->emergencia_codigo_postal_dos) }}">             
                         @error('emergencia_codigo_postal_dos')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -429,7 +431,7 @@
                             <option value="">-- Seleccione una opción --</option>
                             @foreach($municipios as $municipio)
                                 <option value="{{ $municipio->id }}" 
-                                    {{ old('emergencia_municipio_dos') == $municipio->id ? 'selected' : '' }}>
+                                    {{ old('emergencia_municipio_dos',$emergencia->emergencia_municipio_id_dos) == $municipio->id ? 'selected' : '' }}>
                                     {{ $municipio->nombre }}
                                 </option>
                             @endforeach
@@ -458,7 +460,7 @@
 
                     <div class="col-md-4">
                         <p><strong>Nombre</strong></p>
-                        <input type="text" name="emergencia_nombre_tres" id="emergencia_nombre" class="form-control" value="{{ old('emergencia_nombre_tres') }}">
+                        <input type="text" name="emergencia_nombre_tres" id="emergencia_nombre" class="form-control" value="{{ old('emergencia_nombre_tres', $emergencia->emergencia_nombre_tres) }}">
 
                         @error('emergencia_nombre')
                         <br><div class="alert alert-danger">{{ $message }}</div>
@@ -471,7 +473,7 @@
                                 <option value="">-- Selecciona una opción --</option>
                                 @foreach ($relacionesDeEmergencia as $relacion)
                                     <option value="{{ $relacion->id }}" 
-                                        {{ old('emergencia_relacion_tres') == $relacion->id ? 'selected' : '' }}>
+                                        {{ old('emergencia_relacion_tres', $emergencia->emergencia_relacion_tres_id) == $relacion->id ? 'selected' : '' }}>
                                         {{ $relacion->relacion }}
                                     </option>
                                 @endforeach
@@ -484,7 +486,7 @@
                     
                     <div class="col-md-2">
                         <p><strong>Teléfono Principal</strong></p>
-                        <input type="text" name="emergencia_telefono_uno_tres" id="emergencia_telefono_uno_tres" class="form-control" value="{{ old('emergencia_telefono_uno_tres') }}">                     
+                        <input type="text" name="emergencia_telefono_uno_tres" id="emergencia_telefono_uno_tres" class="form-control" value="{{ old('emergencia_telefono_uno_tres', $emergencia->emergencia_telefono_uno_tres) }}">          
                         @error('emergencia_telefono_uno_tres')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -492,7 +494,7 @@
 
                     <div class="col-md-2">
                         <p><strong>Teléfono Secundario</strong></p>
-                        <input type="text" name="emergencia_telefono_dos_tres" id="emergencia_telefono_dos_tres" class="form-control" value="{{ old('emergencia_telefono_dos_tres') }}">                     
+                        <input type="text" name="emergencia_telefono_dos_tres" id="emergencia_telefono_dos_tres" class="form-control" value="{{ old('emergencia_telefono_dos_tres', $emergencia->emergencia_telefono_dos_tres) }}">              
                         @error('emergencia_telefono_dos_tres')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -500,7 +502,7 @@
 
                     <div class="col-md-2">
                         <p><strong>E-mail</strong></p>
-                        <input type="text" name="emergencia_email_tres" id="emergencia_email_tres" class="form-control" value="{{ old('emergencia_email_tres') }}">                     
+                        <input type="text" name="emergencia_email_tres" id="emergencia_email_tres" class="form-control" value="{{ old('emergencia_email_tres', $emergencia->emergencia_email_tres) }}">                             
                         @error('emergencia_email_tres')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -514,7 +516,7 @@
 
                     <div class="col-md-4">
                         <p><strong>Calle</strong></p>
-                        <input type="text" name="emergencia_calle_tres" id="emergencia_calle_tres" class="form-control" value="{{ old('emergencia_calle_tres') }}">                     
+                        <input type="text" name="emergencia_calle_tres" id="emergencia_calle_tres" class="form-control" value="{{ old('emergencia_calle_tres', $emergencia->emergencia_calle_tres) }}">                        
                         @error('emergencia_calle_tres')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -522,7 +524,7 @@
 
                     <div class="col-md-2">
                         <p><strong>Número</strong></p>
-                        <input type="text" name="emergencia_numero_tres" id="emergencia_numero_tres" class="form-control" value="{{ old('emergencia_numero_tres') }}">                     
+                        <input type="text" name="emergencia_numero_tres" id="emergencia_numero_tres" class="form-control" value="{{ old('emergencia_numero_tres', $emergencia->emergencia_numero_tres) }}">                         
                         @error('emergencia_numero_tres')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -530,7 +532,7 @@
 
                     <div class="col-md-2">
                         <p><strong>Colonia</strong></p>
-                        <input type="text" name="emergencia_colonia_tres" id="emergencia_colonia_tres" class="form-control" value="{{ old('emergencia_colonia_tres') }}">                     
+                        <input type="text" name="emergencia_colonia_tres" id="emergencia_colonia_tres" class="form-control" value="{{ old('emergencia_colonia_tres', $emergencia->emergencia_colonia_tres) }}">                      
                         @error('emergencia_colonia_tres')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -538,7 +540,7 @@
 
                     <div class="col-md-2">
                         <p><strong>Código Postal</strong></p>
-                        <input type="text" name="emergencia_codigo_postal_tres" id="emergencia_codigo_postal_tres" class="form-control" value="{{ old('emergencia_codigo_postal_tres') }}">                     
+                        <input type="text" name="emergencia_codigo_postal_tres" id="emergencia_codigo_postal_tres" class="form-control" value="{{ old('emergencia_codigo_postal_tres', $emergencia->emergencia_codigo_postal_tres) }}">                  
                         @error('emergencia_codigo_postal_tres')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -550,7 +552,7 @@
                             <option value="">-- Seleccione una opción --</option>
                             @foreach($municipios as $municipio)
                                 <option value="{{ $municipio->id }}" 
-                                    {{ old('emergencia_municipio_tres') == $municipio->id ? 'selected' : '' }}>
+                                    {{ old('emergencia_municipio_tres',$emergencia->emergencia_municipio_id_tres) == $municipio->id ? 'selected' : '' }}>
                                     {{ $municipio->nombre }}
                                 </option>
                             @endforeach
@@ -566,7 +568,7 @@
         <!-- ---------------------------------------------------------------------- --> 
         </div>
         <div class="card-footer">
-            <button type="submit" class="btn btn-success btn-sm btn-info">REGISTRAR DATOS</button>
+            <button type="submit" class="btn btn-success btn-sm btn-info">ACTUALIZAR DATOS</button>
         </div>
 
     </form>

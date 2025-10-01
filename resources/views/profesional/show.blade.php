@@ -15,6 +15,7 @@
 @php
     $alerts = [
         'success',
+        'update',
         'successOcupacion',
         'updateOcupacion',
         'successCredencializacion',
@@ -1067,7 +1068,19 @@ ADMINISTRADOR
         <div class="card-header">
             <i class="fa fa-credit-card" aria-hidden="true"></i> <strong>EMERGENCIAS</strong></div>
         <div class="card-body">
-            <div class="row">
+
+            <!-- -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <blockquote class="quote-secondary">
+                            <h4>Datos Personales</h4>
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- -->
+            <div class="row mt-3">
                 <div class="col-md-2">
                     <p><strong>TIPO DE SANDRE</strong></p>
                     {{ $emergencias->tipo_sangre ?? ''  }}
