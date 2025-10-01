@@ -63,7 +63,13 @@ class ProfesionalOcupacionController extends Controller
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCentroSalud::where('id',$request->ocupacion_uno)->first();
-        $ocupacionDos = CatOcupacionCentroSalud::where('id',$request->ocupacion_dos)->first();
+
+        $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionCentroSalud::where('id',$request->ocupacion_dos)->first();
+        }
 
         // Activamos el modulo
         $mdl_status = 1;
@@ -80,11 +86,11 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->subarea_uno = $ocupacionUno->subarea;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
 
-        $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
-        $ocupacion->unidad_dos = $ocupacionDos->unidad;
-        $ocupacion->area_dos = $ocupacionDos->area;
-        $ocupacion->subarea_dos = $ocupacionDos->subarea;
-        $ocupacion->ocupacion_dos = $ocupacionDos->ocupacion;
+        $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
+        $ocupacion->unidad_dos = $ocupacionDos?->unidad;
+        $ocupacion->area_dos = $ocupacionDos?->area;
+        $ocupacion->subarea_dos = $ocupacionDos?->subarea;
+        $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -120,7 +126,13 @@ class ProfesionalOcupacionController extends Controller
 
          // Consultamos los datos para registrar
          $ocupacionUno = CatOcupacionCentroSalud::where('id',$request->ocupacion_uno)->first();
-         $ocupacionDos = CatOcupacionCentroSalud::where('id',$request->ocupacion_dos)->first();
+
+         $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionCentroSalud::where('id',$request->ocupacion_dos)->first();
+        }
 
          // Consultamos el id
          $ocupacion = ProfesionalOcupacionCentroSalud::findOrFail($id);
@@ -176,7 +188,13 @@ class ProfesionalOcupacionController extends Controller
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionHospital::where('id',$request->ocupacion_uno)->first();
-        $ocupacionDos = CatOcupacionHospital::where('id',$request->ocupacion_dos)->first();
+        
+        $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionHospital::where('id',$request->ocupacion_dos)->first();
+        }
 
         // Activamos el modulo
         $mdl_status = 1;
@@ -193,11 +211,11 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->subarea_uno = $ocupacionUno->subarea;
         $ocupacion->puesto_uno = $ocupacionUno->puesto;
 
-        $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
-        $ocupacion->unidad_dos = $ocupacionDos->unidad;
-        $ocupacion->area_dos = $ocupacionDos->area;
-        $ocupacion->subarea_dos = $ocupacionDos->subarea;
-        $ocupacion->puesto_dos = $ocupacionDos->puesto;
+        $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
+        $ocupacion->unidad_dos = $ocupacionDos?->unidad;
+        $ocupacion->area_dos = $ocupacionDos?->area;
+        $ocupacion->subarea_dos = $ocupacionDos?->subarea;
+        $ocupacion->puesto_dos = $ocupacionDos?->puesto;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -298,6 +316,8 @@ class ProfesionalOcupacionController extends Controller
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionOfJurisdiccional::where('id',$request->ocupacion_uno)->first();
 
+        $ocupacionDos = null;
+
         if ($request->ocupacion_dos) 
         {
             $ocupacionDos = CatOcupacionOfJurisdiccional::where('id', $request->ocupacion_dos)->first();
@@ -319,7 +339,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->servicio_uno = $ocupacionUno->servicio;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
 
-        $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
+        $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
         $ocupacion->unidad_dos = $ocupacionDos?->unidad;
         $ocupacion->area_dos = $ocupacionDos?->area;
         $ocupacion->subarea_dos = $ocupacionDos?->subarea;        
@@ -426,7 +446,13 @@ class ProfesionalOcupacionController extends Controller
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCriCree::where('id',$request->ocupacion_uno)->first();
-        $ocupacionDos = CatOcupacionCriCree::where('id',$request->ocupacion_dos)->first();
+        
+        $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionCriCree::where('id',$request->ocupacion_dos)->first();
+        }
 
         // Activamos el modulo
         $mdl_status = 1;
@@ -443,11 +469,11 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->subarea_uno = $ocupacionUno->subarea;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
 
-        $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
-        $ocupacion->unidad_dos = $ocupacionDos->unidad;
-        $ocupacion->area_dos = $ocupacionDos->area;
-        $ocupacion->subarea_dos = $ocupacionDos->subarea;   
-        $ocupacion->ocupacion_dos = $ocupacionDos->ocupacion;
+        $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
+        $ocupacion->unidad_dos = $ocupacionDos?->unidad;
+        $ocupacion->area_dos = $ocupacionDos?->area;
+        $ocupacion->subarea_dos = $ocupacionDos?->subarea;   
+        $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -502,7 +528,7 @@ class ProfesionalOcupacionController extends Controller
             'subarea_uno'=>$ocupacionUno->subarea,
             'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos' => $request->ocupacion_dos,
+            'id_catalogo_dos' => $request?->ocupacion_dos,
             'unidad_dos' => $ocupacionDos?->unidad,
             'area_dos' => $ocupacionDos?->area,
             'subarea_dos' => $ocupacionDos?->subarea,
@@ -545,7 +571,13 @@ class ProfesionalOcupacionController extends Controller
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionSamuCrum::where('id',$request->ocupacion_uno)->first();
-        $ocupacionDos = CatOcupacionSamuCrum::where('id',$request->ocupacion_dos)->first();
+        
+        $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionSamuCrum::where('id',$request->ocupacion_dos)->first();
+        }
 
         // Activamos el modulo
         $mdl_status = 1;
@@ -563,12 +595,12 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->componente_uno = $ocupacionUno->componente;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
 
-        $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
-        $ocupacion->unidad_dos = $ocupacionDos->unidad;
-        $ocupacion->area_dos = $ocupacionDos->area;
-        $ocupacion->subarea_dos = $ocupacionDos->subarea;   
-        $ocupacion->componente_dos = $ocupacionDos->componente;   
-        $ocupacion->ocupacion_dos = $ocupacionDos->ocupacion;
+        $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
+        $ocupacion->unidad_dos = $ocupacionDos?->unidad;
+        $ocupacion->area_dos = $ocupacionDos?->area;
+        $ocupacion->subarea_dos = $ocupacionDos?->subarea;   
+        $ocupacion->componente_dos = $ocupacionDos?->componente;   
+        $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -624,7 +656,7 @@ class ProfesionalOcupacionController extends Controller
             'componente_uno'=>$ocupacionUno->componente,
             'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos' => $request->ocupacion_dos,
+            'id_catalogo_dos' => $request?->ocupacion_dos,
             'unidad_dos' => $ocupacionDos?->unidad,
             'area_dos' => $ocupacionDos?->area,
             'subarea_dos' => $ocupacionDos?->subarea,
@@ -668,7 +700,13 @@ class ProfesionalOcupacionController extends Controller
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionOficinaCentral::where('id',$request->ocupacion_uno)->first();
-        $ocupacionDos = CatOcupacionOficinaCentral::where('id',$request->ocupacion_dos)->first();
+        
+        $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionOficinaCentral::where('id',$request->ocupacion_dos)->first();
+        }
 
         // Activamos el modulo
         $mdl_status = 1;
@@ -686,12 +724,12 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->componente_uno = $ocupacionUno->componente;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
 
-        $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
-        $ocupacion->area_dos = $ocupacionDos->area;
-        $ocupacion->subarea_dos = $ocupacionDos->subarea;   
-        $ocupacion->programa_dos = $ocupacionDos->programa;   
-        $ocupacion->componente_dos = $ocupacionDos->componente;   
-        $ocupacion->ocupacion_dos = $ocupacionDos->ocupacion;
+        $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
+        $ocupacion->area_dos = $ocupacionDos?->area;
+        $ocupacion->subarea_dos = $ocupacionDos?->subarea;   
+        $ocupacion->programa_dos = $ocupacionDos?->programa;   
+        $ocupacion->componente_dos = $ocupacionDos?->componente;   
+        $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -747,7 +785,7 @@ class ProfesionalOcupacionController extends Controller
             'componente_uno'=>$ocupacionUno->componente,
             'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos' => $request->ocupacion_dos,
+            'id_catalogo_dos' => $request?->ocupacion_dos,
             'area_dos' => $ocupacionDos?->area,
             'subarea_dos' => $ocupacionDos?->subarea,
             'programa_dos' => $ocupacionDos?->programa,
@@ -791,7 +829,13 @@ class ProfesionalOcupacionController extends Controller
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionAlmacen::where('id',$request->ocupacion_uno)->first();
-        $ocupacionDos = CatOcupacionAlmacen::where('id',$request->ocupacion_dos)->first();
+
+        $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionAlmacen::where('id',$request->ocupacion_dos)->first();
+        }
 
         // Activamos el modulo
         $mdl_status = 1;
@@ -809,12 +853,12 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->departamento_uno = $ocupacionUno->departamento;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
 
-        $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
-        $ocupacion->area_dos = $ocupacionDos->area;
-        $ocupacion->subarea_dos = $ocupacionDos->subarea;   
-        $ocupacion->jefatura_dos = $ocupacionDos->jefatura;   
-        $ocupacion->departamento_dos = $ocupacionDos->departamento;   
-        $ocupacion->ocupacion_dos = $ocupacionDos->ocupacion;
+        $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
+        $ocupacion->area_dos = $ocupacionDos?->area;
+        $ocupacion->subarea_dos = $ocupacionDos?->subarea;   
+        $ocupacion->jefatura_dos = $ocupacionDos?->jefatura;   
+        $ocupacion->departamento_dos = $ocupacionDos?->departamento;   
+        $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -870,7 +914,7 @@ class ProfesionalOcupacionController extends Controller
             'departamento_uno'=>$ocupacionUno->departamento,
             'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos' => $request->ocupacion_dos,
+            'id_catalogo_dos' => $request?->ocupacion_dos,
             'area_dos' => $ocupacionDos?->area,
             'subarea_dos' => $ocupacionDos?->subarea,
             'jefatura_dos' => $ocupacionDos?->jefatura,
@@ -914,7 +958,13 @@ class ProfesionalOcupacionController extends Controller
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCors::where('id',$request->ocupacion_uno)->first();
-        $ocupacionDos = CatOcupacionCors::where('id',$request->ocupacion_dos)->first();
+
+        $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionCors::where('id',$request->ocupacion_dos)->first();
+        }
 
         // Activamos el modulo
         $mdl_status = 1;
@@ -932,12 +982,12 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->componente_uno = $ocupacionUno->componente;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
 
-        $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
-        $ocupacion->unidad_dos = $ocupacionDos->unidad;
-        $ocupacion->area_dos = $ocupacionDos->area;
-        $ocupacion->subarea_servicio_dos = $ocupacionDos->subarea_servicio;   
-        $ocupacion->componente_dos = $ocupacionDos->componente;   
-        $ocupacion->ocupacion_dos = $ocupacionDos->ocupacion;
+        $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
+        $ocupacion->unidad_dos = $ocupacionDos?->unidad;
+        $ocupacion->area_dos = $ocupacionDos?->area;
+        $ocupacion->subarea_servicio_dos = $ocupacionDos?->subarea_servicio;   
+        $ocupacion->componente_dos = $ocupacionDos?->componente;   
+        $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -994,7 +1044,7 @@ class ProfesionalOcupacionController extends Controller
             'componente_uno'=>$ocupacionUno->componente,
             'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos' => $request->ocupacion_dos,
+            'id_catalogo_dos' => $request?->ocupacion_dos,
             'unidad_dos' => $ocupacionDos?->unidad,
             'area_dos' => $ocupacionDos?->area,
             'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
@@ -1038,7 +1088,13 @@ class ProfesionalOcupacionController extends Controller
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCetsLesp::where('id',$request->ocupacion_uno)->first();
-        $ocupacionDos = CatOcupacionCetsLesp::where('id',$request->ocupacion_dos)->first();
+        
+        $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionCetsLesp::where('id',$request->ocupacion_dos)->first();
+        }
 
         // Activamos el modulo
         $mdl_status = 1;
@@ -1056,12 +1112,12 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->componente_uno = $ocupacionUno->componente;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
 
-        $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
-        $ocupacion->area_dos = $ocupacionDos->area;
-        $ocupacion->subarea_dos = $ocupacionDos->subarea;
-        $ocupacion->jefatura_programa_dos = $ocupacionDos->jefatura_programa;
-        $ocupacion->componente_dos = $ocupacionDos->componente;
-        $ocupacion->ocupacion_dos = $ocupacionDos->ocupacion;
+        $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
+        $ocupacion->area_dos = $ocupacionDos?->area;
+        $ocupacion->subarea_dos = $ocupacionDos?->subarea;
+        $ocupacion->jefatura_programa_dos = $ocupacionDos?->jefatura_programa;
+        $ocupacion->componente_dos = $ocupacionDos?->componente;
+        $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -1118,7 +1174,7 @@ class ProfesionalOcupacionController extends Controller
             'componente_uno'=>$ocupacionUno->componente,
             'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos' => $request->ocupacion_dos,
+            'id_catalogo_dos' => $request?->ocupacion_dos,
             'area_dos' => $ocupacionDos?->area,
             'subarea_dos' => $ocupacionDos?->subarea,
             'jefatura_programa_dos' => $ocupacionDos?->jefatura_programa,
@@ -1162,7 +1218,13 @@ class ProfesionalOcupacionController extends Controller
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCesame::where('id',$request->ocupacion_uno)->first();
-        $ocupacionDos = CatOcupacionCesame::where('id',$request->ocupacion_dos)->first();
+
+        $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionCesame::where('id',$request->ocupacion_dos)->first();
+        }
 
         // Activamos el modulo
         $mdl_status = 1;
@@ -1180,12 +1242,12 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->componente_uno = $ocupacionUno->componente;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
 
-        $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
-        $ocupacion->unidad_dos = $ocupacionDos->unidad;
-        $ocupacion->area_dos = $ocupacionDos->area;
-        $ocupacion->subarea_servicio_dos = $ocupacionDos->subarea_servicio;
-        $ocupacion->componente_dos = $ocupacionDos->componente;
-        $ocupacion->ocupacion_dos = $ocupacionDos->ocupacion;
+        $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
+        $ocupacion->unidad_dos = $ocupacionDos?->unidad;
+        $ocupacion->area_dos = $ocupacionDos?->area;
+        $ocupacion->subarea_servicio_dos = $ocupacionDos?->subarea_servicio;
+        $ocupacion->componente_dos = $ocupacionDos?->componente;
+        $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -1242,7 +1304,7 @@ class ProfesionalOcupacionController extends Controller
             'componente_uno'=>$ocupacionUno->componente,
             'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos' => $request->ocupacion_dos,
+            'id_catalogo_dos' => $request?->ocupacion_dos,
             'unidad_dos' => $ocupacionDos?->unidad,
             'area_dos' => $ocupacionDos?->area,
             'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
@@ -1286,7 +1348,13 @@ class ProfesionalOcupacionController extends Controller
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionPsiParras::where('id',$request->ocupacion_uno)->first();
-        $ocupacionDos = CatOcupacionPsiParras::where('id',$request->ocupacion_dos)->first();
+        
+        $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionPsiParras::where('id',$request->ocupacion_dos)->first();
+        }
 
         // Activamos el modulo
         $mdl_status = 1;
@@ -1304,12 +1372,12 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->componente_uno = $ocupacionUno->componente;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
 
-        $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
-        $ocupacion->unidad_dos = $ocupacionDos->unidad;
-        $ocupacion->area_dos = $ocupacionDos->area;
-        $ocupacion->subarea_servicio_dos = $ocupacionDos->subarea_servicio;
-        $ocupacion->componente_dos = $ocupacionDos->componente;
-        $ocupacion->ocupacion_dos = $ocupacionDos->ocupacion;
+        $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
+        $ocupacion->unidad_dos = $ocupacionDos?->unidad;
+        $ocupacion->area_dos = $ocupacionDos?->area;
+        $ocupacion->subarea_servicio_dos = $ocupacionDos?->subarea_servicio;
+        $ocupacion->componente_dos = $ocupacionDos?->componente;
+        $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -1366,7 +1434,7 @@ class ProfesionalOcupacionController extends Controller
             'componente_uno'=>$ocupacionUno->componente,
             'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos' => $request->ocupacion_dos,
+            'id_catalogo_dos' => $request?->ocupacion_dos,
             'unidad_dos' => $ocupacionDos?->unidad,
             'area_dos' => $ocupacionDos?->area,
             'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
@@ -1410,7 +1478,13 @@ class ProfesionalOcupacionController extends Controller
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionHospitalNino::where('id',$request->ocupacion_uno)->first();
-        $ocupacionDos = CatOcupacionHospitalNino::where('id',$request->ocupacion_dos)->first();
+
+        $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionHospitalNino::where('id',$request->ocupacion_dos)->first();
+        }
 
         // Activamos el modulo
         $mdl_status = 1;
@@ -1427,11 +1501,11 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->subarea_uno = $ocupacionUno->subarea;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
 
-        $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
-        $ocupacion->unidad_dos = $ocupacionDos->unidad;
-        $ocupacion->area_dos = $ocupacionDos->area;
-        $ocupacion->subarea_dos = $ocupacionDos->subarea;
-        $ocupacion->ocupacion_dos = $ocupacionDos->ocupacion;
+        $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
+        $ocupacion->unidad_dos = $ocupacionDos?->unidad;
+        $ocupacion->area_dos = $ocupacionDos?->area;
+        $ocupacion->subarea_dos = $ocupacionDos?->subarea;
+        $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -1487,7 +1561,7 @@ class ProfesionalOcupacionController extends Controller
             'subarea_uno'=>$ocupacionUno->subarea,
             'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos' => $request->ocupacion_dos,
+            'id_catalogo_dos' => $request?->ocupacion_dos,
             'unidad_dos' => $ocupacionDos?->unidad,
             'area_dos' => $ocupacionDos?->area,
             'subarea_dos' => $ocupacionDos?->subarea,
@@ -1530,7 +1604,13 @@ class ProfesionalOcupacionController extends Controller
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCeam::where('id',$request->ocupacion_uno)->first();
-        $ocupacionDos = CatOcupacionCeam::where('id',$request->ocupacion_dos)->first();
+        
+        $ocupacionDos = null;
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionCeam::where('id',$request->ocupacion_dos)->first();
+        }
 
         // Activamos el modulo
         $mdl_status = 1;
@@ -1548,12 +1628,12 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->componente_uno = $ocupacionUno->componente;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
 
-        $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
-        $ocupacion->unidad_dos = $ocupacionDos->unidad;
-        $ocupacion->area_dos = $ocupacionDos->area;
-        $ocupacion->subarea_servicio_dos = $ocupacionDos->subarea_servicio;
-        $ocupacion->componente_dos = $ocupacionDos->componente;
-        $ocupacion->ocupacion_dos = $ocupacionDos->ocupacion;
+        $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
+        $ocupacion->unidad_dos = $ocupacionDos?->unidad;
+        $ocupacion->area_dos = $ocupacionDos?->area;
+        $ocupacion->subarea_servicio_dos = $ocupacionDos?->subarea_servicio;
+        $ocupacion->componente_dos = $ocupacionDos?->componente;
+        $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -1610,7 +1690,7 @@ class ProfesionalOcupacionController extends Controller
             'componente_uno'=>$ocupacionUno->componente,
             'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos' => $request->ocupacion_dos,
+            'id_catalogo_dos' => $request?->ocupacion_dos,
             'unidad_dos' => $ocupacionDos?->unidad,
             'area_dos' => $ocupacionDos?->area,
             'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
