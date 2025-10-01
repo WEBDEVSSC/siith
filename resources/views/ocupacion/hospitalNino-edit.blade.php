@@ -5,7 +5,7 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Ocupación / Cartera de Servicios</strong> <small>Hospital del Niño</small></h1>
+    <h1><strong>Catálogo / Cartera de Servicios</strong> <small>Hospital del Niño</small></h1>
 @stop
 
 @section('content')

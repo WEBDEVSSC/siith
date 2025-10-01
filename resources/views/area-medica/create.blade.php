@@ -5,7 +5,7 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Personal en Formación</strong></h1>
+    <h1><strong>Personal Estudiando Actualmente</strong></h1>
 @stop
 
 @section('content')

@@ -170,10 +170,10 @@ class ProfesionalEmergenciaController extends Controller
     $emergencia->emergencia_municipio_id_uno = $request->emergencia_municipio_uno;
     $emergencia->emergencia_municipio_label_uno = $municipio_uno?->nombre;
 
-    // Emergencia DOS
+    // Emergencia DOS?->relacion;
     $emergencia->emergencia_nombre_dos = $request->emergencia_nombre_dos;
     $emergencia->emergencia_relacion_dos_id = $request->emergencia_relacion_dos;
-    $emergencia->emergencia_relacion_dos = $emergencia_relacion_dos->relacion;
+    $emergencia->emergencia_relacion_dos = $emergencia_relacion_dos?->relacion;
     $emergencia->emergencia_telefono_uno_dos = $request->emergencia_telefono_uno_dos;
     $emergencia->emergencia_telefono_dos_dos = $request->emergencia_telefono_dos_dos;
     $emergencia->emergencia_email_dos = $request->emergencia_email_dos;
@@ -187,7 +187,7 @@ class ProfesionalEmergenciaController extends Controller
     // Emergencia TRES
     $emergencia->emergencia_nombre_tres = $request->emergencia_nombre_tres;
     $emergencia->emergencia_relacion_tres_id = $request->emergencia_relacion_tres;
-    $emergencia->emergencia_relacion_tres = $emergencia_relacion_tres->relacion;
+    $emergencia->emergencia_relacion_tres = $emergencia_relacion_tres?->relacion;
     $emergencia->emergencia_telefono_uno_tres = $request->emergencia_telefono_uno_tres;
     $emergencia->emergencia_telefono_dos_tres = $request->emergencia_telefono_dos_tres;
     $emergencia->emergencia_email_tres = $request->emergencia_email_tres;
@@ -387,7 +387,7 @@ class ProfesionalEmergenciaController extends Controller
         // Emergencia DOS
         $emergencia->emergencia_nombre_dos = $request->emergencia_nombre_dos;
         $emergencia->emergencia_relacion_dos_id = $request->emergencia_relacion_dos;
-        $emergencia->emergencia_relacion_dos = $emergencia_relacion_dos->relacion;
+        $emergencia->emergencia_relacion_dos = $emergencia_relacion_dos?->relacion;
         $emergencia->emergencia_telefono_uno_dos = $request->emergencia_telefono_uno_dos;
         $emergencia->emergencia_telefono_dos_dos = $request->emergencia_telefono_dos_dos;
         $emergencia->emergencia_email_dos = $request->emergencia_email_dos;
@@ -401,7 +401,7 @@ class ProfesionalEmergenciaController extends Controller
         // Emergencia TRES
         $emergencia->emergencia_nombre_tres = $request->emergencia_nombre_tres;
         $emergencia->emergencia_relacion_tres_id = $request->emergencia_relacion_tres;
-        $emergencia->emergencia_relacion_tres = $emergencia_relacion_tres->relacion;
+        $emergencia->emergencia_relacion_tres = $emergencia_relacion_tres?->relacion;
         $emergencia->emergencia_telefono_uno_tres = $request->emergencia_telefono_uno_tres;
         $emergencia->emergencia_telefono_dos_tres = $request->emergencia_telefono_dos_tres;
         $emergencia->emergencia_email_tres = $request->emergencia_email_tres;

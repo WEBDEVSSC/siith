@@ -69,7 +69,7 @@ class ProfesionalGradoAcademicoController extends Controller
             'titulo_dos'=>'nullable',
             'institucion_educativa_dos'=>'nullable',
             'cedula_dos'=>'nullable',
-            'cedula_numero_dos'=>'required_if:cedula_dos,SInullable',
+            'cedula_numero_dos'=>'required_if:cedula_dos,SI|nullable',
             'reg_nac_prof_dos' => 'nullable|mimes:pdf|max:5120', 
 
             'grado_academico_tres'=>'nullable',

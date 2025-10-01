@@ -940,7 +940,7 @@ ADMINISTRADOR
 
     <div class="card mt-3">
         <div class="card-header">
-            <i class="fa fa-stethoscope" aria-hidden="true"></i><strong>PERSONAL EN FORMACIÓN</strong>
+            <i class="fa fa-stethoscope" aria-hidden="true"></i><strong>PERSONAL ESTUDIANDO ACTUALMENTE</strong>
         </div>
         <div class="card-body">
             <div class="row">

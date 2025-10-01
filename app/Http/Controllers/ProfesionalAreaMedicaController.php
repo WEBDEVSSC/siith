@@ -50,13 +50,15 @@ class ProfesionalAreaMedicaController extends Controller
             'tipo_formacion' => 'nullable',
             'carrera_id' => 'nullable',
             'institucion_educativa_id' => 'nullable',
-            'anio_cursa' => 'nullable|string',
-            'duracion_formacion' => 'nullable|string',
+            'anio_cursa' => 'required|string',
+            'duracion_formacion' => 'required|string',
         ],[
             'id_profesional.required' => 'El campo "ID del profesional" es obligatorio.',
             'id_profesional.integer' => 'El campo "ID del profesional" debe ser un número entero.',
             'anio_cursa.string' => 'El campo "Año que cursa" debe ser una cadena de texto.',
+            'anio_cursa.required' => 'El campo es obligatorio.',
             'duracion_formacion.string' => 'El campo "Duración de la formación" debe ser una cadena de texto.',
+            'duracion_formacion.required' => 'El campo es obligatorio.',
         ]);
 
         // Consultamos los datos de carrera
@@ -91,7 +93,7 @@ class ProfesionalAreaMedicaController extends Controller
         $areaMedica->save();
 
         // Reidreccionamos
-        return redirect()->route('profesionalIndex')->with('successAreaMedica', 'Area Médica registrada correctamente.');
+        return redirect()->route('profesionalShow', $request->id_profesional)->with('successAreaMedica', 'Area Médica registrada correctamente.');
 
     }
 
@@ -135,20 +137,21 @@ class ProfesionalAreaMedicaController extends Controller
      */
     public function updateAreaMedica(Request $request, $id)
     {
-             
         // Validamos los datos
         $request->validate([
             'id_profesional' => 'required|integer',
             'tipo_formacion' => 'nullable',
             'carrera_id' => 'nullable',
             'institucion_educativa_id' => 'nullable',
-            'anio_cursa' => 'nullable|string',
-            'duracion_formacion' => 'nullable|string',
+            'anio_cursa' => 'required|string',
+            'duracion_formacion' => 'required|string',
         ],[
             'id_profesional.required' => 'El campo "ID del profesional" es obligatorio.',
             'id_profesional.integer' => 'El campo "ID del profesional" debe ser un número entero.',
             'anio_cursa.string' => 'El campo "Año que cursa" debe ser una cadena de texto.',
+            'anio_cursa.required' => 'El campo es obligatorio.',
             'duracion_formacion.string' => 'El campo "Duración de la formación" debe ser una cadena de texto.',
+            'duracion_formacion.required' => 'El campo es obligatorio.',
         ]);
         
 
@@ -178,14 +181,7 @@ class ProfesionalAreaMedicaController extends Controller
         ]);
 
         // Regresamos a la vista
-        return redirect()->route('profesionalIndex')->with('updateAreaMedica', 'Area Medica actualizada correctamente.');
+        return redirect()->route('profesionalShow', $request->id_profesional)->with('updateAreaMedica', 'Area Medica actualizada correctamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

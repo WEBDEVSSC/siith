@@ -65,7 +65,7 @@
                     
                     <div class="col-md-9">
                         <p><strong>Título</strong></p>
-                        <select name="titulo_uno" id="titulo_uno" class="form-control">
+                        <select name="titulo_uno" id="titulo_uno" class="form-control select2">
                             <option value="">-- Seleccione una opcion --</option>
                             @foreach($titulos as $titulo)
                                 <option value="{{ $titulo->titulo }}" {{ old('titulo_uno') == $titulo->titulo ? 'selected' : '' }}>
@@ -474,7 +474,7 @@
 
     <script>
         $(document).ready(function() {
-            $('#institucion_educativa_uno, #institucion_educativa_dos, #institucion_educativa_tres, #institucion_educativa_cuatro').select2({
+            $('#institucion_educativa_uno, #institucion_educativa_dos, #institucion_educativa_tres, #institucion_educativa_cuatro, #titulo_uno, #titulo_dos, #titulo_tres, #titulo_cuatro').select2({
                 placeholder: "-- Seleccione una opcion --",
                 allowClear: true
             });

@@ -291,11 +291,17 @@ class ProfesionalOcupacionController extends Controller
             'id_profesional'=>'required',
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'El campo Ocupación 1 es obligatorio.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionOfJurisdiccional::where('id',$request->ocupacion_uno)->first();
-        $ocupacionDos = CatOcupacionOfJurisdiccional::where('id',$request->ocupacion_dos)->first();
+
+        if ($request->ocupacion_dos) 
+        {
+            $ocupacionDos = CatOcupacionOfJurisdiccional::where('id', $request->ocupacion_dos)->first();
+        }
 
         // Activamos el modulo
         $mdl_status = 1;
@@ -314,11 +320,11 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
 
         $ocupacion->id_catalogo_dos = $request->ocupacion_dos;
-        $ocupacion->unidad_dos = $ocupacionDos->unidad;
-        $ocupacion->area_dos = $ocupacionDos->area;
-        $ocupacion->subarea_dos = $ocupacionDos->subarea;        
-        $ocupacion->servicio_dos = $ocupacionDos->servicio;
-        $ocupacion->ocupacion_dos = $ocupacionDos->ocupacion;
+        $ocupacion->unidad_dos = $ocupacionDos?->unidad;
+        $ocupacion->area_dos = $ocupacionDos?->area;
+        $ocupacion->subarea_dos = $ocupacionDos?->subarea;        
+        $ocupacion->servicio_dos = $ocupacionDos?->servicio;
+        $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -350,7 +356,9 @@ class ProfesionalOcupacionController extends Controller
         $request->validate([
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'El campo Ocupación 1 es obligatorio.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionOfJurisdiccional::where('id',$request->ocupacion_uno)->first();

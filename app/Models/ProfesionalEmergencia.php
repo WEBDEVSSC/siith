@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\UpperCaseFieldsEmergencia;
 use Illuminate\Database\Eloquent\Model;
 
 class ProfesionalEmergencia extends Model
 {
+    use UpperCaseFieldsEmergencia;
+    
     // Indicar explícitamente el nombre de la tabla (si no sigue convención plural simple)
     protected $table = 'profesionales_emergencias';
 
@@ -63,7 +66,24 @@ class ProfesionalEmergencia extends Model
         'mdl_emergencia',
     ];
 
-    // Relación con el profesional
+    /**
+     * 
+     * 
+     *  MUTADORES PARA MAYUSCULSA
+     * 
+     */
+
+    public function setHomoclaveAttribute($value)
+    {
+        $this->attributes['homoclave'] = strtoupper($value);
+    }
+
+     /**
+     * 
+     * 
+     *  RELACION CON EL MODELO PROFESIONAL
+     * 
+     */
     public function profesional()
     {
         return $this->belongsTo(Profesional::class, 'id_profesional');

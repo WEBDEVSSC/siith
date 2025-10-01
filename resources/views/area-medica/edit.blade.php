@@ -5,7 +5,7 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Area Médica</small></h1>
+    <h1><strong>Personal Estudiando Actualmente</strong></h1>
 @stop
 
 @section('content')
@@ -23,7 +23,6 @@
         <div class="card-header">
 
             <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm">PERFIL DEL TRABAJADOR</a>
-            <a href="{{ route('profesionalIndex') }}" class="btn btn-info btn-sm">PANEL DE CONTROL</a>
 
         </div>
 
