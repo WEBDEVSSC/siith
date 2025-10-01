@@ -142,7 +142,7 @@ class ProfesionalCambioDeUnidadController extends Controller
         $timestamp = now()->format('Ymd_His');
 
         // Regresa a su unidad de origen
-        if($request->tipo_movimiento == 1)
+        /*if($request->tipo_movimiento == 1)
         {
             // Asignamos el tipo de movimiento
             $tipoMovimiento = "REGRESA A UNIDAD DE ORIGEN";
@@ -174,7 +174,46 @@ class ProfesionalCambioDeUnidadController extends Controller
         }       
         
         // Almacenar el archivo en la carpeta 'documents' en el almacenamiento local
-        $archivoPath = $request->documento_respaldo->storeAs('cambio-unidad', $archivoNombre, 'local');
+        $archivoPath = $request->documento_respaldo->storeAs('cambio-unidad', $archivoNombre, 'local');*/
+
+        $archivoNombre = null; // Por si no se sube archivo
+        $archivoPath = null;
+
+        switch ($request->tipo_movimiento) {
+            case 1:
+                $tipoMovimiento = "REGRESA A UNIDAD DE ORIGEN";
+                break;
+            case 2:
+                $tipoMovimiento = "COMISIONADO A OTRA UNIDAD";
+                break;
+            case 3:
+                $tipoMovimiento = "MOVIMIENTO ESCALAFONARIO";
+                break;
+            default:
+                $tipoMovimiento = null;
+                break;
+        }
+
+        // Solo generar nombre y guardar si existe el archivo
+        if ($request->hasFile('documento_respaldo')) {
+            $extension = $request->documento_respaldo->extension();
+            $timestamp = now()->format('Ymd_His'); // Ejemplo: 20251001_213045
+
+            switch ($request->tipo_movimiento) {
+                case 1:
+                    $archivoNombre = $profesional->curp . '_RUO_' . $timestamp . '.' . $extension;
+                    break;
+                case 2:
+                    $archivoNombre = $profesional->curp . '_COU_' . $timestamp . '.' . $extension;
+                    break;
+                case 3:
+                    $archivoNombre = $profesional->curp . '_ME_' . $timestamp . '.' . $extension;
+                    break;
+            }
+
+            // Guardar archivo
+            $archivoPath = $request->documento_respaldo->storeAs('cambio-unidad', $archivoNombre, 'local');
+        }
 
         $cambioDeUnidad = new ProfesionalCambioDeUnidad();
 
