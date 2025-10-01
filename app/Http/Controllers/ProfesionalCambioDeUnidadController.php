@@ -115,7 +115,7 @@ class ProfesionalCambioDeUnidadController extends Controller
             'id_profesional' => 'required',
             'tipo_movimiento' => 'required',
             'clues' => 'required',
-            'documento_respaldo' => 'required|mimes:pdf|max:5120',
+            'documento_respaldo' => 'nullable|mimes:pdf|max:5120',
             'fecha_inicio' => 'required|date',
             'fecha_termino' => 'required|date|after:fecha_inicio',
         ], [
