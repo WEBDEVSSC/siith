@@ -334,7 +334,7 @@ class ProfesionalPuestoController extends Controller
         $validated = $request->validate([
             'id_profesional' => 'required',
             'fiel' => 'required',
-            'fiel_vigencia' => 'date_format:Y-m-d|required_if:fiel,SI',
+            'fiel_vigencia' => 'date_format:Y-m-d|required_if:fiel,SI|nullable',
             'actividad' => 'required',
             'adicional' => 'required',
             'tipo_personal' => 'required',

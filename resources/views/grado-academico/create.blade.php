@@ -106,6 +106,8 @@
                             <option value="SI" {{ old('cedula_uno') == 'SI' ? 'selected' : '' }}>SI</option>
                             <option value="NO" {{ old('cedula_uno') == 'NO' ? 'selected' : '' }}>NO</option>
                             <option value="EN TRAMITE" {{ old('cedula_uno') == 'EN TRAMITE' ? 'selected' : '' }}>EN TRAMITE</option>
+                            <option value="CARTA PASANTE" {{ old('cedula_uno') == 'CARTA PASANTE' ? 'selected' : '' }}>CARTA PASANTE</option>
+                            <option value="TRUNCA" {{ old('cedula_uno') == "TRUNCA" ? 'selected' : '' }}>TRUNCA</option>
                         </select>
                         @error('cedula_uno')
                         <br><div class="alert alert-danger">{{ $message }}</div>
@@ -129,6 +131,17 @@
                     </div>    
                     
                     
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <p><strong>* Observaciones</strong></p>
+                        <input type="text" name="observaciones_uno" id="observaciones_uno" class="form-control" value="{{ old('observaciones_uno', $gradoAcademico->observaciones_uno)}}">
+
+                        @error('observaciones_uno')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
 
                 <!-- ---------------------------------- -->
@@ -203,6 +216,8 @@
                     <option value="SI" {{ old('cedula_dos') == 'SI' ? 'selected' : '' }}>SI</option>
                     <option value="NO" {{ old('cedula_dos') == 'NO' ? 'selected' : '' }}>NO</option>
                     <option value="EN TRAMITE" {{ old('cedula_dos') == 'EN TRAMITE' ? 'selected' : '' }}>EN TRAMITE</option>
+                    <option value="CARTA PASANTE" {{ old('cedula_dos') == 'CARTA PASANTE' ? 'selected' : '' }}>CARTA PASANTE</option>
+                    <option value="TRUNCA" {{ old('cedula_dos') == "TRUNCA" ? 'selected' : '' }}>TRUNCA</option>
                 </select>
                 @error('cedula_dos')
                 <br><div class="alert alert-danger">{{ $message }}</div>
@@ -227,6 +242,17 @@
             
             
         </div>
+
+        <div class="row mt-3">
+                    <div class="col-md-12">
+                        <p><strong>* Observaciones</strong></p>
+                        <input type="text" name="observaciones_dos" id="observaciones_dos" class="form-control" value="{{ old('observaciones_dos', $gradoAcademico->observaciones_dos)}}">
+
+                        @error('observaciones_dos')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
 
 <!-- ---------------------------------------------------------------------- --> 
 
@@ -304,6 +330,8 @@
                     <option value="SI" {{ old('cedula_tres') == 'SI' ? 'selected' : '' }}>SI</option>
                     <option value="NO" {{ old('cedula_tres') == 'NO' ? 'selected' : '' }}>NO</option>
                     <option value="EN TRAMITE" {{ old('cedula_tres') == 'EN TRAMITE' ? 'selected' : '' }}>EN TRAMITE</option>
+                    <option value="CARTA PASANTE" {{ old('cedula_tres') == 'CARTA PASANTE' ? 'selected' : '' }}>CARTA PASANTE</option>
+                    <option value="TRUNCA" {{ old('cedula_tres') == "TRUNCA" ? 'selected' : '' }}>TRUNCA</option>
                 </select>
                 @error('cedula_tres')
                 <br><div class="alert alert-danger">{{ $message }}</div>
@@ -328,6 +356,17 @@
             
             
         </div>
+
+        <div class="row mt-3">
+                    <div class="col-md-12">
+                        <p><strong>* Observaciones</strong></p>
+                        <input type="text" name="observaciones_tres" id="observaciones_tres" class="form-control" value="{{ old('observaciones_tres', $gradoAcademico->observaciones_tres)}}">
+
+                        @error('observaciones_tres')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
 
         <!-- -------------------------------------------------------------- -->
 
@@ -403,6 +442,8 @@
                     <option value="SI" {{ old('cedula_cuatro') == 'SI' ? 'selected' : '' }}>SI</option>
                     <option value="NO" {{ old('cedula_cuatro') == 'NO' ? 'selected' : '' }}>NO</option>
                     <option value="EN TRAMITE" {{ old('cedula_cuatro') == 'EN TRAMITE' ? 'selected' : '' }}>EN TRAMITE</option>
+                    <option value="CARTA PASANTE" {{ old('cedula_cuatro') == 'CARTA PASANTE' ? 'selected' : '' }}>CARTA PASANTE</option>
+                    <option value="TRUNCA" {{ old('cedula_cuatro') == "TRUNCA" ? 'selected' : '' }}>TRUNCA</option>
                 </select>
                 @error('cedula_cuatro')
                 <br><div class="alert alert-danger">{{ $message }}</div>
@@ -427,6 +468,17 @@
             
             
         </div>
+
+        <div class="row mt-3">
+                    <div class="col-md-12">
+                        <p><strong>* Observaciones</strong></p>
+                        <input type="text" name="observaciones_cuatro" id="observaciones_cuatro" class="form-control" value="{{ old('observaciones_cuatro', $gradoAcademico->observaciones_cuatro)}}">
+
+                        @error('observaciones_cuatro')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
 
         <!-- -------------------------------------------------------------- -->
         </div>

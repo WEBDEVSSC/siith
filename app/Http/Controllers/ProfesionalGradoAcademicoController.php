@@ -64,13 +64,15 @@ class ProfesionalGradoAcademicoController extends Controller
             'cedula_uno' => 'nullable',
             'cedula_numero_uno' => 'required_if:cedula_uno,SI|nullable',
             'reg_nac_prof_uno' => 'nullable|mimes:pdf|max:5120', 
-
+            'observaciones_uno' => 'nullable|required_if:cedula_uno,TRUNCA|string|max:1024',
+            
             'grado_academico_dos'=>'nullable',
             'titulo_dos'=>'nullable',
             'institucion_educativa_dos'=>'nullable',
             'cedula_dos'=>'nullable',
             'cedula_numero_dos'=>'required_if:cedula_dos,SI|nullable',
             'reg_nac_prof_dos' => 'nullable|mimes:pdf|max:5120', 
+            'observaciones_dos' => 'nullable|required_if:cedula_dos,TRUNCA|string|max:1024',
 
             'grado_academico_tres'=>'nullable',
             'titulo_tres'=>'nullable',
@@ -78,6 +80,7 @@ class ProfesionalGradoAcademicoController extends Controller
             'cedula_tres' => 'nullable',
             'cedula_numero_tres' => 'required_if:cedula_tres,SI|nullable',
             'reg_nac_prof_tres' => 'nullable|mimes:pdf|max:5120', 
+            'observaciones_tres' => 'nullable|required_if:cedula_tres,TRUNCA|string|max:1024',
 
             'grado_academico_cuatro'=>'nullable',
             'titulo_cuatro'=>'nullable',
@@ -85,6 +88,7 @@ class ProfesionalGradoAcademicoController extends Controller
             'cedula_cuatro' => 'nullable',
             'cedula_numero_cuatro' => 'required_if:cedula_cuatro,SI|nullable',
             'reg_nac_prof_cuatro' => 'nullable|mimes:pdf|max:5120', 
+            'observaciones_cuatro' => 'nullable|required_if:cedula_cuatro,TRUNCA|string|max:1024',
 
         ],[
             // ---- General ----
@@ -95,23 +99,27 @@ class ProfesionalGradoAcademicoController extends Controller
             'cedula_numero_uno.required_if' => 'El número de cédula (primer grado) es obligatorio cuando la cédula está marcada como "SI".',
             'reg_nac_prof_uno.mimes' => 'El archivo del Registro Nacional Profesional (primer grado) debe ser un PDF.',
             'reg_nac_prof_uno.max' => 'El archivo del Registro Nacional Profesional (primer grado) no debe exceder los 5MB.',
+            'observaciones_uno.required_if' => 'Al seleccionar CEDULA = TRUNCA este campo es obligatorio',
 
             // ---- DOS ----
             'cedula_numero_dos.required_if' => 'El número de cédula (segundo grado) es obligatorio cuando la cédula está marcada como "SI".',
             'reg_nac_prof_dos.mimes' => 'El archivo del Registro Nacional Profesional (segundo grado) debe ser un PDF.',
             'reg_nac_prof_dos.max' => 'El archivo del Registro Nacional Profesional (segundo grado) no debe exceder los 5MB.',
+            'observaciones_dos.required_if' => 'Al seleccionar CEDULA = TRUNCA este campo es obligatorio',
 
             // ---- TRES ----
             'grado_academico_tres.required' => 'El tercer grado académico es obligatorio.',
             'cedula_numero_tres.required_if' => 'El número de cédula (tercer grado) es obligatorio cuando la cédula está marcada como "SI".',
             'reg_nac_prof_tres.mimes' => 'El archivo del Registro Nacional Profesional (tercer grado) debe ser un PDF.',
             'reg_nac_prof_tres.max' => 'El archivo del Registro Nacional Profesional (tercer grado) no debe exceder los 5MB.',
+            'observaciones_tres.required_if' => 'Al seleccionar CEDULA = TRUNCA este campo es obligatorio',
 
             // ---- CUATRO ----
             'grado_academico_cuatro.required' => 'El cuarto grado académico es obligatorio.',
             'cedula_numero_cuatro.required_if' => 'El número de cédula (cuarto grado) es obligatorio cuando la cédula está marcada como "SI".',
             'reg_nac_prof_cuatro.mimes' => 'El archivo del Registro Nacional Profesional (cuarto grado) debe ser un PDF.',
             'reg_nac_prof_cuatro.max' => 'El archivo del Registro Nacional Profesional (cuarto grado) no debe exceder los 5MB.',
+            'observaciones_cuatro.required_if' => 'Al seleccionar CEDULA = TRUNCA este campo es obligatorio',
         ]);
 
         // Consultamos el label de grado academico
@@ -153,13 +161,6 @@ class ProfesionalGradoAcademicoController extends Controller
 
         // Consultamos el CURP del profesional
         $profesional = Profesional::findOrFail($request->id_profesional);
-
-        // Renombramos y subimos la imagen
-        //$nombreArchivoUno = $profesional->curp .'-'. $request->cedula_numero_uno . '.' . $request->file('reg_nac_prof_uno')->getClientOriginalExtension();
-        //$nombreArchivoDos = $profesional->curp .'-'. $request->cedula_numero_dos . '.' . $request->file('reg_nac_prof_dos')->getClientOriginalExtension();
-
-        //$rutaUno = $request->reg_nac_prof_uno->storeAs('reg-nac-prof', $nombreArchivoUno, 'local');
-        //$rutaDos = $request->reg_nac_prof_dos->storeAs('reg-nac-prof', $nombreArchivoDos, 'local');
 
         $rutaUno = null; 
 
@@ -308,7 +309,6 @@ class ProfesionalGradoAcademicoController extends Controller
      */
     public function updateGrado(Request $request, $id)
     {
-        
         // Validamos los datos
         $request->validate([
             'id_profesional'=>'required',
@@ -319,6 +319,7 @@ class ProfesionalGradoAcademicoController extends Controller
             'cedula_uno' => 'nullable',
             'cedula_numero_uno' => 'required_if:cedula_uno,SI|nullable',
             'reg_nac_prof_uno' => 'nullable|mimes:pdf|max:5120', 
+            'observaciones_uno' => 'nullable|required_if:cedula_uno,TRUNCA|string|max:1024',
 
             'grado_academico_dos'=>'nullable',
             'titulo_dos'=>'nullable',
@@ -326,6 +327,7 @@ class ProfesionalGradoAcademicoController extends Controller
             'cedula_dos'=>'nullable',
             'cedula_numero_dos'=>'required_if:cedula_dos,SI|nullable',
             'reg_nac_prof_dos' => 'nullable|mimes:pdf|max:5120', 
+            'observaciones_dos' => 'nullable|required_if:cedula_dos,TRUNCA|string|max:1024',
 
             'grado_academico_tres'=>'required',
             'titulo_tres'=>'nullable',
@@ -333,6 +335,7 @@ class ProfesionalGradoAcademicoController extends Controller
             'cedula_tres' => 'nullable',
             'cedula_numero_tres' => 'required_if:cedula_tres,SI|nullable',
             'reg_nac_prof_tres' => 'nullable|mimes:pdf|max:5120', 
+            'observaciones_tres' => 'nullable|required_if:cedula_tres,TRUNCA|string|max:1024',
 
             'grado_academico_cuatro'=>'required',
             'titulo_cuatro'=>'nullable',
@@ -340,6 +343,7 @@ class ProfesionalGradoAcademicoController extends Controller
             'cedula_cuatro' => 'nullable',
             'cedula_numero_cuatro' => 'required_if:cedula_cuatro,SI|nullable',
             'reg_nac_prof_cuatro' => 'nullable|mimes:pdf|max:5120', 
+            'observaciones_cuatro' => 'nullable|required_if:cedula_cuatro,TRUNCA|string|max:1024',
 
         ],[
             // ---- General ----
@@ -350,23 +354,27 @@ class ProfesionalGradoAcademicoController extends Controller
             'cedula_numero_uno.required_if' => 'El número de cédula (primer grado) es obligatorio cuando la cédula está marcada como "SI".',
             'reg_nac_prof_uno.mimes' => 'El archivo del Registro Nacional Profesional (primer grado) debe ser un PDF.',
             'reg_nac_prof_uno.max' => 'El archivo del Registro Nacional Profesional (primer grado) no debe exceder los 5MB.',
+            'observaciones_uno.required_if' => 'Al seleccionar CEDULA = TRUNCA este campo es obligatorio',
 
             // ---- DOS ----
             'cedula_numero_dos.required_if' => 'El número de cédula (segundo grado) es obligatorio cuando la cédula está marcada como "SI".',
             'reg_nac_prof_dos.mimes' => 'El archivo del Registro Nacional Profesional (segundo grado) debe ser un PDF.',
             'reg_nac_prof_dos.max' => 'El archivo del Registro Nacional Profesional (segundo grado) no debe exceder los 5MB.',
+            'observaciones_dos.required_if' => 'Al seleccionar CEDULA = TRUNCA este campo es obligatorio',
 
             // ---- TRES ----
             'grado_academico_tres.required' => 'El tercer grado académico es obligatorio.',
             'cedula_numero_tres.required_if' => 'El número de cédula (tercer grado) es obligatorio cuando la cédula está marcada como "SI".',
             'reg_nac_prof_tres.mimes' => 'El archivo del Registro Nacional Profesional (tercer grado) debe ser un PDF.',
             'reg_nac_prof_tres.max' => 'El archivo del Registro Nacional Profesional (tercer grado) no debe exceder los 5MB.',
+            'observaciones_tres.required_if' => 'Al seleccionar CEDULA = TRUNCA este campo es obligatorio',
 
             // ---- CUATRO ----
             'grado_academico_cuatro.required' => 'El cuarto grado académico es obligatorio.',
             'cedula_numero_cuatro.required_if' => 'El número de cédula (cuarto grado) es obligatorio cuando la cédula está marcada como "SI".',
             'reg_nac_prof_cuatro.mimes' => 'El archivo del Registro Nacional Profesional (cuarto grado) debe ser un PDF.',
             'reg_nac_prof_cuatro.max' => 'El archivo del Registro Nacional Profesional (cuarto grado) no debe exceder los 5MB.',
+            'observaciones_cuatro.required_if' => 'Al seleccionar CEDULA = TRUNCA este campo es obligatorio',
         ]);
 
         // Consultamos el label de grado academico
