@@ -48,7 +48,7 @@ class ProfesionalEmergenciaController extends Controller
 
         'tipo_sangre' => 'nullable',
         'tipo_alergia_id' => 'required|integer|in:1,2,3,4,5,6',
-        'alergia_descripcion' => 'nullable|string|max:255|required_if:tipo_alergia_id,1,2,3,4,5',
+        'alergia_descripcion' => 'nullable|string|max:255|required_unless:tipo_alergia_id,6',
 
         'enfermedad'    => 'nullable|string',
         'medicamentos'  => 'nullable|string',
@@ -103,7 +103,7 @@ class ProfesionalEmergenciaController extends Controller
         'tipo_alergia_id.required' => 'Debe seleccionar un tipo de alergia.',
         'tipo_alergia_id.in'       => 'El tipo de alergia seleccionado no es válido.',
 
-        'alergia_descripcion.required_if' => 'Debe especificar la alergia cuando se selecciona un tipo de alergia.',
+        'alergia_descripcion.required_unless' => 'Debe especificar la alergia cuando se selecciona un tipo de alergia.',
         'alergia_descripcion.max'         => 'La descripción de la alergia no debe superar los 255 caracteres.',
 
         // Emergencias
@@ -264,7 +264,7 @@ class ProfesionalEmergenciaController extends Controller
 
             'tipo_sangre' => 'nullable',
             'tipo_alergia_id' => 'required|integer|in:1,2,3,4,5,6',
-            'alergia_descripcion' => 'nullable|string|max:255|required_if:tipo_alergia_id,1,2,3,4,5',
+            'alergia_descripcion' => 'nullable|string|max:255|required_unless:tipo_alergia_id,6',
 
             'enfermedad'    => 'nullable|string',
             'medicamentos'  => 'nullable|string',
@@ -318,7 +318,7 @@ class ProfesionalEmergenciaController extends Controller
             'tipo_alergia_id.required' => 'Debe seleccionar un tipo de alergia.',
             'tipo_alergia_id.in'       => 'El tipo de alergia seleccionado no es válido.',
 
-            'alergia_descripcion.required_if' => 'Debe especificar la alergia cuando se selecciona un tipo de alergia.',
+            'alergia_descripcion.required_unless' => 'Debe especificar la alergia cuando se selecciona un tipo de alergia.',
             'alergia_descripcion.max'         => 'La descripción de la alergia no debe superar los 255 caracteres.',
 
             // Emergencias
