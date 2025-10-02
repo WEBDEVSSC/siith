@@ -838,7 +838,7 @@ class ProfesionalController extends Controller
             'apellido_materno' => 'required',
             'municipio_nacimiento' => 'required',
             'estado_conyugal' => 'required',
-            'telefono_casa' => 'required|size:10',
+            'telefono_casa' => 'nullable|size:10',
             'celular' => 'required|size:10',
             'email' => 'required|email',
             'padre_madre_familia' => 'required',
