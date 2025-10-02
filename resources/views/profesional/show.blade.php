@@ -208,9 +208,10 @@ ADMINISTRADOR
     <!-- -- -->
 
     <div class="card">
-        <div class="card-header"><strong>OCUPACIÓN</strong> {{ $catalogoLabel }}  </div>
+        <div class="card-header"><strong>CATALOGO / CARTERA DE SERVICIOS</strong> {{ $catalogoLabel }}  </div>
         <div class="card-body">
 
+            
             <!-- OCUPACION PARA CENTROS DE SALUD URBANOS Y RURALES (1) -->
 
             @if ($cluesAdscripcionTipo == 1)
@@ -222,8 +223,9 @@ ADMINISTRADOR
 
             <!-- OCUPACION PARA HOSPITALES (2) -->
 
-            @if ($cluesAdscripcionTipo == 2)
-                <ul>
+            @if ($cluesAdscripcionTipo == 2)   
+            
+            <ul>
                     <li>{{ optional($ocupacion)->unidad_uno }} - {{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_uno }} - {{ optional($ocupacion)->puesto_uno }}</li>
                     <li>{{ optional($ocupacion)->unidad_dos }} - {{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_dos }} - {{ optional($ocupacion)->puesto_dos }}</li>
                 </ul>

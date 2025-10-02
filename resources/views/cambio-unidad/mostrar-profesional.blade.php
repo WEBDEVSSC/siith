@@ -16,11 +16,12 @@
     <div class="card-body">
         <div class="row">
             <div class="col-md-3 text-center">
-                @if($fotoUrl)
-                    <img src="{{ $fotoUrl }}" alt="Fotografía del profesional" width="200" class="img-thumbnail"/>
-                @else
-                    <p>No se ha cargado una fotografía.</p>
-                @endif
+                <center>
+                    @if($fotoUrl)
+                        <img src="{{ $fotoUrl }}" alt="Fotografía del profesional" style="max-width:200px; height:auto;" class="img-thumbnail"/>
+                    @else
+                        <img src="{{ asset('images/avatar-placeholder.png') }}" alt="Sin foto" style="max-width:200px; height:auto;" class="img-thumbnail"/>
+                    @endif
             </div>
 
             <div class="col-md-9">

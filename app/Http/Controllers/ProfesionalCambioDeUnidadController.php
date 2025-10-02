@@ -54,12 +54,13 @@ class ProfesionalCambioDeUnidadController extends Controller
                             ->withInput();
         }
 
-        // Cargamos los datos del MODULO CREDENCIALIZACION
-        $credencializacion = $profesional?->credencializacion;
+        $credencializacion = $profesional->credencializacion;
         $fotografia = $credencializacion ? $credencializacion->fotografia : null;
 
-        // Generamos la URL de la fotografía
-        $fotoUrl = $fotografia ? url('/foto/' . basename($fotografia)) : null;
+        // Generamos la URL de la fotografía desde storage
+        $fotoUrl = $fotografia 
+            ? asset('storage/credencializacion/thumbs/' . $fotografia) 
+            : null;
 
         // Regresamos la vista con el objeto
         return view('cambio-unidad.mostrar-profesional', compact('profesional', 'fotoUrl'));
@@ -73,17 +74,13 @@ class ProfesionalCambioDeUnidadController extends Controller
         // Cargamos el usuario en sesion
         $user = Auth::user();
 
-        // Cargamos los datos de la clues del usuario
-        //$clues = Clue::findOrFail($user->id_unidad);
-
-        // Cargamos los datos del MODULO CREDENCIALIZACION
-        $credencializacion = $profesional?->credencializacion;
+        $credencializacion = $profesional->credencializacion;
         $fotografia = $credencializacion ? $credencializacion->fotografia : null;
 
-        // Generamos la URL de la fotografía
-        $fotoUrl = $fotografia ? url('/foto/' . basename($fotografia)) : null;
-
-        
+        // Generamos la URL de la fotografía desde storage
+        $fotoUrl = $fotografia 
+            ? asset('storage/credencializacion/thumbs/' . $fotografia) 
+            : null;
 
         // Cargamos las clues que le corresponden al usuario
         // Clues para administrador - muestra todas las clues
@@ -116,20 +113,24 @@ class ProfesionalCambioDeUnidadController extends Controller
             'tipo_movimiento' => 'required',
             'clues' => 'required',
             'documento_respaldo' => 'nullable|mimes:pdf|max:5120',
-            'fecha_inicio' => 'required|date',
-            'fecha_termino' => 'required|date|after:fecha_inicio',
+            'fecha_inicio' => 'required|date_format:Y-m-d',
+            'fecha_termino' => 'required_if:tipo_movimiento,2|nullable|date_format:Y-m-d|after:fecha_inicio',
         ], [
-            'clues.required'=>'La unidad de destino es obligatoria',
-            'tipo_movimiento.required' => 'El tipo de movimiento es obligatorio.',
-            'documento_respaldo.required' => 'El documento de respaldo es obligatorio.',
-            'documento_respaldo.mimes' => 'El documento de respaldo debe ser un archivo PDF.',
-            'documento_respaldo.max' => 'El documento de respaldo no debe ser mayor a 5 MB.',
-            'documento_resplado.uploaded' => 'No se pudo subir el archivo :attribute. Asegúrate de que no supere el tamaño permitido (5 MB) y que el formato sea correcto.',
-            'fecha_inicio.required' => 'La fecha de inicio es obligatoria.',
-            'fecha_inicio.date' => 'La fecha de inicio debe ser una fecha válida.',
-            'fecha_termino.required' => 'La fecha de término es obligatoria.',
-            'fecha_termino.date' => 'La fecha de término debe ser una fecha válida.',
-            'fecha_termino.after' => 'La fecha de término debe ser posterior a la fecha de inicio.',
+            'id_profesional.required'       => 'El profesional es obligatorio.',
+            'clues.required'                => 'La unidad de destino es obligatoria.',
+            'tipo_movimiento.required'      => 'El tipo de movimiento es obligatorio.',
+            'tipo_movimiento.in'            => 'El tipo de movimiento seleccionado no es válido.',
+
+            'documento_respaldo.mimes'      => 'El documento de respaldo debe ser un archivo en formato PDF.',
+            'documento_respaldo.max'        => 'El documento de respaldo no debe superar los 5 MB.',
+            'documento_respaldo.uploaded'   => 'No se pudo subir el archivo de respaldo. Verifica el tamaño y formato.',
+
+            'fecha_inicio.required'         => 'La fecha de inicio es obligatoria.',
+            'fecha_inicio.date_format'      => 'La fecha de inicio debe tener el formato correcto (YYYY-MM-DD).',
+
+            'fecha_termino.required_if'     => 'La fecha de término es obligatoria cuando el movimiento es COMISIONADO A OTRA UNIDAD.',
+            'fecha_termino.date_format'     => 'La fecha de término debe tener el formato correcto (YYYY-MM-DD).',
+            'fecha_termino.after'           => 'La fecha de término debe ser posterior a la fecha de inicio.',
         ]);
 
         // Consultamos los datos de la CLUES
@@ -288,7 +289,7 @@ class ProfesionalCambioDeUnidadController extends Controller
         $buscarOcupacionHospitalNino = ProfesionalOcupacionHospitalNino::where('id_profesional',$request->id_profesional)->first()?->delete();
 
         // Redireccionamos al perfil del usuario
-        return redirect()->route('profesionalShow',$profesional->id)->with('successCambioDeUnidad', 'Cambio de unidad registrada correctamente');
+        return redirect()->route('profesionalShow',$profesional->id)->with('success', 'Cambio de unidad registrada correctamente');
 
     }
 

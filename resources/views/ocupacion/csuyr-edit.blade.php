@@ -65,7 +65,7 @@
         </div>
 
         <div class="card-footer">
-            <button type="submit" class="btn btn-success btn-sm">ACTUALIZAR DATOS DE OCUPACIÓN</button>
+            <button type="submit" class="btn btn-info btn-sm">ACTUALIZAR DATOS DE OCUPACIÓN</button>
         </div>
     </form>
 </div>
