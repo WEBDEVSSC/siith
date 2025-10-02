@@ -75,6 +75,7 @@
                     <th>EMAIL</th>
                     <th>UNIDAD</th>
                     <th>RESPONSABLE</th>
+                    <th>ROL</th>
                     <th></th>
                 </tr>
             </thead>
@@ -85,6 +86,7 @@
                         <td>{{ $usuario->email }}</td>
                         <td>{{ $usuario->clues_unidad }} - {{ $usuario->nombre_unidad }}</td>
                         <td>{{ $usuario->responsable }} - {{ $usuario->contacto }}</td>
+                        <td>{{ $usuario->role }}</td>
 
                         <td>
 
