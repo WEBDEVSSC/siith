@@ -38,9 +38,7 @@ class ProfesionalEmergenciaController extends Controller
     }
 
     public function storeEmergencia(Request $request)
-    {        
-        dd($request->tipo_alergia_id);
-        
+    {                
         // Validación
     $request->validate([
         'id_profesional' => 'required',

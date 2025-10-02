@@ -49,10 +49,9 @@
                         <input type="text" name="telefono_celular" class="form-control" maxlength="10" value="{{ old('telefono_celular') }}">
                         
                         @error('telefono_celular')
-                            <br><small class="alert alert-danger">{{ $message }}</small>
+                            <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-
                     
 
                     <div class="col-md-3">
@@ -60,7 +59,7 @@
                         <input type="email" name="correo_electronico" class="form-control" value="{{ old('correo_electronico') }}"> 
 
                         @error('correo_electronico')
-                            <br><small class="alert alert-danger">{{ $message }}</small>
+                            <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -101,10 +100,6 @@
                 <!-- ---------------------------------- -->
 
                 <div class="row mt-3">      
-
-                    
-
-                    
 
                     <div class="col-md-12">
                         <p><strong>Describa Brevemente</strong></p>

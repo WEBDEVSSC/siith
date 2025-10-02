@@ -64,7 +64,7 @@
                         <input type="text" name="telefono_celular" class="form-control" maxlength="10" value="{{ old('telefono_celular', $emergencia->telefono) }}">
                         
                         @error('telefono_celular')
-                            <br><small class="alert alert-danger">{{ $message }}</small>
+                            <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -75,7 +75,7 @@
                         <input type="email" name="correo_electronico" class="form-control" value="{{ old('correo_electronico', $emergencia->correo_electronico) }}"> 
 
                         @error('correo_electronico')
-                            <br><small class="alert alert-danger">{{ $message }}</small>
+                            <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
