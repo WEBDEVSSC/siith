@@ -39,6 +39,8 @@ class ProfesionalEmergenciaController extends Controller
 
     public function storeEmergencia(Request $request)
     {        
+        dd($request->tipo_alergia_id);
+        
         // Validación
     $request->validate([
         'id_profesional' => 'required',
@@ -48,7 +50,7 @@ class ProfesionalEmergenciaController extends Controller
 
         'tipo_sangre' => 'nullable',
         'tipo_alergia_id' => 'required|integer|in:1,2,3,4,5,6',
-        'alergia_descripcion' => 'nullable|string|max:255|required_unless:tipo_alergia_id,6',
+        'alergia_descripcion' => 'nullable|string|max:255|required_unless:tipo_alergia_id,1',
 
         'enfermedad'    => 'nullable|string',
         'medicamentos'  => 'nullable|string',
@@ -264,7 +266,7 @@ class ProfesionalEmergenciaController extends Controller
 
             'tipo_sangre' => 'nullable',
             'tipo_alergia_id' => 'required|integer|in:1,2,3,4,5,6',
-            'alergia_descripcion' => 'nullable|string|max:255|required_unless:tipo_alergia_id,6',
+            'alergia_descripcion' => 'nullable|string|max:255|required_unless:tipo_alergia_id,1',
 
             'enfermedad'    => 'nullable|string',
             'medicamentos'  => 'nullable|string',
