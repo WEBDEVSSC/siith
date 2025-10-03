@@ -59,16 +59,21 @@ class ProfesionalCertificacionController extends Controller
         ]);
         
         // Consultamos los datos de COLEGIACION
-        $colegiacion = Colegiacion::findOrFail($request->colegiacion_id);
+        //$colegiacion = Colegiacion::findOrFail($request->colegiacion_id);
+
+        $colegiacion = Colegiacion::find($request->colegiacion_id);
 
         // Consultamos los datos de CERTIFICACION
-        $certificacionSelect = Certificacion::findOrFail($request->certificacion_id);
+        //$certificacionSelect = Certificacion::findOrFail($request->certificacion_id);
+        $certificacionSelect = Certificacion::find($request->certificacion_id);
 
         // Consultamos los datos de IDIOMA
-        $idioma = Idioma::findOrFail($request->idioma_id);
+        //$idioma = Idioma::findOrFail($request->idioma_id);
+        $idioma = Idioma::find($request->idioma_id);
 
         // Consultamos los datos de LENGUA INDIGENA
-        $lenguaIndigena = LenguajeIndigena::findOrFail($request->lengua_indigena_id);
+        //$lenguaIndigena = LenguajeIndigena::findOrFail($request->lengua_indigena_id);
+        $lenguaIndigena = LenguajeIndigena::find($request->lengua_indigena_id);
 
         // Activamos el modulo
         $mdl_certificacion = 1;
@@ -79,19 +84,19 @@ class ProfesionalCertificacionController extends Controller
         // Asignamos los valores
         $certificacion->id_profesional = $request->id_profesional;
 
-        $certificacion->colegiacion_id = $request->colegiacion_id;
-        $certificacion->colegiacion_label = $colegiacion->colegio;
+        $certificacion->colegiacion_id = $request?->colegiacion_id;
+        $certificacion->colegiacion_label = $colegiacion?->colegio;
 
-        $certificacion->certificacion_id = $request->certificacion_id;
-        $certificacion->certificacion_label = $certificacionSelect->certificacion;
+        $certificacion->certificacion_id = $request?->certificacion_id;
+        $certificacion->certificacion_label = $certificacionSelect?->certificacion;
 
-        $certificacion->idioma_id = $request->idioma_id;
-        $certificacion->idioma_label = $idioma->idioma;
-        $certificacion->idioma_nivel_de_dominio = $request->idioma_nivel_de_dominio;
+        $certificacion->idioma_id = $request?->idioma_id;
+        $certificacion->idioma_label = $idioma?->idioma;
+        $certificacion->idioma_nivel_de_dominio = $request?->idioma_nivel_de_dominio;
 
-        $certificacion->lengua_indigena_id = $request->lengua_indigena_id;
-        $certificacion->lengua_indigena_label = $lenguaIndigena->lenguaje;
-        $certificacion->lengua_nivel_de_dominio = $request->lengua_nivel_de_dominio;
+        $certificacion->lengua_indigena_id = $request?->lengua_indigena_id;
+        $certificacion->lengua_indigena_label = $lenguaIndigena?->lenguaje;
+        $certificacion->lengua_nivel_de_dominio = $request?->lengua_nivel_de_dominio;
 
         $certificacion->mdl_certificacion = $mdl_certificacion;
 
@@ -150,32 +155,32 @@ class ProfesionalCertificacionController extends Controller
         ]);
 
         // Consultamos los datos de COLEGIACION
-        $colegiacion = Colegiacion::findOrFail($request->colegiacion_id);
+        $colegiacion = Colegiacion::find($request->colegiacion_id);
 
         // Consultamos los datos de CERTIFICACION
-        $certificacionSelect = Certificacion::findOrFail($request->certificacion_id);
+        $certificacionSelect = Certificacion::find($request->certificacion_id);
 
         // Consultamos los datos de IDIOMA
-        $idioma = Idioma::findOrFail($request->idioma_id);
+        $idioma = Idioma::find($request->idioma_id);
 
         // Consultamos los datos de LENGUA INDIGENA
-        $lenguaIndigena = LenguajeIndigena::findOrFail($request->lengua_indigena_id);
+        $lenguaIndigena = LenguajeIndigena::find($request->lengua_indigena_id);
 
         // Buscamos el registro a editar
         $certificacion = ProfesionalCertificacion::findOrFail($id);
 
         // Asignamos los valores
         $certificacion->update([
-            'colegiacion_id'=>$request->colegiacion_id,
-            'colegiacion_label'=>$colegiacion->colegio,
-            'certificacion_id'=>$request->certificacion_id,
-            'certificacion_label'=>$certificacionSelect->certificacion,
-            'idioma_id'=>$request->idioma_id,
-            'idioma_label'=>$idioma->idioma,
-            'idioma_nivel_de_dominio'=>$request->idioma_nivel_de_dominio,
-            'lengua_indigena_id'=>$request->lengua_indigena_id,
-            'lengua_indigena_label'=>$lenguaIndigena->lenguaje,
-            'lengua_nivel_de_dominio'=>$request->lengua_nivel_de_dominio,
+            'colegiacion_id'=>$request?->colegiacion_id,
+            'colegiacion_label'=>$colegiacion?->colegio,
+            'certificacion_id'=>$request?->certificacion_id,
+            'certificacion_label'=>$certificacionSelect?->certificacion,
+            'idioma_id'=>$request?->idioma_id,
+            'idioma_label'=>$idioma?->idioma,
+            'idioma_nivel_de_dominio'=>$request?->idioma_nivel_de_dominio,
+            'lengua_indigena_id'=>$request?->lengua_indigena_id,
+            'lengua_indigena_label'=>$lenguaIndigena?->lenguaje,
+            'lengua_nivel_de_dominio'=>$request?->lengua_nivel_de_dominio,
         ]);
 
         // Guardamos el registro
