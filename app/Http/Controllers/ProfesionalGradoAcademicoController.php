@@ -329,7 +329,7 @@ class ProfesionalGradoAcademicoController extends Controller
             'reg_nac_prof_dos' => 'nullable|mimes:pdf|max:5120', 
             'observaciones_dos' => 'nullable|required_if:cedula_dos,TRUNCA|string|max:1024',
 
-            'grado_academico_tres'=>'required',
+            'grado_academico_tres'=>'nullable',
             'titulo_tres'=>'nullable',
             'institucion_educativa_tres'=>'nullable',
             'cedula_tres' => 'nullable',
@@ -337,7 +337,7 @@ class ProfesionalGradoAcademicoController extends Controller
             'reg_nac_prof_tres' => 'nullable|mimes:pdf|max:5120', 
             'observaciones_tres' => 'nullable|required_if:cedula_tres,TRUNCA|string|max:1024',
 
-            'grado_academico_cuatro'=>'required',
+            'grado_academico_cuatro'=>'nullable',
             'titulo_cuatro'=>'nullable',
             'institucion_educativa_cuatro'=>'nullable',
             'cedula_cuatro' => 'nullable',
