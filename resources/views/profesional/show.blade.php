@@ -1015,7 +1015,7 @@ ADMINISTRADOR
 
     <div class="card">
         <div class="card-header">
-            <strong>MOVIMIENTOS</strong>
+            <strong>CAMBIOS DE UNIDAD</strong>
         </div>
         <div class="card-body">
 
