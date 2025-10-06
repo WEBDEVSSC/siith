@@ -8,6 +8,7 @@ use App\Models\ProfesionalHorario;
 use Carbon\Carbon;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProfesionalHorarioController extends Controller
 {
@@ -18,7 +19,21 @@ class ProfesionalHorarioController extends Controller
         $profesional = Profesional::findOrFail($id);
         
         // Llenamos el select de Jornadas
-        $jornadas = Jornada::orderBy('orden', 'asc')->get();
+        //$jornadas = Jornada::orderBy('orden', 'asc')->get();
+
+        $usuario = Auth::user();
+
+        if($usuario->role == 'ofJurisdiccional')
+        {
+            $jornadas = Jornada::whereIn('jornada', [
+                            'Jornada Diurna (Matutina L-V)',
+                            'Jornada Mixta (Vespertino L-V)'
+                        ])->get();
+        }
+        else
+        {
+            $jornadas = Jornada::orderBy('orden', 'asc')->get();
+        }
 
         // Retornamos la vista con el arreglo
         return view('horario.create', compact('profesional','jornadas'));
