@@ -17,6 +17,7 @@
 @php
     $alerts = [
         'success',
+        'update',
         'successCredencializacion',
         'updateCredencializacion',
         'successHorario',

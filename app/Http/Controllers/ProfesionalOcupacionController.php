@@ -98,7 +98,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalShow',$request->id_profesional)->with('ocupacionSuccess', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Ocupaciones registradas correctamente.');
     }
 
     public function editCentrosDeSalud($id)
@@ -153,7 +153,7 @@ class ProfesionalOcupacionController extends Controller
          ]);
 
          // Regresamos a la vista con su mensaje
-         return redirect()->route('profesionalShow',$ocupacion->id_profesional)->with('ocupacionUpdate', 'Ocupaciones registradas correctamente.');
+         return redirect()->route('profesionalShow',$ocupacion->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
     }
 
     /** ************************************************************************************************************************************************
@@ -223,7 +223,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalShow',$request->id_profesional)->with('ocupacionSuccess', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Ocupaciones registradas correctamente.');
     }
 
     public function editHospital($id)
@@ -278,7 +278,7 @@ class ProfesionalOcupacionController extends Controller
          ]);
 
          // Regresamos a la vista con su mensaje
-         return redirect()->route('profesionalShow',$ocupacion->id_profesional)->with('ocupacionUpdate', 'Ocupaciones registradas correctamente.');
+         return redirect()->route('profesionalShow',$ocupacion->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
     }
 
 
@@ -352,7 +352,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalShow',$request->id_profesional)->with('ocupacionSuccess', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Ocupaciones registradas correctamente.');
     }
 
     public function editOfJurisdiccional($id)
@@ -411,7 +411,7 @@ class ProfesionalOcupacionController extends Controller
         ]);
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('ocupacionUpdate', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
 
     }
 
@@ -481,7 +481,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalShow',$request->id_profesional)->with('ocupacionSuccess', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Ocupaciones registradas correctamente.');
     }
 
     public function editCriCree($id)
@@ -536,7 +536,7 @@ class ProfesionalOcupacionController extends Controller
         ]);
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('ocupacionUpdate', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
 
     }
 
@@ -608,7 +608,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalShow',$request->id_profesional)->with('ocupacionSuccess', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Ocupaciones registradas correctamente.');
     }
 
     public function editSamuCrum($id)
@@ -665,7 +665,7 @@ class ProfesionalOcupacionController extends Controller
         ]);
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('ocupacionUpdate', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
 
     }
 
@@ -737,7 +737,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalShow',$request->id_profesional)->with('ocupacionSuccess', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Ocupaciones registradas correctamente.');
     }
 
     public function editOficinaCentral($id)
@@ -794,7 +794,7 @@ class ProfesionalOcupacionController extends Controller
         ]);
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('ocupacionUpdate', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
 
     }
 
@@ -866,7 +866,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalShow',$request->id_profesional)->with('ocupacionSuccess', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Ocupaciones registradas correctamente.');
     }
 
     public function editAlmacen($id)
@@ -923,7 +923,7 @@ class ProfesionalOcupacionController extends Controller
         ]);
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('ocupacionUpdate', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
 
     }
 
@@ -995,7 +995,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalShow',$request->id_profesional)->with('ocupacionSuccess', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Ocupaciones registradas correctamente.');
     }
 
     public function editCors($id)
@@ -1053,7 +1053,7 @@ class ProfesionalOcupacionController extends Controller
         ]);
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('ocupacionUpdate', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
 
     }
 
@@ -1125,7 +1125,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalShow',$request->id_profesional)->with('ocupacionSuccess', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Ocupaciones registradas correctamente.');
     }
 
     public function editCetsLesp($id)
@@ -1183,7 +1183,7 @@ class ProfesionalOcupacionController extends Controller
         ]);
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('ocupacionUpdate', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
 
     }
 
@@ -1255,7 +1255,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalShow',$request->id_profesional)->with('ocupacionSuccess', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Ocupaciones registradas correctamente.');
     }
 
     public function editCesame($id)
@@ -1313,7 +1313,7 @@ class ProfesionalOcupacionController extends Controller
         ]);
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('ocupacionUpdate', 'Ocupaciones actualizadas correctamente.');
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
 
     }
 
@@ -1385,7 +1385,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalShow',$request->id_profesional)->with('ocupacionSuccess', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Ocupaciones registradas correctamente.');
     }
 
     public function editPsiParras($id)
@@ -1443,7 +1443,7 @@ class ProfesionalOcupacionController extends Controller
         ]);
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('ocupacionUpdate', 'Ocupaciones actualizadas correctamente.');
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
 
     }
 
@@ -1513,7 +1513,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalShow',$request->id_profesional)->with('ocupacionSuccess', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Ocupaciones registradas correctamente.');
     }
 
     public function editHospitalNino($id)
@@ -1569,7 +1569,7 @@ class ProfesionalOcupacionController extends Controller
         ]);
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('ocupacionUpdate', 'Ocupaciones actualizadas correctamente.');
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
 
     }
 
@@ -1641,7 +1641,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->save();
 
         // Regresamos a la vista con su mensaje
-        return redirect()->route('profesionalShow',$request->id_profesional)->with('ocupacionSuccess', 'Ocupaciones registradas correctamente.');
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Ocupaciones registradas correctamente.');
     }
 
     public function editCeam($id)
@@ -1699,7 +1699,7 @@ class ProfesionalOcupacionController extends Controller
         ]);
 
         // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('ocupacionUpdate', 'Ocupaciones actualizadas correctamente.');
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
 
     }
 }
