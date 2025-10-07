@@ -131,6 +131,7 @@
                         <td>{{ $data['profesional']->nombre }} {{ $data['profesional']->apellido_paterno }} {{ $data['profesional']->apellido_materno }}</td>
                         <td>{{ $data['cluesAdscripcionNombre'] ?? 'N/A' }}</td>
                         <td>{{ $data['profesional']->puesto?->nomina_pago }}</td>
+                        
                         <td>
 
                             <!-- SI EL ROL ES DIFERENTE A DIRECTIVO SE MUESTRAN LOS BOTONES DE EDICION DE LOS MODULOS  -->
@@ -535,7 +536,7 @@
                                 
                             
                         </td>
-                    
+
                     </tr>
                 @endforeach
             </tbody>
