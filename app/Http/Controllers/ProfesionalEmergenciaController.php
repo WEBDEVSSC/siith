@@ -58,15 +58,15 @@ class ProfesionalEmergenciaController extends Controller
 
         // Emergencias UNO, DOS, TRES
         'emergencia_nombre_uno' => 'nullable|string|max:128',
-        'emergencia_relacion_uno' => 'nullable|string',
-        'emergencia_telefono_uno_uno' => 'nullable|string|digits:10',
-        'emergencia_telefono_dos_uno' => 'nullable|string|digits:10',
-        'emergencia_email_uno' => 'nullable|string|email|max:100',
-        'emergencia_calle_uno' => 'nullable|string|max:128',
-        'emergencia_numero_uno' => 'nullable|string|max:128',
-        'emergencia_colonia_uno' => 'nullable|string|max:128',
-        'emergencia_codigo_postal_uno' => 'nullable|string|max:5',
-        'emergencia_municipio_uno' => 'nullable|integer',
+        'emergencia_relacion_uno' => 'nullable|string|required_with:emergencia_nombre_uno',
+        'emergencia_telefono_uno_uno' => 'nullable|string|digits:10|required_with:emergencia_nombre_uno',
+        'emergencia_telefono_dos_uno' => 'nullable|string|digits:10|required_with:emergencia_nombre_uno',
+        'emergencia_email_uno' => 'nullable|string|email|max:100|required_with:emergencia_nombre_uno',
+        'emergencia_calle_uno' => 'nullable|string|max:128|required_with:emergencia_nombre_uno',
+        'emergencia_numero_uno' => 'nullable|string|max:128|required_with:emergencia_nombre_uno',
+        'emergencia_colonia_uno' => 'nullable|string|max:128|required_with:emergencia_nombre_uno',
+        'emergencia_codigo_postal_uno' => 'nullable|string|max:5|required_with:emergencia_nombre_uno',
+        'emergencia_municipio_uno' => 'nullable|integer|required_with:emergencia_nombre_uno',
 
         'emergencia_nombre_dos' => 'nullable|string|max:128',
         'emergencia_relacion_dos' => 'nullable|string',
@@ -121,6 +121,16 @@ class ProfesionalEmergenciaController extends Controller
         'emergencia_telefono_dos_tres.digits' => 'El teléfono de emergencia (3.2) debe tener 10 dígitos.',
         'emergencia_email_tres.email'         => 'El correo de emergencia (3) debe ser válido.',
         'emergencia_email_tres.max'           => 'El correo de emergencia (3) no debe superar los 100 caracteres.',
+
+        'emergencia_relacion_uno.required_with' => 'Debe indicar la relación con la persona de emergencia.',
+        'emergencia_telefono_uno_uno.required_with' => 'Debe proporcionar al menos un número de teléfono de la persona de emergencia.',
+        'emergencia_telefono_dos_uno.required_with' => 'Debe proporcionar el segundo número de teléfono de la persona de emergencia.',
+        'emergencia_email_uno.required_with' => 'Debe ingresar el correo electrónico de la persona de emergencia.',
+        'emergencia_calle_uno.required_with' => 'Debe indicar la calle donde vive la persona de emergencia.',
+        'emergencia_numero_uno.required_with' => 'Debe indicar el número del domicilio de la persona de emergencia.',
+        'emergencia_colonia_uno.required_with' => 'Debe indicar la colonia de la persona de emergencia.',
+        'emergencia_codigo_postal_uno.required_with' => 'Debe indicar el código postal de la persona de emergencia.',
+        'emergencia_municipio_uno.required_with' => 'Debe seleccionar el municipio de la persona de emergencia.',
     ]);
 
     // Tipo de alergia
@@ -272,17 +282,17 @@ class ProfesionalEmergenciaController extends Controller
             'medico_nombre' => 'nullable|string',
             'medico_telefono' => 'nullable|string',
 
-            // Emergencias UNO, DOS, TRES
+             // Emergencias UNO, DOS, TRES
             'emergencia_nombre_uno' => 'nullable|string|max:128',
-            'emergencia_relacion_uno' => 'nullable|string',
-            'emergencia_telefono_uno_uno' => 'nullable|string|digits:10',
-            'emergencia_telefono_dos_uno' => 'nullable|string|digits:10',
-            'emergencia_email_uno' => 'nullable|string|email|max:100',
-            'emergencia_calle_uno' => 'nullable|string|max:128',
-            'emergencia_numero_uno' => 'nullable|string|max:128',
-            'emergencia_colonia_uno' => 'nullable|string|max:128',
-            'emergencia_codigo_postal_uno' => 'nullable|string|max:5',
-            'emergencia_municipio_uno' => 'nullable|integer',
+            'emergencia_relacion_uno' => 'nullable|string|required_with:emergencia_nombre_uno',
+            'emergencia_telefono_uno_uno' => 'nullable|string|digits:10|required_with:emergencia_nombre_uno',
+            'emergencia_telefono_dos_uno' => 'nullable|string|digits:10|required_with:emergencia_nombre_uno',
+            'emergencia_email_uno' => 'nullable|string|email|max:100|required_with:emergencia_nombre_uno',
+            'emergencia_calle_uno' => 'nullable|string|max:128|required_with:emergencia_nombre_uno',
+            'emergencia_numero_uno' => 'nullable|string|max:128|required_with:emergencia_nombre_uno',
+            'emergencia_colonia_uno' => 'nullable|string|max:128|required_with:emergencia_nombre_uno',
+            'emergencia_codigo_postal_uno' => 'nullable|string|max:5|required_with:emergencia_nombre_uno',
+            'emergencia_municipio_uno' => 'nullable|integer|required_with:emergencia_nombre_uno',
 
             'emergencia_nombre_dos' => 'nullable|string|max:128',
             'emergencia_relacion_dos' => 'nullable|string',
@@ -336,6 +346,16 @@ class ProfesionalEmergenciaController extends Controller
             'emergencia_telefono_dos_tres.digits' => 'El teléfono de emergencia (3.2) debe tener 10 dígitos.',
             'emergencia_email_tres.email'         => 'El correo de emergencia (3) debe ser válido.',
             'emergencia_email_tres.max'           => 'El correo de emergencia (3) no debe superar los 100 caracteres.',
+
+            'emergencia_relacion_uno.required_with' => 'Debe indicar la relación con la persona de emergencia.',
+            'emergencia_telefono_uno_uno.required_with' => 'Debe proporcionar al menos un número de teléfono de la persona de emergencia.',
+            'emergencia_telefono_dos_uno.required_with' => 'Debe proporcionar el segundo número de teléfono de la persona de emergencia.',
+            'emergencia_email_uno.required_with' => 'Debe ingresar el correo electrónico de la persona de emergencia.',
+            'emergencia_calle_uno.required_with' => 'Debe indicar la calle donde vive la persona de emergencia.',
+            'emergencia_numero_uno.required_with' => 'Debe indicar el número del domicilio de la persona de emergencia.',
+            'emergencia_colonia_uno.required_with' => 'Debe indicar la colonia de la persona de emergencia.',
+            'emergencia_codigo_postal_uno.required_with' => 'Debe indicar el código postal de la persona de emergencia.',
+            'emergencia_municipio_uno.required_with' => 'Debe seleccionar el municipio de la persona de emergencia.',
         ]);
 
         // Tipo de alergia
