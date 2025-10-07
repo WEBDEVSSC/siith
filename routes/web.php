@@ -28,6 +28,7 @@ use App\Http\Controllers\ProfesionalHorarioController;
 use App\Http\Controllers\ProfesionalOcupacionController;
 use App\Http\Controllers\ProfesionalPaseDeSalidaController;
 use App\Http\Controllers\ProfesionalPuestoController;
+use App\Http\Controllers\ProfesionalReporteController;
 use App\Http\Controllers\ProfesionalSueldoController;
 use App\Http\Controllers\ProfesionalVigenciaController;
 use App\Http\Controllers\UsuarioController;
@@ -314,6 +315,17 @@ Route::middleware(['auth'])->group(function ()
      Route::get('admin/profesionales/certificaciones/editCertificacion/{id}', [ProfesionalCertificacionController::class, 'editCertificacion'])->name('editCertificacion');
  
      Route::put('admin/profesionales/certificaciones/updateCertificacion/{id}', [ProfesionalCertificacionController::class, 'updateCertificacion'])->name('updateCertificacion');
+
+    /**
+    * 
+    *
+    * MODULO DE REPORTES
+    *
+    *
+    */
+
+    Route::get('admin/profesionales/reportes/reporteIndex',[ProfesionalReporteController::class,'reporteIndex'])->name('reporteIndex');
+
 
      /**
      * 

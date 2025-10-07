@@ -343,7 +343,7 @@ return [
         ],
         [
             'text' => 'Reportes',
-            'url' => 'admin/profesionales/reportes/reporteExcel',
+            'url' => 'admin/profesionales/reportes/reporteIndex',
             'icon' => 'fa-solid fa-file-excel',
             'label_color' => 'success',
             'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino'],
