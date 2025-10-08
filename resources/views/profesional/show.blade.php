@@ -376,7 +376,19 @@ ADMINISTRADOR
                 
             @endif
 
-            {{-- FALTA LA 4 --}}
+            @if ($profesional->puesto?->clues_adscripcion_tipo == 4)
+
+                @if ($profesional->ocupacionCriCree?->mdl_status == 1)
+                    <a href="{{ route('editCriCree', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="CRI CREE">
+                        <i class="fa-solid fa-building-user"></i> EDITAR CATÁLOGO / CARTERA DE SERVICIOS
+                    </a>
+                @else  
+                    <a href="{{ route('createCriCree', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="CRI CREE">
+                        <i class="fa-solid fa-building-user"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
+                    </a>
+                @endif
+                
+            @endif
 
              @if ($profesional->puesto?->clues_adscripcion_tipo == 6)
 
