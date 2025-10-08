@@ -23,7 +23,7 @@ class BackupDatabase extends Command
 
         // Ruta del archivo .my.cnf
         // (Asegúrate que este archivo existe en /var/www/html/apps/siith/.my.cnf)
-        $defaultsFile = base_path('.my.cnf');
+        $defaultsFile = '/var/www/html/siith/.my.cnf';
 
         // Ruta del binario mysqldump (usualmente /usr/bin/mysqldump)
         $dumpPath = '/usr/bin/mysqldump';
