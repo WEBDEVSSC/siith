@@ -11,6 +11,4 @@ Artisan::command('inspire', function () {
 
 Schedule::command('felicitaciones:enviar')->dailyAt('10:00');
 
-Schedule::command('correo:firma-nomina-pendiente')->dailyAt('10:00');
-
-Schedule::command('backup:db')->dailyAt('10:35');
+Schedule::command('backup:db')->dailyAt('02:00');

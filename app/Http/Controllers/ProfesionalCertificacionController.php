@@ -44,18 +44,18 @@ class ProfesionalCertificacionController extends Controller
             'certificacion_id' => 'nullable',
             'institucion_educativa_id' => 'nullable',
             'idioma_id' => 'nullable',
-            'idioma_nivel_de_dominio' => 'nullable',
+            'idioma_nivel_de_dominio' => 'required_with:idioma_id|nullable|string|max:255',
             'lengua_indigena_id' => 'nullable',
-            'lengua_nivel_de_dominio' => 'nullable',
+            'lengua_nivel_de_dominio' => 'required_with:lengua_indigena_id|nullable|string|max:255',
         ],[
-            'id_profesional.required' => 'El campo ID Profesional es obligatorio.',
+            'id_profesional.required' => 'El campo ID del profesional es obligatorio.',
             'colegiacion_id.required' => 'Debe seleccionar una colegiación.',
             'certificacion_id.required' => 'Debe seleccionar una certificación.',
             'institucion_educativa_id.required' => 'Debe seleccionar una institución educativa.',
-            'idioma.required' => 'Debe ingresar un idioma.',
-            'idioma_nivel_de_dominio.required' => 'Debe seleccionar un nivel de dominio del idioma.',
-            'lengua_indigena_id.required' => 'Debe seleccionar una lengua indígena.',
-            'lengua_nivel_de_dominio.required' => 'Debe seleccionar un nivel de dominio de la lengua indígena.',
+
+            // Mensajes personalizados para las reglas required_with
+            'idioma_nivel_de_dominio.required_with' => 'Debe seleccionar un nivel de dominio cuando se elija un idioma.',
+            'lengua_nivel_de_dominio.required_with' => 'Debe seleccionar un nivel de dominio cuando se elija una lengua indígena.',
         ]);
         
         // Consultamos los datos de COLEGIACION
@@ -141,9 +141,9 @@ class ProfesionalCertificacionController extends Controller
             'certificacion_id' => 'nullable',
             'institucion_educativa_id' => 'nullable',
             'idioma_id' => 'nullable',
-            'idioma_nivel_de_dominio' => 'nullable',
+            'idioma_nivel_de_dominio' => 'required_with:idioma_id|nullable|string|max:255',
             'lengua_indigena_id' => 'nullable',
-            'lengua_nivel_de_dominio' => 'nullable',
+            'lengua_nivel_de_dominio' => 'required_with:lengua_indigena_id|nullable|string|max:255',
         ],[
             'colegiacion_id.required' => 'Debe seleccionar una colegiación.',
             'certificacion_id.required' => 'Debe seleccionar una certificación.',
@@ -152,6 +152,10 @@ class ProfesionalCertificacionController extends Controller
             'idioma_nivel_de_dominio.required' => 'Debe seleccionar un nivel de dominio del idioma.',
             'lengua_indigena_id.required' => 'Debe seleccionar una lengua indígena.',
             'lengua_nivel_de_dominio.required' => 'Debe seleccionar un nivel de dominio de la lengua indígena.',
+
+            // Mensajes personalizados para las reglas required_with
+            'idioma_nivel_de_dominio.required_with' => 'Debe seleccionar un nivel de dominio cuando se elija un idioma.',
+            'lengua_nivel_de_dominio.required_with' => 'Debe seleccionar un nivel de dominio cuando se elija una lengua indígena.',
         ]);
 
         // Consultamos los datos de COLEGIACION

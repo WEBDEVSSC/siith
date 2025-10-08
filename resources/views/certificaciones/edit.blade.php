@@ -42,7 +42,7 @@
                 <div class="row mt-3">      
 
                     <div class="col-md-6">
-                        <p>Colegiación</p>                        
+                        <p><strong>Colegiación</strong></p>                        
                         <select name="colegiacion_id" id="colegiacion_id" class="form-control">
                             <option value="" disabled selected>Selecciona un tipo de formación</option>
                             @foreach ($colegiaciones as $colegiacion)
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="col-md-6">
-                        <p>Certificación</p>
+                        <p><strong>Certificación</strong></p>
                         <select name="certificacion_id" id="certificacion_id" class="form-control select2">
                             <option value="" disabled selected>-- Seleccione una opción --</option>
                             @foreach ($certificaciones as $certificacion)
@@ -75,7 +75,7 @@
                 <div class="row mt-3">
 
                     <div class="col-md-3">
-                        <p>Idioma</p>
+                        <p><strong>Idioma</strong></p>
                         <select name="idioma_id" id="idioma_id" class="form-control select2">
                             <option value="" disabled selected>-- Seleccione una opción --</option>
                             @foreach ($idiomas as $idioma)
@@ -90,7 +90,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <p>Nivel de dominio</p>
+                        <p><strong>Nivel de dominio</strong></p>
                         <select name="idioma_nivel_de_dominio" id="idioma_nivel_de_dominio" class="form-control">
                             <option value="">-- Selecciona una opción --</option>
                             <option value="BASICO" {{ old('idioma_nivel_de_dominio', $certificacio->idioma_nivel_de_dominio) == 'BASICO' ? 'selected' : '' }}>BÁSICO</option>
@@ -103,7 +103,7 @@
                     </div>          
                     
                     <div class="col-md-3">
-                        <p>Lengua Indigena</p>
+                        <p><strong>Lengua Indigena</strong></p>
                         <select name="lengua_indigena_id" id="lengua_indigena_id" class="form-control select2">
                             <option value="" disabled selected>-- Seleccione una opción --</option>
                             @foreach ($lenguajes as $lenguaje)
@@ -118,7 +118,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <p>Nivel de dominio</p>
+                        <p><strong>Nivel de dominio</strong></p>
                         <select name="lengua_nivel_de_dominio" id="lengua_nivel_de_dominio" class="form-control">
                             <option value="">-- Selecciona una opcion --</option>
                             <option value="BASICO" {{ old('lengua_nivel_de_dominio', $certificacio->lengua_nivel_de_dominio) == 'BASICO' ? 'selected' : '' }}>BASICO</option>
