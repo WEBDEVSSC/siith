@@ -9,7 +9,7 @@ class BackupDatabase extends Command
 {
     protected $signature = 'backup:db';
     protected $description = 'Genera un respaldo de la base de datos y lo envía por correo';
-    
+
     public function handle()
     {
         // Nombre del archivo con fecha y hora
@@ -21,21 +21,17 @@ class BackupDatabase extends Command
             mkdir(dirname($path), 0755, true);
         }
 
-        // Ruta del archivo .my.cnf
-        // (Asegúrate que este archivo existe en /var/www/html/apps/siith/.my.cnf)
-        $defaultsFile = '/var/www/html/siith/.my.cnf';
+        // Ruta al archivo .my.cnf
+        $myCnfPath = '/var/www/html/siith/.my.cnf';
 
-        // Ruta del binario mysqldump (usualmente /usr/bin/mysqldump)
-        $dumpPath = '/usr/bin/mysqldump';
-
-        // Nombre de la base desde .env
+        // Nombre de la base de datos (desde config o .env)
         $dbName = config('database.connections.mysql.database');
 
-        // Comando para generar respaldo usando el archivo de configuración
-        $command = "{$dumpPath} --defaults-extra-file=\"{$defaultsFile}\" {$dbName} > \"{$path}\"";
+        // Comando mysqldump (sin contraseña en texto plano)
+        $command = "mysqldump --defaults-extra-file={$myCnfPath} --no-tablespaces {$dbName} > \"{$path}\"";
 
         // Ejecutar comando
-        exec($command, $output, $returnVar);
+        system($command, $returnVar);
 
         if ($returnVar === 0 && file_exists($path)) {
             // Enviar respaldo por correo
