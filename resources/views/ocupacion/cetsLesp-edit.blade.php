@@ -62,6 +62,18 @@
                     @enderror
                 </div>  
             </div>
+
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div class="form-check">
+                    <input class="form-check-input" name="eliminar_ocupacion" type="checkbox" value="1" id="eliminar_ocupacion">
+                    <label class="form-check-label" for="eliminar_ocupacion">
+                        Eliminar Ocupación
+                    </label>
+                    </div>
+                </div>
+            </div>
+            
         </div>
 
         <div class="card-footer">

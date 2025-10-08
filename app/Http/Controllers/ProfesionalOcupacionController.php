@@ -123,7 +123,8 @@ class ProfesionalOcupacionController extends Controller
         // Validamos los datos
         $request->validate([
             'ocupacion_uno' => 'required',
-            'ocupacion_dos' => 'nullable'
+            'ocupacion_dos' => 'nullable',
+            'eliminar_ocupacion' => 'nullable'
         ],[
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
@@ -141,20 +142,28 @@ class ProfesionalOcupacionController extends Controller
          // Consultamos el id
          $ocupacion = ProfesionalOcupacionCentroSalud::findOrFail($id);
 
-         // Asignamos los valores al registro
-         $ocupacion->update([
-            'id_catalogo_uno'=>$request->ocupacion_uno,
-            'unidad_uno'=>$ocupacionUno->unidad,
-            'area_uno'=>$ocupacionUno->area,
-            'subarea_uno'=>$ocupacionUno->subarea,
-            'ocupacion_uno'=>$ocupacionUno->ocupacion,
+         if($request->eliminar_ocupacion == 1)
+        {
+           $ocupacion->delete();
+            return redirect()->route('profesionalShow',$ocupacion->id_profesional)->with('destroy', 'Ocupación eliminada correctamente.');
+        }
+        else
+        {
+            // Asignamos los valores al registro
+            $ocupacion->update([
+                'id_catalogo_uno'=>$request->ocupacion_uno,
+                'unidad_uno'=>$ocupacionUno->unidad,
+                'area_uno'=>$ocupacionUno->area,
+                'subarea_uno'=>$ocupacionUno->subarea,
+                'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos'=>$request?->ocupacion_dos,
-            'unidad_dos'=>$ocupacionDos?->unidad,
-            'area_dos'=>$ocupacionDos?->area,
-            'subarea_dos'=>$ocupacionDos?->subarea,
-            'ocupacion_dos'=>$ocupacionDos?->ocupacion,
-         ]);
+                'id_catalogo_dos'=>$request?->ocupacion_dos,
+                'unidad_dos'=>$ocupacionDos?->unidad,
+                'area_dos'=>$ocupacionDos?->area,
+                'subarea_dos'=>$ocupacionDos?->subarea,
+                'ocupacion_dos'=>$ocupacionDos?->ocupacion,
+            ]);
+        }
 
          // Regresamos a la vista con su mensaje
          return redirect()->route('profesionalShow',$ocupacion->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
@@ -252,7 +261,8 @@ class ProfesionalOcupacionController extends Controller
         // Validamos los datos
         $request->validate([
             'ocupacion_uno' => 'required',
-            'ocupacion_dos' => 'nullable'
+            'ocupacion_dos' => 'nullable',
+            'eliminar_ocupacion' => 'nullable'
         ],[
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
@@ -270,21 +280,29 @@ class ProfesionalOcupacionController extends Controller
          // Consultamos el id
          $ocupacion = ProfesionalOcupacionHospital::findOrFail($id);
 
-         // Asignamos los valores al registro
-         $ocupacion->update([
-            'id_catalogo_uno'=>$request->ocupacion_uno,
-            'unidad_uno'=>$ocupacionUno->unidad_uno,
-            'area_uno'=>$ocupacionUno->area_uno,
-            'subarea_uno'=>$ocupacionUno->subarea_uno,
-            'puesto_uno'=>$ocupacionUno->puesto_uno,
+         if($request->eliminar_ocupacion == 1)
+        {
+           $ocupacion->delete();
+            return redirect()->route('profesionalShow',$ocupacion->id_profesional)->with('destroy', 'Ocupación eliminada correctamente.');
+        }
+        else
+        {
+            // Asignamos los valores al registro
+            $ocupacion->update([
+                'id_catalogo_uno'=>$request->ocupacion_uno,
+                'unidad_uno'=>$ocupacionUno->unidad_uno,
+                'area_uno'=>$ocupacionUno->area_uno,
+                'subarea_uno'=>$ocupacionUno->subarea_uno,
+                'puesto_uno'=>$ocupacionUno->puesto_uno,
 
-            'id_catalogo_dos'=>$request?->ocupacion_dos,
-            'unidad_dos'=>$ocupacionDos?->unidad_dos,
-            'area_dos'=>$ocupacionDos?->area_dos,
-            'subarea_dos'=>$ocupacionDos?->subarea_dos,
-            'puesto_dos'=>$ocupacionDos?->ocupacion_dos,
-         ]);
-
+                'id_catalogo_dos'=>$request?->ocupacion_dos,
+                'unidad_dos'=>$ocupacionDos?->unidad_dos,
+                'area_dos'=>$ocupacionDos?->area_dos,
+                'subarea_dos'=>$ocupacionDos?->subarea_dos,
+                'puesto_dos'=>$ocupacionDos?->ocupacion_dos,
+            ]);
+        
+        }
          // Regresamos a la vista con su mensaje
          return redirect()->route('profesionalShow',$ocupacion->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
     }
@@ -383,7 +401,8 @@ class ProfesionalOcupacionController extends Controller
         // Validamos los datos
         $request->validate([
             'ocupacion_uno'=>'required',
-            'ocupacion_dos'=>'nullable'
+            'ocupacion_dos'=>'nullable',
+            'eliminar_ocupacion' => 'nullable'
         ],[
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
@@ -401,23 +420,34 @@ class ProfesionalOcupacionController extends Controller
         // Buscamos el registro a editar
         $ocupaciones = ProfesionalOcupacionOfJurisdiccional::findOrFail($id);
 
-        // Asignamos los valores
-        $ocupaciones->update([
-            'id_catalogo_uno'=>$request->ocupacion_uno,
-            'unidad_uno'=>$ocupacionUno->unidad,
-            'area_uno'=>$ocupacionUno->area,
-            'subarea_uno'=>$ocupacionUno->subarea,
-            'servicio_uno'=>$ocupacionUno->servicio,
-            'ocupacion_uno'=>$ocupacionUno->ocupacion,
+        // Buscamos el registro a editar
+        $ocupaciones = ProfesionalOcupacionAlmacen::findOrFail($id);
 
-            'id_catalogo_dos' => $request->ocupacion_dos,
-            'unidad_dos' => $ocupacionDos?->unidad,
-            'area_dos' => $ocupacionDos?->area,
-            'subarea_dos' => $ocupacionDos?->subarea,
-            'servicio_dos' => $ocupacionDos?->servicio,
-            'ocupacion_dos' => $ocupacionDos?->ocupacion,
-        ]);
+        if($request->eliminar_ocupacion == 1)
+        {
+            $ocupaciones->delete();
+            return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('destroy', 'Ocupación eliminada correctamente.');
+        }
+        else
+        {
+            // Asignamos los valores
+            $ocupaciones->update([
+                'id_catalogo_uno'=>$request->ocupacion_uno,
+                'unidad_uno'=>$ocupacionUno->unidad,
+                'area_uno'=>$ocupacionUno->area,
+                'subarea_uno'=>$ocupacionUno->subarea,
+                'servicio_uno'=>$ocupacionUno->servicio,
+                'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
+                'id_catalogo_dos' => $request->ocupacion_dos,
+                'unidad_dos' => $ocupacionDos?->unidad,
+                'area_dos' => $ocupacionDos?->area,
+                'subarea_dos' => $ocupacionDos?->subarea,
+                'servicio_dos' => $ocupacionDos?->servicio,
+                'ocupacion_dos' => $ocupacionDos?->ocupacion,
+            ]);
+            
+        }
         // Redireccionar con un mensaje de éxito
         return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
 
@@ -514,7 +544,8 @@ class ProfesionalOcupacionController extends Controller
         // Validamos los datos
         $request->validate([
             'ocupacion_uno'=>'required',
-            'ocupacion_dos'=>'nullable'
+            'ocupacion_dos'=>'nullable',
+            'eliminar_ocupacion' => 'nullable'
         ],[
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
@@ -532,20 +563,28 @@ class ProfesionalOcupacionController extends Controller
         // Buscamos el registro a editar
         $ocupaciones = ProfesionalOcupacionCriCree::findOrFail($id);
 
-        // Asignamos los valores
-        $ocupaciones->update([
-            'id_catalogo_uno'=>$request->ocupacion_uno,
-            'unidad_uno'=>$ocupacionUno->unidad,
-            'area_uno'=>$ocupacionUno->area,
-            'subarea_uno'=>$ocupacionUno->subarea,
-            'ocupacion_uno'=>$ocupacionUno->ocupacion,
+        if($request->eliminar_ocupacion == 1)
+        {
+           $ocupaciones->delete();
+            return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('destroy', 'Ocupación eliminada correctamente.');
+        }
+        else
+        {
+            // Asignamos los valores
+            $ocupaciones->update([
+                'id_catalogo_uno'=>$request->ocupacion_uno,
+                'unidad_uno'=>$ocupacionUno->unidad,
+                'area_uno'=>$ocupacionUno->area,
+                'subarea_uno'=>$ocupacionUno->subarea,
+                'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos' => $request?->ocupacion_dos,
-            'unidad_dos' => $ocupacionDos?->unidad,
-            'area_dos' => $ocupacionDos?->area,
-            'subarea_dos' => $ocupacionDos?->subarea,
-            'ocupacion_dos' => $ocupacionDos?->ocupacion,
-        ]);
+                'id_catalogo_dos' => $request?->ocupacion_dos,
+                'unidad_dos' => $ocupacionDos?->unidad,
+                'area_dos' => $ocupacionDos?->area,
+                'subarea_dos' => $ocupacionDos?->subarea,
+                'ocupacion_dos' => $ocupacionDos?->ocupacion,
+            ]);
+        }
 
         // Redireccionar con un mensaje de éxito
         return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
@@ -645,7 +684,8 @@ class ProfesionalOcupacionController extends Controller
         // Validamos los datos
         $request->validate([
             'ocupacion_uno'=>'required',
-            'ocupacion_dos'=>'nullable'
+            'ocupacion_dos'=>'nullable',
+            'eliminar_ocupacion' => 'nullable'
         ],[
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
@@ -663,22 +703,31 @@ class ProfesionalOcupacionController extends Controller
         // Buscamos el registro a editar
         $ocupaciones = ProfesionalOcupacionSamuCrum::findOrFail($id);
 
-        // Asignamos los valores
-        $ocupaciones->update([
-            'id_catalogo_uno'=>$request->ocupacion_uno,
-            'unidad_uno'=>$ocupacionUno->unidad,
-            'area_uno'=>$ocupacionUno->area,
-            'subarea_uno'=>$ocupacionUno->subarea,
-            'componente_uno'=>$ocupacionUno->componente,
-            'ocupacion_uno'=>$ocupacionUno->ocupacion,
+        if($request->eliminar_ocupacion == 1)
+        {
+           $ocupaciones->delete();
+            return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('destroy', 'Ocupación eliminada correctamente.');
+        }
+        else
+        {
+            // Asignamos los valores
+            $ocupaciones->update([
+                'id_catalogo_uno'=>$request->ocupacion_uno,
+                'unidad_uno'=>$ocupacionUno->unidad,
+                'area_uno'=>$ocupacionUno->area,
+                'subarea_uno'=>$ocupacionUno->subarea,
+                'componente_uno'=>$ocupacionUno->componente,
+                'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos' => $request?->ocupacion_dos,
-            'unidad_dos' => $ocupacionDos?->unidad,
-            'area_dos' => $ocupacionDos?->area,
-            'subarea_dos' => $ocupacionDos?->subarea,
-            'componente_dos' => $ocupacionDos?->componente,
-            'ocupacion_dos' => $ocupacionDos?->ocupacion,
-        ]);
+                'id_catalogo_dos' => $request?->ocupacion_dos,
+                'unidad_dos' => $ocupacionDos?->unidad,
+                'area_dos' => $ocupacionDos?->area,
+                'subarea_dos' => $ocupacionDos?->subarea,
+                'componente_dos' => $ocupacionDos?->componente,
+                'ocupacion_dos' => $ocupacionDos?->ocupacion,
+            ]);
+        
+        }
 
         // Redireccionar con un mensaje de éxito
         return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
@@ -778,7 +827,8 @@ class ProfesionalOcupacionController extends Controller
         // Validamos los datos
         $request->validate([
             'ocupacion_uno'=>'required',
-            'ocupacion_dos'=>'nullable'
+            'ocupacion_dos'=>'nullable',
+            'eliminar_ocupacion' => 'nullable'
         ],[
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
@@ -796,22 +846,31 @@ class ProfesionalOcupacionController extends Controller
         // Buscamos el registro a editar
         $ocupaciones = ProfesionalOcupacionOficinaCentral::findOrFail($id);
 
-        // Asignamos los valores
-        $ocupaciones->update([
-            'id_catalogo_uno'=>$request->ocupacion_uno,
-            'area_uno'=>$ocupacionUno->area,
-            'subarea_uno'=>$ocupacionUno->subarea,
-            'programa_uno'=>$ocupacionUno->programa,
-            'componente_uno'=>$ocupacionUno->componente,
-            'ocupacion_uno'=>$ocupacionUno->ocupacion,
+        if($request->eliminar_ocupacion == 1)
+        {
+           $ocupaciones->delete();
+            return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('destroy', 'Ocupación eliminada correctamente.');
+        }
+        else
+        {
+            // Asignamos los valores
+            $ocupaciones->update([
+                'id_catalogo_uno'=>$request->ocupacion_uno,
+                'area_uno'=>$ocupacionUno->area,
+                'subarea_uno'=>$ocupacionUno->subarea,
+                'programa_uno'=>$ocupacionUno->programa,
+                'componente_uno'=>$ocupacionUno->componente,
+                'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos' => $request?->ocupacion_dos,
-            'area_dos' => $ocupacionDos?->area,
-            'subarea_dos' => $ocupacionDos?->subarea,
-            'programa_dos' => $ocupacionDos?->programa,
-            'componente_dos' => $ocupacionDos?->componente,
-            'ocupacion_dos' => $ocupacionDos?->ocupacion,
-        ]);
+                'id_catalogo_dos' => $request?->ocupacion_dos,
+                'area_dos' => $ocupacionDos?->area,
+                'subarea_dos' => $ocupacionDos?->subarea,
+                'programa_dos' => $ocupacionDos?->programa,
+                'componente_dos' => $ocupacionDos?->componente,
+                'ocupacion_dos' => $ocupacionDos?->ocupacion,
+            ]);
+
+        }
 
         // Redireccionar con un mensaje de éxito
         return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
@@ -911,7 +970,8 @@ class ProfesionalOcupacionController extends Controller
         // Validamos los datos
         $request->validate([
             'ocupacion_uno'=>'required',
-            'ocupacion_dos'=>'nullable'
+            'ocupacion_dos'=>'nullable',
+            'eliminar_ocupacion' => 'nullable'
         ],[
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
@@ -929,22 +989,32 @@ class ProfesionalOcupacionController extends Controller
         // Buscamos el registro a editar
         $ocupaciones = ProfesionalOcupacionAlmacen::findOrFail($id);
 
-        // Asignamos los valores
-        $ocupaciones->update([
-            'id_catalogo_uno'=>$request->ocupacion_uno,
-            'area_uno'=>$ocupacionUno->area,
-            'subarea_uno'=>$ocupacionUno->subarea,
-            'jefatura_uno'=>$ocupacionUno->jefatura,
-            'departamento_uno'=>$ocupacionUno->departamento,
-            'ocupacion_uno'=>$ocupacionUno->ocupacion,
+        if($request->eliminar_ocupacion == 1)
+        {
+           $ocupaciones->delete();
+            return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('destroy', 'Ocupación eliminada correctamente.');
+        }
+        else
+        {
+            // Asignamos los valores
+            $ocupaciones->update([
+                'id_catalogo_uno'=>$request->ocupacion_uno,
+                'area_uno'=>$ocupacionUno->area,
+                'subarea_uno'=>$ocupacionUno->subarea,
+                'jefatura_uno'=>$ocupacionUno->jefatura,
+                'departamento_uno'=>$ocupacionUno->departamento,
+                'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos' => $request?->ocupacion_dos,
-            'area_dos' => $ocupacionDos?->area,
-            'subarea_dos' => $ocupacionDos?->subarea,
-            'jefatura_dos' => $ocupacionDos?->jefatura,
-            'departamento_dos' => $ocupacionDos?->departamento,
-            'ocupacion_dos' => $ocupacionDos?->ocupacion,
-        ]);
+                'id_catalogo_dos' => $request?->ocupacion_dos,
+                'area_dos' => $ocupacionDos?->area,
+                'subarea_dos' => $ocupacionDos?->subarea,
+                'jefatura_dos' => $ocupacionDos?->jefatura,
+                'departamento_dos' => $ocupacionDos?->departamento,
+                'ocupacion_dos' => $ocupacionDos?->ocupacion,
+            ]);
+        }
+
+        
 
         // Redireccionar con un mensaje de éxito
         return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
@@ -1044,7 +1114,8 @@ class ProfesionalOcupacionController extends Controller
         // Validamos los datos
         $request->validate([
             'ocupacion_uno'=>'required',
-            'ocupacion_dos'=>'nullable'
+            'ocupacion_dos'=>'nullable',
+            'eliminar_ocupacion' => 'nullable'
         ],[
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
@@ -1062,9 +1133,17 @@ class ProfesionalOcupacionController extends Controller
         // Buscamos el registro a editar
         $ocupaciones = ProfesionalOcupacionCors::findOrFail($id);
 
+        if($request->eliminar_ocupacion == 1)
+        {
+           $ocupaciones->delete();
+            return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('destroy', 'Ocupación eliminada correctamente.');
+        }
+        else
+        {
+
+
         // Asignamos los valores
         $ocupaciones->update([
-
             'id_catalogo_uno'=>$request->ocupacion_uno,
             'unidad_uno'=>$ocupacionUno->unidad,
             'area_uno'=>$ocupacionUno->area,
@@ -1079,6 +1158,8 @@ class ProfesionalOcupacionController extends Controller
             'componente_dos' => $ocupacionDos?->componente,
             'ocupacion_dos' => $ocupacionDos?->ocupacion,
         ]);
+
+    }
 
         // Redireccionar con un mensaje de éxito
         return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
@@ -1178,7 +1259,8 @@ class ProfesionalOcupacionController extends Controller
         // Validamos los datos
         $request->validate([
             'ocupacion_uno'=>'required',
-            'ocupacion_dos'=>'nullable'
+            'ocupacion_dos'=>'nullable',
+            'eliminar_ocupacion' => 'nullable'
         ],[
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
@@ -1196,23 +1278,32 @@ class ProfesionalOcupacionController extends Controller
         // Buscamos el registro a editar
         $ocupaciones = ProfesionalOcupacionCetsLesp::findOrFail($id);
 
-        // Asignamos los valores
-        $ocupaciones->update([
+        if($request->eliminar_ocupacion == 1)
+        {
+            $ocupaciones->delete();
+            return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('destroy', 'Ocupación eliminada correctamente.');
+        }
+        else
+        {
+            // Asignamos los valores
+            $ocupaciones->update([
 
-            'id_catalogo_uno'=>$request->ocupacion_uno,
-            'area_uno'=>$ocupacionUno->area,
-            'subarea_uno'=>$ocupacionUno->subarea,
-            'jefatura_programa_uno'=>$ocupacionUno->jefatura_programa,
-            'componente_uno'=>$ocupacionUno->componente,
-            'ocupacion_uno'=>$ocupacionUno->ocupacion,
+                'id_catalogo_uno'=>$request->ocupacion_uno,
+                'area_uno'=>$ocupacionUno->area,
+                'subarea_uno'=>$ocupacionUno->subarea,
+                'jefatura_programa_uno'=>$ocupacionUno->jefatura_programa,
+                'componente_uno'=>$ocupacionUno->componente,
+                'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos' => $request?->ocupacion_dos,
-            'area_dos' => $ocupacionDos?->area,
-            'subarea_dos' => $ocupacionDos?->subarea,
-            'jefatura_programa_dos' => $ocupacionDos?->jefatura_programa,
-            'componente_dos' => $ocupacionDos?->componente,
-            'ocupacion_dos' => $ocupacionDos?->ocupacion,
-        ]);
+                'id_catalogo_dos' => $request?->ocupacion_dos,
+                'area_dos' => $ocupacionDos?->area,
+                'subarea_dos' => $ocupacionDos?->subarea,
+                'jefatura_programa_dos' => $ocupacionDos?->jefatura_programa,
+                'componente_dos' => $ocupacionDos?->componente,
+                'ocupacion_dos' => $ocupacionDos?->ocupacion,
+            ]);
+
+        }
 
         // Redireccionar con un mensaje de éxito
         return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
@@ -1312,7 +1403,8 @@ class ProfesionalOcupacionController extends Controller
         // Validamos los datos
         $request->validate([
             'ocupacion_uno'=>'required',
-            'ocupacion_dos'=>'nullable'
+            'ocupacion_dos'=>'nullable',
+            'eliminar_ocupacion' => 'nullable'
         ],[
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
@@ -1330,23 +1422,33 @@ class ProfesionalOcupacionController extends Controller
         // Buscamos el registro a editar
         $ocupaciones = ProfesionalOcupacionCesame::findOrFail($id);
 
-        // Asignamos los valores
-        $ocupaciones->update([
+        if($request->eliminar_ocupacion == 1)
+        {
+           $ocupaciones->delete();
+            return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('destroy', 'Ocupación eliminada correctamente.');
+        }
+        else
+        {
 
-            'id_catalogo_uno'=>$request->ocupacion_uno,
-            'unidad_uno'=>$ocupacionUno->unidad,
-            'area_uno'=>$ocupacionUno->area,
-            'subarea_servicio_uno'=>$ocupacionUno->subarea_servicio,
-            'componente_uno'=>$ocupacionUno->componente,
-            'ocupacion_uno'=>$ocupacionUno->ocupacion,
+            // Asignamos los valores
+            $ocupaciones->update([
 
-            'id_catalogo_dos' => $request?->ocupacion_dos,
-            'unidad_dos' => $ocupacionDos?->unidad,
-            'area_dos' => $ocupacionDos?->area,
-            'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
-            'componente_dos' => $ocupacionDos?->componente,
-            'ocupacion_dos' => $ocupacionDos?->ocupacion,
-        ]);
+                'id_catalogo_uno'=>$request->ocupacion_uno,
+                'unidad_uno'=>$ocupacionUno->unidad,
+                'area_uno'=>$ocupacionUno->area,
+                'subarea_servicio_uno'=>$ocupacionUno->subarea_servicio,
+                'componente_uno'=>$ocupacionUno->componente,
+                'ocupacion_uno'=>$ocupacionUno->ocupacion,
+
+                'id_catalogo_dos' => $request?->ocupacion_dos,
+                'unidad_dos' => $ocupacionDos?->unidad,
+                'area_dos' => $ocupacionDos?->area,
+                'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
+                'componente_dos' => $ocupacionDos?->componente,
+                'ocupacion_dos' => $ocupacionDos?->ocupacion,
+            ]);
+
+        }
 
         // Redireccionar con un mensaje de éxito
         return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
@@ -1446,7 +1548,8 @@ class ProfesionalOcupacionController extends Controller
         // Validamos los datos
         $request->validate([
             'ocupacion_uno'=>'required',
-            'ocupacion_dos'=>'nullable'
+            'ocupacion_dos'=>'nullable',
+            'eliminar_ocupacion' => 'nullable'
         ],[
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
@@ -1464,23 +1567,32 @@ class ProfesionalOcupacionController extends Controller
         // Buscamos el registro a editar
         $ocupaciones = ProfesionalOcupacionPsiParras::findOrFail($id);
 
-        // Asignamos los valores
-        $ocupaciones->update([
+        if($request->eliminar_ocupacion == 1)
+        {
+           $ocupaciones->delete();
+            return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('destroy', 'Ocupación eliminada correctamente.');
+        }
+        else
+        {
+            // Asignamos los valores
+            $ocupaciones->update([
 
-            'id_catalogo_uno'=>$request->ocupacion_uno,
-            'unidad_uno'=>$ocupacionUno->unidad,
-            'area_uno'=>$ocupacionUno->area,
-            'subarea_servicio_uno'=>$ocupacionUno->subarea_servicio,
-            'componente_uno'=>$ocupacionUno->componente,
-            'ocupacion_uno'=>$ocupacionUno->ocupacion,
+                'id_catalogo_uno'=>$request->ocupacion_uno,
+                'unidad_uno'=>$ocupacionUno->unidad,
+                'area_uno'=>$ocupacionUno->area,
+                'subarea_servicio_uno'=>$ocupacionUno->subarea_servicio,
+                'componente_uno'=>$ocupacionUno->componente,
+                'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos' => $request?->ocupacion_dos,
-            'unidad_dos' => $ocupacionDos?->unidad,
-            'area_dos' => $ocupacionDos?->area,
-            'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
-            'componente_dos' => $ocupacionDos?->componente,
-            'ocupacion_dos' => $ocupacionDos?->ocupacion,
-        ]);
+                'id_catalogo_dos' => $request?->ocupacion_dos,
+                'unidad_dos' => $ocupacionDos?->unidad,
+                'area_dos' => $ocupacionDos?->area,
+                'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
+                'componente_dos' => $ocupacionDos?->componente,
+                'ocupacion_dos' => $ocupacionDos?->ocupacion,
+            ]);
+
+        }
 
         // Redireccionar con un mensaje de éxito
         return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
@@ -1578,7 +1690,8 @@ class ProfesionalOcupacionController extends Controller
         // Validamos los datos
         $request->validate([
             'ocupacion_uno'=>'required',
-            'ocupacion_dos'=>'nullable'
+            'ocupacion_dos'=>'nullable',
+            'eliminar_ocupacion' => 'nullable'
         ],[
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
@@ -1596,21 +1709,30 @@ class ProfesionalOcupacionController extends Controller
         // Buscamos el registro a editar
         $ocupaciones = ProfesionalOcupacionHospitalNino::findOrFail($id);
 
-        // Asignamos los valores
-        $ocupaciones->update([
+        if($request->eliminar_ocupacion == 1)
+        {
+           $ocupaciones->delete();
+            return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('destroy', 'Ocupación eliminada correctamente.');
+        }
+        else
+        {
+            // Asignamos los valores
+            $ocupaciones->update([
 
-            'id_catalogo_uno'=>$request->ocupacion_uno,
-            'unidad_uno'=>$ocupacionUno->unidad,
-            'area_uno'=>$ocupacionUno->area,
-            'subarea_uno'=>$ocupacionUno->subarea,
-            'ocupacion_uno'=>$ocupacionUno->ocupacion,
+                'id_catalogo_uno'=>$request->ocupacion_uno,
+                'unidad_uno'=>$ocupacionUno->unidad,
+                'area_uno'=>$ocupacionUno->area,
+                'subarea_uno'=>$ocupacionUno->subarea,
+                'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos' => $request?->ocupacion_dos,
-            'unidad_dos' => $ocupacionDos?->unidad,
-            'area_dos' => $ocupacionDos?->area,
-            'subarea_dos' => $ocupacionDos?->subarea,
-            'ocupacion_dos' => $ocupacionDos?->ocupacion,
-        ]);
+                'id_catalogo_dos' => $request?->ocupacion_dos,
+                'unidad_dos' => $ocupacionDos?->unidad,
+                'area_dos' => $ocupacionDos?->area,
+                'subarea_dos' => $ocupacionDos?->subarea,
+                'ocupacion_dos' => $ocupacionDos?->ocupacion,
+            ]);
+
+        }
 
         // Redireccionar con un mensaje de éxito
         return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
@@ -1710,7 +1832,8 @@ class ProfesionalOcupacionController extends Controller
         // Validamos los datos
         $request->validate([
             'ocupacion_uno'=>'required',
-            'ocupacion_dos'=>'nullable'
+            'ocupacion_dos'=>'nullable',
+            'eliminar_ocupacion' => 'nullable'
         ],[
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
@@ -1728,23 +1851,32 @@ class ProfesionalOcupacionController extends Controller
         // Buscamos el registro a editar
         $ocupaciones = ProfesionalOcupacionCeam::findOrFail($id);
 
-        // Asignamos los valores
-        $ocupaciones->update([
+        if($request->eliminar_ocupacion == 1)
+        {
+           $ocupaciones->delete();
+            return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('destroy', 'Ocupación eliminada correctamente.');
+        }
+        else
+        {
+            // Asignamos los valores
+            $ocupaciones->update([
 
-            'id_catalogo_uno'=>$request->ocupacion_uno,
-            'unidad_uno'=>$ocupacionUno->unidad,
-            'area_uno'=>$ocupacionUno->area,
-            'subarea_servicio_uno'=>$ocupacionUno->subarea_servicio,
-            'componente_uno'=>$ocupacionUno->componente,
-            'ocupacion_uno'=>$ocupacionUno->ocupacion,
+                'id_catalogo_uno'=>$request->ocupacion_uno,
+                'unidad_uno'=>$ocupacionUno->unidad,
+                'area_uno'=>$ocupacionUno->area,
+                'subarea_servicio_uno'=>$ocupacionUno->subarea_servicio,
+                'componente_uno'=>$ocupacionUno->componente,
+                'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
-            'id_catalogo_dos' => $request?->ocupacion_dos,
-            'unidad_dos' => $ocupacionDos?->unidad,
-            'area_dos' => $ocupacionDos?->area,
-            'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
-            'componente_dos' => $ocupacionDos?->componente,
-            'ocupacion_dos' => $ocupacionDos?->ocupacion,
-        ]);
+                'id_catalogo_dos' => $request?->ocupacion_dos,
+                'unidad_dos' => $ocupacionDos?->unidad,
+                'area_dos' => $ocupacionDos?->area,
+                'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
+                'componente_dos' => $ocupacionDos?->componente,
+                'ocupacion_dos' => $ocupacionDos?->ocupacion,
+            ]);
+
+        }
 
         // Redireccionar con un mensaje de éxito
         return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');

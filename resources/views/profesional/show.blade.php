@@ -16,6 +16,7 @@
     $alerts = [
         'success',
         'update',
+        'destroy',
         'successOcupacion',
         'updateOcupacion',
         'successCredencializacion',

@@ -65,7 +65,7 @@
         </div>
 
         <div class="card-footer">
-            <button type="submit" class="btn btn-info btn-sm">REGISTRAR DATOS DE OCUPACIÓN</button>
+            <button type="submit" class="btn btn-info btn-sm">REGISTRAR DATOS</button>
         </div>
     </form>
 </div>

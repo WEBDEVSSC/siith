@@ -479,6 +479,8 @@ Route::middleware(['auth'])->group(function ()
  
       Route::put('admin/profesionales/ocupaciones/updateAlmacen/{id}', [ProfesionalOcupacionController::class, 'updateAlmacen'])->name('updateAlmacen');
 
+      //Route::delete('admin/profesionales/ocupaciones/destroyAlmacen/{id}', [ProfesionalOcupacionController::class, 'destroyAlmacen'])->name('destroyAlmacen');
+
       /**RUTAS PARA EL CATALOGO 8 - CETS LESP */
 
       Route::get('admin/profesionales/ocupaciones/createCetsLesp/{id}', [ProfesionalOcupacionController::class, 'createCetsLesp'])->name('createCetsLesp');
