@@ -43,7 +43,7 @@
                     @enderror
                 </div>
             </div>
-
+           {{-- 
             <div class="row mt-3">
                 <div class="col-md-12">
                     <label for="ocupacion_dos">Ocupación 2</label>
@@ -59,7 +59,7 @@
                         <br><div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
-            </div>
+            </div>--}}
         </div>
 
         <div class="card-footer">

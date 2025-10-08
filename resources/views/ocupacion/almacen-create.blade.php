@@ -46,7 +46,7 @@
                 </div>
             </div>
 
-            <div class="row mt-3">
+            {{--<div class="row mt-3">
                 <div class="col-md-12">
                     <label for="ocupacion_dos">Ocupación 2</label>
                     <select name="ocupacion_dos" id="ocupacion_dos" class="form-control select2">
@@ -61,7 +61,7 @@
                         <br><div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
-            </div>
+            </div>--}}
         </div>
 
         <div class="card-footer">
