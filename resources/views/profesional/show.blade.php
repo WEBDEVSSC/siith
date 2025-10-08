@@ -154,7 +154,7 @@ ADMINISTRADOR
                         {{ $profesional->pais_nacimiento }} - {{ $profesional->entidad_nacimiento }} - {{ $profesional->municipio_nacimiento }}
                     </div>
                     <div class="col-md-3">
-                        <p><strong>Estado Conyugal</strong></p>
+                        <p><strong>Estado Civil</strong></p>
                         {{ $profesional->estado_conyugal }}
                     </div>
                 </div>
