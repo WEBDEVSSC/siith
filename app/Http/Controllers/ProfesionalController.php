@@ -194,6 +194,12 @@ class ProfesionalController extends Controller
                                     ->orderBy('nombre', 'asc')
                                     ->get();
         }
+        elseif($usuario->role == 'criCree')
+        {
+            $cluesAdscripcion = Clue::where('clave_establecimiento', 4)
+                                    ->orderBy('nombre', 'asc')
+                                    ->get();
+        }
         else
         {
             $cluesAdscripcion = Clue::where('id', $usuario->id_unidad)->get();
