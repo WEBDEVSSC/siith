@@ -28,7 +28,9 @@ class BackupDatabase extends Command
         $dbName = config('database.connections.mysql.database');
 
         // Comando mysqldump (sin contraseña en texto plano)
-        $command = "mysqldump --defaults-extra-file={$myCnfPath} --no-tablespaces {$dbName} > \"{$path}\"";
+        //$command = "mysqldump --defaults-extra-file={$myCnfPath} --no-tablespaces {$dbName} > \"{$path}\"";
+        $command = "mysqldump --defaults-extra-file=/var/www/html/siith/.my.cnf --no-tablespaces {$dbName} > \"{$path}\"";
+
 
         // Ejecutar comando
         system($command, $returnVar);
