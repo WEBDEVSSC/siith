@@ -59,7 +59,9 @@ class ProfesionalOcupacionController extends Controller
             'id_profesional'=>'required',
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCentroSalud::where('id',$request->ocupacion_uno)->first();
@@ -122,7 +124,9 @@ class ProfesionalOcupacionController extends Controller
         $request->validate([
             'ocupacion_uno' => 'required',
             'ocupacion_dos' => 'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
          // Consultamos los datos para registrar
          $ocupacionUno = CatOcupacionCentroSalud::where('id',$request->ocupacion_uno)->first();
@@ -184,7 +188,9 @@ class ProfesionalOcupacionController extends Controller
             'id_profesional'=>'required',
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionHospital::where('id',$request->ocupacion_uno)->first();
@@ -247,7 +253,9 @@ class ProfesionalOcupacionController extends Controller
         $request->validate([
             'ocupacion_uno' => 'required',
             'ocupacion_dos' => 'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
          // Consultamos los datos para registrar
          $ocupacionUno = CatOcupacionHospital::where('id',$request->ocupacion_uno)->first();
@@ -310,7 +318,7 @@ class ProfesionalOcupacionController extends Controller
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
         ],[
-            'ocupacion_uno.required' => 'El campo Ocupación 1 es obligatorio.',
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
 
         // Consultamos los datos para registrar
@@ -377,7 +385,7 @@ class ProfesionalOcupacionController extends Controller
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
         ],[
-            'ocupacion_uno.required' => 'El campo Ocupación 1 es obligatorio.',
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
 
         // Consultamos los datos para registrar
@@ -442,7 +450,9 @@ class ProfesionalOcupacionController extends Controller
             'id_profesional'=>'required',
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCriCree::where('id',$request->ocupacion_uno)->first();
@@ -505,7 +515,9 @@ class ProfesionalOcupacionController extends Controller
         $request->validate([
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCriCree::where('id',$request->ocupacion_uno)->first();
@@ -567,7 +579,9 @@ class ProfesionalOcupacionController extends Controller
             'id_profesional'=>'required',
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionSamuCrum::where('id',$request->ocupacion_uno)->first();
@@ -632,7 +646,9 @@ class ProfesionalOcupacionController extends Controller
         $request->validate([
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionSamuCrum::where('id',$request->ocupacion_uno)->first();
@@ -696,7 +712,9 @@ class ProfesionalOcupacionController extends Controller
             'id_profesional'=>'required',
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionOficinaCentral::where('id',$request->ocupacion_uno)->first();
@@ -761,7 +779,9 @@ class ProfesionalOcupacionController extends Controller
         $request->validate([
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionOficinaCentral::where('id',$request->ocupacion_uno)->first();
@@ -825,7 +845,9 @@ class ProfesionalOcupacionController extends Controller
             'id_profesional'=>'required',
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionAlmacen::where('id',$request->ocupacion_uno)->first();
@@ -890,7 +912,9 @@ class ProfesionalOcupacionController extends Controller
         $request->validate([
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionAlmacen::where('id',$request->ocupacion_uno)->first();
@@ -954,7 +978,9 @@ class ProfesionalOcupacionController extends Controller
             'id_profesional'=>'required',
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCors::where('id',$request->ocupacion_uno)->first();
@@ -1019,7 +1045,9 @@ class ProfesionalOcupacionController extends Controller
         $request->validate([
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCors::where('id',$request->ocupacion_uno)->first();
@@ -1084,7 +1112,9 @@ class ProfesionalOcupacionController extends Controller
             'id_profesional'=>'required',
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCetsLesp::where('id',$request->ocupacion_uno)->first();
@@ -1149,7 +1179,9 @@ class ProfesionalOcupacionController extends Controller
         $request->validate([
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCetsLesp::where('id',$request->ocupacion_uno)->first();
@@ -1214,7 +1246,9 @@ class ProfesionalOcupacionController extends Controller
             'id_profesional'=>'required',
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCesame::where('id',$request->ocupacion_uno)->first();
@@ -1279,7 +1313,9 @@ class ProfesionalOcupacionController extends Controller
         $request->validate([
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCesame::where('id',$request->ocupacion_uno)->first();
@@ -1344,7 +1380,9 @@ class ProfesionalOcupacionController extends Controller
             'id_profesional'=>'required',
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionPsiParras::where('id',$request->ocupacion_uno)->first();
@@ -1409,7 +1447,9 @@ class ProfesionalOcupacionController extends Controller
         $request->validate([
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionPsiParras::where('id',$request->ocupacion_uno)->first();
@@ -1474,7 +1514,9 @@ class ProfesionalOcupacionController extends Controller
             'id_profesional'=>'required',
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionHospitalNino::where('id',$request->ocupacion_uno)->first();
@@ -1537,7 +1579,9 @@ class ProfesionalOcupacionController extends Controller
         $request->validate([
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionHospitalNino::where('id',$request->ocupacion_uno)->first();
@@ -1600,7 +1644,9 @@ class ProfesionalOcupacionController extends Controller
             'id_profesional'=>'required',
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCeam::where('id',$request->ocupacion_uno)->first();
@@ -1665,7 +1711,9 @@ class ProfesionalOcupacionController extends Controller
         $request->validate([
             'ocupacion_uno'=>'required',
             'ocupacion_dos'=>'nullable'
-        ],[]);
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCeam::where('id',$request->ocupacion_uno)->first();
