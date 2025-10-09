@@ -90,15 +90,17 @@
                     <div class="col-md-3">
                         <p><strong>Nivel de Dominio</strong></p>
                         <select name="idioma_nivel_de_dominio" id="idioma_nivel_de_dominio" class="form-control">
-                            <option value="">-- Selecciona una opcion --</option>
-                            <option value="BASICO">BASICO</option>
-                            <option value="MEDIO">MEDIO</option>
-                            <option value="AVANZADO">AVANZADO</option>
-                        </select>               
+                            <option value="">-- Selecciona una opción --</option>
+                            <option value="BASICO" {{ old('idioma_nivel_de_dominio') == 'BASICO' ? 'selected' : '' }}>BASICO</option>
+                            <option value="MEDIO" {{ old('idioma_nivel_de_dominio') == 'MEDIO' ? 'selected' : '' }}>MEDIO</option>
+                            <option value="AVANZADO" {{ old('idioma_nivel_de_dominio') == 'AVANZADO' ? 'selected' : '' }}>AVANZADO</option>
+                        </select>
+                        
                         @error('idioma_nivel_de_dominio')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                    </div>          
+                    </div>       
                     
                     <div class="col-md-3">
                         <p><strong>Lengua Indígena</strong></p>
@@ -118,15 +120,17 @@
                     <div class="col-md-3">
                         <p><strong>Nivel de Dominio</strong></p>
                         <select name="lengua_nivel_de_dominio" id="lengua_nivel_de_dominio" class="form-control">
-                            <option value="">-- Selecciona una opcion --</option>
-                            <option value="BASICO">BASICO</option>
-                            <option value="MEDIO">MEDIO</option>
-                            <option value="AVANZADO">AVANZADO</option>
-                        </select>               
-                        @error('anio_cursa')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <option value="">-- Selecciona una opción --</option>
+                            <option value="BASICO" {{ old('lengua_nivel_de_dominio') == 'BASICO' ? 'selected' : '' }}>BASICO</option>
+                            <option value="MEDIO" {{ old('lengua_nivel_de_dominio') == 'MEDIO' ? 'selected' : '' }}>MEDIO</option>
+                            <option value="AVANZADO" {{ old('lengua_nivel_de_dominio') == 'AVANZADO' ? 'selected' : '' }}>AVANZADO</option>
+                        </select>
+
+                        @error('lengua_nivel_de_dominio')
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                    </div>          
+                    </div>  
 
                 </div>
 
