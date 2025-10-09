@@ -1068,8 +1068,9 @@ ADMINISTRADOR
                                 <td>{{ $cambio->tipo_movimiento }}</td>
                                 <td>J. {{ $cambio->unidad_origen_jurisdiccion }} - {{ $cambio->unidad_origen_clues }} - {{ $cambio->unidad_origen_nombre }}</td>
                                 <td>J. {{ $cambio->unidad_destino_jurisdiccion }} - {{ $cambio->unidad_destino_clues }} - {{ $cambio->unidad_destino_nombre }}</td>
-                                <td>{{ \Carbon\Carbon::parse($cambio->fecha_inicio)->format('d/m/Y') : ''}}</td>
-                                <td>{{ \Carbon\Carbon::parse($cambio->fecha_final)->format('d/m/Y') : '' }}</td>
+
+                                <td>{{ $cambio->fecha_inicio ? \Carbon\Carbon::parse($cambio->fecha_inicio)->format('d/m/Y') : '' }}</td>
+                                <td>{{ $cambio->fecha_final ? \Carbon\Carbon::parse($cambio->fecha_final)->format('d/m/Y') : '' }}</td>
                                 <td>
                                     @if ($cambio->documento_respaldo)
                                     <a href="{{ route('descargar.documento', $cambio->id) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
