@@ -421,7 +421,7 @@ class ProfesionalOcupacionController extends Controller
         $ocupaciones = ProfesionalOcupacionOfJurisdiccional::findOrFail($id);
 
         // Buscamos el registro a editar
-        $ocupaciones = ProfesionalOcupacionAlmacen::findOrFail($id);
+        $ocupaciones = ProfesionalOcupacionOfJurisdiccional::findOrFail($id);
 
         if($request->eliminar_ocupacion == 1)
         {

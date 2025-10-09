@@ -62,9 +62,9 @@
                     @enderror
                 </div>  
             </div>
-        </div>
+        
 
-        <div class="row mt-3">
+            <div class="row mt-3">
                 <div class="col-md-12">
                     <div class="form-check">
                     <input class="form-check-input" name="eliminar_ocupacion" type="checkbox" value="1" id="eliminar_ocupacion">
@@ -74,6 +74,8 @@
                     </div>
                 </div>
             </div>
+
+        </div>
 
         <div class="card-footer">
             <button type="submit" class="btn btn-info btn-sm">REGISTRAR DATOS DE OCUPACIÓN</button>
