@@ -1139,7 +1139,7 @@ ADMINISTRADOR
                 <div class="row">
                     <div class="col-md-12">
                         <blockquote class="quote-secondary">
-                            <h4>Medico de Cabecera</h4>
+                            <h4>Médico de Cabecera</h4>
                         </blockquote>
                     </div>
                 </div>

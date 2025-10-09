@@ -359,7 +359,7 @@ class ProfesionalController extends Controller
         $puesto->clues_adscripcion_jurisdiccion = $cluesAdscripcion->clave_jurisdiccion;
         $puesto->clues_adscripcion_tipo = $cluesAdscripcion->clave_establecimiento;
 
-        $puesto->mdl_puesto = 1;
+        $puesto->mdl_puesto = 0;
         
 
         $puesto->save();
