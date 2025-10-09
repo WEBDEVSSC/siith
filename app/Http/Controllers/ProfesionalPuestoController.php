@@ -334,7 +334,7 @@ class ProfesionalPuestoController extends Controller
         $validated = $request->validate([
             'id_profesional' => 'required',
             'fiel' => 'required',
-            'fiel_vigencia' => 'date_format:Y-m-d|required_if:fiel,SI|nullable',
+            'fiel_vigencia' => 'date_format:Y-m-d|required_if:fiel,SI|nullable|after:today',
             'actividad' => 'required',
             'adicional' => 'required',
             'tipo_personal' => 'required',
@@ -358,6 +358,7 @@ class ProfesionalPuestoController extends Controller
             'fiel.required' => 'El campo FIEL es obligatorio.',
             'fiel_vigencia.required_if' => 'El campo FIEL Vigencia es obligatorio cuando FIEL está seleccionado como "SI".',
             'fiel_vigencia.date_format' => 'La fecha de vigencia debe tener el formato DD-MM-AAAA.',
+            'fiel_vigencia.after' => 'La fecha de vencimiento debe ser posterior al día actual',
             'actividad.required' => 'El campo Actividad es obligatorio.',
             'adicional.required' => 'El campo Adicional es obligatorio.',
             'tipo_personal.required' => 'El campo Tipo de Personal es obligatorio.',
