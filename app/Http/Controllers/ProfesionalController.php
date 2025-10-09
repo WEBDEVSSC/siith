@@ -1038,7 +1038,7 @@ class ProfesionalController extends Controller
         // CESAME (14)
         elseif ($tipo == 14) 
         {
-            $catalogoLabel = "CESAME";
+            $catalogoLabel = "HOSPITAL DEL NIÑO";
             $ocupacion = ProfesionalOcupacionHospitalNino::where('id_profesional', $id)->first();
         }
         else
