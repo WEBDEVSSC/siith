@@ -390,6 +390,20 @@ ADMINISTRADOR
                 
             @endif
 
+            @if ($profesional->puesto?->clues_adscripcion_tipo == 5)
+
+                @if ($profesional->ocupacionSamuCrum?->mdl_status == 1)
+                    <a href="{{ route('editSamuCrum', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="SAMU CRUM">
+                        <i class="fa-solid fa-building-user"></i> EDITAR CATÁLOGO / CARTERA DE SERVICIOS
+                    </a>
+                @else  
+                    <a href="{{ route('createSamuCrum', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="SAMU CRUM">
+                        <i class="fa-solid fa-building-user"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
+                    </a>
+                @endif
+                
+            @endif
+
              @if ($profesional->puesto?->clues_adscripcion_tipo == 6)
 
                 @if ($profesional->ocupacionOficinaCentral?->mdl_status == 1)
