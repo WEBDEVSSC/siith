@@ -59,7 +59,7 @@
                         <br><div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
-            </div>}}--
+            </div>--}}
         </div>
 
         <div class="card-footer">
