@@ -75,7 +75,7 @@
                         </select>
 
                         @error('tipo_sangre')
-                            <small class="alert alert-danger">{{ $message }}</small>
+                            <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 

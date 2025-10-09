@@ -46,7 +46,7 @@ class ProfesionalEmergenciaController extends Controller
         'telefono_celular'   => 'required|digits:10',
         'correo_electronico' => 'required|email|max:100',
 
-        'tipo_sangre' => 'nullable',
+        'tipo_sangre' => 'required',
         'tipo_alergia_id' => 'required|integer|in:1,2,3,4,5,6',
         'alergia_descripcion' => 'nullable|string|max:255|required_unless:tipo_alergia_id,1',
 
@@ -92,6 +92,8 @@ class ProfesionalEmergenciaController extends Controller
     ],[
         // --- Mensajes personalizados ---
         'id_profesional.required' => 'El campo profesional es obligatorio.',
+
+        'tipo_sangre.required' => 'El tipo de sangre es obligatorio.',
 
         'telefono_celular.required' => 'El teléfono celular es obligatorio.',
         'telefono_celular.digits'   => 'El teléfono celular debe tener exactamente 10 dígitos.',
@@ -169,7 +171,7 @@ class ProfesionalEmergenciaController extends Controller
     // Emergencia UNO
     $emergencia->emergencia_nombre_uno = $request->emergencia_nombre_uno;
     $emergencia->emergencia_relacion_uno_id = $request->emergencia_relacion_uno;
-    $emergencia->emergencia_relacion_uno = $emergencia_relacion_uno->relacion;
+    $emergencia->emergencia_relacion_uno = $emergencia_relacion_uno?->relacion;
     $emergencia->emergencia_telefono_uno_uno = $request->emergencia_telefono_uno_uno;
     $emergencia->emergencia_telefono_dos_uno = $request->emergencia_telefono_dos_uno;
     $emergencia->emergencia_email_uno = $request->emergencia_email_uno;
@@ -272,7 +274,7 @@ class ProfesionalEmergenciaController extends Controller
             'telefono_celular'   => 'required|digits:10',
             'correo_electronico' => 'required|email|max:100',
 
-            'tipo_sangre' => 'nullable',
+            'tipo_sangre' => 'required',
             'tipo_alergia_id' => 'required|integer|in:1,2,3,4,5,6',
             'alergia_descripcion' => 'nullable|string|max:255|required_unless:tipo_alergia_id,1',
 
@@ -318,6 +320,8 @@ class ProfesionalEmergenciaController extends Controller
         ],[
             // --- Mensajes personalizados ---
 
+            'tipo_sangre.required' => 'El tipo de sandre es obligatorio',
+            
             'telefono_celular.required' => 'El teléfono celular es obligatorio.',
             'telefono_celular.digits'   => 'El teléfono celular debe tener exactamente 10 dígitos.',
 
@@ -393,7 +397,7 @@ class ProfesionalEmergenciaController extends Controller
         // Emergencia UNO
         $emergencia->emergencia_nombre_uno = $request->emergencia_nombre_uno;
         $emergencia->emergencia_relacion_uno_id = $request->emergencia_relacion_uno;
-        $emergencia->emergencia_relacion_uno = $emergencia_relacion_uno->relacion;
+        $emergencia->emergencia_relacion_uno = $emergencia_relacion_uno?->relacion;
         $emergencia->emergencia_telefono_uno_uno = $request->emergencia_telefono_uno_uno;
         $emergencia->emergencia_telefono_dos_uno = $request->emergencia_telefono_dos_uno;
         $emergencia->emergencia_email_uno = $request->emergencia_email_uno;
