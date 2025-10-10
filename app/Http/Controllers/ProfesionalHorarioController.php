@@ -25,10 +25,7 @@ class ProfesionalHorarioController extends Controller
 
         if($usuario->role == 'ofJurisdiccional')
         {
-            $jornadas = Jornada::whereIn('jornada', [
-                            'Jornada Diurna (Matutina L-V)',
-                            'Jornada Mixta (Vespertino L-V)'
-                        ])->get();
+            $jornadas = Jornada::where('jornada', '<>', 'Rolador')->get();
         }
         else
         {
