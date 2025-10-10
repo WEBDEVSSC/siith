@@ -14,11 +14,37 @@
     <div class="card-header"></div>
     <div class="card-body">
 
-        <a href="{{ route('profesionalExport') }}">MI UNIDAD XLS</a>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>Mi Unidad</h3>
 
-        <a href="{{ route('descargarCarpetaFotografias') }}" class="btn btn-primary">
-            <i class="fas fa-download"></i> Descargar carpeta
-        </a>
+                    <p>Archivo Excel</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="{{ route('profesionalExport') }}" class="small-box-footer">Descargar <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>Fotografías</h3>
+
+                    <p>Carpeta</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="{{ route('descargarCarpetaFotografias') }}" class="small-box-footer">Descargar <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+
+        </div>
+
 
     </div>
     <div class="card-footer"></div>

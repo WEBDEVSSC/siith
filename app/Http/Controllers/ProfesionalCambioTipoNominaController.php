@@ -13,6 +13,16 @@ use Illuminate\Http\Request;
 
 class ProfesionalCambioTipoNominaController extends Controller
 {
+   public function getContratosPorNomina($nomina)
+    {
+        $contratos = TipoContrato::where('nomina_pago', $nomina)
+        ->select('tipo_contrato')
+        ->orderBy('tipo_contrato')
+        ->get();
+
+        return response()->json($contratos);
+    }
+    
     //
     public function createCambioTipoNomina($id)
     {
@@ -75,10 +85,14 @@ class ProfesionalCambioTipoNominaController extends Controller
         // Consultamos los datos del Codigo de Puesto
         $codigoDePuesto = CodigoPuesto::findOrFail($request->codigo_puesto);
 
+        // Consultamos el tipo de nomina
+        $tipoNomina = NominaPago::findOrFail($request->nomina_pago);
+
         $cambioTipoNomina = new ProfesionalCambioTipoNomina();
 
         $cambioTipoNomina->id_profesional = $request->id_profesional; 
-        $cambioTipoNomina->nomina_pago = $request->nomina_pago; 
+        $cambioTipoNomina->id_nomina_pago = $request->nomina_pago; 
+        $cambioTipoNomina->nomina_pago = $tipoNomina->nomina; 
         $cambioTipoNomina->tipo_contrato = $request->tipo_contrato; 
         $cambioTipoNomina->tipo_plaza = $request->tipo_plaza; 
         $cambioTipoNomina->seguro_salud = $request->seguro_salud; 

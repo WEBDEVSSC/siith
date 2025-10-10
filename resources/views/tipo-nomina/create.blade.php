@@ -50,8 +50,7 @@
                             @endforeach
                         </select>
                         @error('codigo_puesto')
-                            <br>
-                            <div class="alert alert-danger">{{ $message }}</div>
+                            <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -60,8 +59,8 @@
                         <select name="nomina_pago" id="nomina_pago" class="form-control">
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($nominasPago as $nominaPago)
-                                <option value="{{ $nominaPago->nomina }}"
-                                    {{ old('nomina_pago') == $nominaPago->nomina ? 'selected' : '' }}>
+                                <option value="{{ $nominaPago->id }}"
+                                    {{ old('nomina_pago') == $nominaPago->id ? 'selected' : '' }}>
                                     {{ $nominaPago->nomina }}
                                 </option>
                             @endforeach
@@ -194,6 +193,8 @@
 
     <br>
 
+    
+
 @stop
 
 @include('partials.footer')
@@ -235,6 +236,47 @@
         console.log("Hi, I'm using the Laravel-AdminLTE package!");
     </script>
 
+    <script>
+$(function() {
+    const baseUrl = "{{ url('contratos-por-nomina') }}";
+    // valor por defecto si estás en edición
+    const contratoSeleccionado = "{{ old('tipo_contrato', $profesional->tipo_contrato ?? '') }}";
+
+    function cargarContratos(nomina, seleccionado = contratoSeleccionado) {
+        $('#tipo_contrato').prop('disabled', true).html('<option>Cargando...</option>');
+
+        if (!nomina) {
+            $('#tipo_contrato').prop('disabled', false).html('<option value="">-- Selecciona una nómina primero --</option>');
+            return;
+        }
+
+        $.get(`${baseUrl}/${encodeURIComponent(nomina)}`)
+            .done(function(data) {
+                let html = '<option value="">-- Selecciona una opción --</option>';
+                data.forEach(function(item) {
+                    const valor = item.tipo_contrato; // o item.id si quieres usar id
+                    const selectedAttr = (valor == seleccionado) ? 'selected' : '';
+                    html += `<option value="${valor}" ${selectedAttr}>${item.tipo_contrato}</option>`;
+                });
+                $('#tipo_contrato').html(html).prop('disabled', false);
+            })
+            .fail(function(xhr) {
+                console.error('Error al cargar contratos:', xhr);
+                $('#tipo_contrato').html('<option value="">-- Error al cargar --</option>').prop('disabled', false);
+            });
+    }
+
+    // Cuando cambie la nómina
+    $('#nomina_pago').on('change', function() {
+        cargarContratos($(this).val(), null);
+    });
+
+    // Si la página carga con una nómina ya seleccionada (editar), carga los contratos
+    if ($('#nomina_pago').val()) {
+        cargarContratos($('#nomina_pago').val());
+    }
+});
+</script>
 
     <script>
         $(document).ready(function() {

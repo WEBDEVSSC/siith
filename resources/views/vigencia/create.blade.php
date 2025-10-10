@@ -195,8 +195,8 @@
     </script>
     --}}
 
-    <script>
-$(document).ready(function(){
+<script>
+    $(document).ready(function(){
     let vigenciaSeleccionada = $('#vigencia').val();
     let motivoSeleccionado = "{{ old('vigencia_motivo', $profesional->vigencia_motivo) }}";
     let tipoNomina = "{{ $profesional->puesto->nomina_pago }}"; // Tipo de nómina

@@ -328,6 +328,9 @@ Route::middleware(['auth'])->group(function ()
 
     Route::get('admin/profesionales/reportes/descargarCarpetaFotografias', [ProfesionalReporteController::class,'descargarCarpetaFotografias'])->name('descargarCarpetaFotografias');
 
+    Route::get('/contratos-por-nomina/{nomina}', [ProfesionalCambioTipoNominaController::class, 'getContratosPorNomina']);
+
+
 
      /**
      * 

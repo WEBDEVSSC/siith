@@ -23,7 +23,7 @@ class ProfesionalReporteController extends Controller
      */
     public function descargarCarpetaFotografias()
     {
-        $carpeta = storage_path('app/public/credencializacion'); // ruta de la carpeta
+        $carpeta = storage_path('app/public/credencializacion');
         $zipFile = storage_path('app/temp/archivos.zip');
 
         // Crear carpeta temporal si no existe
