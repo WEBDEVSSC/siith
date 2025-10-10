@@ -82,6 +82,19 @@ class ProfesionalCambioTipoNominaController extends Controller
             'fecha_ingreso.date_format' => 'La fecha debe tener el formato DD-MM-AAAA.',
         ]);
 
+        // Consulta la ultima nomina
+        $ultimaNomina = ProfesionalCambioTipoNomina::where('id_profesional', $request->id_profesional)
+                    ->latest()
+                    ->first();
+
+        // La fecha de ingreso debe ser mayor a la fecha de ingreso de la ultima nomina
+        if($ultimaNomina?->fecha_ingreso > $request->fecha_ingreso)
+        {
+            return redirect()->back()
+                            ->with('error', 'La fecha de ingreso debe ser mayor a la fecha de ingreso del último cambio de nómina')
+                            ->withInput();
+        }     
+
         // Consultamos los datos del Codigo de Puesto
         $codigoDePuesto = CodigoPuesto::findOrFail($request->codigo_puesto);
 

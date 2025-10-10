@@ -4,6 +4,8 @@
 
 @section('plugins.Select2', true)
 
+@section('plugins.Sweetalert2', true)
+
 @section('content_header')
     <h1><strong>Vigencia</strong></h1>
 @stop
@@ -18,6 +20,12 @@
     </ul>
     
 </div>
+
+@if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
     
 <div class="card">
         <div class="card-header">
@@ -157,6 +165,31 @@
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form[action="{{ route('storeVigencia') }}"]');
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault(); // Evita que se envíe automáticamente
+
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "¿Deseas confirmar el registro?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Sí, registrar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit(); // Envía el formulario si confirma
+                    }
+                });
+            });
+        });
+    </script>
     
     {{--
     <script>

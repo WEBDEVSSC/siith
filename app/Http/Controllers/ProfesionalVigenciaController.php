@@ -74,6 +74,19 @@ class ProfesionalVigenciaController extends Controller
             'fecha_final.date_format'   => 'La fecha de termino debe tener el formato DD-MM-AAAA.',
         ]);
 
+        // Consulta la ultima vigencia
+        $ultimaVigencia = ProfesionalVigencia::where('id_profesional', $request->id_profesional)
+                    ->latest()
+                    ->first();
+
+        // La fecha de ingreso debe ser mayor a la fecha de ingreso de la ultima nomina
+        if($ultimaVigencia?->fecha_inicio > $request->fecha_inicio)
+        {
+            return redirect()->back()
+                            ->with('error', 'La fecha de ingreso debe ser mayor a la fecha de ingreso del último cambio de vigencia')
+                            ->withInput();
+        }     
+
         $vigencia = new ProfesionalVigencia();
 
         $vigencia->id_profesional = $request->id_profesional;
@@ -106,6 +119,6 @@ class ProfesionalVigenciaController extends Controller
         $profesional->puesto->save();
 
         // Retornar o redirigir a donde lo necesites, por ejemplo:
-        return redirect()->route('profesionalShow', $request->id_profesional)->with('successVigencia', 'Registro realizado correctamente.');
+        return redirect()->route('profesionalShow', $request->id_profesional)->with('success', 'Vigencia actualizada correctamente.');
     }
 }
