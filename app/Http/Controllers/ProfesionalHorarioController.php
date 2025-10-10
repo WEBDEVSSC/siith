@@ -25,7 +25,7 @@ class ProfesionalHorarioController extends Controller
 
         if($usuario->role == 'ofJurisdiccional')
         {
-            $jornadas = Jornada::where('jornada', '<>', 'Rolador')->get();
+            $jornadas = Jornada::where('jornada', '<>', 'Rolador','Jornada Especial')->get();
         }
         else
         {
@@ -430,8 +430,17 @@ class ProfesionalHorarioController extends Controller
         // Consultamos los datos del profesional
         $profesional = Profesional::findOrFail($id);
 
-        // Llenamos el select de Jornadas
-        $jornadas = Jornada::orderBy('orden', 'asc')->get();
+        
+        $usuario = Auth::user();
+
+        if($usuario->role == 'ofJurisdiccional')
+        {
+            $jornadas = Jornada::where('jornada', '<>', 'Rolador','Jornada Especial')->get();
+        }
+        else
+        {
+            $jornadas = Jornada::orderBy('orden', 'asc')->get();
+        }
 
         return view('horario.edit', compact('horario','profesional','jornadas'));
     }
