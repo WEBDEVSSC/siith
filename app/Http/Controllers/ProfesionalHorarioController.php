@@ -25,7 +25,7 @@ class ProfesionalHorarioController extends Controller
 
         if($usuario->role == 'ofJurisdiccional')
         {
-            $jornadas = Jornada::where('jornada', '<>', 'Rolador','Jornada Especial')->get();
+            $jornadas = Jornada::whereNotIn('jornada', ['Rolador', 'Jornada Especial'])->get();
         }
         else
         {
@@ -435,7 +435,7 @@ class ProfesionalHorarioController extends Controller
 
         if($usuario->role == 'ofJurisdiccional')
         {
-            $jornadas = Jornada::where('jornada', '<>', 'Rolador','Jornada Especial')->get();
+            $jornadas = Jornada::whereNotIn('jornada', ['Rolador', 'Jornada Especial'])->get();
         }
         else
         {
