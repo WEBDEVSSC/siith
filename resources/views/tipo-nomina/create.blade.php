@@ -50,7 +50,8 @@
                             @endforeach
                         </select>
                         @error('codigo_puesto')
-                            <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
