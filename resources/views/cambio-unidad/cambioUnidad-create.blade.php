@@ -54,7 +54,11 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                {{-- Puedes agregar un título aquí si lo deseas --}}
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
             </div>
             <div class="card-body">
                 {{-- Contenido adicional --}}

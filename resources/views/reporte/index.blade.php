@@ -16,6 +16,10 @@
 
         <a href="{{ route('profesionalExport') }}">MI UNIDAD XLS</a>
 
+        <a href="{{ route('descargarCarpetaFotografias') }}" class="btn btn-primary">
+            <i class="fas fa-download"></i> Descargar carpeta
+        </a>
+
     </div>
     <div class="card-footer"></div>
 </div>

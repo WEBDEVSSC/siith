@@ -326,6 +326,8 @@ Route::middleware(['auth'])->group(function ()
 
     Route::get('admin/profesionales/reportes/reporteIndex',[ProfesionalReporteController::class,'reporteIndex'])->name('reporteIndex');
 
+    Route::get('admin/profesionales/reportes/descargarCarpetaFotografias', [ProfesionalReporteController::class,'descargarCarpetaFotografias'])->name('descargarCarpetaFotografias');
+
 
      /**
      * 

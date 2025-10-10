@@ -54,6 +54,16 @@ class ProfesionalCambioDeUnidadController extends Controller
                             ->withInput();
         }
 
+        // Obtenemos el puesto
+        $puesto = $profesional->puesto;
+
+        // Verificamos clues_nomina
+        if (!$puesto || $puesto->clues_nomina == null) {
+            return redirect()->back()
+                            ->with('error', 'El registro no tiene CLUES NOMINA, no se puede hacer el cambio de unidad. Revisar el módulo de puesto')
+                            ->withInput();
+        }
+
         $credencializacion = $profesional->credencializacion;
         $fotografia = $credencializacion ? $credencializacion->fotografia : null;
 
@@ -101,6 +111,12 @@ class ProfesionalCambioDeUnidadController extends Controller
             // Cargamos los clues
             $clues = Clue::where('id',$user->id_unidad)->get();
         }
+
+        // REGLAS DE VALIDACION DE NOMINA
+
+        // SI MI CLUES NOMINA = CLUES ADSCRIPCION SOLO ME PERMITIRA MOVIMIENTO ESCALAFONARIO
+
+        
         
         return view('cambio-unidad.cambioUnidad-create', compact('profesional', 'clues','fotoUrl'));
     }
@@ -132,6 +148,16 @@ class ProfesionalCambioDeUnidadController extends Controller
             'fecha_termino.date_format'     => 'La fecha de término debe tener el formato correcto (YYYY-MM-DD).',
             'fecha_termino.after'           => 'La fecha de término debe ser posterior a la fecha de inicio.',
         ]);
+
+        // Obtener el registro
+        $profesional = ProfesionalPuesto::where('id_profesional', $request->id_profesional)->first();
+
+        // Verificar si existe y si tiene clues_nomina
+        if (!$profesional || $profesional->clues_nomina == null) {
+            return redirect()->back()
+                            ->with('error', 'El registro no tiene CLUES NOMINA, no se puede hacer el cambio de unidad. Revisar el módulo de puesto')
+                            ->withInput(); 
+        }
 
         // Consultamos los datos de la CLUES
         $clues = Clue::findOrFail($request->clues);

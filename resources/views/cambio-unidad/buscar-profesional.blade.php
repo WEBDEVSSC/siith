@@ -11,6 +11,12 @@
 <div class="card">
         <div class="card-header">
 
+                       @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
         </div>
 
         <form action="{{ route('showProfesional') }}" method="POST">
@@ -27,11 +33,6 @@
                             <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                         <br>
-                        @if (session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                        @endif
                     </div>
                 </div>
         
