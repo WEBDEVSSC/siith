@@ -29,7 +29,7 @@ class BackupDatabase extends Command
             'mysqldump --no-tablespaces -h%s -u%s -p%s %s > %s',
             escapeshellarg($host),
             escapeshellarg($username),
-            $password, // no escapeshellarg para la contraseña
+            $password, // <- quitar escapeshellarg aquí
             escapeshellarg($database),
             escapeshellarg($fileName)
         );
