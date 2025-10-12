@@ -26,10 +26,7 @@ class BackupDatabase extends Command
 
         // Comando mysqldump modificado para evitar privilegios PROCESS
         $command = sprintf(
-            'mysqldump --no-tablespaces -h%s -u%s -p%s %s > %s',
-            escapeshellarg($host),
-            escapeshellarg($username),
-            $password, // <- quitar escapeshellarg aquí
+            'mysqldump --no-tablespaces %s > %s',
             escapeshellarg($database),
             escapeshellarg($fileName)
         );
