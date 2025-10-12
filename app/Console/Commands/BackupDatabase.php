@@ -24,11 +24,12 @@ class BackupDatabase extends Command
 
         $fileName = $backupPath . '/' . $database . '_' . date('Y-m-d_H-i-s') . '.sql';
 
+        // Comando mysqldump modificado para evitar privilegios PROCESS
         $command = sprintf(
-            'mysqldump -h%s -u%s -p%s %s > %s',
+            'mysqldump --no-tablespaces -h%s -u%s -p%s %s > %s',
             escapeshellarg($host),
             escapeshellarg($username),
-            $password, // <- aquí sin escapeshellarg
+            $password, // no escapeshellarg para la contraseña
             escapeshellarg($database),
             escapeshellarg($fileName)
         );
