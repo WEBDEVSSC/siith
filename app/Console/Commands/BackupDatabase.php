@@ -24,9 +24,13 @@ class BackupDatabase extends Command
         // Nombre del archivo de respaldo
         $fileName = $backupPath . '/' . $database . '_' . date('Y-m-d_H-i-s') . '.sql';
 
+        // Ruta al archivo
+        $myCnfPath = base_path('.my.cnf'); // ruta a tu .my.cnf
+        
         // Comando mysqldump usando .my.cnf (no necesita usuario ni contraseña en el comando)
         $command = sprintf(
-            'mysqldump --no-tablespaces %s > %s',
+            'mysqldump --defaults-extra-file=%s --no-tablespaces %s > %s',
+            escapeshellarg($myCnfPath),
             escapeshellarg($database),
             escapeshellarg($fileName)
         );
