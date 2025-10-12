@@ -28,7 +28,7 @@ class BackupDatabase extends Command
             'mysqldump -h%s -u%s -p%s %s > %s',
             escapeshellarg($host),
             escapeshellarg($username),
-            escapeshellarg($password),
+            $password, // <- aquí sin escapeshellarg
             escapeshellarg($database),
             escapeshellarg($fileName)
         );
