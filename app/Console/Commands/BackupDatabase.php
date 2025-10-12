@@ -2,50 +2,47 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\File;
 
 class BackupDatabase extends Command
 {
     protected $signature = 'backup:db';
-    protected $description = 'Genera un respaldo de la base de datos y lo envía por correo';
+    protected $description = 'Generar un respaldo de la base de datos usando credenciales del .env';
 
     public function handle()
     {
-        // Nombre del archivo con fecha y hora
-        $filename = 'backup_' . now()->format('Y-m-d_H-i-s') . '.sql';
-        $path = storage_path('app/backups/' . $filename);
+        $database = env('DB_DATABASE');
+        $username = env('DB_USERNAME');
+        $password = env('DB_PASSWORD');
+        $host = env('DB_HOST', '127.0.0.1');
+        $backupPath = storage_path('app/backups');
 
-        // Crear carpeta si no existe
-        if (!file_exists(dirname($path))) {
-            mkdir(dirname($path), 0755, true);
+        if (!File::exists($backupPath)) {
+            File::makeDirectory($backupPath, 0755, true);
         }
 
-        // Ruta al archivo .my.cnf
-        $myCnfPath = '/var/www/html/siith/.my.cnf';
+        $fileName = $backupPath . '/' . $database . '_' . date('Y-m-d_H-i-s') . '.sql';
 
-        // Nombre de la base de datos (desde config o .env)
-        $dbName = config('database.connections.mysql.database');
+        $command = sprintf(
+            'mysqldump -h%s -u%s -p%s %s > %s',
+            escapeshellarg($host),
+            escapeshellarg($username),
+            escapeshellarg($password),
+            escapeshellarg($database),
+            escapeshellarg($fileName)
+        );
 
-        // Comando mysqldump (sin contraseña en texto plano)
-        //$command = "mysqldump --defaults-extra-file={$myCnfPath} --no-tablespaces {$dbName} > \"{$path}\"";
-        $command = "mysqldump --defaults-extra-file=/var/www/html/siith/.my.cnf --no-tablespaces {$dbName} > \"{$path}\"";
+        $this->info('⏳ Generando respaldo...');
 
+        $result = null;
+        $output = null;
+        exec($command, $output, $result);
 
-        // Ejecutar comando
-        system($command, $returnVar);
-
-        if ($returnVar === 0 && file_exists($path)) {
-            // Enviar respaldo por correo
-            Mail::raw("Adjunto el respaldo de la base de datos SIITH.", function ($message) use ($path, $filename) {
-                $message->to('soportewebssc@gmail.com')
-                        ->subject('Respaldo de base de datos')
-                        ->attach($path);
-            });
-
-            $this->info("✅ Respaldo generado y enviado por correo: {$filename}");
+        if ($result === 0) {
+            $this->info("✅ Respaldo generado correctamente: {$fileName}");
         } else {
-            $this->error("❌ Error al generar el respaldo.");
+            $this->error('❌ Error al generar el respaldo.');
         }
     }
 }

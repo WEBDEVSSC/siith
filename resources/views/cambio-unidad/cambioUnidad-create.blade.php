@@ -74,7 +74,7 @@
                             <select name="tipo_movimiento" id="tipo_movimiento" class="form-control">
                                 <option value="">[-- Seleccione una opción --]</option>
                                 <option value="1" {{ old('tipo_movimiento') == '1' ? 'selected' : '' }}>Regresa a su unidad de origen</option>
-                                <option value="2" {{ old('tipo_movimiento') == '2' ? 'selected' : '' }}>Comisionado a mi unidad</option>
+                                <option value="2" {{ old('tipo_movimiento') == '2' ? 'selected' : '' }}>Comisionado a la unidad</option>
                                 <option value="3" {{ old('tipo_movimiento') == '3' ? 'selected' : '' }}>Movimiento escalafonario</option>
                             </select>
 

@@ -432,7 +432,7 @@
                                 <!-- --------------------------- -->
                                 <!-- --------------------------- -->
 
-                                <a href="{{ route('createVigencia', $profesional->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="VIGENCIA">
+                                <a href="{{ route('createVigencia', $profesional->id) }}" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="VIGENCIA">
                                     <i class="fa-solid fa-tags"></i>
                                 </a>
 
