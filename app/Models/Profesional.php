@@ -203,6 +203,11 @@ class Profesional extends Model
         return $this->hasOne(ProfesionalOcupacionHospitalNino::class,'id_profesional');
     }
 
+    public function ocupacionIssreei()
+    {
+        return $this->hasOne(ProfesionalOcupacionIssreei::class,'id_profesional');
+    }
+
     /** PASES DE SALIDA */
     public function pasesDeSalida()
     {

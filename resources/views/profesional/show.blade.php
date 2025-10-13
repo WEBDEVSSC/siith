@@ -295,6 +295,14 @@ ADMINISTRADOR
                 </ul>
             @endif
 
+            <!-- OCUPACION PARA ISSREEI (10) -->
+
+            @if ($cluesAdscripcionTipo == 10)
+                <ul>
+                    <li>{{ optional($ocupacion)->unidad_uno }} - {{ optional($ocupacion)->area_uno }} - {{ optional($ocupacion)->subarea_uno }} - {{ optional($ocupacion)->ocupacion_uno }}</li>
+                </ul>
+            @endif
+
             <!-- OCUPACION PARA CESAME (11) -->
 
             @if ($cluesAdscripcionTipo == 11)
@@ -457,6 +465,21 @@ ADMINISTRADOR
                     </a>
                 @else  
                     <a href="{{ route('createCors', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="C.O.R.S.">
+                        <i class="fa-solid fa-virus-covid"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
+                    </a>
+                @endif
+                
+            @endif
+
+             <!-- CORS -->
+            @if ($profesional->puesto?->clues_adscripcion_tipo == 10)
+
+                @if ($profesional->ocupacionIssreei?->mdl_status == 1)
+                    <a href="{{ route('editIssreei', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="I.S.S.R.E.E.I.">
+                        <i class="fa-solid fa-virus-covid"></i> EDITAR CATÁLOGO / CARTERA DE SERVICIOS
+                    </a>
+                @else  
+                    <a href="{{ route('createIssreei', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="I.S.S.R.E.E.I.">
                         <i class="fa-solid fa-virus-covid"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @endif

@@ -579,6 +579,36 @@
                             <td>{{ $profesional->ocupacionCors->puesto_dos ?? '' }}</td>
                         @break
 
+                        {{-- HOSPITAL DEL NIÑO --}}
+                        @case(10)
+                            <td>I.S.S.R.E.E.I.</td>
+                            <td>{{ $profesional->ocupacionIssreei->unidad_uno ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->area_uno ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->subarea_servicio_uno ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->subarea_uno ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->jefatura_programa_uno ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->jefatura_uno ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->departamento_uno ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->programa_uno ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->componente_uno ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->servicio_uno ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->ocupacion_uno ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->puesto_uno ?? '' }}</td>
+
+                            <td>{{ $profesional->ocupacionIssreei->unidad_dos ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->area_dos ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->subarea_servicio_dos ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->subarea_dos ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->jefatura_programa_dos ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->jefatura_dos ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->departamento_dos ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->programa_dos ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->componente_dos ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->servicio_dos ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->ocupacion_dos ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionIssreei->puesto_dos ?? '' }}</td>
+                        @break
+
                         {{-- CESAME --}}
                         @case(11)
                             <td>CESAME</td>

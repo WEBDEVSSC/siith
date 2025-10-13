@@ -319,6 +319,22 @@
                                                                                                    
                                 @endif
 
+                                <!-- CATALOGO PARA ISSREEI (10) -->
+
+                                @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 10)
+
+                                    @if(optional($data['profesional']->ocupacionIssreei)->mdl_status == 1)
+                                        <a href="{{ route('editIssreei', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="CATALOGO / CARTERA DE SERVICIOS">
+                                            <i class="fa-solid fa-virus-covid"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('createIssreei', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="CATALOGO / CARTERA DE SERVICIOS">
+                                            <i class="fa-solid fa-virus-covid"></i>
+                                        </a>
+                                    @endif
+                                                                                                   
+                                @endif
+
                                 <!-- CATALOGO PARA CETS (11) -->
 
                                 @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 11)

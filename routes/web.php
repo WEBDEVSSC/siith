@@ -506,6 +506,16 @@ Route::middleware(['auth'])->group(function ()
  
       Route::put('admin/profesionales/ocupaciones/updateCors/{id}', [ProfesionalOcupacionController::class, 'updateCors'])->name('updateCors');
 
+      /**RUTAS PARA EL CATALOGO 10 - I.S.S.R.E.E.I. */
+
+      Route::get('admin/profesionales/ocupaciones/createIssreei/{id}', [ProfesionalOcupacionController::class, 'createIssreei'])->name('createIssreei');
+
+      Route::post('admin/profesionales/ocupaciones/storeIssreei', [ProfesionalOcupacionController::class, 'storeIssreei'])->name('storeIssreei');
+ 
+      Route::get('admin/profesionales/ocupaciones/editIssreei/{id}', [ProfesionalOcupacionController::class, 'editIssreei'])->name('editIssreei');
+ 
+      Route::put('admin/profesionales/ocupaciones/updateIssreei/{id}', [ProfesionalOcupacionController::class, 'updateIssreei'])->name('updateIssreei');
+
       /**RUTAS PARA EL CATALOGO 11 - CESAME */
 
       Route::get('admin/profesionales/ocupaciones/createCesame/{id}', [ProfesionalOcupacionController::class, 'createCesame'])->name('createCesame');

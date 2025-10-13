@@ -19,6 +19,7 @@ use App\Models\ProfesionalOcupacionCors;
 use App\Models\ProfesionalOcupacionCriCree;
 use App\Models\ProfesionalOcupacionHospital;
 use App\Models\ProfesionalOcupacionHospitalNino;
+use App\Models\ProfesionalOcupacionIssreei;
 use App\Models\ProfesionalOcupacionOficinaCentral;
 use App\Models\ProfesionalOcupacionOfJurisdiccional;
 use App\Models\ProfesionalOcupacionPsiParras;
@@ -496,6 +497,13 @@ class ProfesionalController extends Controller
                 ->whereRelation('puesto', 'vigencia', 'ACTIVO')
                 ->get();
         }  
+        elseif(Gate::allows('issreei'))
+        {
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002640')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        } 
         else
         {
             $profesionales = collect(); // colección vacía para evitar errores
@@ -1016,6 +1024,12 @@ class ProfesionalController extends Controller
         {
             $catalogoLabel = "CORS";
             $ocupacion = ProfesionalOcupacionCors::where('id_profesional', $id)->first();
+        }
+        // ISSREEI (10)
+        elseif ($tipo == 10) 
+        {
+            $catalogoLabel = "ISSREEI";
+            $ocupacion = ProfesionalOcupacionIssreei::where('id_profesional', $id)->first();
         }
         // CESAME (11)
         elseif ($tipo == 11) 

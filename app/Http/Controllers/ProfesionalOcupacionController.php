@@ -11,6 +11,7 @@ use App\Models\CatOcupacionCors;
 use App\Models\CatOcupacionCriCree;
 use App\Models\CatOcupacionHospital;
 use App\Models\CatOcupacionHospitalNino;
+use App\Models\CatOcupacionIssreei;
 use App\Models\CatOcupacionOficinaCentral;
 use App\Models\CatOcupacionOfJurisdiccional;
 use App\Models\CatOcupacionPsiParras;
@@ -25,6 +26,7 @@ use App\Models\ProfesionalOcupacionCors;
 use App\Models\ProfesionalOcupacionCriCree;
 use App\Models\ProfesionalOcupacionHospital;
 use App\Models\ProfesionalOcupacionHospitalNino;
+use App\Models\ProfesionalOcupacionIssreei;
 use App\Models\ProfesionalOcupacionOficinaCentral;
 use App\Models\ProfesionalOcupacionOfJurisdiccional;
 use App\Models\ProfesionalOcupacionPsiParras;
@@ -1874,6 +1876,118 @@ class ProfesionalOcupacionController extends Controller
                 'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
                 'componente_dos' => $ocupacionDos?->componente,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
+            ]);
+
+        }
+
+        // Redireccionar con un mensaje de éxito
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
+
+    }
+
+    /** ************************************************************************************************************************************************
+     * 
+     * 
+     * ISSREEI
+     * 
+     * 
+     ***************************************************************************************************************************************************/
+
+     public function createIssreei($id)
+    {
+        // Consultamos los datos del profesional
+        $profesional = Profesional::findOrFail($id);
+
+        // Llenamos el select de ocupaciones
+        $ocupaciones = CatOcupacionIssreei::orderBy('orden', 'asc')->get();
+
+        // Retornamos la vista con todos los objetos
+        return view('ocupacion.issreei-create', compact('profesional','ocupaciones'));
+    }
+
+    public function storeIssreei(Request $request)
+    {
+        // Validamos los datos
+        $request->validate([
+            'id_profesional'=>'required',
+            'ocupacion_uno'=>'required',
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
+
+        // Consultamos los datos para registrar
+        $ocupacionUno = CatOcupacionIssreei::where('id',$request->ocupacion_uno)->first();
+
+        // Activamos el modulo
+        $mdl_status = 1;
+
+        // Creamos el objeto
+        $ocupacion = new ProfesionalOcupacionIssreei();
+
+        // Asignamos los valores
+        $ocupacion->id_profesional = $request->id_profesional;
+
+        $ocupacion->id_catalogo_uno = $request->ocupacion_uno;
+        $ocupacion->unidad_uno = $ocupacionUno->unidad;
+        $ocupacion->area_uno = $ocupacionUno->area;
+        $ocupacion->subarea_uno = $ocupacionUno->subarea;
+        $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
+
+        $ocupacion->mdl_status = $mdl_status;
+
+        // Registramos los datos
+        $ocupacion->save();
+
+        // Regresamos a la vista con su mensaje
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Ocupaciones registradas correctamente.');
+    }
+
+    public function editIssreei($id)
+    {
+        // Consultamos los datos del profesional
+        $profesional = Profesional::findOrFail($id);
+
+        // Llenamos el select de ocupaciones
+        $ocupaciones = CatOcupacionIssreei::orderBy('orden', 'asc')->get();
+
+        // Consultamos si tiene registros en la tabla
+        $profesionalOcupaciones = ProfesionalOcupacionIssreei::where('id_profesional',$id)->first();
+
+        // Retornamos la vista con todos los objetos
+        return view('ocupacion.issreei-edit', compact('profesional','ocupaciones','profesionalOcupaciones'));
+    }
+
+    public function updateIssreei(Request $request, $id)
+    {
+        // Validamos los datos
+        $request->validate([
+            'ocupacion_uno'=>'required',
+            'eliminar_ocupacion' => 'nullable'
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
+
+        // Consultamos los datos para registrar
+        $ocupacionUno = CatOcupacionIssreei::where('id',$request->ocupacion_uno)->first();
+
+        // Buscamos el registro a editar
+        $ocupaciones = ProfesionalOcupacionIssreei::findOrFail($id);
+
+        if($request->eliminar_ocupacion == 1)
+        {
+           $ocupaciones->delete();
+            return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('destroy', 'Ocupación eliminada correctamente.');
+        }
+        else
+        {
+            // Asignamos los valores
+            $ocupaciones->update([
+
+                'id_catalogo_uno'=>$request->ocupacion_uno,
+                'unidad_uno'=>$ocupacionUno->unidad,
+                'area_uno'=>$ocupacionUno->area,
+                'subarea_uno'=>$ocupacionUno->subarea,
+                'ocupacion_uno'=>$ocupacionUno->ocupacion,
             ]);
 
         }
