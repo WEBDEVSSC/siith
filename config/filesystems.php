@@ -60,11 +60,10 @@ return [
             'report' => false,
         ],
 
-        // disco en D:
         'fotos' => [
             'driver' => 'local',
-            'root' => 'D:/siith/fotografias',
-            'url' => env('APP_URL').'/fotos',
+            'root' => '/media/recursosh/D/siith/fotografias',
+            'url' => env('APP_URL') . '/fotos',
             'visibility' => 'public',
         ],
 
