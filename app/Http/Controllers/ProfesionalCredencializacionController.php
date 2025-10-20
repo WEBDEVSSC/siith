@@ -305,7 +305,7 @@ class ProfesionalCredencializacionController extends Controller
 
     public function storeCredencializacion(Request $request)
 {
-    $request->validate([
+     $request->validate([
         'id_profesional' => 'required',
         'curp'           => 'required',
         'foto'           => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
@@ -316,30 +316,30 @@ class ProfesionalCredencializacionController extends Controller
     if ($request->hasFile('foto')) {
         $archivoNombre = $request->curp . '-' . now()->format('Ymd_His') . '.' . $request->foto->extension();
 
-        // Guardar foto original en disco 'fotos'
-        Storage::disk('fotos')->putFileAs('', $request->file('foto'), $archivoNombre);
+        // Guardar archivo original en disco 'fotos'
+        $pathOriginal = Storage::disk('fotos')->putFileAs('', $request->file('foto'), $archivoNombre);
 
-        // Crear miniatura
-        $thumbPath = Storage::disk('fotos')->path('thumbs/' . $archivoNombre);
-
+        // Crear carpeta thumbs si no existe
         if (!Storage::disk('fotos')->exists('thumbs')) {
             Storage::disk('fotos')->makeDirectory('thumbs');
         }
 
-        $manager = new \Intervention\Image\ImageManager();
+        // Obtener path físico del disco 'fotos' para Intervention
+        $pathFisicoThumb = Storage::disk('fotos')->path('thumbs/' . $archivoNombre);
+
+        // Crear y guardar miniatura
+        $manager = new ImageManager();
         $manager->make($request->file('foto'))
                 ->fit(100, 100)
-                ->save($thumbPath);
+                ->save($pathFisicoThumb);
     }
 
-    // Guardar registro en la tabla
-    $profesional = ProfesionalCredencializacion::create([
+    ProfesionalCredencializacion::create([
         'id_profesional' => $request->id_profesional,
         'fotografia'     => $archivoNombre,
         'mdl_credencializacion' => 1,
     ]);
 
-    // Guardar bitácora
     ProfesionalBitacora::create([
         'id_capturista' => Auth::id(),
         'capturista_label' => Auth::user()->responsable,
@@ -348,7 +348,7 @@ class ProfesionalCredencializacionController extends Controller
     ]);
 
     return redirect()
-        ->route('profesionalShow', $profesional->id_profesional)
+        ->route('profesionalShow', $request->id_profesional)
         ->with('successCredencializacion', 'Registro actualizado correctamente.');
 }
 
@@ -362,43 +362,48 @@ public function updateCredencializacion(Request $request, string $id)
     ]);
 
     $credencializacion = ProfesionalCredencializacion::findOrFail($id);
-    $archivoNombre = $credencializacion->fotografia;
+    $archivoNombre = $credencializacion->fotografia; // nombre actual
 
     if ($request->hasFile('foto')) {
-        // Eliminar fotos existentes
+
+        // Eliminar fotos existentes (original + miniatura)
         if ($archivoNombre) {
             Storage::disk('fotos')->delete($archivoNombre);
             Storage::disk('fotos')->delete('thumbs/' . $archivoNombre);
         }
 
-        // Nuevo nombre
+        // Generar nombre único
         $archivoNombre = $request->curp . '-' . now()->format('Ymd_His') . '.' . $request->foto->extension();
 
-        // Guardar archivo original
+        // Guardar archivo original en disco 'fotos'
         Storage::disk('fotos')->putFileAs('', $request->file('foto'), $archivoNombre);
 
-        // Crear miniatura
-        $thumbPath = Storage::disk('fotos')->path('thumbs/' . $archivoNombre);
-
+        // Crear carpeta thumbs si no existe
         if (!Storage::disk('fotos')->exists('thumbs')) {
             Storage::disk('fotos')->makeDirectory('thumbs');
         }
 
-        $manager = new \Intervention\Image\ImageManager();
+        // Obtener path físico del disco para Intervention
+        $pathFisicoThumb = Storage::disk('fotos')->path('thumbs/' . $archivoNombre);
+
+        // Crear y guardar miniatura
+        $manager = new \Intervention\Image\ImageManager(['driver' => 'gd']);
         $manager->make($request->file('foto'))
                 ->fit(100, 100)
-                ->save($thumbPath);
+                ->save($pathFisicoThumb);
     }
 
-    // Actualizar registro
-    $credencializacion->update(['fotografia' => $archivoNombre]);
+    // Actualizar registro en la base de datos
+    $credencializacion->update([
+        'fotografia' => $archivoNombre
+    ]);
 
-    // Guardar bitácora
+    // Guardar acción en bitácora
     ProfesionalBitacora::create([
-        'id_capturista' => Auth::id(),
+        'id_capturista'    => Auth::id(),
         'capturista_label' => Auth::user()->responsable,
-        'accion' => "ACTUALIZACION EN MODULO CREDENCIALIZACION",
-        'id_profesional' => $credencializacion->id_profesional
+        'accion'           => "ACTUALIZACION EN MODULO CREDENCIALIZACION",
+        'id_profesional'   => $credencializacion->id_profesional
     ]);
 
     return redirect()
