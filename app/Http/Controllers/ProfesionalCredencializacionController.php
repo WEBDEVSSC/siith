@@ -305,6 +305,7 @@ class ProfesionalCredencializacionController extends Controller
 
     public function storeCredencializacion(Request $request)
     {
+        // 1. Validación de campos
         $request->validate([
             'id_profesional' => 'required',
             'curp'           => 'required',
@@ -319,33 +320,43 @@ class ProfesionalCredencializacionController extends Controller
 
         $archivoNombre = null;
 
+        // 2. Guardar foto si se envió
         if ($request->hasFile('foto')) {
-            $archivoNombre = $request->curp . '-' . now()->format('Ymd_His') . '.' . $request->foto->extension();
+            $archivo = $request->file('foto');
+
+            // Nombre único
+            $archivoNombre = $request->curp . '-' . now()->format('Ymd_His') . '.' . $archivo->extension();
+
+            // Rutas absolutas
             $rutaOriginal = '/media/recursosh/D/siith/fotografias/' . $archivoNombre;
             $rutaThumb    = '/media/recursosh/D/siith/fotografias/thumbs/' . $archivoNombre;
 
+            // Crear carpetas si no existen
+            if (!is_dir('/media/recursosh/D/siith/fotografias')) {
+                mkdir('/media/recursosh/D/siith/fotografias', 0775, true);
+            }
             if (!is_dir('/media/recursosh/D/siith/fotografias/thumbs')) {
-                mkdir('/media/recursosh/D/siith/fotografias/thumbs', 0777, true);
+                mkdir('/media/recursosh/D/siith/fotografias/thumbs', 0775, true);
             }
 
-            // Guardar original
-            $request->file('foto')->move('/media/recursosh/D/siith/fotografias', $archivoNombre);
+            // Guardar archivo original
+            $archivo->move('/media/recursosh/D/siith/fotografias', $archivoNombre);
 
-            // Crear miniatura
-            $manager = new ImageManager();
-            $manager->make($request->file('foto'))
+            // Crear miniatura 100x100 con Intervention Image
+            $manager = new \Intervention\Image\ImageManager(['driver' => 'gd']);
+            $manager->make($rutaOriginal)
                     ->fit(100, 100)
                     ->save($rutaThumb);
         }
 
-        // Guardar en BD
+        // 3. Guardar registro en base de datos
         $profesional = new ProfesionalCredencializacion();
         $profesional->id_profesional        = $request->id_profesional;
-        $profesional->fotografia            = $archivoNombre;
+        $profesional->fotografia            = $archivoNombre; // solo nombre
         $profesional->mdl_credencializacion = 1;
         $profesional->save();
 
-        // Bitácora
+        // 4. Registrar acción en bitácora
         $usuario = Auth::user();
         ProfesionalBitacora::create([
             'id_capturista'    => $usuario->id,
@@ -354,55 +365,72 @@ class ProfesionalCredencializacionController extends Controller
             'id_profesional'   => $request->id_profesional
         ]);
 
+        // 5. Redireccionar con mensaje
         return redirect()
             ->route('profesionalShow', $profesional->id_profesional)
             ->with('successCredencializacion', 'Registro actualizado correctamente.');
     }
 
-
     public function updateCredencializacion(Request $request, string $id)
     {
+        // 1. Validación de campos
         $request->validate([
             'id_profesional' => 'required',
             'curp'           => 'required',
             'foto'           => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+        ], [
+            'id_profesional.required' => 'El campo Profesional ID es obligatorio.',
+            'curp.required'           => 'El campo CURP es obligatorio.',
+            'foto.image'              => 'El archivo debe ser una imagen.',
+            'foto.mimes'              => 'La imagen debe ser de tipo: jpeg, png o jpg.',
+            'foto.max'                => 'El tamaño máximo permitido para la imagen es 2MB.',
         ]);
 
+        // 2. Obtener el registro
         $credencializacion = ProfesionalCredencializacion::findOrFail($id);
-        $archivoNombre = $credencializacion->fotografia;
+        $archivoNombre = $credencializacion->fotografia; // nombre actual
 
+        // 3. Procesar nueva foto si se envió
         if ($request->hasFile('foto')) {
+            $archivo = $request->file('foto');
 
-            // Eliminar fotos existentes
+            // Eliminar fotos anteriores si existen
             if ($archivoNombre) {
-                $rutaOriginal = '/media/recursosh/D/siith/fotografias/' . $archivoNombre;
-                $rutaThumb    = '/media/recursosh/D/siith/fotografias/thumbs/' . $archivoNombre;
-
-                if (file_exists($rutaOriginal)) unlink($rutaOriginal);
-                if (file_exists($rutaThumb)) unlink($rutaThumb);
+                @unlink('/media/recursosh/D/siith/fotografias/' . $archivoNombre);
+                @unlink('/media/recursosh/D/siith/fotografias/thumbs/' . $archivoNombre);
             }
 
-            // Nuevo nombre
-            $archivoNombre = $request->curp . '-' . now()->format('Ymd_His') . '.' . $request->foto->extension();
+            // Nombre único
+            $archivoNombre = $request->curp . '-' . now()->format('Ymd_His') . '.' . $archivo->extension();
+
+            // Rutas absolutas
             $rutaOriginal = '/media/recursosh/D/siith/fotografias/' . $archivoNombre;
             $rutaThumb    = '/media/recursosh/D/siith/fotografias/thumbs/' . $archivoNombre;
 
-            // Guardar nuevo original
-            $request->file('foto')->move('/media/recursosh/D/siith/fotografias', $archivoNombre);
+            // Crear carpetas si no existen
+            if (!is_dir('/media/recursosh/D/siith/fotografias')) {
+                mkdir('/media/recursosh/D/siith/fotografias', 0775, true);
+            }
+            if (!is_dir('/media/recursosh/D/siith/fotografias/thumbs')) {
+                mkdir('/media/recursosh/D/siith/fotografias/thumbs', 0775, true);
+            }
 
-            // Crear miniatura
-            $manager = new ImageManager();
-            $manager->make($request->file('foto'))
+            // Guardar archivo original
+            $archivo->move('/media/recursosh/D/siith/fotografias', $archivoNombre);
+
+            // Crear miniatura 100x100
+            $manager = new \Intervention\Image\ImageManager(['driver' => 'gd']);
+            $manager->make($rutaOriginal)
                     ->fit(100, 100)
                     ->save($rutaThumb);
         }
 
-        // Actualizar BD
+        // 4. Actualizar registro
         $credencializacion->update([
             'fotografia' => $archivoNombre
         ]);
 
-        // Bitácora
+        // 5. Registrar acción en bitácora
         $usuario = Auth::user();
         ProfesionalBitacora::create([
             'id_capturista'    => $usuario->id,
@@ -411,9 +439,12 @@ class ProfesionalCredencializacionController extends Controller
             'id_profesional'   => $credencializacion->id_profesional
         ]);
 
+        // 6. Redireccionar
         return redirect()
             ->route('profesionalShow', $request->id_profesional)
             ->with('successCredencializacion', 'Registro actualizado correctamente.');
     }
+
+
 
 }
