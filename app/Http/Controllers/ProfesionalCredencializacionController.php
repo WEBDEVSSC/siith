@@ -131,23 +131,21 @@ class ProfesionalCredencializacionController extends Controller
             // Generar nombre único
             $archivoNombre = $request->curp . '-' . now()->format('Ymd_His') . '.' . $request->foto->extension();
 
-            // Rutas absolutas en D:
-            $rutaOriginal = 'D:/siith/fotografias/' . $archivoNombre;
-            $rutaThumb    = 'D:/siith/fotografias/thumbs/' . $archivoNombre;
+            // Guardar archivo original en disco 'fotos'
+            $request->file('foto')->storeAs('', $archivoNombre, 'fotos');
 
-            // Crear carpeta thumbs si no existe
-            if (!is_dir('D:/siith/fotografias/thumbs')) {
-                mkdir('D:/siith/fotografias/thumbs', 0777, true);
+            // Crear carpeta de miniaturas si no existe
+            if (!Storage::disk('fotos')->exists('thumbs')) {
+                Storage::disk('fotos')->makeDirectory('thumbs');
             }
-
-            // Guardar archivo original
-            $request->file('foto')->move('D:/siith/fotografias', $archivoNombre);
 
             // Crear y guardar miniatura 100x100
             $manager = new ImageManager(new Driver());
+            $thumbPath = config('filesystems.disks.fotos.root') . '/thumbs/' . $archivoNombre;
+
             $manager->make($request->file('foto'))
                     ->fit(100, 100)
-                    ->save($rutaThumb);
+                    ->save($thumbPath);
         }
 
         // Guardar registro en la tabla ProfesionalCredencializacion
@@ -171,6 +169,7 @@ class ProfesionalCredencializacionController extends Controller
             ->route('profesionalShow', $profesional->id_profesional)
             ->with('successCredencializacion', 'Registro actualizado correctamente.');
     }
+
 
 
     /**
