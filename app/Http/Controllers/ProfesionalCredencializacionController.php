@@ -131,12 +131,12 @@ class ProfesionalCredencializacionController extends Controller
             // Generar nombre único
             $archivoNombre = $request->curp . '-' . now()->format('Ymd_His') . '.' . $request->foto->extension();
 
-            // Rutas en D:
+            // Rutas absolutas en D:
             $rutaOriginal = 'D:/siith/fotografias/' . $archivoNombre;
             $rutaThumb    = 'D:/siith/fotografias/thumbs/' . $archivoNombre;
 
             // Crear carpeta thumbs si no existe
-            if (!file_exists('D:/siith/fotografias/thumbs')) {
+            if (!is_dir('D:/siith/fotografias/thumbs')) {
                 mkdir('D:/siith/fotografias/thumbs', 0777, true);
             }
 
@@ -171,6 +171,7 @@ class ProfesionalCredencializacionController extends Controller
             ->route('profesionalShow', $profesional->id_profesional)
             ->with('successCredencializacion', 'Registro actualizado correctamente.');
     }
+
 
     /**
      * Show the form for editing the specified resource.
