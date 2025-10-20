@@ -112,7 +112,7 @@ class ProfesionalCredencializacionController extends Controller
 
     public function storeCredencializacion(Request $request)
     {
-        // Validación de campos
+         // Validación de campos
         $request->validate([
             'id_profesional' => 'required',
             'curp'           => 'required',
@@ -131,21 +131,23 @@ class ProfesionalCredencializacionController extends Controller
             // Generar nombre único
             $archivoNombre = $request->curp . '-' . now()->format('Ymd_His') . '.' . $request->foto->extension();
 
-            // Guardar archivo original en disco 'fotos'
-            $request->file('foto')->storeAs('', $archivoNombre, 'fotos');
+            // Rutas absolutas en disco D
+            $rutaOriginal = '/media/recursosh/D/siith/fotografias/' . $archivoNombre;
+            $rutaThumb    = '/media/recursosh/D/siith/fotografias/thumbs/' . $archivoNombre;
 
-            // Crear carpeta de miniaturas si no existe
-            if (!Storage::disk('fotos')->exists('thumbs')) {
-                Storage::disk('fotos')->makeDirectory('thumbs');
+            // Crear carpeta thumbs si no existe
+            if (!is_dir('/media/recursosh/D/siith/fotografias/thumbs')) {
+                mkdir('/media/recursosh/D/siith/fotografias/thumbs', 0777, true);
             }
 
-            // Crear y guardar miniatura 100x100
-            $manager = new ImageManager(new Driver());
-            $thumbPath = config('filesystems.disks.fotos.root') . '/thumbs/' . $archivoNombre;
+            // Guardar archivo original
+            $request->file('foto')->move('/media/recursosh/D/siith/fotografias', $archivoNombre);
 
+            // Crear y guardar miniatura 100x100
+            $manager = new ImageManager();
             $manager->make($request->file('foto'))
                     ->fit(100, 100)
-                    ->save($thumbPath);
+                    ->save($rutaThumb);
         }
 
         // Guardar registro en la tabla ProfesionalCredencializacion
