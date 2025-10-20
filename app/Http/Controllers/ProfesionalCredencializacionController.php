@@ -155,7 +155,7 @@ class ProfesionalCredencializacionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function editCredencializacion($id)
+    /*public function editCredencializacion($id)
     {        
         // Buscamos el registro utilizando el id
         $credencializacion = ProfesionalCredencializacion::where('id_profesional', $id)->first();
@@ -166,6 +166,24 @@ class ProfesionalCredencializacionController extends Controller
         // Generamos la URL de la fotografía
         $fotografia = $credencializacion ? $credencializacion->fotografia : null;
         $fotoUrl = $fotografia ? url('/foto/' . basename($fotografia)) : null;
+
+        // Retornamos la vista
+        return view('credencializacion.edit', compact('credencializacion', 'profesional', 'fotoUrl'));
+    }*/
+
+    public function editCredencializacion($id)
+    {        
+        // Buscamos el registro utilizando el id
+        $credencializacion = ProfesionalCredencializacion::where('id_profesional', $id)->first();
+
+        // Consultamos los datos del usuario para la tarjeta
+        $profesional = Profesional::findOrFail($id);
+
+        // Generamos la URL de la miniatura
+        $fotografia = $credencializacion ? $credencializacion->fotografia : null;
+        $fotoUrl = $fotografia 
+            ? asset('storage/credencializacion/thumbs/' . $fotografia) 
+            : asset('images/avatar-placeholder.png'); // placeholder si no hay foto
 
         // Retornamos la vista
         return view('credencializacion.edit', compact('credencializacion', 'profesional', 'fotoUrl'));
