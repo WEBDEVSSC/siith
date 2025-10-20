@@ -43,55 +43,11 @@ class ProfesionalCredencializacionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
+    /*
     public function storeCredencializacion(Request $request)
     {
-        //
-        /*$request->validate([
-            'id_profesional' => 'required',
-            'curp' => 'required',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
-        ], [
-            'id_profesional.required' => 'El campo Profesional ID es obligatorio.',
-            'curp.required' => 'El campo CURP es obligatorio.',
-            'foto.image' => 'El archivo debe ser una imagen.',
-            'foto.mimes' => 'La imagen debe ser de tipo: jpeg, png o jpg.',
-            'foto.max' => 'El tamaño máximo permitido para la imagen es 2MB.',
-        ]);
 
-        // Obtener la fecha y hora actual en el formato deseado
-        $timestamp = now()->format('Ymd_His');
-
-        // Crear el nombre del archivo con la fecha y hora
-        $archivoNombre = $request->curp . '-' . $timestamp . '.' . $request->foto->extension();
-
-        // Almacenar el archivo en la carpeta 'documents' en el almacenamiento local
-        $archivoPath = $request->foto->storeAs('credencializacion', $archivoNombre, 'local');
-
-        $mdl_credencializacion = 1;
-
-        $profesional = new ProfesionalCredencializacion();
-
-        $profesional->id_profesional = $request->id_profesional;
-        $profesional->fotografia = $archivoPath;
-        $profesional->mdl_credencializacion = $mdl_credencializacion;
-
-        $profesional -> save();
-
-        $usuario = Auth::user();
-
-        // Guaradmos la bitacora
-        $bitacora = new ProfesionalBitacora();
-
-        $bitacora->id_capturista = $usuario->id;
-        $bitacora->capturista_label = $usuario->responsable;
-        $bitacora->accion = "NUEVO REGISTRO EN MODULO CREDENCIALIZACION";
-        $bitacora->id_profesional = $request->id_profesional;
-
-        $bitacora->save();
-
-        // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalShow',$profesional->id_profesional)->with('successCredencializacion', 'Registro actualizado correctamente.');*/
-        
         // Validación de campos
         $request->validate([
         'id_profesional' => 'required',
@@ -150,6 +106,70 @@ class ProfesionalCredencializacionController extends Controller
         ->route('profesionalShow', $profesional->id_profesional)
         ->with('successCredencializacion', 'Registro actualizado correctamente.');
         
+    }
+
+    */
+
+    public function storeCredencializacion(Request $request)
+    {
+        // Validación de campos
+        $request->validate([
+            'id_profesional' => 'required',
+            'curp'           => 'required',
+            'foto'           => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+        ], [
+            'id_profesional.required' => 'El campo Profesional ID es obligatorio.',
+            'curp.required'           => 'El campo CURP es obligatorio.',
+            'foto.image'              => 'El archivo debe ser una imagen.',
+            'foto.mimes'              => 'La imagen debe ser de tipo: jpeg, png o jpg.',
+            'foto.max'                => 'El tamaño máximo permitido para la imagen es 2MB.',
+        ]);
+
+        $archivoNombre = null;
+
+        if ($request->hasFile('foto')) {
+            // Generar nombre único
+            $archivoNombre = $request->curp . '-' . now()->format('Ymd_His') . '.' . $request->foto->extension();
+
+            // Rutas en D:
+            $rutaOriginal = 'D:/siith/fotografias/' . $archivoNombre;
+            $rutaThumb    = 'D:/siith/fotografias/thumbs/' . $archivoNombre;
+
+            // Crear carpeta thumbs si no existe
+            if (!file_exists('D:/siith/fotografias/thumbs')) {
+                mkdir('D:/siith/fotografias/thumbs', 0777, true);
+            }
+
+            // Guardar archivo original
+            $request->file('foto')->move('D:/siith/fotografias', $archivoNombre);
+
+            // Crear y guardar miniatura 100x100
+            $manager = new ImageManager(new Driver());
+            $manager->make($request->file('foto'))
+                    ->fit(100, 100)
+                    ->save($rutaThumb);
+        }
+
+        // Guardar registro en la tabla ProfesionalCredencializacion
+        $profesional = new ProfesionalCredencializacion();
+        $profesional->id_profesional        = $request->id_profesional;
+        $profesional->fotografia            = $archivoNombre; // solo nombre del archivo
+        $profesional->mdl_credencializacion = 1;
+        $profesional->save();
+
+        // Guardar acción en bitácora
+        $usuario = Auth::user();
+        $bitacora = new ProfesionalBitacora();
+        $bitacora->id_capturista    = $usuario->id;
+        $bitacora->capturista_label = $usuario->responsable;
+        $bitacora->accion           = "NUEVO REGISTRO EN MODULO CREDENCIALIZACION";
+        $bitacora->id_profesional   = $request->id_profesional;
+        $bitacora->save();
+
+        // Redireccionar con mensaje de éxito
+        return redirect()
+            ->route('profesionalShow', $profesional->id_profesional)
+            ->with('successCredencializacion', 'Registro actualizado correctamente.');
     }
 
     /**
