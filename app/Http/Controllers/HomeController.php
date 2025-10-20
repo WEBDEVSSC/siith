@@ -255,6 +255,14 @@ class HomeController extends Controller
                 ->whereRelation('puesto', 'clues_adscripcion', $usuario->clues_unidad)
                 ->count();
 
+        $hoy = Carbon::today();
+
+        $profesionalesHonomastico = Profesional::whereMonth('fecha_nacimiento', $hoy->month)
+            ->whereDay('fecha_nacimiento', $hoy->day)
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->whereRelation('puesto', 'clues_adscripcion', $usuario->clues_unidad)
+            ->get();
+
         return view('home', compact(
             'profesionalesActivos',
             'profesionalesBajaTemporal',
@@ -309,6 +317,7 @@ class HomeController extends Controller
             'profesionalesBajaTemporalUnidad',
             'profesionalesActivosMasculinoUnidad',
             'profesionalesActivosFemeninoUnidad',
+            'profesionalesHonomastico'
 
         ));
     }

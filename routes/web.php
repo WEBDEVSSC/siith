@@ -10,6 +10,7 @@ use App\Http\Controllers\CatalogoOcupacionCorsController;
 use App\Http\Controllers\CatalogoOcupacionCriCreeController;
 use App\Http\Controllers\CatalogoOcupacionHospitalController;
 use App\Http\Controllers\CatalogoOcupacionHospitalNinoController;
+use App\Http\Controllers\CatalogoOcupacionIssreeiController;
 use App\Http\Controllers\CatalogoOcupacionOficinaCentralController;
 use App\Http\Controllers\CatalogoOcupacionOfJurisdiccionalController;
 use App\Http\Controllers\CatalogoOcupacionPsiParrasController;
@@ -773,10 +774,22 @@ Route::middleware(['auth'])->group(function ()
       /**
      * 
      * 
-     * 10 NUMERO SEPARADO
+     * 10 ISSREEI
      * 
      * 
      */
+
+     Route::get('admin/settings/ocupacion/issreei/index', [CatalogoOcupacionIssreeiController::class, 'ocupacionIssreeiIndex'])->name('ocupacionIssreeiIndex'); 
+
+     Route::get('admin/settings/ocupacion/issreei/create', [CatalogoOcupacionIssreeiController::class, 'ocupacionIssreeiCreate'])->name('ocupacionIssreeiCreate');  
+ 
+     Route::post('admin/settings/ocupacion/issreei/store', [CatalogoOcupacionIssreeiController::class, 'ocupacionIssreeiStore'])->name('ocupacionIssreeiStore'); 
+ 
+     Route::get('admin/settings/ocupacion/issreei/edit/{id}', [CatalogoOcupacionIssreeiController::class, 'ocupacionIssreeiEdit'])->name('ocupacionIssreeiEdit');  
+ 
+     Route::put('admin/settings/ocupacion/issreei/update/{id}', [CatalogoOcupacionIssreeiController::class, 'ocupacionIssreeiUpdate'])->name('ocupacionIssreeiUpdate');
+
+     Route::delete('admin/settings/ocupacion/issreei/delete/{id}', [CatalogoOcupacionIssreeiController::class, 'ocupacionIssreeiDestroy'])->name('ocupacionIssreeiDestroy');
 
      /**
      * 

@@ -21,30 +21,24 @@
             
             <div class="card-body">
 
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
                 <div class="row">
                     <div class="col-md-6">
                         <input type="text" name="curp" id='curp' class="form-control" value="{{ old('curp') }}" onpaste="return false;">
                         @error('curp')
                             <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                        <br>
-                        @if (session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                        @endif
                     </div>
                     <div class="col-md-6">
                         <input type="text" name="curp_confirma" id='curp_confirma' class="form-control" value="{{ old('curp_confirma') }}" onpaste="return false;">
                         @error('curp_confirma')
                             <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                        <br>
-                        @if (session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                        @endif
                     </div>
                 </div>
 

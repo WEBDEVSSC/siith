@@ -412,6 +412,10 @@ return [
                     'url' => 'admin/settings/ocupacion/cors/index',
                 ],
                 [
+                    'text' => 'ISSREEI (10)',
+                    'url' => 'admin/settings/ocupacion/issreei/index',
+                ],
+                [
                     'text' => 'CESAME (11)',
                     'url' => 'admin/settings/ocupacion/cesame/index',
                 ],

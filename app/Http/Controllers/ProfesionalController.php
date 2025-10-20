@@ -134,7 +134,7 @@ class ProfesionalController extends Controller
         if ($profesional) 
         {
             // Si el registro ya existe, redirigimos con un mensaje de error
-            return redirect()->back()->with('error', 'USUARIO REGISTRADO');
+            return redirect()->back()->with('error', 'El trabajador ya se encuentra registrado, favor de intentar con otro CURP')->withInput();
         } 
         else 
         {
