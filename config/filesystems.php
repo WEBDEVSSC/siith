@@ -60,13 +60,6 @@ return [
             'report' => false,
         ],
 
-        'fotos' => [
-            'driver' => 'local',
-            'root' => '/media/recursosh/D/siith/fotografias',
-            'url' => env('APP_URL') . '/fotos',
-            'visibility' => 'public',
-        ],
-
     ],
 
     /*

@@ -98,30 +98,6 @@ ADMINISTRADOR
         <div class="row">
             <div class="col-md-2">
 
-                <img src="{{ asset('storage/credencializacion/' . $profesional->fotografia) }}" alt="Foto">
-
-
-                <img src="{{ asset('storage/credencializacion/thumbs/' . $profesional->fotografia) }}" alt="Miniatura">
-
-                <center>
-                    @if($fotoUrl)
-                        <img src="{{ $fotoUrl }}" alt="Fotografía del profesional" class="img-thumbnail" style="max-width:200px; height:auto;">
-                    @else
-                        <img src="{{ asset('images/avatar-placeholder.png') }}" alt="Sin foto" class="img-thumbnail" style="max-width:200px; height:auto;">
-                    @endif
-
-                    <br><br>
-
-                    @if($fotografia)
-                        <a href="{{ asset('storage/credencializacion/' . $fotografia) }}" 
-                        class="btn btn-info btn-sm" target="_blank">
-                        Descargar fotografía original
-                        </a>
-                    @endif
-                </center>
-
-
-
                 <center>
                     @if($fotoUrl)
                         <img src="{{ $fotoUrl }}" alt="Fotografía del profesional" style="max-width:200px; height:auto;" class="img-thumbnail"/>
