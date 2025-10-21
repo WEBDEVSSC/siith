@@ -655,7 +655,7 @@ ADMINISTRADOR
             <div class="row">
                 <div class="col-md-3">
                     <p><strong>FIEL </strong></p>
-                    {{ $fiel }} {{ \Carbon\Carbon::parse($fiel_vigencia)->format('d-m-Y') }}
+                    {{ $fiel ? $fiel . ($fiel_vigencia ? ' ' . \Carbon\Carbon::parse($fiel_vigencia)->format('d-m-Y') : '') : '' }}
                 </div>
                 <div class="col-md-3">
                     <p><strong>Actividad</strong></p>
