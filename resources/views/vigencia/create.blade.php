@@ -22,10 +22,10 @@
 </div>
 
 @if(session('error'))
-                    <div class="alert alert-danger">
-                        {{ session('error') }}
-                    </div>
-                @endif
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
     
 <div class="card">
         <div class="card-header">
@@ -106,6 +106,7 @@
                     <th>Fecha Inicio</th>
                     <th>Fecha Final</th>
                     <th>Registro</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -121,7 +122,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="5" class="text-center">No hay registros de vigencias</td>
+                    <td colspan="6" class="text-center">No hay registros de vigencias</td>
                 </tr>
                 @endforelse
             </tbody>
@@ -165,6 +166,13 @@
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+
+    <script>
+        $(document).ready(function() {
+            // Inicializar todos los tooltips de la página
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

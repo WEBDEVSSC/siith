@@ -24,8 +24,8 @@ class RevisarBajasTemporales extends Command
         ->get();
 
         // Enviar correo
-        Mail::to('soportewebssc@gmail.com')->send(new BajasTemporalesMail($resultados));
+        Mail::to(['soportewebssc@gmail.com','ssclaucruz@hotmail.com'])->send(new BajasTemporalesMail($resultados));
 
-        $this->info("Correo enviado con éxito a soportewebcoah@gmail.com con " . $resultados->count() . " resultados.");
+        $this->info("Correo enviado con éxito con " . $resultados->count() . " resultados.");
     }
 }

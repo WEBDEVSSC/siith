@@ -34,11 +34,13 @@
 
         </div>
 
-        <form action="{{ route('storeCambioTipoNomina') }}" method="POST">
+        <form action="{{ route('updateCambioTipoNomina', $tipoDeNomina->id) }}" method="POST">
 
             @csrf
 
-            <input type="hidden" name="id_profesional" value="{{ $profesional->id }}">
+            @method('PUT')
+
+            <input type="hidden" name="id_profesional" value="{{ $profesional->id}}">
 
             <div class="card-body">
 
@@ -52,7 +54,7 @@
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($codigosPuesto as $codigoPuesto)
                                 <option value="{{ $codigoPuesto->id }}"
-                                    {{ old('codigo_puesto') == $codigoPuesto->id ? 'selected' : '' }}>
+                                    {{ old('codigo_puesto', $tipoDeNomina->codigo_puesto_id ?? '') == $codigoPuesto->id ? 'selected' : '' }}>
                                     {{ $codigoPuesto->codigo_puesto }} - {{ $codigoPuesto->codigo }}
                                 </option>
                             @endforeach
@@ -69,7 +71,7 @@
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($nominasPago as $nominaPago)
                                 <option value="{{ $nominaPago->id }}"
-                                    {{ old('nomina_pago') == $nominaPago->id ? 'selected' : '' }}>
+                                    {{ old('nomina_pago', $tipoDeNomina->id_nomina_pago ?? '') == $nominaPago->id ? 'selected' : '' }}>
                                     {{ $nominaPago->nomina }}
                                 </option>
                             @endforeach
@@ -79,6 +81,7 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
 
                     <div class="col-md-3">
                         <p><strong>Tipo de contrato</strong></p>
@@ -97,9 +100,6 @@
                         @enderror
                     </div>
 
-
-
-
                 </div>
 
                 <!-- ---------------------------------------------------------------------- -->
@@ -109,12 +109,13 @@
                     <div class="col-md-3">
                         <p><strong>Fecha de ingreso</strong></p>
                         <input type="date" name="fecha_ingreso" id="fecha_ingreso" class="form-control"
-                            value="{{ old('fecha_ingreso') }}">
-                            @error('fecha_ingreso')
-                                <br>
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
+                            value="{{ old('fecha_ingreso', $tipoDeNomina->fecha_ingreso ?? '') }}">
+                        @error('fecha_ingreso')
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
+
 
                     <div class="col-md-3">
                         <p><strong>Tipo de plaza</strong></p>
@@ -122,7 +123,7 @@
                             <option value="">-- Selecciona una opción --</option>
                             @foreach ($tiposPlaza as $tipoPlaza)
                                 <option value="{{ $tipoPlaza->tipo_plaza }}"
-                                    {{ old('tipo_plaza') == $tipoPlaza->tipo_plaza ? 'selected' : '' }}>
+                                    {{ old('tipo_plaza', $tipoDeNomina->tipo_plaza ?? '') == $tipoPlaza->tipo_plaza ? 'selected' : '' }}>
                                     {{ $tipoPlaza->tipo_plaza }}
                                 </option>
                             @endforeach
@@ -137,8 +138,8 @@
                         <p><strong>Seguro de Salud</strong></p>
                         <select name="seguro_salud" id="seguro_salud" class="form-control">
                             <option value="">-- Seleccione un motivo --</option>
-                            <option value="SI" {{ old('seguro_salud') == 'SI' ? 'selected' : '' }}>SI</option>
-                            <option value="NO" {{ old('seguro_salud') == 'NO' ? 'selected' : '' }}>NO</option>
+                            <option value="SI" {{ old('seguro_salud', $tipoDeNomina->seguro_salud ?? '') == 'SI' ? 'selected' : '' }}>SI</option>
+                            <option value="NO" {{ old('seguro_salud', $tipoDeNomina->seguro_salud ?? '') == 'NO' ? 'selected' : '' }}>NO</option>
                         </select>
                         @error('seguro_salud')
                             <br>
@@ -157,62 +158,6 @@
 
         </form>
     </div>
-
-    <div class="card">
-
-        <div class="card-body">
-
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Nómina de Pago</th>
-                        <th>Tipo de Contrato</th>
-                        <th>Tipo de Plaza</th>
-                        <th>Seguro de Salud</th>
-                        <th>Código de Puesto</th>
-                        <th>Fecha de Ingreso</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($cambiosTipoNomina as $cambioTipoNomina)
-                        <tr>
-                            <td>{{ $cambioTipoNomina->nomina_pago ?? 'N/A' }}</td>
-                            <td>{{ $cambioTipoNomina->tipo_contrato ?? 'N/A' }}</td>
-                            <td>{{ $cambioTipoNomina->tipo_plaza ?? 'N/A' }}</td>
-                            <td>{{ $cambioTipoNomina->seguro_salud ?? 'N/A' }}</td>
-                            <td>{{ $cambioTipoNomina->codigo_puesto ?? 'N/A' }} - {{ $cambioTipoNomina->codigo_puesto_label ?? 'N/A' }}</td>
-                            <td>{{ $cambioTipoNomina->fecha_ingreso ? \Carbon\Carbon::parse($cambioTipoNomina->fecha_ingreso)->format('d-m-Y') : 'N/A' }}</td>
-                            <td>
-                                                                
-                                @if(auth()->user()->role === 'admin')
-                                    <a href="{{ route('editCambioTipoNomina', $cambioTipoNomina->id) }}" 
-                                    class="btn btn-success btn-info" 
-                                    data-toggle="tooltip" data-placement="top" 
-                                    title="EDITAR EN CASO DE ERROR">
-                                    <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </a>
-                                @endif
-
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="7" class="text-center">No hay registros</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-
-        </div>
-
-
-
-    </div>
-
-    <br>
-
-    
 
 @stop
 
@@ -291,7 +236,7 @@
 $(function() {
     const baseUrl = "{{ url('contratos-por-nomina') }}";
     // valor por defecto si estás en edición
-    const contratoSeleccionado = "{{ old('tipo_contrato', $profesional->tipo_contrato ?? '') }}";
+    const contratoSeleccionado = "{{ old('tipo_contrato', $tipoDeNomina->tipo_contrato ?? '') }}";
 
     function cargarContratos(nomina, seleccionado = contratoSeleccionado) {
         $('#tipo_contrato').prop('disabled', true).html('<option>Cargando...</option>');

@@ -60,7 +60,7 @@ class ProfesionalEmergenciaController extends Controller
         'emergencia_nombre_uno' => 'nullable|string|max:128',
         'emergencia_relacion_uno' => 'nullable|string|required_with:emergencia_nombre_uno',
         'emergencia_telefono_uno_uno' => 'nullable|string|digits:10|required_with:emergencia_nombre_uno',
-        'emergencia_telefono_dos_uno' => 'nullable|string|digits:10|required_with:emergencia_nombre_uno',
+        'emergencia_telefono_dos_uno' => 'nullable|string|digits:10',
         'emergencia_email_uno' => 'nullable|string|email|max:100|required_with:emergencia_nombre_uno',
         'emergencia_calle_uno' => 'nullable|string|max:128|required_with:emergencia_nombre_uno',
         'emergencia_numero_uno' => 'nullable|string|max:128|required_with:emergencia_nombre_uno',

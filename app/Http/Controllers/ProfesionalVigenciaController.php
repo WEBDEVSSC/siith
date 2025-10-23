@@ -60,7 +60,8 @@ class ProfesionalVigenciaController extends Controller
             'vigencia'         => 'required',
             'vigencia_motivo'  => 'required',
             'fecha_inicio'     => 'required|date_format:Y-m-d',
-            'fecha_final'      => 'nullable|required_if:vigencia,BAJA TEMPORAL|date_format:Y-m-d|after:fecha_inicio',
+            //'fecha_final'      => 'nullable|required_if:vigencia,BAJA TEMPORAL|date_format:Y-m-d|after:fecha_inicio',
+            'fecha_final'      => 'nullable|required_if:vigencia_motivo,BECA,INCAPACIDAD MEDICA,LIC. MEDICA,LIC. SIN GOCE DE SUELDO,LIC. SIN GOCE DE SUELDO PARA CURSAR RESIDENCIA MEDICA EN INSTITUCIONES FUERA DE LA SECRETARIA DE SALUD,LIC. SIN GOCE DE SUELDO PARA CURSAR RESIDENCIA MEDICA EN LA SECRETARIA DE SALUD,LIC. SIN GOCE DE SUELDO PARA DESEMPENO DE UN CARGO DE ELECCION POPULAR,LIC. SIN GOCE DE SUELDO PARA EL DISFRUTE DE UNA BECA DENTRO O FUERA DEL PAIS,LIC. SIN GOCE DE SUELDO PARA OCUPAR PUESTO DE CONFIAZAN EN LA SECRETARIA DE SALUD,LIC. SIN GOCE DE SUELDO POR ASUNTOS PARTICULARES,LIC. SIN GOCE DE SUELDO POR COM. EXT. PARA OCUPAR PUESTO DE CONF. FUERA DE LA SS Y DENTRO DEL SECTOR PUBLICO FEDERAL|date_format:Y-m-d|after:fecha_inicio',
         ],[
             'id_profesional.required'   => 'El campo profesional es obligatorio.',
             'vigencia.required'         => 'La vigencia es obligatoria.',
