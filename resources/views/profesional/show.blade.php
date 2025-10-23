@@ -89,6 +89,7 @@ ADMINISTRADOR
 @endif
     
 
+
 <div class="card mt-3">
     <div class="card-header">
         <strong><i class="fa fa-user" aria-hidden="true"></i> DATOS GENERALES</strong>        

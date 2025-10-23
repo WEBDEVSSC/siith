@@ -8,16 +8,12 @@ use App\Models\ProfesionalCredencializacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
+
 class ProfesionalCredencializacionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index() {}
 
     /**
      * Show the form for creating a new resource.
@@ -39,7 +35,6 @@ class ProfesionalCredencializacionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-
 
     public function storeCredencializacion(Request $request)
     {
@@ -103,14 +98,10 @@ class ProfesionalCredencializacionController extends Controller
             ->with('successCredencializacion', 'Registro actualizado correctamente.');
     }
 
-
-
-
-
-
     /**
      * Show the form for editing the specified resource.
      */
+    
     public function editCredencializacion($id)
     {
         // Buscamos el registro utilizando el id
@@ -124,7 +115,7 @@ class ProfesionalCredencializacionController extends Controller
         $fotoUrl = $fotografia 
             ? asset('storage/credencializacion/thumbs/' . $fotografia) 
             : null;
-
+            
         // Retornamos la vista
         return view('credencializacion.edit', compact('credencializacion', 'profesional', 'fotoUrl'));
     }
@@ -133,7 +124,6 @@ class ProfesionalCredencializacionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-
     public function updateCredencializacion(Request $request, string $id)
     {
 

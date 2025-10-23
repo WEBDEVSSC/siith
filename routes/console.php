@@ -12,3 +12,5 @@ Artisan::command('inspire', function () {
 Schedule::command('felicitaciones:enviar')->dailyAt('10:00');
 
 Schedule::command('profesionales:revisar-bajas')->dailyAt('08:00');
+
+Schedule::command('db:backup')->dailyAt('02:00');

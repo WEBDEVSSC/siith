@@ -16,7 +16,7 @@
     </ul>
     
 </div>
-    
+
 <div class="card">
         <div class="card-header">
             <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm">PERFIL DEL TRABAJADOR</a>
