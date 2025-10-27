@@ -306,13 +306,15 @@ return [
             'icon' => 'fa fa-area-chart',
             'label_color' => 'success',
         ],
+
         [
             'text' => 'Nuevo registro',
             'url' => 'admin/profesionales/buscarCurp',
             'icon' => 'fas fa-plus',
             'label_color' => 'success',
-            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei'],
+            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei', 'ensenanza'],
         ],
+
         [
             'text' => 'Buscador',
             'url' => 'admin/profesionales/profesionalBuscadorForm',
@@ -320,13 +322,15 @@ return [
             'label_color' => 'success',
             'can' => ['admin', 'directivo', 'credencializacion'],
         ],
+
         [
             'text' => 'Panel de Control',
             'url' => 'admin/profesionales/profesionalIndex',
             'icon' => 'fa-solid fa-list',
             'label_color' => 'success',
-            'can' => ['directivo', 'admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei'],
+            'can' => ['directivo', 'admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei', 'ensenanza'],
         ],
+
         [
             'text' => 'Mi Jurisdicción',
             'url' => 'admin/profesionales/miJurisdiccion',
@@ -334,6 +338,7 @@ return [
             'label_color' => 'success',
             'can' => 'ofJurisdiccional',
         ],
+
         [
             'text' => 'Cambio de Unidad',
             'url' => 'admin/profesionales/cambioDeUnidad/findProfesional',
@@ -341,6 +346,7 @@ return [
             'label_color' => 'success',
             'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino'],
         ],
+
         [
             'text' => 'Reportes',
             'url' => 'admin/profesionales/reportes/reporteIndex',

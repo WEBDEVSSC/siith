@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 
 class BackupDatabase extends Command
 {
@@ -29,8 +30,27 @@ class BackupDatabase extends Command
 
         if ($returnVar === 0) {
             $this->info("✅ Respaldo completado: {$filename}");
+            $this->enviarNotificacionTelegram(true, $filename);
         } else {
             $this->error("❌ Error al generar el respaldo");
+            $this->enviarNotificacionTelegram(false, $filename);
         }
+    }
+
+    private function enviarNotificacionTelegram($exito, $filename)
+    {
+        $token = env('TELEGRAM_BOT_TOKEN'); // tu token en .env
+        $chatId = env('TELEGRAM_CHAT_ID');  // tu chat_id en .env
+
+        $mensaje = $exito
+            ? "✅ Respaldo de base de datos completado: {$filename}"
+            : "❌ Error al generar el respaldo: {$filename}";
+
+        $url = "https://api.telegram.org/bot{$token}/sendMessage";
+
+        Http::post($url, [
+            'chat_id' => $chatId,
+            'text' => $mensaje,
+        ]);
     }
 }

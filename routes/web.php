@@ -125,8 +125,14 @@ Route::middleware(['auth'])->group(function ()
     // Ruta para mostrar el formulario de datos generales
     Route::get('admin/profesionales/datosGenerales/{curp}', [ProfesionalController::class, 'datosGenerales'])->name('datosGenerales');
 
+    // Ruta para mostrar el formulario de registro para Ensenanza
+    Route::get('admin/profesionales/datosGeneralesEnsenanza/{curp}', [ProfesionalController::class, 'datosGeneralesEnsenanza'])->name('datosGeneralesEnsenanza');
+
     // Ruta para guardar los datos generales
     Route::post('admin/profesionales/datosGeneralesStore',[ProfesionalController::class, 'datosGeneralesStore'])->name('datosGeneralesStore');
+
+    // Ruta para guardar los datos generales para ensenanza
+    Route::post('admin/profesionales/datosGeneralesStoreEnsenanza',[ProfesionalController::class, 'datosGeneralesStoreEnsenanza'])->name('datosGeneralesStoreEnsenanza');
 
     // Ruta para ver los registros
     Route::get('admin/profesionales/profesionalIndex',[ProfesionalController::class, 'profesionalIndex'])->name('profesionalIndex');
@@ -217,25 +223,8 @@ Route::middleware(['auth'])->group(function ()
     // Ruta para actualizar el registro
     Route::put('admin/profesionales/credencializacion/updateCredencializacion/{id}', [ProfesionalCredencializacionController::class, 'updateCredencializacion'])->name('updateCredencializacion');
 
-    // Ruta para mostrar la imagen al estar en la carpeta private
-    Route::get('/foto/{filename}', function ($filename) {
-        $path = storage_path('app/private/credencializacion/' . $filename);
-
-        // Verificar si el archivo existe
-        if (file_exists($path)) {
-            return response()->file($path);
-        }
-
-        return abort(404); // Si el archivo no existe, devuelve un error 404
-    });
-
-    Route::get('/credencializacion/thumbs/{filename}', [ProfesionalCredencializacionController::class, 'mostrarThumb'])
-    ->where('filename', '.*')
-    ->name('credencializacion.thumb');
-
-
-    Route::get('/credencializacion/descargar/{id}', [ProfesionalCredencializacionController::class, 'descargarFoto'])
-     ->name('credencializacion.descargar');
+    // Ruta para descargar la imagen
+    Route::get('/credencializacion/descargar/{id}', [ProfesionalCredencializacionController::class, 'descargarFoto'])->name('credencializacion.descargar');
 
     /**
      * 

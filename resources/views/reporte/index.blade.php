@@ -43,6 +43,20 @@
                 </div>
             </div>
 
+            <div class="col-md-2">
+                <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>Formato</h3>
+
+                    <p>Datos de Emergencia</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                    <a href="{{ asset('storage/formatos/Formulario-Contacto-Emergencia.pdf') }}" target="_blank" class="small-box-footer">Descargar <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+
         </div>
 
 

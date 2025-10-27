@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Exports\ProfesionalExport;
 use App\Mail\FelicitacionCumpleanos;
+use App\Models\CatOcupacionHospital;
 use App\Models\Clue;
+use App\Models\CodigoPuesto;
 use App\Models\Entidad;
 use App\Models\EstadoConyugal;
 use App\Models\Municipio;
 use App\Models\Profesional;
 use App\Models\ProfesionalBitacora;
+use App\Models\ProfesionalCambioTipoNomina;
 use App\Models\ProfesionalOcupacionAlmacen;
 use App\Models\ProfesionalOcupacionCeam;
 use App\Models\ProfesionalOcupacionCentroSalud;
@@ -138,10 +141,28 @@ class ProfesionalController extends Controller
         } 
         else 
         {
-            // Si no se encuentra el registro, redirigimos al formulario de creación de datos
-            return redirect()->route('datosGenerales', [
-                'curp' => $request->curp
-            ]);
+            $usuario = Auth::user(); // o auth()->user()
+    
+            // Obtener el rol
+            $rol = $usuario->role; // cambia 'rol' por el nombre de tu columna
+
+            // Puedes hacer condicionales según el rol
+            if ($rol === 'ensenanza') 
+            {
+                // hacer algo solo para usuarios con rol "ensenanza"
+                return redirect()->route('datosGeneralesEnsenanza', [
+                    'curp' => $request->curp
+                ]);
+            }
+            else
+            {
+                // Si no se encuentra el registro, redirigimos al formulario de creación de datos
+                return redirect()->route('datosGenerales', [
+                    'curp' => $request->curp
+                ]);
+            }
+            
+            
         }
     }
 
@@ -223,6 +244,64 @@ class ProfesionalController extends Controller
             'nacionalidad',
             'estadosConyuales',
             'cluesAdscripcion'
+        ));
+    }
+
+    /**
+     * 
+     * 
+     * METODO PARA MOSTRAR EL FORMULARIO DE DATOS GENERALES CON LOS DATOS DE LA CURP EXTRAIDOS
+     * 
+     */
+
+    public function datosGeneralesEnsenanza($curp)
+    {
+        // Extraemos los datos de la CURP
+        $rfc = substr($curp, 0, 10);
+        $fechaNacimiento = substr($curp, 4, 6);
+        $sexo = substr($curp, 10, 1);  
+        $entidadNacimiento = substr($curp, 11, 2);
+
+         // Formateamos la fecha
+         $fechaFormateada = Carbon::createFromFormat('ymd', $fechaNacimiento)->format('Y-m-d');
+
+         // Consultamos la entidad de nacimiento
+         $entidad = Entidad::where('abreviacion',$entidadNacimiento)->first();
+
+         // Estados conyugales
+         $estadosConyuales = EstadoConyugal::all();
+
+         // Ajustamos la nacionalidad
+         if($entidadNacimiento === 'X')
+         {
+             $paisNacimiento = 'EXTRANGERO';
+             $nacionalidad = 'EXTRANGERA';
+         }
+         else
+         {
+             $paisNacimiento = 'MÉXICO';
+             $nacionalidad = 'MEXICANA';
+         }
+
+         // Lista de municipios
+         $municipios = Municipio::where('relacion',$entidad->id)->get();
+
+         $ocupaciones = CatOcupacionHospital::where('subarea','PERSONAL EN FORMACION')->get();
+
+         $codigosDePuesto = CodigoPuesto::where('personal_formacion',1)->get();
+
+         return view('profesional.create-ensenanza',compact(
+            'curp',
+            'rfc',
+            'sexo',
+            'fechaFormateada',
+            'paisNacimiento',
+            'entidad',
+            'municipios',
+            'nacionalidad',
+            'estadosConyuales',
+            'ocupaciones',
+            'codigosDePuesto'
         ));
     }
 
@@ -345,7 +424,7 @@ class ProfesionalController extends Controller
 
         // Generamos el registro en en el modulo de puesto
 
-        $cluesAdscripcion = Clue::where('clues',$request->clues_adscripcion)->firstOrFail();;
+        $cluesAdscripcion = Clue::where('clues',$request->clues_adscripcion)->firstOrFail();
 
         $puesto = new ProfesionalPuesto();
 
@@ -364,6 +443,212 @@ class ProfesionalController extends Controller
         
 
         $puesto->save();
+
+        // Redireccionamos
+        return redirect()->route('profesionalShow', ['id' => $profesional->id])
+                 ->with('success', 'Registro realizado correctamente.');
+    }
+
+    /**
+     * 
+     * 
+     * METODO PARA GUARDAR LOS DATOS GENERALES DEL PROFESIONAL
+     * 
+     */
+
+    public function datosGeneralesStoreEnsenanza(Request $request)
+    {
+        // Validamos los datos
+        $validated = $request->validate([
+            'curp' => 'required',
+            'rfc' => 'required',
+            'homoclave' => 'required|size:3',
+            'sexo' => 'required',
+            'nombre' => 'required',
+            'apellido_paterno' => 'required',
+            'apellido_materno' => 'required',
+            'fechaFormateada' => 'required',
+            'paisNacimiento' => 'required',
+            'entidadNacimiento' => 'required',
+            'municipio_nacimiento' => 'required',
+            'nacionalidad' => 'required',
+            'estado_conyugal' => 'required',
+            'telefono_casa' => 'nullable|size:10',
+            'celular' => 'required|size:10',
+            'email' => 'required|email',
+            'padre_madre_familia' => 'required',
+            'fecha_inicio' => 'required|date_format:Y-m-d|before_or_equal:today',
+            'tipo_nomina' => 'required',
+            'ocupacion' => 'required',
+            'codigo_puesto' => 'required'
+        ], [
+            'homoclave.required' => 'La homoclave es obligatoria.',
+            'homoclave.size' => 'La homoclave debe ser de 3 caracteres.',            
+            'nombre.required' => 'El nombre es obligatorio.',            
+            'apellido_paterno.required' => 'El apellido paterno es obligatorio.',            
+            'apellido_materno.required' => 'El apellido materno es obligatorio.',            
+            'municipio_nacimiento.required' => 'El municipio de nacimiento es obligatorio.',            
+            'telefono_casa.required' => 'El teléfono de casa es obligatorio.',
+            'telefono_casa.size' => 'El teléfono de casa debe tener más de 10 caracteres.',            
+            'celular.required' => 'El celular es obligatorio.',
+            'celular.size' => 'El celular debe tener más de 10 caracteres.',            
+            'email.required' => 'El correo electrónico es obligatorio.',
+            'email.email' => 'El correo electrónico debe ser una dirección válida.',
+            'estado_conyugal.required' => 'El estado conyugal es obligatorio.',
+            'padre_madre_familia.required' => 'El campo Padre / Madre de familia es obligatorio.',
+            'clues_adscripcion.required' => 'La CLUES es obligatorio',
+            'fecha_inicio.required' => 'La fecha de inicio es obligatoria.',
+            'fecha_inicio.before_or_equal' => 'La fecha de inicio no puede ser mayor al día de hoy.',
+            'fecha_inicio.date_format' => 'La fecha de vigencia debe tener el formato DD-MM-AAAA.',
+        ]);
+
+        //dd($request->all());
+
+        // Formateamos el valor de SEXO
+        if($request->sexo === "H")
+        {
+            $sexoNuevo = "M";
+        }
+        else
+        {
+            $sexoNuevo = "F";
+        }
+
+        // Consultamos el municipio de nacimiento
+        $municipio = Municipio::findOrFail($request->municipio_nacimiento);
+        
+        // Datos del capturista
+        $usuario = Auth::user();
+
+        // Ahora que los datos están validados, puedes guardarlos en la base de datos
+        $profesional = new Profesional();
+
+        $profesional->curp = $request->curp;
+        $profesional->rfc = $request->rfc;
+        $profesional->homoclave = $request->homoclave;
+        $profesional->nombre = $request->nombre;
+        $profesional->apellido_paterno = $request->apellido_paterno;
+        $profesional->apellido_materno = $request->apellido_materno;
+        $profesional->fecha_nacimiento = $request->fechaFormateada; 
+        $profesional->sexo = $sexoNuevo;
+        $profesional->pais_nacimiento = $request->paisNacimiento;
+        $profesional->entidad_nacimiento = $request->entidadNacimiento;
+        $profesional->municipio_nacimiento = $municipio->nombre;
+        $profesional->nacionalidad = $request->nacionalidad;
+        $profesional->estado_conyugal = $request->estado_conyugal;
+        $profesional->telefono_casa = $request->telefono_casa;
+        $profesional->celular = $request->celular;
+        $profesional->email = $request->email;
+        $profesional->padre_madre_familia = $request->padre_madre_familia;
+        $profesional->capturado_id = $usuario->id;
+        $profesional->capturado_label = $usuario->responsable;
+        $profesional->mdl_datos_generales = 1;
+
+        // Guardar el nuevo profesional
+        $profesional->save();
+
+        // Guaradmos la bitacora
+        $bitacora = new ProfesionalBitacora();
+
+        $bitacora->id_capturista = $usuario->id;
+        $bitacora->capturista_label = $usuario->responsable;
+        $bitacora->accion = "NUEVO REGISTRO DE PROFESIONAL";
+        $bitacora->id_profesional = $profesional->id;
+
+        $bitacora->save();
+
+        // Generamos un el status de vigencia ACTIVO
+
+        $vigencia = new ProfesionalVigencia();
+
+        $vigencia->id_profesional = $profesional->id;
+        $vigencia->vigencia = "ACTIVO";
+        $vigencia->vigencia_motivo = "ACTIVO";
+        $vigencia->fecha_inicio = $request->fecha_inicio;
+
+        $vigencia->save();
+
+        // Generamos el registro en en el modulo de puesto
+
+        // CLUES NOMINA ES OFICINA CENTRAL
+
+        $cluesNomina = Clue::where('clues','CLSSA002093')->firstOrFail();
+
+        // CLUES ADSCRICIION HOSPITAL UNIVERSITARIO
+
+        $cluesAdscripcionClues = 'CLHUN000015';
+        $cluesAdscripcionNombre = 'HOSPITAL UNIVERSITARIO';
+        $cluesAdscripcionMunicipio = 'SALTILLO';
+        $cluesAdscripcionJurisdiccion = '9';
+        $cluesAdscripcionTipo = '15';
+
+        // Generamos el registro en el modulo de puesto
+
+        $puesto = new ProfesionalPuesto();
+
+        $puesto->id_profesional = $profesional->id;
+        $puesto->vigencia = "ACTIVO";
+        $puesto->vigencia_motivo = "ACTIVO";
+        $puesto->fecha_ingreso = $request->fecha_inicio;
+
+        $puesto->clues_nomina = $cluesNomina->clues;
+        $puesto->clues_nomina_nombre = $cluesNomina->nombre;
+        $puesto->clues_nomina_municipio = $cluesNomina->municipio;
+        $puesto->clues_nomina_jurisdiccion = $cluesNomina->clave_jurisdiccion;
+
+        $puesto->clues_adscripcion = $cluesAdscripcionClues;
+        $puesto->clues_adscripcion_nombre = $cluesAdscripcionNombre;
+        $puesto->clues_adscripcion_municipio = $cluesAdscripcionMunicipio;
+        $puesto->clues_adscripcion_jurisdiccion = $cluesAdscripcionJurisdiccion;
+        $puesto->clues_adscripcion_tipo = $cluesAdscripcionTipo;
+
+        $puesto->mdl_puesto = 0;
+        
+        $puesto->save();
+
+        // Consultamos el tipo de Nomina
+        if($request->tipo_nomina == "6MR")
+        {
+            $nominaPagoId = 6;
+            $nominaPago = "6MR - Médico Residente";
+            $nominaTipoContrato = "BECAS";
+            $nominaTipoPlaza = "FEDERAL";
+            $nominaSeguroSalud = "SI";
+            $nominaCodigoPuestoId = 1;
+            $nominaCodigoPuestoLabel = "CONSULTAR DATOS";
+            $nominaCodigoPuestoFechaDeIngreso = $request->fecha_inicio;
+            $nominaCodigoPuestoCodigo = "CODIGO PUESTO";
+        }
+        else
+        {   
+            $nominaPagoId = 5;
+            $nominaPago = "610 - Pasante en Servicio Social";
+            $nominaTipoContrato = "BECAS";
+            $nominaTipoPlaza = "FEDERAL";
+            $nominaSeguroSalud = "SI";
+            $nominaCodigoPuestoId = 1;
+            $nominaCodigoPuestoLabel = "CONSULTAR DATOS";
+            $nominaCodigoPuestoFechaDeIngreso = $request->fecha_inicio;
+            $nominaCodigoPuestoCodigo = "CODIGO PUESTO";
+        }
+
+
+        // Generamos el registro en el modulo de Nomina
+
+        $nomina = new ProfesionalCambioTipoNomina();
+
+        $nomina->id_profesional = $profesional->id;
+        $nomina->id_nomina_pago = $nominaPagoId;
+        $nomina->nomina_pago = $nominaPago;
+        $nomina->tipo_contrato = $nominaTipoContrato;
+        $nomina->tipo_plaza = $nominaTipoPlaza;
+        $nomina->seguro_salud = $nominaSeguroSalud;
+        $nomina->codigo_puesto_id = $nominaCodigoPuestoId;
+        $nomina->codigo_puesto_label = $nominaCodigoPuestoLabel;
+        $nomina->fecha_ingreso = $nominaCodigoPuestoFechaDeIngreso;
+        $nomina->codigo_puesto = $nominaCodigoPuestoCodigo;
+
+        $nomina->save();
 
         // Redireccionamos
         return redirect()->route('profesionalShow', ['id' => $profesional->id])
@@ -501,6 +786,13 @@ class ProfesionalController extends Controller
         {
             $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
                 ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002640')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        } 
+        elseif(Gate::allows('ensenanza'))
+        {
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereInRelation('puesto', 'nomina_pago', ['610 - Pasante en Servicio Social','6MR - Médico Residente'])
                 ->whereRelation('puesto', 'vigencia', 'ACTIVO')
                 ->get();
         } 

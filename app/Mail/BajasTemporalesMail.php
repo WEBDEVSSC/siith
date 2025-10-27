@@ -11,15 +11,17 @@ class BajasTemporalesMail extends Mailable
     use Queueable, SerializesModels;
 
     public $resultados;
+    public $titulo;
 
-    public function __construct($resultados)
+    public function __construct($titulo, $resultados)
     {
         $this->resultados = $resultados;
+        $this->titulo = $titulo;
     }
 
     public function build()
     {
-        return $this->subject('Trabajadores con vencimiento de Baja Temporal')
+        return $this->subject('S.I.I.T.H. - Vencimiento Comisiones')
                     ->view('email.bajas-temporales');
     }
 }
