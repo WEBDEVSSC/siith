@@ -35,6 +35,7 @@ use App\Http\Controllers\ProfesionalSueldoController;
 use App\Http\Controllers\ProfesionalVigenciaController;
 use App\Http\Controllers\SystemSettingsController;
 use App\Http\Controllers\UsuarioController;
+use App\Models\ProfesionalOcupacionEnsenanza;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -552,6 +553,16 @@ Route::middleware(['auth'])->group(function ()
       Route::get('admin/profesionales/ocupaciones/editHospitalNino/{id}', [ProfesionalOcupacionController::class, 'editHospitalNino'])->name('editHospitalNino');
  
       Route::put('admin/profesionales/ocupaciones/updateHospitalNino/{id}', [ProfesionalOcupacionController::class, 'updateHospitalNino'])->name('updateHospitalNino');
+
+      /**RUTAS PARA EL CATALOGO 15 - PASANTES MEDICOS Y ENFERMERIA */
+
+      Route::get('admin/profesionales/ocupaciones/createEnsenanza/{id}', [ProfesionalOcupacionController::class, 'createEnsenanza'])->name('createEnsenanza');
+
+      Route::post('admin/profesionales/ocupaciones/storeEnsenanza', [ProfesionalOcupacionController::class, 'storeEnsenanza'])->name('storeEnsenanza');
+ 
+      Route::get('admin/profesionales/ocupaciones/editEnsenanza/{id}', [ProfesionalOcupacionController::class, 'editEnsenanza'])->name('editEnsenanza');
+ 
+      Route::put('admin/profesionales/ocupaciones/updateEnsenanza/{id}', [ProfesionalOcupacionController::class, 'updateEnsenanza'])->name('updateEnsenanza');
 
     /**
      * 

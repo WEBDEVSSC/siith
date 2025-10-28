@@ -340,6 +340,14 @@ ADMINISTRADOR
                     <li>{{ optional($ocupacion)->unidad_dos }} - {{ optional($ocupacion)->area_dos }} - {{ optional($ocupacion)->subarea_dos }} - {{ optional($ocupacion)->ocupacion_dos }}</li>
                 </ul>
             @endif
+
+            <!-- OCUPACION PARA PASANTES MEDICOS Y ENFERMERIA (15) -->
+
+            @if ($cluesAdscripcionTipo == 15)
+                <ul>
+                    <li>{{ optional($ocupacion)->unidad }} - {{ optional($ocupacion)->area }} - {{ optional($ocupacion)->subarea }} - {{ optional($ocupacion)->ocupacion }}</li>
+                </ul>
+            @endif
             
         </div>
         <div class="card-footer">
@@ -542,6 +550,21 @@ ADMINISTRADOR
                     </a>
                 @else  
                     <a href="{{ route('createHospitalNino', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="HOSPITAL DEL NIÑO">
+                        <i class="fa-solid fa-children"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
+                    </a>
+                @endif
+                
+            @endif
+
+            <!-- PASANTES MEDICOS Y ENFERMERIA -->
+            @if ($profesional->puesto?->clues_adscripcion_tipo == 15)
+
+                @if ($profesional->ocupacionEnsenanza?->mdl_status == 1)
+                    <a href="{{ route('editEnsenanza', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="PASANTES MEDICOS / ENFERMERIA">
+                        <i class="fa-solid fa-children"></i> EDITAR CATÁLOGO / CARTERA DE SERVICIOS
+                    </a>
+                @else  
+                    <a href="{{ route('createEnsenanza', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="PASANTES MEDICOS / ENFERMERIA">
                         <i class="fa-solid fa-children"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @endif

@@ -20,6 +20,7 @@ use App\Models\ProfesionalOcupacionCesame;
 use App\Models\ProfesionalOcupacionCetsLesp;
 use App\Models\ProfesionalOcupacionCors;
 use App\Models\ProfesionalOcupacionCriCree;
+use App\Models\ProfesionalOcupacionEnsenanza;
 use App\Models\ProfesionalOcupacionHospital;
 use App\Models\ProfesionalOcupacionHospitalNino;
 use App\Models\ProfesionalOcupacionIssreei;
@@ -1346,6 +1347,12 @@ class ProfesionalController extends Controller
         {
             $catalogoLabel = "HOSPITAL DEL NIÑO";
             $ocupacion = ProfesionalOcupacionHospitalNino::where('id_profesional', $id)->first();
+        }
+        // PASANTE DE ENSENANZA (15)
+        elseif ($tipo == 15) 
+        {
+            $catalogoLabel = "PASANTES MEDICOS / ENFERMERIA";
+            $ocupacion = ProfesionalOcupacionEnsenanza::where('id_profesional', $id)->first();
         }
         else
         {
