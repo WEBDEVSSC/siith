@@ -7,7 +7,7 @@
 @section('plugins.Datatables', true)
 
 @section('content_header')
-    <h1><strong>Ocupaciones / Cartera de Servicios</strong> <small>PSI Parras</small></h1>
+    <h1><strong>Ocupaciones / Cartera de Servicios</strong> <small>Personal En Formación</small></h1>
 @stop
 
 @section('content')
@@ -41,7 +41,7 @@
     
 <div class="card">
         <div class="card-header">
-            <a href="{{ route('ocupacionPsiParrasCreate') }}" class="btn btn-success btn-sm">NUEVO REGISTRO</a>
+            <a href="{{ route('ocupacionEnsenanzaCreate') }}" class="btn btn-success btn-sm">NUEVO REGISTRO</a>
         </div>
         <div class="card-body">
 
@@ -53,13 +53,10 @@
         <table id="profesionalesTable" class="table table-bordered">
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>UNIDAD</th>
                     <th>AREA</th>
-                    <th>SUBAREA SERVICIO</th>
-                    <th>COMPONENTE</th>
+                    <th>SUBAREA</th>
                     <th>OCUPACION</th>
-                    <th>ORDEN</th>
                     <th></th>
                     
                 </tr>
@@ -67,20 +64,17 @@
             <tbody>
                 @foreach ($ocupaciones as $ocupacion)
                     <tr>
-                        <td>{{ $ocupacion->id }}</td>                     
-                        <td>{{ $ocupacion->unidad }}</td>                 
+                        <td>{{ $ocupacion->unidad }}</td>                     
                         <td>{{ $ocupacion->area }}</td>                 
-                        <td>{{ $ocupacion->subarea_servicio }}</td>                 
-                        <td>{{ $ocupacion->componente }}</td>                    
-                        <td>{{ $ocupacion->ocupacion }}</td>                   
-                        <td>{{ $ocupacion->orden }}</td>                   
+                        <td>{{ $ocupacion->subarea }}</td>                       
+                        <td>{{ $ocupacion->ocupacion }}</td>                
                         <td>
                         
-                            <a href="{{ route('ocupacionPsiParrasEdit', $ocupacion->id) }}" class="btn btn-warning btn-sm btn-block">EDITAR</a>
+                            <a href="{{ route('ocupacionEnsenanzaEdit', $ocupacion->id) }}" class="btn btn-warning btn-sm btn-block">EDITAR</a>
 
                             <br>
 
-                            <form action="{{ route('ocupacionPsiParrasDestroy', $ocupacion->id) }}" method="POST" class="form-eliminar">
+                            <form action="{{ route('ocupacionEnsenanzaDestroy', $ocupacion->id) }}" method="POST" class="form-eliminar">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm btn-block">ELIMINAR</button>
@@ -110,13 +104,6 @@
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
-
-    <script>
-        $(document).ready(function() {
-            // Inicializar todos los tooltips de la página
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
 
     <script>$(document).ready( function () {
         $(document).ready(function() {

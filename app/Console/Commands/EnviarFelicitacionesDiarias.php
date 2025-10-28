@@ -41,8 +41,8 @@ class EnviarFelicitacionesDiarias extends Command
         $chatId = env('TELEGRAM_CHAT_ID');
 
         $mensaje = $cantidad > 0
-            ? "Se han enviado $cantidad correos de felicitación exitosamente."
-            : "No hubo cumpleaños hoy, no se enviaron correos.";
+            ? "✅ Se han enviado $cantidad correos de felicitación exitosamente."
+            : "❌ No hubo cumpleaños hoy, no se enviaron correos.";
 
         $url = "https://api.telegram.org/bot{$token}/sendMessage";
 

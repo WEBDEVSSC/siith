@@ -377,82 +377,11 @@ return [
         ],
 
         [
-            'text' => 'Catalogo Ocupaciones',
+            'text' => 'Catalogos',
+            'url' => 'admin/settings/settingsShow',
             'icon' => 'fas fa-fw fa-lock',
-            'can' => 'admin',
-            'submenu' => [
-                [
-                    'text' => 'C.S.U. y R. (1)',
-                    'url' => 'admin/settings/ocupacion/csuyr/index',
-                ],
-                [
-                    'text' => 'Hospitales (2)',
-                    'url' => 'admin/settings/ocupacion/hospital/index',
-                ],
-                [
-                    'text' => 'Of. Jurisdiccional (3)',
-                    'url' => 'admin/settings/ocupacion/ofJurisdiccional/index',
-                ],
-                [
-                    'text' => 'CRI CREE (4)',
-                    'url' => 'admin/settings/ocupacion/CriCree/index',
-                ],
-                [
-                    'text' => 'SAMU CRUM (5)',
-                    'url' => 'admin/settings/ocupacion/samuCrum/index',
-                ],
-                [
-                    'text' => 'Of. Central (6)',
-                    'url' => 'admin/settings/ocupacion/oficinaCentral/index',
-                ],
-                [
-                    'text' => 'Almacen (7)',
-                    'url' => 'admin/settings/ocupacion/almacen/index',
-                ],
-                [
-                    'text' => 'CETS / LESP (8)',
-                    'url' => 'admin/settings/ocupacion/cetsLesp/index',
-                ],
-                [
-                    'text' => 'CORS (9)',
-                    'url' => 'admin/settings/ocupacion/cors/index',
-                ],
-                [
-                    'text' => 'ISSREEI (10)',
-                    'url' => 'admin/settings/ocupacion/issreei/index',
-                ],
-                [
-                    'text' => 'CESAME (11)',
-                    'url' => 'admin/settings/ocupacion/cesame/index',
-                ],
-                [
-                    'text' => 'PSI PARRAS (12)',
-                    'url' => 'admin/settings/ocupacion/psiParras/index',
-                ],
-                [
-                    'text' => 'CEAM (13)',
-                    'url' => 'admin/settings/ocupacion/ceam/index',
-                ],
-                [
-                    'text' => 'H. NIÑO (14)',
-                    'url' => 'admin/settings/ocupacion/hospitalNino/index',
-                ],
-            ],
-
-            
+            'can' => 'admin', 
         ],
-        [
-            'text' => 'Catálogo',
-            'icon' => 'fas fa-fw fa-lock',
-            'can' => 'admin',
-            'submenu' => [
-                [
-                    'text' => 'Vigencias',
-                    'url' => 'admin/settings/vigencias/vigenciasIndex',
-                ],
-            ],
-        ],
-
         
     ],
 

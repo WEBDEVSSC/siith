@@ -8,6 +8,7 @@ use App\Http\Controllers\CatalogoOcupacionCesameController;
 use App\Http\Controllers\CatalogoOcupacionCetsLespController;
 use App\Http\Controllers\CatalogoOcupacionCorsController;
 use App\Http\Controllers\CatalogoOcupacionCriCreeController;
+use App\Http\Controllers\CatalogoOcupacionEnsenanzaController;
 use App\Http\Controllers\CatalogoOcupacionHospitalController;
 use App\Http\Controllers\CatalogoOcupacionHospitalNinoController;
 use App\Http\Controllers\CatalogoOcupacionIssreeiController;
@@ -32,6 +33,7 @@ use App\Http\Controllers\ProfesionalPuestoController;
 use App\Http\Controllers\ProfesionalReporteController;
 use App\Http\Controllers\ProfesionalSueldoController;
 use App\Http\Controllers\ProfesionalVigenciaController;
+use App\Http\Controllers\SystemSettingsController;
 use App\Http\Controllers\UsuarioController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -865,6 +867,26 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/settings/ocupacion/hospitalNino/update/{id}', [CatalogoOcupacionHospitalNinoController::class, 'ocupacionHospitalNinoUpdate'])->name('ocupacionHospitalNinoUpdate');
 
      Route::delete('admin/settings/ocupacion/hospitalNino/delete/{id}', [CatalogoOcupacionHospitalNinoController::class, 'ocupacionHospitalNinoDestroy'])->name('ocupacionHospitalNinoDestroy');
+
+     /**
+     * 
+     * 
+     * 15 PASANTES Y RESIDENTES MEDICOS
+     * 
+     * 
+     */
+    
+     Route::get('admin/settings/ocupacion/ensenanza/index', [CatalogoOcupacionEnsenanzaController::class, 'ocupacionEnsenanzaIndex'])->name('ocupacionEnsenanzaIndex'); 
+
+     Route::get('admin/settings/ocupacion/ensenanza/create', [CatalogoOcupacionEnsenanzaController::class, 'ocupacionEnsenanzaCreate'])->name('ocupacionEnsenanzaCreate');  
+ 
+     Route::post('admin/settings/ocupacion/ensenanza/store', [CatalogoOcupacionEnsenanzaController::class, 'ocupacionEnsenanzaStore'])->name('ocupacionEnsenanzaStore'); 
+ 
+     Route::get('admin/settings/ocupacion/ensenanza/edit/{id}', [CatalogoOcupacionEnsenanzaController::class, 'ocupacionEnsenanzaEdit'])->name('ocupacionEnsenanzaEdit');  
+ 
+     Route::put('admin/settings/ocupacion/ensenanza/update/{id}', [CatalogoOcupacionEnsenanzaController::class, 'ocupacionEnsenanzaUpdate'])->name('ocupacionEnsenanzaUpdate');
+
+     Route::delete('admin/settings/ocupacion/ensenanza/delete/{id}', [CatalogoOcupacionEnsenanzaController::class, 'ocupacionEnsenanzaDestroy'])->name('ocupacionEnsenanzaDestroy');
  
      /**
      * 
@@ -885,6 +907,16 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/settings/vigencias/vigenciasUpdate/{id}', [CatalogosController::class, 'vigenciasUpdate'])->name('vigenciasUpdate');
 
      Route::delete('admin/settings/vigencias/vigenciasDestroy/{id}', [CatalogosController::class, 'vigenciasDestroy'])->name('vigenciasDestroy');
+
+    /**
+     * 
+     * 
+     * SYSTEM SETTINGS
+     * 
+     * 
+     */
+
+    Route::get('admin/settings/settingsShow',[SystemSettingsController::class, 'settingsShow'])->name('settingsShow');
 
 });
 

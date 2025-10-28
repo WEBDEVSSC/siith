@@ -7,7 +7,7 @@
 @section('plugins.Datatables', true)
 
 @section('content_header')
-    <h1><strong>Profesionales | Ocupaciones</strong> <small>Hospital</small></h1>
+    <h1><strong>Ocupaciones / Cartera de Servicios</strong> <small>Hospital</small></h1>
 @stop
 
 @section('content')

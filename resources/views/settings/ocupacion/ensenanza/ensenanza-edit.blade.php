@@ -7,7 +7,7 @@
 @section('plugins.Datatables', true)
 
 @section('content_header')
-    <h1><strong>Ocupaciones / Cartera de Servicios</strong> <small>PSI Parras</small></h1>
+    <h1><strong>Ocupaciones / Cartera de Servicios</strong> <small>Personal En Formación</small></h1>
 @stop
 
 @section('content')
@@ -18,7 +18,7 @@
         <div class="card-header">
             
         </div>
-        <form action="{{ route('ocupacionPsiParrasUpdate', $ocupacion->id) }}" method="POST">
+        <form action="{{ route('ocupacionEnsenanzaUpdate', $ocupacion->id) }}" method="POST">
         
         @csrf
 
@@ -28,51 +28,35 @@
 
             <div class="row">
                 <div class="col-md-3">
-                    <p>Unidad</p>
+                    <p><strong>Unidad</strong></p>
                     <input type="text" name="unidad" id="unidad" class="form-control" value="{{ old('unidad', $ocupacion->unidad) }}">
                     @error('unidad')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="col-md-3">
-                    <p>Area</p>
+                    <p><strong>Área</strong></p>
                     <input type="text" name="area" id="area" class="form-control" value="{{ old('area', $ocupacion->area) }}">
                     @error('area')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="col-md-3">
-                    <p>Subarea Servicio</p>
-                    <input type="text" name="subarea_servicio" id="subarea_servicio" class="form-control" value="{{ old('subarea_servicio', $ocupacion->subarea_servicio) }}">
-                    @error('subarea_servicio')
+                    <p><strong>Subarea</strong></p>
+                    <input type="text" name="subarea" id="subarea" class="form-control" value="{{ old('subarea', $ocupacion->subarea) }}">
+                    @error('subarea')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="col-md-3">
-                    <p>Componente</p>
-                    <input type="text" name="componente" id="componente" class="form-control" value="{{ old('componente', $ocupacion->componente) }}">
-                    @error('componente')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="row mt-3">
-                <div class="col-md-3">
-                    <p>Ocupación</p>
+                    <p><strong>Ocupación</strong></p>
                     <input type="text" name="ocupacion" id="ocupacion" class="form-control" value="{{ old('ocupacion', $ocupacion->ocupacion) }}">
                     @error('ocupacion')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
-                <div class="col-md-3">
-                    <p>Orden</p>
-                    <input type="text" name="orden" id="orden" class="form-control" value="{{ old('orden', $ocupacion->orden) }}">
-                    @error('orden')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>            
+                
+            </div>      
 
         </div>
         <div class="card-footer">
