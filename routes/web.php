@@ -31,6 +31,7 @@ use App\Http\Controllers\ProfesionalOcupacionController;
 use App\Http\Controllers\ProfesionalPaseDeSalidaController;
 use App\Http\Controllers\ProfesionalPuestoController;
 use App\Http\Controllers\ProfesionalReporteController;
+use App\Http\Controllers\ProfesionalRolController;
 use App\Http\Controllers\ProfesionalSueldoController;
 use App\Http\Controllers\ProfesionalVigenciaController;
 use App\Http\Controllers\SystemSettingsController;
@@ -600,6 +601,29 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/usuarios/updateUsuario/{id}', [UsuarioController::class,'updateUsuario'])->name('updateUsuario');
 
      Route::delete('admin/usuarios/deleteUsuario/{id}', [UsuarioController::class, 'deleteUsuario'])->name('deleteUsuario');
+
+     /**
+     * 
+     * 
+     * MODULOS ADMINISRATIVOS
+     * ROLES Y PERMISOS
+     * 
+     * 
+     */
+
+     Route::get('admin/usuarios/roles/indexRol', [ProfesionalRolController::class,'indexRol'])->name('indexRol');
+
+     Route::get('admin/usuarios/roles/showRol/{id}', [ProfesionalRolController::class,'showRol'])->name('showRol');
+
+     Route::get('admin/usuarios/roles/createRol', [ProfesionalRolController::class,'createRol'])->name('createRol');
+
+     Route::post('admin/usuarios/roles/storeRol', [ProfesionalRolController::class,'storeRol'])->name('storeRol');
+
+     Route::get('admin/usuarios/roles/editRol/{id}', [ProfesionalRolController::class,'editRol'])->name('editRol');
+
+     Route::put('admin/usuarios/roles/updateRol/{id}', [ProfesionalRolController::class,'updateRol'])->name('updateRol');
+
+     Route::delete('admin/usuarios/roles/deleteRol/{id}', [ProfesionalRolController::class, 'deleteRol'])->name('deleteRol');
 
     /**
      * 

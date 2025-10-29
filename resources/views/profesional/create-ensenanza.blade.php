@@ -230,12 +230,19 @@
                             <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="col-md-3">
+                    
+                </div>
+
+                <!-- ---------------------------------------- -->
+
+                <div class="row mt-3">
+
+                    <div class="col-md-6">
                         <p><strong>Ocupación</strong></p>
                         <select name="ocupacion" id="ocupacion" class="form-control">
                             <option value="">-- Selecciona una opción --</option>
                             @foreach($ocupaciones as $ocupacion)
-                                <option value="{{ $ocupacion->id }}">{{ $ocupacion->puesto }}</option>
+                                <option value="{{ $ocupacion->id }}">{{ $ocupacion->unidad }} - {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->ocupacion }}</option>
                             @endforeach
                         </select>
 
@@ -243,11 +250,7 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                </div>
 
-                <!-- ---------------------------------------- -->
-
-                <div class="row mt-3">
                     <div class="col-md-6">
                         <p><strong>Código De Puesto</strong></p>
                         <select name="codigo_puesto" id="codigo_puesto" class="form-control">

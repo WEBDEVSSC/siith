@@ -202,7 +202,6 @@
 
 <div class="card">
     <div class="card-header">
-        <strong>Vigencias</strong>
     </div>
     <div class="card-body">
 
@@ -213,6 +212,17 @@
 
                 <div class="info-box-content">
                     <a href="{{ route('vigenciasIndex') }}"><span class="info-box-text"><span class="info-box-text"><span class="info-box-text">Vigencias - Motivos</span></a>
+                </div>
+                <!-- /.info-box-content -->
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="info-box">
+                <span class="info-box-icon bg-info"><i class="fa fa-cog" aria-hidden="true"></i></span>
+
+                <div class="info-box-content">
+                    <a href="{{ route('indexRol') }}"><span class="info-box-text"><span class="info-box-text"><span class="info-box-text">Roles</span></a>
                 </div>
                 <!-- /.info-box-content -->
                 </div>

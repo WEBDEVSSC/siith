@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\ProfesionalExport;
 use App\Mail\FelicitacionCumpleanos;
+use App\Models\CatOcupacionEnsenanza;
 use App\Models\CatOcupacionHospital;
 use App\Models\Clue;
 use App\Models\CodigoPuesto;
@@ -287,7 +288,7 @@ class ProfesionalController extends Controller
          // Lista de municipios
          $municipios = Municipio::where('relacion',$entidad->id)->get();
 
-         $ocupaciones = CatOcupacionHospital::where('subarea','PERSONAL EN FORMACION')->get();
+         $ocupaciones = CatOcupacionEnsenanza::all();
 
          $codigosDePuesto = CodigoPuesto::where('personal_formacion',1)->get();
 
@@ -503,8 +504,6 @@ class ProfesionalController extends Controller
             'fecha_inicio.date_format' => 'La fecha de vigencia debe tener el formato DD-MM-AAAA.',
         ]);
 
-        //dd($request->all());
-
         // Formateamos el valor de SEXO
         if($request->sexo === "H")
         {
@@ -517,11 +516,22 @@ class ProfesionalController extends Controller
 
         // Consultamos el municipio de nacimiento
         $municipio = Municipio::findOrFail($request->municipio_nacimiento);
+
+        // Consultamos la ocupacion
+        $ocupacionEnsenanza = CatOcupacionEnsenanza::findOrFail($request->ocupacion);
+
+        // COnsultamos el codigo de puesto
+        $codigoPuesto = CodigoPuesto::findOrFail($request->codigo_puesto);
         
         // Datos del capturista
         $usuario = Auth::user();
 
-        // Ahora que los datos están validados, puedes guardarlos en la base de datos
+        /********************************************************************************************************************************
+         * 
+         * MODULO DE DATOS GENERALES
+         * 
+         *******************************************************************************************************************************/
+
         $profesional = new Profesional();
 
         $profesional->curp = $request->curp;
@@ -548,7 +558,12 @@ class ProfesionalController extends Controller
         // Guardar el nuevo profesional
         $profesional->save();
 
-        // Guaradmos la bitacora
+        /********************************************************************************************************************************
+         * 
+         * MODULO DE BITACORA
+         * 
+         *******************************************************************************************************************************/
+
         $bitacora = new ProfesionalBitacora();
 
         $bitacora->id_capturista = $usuario->id;
@@ -558,7 +573,11 @@ class ProfesionalController extends Controller
 
         $bitacora->save();
 
-        // Generamos un el status de vigencia ACTIVO
+        /********************************************************************************************************************************
+         * 
+         * MODULO DE VIGENCIA
+         * 
+         *******************************************************************************************************************************/
 
         $vigencia = new ProfesionalVigencia();
 
@@ -569,19 +588,16 @@ class ProfesionalController extends Controller
 
         $vigencia->save();
 
-        // Generamos el registro en en el modulo de puesto
+        
+        /********************************************************************************************************************************
+         * 
+         * MODULO DE PUESTO
+         * 
+         *******************************************************************************************************************************/
 
         // CLUES NOMINA ES OFICINA CENTRAL
 
         $cluesNomina = Clue::where('clues','CLSSA002093')->firstOrFail();
-
-        // CLUES ADSCRICIION HOSPITAL UNIVERSITARIO
-
-        $cluesAdscripcionClues = 'CLHUN000015';
-        $cluesAdscripcionNombre = 'HOSPITAL UNIVERSITARIO';
-        $cluesAdscripcionMunicipio = 'SALTILLO';
-        $cluesAdscripcionJurisdiccion = '9';
-        $cluesAdscripcionTipo = '15';
 
         // Generamos el registro en el modulo de puesto
 
@@ -597,15 +613,11 @@ class ProfesionalController extends Controller
         $puesto->clues_nomina_municipio = $cluesNomina->municipio;
         $puesto->clues_nomina_jurisdiccion = $cluesNomina->clave_jurisdiccion;
 
-        $puesto->clues_adscripcion = $cluesAdscripcionClues;
-        $puesto->clues_adscripcion_nombre = $cluesAdscripcionNombre;
-        $puesto->clues_adscripcion_municipio = $cluesAdscripcionMunicipio;
-        $puesto->clues_adscripcion_jurisdiccion = $cluesAdscripcionJurisdiccion;
-        $puesto->clues_adscripcion_tipo = $cluesAdscripcionTipo;
-
-        $puesto->mdl_puesto = 0;
-        
-        $puesto->save();
+        $puesto->clues_adscripcion = 'CLHUN000015';
+        $puesto->clues_adscripcion_nombre = 'HOSPITAL UNIVERSITARIO';
+        $puesto->clues_adscripcion_municipio = 'SALTILLO';
+        $puesto->clues_adscripcion_jurisdiccion = '9';
+        $puesto->clues_adscripcion_tipo = '15';
 
         // Consultamos el tipo de Nomina
         if($request->tipo_nomina == "6MR")
@@ -615,10 +627,10 @@ class ProfesionalController extends Controller
             $nominaTipoContrato = "BECAS";
             $nominaTipoPlaza = "FEDERAL";
             $nominaSeguroSalud = "SI";
-            $nominaCodigoPuestoId = 1;
-            $nominaCodigoPuestoLabel = "CONSULTAR DATOS";
+            $nominaCodigoPuestoId = $codigoPuesto->id;
+            $nominaCodigoPuestoLabel = $codigoPuesto->codigo_puesto;            
+            $nominaCodigoPuestoCodigo = $codigoPuesto->codigo;
             $nominaCodigoPuestoFechaDeIngreso = $request->fecha_inicio;
-            $nominaCodigoPuestoCodigo = "CODIGO PUESTO";
         }
         else
         {   
@@ -627,14 +639,29 @@ class ProfesionalController extends Controller
             $nominaTipoContrato = "BECAS";
             $nominaTipoPlaza = "FEDERAL";
             $nominaSeguroSalud = "SI";
-            $nominaCodigoPuestoId = 1;
-            $nominaCodigoPuestoLabel = "CONSULTAR DATOS";
+            $nominaCodigoPuestoId = $codigoPuesto->id;
+            $nominaCodigoPuestoLabel = $codigoPuesto->codigo_puesto;            
+            $nominaCodigoPuestoCodigo = $codigoPuesto->codigo;
             $nominaCodigoPuestoFechaDeIngreso = $request->fecha_inicio;
-            $nominaCodigoPuestoCodigo = "CODIGO PUESTO";
         }
 
+        $puesto->codigo_puesto_id = $nominaCodigoPuestoId;
+        $puesto->codigo_puesto = $nominaCodigoPuestoLabel;
 
-        // Generamos el registro en el modulo de Nomina
+        $puesto->nomina_pago = $nominaPago;
+        $puesto->tipo_contrato = $nominaTipoContrato;
+        $puesto->tipo_plaza = $nominaTipoPlaza;
+        $puesto->seguro_salud = $nominaSeguroSalud;
+
+        $puesto->mdl_puesto = 0;
+
+        $puesto->save();
+
+        /********************************************************************************************************************************
+         * 
+         * MODULO DE NOMINA
+         * 
+         *******************************************************************************************************************************/
 
         $nomina = new ProfesionalCambioTipoNomina();
 
@@ -651,9 +678,31 @@ class ProfesionalController extends Controller
 
         $nomina->save();
 
+        /********************************************************************************************************************************
+         * 
+         * MODULO DE OCUPACION
+         * 
+         *******************************************************************************************************************************/
+
+        $ocupacion = new ProfesionalOcupacionEnsenanza();
+
+        $ocupacion->id_profesional = $profesional->id;
+        $ocupacion->id_catalogo = $request->ocupacion;
+        $ocupacion->unidad = $ocupacionEnsenanza->unidad;
+        $ocupacion->area = $ocupacionEnsenanza->area;
+        $ocupacion->subarea = $ocupacionEnsenanza->subarea;
+        $ocupacion->ocupacion = $ocupacionEnsenanza->ocupacion;
+
+        $ocupacion->save();
+
+        /********************************************************************************************************************************
+         * 
+         * TERMINAMOS Y REDIRIGIMOS
+         * 
+         *******************************************************************************************************************************/
+
         // Redireccionamos
-        return redirect()->route('profesionalShow', ['id' => $profesional->id])
-                 ->with('success', 'Registro realizado correctamente.');
+        return redirect()->route('profesionalShow', $profesional->id)->with('success', 'Registro realizado correctamente.');
     }
 
     /**
@@ -792,10 +841,20 @@ class ProfesionalController extends Controller
         } 
         elseif(Gate::allows('ensenanza'))
         {
-            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
-                ->whereInRelation('puesto', 'nomina_pago', ['610 - Pasante en Servicio Social','6MR - Médico Residente'])
+            /*$profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'nomina_pago', ['610 - Pasante en Servicio Social', '6MR - Médico Residente'])
                 ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-                ->get();
+                ->get();*/
+
+
+
+                $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                    ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                    ->where(function($q) {
+                        $q->whereRelation('puesto', 'nomina_pago', '610 - Pasante en Servicio Social')
+                        ->orWhereRelation('puesto', 'nomina_pago', '6MR - Médico Residente');
+                    })
+                    ->get();
         } 
         else
         {
