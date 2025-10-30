@@ -41,11 +41,11 @@
     
 <div class="card">
         <div class="card-header">
-            <a href="{{ route('ocupacionAlmacenCreate') }}" class="btn btn-success btn-sm">NUEVO REGISTRO</a>
+            <a href="{{ route('indexRol') }}" class="btn btn-success btn-sm">PANEL DE CONTROL</a>
         </div>
         <div class="card-body">
 
-        <form action="{{ route('vigenciasStore') }}" method="POST">
+        <form action="{{ route('storeRol') }}" method="POST">
 
         @csrf
 
@@ -53,12 +53,18 @@
             
            <div class="col-md-3">
                 <p><strong>Descripción</strong></p>
-                <input type="text" name="label_rol" class="form-control">
+                <input type="text" name="label_rol" class="form-control" value="{{ old('label_rol') }}">
+                @error('label_rol')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+                @enderror
            </div>
 
            <div class="col-md-3">
                 <p><strong>Rol Sistema</strong></p>
-                <input type="text" name="rol" class="form-control">
+                <input type="text" name="rol" class="form-control" value="{{ old('rol') }}">
+                @error('rol')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+                @enderror
            </div>
 
         </div>

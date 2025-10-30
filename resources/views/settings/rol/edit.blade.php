@@ -7,7 +7,7 @@
 @section('plugins.Datatables', true)
 
 @section('content_header')
-    <h1><strong>Roles Y Permisos</strong></h1>
+    <h1><strong>Roles y Permisos</strong> <small>Editar registro</small></h1>
 @stop
 
 @section('content')
@@ -41,52 +41,42 @@
     
 <div class="card">
         <div class="card-header">
-            <a href="{{ route('createRol') }}" class="btn btn-success btn-sm">NUEVO REGISTRO</a>
+            <a href="{{ route('indexRol') }}" class="btn btn-success btn-sm">PANEL DE CONTROL</a>
         </div>
         <div class="card-body">
 
-        @if($roles->isEmpty())
-            <div class="alert alert-warning" role="alert">
-                No hay registros disponibles.
-            </div>
-        @else
-        {{-- <table id="profesionalesTable" class="table table-bordered"> --}}
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>DESCRIPCIÓN</th>
-                    <th>ROL SISTEMA</th>
-                    <th></th>
-                    
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($roles as $rol)
-                    <tr>
-                        <td>{{ $rol->label_rol }}</td>                     
-                        <td>{{ $rol->rol }}</td>                       
-                        <td>
-                    
-                            <a href="{{ route('editRol', $rol->id) }}" class="btn btn-warning btn-sm btn-block">EDITAR</a>
+        <form action="{{ route('updateRol', $rol->id) }}" method="POST">
 
-                            <br>
+        @csrf
 
-                            <form action="{{ route('deleteRol', $rol->id) }}" method="POST" class="form-eliminar">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm btn-block">ELIMINAR</button>
-                            </form>
-                        
-                        </td>                 
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    @endif
+        @method('PUT')
+
+        <div class="row">
+            
+           <div class="col-md-3">
+                <p><strong>Descripción</strong></p>
+                <input type="text" name="label_rol" class="form-control" value="{{ old('label_rol', $rol->label_rol) }}">
+                @error('label_rol')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+           </div>
+
+           <div class="col-md-3">
+                <p><strong>Rol Sistema</strong></p>
+                <input type="text" name="rol" class="form-control" value="{{ old('rol', $rol->rol) }}">
+                @error('rol')
+                <br><div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+           </div>
+
+        </div>
 
         </div>
         <div class="card-footer">
 
+            <button type="submit" class="btn btn-success btn-sm">REGISTRAR DATOS</button>
+
+        </form>
         </div>
 </div>
 
