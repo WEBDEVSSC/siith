@@ -29,6 +29,8 @@
                 </div>
             </div>
 
+
+            @if(Auth::user()->rol === 'admin')
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">
@@ -42,6 +44,7 @@
                 <a href="{{ route('descargarCarpetaFotografias') }}" class="small-box-footer">Descargar <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            @endif
 
             <div class="col-md-2">
                 <div class="small-box bg-info">
