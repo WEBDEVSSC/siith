@@ -14,7 +14,8 @@ class UsuarioController extends Controller
     public function indexUsuario()
     {
         // Consultamos todos los usuarios
-        $usuarios = User::all();
+        //$usuarios = User::all();
+        $usuarios = User::with('rol')->get();
 
         // Regresamos la vista
         return view('user.index', compact('usuarios'));

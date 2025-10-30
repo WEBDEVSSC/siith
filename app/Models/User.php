@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Profesional::class, 'id');
     }
+
+    public function rol()
+    {
+        return $this->belongsTo(Role::class, 'role', 'rol');
+    }
 }

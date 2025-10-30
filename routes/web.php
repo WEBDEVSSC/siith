@@ -27,6 +27,7 @@ use App\Http\Controllers\ProfesionalEmergenciaController;
 use App\Http\Controllers\ProfesionalFirmaNominaController;
 use App\Http\Controllers\ProfesionalGradoAcademicoController;
 use App\Http\Controllers\ProfesionalHorarioController;
+use App\Http\Controllers\ProfesionalNormatividadController;
 use App\Http\Controllers\ProfesionalOcupacionController;
 use App\Http\Controllers\ProfesionalPaseDeSalidaController;
 use App\Http\Controllers\ProfesionalPuestoController;
@@ -624,6 +625,18 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/usuarios/roles/updateRol/{id}', [ProfesionalRolController::class,'updateRol'])->name('updateRol');
 
      Route::delete('admin/usuarios/roles/deleteRol/{id}', [ProfesionalRolController::class, 'deleteRol'])->name('deleteRol');
+
+      /**
+     * 
+     * 
+     * NORMATIVIDAD
+     * 
+     * 
+     */
+
+     Route::get('admin/normatividad/indexNormatividad', [ProfesionalNormatividadController::class,'indexNormatividad'])->name('indexNormatividad');
+
+     Route::post('admin/normatividad/showNormatividad', [ProfesionalNormatividadController::class,'showNormatividad'])->name('showNormatividad');
 
     /**
      * 

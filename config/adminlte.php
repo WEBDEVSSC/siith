@@ -324,6 +324,14 @@ return [
         ],
 
         [
+            'text' => 'Vigencias',
+            'url' => 'admin/normatividad/indexNormatividad',
+            'icon' => 'fa-solid fa-magnifying-glass',
+            'label_color' => 'success',
+            'can' => ['normatividad'],
+        ],
+
+        [
             'text' => 'Panel de Control',
             'url' => 'admin/profesionales/profesionalIndex',
             'icon' => 'fa-solid fa-list',

@@ -86,7 +86,7 @@
                         <td>{{ $usuario->email }}</td>
                         <td>{{ $usuario->clues_unidad }} - {{ $usuario->nombre_unidad }}</td>
                         <td>{{ $usuario->responsable }} - {{ $usuario->contacto }}</td>
-                        <td>{{ $usuario->role }}</td>
+                        <td>{{ $usuario->rol ? $usuario->rol->label_rol : 'Sin rol' }}</td>
 
                         <td>
 

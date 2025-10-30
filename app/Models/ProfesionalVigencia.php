@@ -30,4 +30,10 @@ class ProfesionalVigencia extends Model
     {
         return $this->belongsTo(Profesional::class, 'id_profesional', 'id');
     }
+
+    // Relación con ProfesionalDatosGenerales (uno a uno)
+    public function credencializacion()
+    {
+        return $this->belongsTo(ProfesionalCredencializacion::class, 'id_profesional', 'id_profesional');
+    }
 }
