@@ -15,7 +15,7 @@
 
 @auth
 
-@if(auth()->user()->role === 'root' || auth()->user()->role === 'admin')
+@if(auth()->user()->role === 'root' || auth()->user()->role === 'admin'|| auth()->user()->role === 'directivo')
 
 <div class="row">
     <div class="col-md-3">
