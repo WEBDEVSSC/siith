@@ -37,6 +37,8 @@
             
             <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm">PERFIL DEL TRABAJADOR</a>
 
+            <a href="{{ route('emergenciaPDF', $profesional->id) }}" class="btn btn-warning btn-sm" target="_blank"><i class="fa-solid fa-print"></i> IMPRIMIR</a>
+
         </div>
 
         <form action="{{ route('updateEmergencia', $profesional->id) }}" method="POST">

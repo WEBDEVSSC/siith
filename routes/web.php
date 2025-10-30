@@ -348,6 +348,8 @@ Route::middleware(['auth'])->group(function ()
  
      Route::put('admin/profesionales/emergencias/updateEmergencia/{id}', [ProfesionalEmergenciaController::class, 'updateEmergencia'])->name('updateEmergencia');
 
+     Route::get('admin/profesionales/emergencias/emergenciaPDF/{id}', [ProfesionalEmergenciaController::class, 'emergenciaPDF'])->name('emergenciaPDF');
+
      /**
      * 
      * 

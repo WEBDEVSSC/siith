@@ -11,6 +11,7 @@ use App\Models\ProfesionalBitacora;
 use App\Models\ProfesionalEmergencia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ProfesionalEmergenciaController extends Controller
 {
@@ -460,5 +461,38 @@ class ProfesionalEmergenciaController extends Controller
 
         return redirect()->route('profesionalShow', $id)
             ->with('update', 'Emergencias :: Registro actualizado correctamente.');
+    }
+
+    public function emergenciaPDF($id)
+    {
+        // Buscar el profesional por ID
+        $profesional = Profesional::findOrFail($id);
+
+        // Generamos la variable a base 64
+        $fotoBase64 = null;
+
+        // Detectamos si la imagen existe y la codificamos
+        if ($profesional->credencializacion && $profesional->credencializacion->fotografia) {
+            $rutaImagen = storage_path('app/private/' . $profesional->credencializacion->fotografia);
+
+            if (file_exists($rutaImagen)) {
+                // Leer la imagen
+                $fotoData = file_get_contents($rutaImagen);
+
+                // Detectar el tipo MIME
+                $mimeType = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $rutaImagen);
+
+                // Convertir la imagen a base64
+                $fotoBase64 = 'data:' . $mimeType . ';base64,' . base64_encode($fotoData);
+            }
+        }
+
+        // Pasar los datos a la vista
+        $pdf = Pdf::loadView('pdf.emergencia', compact('profesional','fotoBase64'));
+
+         // Configurar la orientación de la página a horizontal
+        //$pdf->setPaper('a4', 'landscape');  // 'a4' es el tamaño de la página y 'landscape' es la orientación horizontal
+
+        return $pdf->stream('SIITH_EMERGENCIA_'.$profesional->curp.'.pdf'); // Mostrar en el navegador
     }
 }
