@@ -71,7 +71,7 @@
                         <p><strong>Nombre(s)</strong></p>
 
                         @if (empty($nombre))
-                            <input type="text" name="nombre" id='nombre' class="form-control" value="{{ old('nombre') }}">
+                            <input type="text" name="nombre" id='nombre' class="form-control" value="{{ old('nombre') }}" onpaste="return false>
                         @else
                             <input type="text" name="nombre" id='nombre' class="form-control" value="{{ $nombre }}" disabled>
                         @endif
@@ -84,7 +84,7 @@
                         <p><strong>Apellido paterno</strong></p>
 
                         @if (empty($apellidoPaterno))
-                            <input type="text" name="apellido_paterno" id='apellido_paterno' class="form-control" value="{{ old('apellido_paterno') }}">
+                            <input type="text" name="apellido_paterno" id='apellido_paterno' class="form-control" value="{{ old('apellido_paterno') }}" onpaste="return false>
                         @else
                             <input type="text" name="apellido_paterno" id='apellido_paterno' class="form-control" value="{{ $apellidoPaterno }}" disabled>
                         @endif
@@ -98,7 +98,7 @@
                         <p><strong>Apellido materno</strong></p>
 
                         @if (empty($apellidoPaterno))
-                            <input type="text" name="apellido_materno" id='apellido_materno' class="form-control" value="{{ old('apellido_materno') }}">
+                            <input type="text" name="apellido_materno" id='apellido_materno' class="form-control" value="{{ old('apellido_materno') }}" onpaste="return false>
                         @else
                             <input type="text" name="apellido_materno" id='apellido_materno' class="form-control" value="{{ $apellidoMaterno }}" disabled>
                         @endif

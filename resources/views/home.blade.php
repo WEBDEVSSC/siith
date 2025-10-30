@@ -135,8 +135,22 @@
 @endif
 
 <!-- ---------------------------------------------------------- -->
-
-@if(auth()->user()->role === 'almacen')
+@if(
+auth()->user()->role === 'csuyr' || 
+auth()->user()->role === 'hospital'|| 
+auth()->user()->role === 'ofJurisdiccional'|| 
+auth()->user()->role === 'criCree'|| 
+auth()->user()->role === 'samuCrum'|| 
+auth()->user()->role === 'ofCentral'|| 
+auth()->user()->role === 'almacen'|| 
+auth()->user()->role === 'psiParras'|| 
+auth()->user()->role === 'oncologico'|| 
+auth()->user()->role === 'cets'|| 
+auth()->user()->role === 'lesp'|| 
+auth()->user()->role === 'cesame'|| 
+auth()->user()->role === 'ceam'|| 
+auth()->user()->role === 'hospitalNino'
+)
 
 <div class="row">
     <div class="col-md-3">

@@ -577,102 +577,6 @@ ADMINISTRADOR
     <!-- -- -->
 
     <div class="card">
-        <div class="card-header">
-            <i class="fa fa-building" aria-hidden="true"></i> <strong>TIPO DE NÓMINA</strong>
-        </div>
-        <div class="card-body">
-
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Nómina de Pago</th>
-                        <th>Tipo de Contrato</th>
-                        <th>Tipo de Plaza</th>
-                        <th>Seguro de Salud</th>
-                        <th>Código de Puesto</th>
-                        <th>Fecha de Inicio</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($tiposDeNomina as $tipoDeNomina)
-                        <tr>
-                            <td>{{ $tipoDeNomina->nomina_pago ?? 'N/A' }}</td>
-                            <td>{{ $tipoDeNomina->tipo_contrato ?? 'N/A' }}</td>
-                            <td>{{ $tipoDeNomina->tipo_plaza ?? 'N/A' }}</td>
-                            <td>{{ $tipoDeNomina->seguro_salud ?? 'N/A' }}</td>
-                            <td>{{ $tipoDeNomina->codigo_puesto ?? 'N/A' }} - {{ $tipoDeNomina->codigo_puesto_label ?? 'N/A' }}</td>
-                            <td>{{ $tipoDeNomina->fecha_ingreso ? \Carbon\Carbon::parse($tipoDeNomina->fecha_ingreso)->format('d-m-Y') : 'N/A' }}</td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="6" class="text-center">No hay registros</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-
-        </div>
-        <div class="card-footer">
-
-            @if ($profesional->puesto?->mdl_puesto == 1)
-                <a href="{{ route('createCambioTipoNomina', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
-            @elseif ($profesional->puesto?->mdl_puesto == 0)
-                <a href="{{ route('createCambioTipoNomina', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
-            @endif
-    
-        </div>
-    </div>
-    <!-- -- -->
-
-    <!-- -- -->
-
-    <div class="card">
-        <div class="card-header">
-            <i class="fa-solid fa-tags"></i> <strong>VIGENCIAS</strong>
-        </div>
-        <div class="card-body">
-
-            <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Status</th>
-                    <th>Motivo</th>
-                    <th>Fecha Inicio</th>
-                    <th>Fecha Final</th>
-                    <th>Registro</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($vigencias as $vigencia)
-                <tr>
-                    <td>{{ $vigencia->vigencia ?? 'N/A' }}</td>
-                    <td>{{ $vigencia->vigencia_motivo ?? 'N/A' }}</td>
-                    <td>{{ $vigencia->fecha_inicio ? \Carbon\Carbon::parse($vigencia->fecha_inicio)->format('d-m-Y') : 'N/A' }}</td>
-                    <td>{{ ($vigencia->fecha_final && $vigencia->fecha_final != '0000-00-00') 
-                    ? \Carbon\Carbon::parse($vigencia->fecha_final)->format('d-m-Y') 
-                    : 'N/A' }}</td>
-                    {{-- <td>{{ $vigencia->fecha_final ? \Carbon\Carbon::parse($vigencia->fecha_final)->format('d-m-Y') : 'N/A' }}</td> --}}
-                    <td>{{ $vigencia->created_at ? \Carbon\Carbon::parse($vigencia->created_at)->format('d-m-Y') : 'N/A' }}</td>
-                </tr>
-                @empty
-                <tr>
-                    <td colspan="5" class="text-center">No hay registros de vigencias</td>
-                </tr>
-                @endforelse
-            </tbody>
-        </table>
-
-        </div>
-        <div class="card-footer">
-            
-            <a href="{{ route('createVigencia', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
-
-        </div>
-    </div>
-
-    <!-- -- -->
-
-    <div class="card">
         <div class="card-header"><i class="fa fa-archive" aria-hidden="true"></i> <strong>PUESTO</strong></div>
         <div class="card-body">
 
@@ -802,6 +706,106 @@ ADMINISTRADOR
     
         </div>
     </div>
+
+    <!-- -- -->
+
+    <div class="card">
+        <div class="card-header">
+            <i class="fa fa-building" aria-hidden="true"></i> <strong>TIPO DE NÓMINA</strong>
+        </div>
+        <div class="card-body">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nómina de Pago</th>
+                        <th>Tipo de Contrato</th>
+                        <th>Tipo de Plaza</th>
+                        <th>Seguro de Salud</th>
+                        <th>Código de Puesto</th>
+                        <th>Fecha de Inicio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($tiposDeNomina as $tipoDeNomina)
+                        <tr>
+                            <td>{{ $tipoDeNomina->nomina_pago ?? 'N/A' }}</td>
+                            <td>{{ $tipoDeNomina->tipo_contrato ?? 'N/A' }}</td>
+                            <td>{{ $tipoDeNomina->tipo_plaza ?? 'N/A' }}</td>
+                            <td>{{ $tipoDeNomina->seguro_salud ?? 'N/A' }}</td>
+                            <td>{{ $tipoDeNomina->codigo_puesto ?? 'N/A' }} - {{ $tipoDeNomina->codigo_puesto_label ?? 'N/A' }}</td>
+                            <td>{{ $tipoDeNomina->fecha_ingreso ? \Carbon\Carbon::parse($tipoDeNomina->fecha_ingreso)->format('d-m-Y') : 'N/A' }}</td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center">No hay registros</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+
+        </div>
+        <div class="card-footer">
+
+            @if ($profesional->puesto?->mdl_puesto == 1)
+                <a href="{{ route('createCambioTipoNomina', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
+            @elseif ($profesional->puesto?->mdl_puesto == 0)
+                <a href="{{ route('createCambioTipoNomina', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
+            @endif
+    
+        </div>
+    </div>
+    <!-- -- -->
+
+    <!-- -- -->
+
+    <div class="card">
+        <div class="card-header">
+            <i class="fa-solid fa-tags"></i> <strong>VIGENCIAS</strong>
+        </div>
+        <div class="card-body">
+
+            <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Motivo</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Final</th>
+                    <th>Registro</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse($vigencias as $vigencia)
+                <tr>
+                    <td>{{ $vigencia->vigencia ?? 'N/A' }}</td>
+                    <td>{{ $vigencia->vigencia_motivo ?? 'N/A' }}</td>
+                    <td>{{ $vigencia->fecha_inicio ? \Carbon\Carbon::parse($vigencia->fecha_inicio)->format('d-m-Y') : 'N/A' }}</td>
+                    <td>{{ ($vigencia->fecha_final && $vigencia->fecha_final != '0000-00-00') 
+                    ? \Carbon\Carbon::parse($vigencia->fecha_final)->format('d-m-Y') 
+                    : 'N/A' }}</td>
+                    {{-- <td>{{ $vigencia->fecha_final ? \Carbon\Carbon::parse($vigencia->fecha_final)->format('d-m-Y') : 'N/A' }}</td> --}}
+                    <td>{{ $vigencia->created_at ? \Carbon\Carbon::parse($vigencia->created_at)->format('d-m-Y') : 'N/A' }}</td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="5" class="text-center">No hay registros de vigencias</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
+
+        </div>
+        <div class="card-footer">
+            
+            <a href="{{ route('createVigencia', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
+
+        </div>
+    </div>
+
+    <!-- -- -->
+
+    
 
     {{-- ---------------------------------------------------------------------------------------------- --}}
 
@@ -1088,55 +1092,7 @@ ADMINISTRADOR
     
     <!-- -- -->
 
-    <div class="card">
-        <div class="card-header">
-            <strong>CAMBIOS DE UNIDAD</strong>
-        </div>
-        <div class="card-body">
-
-            @if ($cambiosDeUnidad->isEmpty())
-                <p>No hay cambios registrados.</p>
-            @else
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>FECHA REGISTRO</th>
-                            <th>TIPO</th>
-                            <th>UNIDAD ANTERIOR</th>
-                            <th>UNIDAD ACTUAL</th>
-                            <th>INICIO</th>
-                            <th>TERMINO</th>
-                            <th>DOC.</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($cambiosDeUnidad as $cambio)
-                            <tr>
-                                <td>{{ \Carbon\Carbon::parse($cambio->created_at)->format('d/m/Y') }}</td>
-                                <td>{{ $cambio->tipo_movimiento }}</td>
-                                <td>J. {{ $cambio->unidad_origen_jurisdiccion }} - {{ $cambio->unidad_origen_clues }} - {{ $cambio->unidad_origen_nombre }}</td>
-                                <td>J. {{ $cambio->unidad_destino_jurisdiccion }} - {{ $cambio->unidad_destino_clues }} - {{ $cambio->unidad_destino_nombre }}</td>
-
-                                <td>{{ $cambio->fecha_inicio ? \Carbon\Carbon::parse($cambio->fecha_inicio)->format('d/m/Y') : '' }}</td>
-                                <td>{{ $cambio->fecha_final ? \Carbon\Carbon::parse($cambio->fecha_final)->format('d/m/Y') : '' }}</td>
-                                <td>
-                                    @if ($cambio->documento_respaldo)
-                                    <a href="{{ route('descargar.documento', $cambio->id) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
-                                    @else
-                                        No disponible
-                                    @endif
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @endif
-
-            
-
-        </div>
-        <div class="card-footer"></div>
-    </div>
+    
 
     <!-- -- -->
 
@@ -1395,6 +1351,56 @@ ADMINISTRADOR
     </div>
 
     <!-- --------------------------------------------------------------- -->
+
+    <div class="card">
+        <div class="card-header">
+            <strong>CAMBIOS DE UNIDAD</strong>
+        </div>
+        <div class="card-body">
+
+            @if ($cambiosDeUnidad->isEmpty())
+                <p>No hay cambios registrados.</p>
+            @else
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>FECHA REGISTRO</th>
+                            <th>TIPO</th>
+                            <th>UNIDAD ANTERIOR</th>
+                            <th>UNIDAD ACTUAL</th>
+                            <th>INICIO</th>
+                            <th>TERMINO</th>
+                            <th>DOC.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($cambiosDeUnidad as $cambio)
+                            <tr>
+                                <td>{{ \Carbon\Carbon::parse($cambio->created_at)->format('d/m/Y') }}</td>
+                                <td>{{ $cambio->tipo_movimiento }}</td>
+                                <td>J. {{ $cambio->unidad_origen_jurisdiccion }} - {{ $cambio->unidad_origen_clues }} - {{ $cambio->unidad_origen_nombre }}</td>
+                                <td>J. {{ $cambio->unidad_destino_jurisdiccion }} - {{ $cambio->unidad_destino_clues }} - {{ $cambio->unidad_destino_nombre }}</td>
+
+                                <td>{{ $cambio->fecha_inicio ? \Carbon\Carbon::parse($cambio->fecha_inicio)->format('d/m/Y') : '' }}</td>
+                                <td>{{ $cambio->fecha_final ? \Carbon\Carbon::parse($cambio->fecha_final)->format('d/m/Y') : '' }}</td>
+                                <td>
+                                    @if ($cambio->documento_respaldo)
+                                    <a href="{{ route('descargar.documento', $cambio->id) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
+                                    @else
+                                        No disponible
+                                    @endif
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @endif
+
+            
+
+        </div>
+        <div class="card-footer"></div>
+    </div>
 
     <!-- --------------------------------------------------------------- -->
     {{--
