@@ -116,7 +116,11 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('normatividad', function ($user) {
             return $user->role === 'normatividad';
         });
-        
+
+        // ROL DIRECTIVOdirectivo
+        Gate::define('directivo', function ($user) {
+            return $user->role === 'directivo';
+        });
     }
 
     public function register(): void
