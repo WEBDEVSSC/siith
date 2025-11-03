@@ -579,6 +579,8 @@ Route::middleware(['auth'])->group(function ()
      // Ruta para el reporte de Excel
     Route::get('admin/profesionales/reportes/reporteExcel', [ProfesionalController::class, 'export'])->name('profesionalExport');
 
+    Route::get('admin/profesionales/reportes/reporteMexicoExcel', [ProfesionalController::class, 'reporteMexicoExcel'])->name('reporteMexicoExcel');
+
     // Ruta para el envio de correos
     Route::get('admin/profesionales/cumpleanos',[ProfesionalController::class,'enviarFelicitaciones'])->name('enviarFelicitaciones');
 

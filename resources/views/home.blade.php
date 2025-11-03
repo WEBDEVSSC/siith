@@ -17,6 +17,7 @@
 
 @if(auth()->user()->role === 'root' || auth()->user()->role === 'admin'|| auth()->user()->role === 'directivo')
 
+
 <div class="row">
     <div class="col-md-3">
         <!-- small box -->
@@ -72,20 +73,68 @@
 </div>
 </div>
 
+{{-- --------------------------------------------------------------------------------------------------------------------------------- --}}
+
 <div class="row mt-2">
 
-  <div class="col-md-4">
+  <div class="col-md-6">
     <div class="card">
       <div class="card-header">
         <h3 class="card-title"><strong>Jurisdicción</strong></h3>
       </div>
       <div class="card-body">
-        <canvas id="profesionalesPorJurisdiccion" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+
+        <div class="row">
+          <div class="col-md-6"><canvas id="profesionalesPorJurisdiccion" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas></div>
+          <div class="col-md-6">
+            <table class="table table-sm small">
+              <tbody>
+                <tr>
+                  <td style="color: rgba(255, 99, 132, 0.6); font-weight: bold;">J1 - Piedras Negras</td>
+                  <td>{{$profesionalesJurisdiccion1}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(255, 159, 64, 0.6); font-weight: bold;">J2 - Acuña</td>
+                  <td>{{$profesionalesJurisdiccion2}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(255, 205, 86, 0.6); font-weight: bold;">J3 - Sabinas</td>
+                  <td>{{$profesionalesJurisdiccion3}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(75, 192, 192, 0.6); font-weight: bold;">J4 - Cuatro Cienegas</td>
+                  <td>{{$profesionalesJurisdiccion4}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(54, 162, 235, 0.6); font-weight: bold;">J5 - Monclova</td>
+                  <td>{{$profesionalesJurisdiccion5}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(153, 102, 255, 0.6); font-weight: bold;">J6 - Fco. I. Madero</td>
+                  <td>{{$profesionalesJurisdiccion6}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(0, 204, 102, 0.6); font-weight: bold;">J7 - CORROBORAR NOMBRE</td>
+                  <td>{{$profesionalesJurisdiccion7}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(255, 102, 255, 0.6); font-weight: bold;">J8 - Saltillo</td>
+                  <td>{{$profesionalesJurisdiccion8}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(102, 204, 255, 0.6); font-weight: bold;">J9 - Unidades de Apoyo</td>
+                  <td>{{$profesionalesJurisdiccion9}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-6">
     <div class="card">
       <div class="card-header">
         <h3 class="card-title"><strong>Nómina de Pago</strong></h3>
@@ -96,7 +145,11 @@
     </div>
   </div>
 
-  <div class="col-md-4">
+</div>
+
+<div class="row mt-2">
+
+  <div class="col-md-6">
     <div class="card">
       <div class="card-header">
         <h3 class="card-title"><strong>Tipo de Contrato</strong></h3>
@@ -107,27 +160,29 @@
     </div>
   </div>
 
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><strong>Ramas</strong></h3>
+      </div>
+      <div class="card-body">
+        <canvas id="profesionalesRamas" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+{{-- --------------------------------------------------------------------------------------------------------------------------------- --}}
+
+<div class="row mt-2">
+
+  
+
 </div>
 
 
 <!-- ---------------------------------------------------------- -->
-<div class="row mt-2">
-  <div class="col-12">
-    <div class="card">
-      <div class="card-header">
-        <strong>Nóminas por rangos de edad</strong>
-      </div>
-
-      <div class="card-body">
-        
-      </div> <!-- cierre de card-body -->
-
-      <div class="card-footer">
-        <!-- Footer opcional -->
-      </div>
-    </div> <!-- cierre de card -->
-  </div> <!-- cierre de col-12 -->
-</div> <!-- cierre de row -->
 
 
 <!-- ---------------------------------------------------------- -->
@@ -252,15 +307,14 @@ auth()->user()->role === 'hospitalNino'
 
 @endauth
 
-@include('partials.footer')
+
 
 @stop
 
-
+@include('partials.footer')
 
 @section('css')
-    {{-- Add here extra stylesheets --}}
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+    {{-- Estilos personalizados --}}
 @stop
 
 @section('js')
@@ -309,7 +363,7 @@ auth()->user()->role === 'hospitalNino'
               responsive: true,
               plugins: {
                   legend: {
-                      position: 'right',
+                      position: 'none',
                   },
                   tooltip: {
                       callbacks: {
@@ -432,6 +486,59 @@ auth()->user()->role === 'hospitalNino'
                 'rgba(54, 162, 235, 1)',
                 'rgba(153, 102, 255, 1)',
               ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              responsive: true,
+              plugins: {
+                  legend: {
+                      position: 'right',
+                  },
+                  tooltip: {
+                      callbacks: {
+                          label: function(tooltipItem) {
+                              return tooltipItem.label + ': ' + tooltipItem.raw;
+                          }
+                      }
+                  }
+              }
+          }
+      });
+  });
+  
+  </script>
+
+  <script>
+      // Espera a que el contenido del DOM esté cargado
+      document.addEventListener('DOMContentLoaded', function() {
+      // Obtén el contexto del canvas
+      var ctx = document.getElementById('profesionalesRamas').getContext('2d');
+      
+      // Crea la gráfica de dona
+      var myDoughnutChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+              labels: ['En Formación','Administrativa','Afin','Enfermeria','Medica','Paramedica'],
+              datasets: [{
+                  label: 'Número de votos',
+                  data: [{{$ramaPersonalEnFormacion}}, {{$ramaAdministrativa}}, {{$ramaAFin}}, {{$ramaEnfermeria}}, {{$ramaMedica}}, {{$ramaParamedica}}], 
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',   // Rojo fresa
+                    'rgba(255, 159, 64, 0.6)',   // Naranja vibrante
+                    'rgba(255, 205, 86, 0.6)',   // Amarillo fuerte
+                    'rgba(75, 192, 192, 0.6)',   // Verde-azulado
+                    'rgba(54, 162, 235, 0.6)',   // Azul vivo
+                    'rgba(153, 102, 255, 0.6)',  // Morado claro
+                  ],
+                  borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 205, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(153, 102, 255, 1)',
+                  ],
                   borderWidth: 1
               }]
           },

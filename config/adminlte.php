@@ -369,6 +369,13 @@ return [
             'label_color' => 'success',
             'can' => 'jefeDepartamento',
         ],
+        [
+            'text' => 'Reporte Excel',
+            'url' => 'admin/profesionales/reportes/reporteMexicoExcel',
+            'icon' => 'fa-solid fa-file-excel',
+            'label_color' => 'success',
+            'can' => 'profesionales',
+        ],
 
         /*
         |--------------------------------------------------------------------------

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProfesionalesMexicoExport;
 use App\Exports\ProfesionalExport;
 use App\Mail\FelicitacionCumpleanos;
 use App\Models\CatOcupacionEnsenanza;
@@ -1689,6 +1690,24 @@ class ProfesionalController extends Controller
         
         // Exporta los datos usando la clase CluesExport
         return Excel::download(new ProfesionalExport, 'REPORTE.xlsx');
+    }
+
+    /**
+     * 
+     * 
+     * METODO PARA EXPORTAR EN EXCEL LOS REGISTOS DE PROFESIONALES PARA EL REPORTE DE MEXICO
+     * 
+     */
+
+    public function reporteMexicoExcel()
+    {
+        
+        ini_set('memory_limit', '-1');
+
+        ini_set('max_execution_time', 300); // 300 segundos = 5 minutos
+        
+        // Exporta los datos usando la clase CluesExport
+        return Excel::download(new ProfesionalesMexicoExport, 'REPORTE-PROFESIONALES.xlsx');
     }
 
     /**

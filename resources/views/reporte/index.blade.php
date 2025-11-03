@@ -29,6 +29,8 @@
                 </div>
             </div>
 
+            
+
 
             @if(Auth::user()->rol === 'admin')
             <div class="col-md-2">
@@ -60,6 +62,22 @@
                 </div>
             </div>
 
+            @if(Auth::user()->rol === 'profesionales')
+            <div class="col-md-2">
+                <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>Profesionales</h3>
+
+                    <p>México</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="{{ route('reporteMexicoExcel') }}" class="small-box-footer">Descargar <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            @endif
+
         </div>
 
 
@@ -74,12 +92,8 @@
 
 @section('css')
  
-
 @stop
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
-    
-
-
 @stop
