@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CatalogoCentroDeSaludUrbanoYRuralController;
+use App\Http\Controllers\CatalogoNominaDePagoController;
 use App\Http\Controllers\CatalogoOcupacionAlmacenController;
 use App\Http\Controllers\CatalogoOcupacionCeamController;
 use App\Http\Controllers\CatalogoOcupacionCentroDeSaludUrbanoYRuralController;
@@ -629,6 +630,28 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/usuarios/roles/updateRol/{id}', [ProfesionalRolController::class,'updateRol'])->name('updateRol');
 
      Route::delete('admin/usuarios/roles/deleteRol/{id}', [ProfesionalRolController::class, 'deleteRol'])->name('deleteRol');
+
+     /**
+     * 
+     * 
+     * NOMINAS DE PAGO
+     * 
+     * 
+     */
+
+     Route::get('admin/settings/nominaPagoIndex', [CatalogoNominaDePagoController::class,'nominaPagoIndex'])->name('nominaPagoIndex');
+
+     Route::get('admin/settings/nominaPagoShow/{id}', [CatalogoNominaDePagoController::class,'nominaPagoShow'])->name('nominaPagoShow');
+
+     Route::get('admin/settings/nominaPagoIndexCreate', [CatalogoNominaDePagoController::class,'nominaPagoIndexCreate'])->name('nominaPagoIndexCreate');
+
+     Route::post('admin/settings/nominaPagoIndexStore', [CatalogoNominaDePagoController::class,'nominaPagoIndexStore'])->name('nominaPagoIndexStore');
+
+     Route::get('admin/settings/nominaPagoEdit/{id}', [CatalogoNominaDePagoController::class,'nominaPagoEdit'])->name('nominaPagoEdit');
+
+     Route::put('admin/settings/nominaPagoUpdate/{id}', [CatalogoNominaDePagoController::class,'nominaPagoUpdate'])->name('nominaPagoUpdate');
+
+     Route::delete('admin/settings/nominaPagoDestroy/{id}', [CatalogoNominaDePagoController::class, 'nominaPagoDestroy'])->name('nominaPagoDestroy');
 
       /**
      * 

@@ -14,4 +14,10 @@ class NominaPago extends Model
 
     // Si deseas proteger campos de asignación masiva
     protected $fillable = ['nomina'];
+
+    // Relaciones
+    public function tiposContrato()
+    {
+        return $this->hasMany(TipoContrato::class, 'nomina_pago', 'id');
+    }    
 }

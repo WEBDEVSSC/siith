@@ -12,4 +12,11 @@ class TipoContrato extends Model
     protected $fillable = ['tipo_contrato','nomina_pago']; // Campos permitidos para asignación masiva
 
     public $timestamps = true; // Habilita created_at y updated_at
+
+    // Relaciones
+
+    public function nominaPago()
+    {
+        return $this->belongsTo(NominaPago::class, 'nomina_pago', 'id');
+    }
 }
