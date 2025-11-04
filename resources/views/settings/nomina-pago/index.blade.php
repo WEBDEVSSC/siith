@@ -41,7 +41,7 @@
     
 <div class="card">
         <div class="card-header">
-            <a href="{{ route('createRol') }}" class="btn btn-success btn-sm">NUEVO REGISTRO</a>
+            <a href="{{ route('nominaPagoCreate') }}" class="btn btn-success btn-sm">NUEVO REGISTRO</a>
         </div>
         <div class="card-body">
 
@@ -68,20 +68,24 @@
                             @foreach ($nominaDePago->tiposContrato as $tipo)
                                 <span class="badge bg-primary">{{ $tipo->tipo_contrato }}</span>
                             @endforeach
-                        </td>                    
+                        </td>    
+
                         <td>
-                    
-                            <a href="{{ route('editRol', $nominaDePago->id) }}" class="btn btn-warning btn-sm btn-block">EDITAR</a>
-
-                            <br>
-
-                            <form action="{{ route('deleteRol', $nominaDePago->id) }}" method="POST" class="form-eliminar">
+                            <a href="{{ route('nominaPagoEdit', $nominaDePago->id) }}" class="btn btn-warning btn-sm">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a href="{{ route('tipoDeContratoCreate', $nominaDePago->id) }}" class="btn btn-success btn-sm">
+                                <i class="fa-solid fa-money-bill"></i>
+                            </a>
+                            <form action="{{ route('nominaPagoDelete', $nominaDePago->id) }}" method="POST" style="display:inline;" class="form-eliminar">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm btn-block">ELIMINAR</button>
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
                             </form>
-                        
-                        </td>                 
+                        </td>
+
                     </tr>
                 @endforeach
             </tbody>

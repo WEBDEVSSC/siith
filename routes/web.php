@@ -639,19 +639,28 @@ Route::middleware(['auth'])->group(function ()
      * 
      */
 
-     Route::get('admin/settings/nominaPagoIndex', [CatalogoNominaDePagoController::class,'nominaPagoIndex'])->name('nominaPagoIndex');
+     Route::get('admin/settings/nomina-pago/nominaPagoIndex', [CatalogoNominaDePagoController::class,'nominaPagoIndex'])->name('nominaPagoIndex');
 
-     Route::get('admin/settings/nominaPagoShow/{id}', [CatalogoNominaDePagoController::class,'nominaPagoShow'])->name('nominaPagoShow');
+     Route::get('admin/settings/nomina-pago/nominaPagoShow/{id}', [CatalogoNominaDePagoController::class,'nominaPagoShow'])->name('nominaPagoShow');
 
-     Route::get('admin/settings/nominaPagoIndexCreate', [CatalogoNominaDePagoController::class,'nominaPagoIndexCreate'])->name('nominaPagoIndexCreate');
+     Route::get('admin/settings/nomina-pago/nominaPagoCreate', [CatalogoNominaDePagoController::class,'nominaPagoCreate'])->name('nominaPagoCreate');
 
-     Route::post('admin/settings/nominaPagoIndexStore', [CatalogoNominaDePagoController::class,'nominaPagoIndexStore'])->name('nominaPagoIndexStore');
+     Route::post('admin/settings/nomina-pago/nominaPagoStore', [CatalogoNominaDePagoController::class,'nominaPagoStore'])->name('nominaPagoStore');
 
-     Route::get('admin/settings/nominaPagoEdit/{id}', [CatalogoNominaDePagoController::class,'nominaPagoEdit'])->name('nominaPagoEdit');
+     Route::get('admin/settings/nomina-pago/nominaPagoEdit/{id}', [CatalogoNominaDePagoController::class,'nominaPagoEdit'])->name('nominaPagoEdit');
 
-     Route::put('admin/settings/nominaPagoUpdate/{id}', [CatalogoNominaDePagoController::class,'nominaPagoUpdate'])->name('nominaPagoUpdate');
+     Route::put('admin/settings/nomina-pago/nominaPagoUpdate/{id}', [CatalogoNominaDePagoController::class,'nominaPagoUpdate'])->name('nominaPagoUpdate');
 
-     Route::delete('admin/settings/nominaPagoDestroy/{id}', [CatalogoNominaDePagoController::class, 'nominaPagoDestroy'])->name('nominaPagoDestroy');
+     Route::delete('admin/settings/nomina-pago/nominaPagoDelete/{id}', [CatalogoNominaDePagoController::class, 'nominaPagoDelete'])->name('nominaPagoDelete');
+
+     Route::get('admin/settings/nomina-pago/tipoDeContratoCreate/{id}', [CatalogoNominaDePagoController::class,'tipoDeContratoCreate'])->name('tipoDeContratoCreate');
+
+     Route::post('admin/settings/nomina-pago/tipoDeContratoStore', [CatalogoNominaDePagoController::class,'tipoDeContratoStore'])->name('tipoDeContratoStore');
+
+     Route::delete('admin/settings/nomina-pago/tipoDeContratoDelete/{id}', [CatalogoNominaDePagoController::class, 'tipoDeContratoDelete'])->name('tipoDeContratoDelete');
+
+
+
 
       /**
      * 

@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class NominaPago extends Model
 {
+    use SoftDeletes;
+
     // Si la tabla no sigue la convención de pluralizar el nombre del modelo
     protected $table = 'cat_nominas_pago';
 
