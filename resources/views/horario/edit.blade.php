@@ -71,9 +71,14 @@
 
                 </div>
 
-                <!-- -->
-                {{--
-                <div class="row mt-3">
+                {{--------------------------------------------------------------------------------------------------------------------------------------}}
+                {{-- CAMPOS OCULTOS PARA EL ROLADOR --}}
+                {{--------------------------------------------------------------------------------------------------------------------------------------}}
+
+                <div id="campos-rolador" class="row mt-3" style="display: none;">
+
+                
+                <div class="col-md-12">
                     
                     
                     <table class="table table-striped">
@@ -210,7 +215,9 @@
                     </table>
                     
                     
-                </div> --}}
+                </div>
+
+                </div>
 
         <!-- ---------------------------------------------------------------------- --> 
         </div>
@@ -233,4 +240,27 @@
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const selectJornada = document.getElementById('jornada');
+            const camposRolador = document.getElementById('campos-rolador');
+
+            // Función para mostrar u ocultar
+            function toggleCamposRolador() {
+                const textoSeleccionado = selectJornada.options[selectJornada.selectedIndex].text;
+                if (textoSeleccionado.toLowerCase().includes('rolador')) {
+                    camposRolador.style.display = 'flex';
+                } else {
+                    camposRolador.style.display = 'none';
+                }
+            }
+
+            // Escuchar el cambio
+            selectJornada.addEventListener('change', toggleCamposRolador);
+
+            // Verificar si ya está seleccionado al cargar la página
+            toggleCamposRolador();
+        });
+    </script>
 @stop

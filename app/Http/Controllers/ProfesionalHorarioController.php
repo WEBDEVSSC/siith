@@ -40,9 +40,25 @@ class ProfesionalHorarioController extends Controller
     {
         $request->validate([
             'jornada' => 'required',
-            'id_profesional' => 'required',
-            'horario_entrada' => 'required',
-            'horario_salida' => 'required',
+            'horario_entrada' => 'nullable|date_format:H:i',
+            'horario_salida' => 'nullable|date_format:H:i',
+
+            'entrada_lunes' => 'nullable|date_format:H:i',
+            'salida_lunes' => 'nullable|date_format:H:i',
+            'entrada_martes' => 'nullable|date_format:H:i',
+            'salida_martes' => 'nullable|date_format:H:i',
+            'entrada_miercoles' => 'nullable|date_format:H:i',
+            'salida_miercoles' => 'nullable|date_format:H:i',
+            'entrada_jueves' => 'nullable|date_format:H:i',
+            'salida_jueves' => 'nullable|date_format:H:i',
+            'entrada_viernes' => 'nullable|date_format:H:i',
+            'salida_viernes' => 'nullable|date_format:H:i',
+            'entrada_sabado' => 'nullable|date_format:H:i',
+            'salida_sabado' => 'nullable|date_format:H:i',
+            'entrada_domingo' => 'nullable|date_format:H:i',
+            'salida_domingo' => 'nullable|date_format:H:i',
+            'entrada_festivo' => 'nullable|date_format:H:i',
+            'salida_festivo' => 'nullable|date_format:H:i',
         ],[
             'jornada.required' => 'El campo es obligatorio',
             'horario_entrada.required' => 'El campo es obligatorio',
@@ -277,22 +293,22 @@ class ProfesionalHorarioController extends Controller
 
         elseif($request->jornada == 10)
         {
-            $entrada_lunes = $request->horario_entrada;
-            $salida_lunes = $request->horario_salida;
-            $entrada_martes = $request->horario_entrada;
-            $salida_martes = $request->horario_salida;
-            $entrada_miercoles = $request->horario_entrada;
-            $salida_miercoles = $request->horario_salida;
-            $entrada_jueves = $request->horario_entrada;
-            $salida_jueves = $request->horario_salida;
-            $entrada_viernes = $request->horario_entrada;
-            $salida_viernes = $request->horario_salida;
-            $entrada_sabado = $request->horario_entrada;
-            $salida_sabado = $request->horario_salida;
-            $entrada_domingo = $request->horario_entrada;
-            $salida_domingo = $request->horario_salida;
-            $entrada_festivo = $request->horario_entrada;
-            $salida_festivo =$request->horario_salida;
+            $entrada_lunes = $request->entrada_lunes;
+            $salida_lunes = $request->salida_lunes;
+            $entrada_martes = $request->entrada_martes;
+            $salida_martes = $request->salida_martes;
+            $entrada_miercoles = $request->entrada_miercoles;
+            $salida_miercoles = $request->salida_miercoles;
+            $entrada_jueves = $request->entrada_jueves;
+            $salida_jueves = $request->salida_jueves;
+            $entrada_viernes = $request->entrada_viernes;
+            $salida_viernes = $request->salida_viernes;
+            $entrada_sabado = $request->entrada_sabado;
+            $salida_sabado = $request->salida_sabado;
+            $entrada_domingo = $request->entrada_domingo;
+            $salida_domingo = $request->salida_domingo;
+            $entrada_festivo = $request->entrada_festivo;
+            $salida_festivo =$request->salida_festivo;
 
             $label_jornada = "Rolador";
         }
@@ -447,10 +463,29 @@ class ProfesionalHorarioController extends Controller
 
     public function updateHorario(Request $request, $id)
     {             
+        //dd($request->entrada_lunes);
+        
         $request->validate([
             'jornada' => 'required',
-            'horario_entrada' => 'required',
-            'horario_salida' => 'required',
+            'horario_entrada' => 'nullable|date_format:H:i',
+            'horario_salida' => 'nullable|date_format:H:i',
+
+            'entrada_lunes' => 'nullable|date_format:H:i',
+            'salida_lunes' => 'nullable|date_format:H:i',
+            'entrada_martes' => 'nullable|date_format:H:i',
+            'salida_martes' => 'nullable|date_format:H:i',
+            'entrada_miercoles' => 'nullable|date_format:H:i',
+            'salida_miercoles' => 'nullable|date_format:H:i',
+            'entrada_jueves' => 'nullable|date_format:H:i',
+            'salida_jueves' => 'nullable|date_format:H:i',
+            'entrada_viernes' => 'nullable|date_format:H:i',
+            'salida_viernes' => 'nullable|date_format:H:i',
+            'entrada_sabado' => 'nullable|date_format:H:i',
+            'salida_sabado' => 'nullable|date_format:H:i',
+            'entrada_domingo' => 'nullable|date_format:H:i',
+            'salida_domingo' => 'nullable|date_format:H:i',
+            'entrada_festivo' => 'nullable|date_format:H:i',
+            'salida_festivo' => 'nullable|date_format:H:i',
         ],[
             'jornada.required' => 'El campo es obligatorio',
             'horario_entrada.required' => 'El campo es obligatorio',
@@ -687,22 +722,22 @@ class ProfesionalHorarioController extends Controller
 
         elseif($request->jornada == 10)
         {
-            $entrada_lunes = $request->horario_entrada;
-            $salida_lunes = $request->horario_salida;
-            $entrada_martes = $request->horario_entrada;
-            $salida_martes = $request->horario_salida;
-            $entrada_miercoles = $request->horario_entrada;
-            $salida_miercoles = $request->horario_salida;
-            $entrada_jueves = $request->horario_entrada;
-            $salida_jueves = $request->horario_salida;
-            $entrada_viernes = $request->horario_entrada;
-            $salida_viernes = $request->horario_salida;
-            $entrada_sabado = $request->horario_entrada;
-            $salida_sabado = $request->horario_salida;
-            $entrada_domingo = $request->horario_entrada;
-            $salida_domingo = $request->horario_salida;
-            $entrada_festivo = $request->horario_entrada;
-            $salida_festivo =$request->horario_salida;
+            $entrada_lunes = $request->entrada_lunes;
+            $salida_lunes = $request->salida_lunes;
+            $entrada_martes = $request->entrada_martes;
+            $salida_martes = $request->salida_martes;
+            $entrada_miercoles = $request->entrada_miercoles;
+            $salida_miercoles = $request->salida_miercoles;
+            $entrada_jueves = $request->entrada_jueves;
+            $salida_jueves = $request->salida_jueves;
+            $entrada_viernes = $request->entrada_viernes;
+            $salida_viernes = $request->salida_viernes;
+            $entrada_sabado = $request->entrada_sabado;
+            $salida_sabado = $request->salida_sabado;
+            $entrada_domingo = $request->entrada_domingo;
+            $salida_domingo = $request->salida_domingo;
+            $entrada_festivo = $request->entrada_festivo;
+            $salida_festivo =$request->salida_festivo;
 
             $label_jornada = "Rolador";
         }
