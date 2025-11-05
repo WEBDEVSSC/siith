@@ -1354,7 +1354,7 @@ ADMINISTRADOR
 
     <div class="card">
         <div class="card-header">
-            <strong>CAMBIOS DE UNIDAD</strong>
+            <i class="fa-solid fa-building-circle-arrow-right"></i><strong> CAMBIOS DE UNIDAD</strong>
         </div>
         <div class="card-body">
 
@@ -1385,9 +1385,9 @@ ADMINISTRADOR
                                 <td>{{ $cambio->fecha_final ? \Carbon\Carbon::parse($cambio->fecha_final)->format('d/m/Y') : '' }}</td>
                                 <td>
                                     @if ($cambio->documento_respaldo)
-                                    <a href="{{ route('descargar.documento', $cambio->id) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
+                                        <a href="{{ route('descargar.documento', $cambio->id) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file"></i></a>
                                     @else
-                                        No disponible
+                                        <a href="{{ route('documentoRespaldoCreate', $cambio->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-file-import"></i></a>
                                     @endif
                                 </td>
                             </tr>

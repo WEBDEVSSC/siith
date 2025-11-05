@@ -399,6 +399,12 @@ Route::middleware(['auth'])->group(function ()
 
      Route::post('admin/profesionales/cambioDeUnidad/storeCambioDeUnidad', [ProfesionalCambioDeUnidadController::class, 'storeCambioDeUnidad'])->name('storeCambioDeUnidad');
 
+     // Ruta para cargar el documento de respaldo despues de hacer el registro
+     
+     Route::get('admin/profesionales/cambioDeUnidad/documentoRespaldoCreate/{id}', [ProfesionalCambioDeUnidadController::class,'documentoRespaldoCreate'])->name('documentoRespaldoCreate');
+
+     Route::put('admin/profesionales/cambioDeUnidad/documentoRespaldoStore/{id}', [ProfesionalCambioDeUnidadController::class,'documentoRespaldoStore'])->name('documentoRespaldoStore');
+
      Route::get('/descargar-documento/{id}', [ProfesionalCambioDeUnidadController::class, 'descargar'])->name('descargar.documento');
 
      Route::get('/reg-nac-prof-uno/{id}', [ProfesionalGradoAcademicoController::class, 'regNacProfUno'])->name('regNacProfUno');

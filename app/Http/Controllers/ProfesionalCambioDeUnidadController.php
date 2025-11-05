@@ -336,4 +336,68 @@ class ProfesionalCambioDeUnidadController extends Controller
 
         abort(404, 'Archivo no encontrado');
     }
+
+    public function documentoRespaldoCreate($id)
+    {
+        // Consultamos el registro
+        $cambio = ProfesionalCambioDeUnidad::findOrFail($id);
+
+        // Consultamos el profesional
+        $profesional = Profesional::where('id',$cambio->id_profesional)->first();
+
+        $credencializacion = $profesional->credencializacion;
+        $fotografia = $credencializacion ? $credencializacion->fotografia : null;
+
+        // Generamos la URL de la fotografía desde storage
+        $fotoUrl = $fotografia 
+            ? asset('storage/credencializacion/thumbs/' . $fotografia) 
+            : null;
+
+        // Regresamos la vista con el objeto
+        return view('cambio-unidad.documento-respaldo', compact('cambio','profesional','fotoUrl'));
+    }
+
+    public function documentoRespaldoStore(Request $request, $id)
+    {
+        // Validamos los datos de entrada
+        $request->validate([
+            'documento_respaldo' => 'nullable|mimes:pdf|max:5120',
+        ],[
+            'documento_respaldo.mimes' => 'El documento de respaldo debe estar en formato PDF.',
+            'documento_respaldo.max' => 'El documento de respaldo no debe superar los 5 MB de tamaño.',
+        ]);
+
+        // Consultamos el registro
+        $cambio = ProfesionalCambioDeUnidad::findOrFail($id);
+
+        // Consultamos el profesional
+        $profesional = Profesional::where('id',$cambio->id_profesional)->first();
+
+        $extension = $request->documento_respaldo->extension();
+        $timestamp = now()->format('Ymd_His'); // Ejemplo: 20251001_213045
+
+        switch ($cambio->tipo_movimiento_id) {
+                case 1:
+                    $archivoNombre = $profesional->curp . '_RUO_' . $timestamp . '.' . $extension;
+                    break;
+                case 2:
+                    $archivoNombre = $profesional->curp . '_COU_' . $timestamp . '.' . $extension;
+                    break;
+                case 3:
+                    $archivoNombre = $profesional->curp . '_ME_' . $timestamp . '.' . $extension;
+                    break;
+            }
+
+        // Guardar archivo
+        $archivoPath = $request->documento_respaldo->storeAs('cambio-unidad', $archivoNombre, 'local');
+
+        // Asignamos los valores al registro
+        $cambio->documento_respaldo = $archivoPath;
+        
+        // Guardamos el registro
+        $cambio->save();
+
+        // Redireccionamos al perfil del usuario
+        return redirect()->route('profesionalShow',$profesional->id)->with('success', 'Documento de Respaldo registrado correctamente');
+    }
 }
