@@ -26,7 +26,7 @@ class EnviarFelicitacionesDiarias extends Command
 
         // Enviar resumen solo si hay felicitados
         if (!empty($profesionalesFelicitados)) {
-            Mail::to('soportewebssc@gmail.com')->send(new FelicitacionesEnviadas($profesionalesFelicitados));
+            Mail::to(['soportewebssc@gmail.com','rhcoordmejoracontinua@gmail.com'])->send(new FelicitacionesEnviadas($profesionalesFelicitados));
         }
 
         $this->info('Correos de felicitación enviados exitosamente.');
