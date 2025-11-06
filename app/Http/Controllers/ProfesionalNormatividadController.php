@@ -61,17 +61,17 @@ class ProfesionalNormatividadController extends Controller
         // CONSULTA PARA JURISDICCIONES
         elseif ($user->role == 'ofJurisdiccional')
         {
-            $bajasComision = ProfesionalCambioDeUnidad::whereHas('puesto', function ($query) {
+            $bajasComision = ProfesionalCambioDeUnidad::whereHas('profesional.puesto', function ($query) {
                 $query->whereIn('clues_adscripcion_tipo', [1, 2, 3]);
             })
-                ->whereBetween('fecha_final', [$request->fecha_inicio, $request->fecha_termino])
-                ->orderBy('fecha_final', 'asc')
-                ->get();
+            ->whereBetween('fecha_final', [$request->fecha_inicio, $request->fecha_termino])
+            ->orderBy('fecha_final', 'asc')
+            ->get();
         }
         // CONSULTA PARA UNIDADES
         else
         {
-            $bajasComision = ProfesionalCambioDeUnidad::where('puesto','clues_adscripcion',$user->clues_unidad)
+            $bajasComision = ProfesionalCambioDeUnidad::where('profesional.puesto','clues_adscripcion',$user->clues_unidad)
                 ->whereBetween('fecha_final', [$request->fecha_inicio, $request->fecha_termino])
                 ->orderBy('fecha_final', 'asc')
                 ->get();
