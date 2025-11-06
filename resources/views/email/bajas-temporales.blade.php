@@ -2,7 +2,7 @@
 use Carbon\Carbon;
 @endphp
 
-<h3>TRABAJADORES CON VENCIMIENTO DE COMISIÓN EL DÍA ({{ Carbon::tomorrow()->format('d/m/Y') }})</h3>
+<h3>TRABAJADORES CON VENCIMIENTO DE BAJA TEMPORAL EL DÍA ({{ Carbon::tomorrow()->format('d/m/Y') }})</h3>
 <h3>UNIDAD: {{$titulo}}</h3>
 
 <p style="font-size: 0.9em; color: #555;">

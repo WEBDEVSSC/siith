@@ -678,7 +678,9 @@ Route::middleware(['auth'])->group(function ()
 
      Route::get('admin/normatividad/indexNormatividad', [ProfesionalNormatividadController::class,'indexNormatividad'])->name('indexNormatividad');
 
-     Route::post('admin/normatividad/showNormatividad', [ProfesionalNormatividadController::class,'showNormatividad'])->name('showNormatividad');
+     Route::post('admin/normatividad/createBajasTemporales', [ProfesionalNormatividadController::class,'createBajasTemporales'])->name('createBajasTemporales');
+
+     Route::post('admin/normatividad/createBajasComision', [ProfesionalNormatividadController::class,'createBajasComision'])->name('createBajasComision');
 
     /**
      * 

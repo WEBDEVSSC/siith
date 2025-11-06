@@ -21,7 +21,7 @@ class BajasTemporalesMail extends Mailable
 
     public function build()
     {
-        return $this->subject('S.I.I.T.H. - Vencimiento Comisiones')
+        return $this->subject('S.I.I.T.H. - Vencimiento Baja Temporal')
                     ->view('email.bajas-temporales');
     }
 }
