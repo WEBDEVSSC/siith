@@ -11,7 +11,7 @@
 <div class="card">
         <div class="card-header">
 
-            <p><strong>{{ \Carbon\Carbon::parse($fecha_inicio)->format('d-m-Y') }} y {{ \Carbon\Carbon::parse($fecha_termino)->format('d-m-Y') }}</strong></p>
+            <p><strong>Entre {{ \Carbon\Carbon::parse($fecha_inicio)->format('d-m-Y') }} al {{ \Carbon\Carbon::parse($fecha_termino)->format('d-m-Y') }}</strong></p>
 
         </div>
 
