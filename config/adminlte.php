@@ -328,7 +328,7 @@ return [
             'url' => 'admin/normatividad/indexNormatividad',
             'icon' => 'fa-solid fa-magnifying-glass',
             'label_color' => 'success',
-            'can' => ['normatividad','admin','directivo'],
+            //'can' => ['normatividad','admin','directivo','ofJurisdiccional', ],
         ],
 
         [
