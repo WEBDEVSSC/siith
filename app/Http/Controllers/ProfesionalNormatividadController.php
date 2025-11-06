@@ -61,12 +61,29 @@ class ProfesionalNormatividadController extends Controller
         // CONSULTA PARA JURISDICCIONES
         elseif ($user->role == 'ofJurisdiccional')
         {            
-            $bajasComision = ProfesionalCambioDeUnidad::whereHas('profesional.puesto', function ($query) 
-            {
-                 $query->whereIn('clues_adscripcion_tipo', [1, 2, 3])
-                    ->where('clues_adscripcion_jurisdiccion', $user->jurisdiccion_unidad);
-            })
-                ->whereBetween('fecha_final', [$request->fecha_inicio, $request->fecha_termino])
+            $bajasComision = ProfesionalCambioDeUnidad::with('profesional')
+                ->whereHas('profesional.puesto', function ($query) use ($user) {
+                    $query->whereIn('clues_adscripcion_tipo', [1, 2, 3])
+                        ->where('clues_adscripcion_jurisdiccion', $user->jurisdiccion);
+                })
+                ->whereBetween('fecha_final', [
+                    $request->fecha_inicio . ' 00:00:00',
+                    $request->fecha_termino . ' 23:59:59'
+                ])
+                ->orderBy('fecha_final', 'asc')
+                ->get();
+        }
+        // CONSULTA PARA OFICINA CENTRAL
+        elseif ($user->role == 'ofCentral')
+        {            
+            $bajasComision = ProfesionalCambioDeUnidad::with('profesional')
+                ->whereHas('profesional.puesto', function ($query) use ($user) {
+                    $query->whereIn('clues_adscripcion_tipo', [5, 6]);
+                })
+                ->whereBetween('fecha_final', [
+                    $request->fecha_inicio . ' 00:00:00',
+                    $request->fecha_termino . ' 23:59:59'
+                ])
                 ->orderBy('fecha_final', 'asc')
                 ->get();
         }

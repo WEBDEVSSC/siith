@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1><strong>Normatividad</strong></h1>
+    <h1><strong>Bajas Temporales</strong></h1>
 @stop
 
 @section('content')
@@ -11,7 +11,7 @@
 <div class="card">
         <div class="card-header">
 
-            <p><strong>Bajas Temporales entre {{ \Carbon\Carbon::parse($fecha_inicio)->format('d-m-Y') }} y {{ \Carbon\Carbon::parse($fecha_termino)->format('d-m-Y') }}</strong></p>
+            <p><strong>Entre {{ \Carbon\Carbon::parse($fecha_inicio)->format('d-m-Y') }} y {{ \Carbon\Carbon::parse($fecha_termino)->format('d-m-Y') }}</strong></p>
 
         </div>
 
