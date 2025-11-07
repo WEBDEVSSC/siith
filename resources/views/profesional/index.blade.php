@@ -68,20 +68,23 @@
     
 <div class="card">
         <div class="card-header">
+            @if (auth()->user()->role != 'ensenanza')
 
-           <div class="d-flex justify-content-end gap-2">
-                <a href="{{ route('profesionalesBajasTemporalesIndex') }}" 
-                class="btn btn-warning text-white fw-bold">
-                    <i class="fa-solid fa-chart-column"></i> Trabajadores Con Baja Temporal
-                </a>
+            <div class="d-flex justify-content-end gap-2">
+                    <a href="{{ route('profesionalesBajasTemporalesIndex') }}" 
+                    class="btn btn-warning text-white fw-bold">
+                        <i class="fa-solid fa-chart-column"></i> Trabajadores Con Baja Temporal
+                    </a>
 
-                <span style="color: white;">|||</span>
+                    <span style="color: white;">|||</span>
 
-                <a href="{{ route('profesionalesBajasDefinitivasIndex') }}" 
-                class="btn btn-danger text-white fw-bold">
-                    <i class="fa-solid fa-chart-gantt"></i> Trabajadores Con Baja Definitiva
-                </a>
-            </div>
+                    <a href="{{ route('profesionalesBajasDefinitivasIndex') }}" 
+                    class="btn btn-danger text-white fw-bold">
+                        <i class="fa-solid fa-chart-gantt"></i> Trabajadores Con Baja Definitiva
+                    </a>
+                </div>
+
+            @endif
 
         </div>
         <div class="card-body">

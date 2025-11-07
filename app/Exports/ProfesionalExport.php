@@ -68,6 +68,12 @@ class ProfesionalExport implements FromView, WithStyles
             {
                 $query->where('clues_adscripcion', 'CLSSA002932');
             }
+            elseif($user->role == 'ensenanza')
+            {
+                $query->whereHas('profesional.puesto', function ($q) {
+                    $q->whereIn('nomina_pago', ['610 - Pasante en Servicio Social', '6MR - Médico Residente ','Pasante - Sin pago','PASANTE ENF. - BN']);
+                });
+            }
         });
 
         $profesionales = $profesionalesQuery->get();

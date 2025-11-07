@@ -747,10 +747,16 @@ ADMINISTRADOR
         </div>
         <div class="card-footer">
 
-            @if ($profesional->puesto?->mdl_puesto == 1)
-                <a href="{{ route('createCambioTipoNomina', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
-            @elseif ($profesional->puesto?->mdl_puesto == 0)
-                <a href="{{ route('createCambioTipoNomina', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
+            @if (auth()->user()->role != 'ensenanza')
+                @if ($profesional->puesto?->mdl_puesto == 1)
+                    <a href="{{ route('createCambioTipoNomina', $profesional->id) }}" class="btn btn-info btn-sm">
+                        <i class="fa-solid fa-pen"></i> EDITAR DATOS
+                    </a>
+                @elseif ($profesional->puesto?->mdl_puesto == 0)
+                    <a href="{{ route('createCambioTipoNomina', $profesional->id) }}" class="btn btn-info btn-sm">
+                        <i class="fa-solid fa-plus"></i> REGISTRAR DATOS
+                    </a>
+                @endif
             @endif
     
         </div>
@@ -872,12 +878,14 @@ ADMINISTRADOR
         </div>
     </div>
         <div class="card-footer">
-
+        
+        @if (auth()->user()->role != 'ensenanza')
             @if ($profesional->horario && $profesional->horario->mdl_horario == 1)
                 <a href="{{ route('editHorario', $profesional->id) }}" class="btn btn-info btn-sm"> EDITAR DATOS</a>
             @else
                 <a href="{{ route('createHorario', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa fa-check" aria-hidden="true"></i> REGISTRAR DATOS</a>
             @endif
+        @endif
 
         </div>
     </div>
@@ -1116,7 +1124,7 @@ ADMINISTRADOR
                 <!-- -->
             <div class="row mt-3">
                 <div class="col-md-2">
-                    <p><strong>TIPO DE SANDRE</strong></p>
+                    <p><strong>TIPO DE SANGRE</strong></p>
                     {{ $emergencias->tipo_sangre ?? ''  }}
                 </div>
                 <div class="col-md-2">

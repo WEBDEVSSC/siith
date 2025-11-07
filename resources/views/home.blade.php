@@ -377,6 +377,136 @@ auth()->user()->role === 'hospitalNino'
 
 <!-- ---------------------------------------------------------- -->
 
+<!-- ---------------------------------------------------------- -->
+@if(
+auth()->user()->role === 'ensenanza')
+
+<div class="row">
+    <div class="col-md-3">
+        <!-- small box -->
+        <div class="small-box bg-info">
+            <div class="inner">
+              <h3>{{$contadorEnsenanza610}}</h3>
+
+              <p>610 - Pasante en Servicio Social</p>
+            </div>
+            <div class="icon">
+              <i class="ion-android-contacts"></i>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-3">
+      <!-- small box -->
+      <div class="small-box bg-info">
+          <div class="inner">
+            <h3>{{$contadorEnsenanza6MR}}</h3>
+
+            <p>6MR - Médico Residente</p>
+          </div>
+          <div class="icon">
+            <i class="ion-android-contacts"></i>
+          </div>
+        </div>
+  </div>
+  <div class="col-md-3">
+    <!-- small box -->
+    <div class="small-box bg-info">
+        <div class="inner">
+          <h3>{{$contadorEnsenanzaPSP}}</h3>
+
+          <p>Pasante - Sin pago</p>
+        </div>
+        <div class="icon">
+          <i class="ion-android-contacts"></i>
+        </div>
+      </div>
+</div>
+<div class="col-md-3">
+  <!-- small box -->
+  <div class="small-box bg-info">
+      <div class="inner">
+        <h3>{{$contadorEnsenanzaEnfIB}}</h3>
+
+        <p>Pasante ENF - BN</p>
+      </div>
+      <div class="icon">
+        <i class="ion-android-contacts"></i>
+      </div>
+    </div>
+</div>
+</div>
+
+<!-- ---------------------------------------------------- -->
+
+<div class="row">
+ 
+
+    <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><strong>Jurisdicción</strong></h3>
+      </div>
+      <div class="card-body">
+
+        <div class="row">
+          <div class="col-md-6">
+            <canvas id="profesionalesPorJurisdiccion" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+          </div>
+          <div class="col-md-6">
+            <table class="table table-sm small">
+              <tbody>
+                <tr>
+                  <td style="color: rgba(255, 99, 132, 0.6); font-weight: bold;">J1 - Piedras Negras</td>
+                  <td>{{$contadorEnsenanzaJ1}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(255, 159, 64, 0.6); font-weight: bold;">J2 - Acuña</td>
+                  <td>{{$contadorEnsenanzaJ2}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(255, 205, 86, 0.6); font-weight: bold;">J3 - Sabinas</td>
+                  <td>{{$contadorEnsenanzaJ3}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(75, 192, 192, 0.6); font-weight: bold;">J4 - Monclova</td>
+                  <td>{{$contadorEnsenanzaJ4}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(54, 162, 235, 0.6); font-weight: bold;">J5 - Cuatro Cienegas</td>
+                  <td>{{$contadorEnsenanzaJ5}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(153, 102, 255, 0.6); font-weight: bold;">J6 - Torreón</td>
+                  <td>{{$contadorEnsenanzaJ6}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(0, 204, 102, 0.6); font-weight: bold;">J7 - Fco. I. Madero</td>
+                  <td>{{$contadorEnsenanzaJ7}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(255, 102, 255, 0.6); font-weight: bold;">J8 - Saltillo</td>
+                  <td>{{$contadorEnsenanzaJ8}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(102, 204, 255, 0.6); font-weight: bold;">J9 - Unidades de Apoyo</td>
+                  <td>{{$contadorEnsenanzaJ9}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  
+</div>
+   
+@endif
+
+<!-- --------------------------------------------------------------- -->
+
 @endauth
 
 
@@ -450,6 +580,69 @@ auth()->user()->role === 'hospitalNino'
   });
   
   </script>
+
+  <!-- GRAFICA PARA ENSENANZA PASANTES -->
+
+  <script>
+      // Espera a que el contenido del DOM esté cargado
+      document.addEventListener('DOMContentLoaded', function() {
+      // Obtén el contexto del canvas
+      var ctx = document.getElementById('profesionalesPorJurisdiccionEnsenanza').getContext('2d');
+      
+      // Crea la gráfica de dona
+      var myDoughnutChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+              labels: ['J1','J2','J3','J4','J5','J6','J7','J8','J9'],
+              datasets: [{
+                  label: 'Número de votos',
+                  data: [{{$contadorEnsenanzaJ1}}, {{$contadorEnsenanzaJ2}}, {{$contadorEnsenanzaJ3}}, {{$contadorEnsenanzaJ4}}, {{$contadorEnsenanzaJ5}}, {{$contadorEnsenanzaJ6}}, {{$contadorEnsenanzaJ7}}, {{$contadorEnsenanzaJ8}}, {{$contadorEnsenanzaJ9}}], 
+                  backgroundColor: [
+                    'rgba(255, 99, 132, 0.6)',   // Rojo fresa
+                    'rgba(255, 159, 64, 0.6)',   // Naranja vibrante
+                    'rgba(255, 205, 86, 0.6)',   // Amarillo fuerte
+                    'rgba(75, 192, 192, 0.6)',   // Verde-azulado
+                    'rgba(54, 162, 235, 0.6)',   // Azul vivo
+                    'rgba(153, 102, 255, 0.6)',  // Morado claro
+                    'rgba(0, 204, 102, 0.6)',    // Verde menta
+                    'rgba(255, 102, 255, 0.6)',  // Fucsia claro
+                    'rgba(102, 204, 255, 0.6)'   // Celeste brillante
+                  ],
+                  borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(255, 205, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(0, 204, 102, 1)',
+                    'rgba(255, 102, 255, 1)',
+                    'rgba(102, 204, 255, 1)'
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              responsive: true,
+              plugins: {
+                  legend: {
+                      position: 'none',
+                  },
+                  tooltip: {
+                      callbacks: {
+                          label: function(tooltipItem) {
+                              return tooltipItem.label + ': ' + tooltipItem.raw;
+                          }
+                      }
+                  }
+              }
+          }
+      });
+  });
+  
+  </script>
+<
+  <!-- -->
 
   <script>
       // Espera a que el contenido del DOM esté cargado

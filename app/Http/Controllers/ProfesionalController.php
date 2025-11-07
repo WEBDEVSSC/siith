@@ -1411,7 +1411,7 @@ class ProfesionalController extends Controller
         // PASANTE DE ENSENANZA (15)
         elseif ($tipo == 15) 
         {
-            $catalogoLabel = "PASANTES MEDICOS / ENFERMERIA";
+            $catalogoLabel = "PERSONAL EN FORMACIÓN";
             $ocupacion = ProfesionalOcupacionEnsenanza::where('id_profesional', $id)->first();
         }
         else

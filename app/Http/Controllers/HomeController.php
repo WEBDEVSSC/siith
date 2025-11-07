@@ -421,8 +421,151 @@ class HomeController extends Controller
         ->count();
 
         // -----------------------------------------------------------------------------------------------
+        // ENSENANZA CONTADORES
+        // -----------------------------------------------------------------------------------------------
+
+        $contadorEnsenanza610 = Profesional::whereRelation('puesto', 'nomina_pago', '610 - Pasante en Servicio Social')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $contadorEnsenanza6MR = Profesional::whereRelation('puesto', 'nomina_pago', '6MR - Médico Residente')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $contadorEnsenanzaPSP = Profesional::whereRelation('puesto', 'nomina_pago', 'Pasante - Sin pago')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $contadorEnsenanzaEnfIB = Profesional::whereRelation('puesto', 'nomina_pago', 'PASANTE ENF. - BN')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+        
+        $contadorEnsenanzaJ1 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '1')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->whereHas('puesto', function ($query) {
+                $query->whereIn('nomina_pago', [
+                    '610 - Pasante en Servicio Social',
+                    '6MR - Médico Residente',
+                    'Pasante - Sin pago',
+                    'PASANTE ENF. - BN',
+                ]);
+            })
+            ->count();   
+
+        $contadorEnsenanzaJ2 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '2')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->whereHas('puesto', function ($query) {
+                $query->whereIn('nomina_pago', [
+                    '610 - Pasante en Servicio Social',
+                    '6MR - Médico Residente',
+                    'Pasante - Sin pago',
+                    'PASANTE ENF. - BN',
+                ]);
+            })
+            ->count();
+
+        $contadorEnsenanzaJ3 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '3')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->whereHas('puesto', function ($query) {
+                $query->whereIn('nomina_pago', [
+                    '610 - Pasante en Servicio Social',
+                    '6MR - Médico Residente',
+                    'Pasante - Sin pago',
+                    'PASANTE ENF. - BN',
+                ]);
+            })
+            ->count();
+
+        $contadorEnsenanzaJ4 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '4')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->whereHas('puesto', function ($query) {
+                $query->whereIn('nomina_pago', [
+                    '610 - Pasante en Servicio Social',
+                    '6MR - Médico Residente',
+                    'Pasante - Sin pago',
+                    'PASANTE ENF. - BN',
+                ]);
+            })
+            ->count();
+
+        $contadorEnsenanzaJ5 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '5')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->whereHas('puesto', function ($query) {
+                $query->whereIn('nomina_pago', [
+                    '610 - Pasante en Servicio Social',
+                    '6MR - Médico Residente',
+                    'Pasante - Sin pago',
+                    'PASANTE ENF. - BN',
+                ]);
+            })
+            ->count();
+
+        $contadorEnsenanzaJ6 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '6')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->whereHas('puesto', function ($query) {
+                $query->whereIn('nomina_pago', [
+                    '610 - Pasante en Servicio Social',
+                    '6MR - Médico Residente',
+                    'Pasante - Sin pago',
+                    'PASANTE ENF. - BN',
+                ]);
+            })
+            ->count();
+
+        $contadorEnsenanzaJ7 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '7')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->whereHas('puesto', function ($query) {
+                $query->whereIn('nomina_pago', [
+                    '610 - Pasante en Servicio Social',
+                    '6MR - Médico Residente',
+                    'Pasante - Sin pago',
+                    'PASANTE ENF. - BN',
+                ]);
+            })
+            ->count();
+
+        $contadorEnsenanzaJ8 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '8')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->whereHas('puesto', function ($query) {
+                $query->whereIn('nomina_pago', [
+                    '610 - Pasante en Servicio Social',
+                    '6MR - Médico Residente',
+                    'Pasante - Sin pago',
+                    'PASANTE ENF. - BN',
+                ]);
+            })
+            ->count();
+
+        $contadorEnsenanzaJ9 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '9')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->whereHas('puesto', function ($query) {
+                $query->whereIn('nomina_pago', [
+                    '610 - Pasante en Servicio Social',
+                    '6MR - Médico Residente',
+                    'Pasante - Sin pago',
+                    'PASANTE ENF. - BN',
+                ]);
+            })
+            ->count();
+
+        // -----------------------------------------------------------------------------------------------
 
         return view('home', compact(
+
+            'contadorEnsenanza610',
+            'contadorEnsenanza6MR',
+            'contadorEnsenanzaPSP',
+            'contadorEnsenanzaEnfIB',
+            'contadorEnsenanzaJ1',
+            'contadorEnsenanzaJ2',
+            'contadorEnsenanzaJ3',
+            'contadorEnsenanzaJ4',
+            'contadorEnsenanzaJ5',
+            'contadorEnsenanzaJ6',
+            'contadorEnsenanzaJ7',
+            'contadorEnsenanzaJ8',
+            'contadorEnsenanzaJ9',
+
             'profesionalesActivos',
             'profesionalesBajaTemporal',
             'profesionalesActivosMasculino',
