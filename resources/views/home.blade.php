@@ -85,7 +85,9 @@
       <div class="card-body">
 
         <div class="row">
-          <div class="col-md-6"><canvas id="profesionalesPorJurisdiccion" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas></div>
+          <div class="col-md-6">
+            <canvas id="profesionalesPorJurisdiccion" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+          </div>
           <div class="col-md-6">
             <table class="table table-sm small">
               <tbody>
@@ -140,7 +142,77 @@
         <h3 class="card-title"><strong>Nómina de Pago</strong></h3>
       </div>
       <div class="card-body">
-        <canvas id="profesionalesNominaDePago" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+
+        <div class="row">
+          <div class="col-md-6"><canvas id="profesionalesNominaDePago" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas></div>
+          <div class="col-md-6">
+
+            <table class="table table-sm small">
+              <tbody>
+                <tr>
+                  <td style="color: rgba(255, 99, 132, 0.6); font-weight: bold;">REG</td>
+                  <td>{{$profesionalesJurisdiccion1}}</td>
+                  <td style="color: rgba(102, 204, 255, 0.6); font-weight: bold;">IB</td>
+                  <td>{{$profesionalesJurisdiccion1}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(255, 159, 64, 0.6); font-weight: bold;">FOR</td>
+                  <td>{{$profesionalesJurisdiccion2}}</td>
+                  <td style="color: rgba(204, 153, 255, 0.6); font-weight: bold;">UNE</td>
+                  <td>{{$profesionalesJurisdiccion1}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(255, 205, 86, 0.6); font-weight: bold;">FOR 2</td>
+                  <td>{{$profesionalesJurisdiccion3}}</td>
+                  <td style="color: rgba(255, 153, 153, 0.6); font-weight: bold;">DIF PS</td>
+                  <td>{{$profesionalesJurisdiccion1}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(75, 192, 192, 0.6); font-weight: bold;">FOR 3</td>
+                  <td>{{$profesionalesJurisdiccion4}}</td>
+                  <td style="color: rgba(204, 255, 153, 0.6); font-weight: bold;">DIF OC</td>
+                  <td>{{$profesionalesJurisdiccion1}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(54, 162, 235, 0.6); font-weight: bold;">610</td>
+                  <td>{{$profesionalesJurisdiccion5}}</td>
+                  <td style="color: rgba(153, 255, 204, 0.6); font-weight: bold;">RAMO 12</td>
+                  <td>{{$profesionalesJurisdiccion1}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(153, 102, 255, 0.6); font-weight: bold;">6MR</td>
+                  <td>{{$profesionalesJurisdiccion6}}</td>
+                  <td style="color: rgba(255, 102, 102, 0.6); font-weight: bold;">PASANTE SP</td>
+                  <td>{{$profesionalesJurisdiccion1}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(255, 102, 255, 0.6); font-weight: bold;">FED</td>
+                  <td>{{$profesionalesJurisdiccion7}}</td>
+                  <td style="color: rgba(102, 255, 255, 0.6); font-weight: bold;">HON</td>
+                  <td>{{$profesionalesJurisdiccion1}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(0, 204, 102, 0.6); font-weight: bold;">EVE</td>
+                  <td>{{$profesionalesJurisdiccion8}}</td>
+                  <td style="color: rgba(255, 178, 102, 0.6); font-weight: bold;">ISSREEI</td>
+                  <td>{{$profesionalesJurisdiccion1}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(255, 153, 204, 0.6); font-weight: bold;">HOM</td>
+                  <td>{{$profesionalesJurisdiccion9}}</td>
+                  <td style="color: rgba(178, 255, 102, 0.6); font-weight: bold;">UMM</td>
+                  <td>{{$profesionalesJurisdiccion1}}</td>
+                </tr>
+                <tr>
+                  <td style="color: rgba(255, 204, 102, 0.6); font-weight: bold;">BUR</td>
+                  <td>{{$profesionalesJurisdiccion9}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
@@ -392,26 +464,27 @@ auth()->user()->role === 'hospitalNino'
               labels: ['REG','FOR','FOR2','FOR3','610','6MR','FED','EVE','HOM','BUR','IB','UNE','DIF PS', 'DIF OC','RAMO 12','PASANTE SP', 'HON', 'ISSREEI', 'UMM'],
               datasets: [{
                   label: 'Número de votos',
-                  data: [{{$nominaRegularizado}}, {{$nominaFormalizadoUno}}, {{$nominaFormalizadoDos}}, {{$nominaFormalizadoTres}}, {{$nominaPasanteServicioSocial}}, {{$nominaMedicoResidente}}, {{$nominaFederal420}}, {{$nominaEventual}}, {{$nominaHomogado}}, {{$nominaBurocrata}}, {{$nominaImssBienestar}}, {{$nominaUnemes}}, {{$nominaDifOc}}, {{$nominaRamoDoce}}, {{$nominaPasanteSinPago}}, {{$nominaHonorarios}}, {{$nominaIssreei}}, {{$nominaUmmFam}}], 
+                  data: [{{$nominaRegularizado}}, {{$nominaFormalizadoUno}}, {{$nominaFormalizadoDos}}, {{$nominaFormalizadoTres}}, {{$nominaPasanteServicioSocial}}, {{$nominaMedicoResidente}}, {{$nominaFederal420}}, {{$nominaEventual}}, {{$nominaHomogado}}, {{$nominaBurocrata}}, {{$nominaImssBienestar}}, {{$nominaUnemes}}, {{$nominaDifPs}},  {{$nominaDifOc}}, {{$nominaRamoDoce}}, {{$nominaPasanteSinPago}}, {{$nominaHonorarios}}, {{$nominaIssreei}}, {{$nominaUmmFam}}], 
               backgroundColor: [
-                'rgba(255, 99, 132, 0.6)',   // Rojo fresa
-                'rgba(255, 159, 64, 0.6)',   // Naranja vibrante
-                'rgba(255, 205, 86, 0.6)',   // Amarillo fuerte
-                'rgba(75, 192, 192, 0.6)',   // Verde-azulado
-                'rgba(54, 162, 235, 0.6)',   // Azul vivo
-                'rgba(153, 102, 255, 0.6)',  // Morado claro
-                'rgba(255, 102, 255, 0.6)',  // Fucsia claro
-                'rgba(0, 204, 102, 0.6)',    // Verde menta
-                'rgba(255, 153, 204, 0.6)',  // Rosa pastel
-                'rgba(255, 204, 102, 0.6)',  // Amarillo naranja
-                'rgba(102, 204, 255, 0.6)',  // Celeste brillante
-                'rgba(204, 153, 255, 0.6)',  // Lavanda fuerte
-                'rgba(255, 153, 153, 0.6)',  // Coral claro
-                'rgba(204, 255, 153, 0.6)',  // Verde lima pálido
-                'rgba(153, 255, 204, 0.6)',  // Verde aguamarina
-                'rgba(255, 102, 102, 0.6)',  // Rojo coral
-                'rgba(102, 255, 255, 0.6)',  // Cian claro
-                'rgba(255, 178, 102, 0.6)'   // Melón suave
+                'rgba(255, 99, 132, 0.6)', // REG
+                'rgba(255, 159, 64, 0.6)', // FOR
+                'rgba(255, 205, 86, 0.6)', // FOR 2
+                'rgba(75, 192, 192, 0.6)', // FOR 3
+                'rgba(54, 162, 235, 0.6)', // 610
+                'rgba(153, 102, 255, 0.6)', // 6MR
+                'rgba(255, 102, 255, 0.6)', // FED
+                'rgba(0, 204, 102, 0.6)', // EVE
+                'rgba(255, 153, 204, 0.6)', // HOM
+                'rgba(255, 204, 102, 0.6)', // BUR
+                'rgba(102, 204, 255, 0.6)', // IB
+                'rgba(204, 153, 255, 0.6)', // UNE
+                'rgba(255, 153, 153, 0.6)', // DIF PS
+                'rgba(204, 255, 153, 0.6)', // DIF OC
+                'rgba(153, 255, 204, 0.6)', // RAMO 12
+                'rgba(255, 102, 102, 0.6)', // PASANTE SP
+                'rgba(102, 255, 255, 0.6)', // HON
+                'rgba(255, 178, 102, 0.6)', // ISSREEI
+                'rgba(178, 255, 102, 0.6)'  // UMM
               ],
               borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -431,7 +504,8 @@ auth()->user()->role === 'hospitalNino'
                 'rgba(153, 255, 204, 1)',
                 'rgba(255, 102, 102, 1)',
                 'rgba(102, 255, 255, 1)',
-                'rgba(255, 178, 102, 1)'
+                'rgba(255, 178, 102, 1)',
+                'rgba(178, 255, 102, 1)'
               ],
                   borderWidth: 1
               }]
@@ -440,7 +514,7 @@ auth()->user()->role === 'hospitalNino'
               responsive: true,
               plugins: {
                   legend: {
-                      position: 'right',
+                      position: 'none',
                   },
                   tooltip: {
                       callbacks: {

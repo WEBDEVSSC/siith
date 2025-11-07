@@ -455,6 +455,7 @@ class HomeController extends Controller
             'nominaHonorarios',
             'nominaIssreei',
             'nominaUmmFam',
+            'nominaDifPs',
 
             'contratoConfianza',
             'contratoBase',
