@@ -74,6 +74,10 @@ class ProfesionalExport implements FromView, WithStyles
                     $q->whereIn('nomina_pago', ['610 - Pasante en Servicio Social', '6MR - Médico Residente ','Pasante - Sin pago','PASANTE ENF. - BN']);
                 });
             }
+            elseif ($user->role == 'universitario') 
+            {
+                $query->where('clues_adscripcion', 'CLHUN000015');
+            }
         });
 
         $profesionales = $profesionalesQuery->get();

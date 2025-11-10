@@ -150,7 +150,7 @@ class ProfesionalController extends Controller
             $rol = $usuario->role; // cambia 'rol' por el nombre de tu columna
 
             // Puedes hacer condicionales según el rol
-            if ($rol === 'ensenanza') 
+            if ($rol === 'universitario') 
             {
                 // hacer algo solo para usuarios con rol "ensenanza"
                 return redirect()->route('datosGeneralesEnsenanza', [
@@ -620,6 +620,8 @@ class ProfesionalController extends Controller
         $puesto->clues_adscripcion_jurisdiccion = '9';
         $puesto->clues_adscripcion_tipo = '15';
 
+        $puesto->institucion_puesto = 'SSA';
+
         // Consultamos el tipo de Nomina
         if($request->tipo_nomina == "6MR")
         {
@@ -842,21 +844,23 @@ class ProfesionalController extends Controller
         } 
         elseif(Gate::allows('ensenanza'))
         {
-            /*$profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
-                ->whereRelation('puesto', 'nomina_pago', ['610 - Pasante en Servicio Social', '6MR - Médico Residente'])
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
                 ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-                ->get();*/
-
-
-
-                $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
-                    ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-                    ->where(function($q) {
-                        $q->whereRelation('puesto', 'nomina_pago', '610 - Pasante en Servicio Social')
-                        ->orWhereRelation('puesto', 'nomina_pago', '6MR - Médico Residente');
-                    })
-                    ->get();
+                ->where(function($q) {
+                    $q->whereRelation('puesto', 'nomina_pago', '610 - Pasante en Servicio Social')
+                    ->orWhereRelation('puesto', 'nomina_pago', '6MR - Médico Residente')
+                    ->orWhereRelation('puesto', 'nomina_pago', 'Pasante - Sin pago')
+                    ->orWhereRelation('puesto', 'nomina_pago', 'PASANTE ENF. - BN');
+                })
+                ->get();
         } 
+        elseif(Gate::allows('universitario'))
+        {
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLHUN000015')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        }
         else
         {
             $profesionales = collect(); // colección vacía para evitar errores
@@ -1722,31 +1726,151 @@ class ProfesionalController extends Controller
         // Buscar el profesional por ID
         $profesional = Profesional::findOrFail($id);
 
-        // Generamos la variable a base 64
-        $fotoBase64 = null;
+        $credencializacion = $profesional->credencializacion;
 
-        // Detectamos si la imagen existe y la codificamos
-        if ($profesional->credencializacion && $profesional->credencializacion->fotografia) {
-            $rutaImagen = storage_path('app/private/' . $profesional->credencializacion->fotografia);
+        $fotografia = $credencializacion ? $credencializacion->fotografia : null;
 
-            if (file_exists($rutaImagen)) {
-                // Leer la imagen
-                $fotoData = file_get_contents($rutaImagen);
+        $fotoPath = $fotografia
+            ? storage_path('app/public/credencializacion/thumbs/' . $fotografia)
+            : public_path('images/avatar-placeholder.png');
 
-                // Detectar el tipo MIME
-                $mimeType = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $rutaImagen);
+        // Cargamos la ocupacion
 
-                // Convertir la imagen a base64
-                $fotoBase64 = 'data:' . $mimeType . ';base64,' . base64_encode($fotoData);
-            }
+        // Cargamos los datos del MODULO DE OCUPACION
+        
+        $ocupacion = null;
+
+        $tipo = $profesional->puesto->clues_adscripcion_tipo ?? null;
+
+        // CENTROS DE SALUD URBANOS Y RURALES (1)
+        if ($tipo == 1) 
+        {
+            $catalogoLabel = "CENTROS DE SALUD URBANOS Y RURALES";
+            $ocupacion = ProfesionalOcupacionCentroSalud::where('id_profesional', $id)->first();
+            $ocupacionLabel = optional($ocupacion)->unidad_uno.' - '.optional($ocupacion)->area_uno.' - '.optional($ocupacion)->subarea_uno.' - '.optional($ocupacion)->ocupacion_uno;
+        } 
+        // HOSPITALES (2)
+        elseif ($tipo == 2) 
+        {
+            $catalogoLabel = "HOSPITALES";
+            $ocupacion = ProfesionalOcupacionHospital::where('id_profesional', $id)->first();
+        } 
+        // OFICINA JURISDICCIONAL (3)
+        elseif ($tipo == 3) 
+        {
+            $catalogoLabel = "OFICINA JURISDICCIONAL";
+            $ocupacion = ProfesionalOcupacionOfJurisdiccional::where('id_profesional', $id)->first();
+        } 
+        // CRI CREE (4)
+        elseif ($tipo == 4) 
+        {
+            $catalogoLabel = "DIF CRI CREE";
+            $ocupacion = ProfesionalOcupacionCriCree::where('id_profesional', $id)->first();
+        }
+        // SAMU CRUM (5)
+        elseif ($tipo == 5) 
+        {
+            $catalogoLabel = "SAMU CRUM";
+            $ocupacion = ProfesionalOcupacionSamuCrum::where('id_profesional', $id)->first();
+        }
+        // OFICINA CENTRAL (6)
+        elseif ($tipo == 6) 
+        {
+            $catalogoLabel = "OFICINA CENTRAL";
+            $ocupacion = ProfesionalOcupacionOficinaCentral::where('id_profesional', $id)->first();
+        }
+        // ALMACEN (7)
+        elseif ($tipo == 7) 
+        {
+            $catalogoLabel = "ALMACEN";
+            $ocupacion = ProfesionalOcupacionAlmacen::where('id_profesional', $id)->first();
+        }
+        // CETS LESP (8)
+        elseif ($tipo == 8) 
+        {
+            $catalogoLabel = "CETS LESP";
+            $ocupacion = ProfesionalOcupacionCetsLesp::where('id_profesional', $id)->first();
+        }
+        // CORS (9)
+        elseif ($tipo == 9) 
+        {
+            $catalogoLabel = "CORS";
+            $ocupacion = ProfesionalOcupacionCors::where('id_profesional', $id)->first();
+        }
+        // ISSREEI (10)
+        elseif ($tipo == 10) 
+        {
+            $catalogoLabel = "ISSREEI";
+            $ocupacion = ProfesionalOcupacionIssreei::where('id_profesional', $id)->first();
+        }
+        // CESAME (11)
+        elseif ($tipo == 11) 
+        {
+            $catalogoLabel = "CESAME";
+            $ocupacion = ProfesionalOcupacionCesame::where('id_profesional', $id)->first();
+        }
+        // PSI PARRAS (12)
+        elseif ($tipo == 12) 
+        {
+            $catalogoLabel = "PSI PARRAS";
+            $ocupacion = ProfesionalOcupacionPsiParras::where('id_profesional', $id)->first();
+        }
+        // CEAM (13)
+        elseif ($tipo == 13) 
+        {
+            $catalogoLabel = "CEAM";
+            $ocupacion = ProfesionalOcupacionCeam::where('id_profesional', $id)->first();
+        }
+        // CESAME (14)
+        elseif ($tipo == 14) 
+        {
+            $catalogoLabel = "HOSPITAL DEL NIÑO";
+            $ocupacion = ProfesionalOcupacionHospitalNino::where('id_profesional', $id)->first();
+
+            $ocupacionLabel = optional($ocupacion)->unidad_uno.' - '.
+                      optional($ocupacion)->area_uno.' - '.
+                      optional($ocupacion)->subarea_uno.' - '.
+                      optional($ocupacion)->ocupacion_uno;
+        }
+        // PASANTE DE ENSENANZA (15)
+        elseif ($tipo == 15) 
+        {
+            $catalogoLabel = "PERSONAL EN FORMACIÓN";
+            $ocupacion = ProfesionalOcupacionEnsenanza::where('id_profesional', $id)->first();
+
+            $ocupacionLabel = optional($ocupacion)->unidad.' - '.
+                      optional($ocupacion)->area.' - '.
+                      optional($ocupacion)->subarea.' - '.
+                      optional($ocupacion)->ocupacion;
+        }
+        else
+        {
+            $catalogoLabel = "SIN CATALOGO ASIGNADO";
+            $ocupacionLabel = "SIN OCUPACION ASIGNADA";
         }
 
         // Pasar los datos a la vista
-        $pdf = Pdf::loadView('pdf.profesional', compact('profesional','fotoBase64'));
+        $pdf = Pdf::loadView('pdf.profesional', compact('profesional','fotoPath','catalogoLabel','ocupacionLabel'));
 
-         // Configurar la orientación de la página a horizontal
-        //$pdf->setPaper('a4', 'landscape');  // 'a4' es el tamaño de la página y 'landscape' es la orientación horizontal
+        // Agregar numeración de página al pie
+        $pdf->output();
+        $dompdf = $pdf->getDomPDF();
+        $canvas = $dompdf->get_canvas();
 
+        // Coordenadas (x, y) pueden ajustarse según tu diseño
+        $w = $canvas->get_width();
+        $h = $canvas->get_height();
+
+        $canvas->page_text(
+            $w - 100, // posición X desde la derecha
+            $h - 30,  // posición Y desde abajo
+            "Página {PAGE_NUM} de {PAGE_COUNT}", // texto
+            null,     // fuente (usa la predeterminada)
+            9,        // tamaño de letra
+            [0, 0, 0] // color negro RGB
+        );
+
+        // Regresamos la vista con los datos
         return $pdf->stream('SIITH_'.$profesional->curp.'.pdf'); // Mostrar en el navegador
     }
 

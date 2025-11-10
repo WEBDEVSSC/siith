@@ -403,10 +403,10 @@ class ProfesionalPuestoController extends Controller
             'clues_nomina_municipio' => $cluesNomina->municipio,
             'clues_nomina_jurisdiccion' => $cluesNomina->clave_jurisdiccion,
 
-            'clues_adscripcion' => $request->clues_adscripcion,
-            'clues_adscripcion_nombre' => $cluesAdscripcion->nombre,
-            'clues_adscripcion_municipio' => $cluesAdscripcion->municipio,
-            'clues_adscripcion_jurisdiccion' => $cluesAdscripcion->clave_jurisdiccion,
+            //'clues_adscripcion' => $request->clues_adscripcion,
+            //'clues_adscripcion_nombre' => $cluesAdscripcion->nombre,
+            //'clues_adscripcion_municipio' => $cluesAdscripcion->municipio,
+            //'clues_adscripcion_jurisdiccion' => $cluesAdscripcion->clave_jurisdiccion,
 
             'area_trabajo' => $request->area_trabajo,
             'ocupacion' => $request->ocupacion,

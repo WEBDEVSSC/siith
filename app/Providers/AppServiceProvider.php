@@ -113,6 +113,11 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // ROL ENSENANZA
+        Gate::define('universitario', function ($user) {
+            return $user->role === 'universitario';
+        });
+
+        // ROL ENSENANZA
         Gate::define('normatividad', function ($user) {
             return $user->role === 'normatividad';
         });

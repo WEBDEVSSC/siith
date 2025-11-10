@@ -312,7 +312,7 @@ return [
             'url' => 'admin/profesionales/buscarCurp',
             'icon' => 'fas fa-plus',
             'label_color' => 'success',
-            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei', 'ensenanza'],
+            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei', 'universitario'],
         ],
 
         [
@@ -336,7 +336,7 @@ return [
             'url' => 'admin/profesionales/profesionalIndex',
             'icon' => 'fa-solid fa-list',
             'label_color' => 'success',
-            'can' => ['directivo', 'admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei', 'ensenanza'],
+            'can' => ['directivo', 'admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei', 'ensenanza', 'universitario'],
         ],
 
         [
@@ -360,7 +360,7 @@ return [
             'url' => 'admin/profesionales/reportes/reporteIndex',
             'icon' => 'fa-solid fa-file-excel',
             'label_color' => 'success',
-            'can' => ['admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei','ensenanza'],
+            'can' => ['admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei','ensenanza','universitario'],
         ],
         [
             'text' => 'Pases de Salida',

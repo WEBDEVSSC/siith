@@ -68,7 +68,7 @@
     
 <div class="card">
         <div class="card-header">
-            @if (auth()->user()->role != 'ensenanza')
+            @if (auth()->user()->role != 'universitario' && Auth::user()->role != 'ensenanza' && Auth::user()->role != 'universitario')
 
             <div class="d-flex justify-content-end gap-2">
                     <a href="{{ route('profesionalesBajasTemporalesIndex') }}" 
@@ -118,8 +118,6 @@
                             </a>
                         </td>
 
-                        
-
                          <td>
                             @if($data['profesional']->credencializacion && $data['profesional']->credencializacion->fotografia)
                                 <img src="{{ asset('storage/credencializacion/thumbs/' . $data['profesional']->credencializacion->fotografia) }}" 
@@ -137,9 +135,9 @@
                         
                         <td>
 
-                            <!-- SI EL ROL ES DIFERENTE A DIRECTIVO SE MUESTRAN LOS BOTONES DE EDICION DE LOS MODULOS  -->
-                                <!-- PARA EL DIRECTIVO SOLO SE MUESTRA EL BOTON DE VER DETALLES  -->
-                                @if(Auth::user()->role != 'directivo')
+                        <!-- SI EL ROL ES DIFERENTE A DIRECTIVO SE MUESTRAN LOS BOTONES DE EDICION DE LOS MODULOS  -->
+                        <!-- PARA EL DIRECTIVO SOLO SE MUESTRA EL BOTON DE VER DETALLES  -->
+                        @if(Auth::user()->role != 'directivo' && Auth::user()->role != 'ensenanza' && Auth::user()->role != 'universitario')
 
                                 <!-- ------------------------- -->
                                 <!-- ------------------------- -->
@@ -403,7 +401,7 @@
                                 @endif
                                 
                                 
-                            @endif
+                            
 
                                 <!-- --------------------------- -->
                                 <!-- --------------------------- -->
@@ -420,7 +418,7 @@
                                         <i class="fa fa-camera" aria-hidden="true"></i>
                                     </a>
                                 @endif
-
+                            
                                 <!-- --------------------------- -->
                                 <!-- --------------------------- -->
                                 <!--      MODULO DE HORARIO      -->
@@ -552,7 +550,7 @@
                                     <i class="fa fa-building" aria-hidden="true"></i>
                                 </a>
                                 
-                                
+                        @endif  <!-- FINALIZAR CLAUSULA PARA OCULTAR LOS BOTONES DE MODULOS -->
                             
                         </td>
 
