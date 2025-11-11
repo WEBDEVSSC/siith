@@ -183,6 +183,11 @@ class Profesional extends Model
         return $this->hasOne(ProfesionalOcupacionCors::class,'id_profesional');
     }
 
+    public function ocupacionIssreei()
+    {
+        return $this->hasOne(ProfesionalOcupacionIssreei::class,'id_profesional');
+    }
+
     public function ocupacionCesame()
     {
         return $this->hasOne(ProfesionalOcupacionCesame::class,'id_profesional');
@@ -201,11 +206,6 @@ class Profesional extends Model
     public function ocupacionHospitalNino()
     {
         return $this->hasOne(ProfesionalOcupacionHospitalNino::class,'id_profesional');
-    }
-
-    public function ocupacionIssreei()
-    {
-        return $this->hasOne(ProfesionalOcupacionIssreei::class,'id_profesional');
     }
 
     public function ocupacionEnsenanza()

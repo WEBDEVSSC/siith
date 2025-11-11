@@ -67,17 +67,24 @@
                         <td>{{ $rol->rol }}</td>                       
                         <td>
                     
-                            <a href="{{ route('editRol', $rol->id) }}" class="btn btn-warning btn-sm btn-block">EDITAR</a>
+                            <a href="{{ route('editRol', $rol->id) }}" class="btn btn-warning btn-sm "data-toggle="tooltip" data-placement="top" title="EDITAR">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </a>
 
-                            <br>
+                            
 
-                            <form action="{{ route('deleteRol', $rol->id) }}" method="POST" class="form-eliminar">
+                            <form action="{{ route('deleteRol', $rol->id) }}" method="POST"class="d-inline form-eliminar">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm btn-block">ELIMINAR</button>
+                                <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="ELIMINAR">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
                             </form>
+
+                            
                         
-                        </td>                 
+                        </td>   
+
                     </tr>
                 @endforeach
             </tbody>

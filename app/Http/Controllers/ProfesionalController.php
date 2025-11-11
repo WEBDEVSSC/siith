@@ -1992,19 +1992,37 @@ class ProfesionalController extends Controller
         $busqueda=$request->curp;
 
         $terminos = explode(' ', strtolower($busqueda));
-            
-        $profesionales = Profesional::where(function($query) use ($terminos) 
-        {  
-            foreach ($terminos as $termino) 
-            {
-                $query->where(function($subquery) use ($termino) {
-                    $subquery->whereRaw("LOWER(nombre) LIKE ?", ["%$termino%"])
-                            ->orWhereRaw("LOWER(apellido_paterno) LIKE ?", ["%$termino%"])
-                            ->orWhereRaw("LOWER(apellido_materno) LIKE ?", ["%$termino%"])
-                            ->orWhereRaw("LOWER(curp) LIKE ?", ["%$termino%"]);
-                });
-            }
-        })->get();
+        
+        if($usuario->role == 'credencializacion')
+        {
+            $profesionales = Profesional::with('ocupacionCentroSalud','ocupacionHospital','ocupacionOfJurisidccion','ocupacionCriCree','ocupacionSamuCrum','ocupacionOficinaCentral','ocupacionAlmacen','ocupacionCetsLesp','ocupacionCors','ocupacionCesame','ocupacionPsiParras','ocupacionCeam','ocupacionHospitalNino','ocupacionIssreei','ocupacionEnsenanza')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->where(function($query) use ($terminos) {  
+                foreach ($terminos as $termino) {
+                    $query->where(function($subquery) use ($termino) {
+                        $subquery->whereRaw("LOWER(nombre) LIKE ?", ["%$termino%"])
+                                ->orWhereRaw("LOWER(apellido_paterno) LIKE ?", ["%$termino%"])
+                                ->orWhereRaw("LOWER(apellido_materno) LIKE ?", ["%$termino%"])
+                                ->orWhereRaw("LOWER(curp) LIKE ?", ["%$termino%"]);
+                    });
+                }
+            })->get();
+        }
+        else
+        {
+            $profesionales = Profesional::where(function($query) use ($terminos) 
+            {  
+                foreach ($terminos as $termino) 
+                {
+                    $query->where(function($subquery) use ($termino) {
+                        $subquery->whereRaw("LOWER(nombre) LIKE ?", ["%$termino%"])
+                                ->orWhereRaw("LOWER(apellido_paterno) LIKE ?", ["%$termino%"])
+                                ->orWhereRaw("LOWER(apellido_materno) LIKE ?", ["%$termino%"])
+                                ->orWhereRaw("LOWER(curp) LIKE ?", ["%$termino%"]);
+                    });
+                }
+            })->get();
+        }
 
         // Si no se encuentra, redirige con mensaje de error
         if (!$profesionales) {

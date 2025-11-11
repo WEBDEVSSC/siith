@@ -163,7 +163,7 @@
                     <td>{{ $profesional->puesto?->institucion_puesto ?? '' }}</td>
                     <td>{{ $profesional->puesto?->vigencia ?? '' }}</td>
 
-                    @if ($profesional->puesto->vigencia == "BAJA TEMPORAL")
+                    @if ($profesional->puesto?->vigencia == "BAJA TEMPORAL")
                          <td>SI</td>
                     @else
                          <td>NO</td>
@@ -186,16 +186,24 @@
 
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}
 
-                    <td>{{ $profesional->credencializacion->fotografia ?? '' }}</td>
+                    {{-- <td>{{ $profesional->credencializacion->fotografia ?? '' }}</td> --}}
+                    <td></td>
 
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}
 
-                    <td>{{ $profesional->sueldo->sueldo_mensual ?? '' }}</td>
+                    {{-- <td>{{ $profesional->sueldo->sueldo_mensual ?? '' }}</td>
                     <td>{{ $profesional->sueldo->compensaciones ?? '' }}</td>
                     <td>{{ $profesional->sueldo->prestaciones_mandato_ley ?? '' }}</td>
                     <td>{{ $profesional->sueldo->prestaciones_cgt ?? '' }}</td>
                     <td>{{ $profesional->sueldo->estimulos ?? '' }}</td>
-                    <td>{{ $profesional->sueldo->total ?? '' }}</td>
+                    <td>{{ $profesional->sueldo->total ?? '' }}</td> --}}
+
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
 
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}
 
