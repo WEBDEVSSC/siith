@@ -790,7 +790,7 @@ auth()->user()->role === 'hospitalNino'
       var myDoughnutChart = new Chart(ctx, {
           type: 'pie',
           data: {
-              //labels: ['J1','J2','J3','J4','J5','J6','J7','J8','J9'],
+              labels: ['J1','J2','J3','J4','J5','J6','J7','J8','J9'],
               datasets: [{
                   label: 'Número de votos',
                   data: [{{$profesionalesJurisdiccion1}}, {{$profesionalesJurisdiccion2}}, {{$profesionalesJurisdiccion3}}, {{$profesionalesJurisdiccion4}}, {{$profesionalesJurisdiccion5}}, {{$profesionalesJurisdiccion6}}, {{$profesionalesJurisdiccion7}}, {{$profesionalesJurisdiccion8}}, {{$profesionalesJurisdiccion9}}], 
@@ -851,7 +851,7 @@ auth()->user()->role === 'hospitalNino'
       var myDoughnutChart = new Chart(ctx, {
           type: 'pie',
           data: {
-              //labels: ['J1','J2','J3','J4','J5','J6','J7','J8','J9'],
+              labels: ['J1','J2','J3','J4','J5','J6','J7','J8','J9'],
               datasets: [{
                   label: 'Número de votos',
                   data: [{{$contadorEnsenanzaJ1}}, {{$contadorEnsenanzaJ2}}, {{$contadorEnsenanzaJ3}}, {{$contadorEnsenanzaJ4}}, {{$contadorEnsenanzaJ5}}, {{$contadorEnsenanzaJ6}}, {{$contadorEnsenanzaJ7}}, {{$contadorEnsenanzaJ8}}, {{$contadorEnsenanzaJ9}}], 
@@ -912,7 +912,7 @@ auth()->user()->role === 'hospitalNino'
       var myDoughnutChart = new Chart(ctx, {
           type: 'pie',
           data: {
-              //labels: ['REG','FOR','FOR2','FOR3','610','6MR','FED','EVE','HOM','BUR','IB','UNE','DIF PS', 'DIF OC','RAMO 12','PASANTE SP', 'HON', 'ISSREEI', 'UMM'],
+              labels: ['REG','FOR','FOR2','FOR3','610','6MR','FED','EVE','HOM','BUR','IB','UNE','DIF PS', 'DIF OC','RAMO 12','PASANTE SP', 'HON', 'ISSREEI', 'UMM'],
               datasets: [{
                   label: 'Número de votos',
                   data: [{{$nominaRegularizado}}, {{$nominaFormalizadoUno}}, {{$nominaFormalizadoDos}}, {{$nominaFormalizadoTres}}, {{$nominaPasanteServicioSocial}}, {{$nominaMedicoResidente}}, {{$nominaFederal420}}, {{$nominaEventual}}, {{$nominaHomogado}}, {{$nominaBurocrata}}, {{$nominaImssBienestar}}, {{$nominaUnemes}}, {{$nominaDifPs}},  {{$nominaDifOc}}, {{$nominaRamoDoce}}, {{$nominaPasanteSinPago}}, {{$nominaHonorarios}}, {{$nominaIssreei}}, {{$nominaUmmFam}}], 
@@ -991,7 +991,7 @@ auth()->user()->role === 'hospitalNino'
       var myDoughnutChart = new Chart(ctx, {
           type: 'pie',
           data: {
-              //labels: ['CONFIANZA','BASE','EVENTUAL','HONORARIOS','BECAS','OTROS'],
+              labels: ['CONFIANZA','BASE','EVENTUAL','HONORARIOS','BECAS','OTROS'],
               datasets: [{
                   label: 'Número de votos',
                   data: [{{$contratoConfianza}}, {{$contratoBase}}, {{$contratoEventual}}, {{$contratoHonorarios}}, {{$contratoBecas}}, {{$contratoOtros}}], 
@@ -1044,7 +1044,7 @@ auth()->user()->role === 'hospitalNino'
       var myDoughnutChart = new Chart(ctx, {
           type: 'pie',
           data: {
-              //labels: ['En Formación','Administrativa','Afin','Enfermeria','Medica','Paramedica'],
+              labels: ['En Formación','Administrativa','Afin','Enfermeria','Medica','Paramedica'],
               datasets: [{
                   label: 'Número de votos',
                   data: [{{$ramaPersonalEnFormacion}}, {{$ramaAdministrativa}}, {{$ramaAFin}}, {{$ramaEnfermeria}}, {{$ramaMedica}}, {{$ramaParamedica}}], 
