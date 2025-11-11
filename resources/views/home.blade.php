@@ -1018,7 +1018,7 @@ auth()->user()->role === 'hospitalNino'
               responsive: true,
               plugins: {
                   legend: {
-                      position: 'right',
+                      position: 'none',
                   },
                   tooltip: {
                       callbacks: {
@@ -1071,7 +1071,7 @@ auth()->user()->role === 'hospitalNino'
               responsive: true,
               plugins: {
                   legend: {
-                      position: 'right',
+                      position: 'none',
                   },
                   tooltip: {
                       callbacks: {
