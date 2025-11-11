@@ -92,43 +92,53 @@
             <table class="table table-sm small">
               <tbody>
                 <tr>
-                  <td style="color: rgba(255, 99, 132, 0.6); font-weight: bold;">J1 - Piedras Negras</td>
+                  <td><span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 99, 132, 0.6); margin-right:6px; border-radius:3px;"></span></td>
+                  <td style="font-weight: bold;">J1 - Piedras Negras</td>
                   <td>{{$profesionalesJurisdiccion1}}</td>
                 </tr>
                 <tr>
-                  <td style="color: rgba(255, 159, 64, 0.6); font-weight: bold;">J2 - Acuña</td>
+                  <td><span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 159, 64, 0.6); margin-right:6px; border-radius:3px;"></span></td>
+                  <td style="font-weight: bold;">J2 - Acuña</td>
                   <td>{{$profesionalesJurisdiccion2}}</td>
                 </tr>
                 <tr>
-                  <td style="color: rgba(255, 205, 86, 0.6); font-weight: bold;">J3 - Sabinas</td>
+                  <td><span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 205, 86, 0.6); margin-right:6px; border-radius:3px;"></span></td>
+                  <td style="font-weight: bold;">J3 - Sabinas</td>
                   <td>{{$profesionalesJurisdiccion3}}</td>
                 </tr>
                 <tr>
-                  <td style="color: rgba(75, 192, 192, 0.6); font-weight: bold;">J4 - Cuatro Cienegas</td>
+                  <td><span style="display:inline-block; width:12px; height:12px; background-color: rgba(75, 192, 192, 0.6); margin-right:6px; border-radius:3px;"></span></td>
+                  <td style="font-weight: bold;">J4 - Monclova</td>
                   <td>{{$profesionalesJurisdiccion4}}</td>
                 </tr>
                 <tr>
-                  <td style="color: rgba(54, 162, 235, 0.6); font-weight: bold;">J5 - Monclova</td>
+                  <td><span style="display:inline-block; width:12px; height:12px; background-color: rgba(54, 162, 235, 0.6); margin-right:6px; border-radius:3px;"></span></td>
+                  <td style="font-weight: bold;">J5 - Cuatro Ciénegas</td>
                   <td>{{$profesionalesJurisdiccion5}}</td>
                 </tr>
                 <tr>
-                  <td style="color: rgba(153, 102, 255, 0.6); font-weight: bold;">J6 - Fco. I. Madero</td>
+                  <td><span style="display:inline-block; width:12px; height:12px; background-color: rgba(153, 102, 255, 0.6); margin-right:6px; border-radius:3px;"></span></td>
+                  <td style="font-weight: bold;">J6 - Torreón</td>
                   <td>{{$profesionalesJurisdiccion6}}</td>
                 </tr>
                 <tr>
-                  <td style="color: rgba(0, 204, 102, 0.6); font-weight: bold;">J7 - CORROBORAR NOMBRE</td>
+                  <td><span style="display:inline-block; width:12px; height:12px; background-color: rgba(0, 204, 102, 0.6); margin-right:6px; border-radius:3px;"></span></td>
+                  <td style="font-weight: bold;">J7 - Fco. I. Madero</td>
                   <td>{{$profesionalesJurisdiccion7}}</td>
                 </tr>
                 <tr>
-                  <td style="color: rgba(255, 102, 255, 0.6); font-weight: bold;">J8 - Saltillo</td>
+                  <td><span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 102, 255, 0.6); margin-right:6px; border-radius:3px;"></span></td>
+                  <td style="font-weight: bold;">J8 - Saltillo</td>
                   <td>{{$profesionalesJurisdiccion8}}</td>
                 </tr>
                 <tr>
-                  <td style="color: rgba(102, 204, 255, 0.6); font-weight: bold;">J9 - Unidades de Apoyo</td>
+                  <td><span style="display:inline-block; width:12px; height:12px; background-color: rgba(102, 204, 255, 0.6); margin-right:6px; border-radius:3px;"></span></td>
+                  <td style="font-weight: bold;">J9 - Unidades de Apoyo</td>
                   <td>{{$profesionalesJurisdiccion9}}</td>
                 </tr>
               </tbody>
             </table>
+
           </div>
         </div>
         
@@ -150,65 +160,132 @@
             <table class="table table-sm small">
               <tbody>
                 <tr>
-                  <td style="color: rgba(255, 99, 132, 0.6); font-weight: bold;">REG</td>
-                  <td>{{$profesionalesJurisdiccion1}}</td>
-                  <td style="color: rgba(102, 204, 255, 0.6); font-weight: bold;">IB</td>
-                  <td>{{$profesionalesJurisdiccion1}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 99, 132, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">REG</span>
+                  </td>
+                  <td>{{$nominaRegularizado}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(102, 204, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">IB</span>
+                  </td>
+                  <td>{{$nominaImssBienestar}}</td>
                 </tr>
+
                 <tr>
-                  <td style="color: rgba(255, 159, 64, 0.6); font-weight: bold;">FOR</td>
-                  <td>{{$profesionalesJurisdiccion2}}</td>
-                  <td style="color: rgba(204, 153, 255, 0.6); font-weight: bold;">UNE</td>
-                  <td>{{$profesionalesJurisdiccion1}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 159, 64, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">FOR</span>
+                  </td>
+                  <td>{{$nominaFormalizadoUno}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(204, 153, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">UNE</span>
+                  </td>
+                  <td>{{$nominaUnemes}}</td>
                 </tr>
+
                 <tr>
-                  <td style="color: rgba(255, 205, 86, 0.6); font-weight: bold;">FOR 2</td>
-                  <td>{{$profesionalesJurisdiccion3}}</td>
-                  <td style="color: rgba(255, 153, 153, 0.6); font-weight: bold;">DIF PS</td>
-                  <td>{{$profesionalesJurisdiccion1}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 205, 86, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">FOR 2</span>
+                  </td>
+                  <td>{{$nominaFormalizadoDos}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 153, 153, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">DIF PS</span>
+                  </td>
+                  <td>{{$nominaDifPs}}</td>
                 </tr>
+
                 <tr>
-                  <td style="color: rgba(75, 192, 192, 0.6); font-weight: bold;">FOR 3</td>
-                  <td>{{$profesionalesJurisdiccion4}}</td>
-                  <td style="color: rgba(204, 255, 153, 0.6); font-weight: bold;">DIF OC</td>
-                  <td>{{$profesionalesJurisdiccion1}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(75, 192, 192, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">FOR 3</span>
+                  </td>
+                  <td>{{$nominaFormalizadoTres}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(204, 255, 153, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">DIF OC</span>
+                  </td>
+                  <td>{{$nominaDifOc}}</td>
                 </tr>
+
                 <tr>
-                  <td style="color: rgba(54, 162, 235, 0.6); font-weight: bold;">610</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(54, 162, 235, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">610</span>
+                  </td>
                   <td>{{$profesionalesJurisdiccion5}}</td>
-                  <td style="color: rgba(153, 255, 204, 0.6); font-weight: bold;">RAMO 12</td>
-                  <td>{{$profesionalesJurisdiccion1}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(153, 255, 204, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">RAMO 12</span>
+                  </td>
+                  <td>{{$nominaRamoDoce}}</td>
                 </tr>
+
                 <tr>
-                  <td style="color: rgba(153, 102, 255, 0.6); font-weight: bold;">6MR</td>
-                  <td>{{$profesionalesJurisdiccion6}}</td>
-                  <td style="color: rgba(255, 102, 102, 0.6); font-weight: bold;">PASANTE SP</td>
-                  <td>{{$profesionalesJurisdiccion1}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(153, 102, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">6MR</span>
+                  </td>
+                  <td>{{$nominaMedicoResidente}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 102, 102, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">PASANTE SP</span>
+                  </td>
+                  <td>{{$nominaPasanteSinPago}}</td>
                 </tr>
+
                 <tr>
-                  <td style="color: rgba(255, 102, 255, 0.6); font-weight: bold;">FED</td>
-                  <td>{{$profesionalesJurisdiccion7}}</td>
-                  <td style="color: rgba(102, 255, 255, 0.6); font-weight: bold;">HON</td>
-                  <td>{{$profesionalesJurisdiccion1}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 102, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">FED</span>
+                  </td>
+                  <td>{{$nominaFederal420}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(102, 255, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">HON</span>
+                  </td>
+                  <td>{{$nominaHonorarios}}</td>
                 </tr>
+
                 <tr>
-                  <td style="color: rgba(0, 204, 102, 0.6); font-weight: bold;">EVE</td>
-                  <td>{{$profesionalesJurisdiccion8}}</td>
-                  <td style="color: rgba(255, 178, 102, 0.6); font-weight: bold;">ISSREEI</td>
-                  <td>{{$profesionalesJurisdiccion1}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(0, 204, 102, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">EVE</span>
+                  </td>
+                  <td>{{$nominaEventual}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 178, 102, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">ISSREEI</span>
+                  </td>
+                  <td>{{$nominaIssreei}}</td>
                 </tr>
+
                 <tr>
-                  <td style="color: rgba(255, 153, 204, 0.6); font-weight: bold;">HOM</td>
-                  <td>{{$profesionalesJurisdiccion9}}</td>
-                  <td style="color: rgba(178, 255, 102, 0.6); font-weight: bold;">UMM</td>
-                  <td>{{$profesionalesJurisdiccion1}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 153, 204, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">HOM</span>
+                  </td>
+                  <td>{{$nominaHomogado}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(178, 255, 102, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">UMM</span>
+                  </td>
+                  <td>{{$nominaUmmFam}}</td>
                 </tr>
+
                 <tr>
-                  <td style="color: rgba(255, 204, 102, 0.6); font-weight: bold;">BUR</td>
-                  <td>{{$profesionalesJurisdiccion9}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 204, 102, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">BUR</span>
+                  </td>
+                  <td>{{$nominaBurocrata}}</td>
                 </tr>
               </tbody>
             </table>
+
 
           </div>
         </div>
@@ -227,7 +304,62 @@
         <h3 class="card-title"><strong>Tipo de Contrato</strong></h3>
       </div>
       <div class="card-body">
-        <canvas id="profesionalesContratos" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+        <div class="row">
+          <div class="col-md-6">
+            <canvas id="profesionalesContratos" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+          </div>
+          <div class="col-md-6">
+
+            <table class="table table-sm small">
+              <tbody>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 99, 132, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">Confianza</span>
+                  </td>
+                  <td>{{$ramaPersonalEnFormacion}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 159, 64, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">Base</span>
+                  </td>
+                  <td>{{$ramaAdministrativa}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 205, 86, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">Eventual</span>
+                  </td>
+                  <td>{{$ramaAFin}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(75, 192, 192, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">Honorarios</span>
+                  </td>
+                  <td>{{$ramaEnfermeria}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(54, 162, 235, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">Becas</span>
+                  </td>
+                  <td>{{$ramaMedica}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(153, 102, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">Otros</span>
+                  </td>
+                  <td>{{$ramaParamedica}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
@@ -238,7 +370,61 @@
         <h3 class="card-title"><strong>Ramas</strong></h3>
       </div>
       <div class="card-body">
-        <canvas id="profesionalesRamas" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+
+        <div class="row">
+          <div class="col-md-6">
+            <canvas id="profesionalesRamas" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+          </div>
+          <div class="col-md-6">
+            <table class="table table-sm small">
+              <tbody>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 99, 132, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">En Formación</span>
+                  </td>
+                  <td>{{$ramaPersonalEnFormacion}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 159, 64, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">Administrativa</span>
+                  </td>
+                  <td>{{$ramaAdministrativa}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 205, 86, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">Afín</span>
+                  </td>
+                  <td>{{$ramaAFin}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(75, 192, 192, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">Enfermería</span>
+                  </td>
+                  <td>{{$ramaEnfermeria}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(54, 162, 235, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">Médica</span>
+                  </td>
+                  <td>{{$ramaMedica}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(153, 102, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">Paramédica</span>
+                  </td>
+                  <td>{{$ramaParamedica}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
@@ -378,8 +564,7 @@ auth()->user()->role === 'hospitalNino'
 <!-- ---------------------------------------------------------- -->
 
 <!-- ---------------------------------------------------------- -->
-@if(
-auth()->user()->role === 'ensenanza')
+@if(auth()->user()->role === 'ensenanza')
 
 <div class="row">
     <div class="col-md-3">
@@ -507,9 +692,82 @@ auth()->user()->role === 'ensenanza')
 
 <!-- --------------------------------------------------------------- -->
 
+@if(auth()->user()->role === 'sistematizacion')
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title"><strong>Ramas</strong></h3>
+      </div>
+      <div class="card-body">
+        
+        <div class="row">
+          <div class="col-md-6">
+            <canvas id="profesionalesRamas" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+          </div>
+          <div class="col-md-6">
+            <table class="table table-sm small">
+              <tbody>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 99, 132, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">En Formación</span>
+                  </td>
+                  <td>{{$ramaPersonalEnFormacion}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 159, 64, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">Administrativa</span>
+                  </td>
+                  <td>{{$ramaAdministrativa}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 205, 86, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">Afín</span>
+                  </td>
+                  <td>{{$ramaAFin}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(75, 192, 192, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">Enfermería</span>
+                  </td>
+                  <td>{{$ramaEnfermeria}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(54, 162, 235, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">Médica</span>
+                  </td>
+                  <td>{{$ramaMedica}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(153, 102, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">Paramédica</span>
+                  </td>
+                  <td>{{$ramaParamedica}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+@endif
+
+<!-- --------------------------------------------------------------- -->
+
 @endauth
-
-
 
 @stop
 
@@ -532,7 +790,7 @@ auth()->user()->role === 'ensenanza')
       var myDoughnutChart = new Chart(ctx, {
           type: 'pie',
           data: {
-              labels: ['J1','J2','J3','J4','J5','J6','J7','J8','J9'],
+              //labels: ['J1','J2','J3','J4','J5','J6','J7','J8','J9'],
               datasets: [{
                   label: 'Número de votos',
                   data: [{{$profesionalesJurisdiccion1}}, {{$profesionalesJurisdiccion2}}, {{$profesionalesJurisdiccion3}}, {{$profesionalesJurisdiccion4}}, {{$profesionalesJurisdiccion5}}, {{$profesionalesJurisdiccion6}}, {{$profesionalesJurisdiccion7}}, {{$profesionalesJurisdiccion8}}, {{$profesionalesJurisdiccion9}}], 
@@ -593,7 +851,7 @@ auth()->user()->role === 'ensenanza')
       var myDoughnutChart = new Chart(ctx, {
           type: 'pie',
           data: {
-              labels: ['J1','J2','J3','J4','J5','J6','J7','J8','J9'],
+              //labels: ['J1','J2','J3','J4','J5','J6','J7','J8','J9'],
               datasets: [{
                   label: 'Número de votos',
                   data: [{{$contadorEnsenanzaJ1}}, {{$contadorEnsenanzaJ2}}, {{$contadorEnsenanzaJ3}}, {{$contadorEnsenanzaJ4}}, {{$contadorEnsenanzaJ5}}, {{$contadorEnsenanzaJ6}}, {{$contadorEnsenanzaJ7}}, {{$contadorEnsenanzaJ8}}, {{$contadorEnsenanzaJ9}}], 
@@ -654,7 +912,7 @@ auth()->user()->role === 'ensenanza')
       var myDoughnutChart = new Chart(ctx, {
           type: 'pie',
           data: {
-              labels: ['REG','FOR','FOR2','FOR3','610','6MR','FED','EVE','HOM','BUR','IB','UNE','DIF PS', 'DIF OC','RAMO 12','PASANTE SP', 'HON', 'ISSREEI', 'UMM'],
+              //labels: ['REG','FOR','FOR2','FOR3','610','6MR','FED','EVE','HOM','BUR','IB','UNE','DIF PS', 'DIF OC','RAMO 12','PASANTE SP', 'HON', 'ISSREEI', 'UMM'],
               datasets: [{
                   label: 'Número de votos',
                   data: [{{$nominaRegularizado}}, {{$nominaFormalizadoUno}}, {{$nominaFormalizadoDos}}, {{$nominaFormalizadoTres}}, {{$nominaPasanteServicioSocial}}, {{$nominaMedicoResidente}}, {{$nominaFederal420}}, {{$nominaEventual}}, {{$nominaHomogado}}, {{$nominaBurocrata}}, {{$nominaImssBienestar}}, {{$nominaUnemes}}, {{$nominaDifPs}},  {{$nominaDifOc}}, {{$nominaRamoDoce}}, {{$nominaPasanteSinPago}}, {{$nominaHonorarios}}, {{$nominaIssreei}}, {{$nominaUmmFam}}], 
@@ -733,7 +991,7 @@ auth()->user()->role === 'ensenanza')
       var myDoughnutChart = new Chart(ctx, {
           type: 'pie',
           data: {
-              labels: ['CONFIANZA','BASE','EVENTUAL','HONORARIOS','BECAS','OTROS'],
+              //labels: ['CONFIANZA','BASE','EVENTUAL','HONORARIOS','BECAS','OTROS'],
               datasets: [{
                   label: 'Número de votos',
                   data: [{{$contratoConfianza}}, {{$contratoBase}}, {{$contratoEventual}}, {{$contratoHonorarios}}, {{$contratoBecas}}, {{$contratoOtros}}], 
@@ -786,7 +1044,7 @@ auth()->user()->role === 'ensenanza')
       var myDoughnutChart = new Chart(ctx, {
           type: 'pie',
           data: {
-              labels: ['En Formación','Administrativa','Afin','Enfermeria','Medica','Paramedica'],
+              //labels: ['En Formación','Administrativa','Afin','Enfermeria','Medica','Paramedica'],
               datasets: [{
                   label: 'Número de votos',
                   data: [{{$ramaPersonalEnFormacion}}, {{$ramaAdministrativa}}, {{$ramaAFin}}, {{$ramaEnfermeria}}, {{$ramaMedica}}, {{$ramaParamedica}}], 
