@@ -1747,79 +1747,151 @@ class ProfesionalController extends Controller
         {
             $catalogoLabel = "CENTROS DE SALUD URBANOS Y RURALES";
             $ocupacion = ProfesionalOcupacionCentroSalud::where('id_profesional', $id)->first();
-            $ocupacionLabel = optional($ocupacion)->unidad_uno.' - '.optional($ocupacion)->area_uno.' - '.optional($ocupacion)->subarea_uno.' - '.optional($ocupacion)->ocupacion_uno;
+            $ocupacionLabel = optional($ocupacion)->unidad_uno.' - '.
+                    optional($ocupacion)->area_uno.' - '.
+                    optional($ocupacion)->subarea_uno.' - '.
+                    optional($ocupacion)->ocupacion_uno;
         } 
         // HOSPITALES (2)
         elseif ($tipo == 2) 
         {
             $catalogoLabel = "HOSPITALES";
             $ocupacion = ProfesionalOcupacionHospital::where('id_profesional', $id)->first();
+
+            $ocupacionLabel = optional($ocupacion)->unidad_uno.' - '.
+                      optional($ocupacion)->area_uno.' - '.
+                      optional($ocupacion)->subarea_uno.' - '.
+                      optional($ocupacion)->puesto_uno;
         } 
         // OFICINA JURISDICCIONAL (3)
         elseif ($tipo == 3) 
         {
             $catalogoLabel = "OFICINA JURISDICCIONAL";
             $ocupacion = ProfesionalOcupacionOfJurisdiccional::where('id_profesional', $id)->first();
+
+            $ocupacionLabel = optional($ocupacion)->unidad_uno.' - '.
+                      optional($ocupacion)->area_uno.' - '.
+                      optional($ocupacion)->subarea_uno.' - '.
+                      optional($ocupacion)->servicio_uno.' - '.
+                      optional($ocupacion)->ocupacion_uno;
         } 
         // CRI CREE (4)
         elseif ($tipo == 4) 
         {
             $catalogoLabel = "DIF CRI CREE";
             $ocupacion = ProfesionalOcupacionCriCree::where('id_profesional', $id)->first();
+
+            $ocupacionLabel = optional($ocupacion)->unidad_uno.' - '.
+                      optional($ocupacion)->area_uno.' - '.
+                      optional($ocupacion)->subarea_uno.' - '.
+                      optional($ocupacion)->ocupacion_uno;
         }
         // SAMU CRUM (5)
         elseif ($tipo == 5) 
         {
             $catalogoLabel = "SAMU CRUM";
             $ocupacion = ProfesionalOcupacionSamuCrum::where('id_profesional', $id)->first();
+
+            $ocupacionLabel = optional($ocupacion)->unidad_uno.' - '.
+                      optional($ocupacion)->area_uno.' - '.
+                      optional($ocupacion)->subarea_uno.' - '.
+                      optional($ocupacion)->componente_uno.' - '.
+                      optional($ocupacion)->ocupacion_uno;
         }
         // OFICINA CENTRAL (6)
         elseif ($tipo == 6) 
         {
             $catalogoLabel = "OFICINA CENTRAL";
             $ocupacion = ProfesionalOcupacionOficinaCentral::where('id_profesional', $id)->first();
+
+            $ocupacionLabel = optional($ocupacion)->area_uno.' - '.
+                      optional($ocupacion)->subarea_uno.' - '.
+                      optional($ocupacion)->programa_uno.' - '.
+                      optional($ocupacion)->componente_uno.' - '.
+                      optional($ocupacion)->ocupacion_uno;
         }
         // ALMACEN (7)
         elseif ($tipo == 7) 
         {
             $catalogoLabel = "ALMACEN";
             $ocupacion = ProfesionalOcupacionAlmacen::where('id_profesional', $id)->first();
+
+            $ocupacionLabel = optional($ocupacion)->area_uno.' - '.
+                      optional($ocupacion)->subarea_uno.' - '.
+                      optional($ocupacion)->jefatura_uno.' - '.
+                      optional($ocupacion)->departamento_uno.' - '.
+                      optional($ocupacion)->ocupacion_uno;
         }
         // CETS LESP (8)
         elseif ($tipo == 8) 
         {
             $catalogoLabel = "CETS LESP";
             $ocupacion = ProfesionalOcupacionCetsLesp::where('id_profesional', $id)->first();
+
+            $ocupacionLabel = optional($ocupacion)->area_uno.' - '.
+                      optional($ocupacion)->subarea_uno.' - '.
+                      optional($ocupacion)->jefatura_programa_uno.' - '.
+                      optional($ocupacion)->componente_uno.' - '.
+                      optional($ocupacion)->ocupacion_uno;
         }
         // CORS (9)
         elseif ($tipo == 9) 
         {
             $catalogoLabel = "CORS";
             $ocupacion = ProfesionalOcupacionCors::where('id_profesional', $id)->first();
+
+            $ocupacionLabel = optional($ocupacion)->unidad_uno.' - '.
+                      optional($ocupacion)->area_uno.' - '.
+                      optional($ocupacion)->subarea_servicio_uno.' - '.
+                      optional($ocupacion)->componente_uno.' - '.
+                      optional($ocupacion)->ocupacion_uno;
         }
         // ISSREEI (10)
         elseif ($tipo == 10) 
         {
             $catalogoLabel = "ISSREEI";
             $ocupacion = ProfesionalOcupacionIssreei::where('id_profesional', $id)->first();
+
+            $ocupacionLabel = optional($ocupacion)->unidad.' - '.
+                      optional($ocupacion)->area.' - '.
+                      optional($ocupacion)->subarea.' - '.
+                      optional($ocupacion)->ocupacion;
         }
         // CESAME (11)
         elseif ($tipo == 11) 
         {
             $catalogoLabel = "CESAME";
             $ocupacion = ProfesionalOcupacionCesame::where('id_profesional', $id)->first();
+
+            $ocupacionLabel = optional($ocupacion)->unidad_uno.' - '.
+                      optional($ocupacion)->area_uno.' - '.
+                      optional($ocupacion)->subarea_servicio_uno.' - '.
+                      optional($ocupacion)->componente_uno.' - '.
+                      optional($ocupacion)->ocupacion_uno;
         }
         // PSI PARRAS (12)
         elseif ($tipo == 12) 
         {
             $catalogoLabel = "PSI PARRAS";
             $ocupacion = ProfesionalOcupacionPsiParras::where('id_profesional', $id)->first();
+
+            $ocupacionLabel = optional($ocupacion)->unidad_uno.' - '.
+                      optional($ocupacion)->area_uno.' - '.
+                      optional($ocupacion)->subarea_servicio_uno.' - '.
+                      optional($ocupacion)->componente_uno.' - '.
+                      optional($ocupacion)->ocupacion_uno;
         }
         // CEAM (13)
         elseif ($tipo == 13) 
         {
             $catalogoLabel = "CEAM";
             $ocupacion = ProfesionalOcupacionCeam::where('id_profesional', $id)->first();
+
+            $ocupacionLabel = optional($ocupacion)->unidad_uno.' - '.
+                      optional($ocupacion)->area_uno.' - '.
+                      optional($ocupacion)->subarea_servicio_uno.' - '.
+                      optional($ocupacion)->componente_uno.' - '.
+                      optional($ocupacion)->ocupacion_uno;
         }
         // CESAME (14)
         elseif ($tipo == 14) 
