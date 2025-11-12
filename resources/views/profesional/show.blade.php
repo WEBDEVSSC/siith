@@ -194,7 +194,7 @@ ADMINISTRADOR
     <!-- -- -->
     
     <div class="card-footer">
-        @if(Auth::user()->role != 'ensenanza')
+        @if (Auth::user()->role == 'admin')
             @if ($profesional->mdl_datos_generales == 1)
                 <a href="{{ route('profesionalEdit', $profesional->id) }}" class="btn btn-info btn-sm"> <i class="fa-solid fa-pen"></i> EDITAR DATOS GENERALES</a>
             @elseif ($profesional->mdl_datos_generales == 0)
@@ -202,7 +202,7 @@ ADMINISTRADOR
             @endif
         @endif
 
-        @if(Auth::user()->role != 'ensenanza')
+        @if (Auth::user()->role == 'admin')
             @if ($profesional->credencializacion?->mdl_credencializacion == 1)
                 <a href="{{ route('editCredencializacion', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR FOTOGRAFÍA</a>
             @elseif ($profesional->credencializacion?->mdl_credencializacion == 0)
@@ -357,7 +357,7 @@ ADMINISTRADOR
         </div>
         <div class="card-footer">
         
-        @if(Auth::user()->role != 'ensenanza')
+        @if(Auth::user()->role == 'admin')
 
             @if ($profesional->puesto?->clues_adscripcion_tipo == 1)
 
@@ -707,7 +707,7 @@ ADMINISTRADOR
         
         <div class="card-footer">
         
-        @if(Auth::user()->role != 'ensenanza' && Auth::user()->role != 'universitario')
+        @if(Auth::user()->role == 'admin')
 
             @if ($profesional->puesto?->mdl_puesto == 1)
                 <a href="{{ route('editPuesto', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
@@ -760,7 +760,7 @@ ADMINISTRADOR
         </div>
         <div class="card-footer">
 
-            @if (auth()->user()->role != 'ensenanza' && Auth::user()->role != 'universitario')
+            @if (Auth::user()->role == 'admin')
                 @if ($profesional->puesto?->mdl_puesto == 1)
                     <a href="{{ route('createCambioTipoNomina', $profesional->id) }}" class="btn btn-info btn-sm">
                         <i class="fa-solid fa-pen"></i> EDITAR DATOS
@@ -817,7 +817,7 @@ ADMINISTRADOR
         </div>
         <div class="card-footer">
 
-            @if(Auth::user()->role != 'ensenanza')
+            @if(Auth::user()->role == 'admin')
             
                 <a href="{{ route('createVigencia', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
 
@@ -896,7 +896,7 @@ ADMINISTRADOR
     </div>
         <div class="card-footer">
         
-        @if (auth()->user()->role != 'ensenanza')
+        @if (Auth::user()->role == 'admin')
             @if ($profesional->horario && $profesional->horario->mdl_horario == 1)
                 <a href="{{ route('editHorario', $profesional->id) }}" class="btn btn-info btn-sm"> EDITAR DATOS</a>
             @else
@@ -1034,7 +1034,7 @@ ADMINISTRADOR
 
         </div>
         <div class="card-footer">
-            @if(Auth::user()->role != 'ensenanza')
+            @if(Auth::user()->role == 'admin')
                 @if ($profesional->gradoAcademico?->mdl_grado_academico == 1)
                     <a href="{{ route('editGrado', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
                 @elseif ($profesional->gradoAcademico?->mdl_grado_academico == 0)
@@ -1071,7 +1071,7 @@ ADMINISTRADOR
             </div>
         </div>
         <div class="card-footer">
-            @if(Auth::user()->role != 'ensenanza')
+            @if(Auth::user()->role == 'admin')
 
                 @if ($profesional->areaMedica?->mdl_area_medica == 1)
                     <a href="{{ route('editAreaMedica', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
@@ -1109,7 +1109,7 @@ ADMINISTRADOR
             </div>
         </div>
         <div class="card-footer">
-            @if(Auth::user()->role != 'ensenanza')
+            @if(Auth::user()->role == 'admin')
 
                 @if ($profesional->certificacion?->mdl_certificacion == 1)
                     <a href="{{ route('editCertificacion', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
@@ -1376,7 +1376,7 @@ ADMINISTRADOR
         </div>
         <div class="card-footer">
 
-            @if(Auth::user()->role != 'ensenanza')
+            @if(Auth::user()->role == 'admin')
 
                 @if ($profesional->emergencia?->mdl_emergencia == 1)
                     <a href="{{ route('editEmergencia', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>

@@ -171,6 +171,21 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('credencializacion', function ($user) {
             return $user->role === 'credencializacion';
         });
+
+        // ROL RH CREDENCIALIZACION
+        Gate::define('rhusuarios', function ($user) {
+            return $user->role === 'rhusuarios';
+        });
+
+        // ROL RH CREDENCIALIZACION
+        Gate::define('rhasistente', function ($user) {
+            return $user->role === 'rhasistente';
+        });
+
+        // ROL RH CREDENCIALIZACION
+        Gate::define('rhauditoria', function ($user) {
+            return $user->role === 'rhauditoria';
+        });
     }
 
     public function register(): void
