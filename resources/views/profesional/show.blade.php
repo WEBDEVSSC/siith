@@ -847,7 +847,7 @@ ADMINISTRADOR
                 <div class="col-md-9">
                     <table class="table table-striped">
                         <tr>
-                            <th><strong>DIA</strong></th>
+                            <th><strong>DÍA</strong></th>
                             <th><strong>ENTRADA</strong></th>
                             <th><strong>SALIDA</strong></th>
                         </tr>
@@ -969,10 +969,10 @@ ADMINISTRADOR
                         <thead class="table-dark">
                             <tr>
                                 <th>#</th>
-                                <th>Grado Académico</th>
-                                <th>Titulo</th>
-                                <th>Institución Educativa</th>
-                                <th>Cedula</th>
+                                <th>GRADO ACADÉMICO</th>
+                                <th>TITULO</th>
+                                <th>INSTITUCIÓN EDUCATIVA</th>
+                                <th>CÉDULA</th>
                                 <th>R.N.P.</th>
                             </tr>
                         </thead>
@@ -1097,7 +1097,7 @@ ADMINISTRADOR
                     {{ $colegiacion }}
                 </div>
                 <div class="col-md-4">
-                    <p><strong>CERTIFICACION</strong></p>
+                    <p><strong>CERTIFICACIÓN</strong></p>
                     {{ $certificacio }}
                 </div>
                 <div class="col-md-2">
@@ -1105,7 +1105,7 @@ ADMINISTRADOR
                     {{ $idioma }} - {{ $idiomaNivelDominio }}
                 </div>
                 <div class="col-md-2">
-                    <p><strong>LENGUA INDIGENA</strong></p>
+                    <p><strong>LENGUA INDÍGENA</strong></p>
                     {{ $lenguaIndigena }} - {{ $lenguaIndigenaDominio }}
                 </div>
             </div>
@@ -1194,7 +1194,7 @@ ADMINISTRADOR
                     {{ $emergencias->medico_nombre ?? ''  }}
                 </div>
                 <div class="col-md-2">
-                    <p><strong>TELEFONO</strong></p>
+                    <p><strong>TELÉFONO</strong></p>
                     {{ $emergencias->medico_telefono ?? ''  }}
                 </div>
             </div>
@@ -1206,7 +1206,7 @@ ADMINISTRADOR
                 <div class="row">
                     <div class="col-md-12">
                         <blockquote class="quote-secondary">
-                            <h4>Contacto de Emergencia 1</h4>
+                            <h4>CONTACTO DE EMERGENCIA 1</h4>
                         </blockquote>
                     </div>
                 </div>
@@ -1225,7 +1225,7 @@ ADMINISTRADOR
                     {{ $emergencias->emergencia_relacion_uno ?? ''  }}
                 </div>
                 <div class="col-md-2">
-                    <p><strong>TELEFONO</strong></p>
+                    <p><strong>TELÉFONO</strong></p>
                     {{ $emergencias->emergencia_telefono_uno_uno ?? ''  }} {{ $emergencias->emergencia_telefono_uno_dos ?? ''  }}
                 </div>
                 <div class="col-md-2">
@@ -1264,7 +1264,7 @@ ADMINISTRADOR
                 <div class="row">
                     <div class="col-md-12">
                         <blockquote class="quote-secondary">
-                            <h4>Contacto de Emergencia 2</h4>
+                            <h4>CONTACTO DE EMERGENCIA 2</h4>
                         </blockquote>
                     </div>
                 </div>
@@ -1283,7 +1283,7 @@ ADMINISTRADOR
                     {{ $emergencias->emergencia_relacion_dos ?? ''  }}
                 </div>
                 <div class="col-md-2">
-                    <p><strong>TELEFONO</strong></p>
+                    <p><strong>TELÉFONO</strong></p>
                     {{ $emergencias->emergencia_telefono_dos_uno ?? ''  }} {{ $emergencias->emergencia_telefono_dos_dos ?? ''  }}
                 </div>
                 <div class="col-md-2">
@@ -1322,7 +1322,7 @@ ADMINISTRADOR
                 <div class="row">
                     <div class="col-md-12">
                         <blockquote class="quote-secondary">
-                            <h4>Contacto de Emergencia 3</h4>
+                            <h4>CONTACTO DE EMERGENCIA 3</h4>
                         </blockquote>
                     </div>
                 </div>
@@ -1341,7 +1341,7 @@ ADMINISTRADOR
                     {{ $emergencias->emergencia_relacion_tres ?? ''  }}
                 </div>
                 <div class="col-md-2">
-                    <p><strong>TELEFONO</strong></p>
+                    <p><strong>TELÉFONO</strong></p>
                     {{ $emergencias->emergencia_telefono_tres_uno ?? ''  }} {{ $emergencias->emergencia_telefono_tres_dos ?? ''  }}
                 </div>
                 <div class="col-md-2">
