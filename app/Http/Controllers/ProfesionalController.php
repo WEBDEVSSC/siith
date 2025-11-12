@@ -1486,7 +1486,7 @@ class ProfesionalController extends Controller
 
         // Generamos la URL de la fotografía desde storage
         $fotoUrl = $fotografia 
-            ? asset('storage/credencializacion/thumbs/' . $fotografia) 
+            ? asset('storage/credencializacion/' . $fotografia) 
             : null;
 
         // Cargamos los datos del MODULO DE HORARIO
