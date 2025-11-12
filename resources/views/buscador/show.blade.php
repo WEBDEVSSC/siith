@@ -26,7 +26,6 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>FOTOGRAFÍA</th>
                         <th>CURP</th>
                         <th>RFC</th>
                         <th>NOMBRE COMPLETO</th>
@@ -40,10 +39,6 @@
                     @forelse ($profesionales as $profesional)
                         <tr>
 
-                            {{-- ----------------------------------------------------- --}}
-                            {{-- MOSTRAMOS LOS BOTONES DE SHOW Y PDF SOLO AL ADMIN     --}}
-                            {{-- ----------------------------------------------------- --}}
-
                             <td>
                                 <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="DETALLES">
                                     <i class="fa-solid fa-address-card"></i>
@@ -51,22 +46,12 @@
                             </td>
 
                             {{-- ----------------------------------------------------- --}}
-                            {{-- MOSTRAMOS LA FOTOGRAFIA SOLO AL ROL CREDENCIALIZACION --}}
+                            {{-- MOSTRAMOS LOS BOTONES DE SHOW Y PDF SOLO AL ADMIN     --}}
                             {{-- ----------------------------------------------------- --}}
 
-                            <td>
-
-                                @if ($usuario->role == 'directivo' || $usuario->role == 'admin')
-
-                                    @if($profesional->credencializacion && $profesional->credencializacion->fotografia)
-                                        <img src="{{ asset('storage/credencializacion/thumbs/' . $profesional->credencializacion->fotografia) }}" 
-                                            alt="Miniatura" width="100"  class="img-thumbnail">
-                                    @else
-                                        <img src="{{ asset('images/avatar-placeholder.png') }}" alt="Sin foto" width="100">
-                                    @endif
-
-                                @endif
-                            </td>
+                            {{-- ----------------------------------------------------- --}}
+                            {{-- MOSTRAMOS LA FOTOGRAFIA SOLO AL ROL CREDENCIALIZACION --}}
+                            {{-- ----------------------------------------------------- --}}
 
                             <td>{{ $profesional->curp }}</td>
                             <td>{{ $profesional->rfc }}{{ $profesional->homoclave }}</td>
