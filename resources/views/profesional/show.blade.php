@@ -98,12 +98,14 @@ ADMINISTRADOR
 
         <div class="row">
             <div class="col-md-2">
-
+                
                 <center>
-                    @if($fotoUrl)
-                        <img src="{{ $fotoUrl }}" alt="Fotografía del profesional" style="max-width:100%; height:auto;" class="img-thumbnail"/>
-                    @else
-                        <img src="{{ asset('images/avatar-placeholder.png') }}" alt="Sin foto" style="max-width:200px; height:auto;" class="img-thumbnail"/>
+                    @if (Auth::user()->role == 'admin' || Auth::user()->role == 'directivo' || Auth::user()->role == 'rhasistente')
+                        @if($fotoUrl)
+                            <img src="{{ $fotoUrl }}" alt="Fotografía del profesional" style="max-width:100%; height:auto;" class="img-thumbnail"/>
+                        @else
+                            <img src="{{ asset('images/avatar-placeholder.png') }}" alt="Sin foto" style="max-width:200px; height:auto;" class="img-thumbnail"/>
+                        @endif
                     @endif
 
                     <br>
