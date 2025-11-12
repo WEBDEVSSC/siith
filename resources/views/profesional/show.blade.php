@@ -1036,7 +1036,7 @@ ADMINISTRADOR
 
         </div>
         <div class="card-footer">
-            @if(Auth::user()->role == 'admin')
+            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'rhusuarios')
                 @if ($profesional->gradoAcademico?->mdl_grado_academico == 1)
                     <a href="{{ route('editGrado', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
                 @elseif ($profesional->gradoAcademico?->mdl_grado_academico == 0)
