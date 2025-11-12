@@ -66,39 +66,83 @@ class ProfesionalController extends Controller
         $entidadNacimiento = substr($curp, 11, 2);
         $sexo = substr($curp, 10, 1);  
 
-        // Ajustamos la nacionalidad
-        if($entidadNacimiento === 'X')
+        // Buscamos el profesional por CURP
+        $profesional = Profesional::where('curp', $curp)->first();
+
+        // Si se encuentra un registro igual se manda el error
+        if ($profesional) 
         {
-             $paisNacimiento = 'EXTRANGERO';
-             $nacionalidad = 'EXTRANGERA';
-        }
-        else
+            // Si el registro ya existe, redirigimos con un mensaje de error
+            return redirect()->back()->with('error', 'El trabajador ya se encuentra registrado, favor de intentar con otro CURP')->withInput();
+        } 
+        // Si no se encuentra un registro se muestra el formualrio
+        else 
         {
-             $paisNacimiento = 'MÉXICO';
-             $nacionalidad = 'MEXICANA';
-        }
 
-        $entidad = Entidad::where('abreviacion',$entidadNacimiento)->first();
+            // Ajustamos la nacionalidad
+            if($entidadNacimiento === 'X')
+            {
+                $paisNacimiento = 'EXTRANGERO';
+                $nacionalidad = 'EXTRANGERA';
+            }
+            else
+            {
+                $paisNacimiento = 'MÉXICO';
+                $nacionalidad = 'MEXICANA';
+            }
 
-        $municipios = Municipio::where('relacion',$entidad->id)->get();
+            $entidad = Entidad::where('abreviacion',$entidadNacimiento)->first();
 
-        $estadosConyuales = EstadoConyugal::all();
+            $municipios = Municipio::where('relacion',$entidad->id)->get();
 
-         return view('profesional.create',compact(
-            'curp',
-            'rfc',
-            'sexo',
-            'fechaFormateada',
-            'paisNacimiento',
-            'entidad',
-            'municipios',
-            'nacionalidad',
-            'estadosConyuales',
-            'nombre',
-            'apellidoPaterno',
-            'apellidoMaterno'
-        ));
+            $estadosConyuales = EstadoConyugal::all();
 
+            // CONSULTAMOS LAS CLUES ADSCRIPCION SEGUN EL ROL
+
+            $usuario = Auth::user(); // o auth()->user()
+
+            // Condicionamos para que solo se enlisten las unidades que corresponden
+            if($usuario->role == 'ofJurisdiccional')
+            {
+                $cluesAdscripcion = Clue::where('clave_jurisdiccion', $usuario->jurisdiccion_unidad) 
+                                        ->whereIn('clave_establecimiento', [1, 3])
+                                        ->orderBy('nombre', 'asc')
+                                        ->get();
+            }
+            elseif($usuario->role == 'criCree')
+            {
+                $cluesAdscripcion = Clue::where('clave_establecimiento', 4)
+                                        ->orderBy('nombre', 'asc')
+                                        ->get();
+            }
+            elseif($usuario->role == 'samuCrum')
+            {
+                $cluesAdscripcion = Clue::where('clave_establecimiento', 5)
+                                        ->orderBy('nombre', 'asc')
+                                        ->get();
+            }
+            else
+            {
+                $cluesAdscripcion = Clue::where('id', $usuario->id_unidad)->get();
+            }
+
+            return view('profesional.create',compact(
+                'curp',
+                'rfc',
+                'sexo',
+                'fechaFormateada',
+                'paisNacimiento',
+                'entidad',
+                'municipios',
+                'nacionalidad',
+                'estadosConyuales',
+                'nombre',
+                'apellidoPaterno',
+                'apellidoMaterno',
+                'cluesAdscripcion'
+            ));
+            
+            }
     }
 
     /**
@@ -318,7 +362,7 @@ class ProfesionalController extends Controller
     public function datosGeneralesStore(Request $request)
     {
         // Validamos los datos
-        $validated = $request->validate([
+        $request->validate([
             'curp' => 'required',
             'rfc' => 'required',
             'homoclave' => 'required|size:3',
@@ -775,9 +819,15 @@ class ProfesionalController extends Controller
         elseif(Gate::allows('ofCentral'))
         {            
             $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
-                ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002093')
-                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->whereHas('puesto', function ($query) {
+                $query->whereIn('clues_adscripcion', ['CLSSA002093','CLSSA009997','CLSSA009996','CLSSA009995','CLSSA009994','CLSSA009993','CLSSA009992','CLSSA009991','CLSSA009990','CLSSA002093-SC'])
+                ->where('vigencia', 'ACTIVO');
+                })
                 ->get();
+
+                /*->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002093')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();*/
         } 
         elseif(Gate::allows('almacen'))
         {

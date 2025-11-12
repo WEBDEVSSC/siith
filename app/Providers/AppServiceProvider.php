@@ -22,6 +22,14 @@ class AppServiceProvider extends ServiceProvider
             return $user->role === 'admin';
         });
 
+        /**
+         * 
+         * 
+         * ROLES PARA USUARIOS
+         * 
+         * 
+         */
+
         // ROL CENTRO DE SALUD URBANO Y RURAL (CATALOGO 1)
         Gate::define('csuyr', function ($user) {
             return $user->role === 'csuyr';
@@ -102,10 +110,13 @@ class AppServiceProvider extends ServiceProvider
             return $user->role === 'jefeDepartamento';
         });
 
-        // ROL RH CREDENCIALIZACION
-        Gate::define('credencializacion', function ($user) {
-            return $user->role === 'credencializacion';
-        });
+        /**
+         * 
+         * 
+         * ROLES PARA ENSEÑANZA
+         * 
+         * 
+         */        
 
         // ROL ENSENANZA
         Gate::define('ensenanza', function ($user) {
@@ -116,6 +127,15 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('universitario', function ($user) {
             return $user->role === 'universitario';
         });
+
+    
+        /**
+         * 
+         * 
+         * ROLES PARA RECURSOS HUMANOS
+         * 
+         * 
+         */
 
         // ROL ENSENANZA
         Gate::define('normatividad', function ($user) {
@@ -135,6 +155,21 @@ class AppServiceProvider extends ServiceProvider
         // ROL SISTEMATIZACION
         Gate::define('sistematizacion', function ($user) {
             return $user->role === 'sistematizacion';
+        });
+
+        // ROL EVENTUAL
+        Gate::define('eventual', function ($user) {
+            return $user->role === 'eventual';
+        });
+
+        // ROL PRESTACIONES
+        Gate::define('prestaciones', function ($user) {
+            return $user->role === 'prestaciones';
+        });
+
+        // ROL RH CREDENCIALIZACION
+        Gate::define('credencializacion', function ($user) {
+            return $user->role === 'credencializacion';
         });
     }
 

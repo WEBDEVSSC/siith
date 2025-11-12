@@ -68,8 +68,8 @@
 
             <input type="hidden" name="qr" id="datos_escaneados">
 
-            <button type="submit" id="guardar-btn" class="btn btn-primary btn-sm mt-2" style="display: none;">
-                GUARDAR DATOS
+            <button type="submit" id="guardar-btn" class="btn btn-info btn-sm mt-2" style="display: none;">
+                BUSCAR DATOS
             </button>
 
         </div>

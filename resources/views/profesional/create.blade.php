@@ -37,6 +37,7 @@
                     <div class="col-md-3">
                         <p><strong>CURP</strong></p>
                         <input type="text" name="curp" id='curp' class="form-control" value="{{ $curp }}" disabled>
+
                         @error('curp')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -44,6 +45,7 @@
                     <div class="col-md-3">
                         <p><strong>RFC</strong></p>
                         <input type="text" name="rfc" id='rfc' class="form-control" value="{{ $rfc }}" disabled>
+
                         @error('rfc')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -51,6 +53,7 @@
                     <div class="col-md-3">
                         <p><strong>Homoclave</strong></p>
                         <input type="text" name="homoclave" id='homoclave' class="form-control" value="{{ old('homoclave') }}">
+
                         @error('homoclave')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -58,6 +61,7 @@
                     <div class="col-md-3">
                         <p><strong>Sexo</strong></p>
                         <input type="text" name="sexo" id='sexo' class="form-control" value="{{ $sexo }}" disabled>
+
                         @error('sexo')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -71,7 +75,7 @@
                         <p><strong>Nombre(s)</strong></p>
 
                         @if (empty($nombre))
-                            <input type="text" name="nombre" id='nombre' class="form-control" value="{{ old('nombre') }}" onpaste="return false>
+                            <input type="text" name="nombre" id='nombre' class="form-control" value="{{ old('nombre') }}" onpaste="return false">
                         @else
                             <input type="text" name="nombre" id='nombre' class="form-control" value="{{ $nombre }}" disabled>
                         @endif
@@ -84,11 +88,10 @@
                         <p><strong>Apellido paterno</strong></p>
 
                         @if (empty($apellidoPaterno))
-                            <input type="text" name="apellido_paterno" id='apellido_paterno' class="form-control" value="{{ old('apellido_paterno') }}" onpaste="return false>
+                            <input type="text" name="apellido_paterno" id='apellido_paterno' class="form-control" value="{{ old('apellido_paterno') }}" onpaste="return false">
                         @else
                             <input type="text" name="apellido_paterno" id='apellido_paterno' class="form-control" value="{{ $apellidoPaterno }}" disabled>
                         @endif
-
                         
                         @error('apellido_paterno')
                         <br><div class="alert alert-danger">{{ $message }}</div>
@@ -98,12 +101,11 @@
                         <p><strong>Apellido materno</strong></p>
 
                         @if (empty($apellidoPaterno))
-                            <input type="text" name="apellido_materno" id='apellido_materno' class="form-control" value="{{ old('apellido_materno') }}" onpaste="return false>
+                            <input type="text" name="apellido_materno" id='apellido_materno' class="form-control" value="{{ old('apellido_materno') }}" onpaste="return false">
                         @else
                             <input type="text" name="apellido_materno" id='apellido_materno' class="form-control" value="{{ $apellidoMaterno }}" disabled>
                         @endif
 
-                        
                         @error('apellido_materno')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -111,6 +113,7 @@
                     <div class="col-md-3">
                         <p><strong>Fecha de nacimiento</strong></p>
                         <input type="text" name="fecha_nacimiento" id='fecha_nacimiento' class="form-control" value="{{ $fechaFormateada }}" disabled>
+
                         @error('fecha_nacimiento')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -123,6 +126,7 @@
                     <div class="col-md-3">
                         <p><strong>Pais de nacimiento</strong></p>
                         <input type="text" name="pais_nacimiento" id='pais_nacimiento' class="form-control" value="{{ $paisNacimiento }}" disabled>
+
                         @error('pais_nacimiento')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -130,6 +134,7 @@
                     <div class="col-md-3">
                         <p><strong>Entidad de nacimiento</strong></p>
                         <input type="text" name="entidad_nacimiento" id='entidad_nacimiento' class="form-control" value="{{ $entidad->nombre }}" disabled>
+
                         @error('entidad_nacimiento')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -145,6 +150,7 @@
                                 </option>
                             @endforeach
                         </select>
+
                         @error('municipio_nacimiento')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -152,6 +158,7 @@
                     <div class="col-md-3">
                         <p><strong>Nacionalidad</strong></p>
                         <input type="text" name="nacionalidad" id='nacionalidad' class="form-control" value="{{ $nacionalidad }}" disabled>
+
                         @error('nacionalidad')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -172,6 +179,7 @@
                                 </option>
                             @endforeach
                         </select>
+
                         @error('estado_conyugal')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -179,6 +187,7 @@
                     <div class="col-md-3">
                         <p><strong>Teléfono de casa</strong></p>
                         <input type="text" name="telefono_casa" id='telefono_casa' class="form-control" value="{{ old('telefono_casa') }}">
+
                         @error('telefono_casa')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -186,6 +195,7 @@
                     <div class="col-md-3">
                         <p><strong>Celular</strong></p>
                         <input type="text" name="celular" id='celular' class="form-control" value="{{ old('celular') }}">
+
                         @error('celular')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -193,6 +203,7 @@
                     <div class="col-md-3">
                         <p><strong>Correo eléctronico</strong></p>
                         <input type="email" name="email" id='email' class="form-control" value="{{ old('email') }}">
+
                         @error('email')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -207,6 +218,7 @@
                             <option value="SI" {{ old('padre_madre_familia') == 'SI' ? 'selected' : '' }}>SI</option>
                             <option value="NO" {{ old('padre_madre_familia') == 'NO' ? 'selected' : '' }}>NO</option>
                         </select>
+
                         @error('padre_madre_familia')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -214,6 +226,7 @@
                     <div class="col-md-3">
                         <p><strong>Fecha de ingreso a la Institución</strong></p>
                         <input type="date" name="fecha_inicio" id='fecha_inicio' class="form-control" value="{{ old('fecha_inicio') }}">
+                        
                         @error('fecha_inicio')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
