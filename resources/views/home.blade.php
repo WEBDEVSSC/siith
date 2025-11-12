@@ -606,19 +606,7 @@ auth()->user()->role === 'hospitalNino'
         </div>
       </div>
 </div>
-<div class="col-md-3">
-  <!-- small box -->
-  <div class="small-box bg-info">
-      <div class="inner">
-        <h3>{{$contadorEnsenanzaEnfIB}}</h3>
 
-        <p>Pasante ENF - BN</p>
-      </div>
-      <div class="icon">
-        <i class="ion-android-contacts"></i>
-      </div>
-    </div>
-</div>
 </div>
 
 <!-- ---------------------------------------------------- -->

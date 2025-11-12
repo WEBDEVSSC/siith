@@ -38,12 +38,26 @@
                 <tbody>
                     @forelse ($profesionales as $profesional)
                         <tr>
-
                             <td>
-                                <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="DETALLES">
-                                    <i class="fa-solid fa-address-card"></i>
-                                </a>
+                                @if (Auth::user()->role === 'credencializacion')
+
+                                    <a href="{{ route('credencializacion.descargar', $profesional->credencializacion->id) }}" 
+                                    class="btn btn-info btn-sm" target="_blank">
+                                    Descargar fotografía original
+                                    </a>
+
+                                @else
+
+                                    <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="DETALLES">
+                                        <i class="fa-solid fa-address-card"></i>
+                                    </a>
+
+                                @endif
                             </td>
+                            
+                            
+                                
+                            
 
                             {{-- ----------------------------------------------------- --}}
                             {{-- MOSTRAMOS LOS BOTONES DE SHOW Y PDF SOLO AL ADMIN     --}}
