@@ -271,7 +271,7 @@
                   <td>{{$nominaHomogado}}</td>
                   <td>
                     <span style="display:inline-block; width:12px; height:12px; background-color: rgba(178, 255, 102, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">UMM</span>
+                    <span style="font-weight: bold;">FAM</span>
                   </td>
                   <td>{{$nominaUmmFam}}</td>
                 </tr>
@@ -912,7 +912,7 @@ auth()->user()->role === 'hospitalNino'
       var myDoughnutChart = new Chart(ctx, {
           type: 'pie',
           data: {
-              labels: ['REG','FOR','FOR2','FOR3','610','6MR','FED','EVE','HOM','BUR','IB','UNE','DIF PS', 'DIF OC','RAMO 12','PASANTE SP', 'HON', 'ISSREEI', 'UMM'],
+              labels: ['REG','FOR','FOR2','FOR3','610','6MR','FED','EVE','HOM','BUR','IB','UNE','DIF PS', 'DIF OC','RAMO 12','PASANTE SP', 'HON', 'ISSREEI', 'FAM'],
               datasets: [{
                   label: 'Número de votos',
                   data: [{{$nominaRegularizado}}, {{$nominaFormalizadoUno}}, {{$nominaFormalizadoDos}}, {{$nominaFormalizadoTres}}, {{$nominaPasanteServicioSocial}}, {{$nominaMedicoResidente}}, {{$nominaFederal420}}, {{$nominaEventual}}, {{$nominaHomogado}}, {{$nominaBurocrata}}, {{$nominaImssBienestar}}, {{$nominaUnemes}}, {{$nominaDifPs}},  {{$nominaDifOc}}, {{$nominaRamoDoce}}, {{$nominaPasanteSinPago}}, {{$nominaHonorarios}}, {{$nominaIssreei}}, {{$nominaUmmFam}}], 
