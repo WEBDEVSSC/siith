@@ -476,6 +476,17 @@ class HomeController extends Controller
         ->where('sexo', 'F')
         ->count();
 
+        $profesionalesHonomasticoSamu = Profesional::whereMonth('fecha_nacimiento', $hoy->month)
+        ->whereDay('fecha_nacimiento', $hoy->day)
+        ->whereHas('puesto', function ($query) {
+            $query->where('vigencia', 'ACTIVO')
+                ->whereIn('clues_adscripcion', [
+                    'CLSSA009997','CLSSA009996','CLSSA009995','CLSSA009994',
+                    'CLSSA009993','CLSSA009992','CLSSA009991','CLSSA009990','CLSSA002093-SC'
+                ]);
+        })
+        ->get();
+
         // -----------------------------------------------------------------------------------------------
 
         return view('home', compact(

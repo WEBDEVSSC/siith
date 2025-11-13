@@ -812,6 +812,45 @@ auth()->user()->role === 'hospitalNino'
 </div>
 </div>
 
+<!-- ---------------------------------------------------- -->
+
+<div class="row mt-3">
+  <div class="col-md-6">
+      <div class="card">
+      <div class="card-header bg-info text-white">
+          <h3 class="card-title">Cumpleaños del día</h3>
+      </div>
+      <div class="card-body">
+          @if($profesionalesHonomasticoSamu->isEmpty())
+              <p class="text-center">No hay profesionales que cumplan años hoy.</p>
+          @else
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Nombre</th>
+                          <th>Puesto</th>
+                          <th>Correo</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @foreach($profesionalesHonomasticoSamu as $index => $profesional)
+                          <tr>
+                              <td>{{ $index + 1 }}</td>
+                              <td>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
+                              <td>{{ $profesional->puesto->nombre ?? 'Sin puesto' }}</td>
+                              <td>{{ $profesional->email ?? 'No registrado' }}</td>
+                          </tr>
+                      @endforeach
+                  </tbody>
+              </table>
+          @endif
+      </div>
+  </div>
+
+  </div>
+</div>
+
 @endif
 
 @endauth
