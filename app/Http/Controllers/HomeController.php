@@ -597,6 +597,10 @@ class HomeController extends Controller
             'totalSamuBajaTemporal',
             'totalSamuHombres',
             'totalSamuMujeres',
+            'totalSamuOficinaCentral',
+            'totalSamuBajaTemporalOficinaCentral',
+            'totalSamuHombresOficinaCentral',
+            'totalSamuMujeresOficinaCentral',
             'profesionalesHonomasticoSamu'
         ));
     }
