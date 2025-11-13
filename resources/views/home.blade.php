@@ -775,7 +775,7 @@ auth()->user()->role === 'hospitalNino'
       <!-- small box -->
       <div class="small-box bg-info">
           <div class="inner">
-            <h3>{{$profesionalesBajaTemporalUnidad}}</h3>
+            <h3>{{$totalSamuBajaTemporal}}</h3>
 
             <p>Baja Temporal</p>
           </div>
@@ -788,7 +788,7 @@ auth()->user()->role === 'hospitalNino'
     <!-- small box -->
     <div class="small-box bg-info">
         <div class="inner">
-          <h3>{{$profesionalesActivosMasculinoUnidad}}</h3>
+          <h3>{{$totalSamuHombres}}</h3>
 
           <p>Hombres</p>
         </div>
@@ -801,7 +801,7 @@ auth()->user()->role === 'hospitalNino'
   <!-- small box -->
   <div class="small-box bg-info">
       <div class="inner">
-        <h3>{{$profesionalesActivosFemeninoUnidad}}</h3>
+        <h3>{{$totalSamuMujeres}}</h3>
 
         <p>Mujeres</p>
       </div>
