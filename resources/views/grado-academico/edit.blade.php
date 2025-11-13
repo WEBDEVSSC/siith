@@ -129,7 +129,7 @@
 
                     <div class="col-md-3">
                         <p>
-                            <strong>Registro Nacional de Profesionales</strong> 
+                            <strong>Archivo de Título, Cédula, R.N.P.</strong> 
                             
                             @if ($gradoAcademico->reg_nac_prof_uno == NULL)
                                 <i class="fa-solid fa-ban"></i>
@@ -252,7 +252,7 @@
             
             <div class="col-md-3">
                 <p>
-                    <strong>Registro Nacional de Profesionales</strong>
+                    <strong>Archivo de Título, Cédula, R.N.P.</strong>
 
                     @if ($gradoAcademico->reg_nac_prof_dos == NULL)
                         <i class="fa-solid fa-ban"></i>
@@ -375,7 +375,7 @@
             
             <div class="col-md-3">
                 <p>
-                    <strong>Registro Nacional de Profesionales</strong>
+                    <strong>Archivo de Título, Cédula, R.N.P.</strong>
 
                     @if ($gradoAcademico->reg_nac_prof_tres == NULL)
                         <i class="fa-solid fa-ban"></i>
@@ -498,7 +498,7 @@
             
             <div class="col-md-3">
                 <p>
-                    <strong>Registro Nacional de Profesionales</strong>
+                    <strong>Archivo de Título, Cédula, R.N.P.</strong>
                     
                     @if ($gradoAcademico->reg_nac_prof_cuatro == NULL)
                         <i class="fa-solid fa-ban"></i>

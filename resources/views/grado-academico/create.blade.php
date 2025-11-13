@@ -123,7 +123,7 @@
                     </div>   
                     
                     <div class="col-md-3">
-                        <p><strong>Registro Nacional de Profesionales</strong></p>
+                        <p><strong>Archivo de Título, Cédula, R.N.P.</strong></p>
                         <input type="file" name="reg_nac_prof_uno" id="reg_nac_prof_uno" class="form-control-file">
                         @error('reg_nac_prof_uno')
                         <br><div class="alert alert-danger">{{ $message }}</div>
@@ -233,7 +233,7 @@
             </div>   
             
             <div class="col-md-3">
-                <p><strong>Registro Nacional de Profesionales</strong></p>
+                <p><strong>Archivo de Título, Cédula, R.N.P.</strong></p>
                 <input type="file" name="reg_nac_prof_dos" class="form-control-file">
                 @error('reg_nac_prof_dos')
                 <br><div class="alert alert-danger">{{ $message }}</div>
@@ -347,7 +347,7 @@
             </div>   
             
             <div class="col-md-3">
-                <p><strong>Registro Nacional de Profesionales</strong></p>
+                <p><strong>Archivo de Título, Cédula, R.N.P.</strong></p>
                 <input type="file" name="reg_nac_prof_tres" class="form-control-file">
                 @error('reg_nac_prof_tres')
                 <br><div class="alert alert-danger">{{ $message }}</div>
@@ -459,7 +459,7 @@
             </div>   
             
             <div class="col-md-3">
-                <p><strong>Registro Nacional de Profesionales</strong></p>
+                <p><strong>Archivo de Título, Cédula, R.N.P.</strong></p>
                 <input type="file" name="reg_nac_prof_cuatro" class="form-control-file">
                 @error('reg_nac_prof_cuatro')
                 <br><div class="alert alert-danger">{{ $message }}</div>
