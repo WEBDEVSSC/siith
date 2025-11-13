@@ -328,7 +328,7 @@ return [
             'url' => 'admin/normatividad/indexNormatividad',
             'icon' => 'fa-solid fa-magnifying-glass',
             'label_color' => 'success',
-            'can' => ['directivo', 'admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei','rhauditoria'],
+            'can' => ['directivo', 'admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei','rhauditoria','normatividad'],
         ],
 
         [
