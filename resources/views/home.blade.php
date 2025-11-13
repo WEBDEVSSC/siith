@@ -910,7 +910,6 @@ auth()->user()->role === 'hospitalNino'
 </div>
 </div>
 
-
 <div class="row mt-3">
     <div class="col-md-3">
         <!-- small box -->
@@ -918,7 +917,7 @@ auth()->user()->role === 'hospitalNino'
             <div class="inner">
               <h3>{{$totalSamuOficinaCentral}}</h3>
 
-              <p>Trabajadores Activos</p>
+              <p>Trabajadores Activos SAMU</p>
             </div>
             <div class="icon">
               <i class="ion-android-contacts"></i>
@@ -931,7 +930,7 @@ auth()->user()->role === 'hospitalNino'
           <div class="inner">
             <h3>{{$totalSamuBajaTemporalOficinaCentral}}</h3>
 
-            <p>Baja Temporal</p>
+            <p>Baja Temporal SAMU</p>
           </div>
           <div class="icon">
             <i class="ion-ios-minus"></i>
@@ -944,7 +943,7 @@ auth()->user()->role === 'hospitalNino'
         <div class="inner">
           <h3>{{$totalSamuHombresOficinaCentral}}</h3>
 
-          <p>Hombres</p>
+          <p>Hombres SAMU</p>
         </div>
         <div class="icon">
           <i class="ion-male"></i>
@@ -957,7 +956,7 @@ auth()->user()->role === 'hospitalNino'
       <div class="inner">
         <h3>{{$totalSamuMujeresOficinaCentral}}</h3>
 
-        <p>Mujeres</p>
+        <p>Mujeres SAMU</p>
       </div>
       <div class="icon">
         <i class="ion-female"></i>
