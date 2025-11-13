@@ -98,7 +98,6 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>FOTOGRAFÍA</th>
                     <th>CURP</th>
                     <th>NOMBRE COMPLETO</th>
                     <th>ADSCRIPCIÓN FÍSICA</th>
@@ -118,16 +117,6 @@
                             </a>
                         </td>
 
-                         <td>
-                            @if($data['profesional']->credencializacion && $data['profesional']->credencializacion->fotografia)
-                                <img src="{{ asset('storage/credencializacion/thumbs/' . $data['profesional']->credencializacion->fotografia) }}" 
-                                    alt="Miniatura" width="100"  class="img-thumbnail">
-                            @else
-                                <img src="{{ asset('images/avatar-placeholder.png') }}" alt="Sin foto" width="100">
-                            @endif
-                        </td>
-
-                       
                         <td>{{ $data['profesional']->curp }}</td>
                         <td>{{ $data['profesional']->nombre }} {{ $data['profesional']->apellido_paterno }} {{ $data['profesional']->apellido_materno }}</td>
                         <td>{{ $data['cluesAdscripcionNombre'] ?? 'N/A' }}</td>

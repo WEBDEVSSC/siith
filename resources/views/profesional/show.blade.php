@@ -82,13 +82,9 @@ ADMINISTRADOR
 
 @elseif ($usuario->role == 'ofJurisdiccional')
 
-
-
 @else
     
 @endif
-    
-
 
 <div class="card mt-3">
     <div class="card-header">
