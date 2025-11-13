@@ -969,7 +969,7 @@ ADMINISTRADOR
                                 <th>TITULO</th>
                                 <th>INSTITUCIÓN EDUCATIVA</th>
                                 <th>CÉDULA</th>
-                                <th>R.N.P.</th>
+                                <th>ARCHIVO DE TÍTULO, CÉDULA, R.N.P.</th>
                             </tr>
                         </thead>
                         <tbody>
