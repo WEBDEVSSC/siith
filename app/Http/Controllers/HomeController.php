@@ -462,7 +462,7 @@ class HomeController extends Controller
                 'CLSSA009997', 'CLSSA009996', 'CLSSA009995', 'CLSSA009994',
                 'CLSSA009993', 'CLSSA009992', 'CLSSA009991', 'CLSSA009990', 'CLSSA002093-SC'
             ])
-            ->where('vigencia', 'BAJA TEMPORAL');
+            ->where('vigencia', 'ACTIVO');
         })
         ->where('sexo', 'M')
         ->count();
@@ -471,7 +471,7 @@ class HomeController extends Controller
             $query->whereIn('clues_adscripcion', [
                 'CLSSA009997','CLSSA009996','CLSSA009995','CLSSA009994',
                 'CLSSA009993','CLSSA009992','CLSSA009991','CLSSA009990','CLSSA002093-SC'])
-            ->where('vigencia', 'BAJA TEMPORAL');
+            ->where('vigencia', 'ACTIVO');
         })
         ->where('sexo', 'F')
         ->count();
