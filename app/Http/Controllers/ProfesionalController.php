@@ -1107,6 +1107,15 @@ class ProfesionalController extends Controller
                 ->whereRelation('puesto', 'vigencia','BAJA TEMPORAL')
                 ->get();
         }  
+        elseif(Gate::allows('samuCrum'))
+        {   
+            $profesionales = Profesional::with(['puesto','credencializacion','horario','sueldo','gradoAcademico','areaMedica'])
+            ->whereHas('puesto', function ($query) {
+                $query->whereIn('clues_adscripcion', ['CLSSA009997','CLSSA009996','CLSSA009995','CLSSA009994','CLSSA009993','CLSSA009992','CLSSA009991','CLSSA009990','CLSSA002093-SC'])
+                ->where('vigencia', 'BAJA TEMPORAL');
+                })
+                ->get();
+        }  
         else
         {
             $profesionales = collect(); // colección vacía para evitar errores
@@ -1241,6 +1250,15 @@ class ProfesionalController extends Controller
             $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
                 ->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002192')
                 ->whereRelation('puesto', 'vigencia','BAJA DEFINITIVA')
+                ->get();
+        }  
+        elseif(Gate::allows('samuCrum'))
+        {   
+            $profesionales = Profesional::with(['puesto','credencializacion','horario','sueldo','gradoAcademico','areaMedica'])
+            ->whereHas('puesto', function ($query) {
+                $query->whereIn('clues_adscripcion', ['CLSSA009997','CLSSA009996','CLSSA009995','CLSSA009994','CLSSA009993','CLSSA009992','CLSSA009991','CLSSA009990','CLSSA002093-SC'])
+                ->where('vigencia', 'BAJA DEFINITIVA');
+                })
                 ->get();
         }  
         else
