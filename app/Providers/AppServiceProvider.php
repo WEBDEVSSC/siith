@@ -186,6 +186,11 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('rhauditoria', function ($user) {
             return $user->role === 'rhauditoria';
         });
+
+        // ROL RH RIESGOS
+        Gate::define('riesgos', function ($user) {
+            return $user->role === 'riesgos';
+        });
     }
 
     public function register(): void
