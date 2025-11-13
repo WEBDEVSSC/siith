@@ -126,7 +126,7 @@
 
                         <!-- SI EL ROL ES DIFERENTE A DIRECTIVO SE MUESTRAN LOS BOTONES DE EDICION DE LOS MODULOS  -->
                         <!-- PARA EL DIRECTIVO SOLO SE MUESTRA EL BOTON DE VER DETALLES  -->
-                        @if(Auth::user()->role != 'directivo' && Auth::user()->role != 'ensenanza' && Auth::user()->role != 'universitario')
+                        @if(Auth::user()->role != 'directivo' && Auth::user()->role != 'ensenanza' && Auth::user()->role != 'universitario' && Auth::user()->role != 'riesgos')
 
                                 <!-- ------------------------- -->
                                 <!-- ------------------------- -->
