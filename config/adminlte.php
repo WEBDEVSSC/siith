@@ -336,7 +336,7 @@ return [
             'url' => 'admin/profesionales/profesionalIndex',
             'icon' => 'fa-solid fa-list',
             'label_color' => 'success',
-            'can' => ['admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei', 'ensenanza', 'universitario','riesgos'],
+            'can' => ['admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei', 'ensenanza', 'universitario','riesgos','prestaciones'],
         ],
 
         [

@@ -924,6 +924,19 @@ class ProfesionalController extends Controller
                 })
                 ->get();
         }
+        elseif(Gate::allows('prestaciones'))
+        {
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->where(function($q) {
+                    $q->whereRelation('puesto', 'nomina_pago', 'FED - Federal (Unidad 420)')
+                    ->orWhereRelation('puesto', 'nomina_pago', 'FOR - Formalizado 1')
+                    ->orWhereRelation('puesto', 'nomina_pago', 'FO2 - Formalizado 2')
+                    ->orWhereRelation('puesto', 'nomina_pago', 'FO3 - Formalizado 3')
+                    ->orWhereRelation('puesto', 'nomina_pago', 'REG - Regularizado');
+                })
+                ->get();
+        }
         else
         {
             $profesionales = collect(); // colección vacía para evitar errores
