@@ -100,7 +100,7 @@ ADMINISTRADOR
             <div class="col-md-2">
                 
                 <center>
-                    @if (Auth::user()->role == 'admin' || Auth::user()->role == 'directivo' || Auth::user()->role == 'rhasistente')
+                    @if (Auth::user()->role == 'admin' || Auth::user()->role == 'directivo' || Auth::user()->role == 'rhasistente' || Auth::user()->role == 'rhauditoria')
                         @if($fotoUrl)
                             <img src="{{ $fotoUrl }}" alt="Fotografía del profesional" style="max-width:100%; height:auto;" class="img-thumbnail"/>
                         @else

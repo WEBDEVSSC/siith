@@ -137,11 +137,11 @@ class HomeController extends Controller
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
             ->count();
 
-        $nominaIssreei = Profesional::whereRelation('puesto', 'nomina_pago', 'ISSREEI - Nomina')
+        $nominaIssreei = Profesional::whereRelation('puesto', 'nomina_pago', 'ISSREEI - Nómina')
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
             ->count();
 
-        $nominaUmmFam = Profesional::whereRelation('puesto', 'nomina_pago', 'UMM - FAM')
+        $nominaUmmFam = Profesional::whereRelation('puesto', 'nomina_pago', 'FAM - UMM - IMSS B.')
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
             ->count();
 

@@ -46,11 +46,15 @@
         
         </div>
         <div class="card-footer">
-            <button type="submit" class="btn btn-success btn-sm btn-info">BUSCAR DATOS</button>
+            <button type="submit" class="btn btn-success btn-sm btn-info">
+                BUSCAR DATOS
+            </button>
         </div>
 
     </form>
 </div>
+
+@if (auth()->user()->role != 'universitario' && Auth::user()->role != 'ensenanza')
 
 <form action="{{ route('guardar.qr') }}" method="POST">
     @csrf
@@ -68,15 +72,20 @@
 
             <input type="hidden" name="qr" id="datos_escaneados">
 
+            
+
+        </div>
+        <div class="card-footer">
+
             <button type="submit" id="guardar-btn" class="btn btn-info btn-sm mt-2" style="display: none;">
                 BUSCAR DATOS
             </button>
 
         </div>
-        <div class="card-footer"></div>
     </div>
 </form>
 
+@endif
 
 @stop
 
