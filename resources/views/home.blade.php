@@ -916,7 +916,7 @@ auth()->user()->role === 'hospitalNino'
         <!-- small box -->
         <div class="small-box bg-info">
             <div class="inner">
-              <h3>{{$totalSamu}}</h3>
+              <h3>{{$totalSamuOficinaCentral}}</h3>
 
               <p>Trabajadores Activos</p>
             </div>
@@ -929,7 +929,7 @@ auth()->user()->role === 'hospitalNino'
       <!-- small box -->
       <div class="small-box bg-info">
           <div class="inner">
-            <h3>{{$totalSamuBajaTemporal}}</h3>
+            <h3>{{$totalSamuBajaTemporalOficinaCentral}}</h3>
 
             <p>Baja Temporal</p>
           </div>
@@ -942,7 +942,7 @@ auth()->user()->role === 'hospitalNino'
     <!-- small box -->
     <div class="small-box bg-info">
         <div class="inner">
-          <h3>{{$totalSamuHombres}}</h3>
+          <h3>{{$totalSamuHombresOficinaCentral}}</h3>
 
           <p>Hombres</p>
         </div>
@@ -955,7 +955,7 @@ auth()->user()->role === 'hospitalNino'
   <!-- small box -->
   <div class="small-box bg-info">
       <div class="inner">
-        <h3>{{$totalSamuMujeres}}</h3>
+        <h3>{{$totalSamuMujeresOficinaCentral}}</h3>
 
         <p>Mujeres</p>
       </div>
