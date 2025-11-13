@@ -966,7 +966,7 @@ ADMINISTRADOR
                             <tr>
                                 <th>#</th>
                                 <th>GRADO ACADÉMICO</th>
-                                <th>TITULO</th>
+                                <th>TÍTULO</th>
                                 <th>INSTITUCIÓN EDUCATIVA</th>
                                 <th>CÉDULA</th>
                                 <th>ARCHIVO DE TÍTULO, CÉDULA, R.N.P.</th>

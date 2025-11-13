@@ -308,6 +308,22 @@ return [
         ],
 
         [
+            'text' => 'Panel de Control',
+            'url' => 'admin/profesionales/profesionalIndex',
+            'icon' => 'fa-solid fa-list',
+            'label_color' => 'success',
+            'can' => ['admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei', 'ensenanza', 'universitario','riesgos','prestaciones','eventual'],
+        ],
+
+        [
+            'text' => 'Cambio de Unidad',
+            'url' => 'admin/profesionales/cambioDeUnidad/findProfesional',
+            'icon' => 'fa-solid fa-building-circle-arrow-right',
+            'label_color' => 'success',
+            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino'],
+        ],
+
+        [
             'text' => 'Nuevo registro',
             'url' => 'admin/profesionales/buscarCurp',
             'icon' => 'fas fa-plus',
@@ -331,13 +347,7 @@ return [
             'can' => ['directivo', 'admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei','rhauditoria','normatividad'],
         ],
 
-        [
-            'text' => 'Panel de Control',
-            'url' => 'admin/profesionales/profesionalIndex',
-            'icon' => 'fa-solid fa-list',
-            'label_color' => 'success',
-            'can' => ['admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei', 'ensenanza', 'universitario','riesgos','prestaciones','eventual'],
-        ],
+        
 
         [
             'text' => 'Mi Jurisdicción',
@@ -347,13 +357,7 @@ return [
             'can' => 'ofJurisdiccional',
         ],
 
-        [
-            'text' => 'Cambio de Unidad',
-            'url' => 'admin/profesionales/cambioDeUnidad/findProfesional',
-            'icon' => 'fa-solid fa-building-circle-arrow-right',
-            'label_color' => 'success',
-            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino'],
-        ],
+        
 
         [
             'text' => 'Reportes',
