@@ -457,18 +457,23 @@ class HomeController extends Controller
         })
         ->count();
 
-        $totalSamuHombres = Profesional::whereRelation('puesto', function($query) {
-            $query->whereIn('clues_adscripcion', ['CLSSA009997','CLSSA009996','CLSSA009995','CLSSA009994','CLSSA009993','CLSSA009992','CLSSA009991','CLSSA009990','CLSSA002093-SC'])
-            ->where('sexo', 'M')
+        $totalSamuHombres = Profesional::whereHas('puesto', function($query) {
+            $query->whereIn('clues_adscripcion', [
+                'CLSSA009997', 'CLSSA009996', 'CLSSA009995', 'CLSSA009994',
+                'CLSSA009993', 'CLSSA009992', 'CLSSA009991', 'CLSSA009990', 'CLSSA002093-SC'
+            ])
             ->where('vigencia', 'BAJA TEMPORAL');
         })
+        ->where('sexo', 'M')
         ->count();
 
         $totalSamuMujeres = Profesional::whereRelation('puesto', function($query) {
-            $query->whereIn('clues_adscripcion', ['CLSSA009997','CLSSA009996','CLSSA009995','CLSSA009994','CLSSA009993','CLSSA009992','CLSSA009991','CLSSA009990','CLSSA002093-SC'])
-            ->where('sexo', 'F')
+            $query->whereIn('clues_adscripcion', [
+                'CLSSA009997','CLSSA009996','CLSSA009995','CLSSA009994',
+                'CLSSA009993','CLSSA009992','CLSSA009991','CLSSA009990','CLSSA002093-SC'])
             ->where('vigencia', 'BAJA TEMPORAL');
         })
+        ->where('sexo', 'F')
         ->count();
 
         // -----------------------------------------------------------------------------------------------
