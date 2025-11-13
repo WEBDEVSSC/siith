@@ -112,9 +112,14 @@
                             <a href="{{ route('profesionalShow', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="DETALLES">
                                 <i class="fa-solid fa-address-card"></i>
                             </a>
+                        
+                        @if(Auth::user()->role != 'rhasistente' && Auth::user()->role != 'rhusuarios' && Auth::user()->role != 'ensenanza' && Auth::user()->role != 'universitario' && Auth::user()->role != 'sistematizacion' && Auth::user()->role != 'credencializacion' && Auth::user()->role != 'profesionales' && Auth::user()->role != 'normatividad' && Auth::user()->role != 'prestaciones' && Auth::user()->role != 'eventual' && Auth::user()->role != 'riesgos')
+
                             <a target='_blank' href="{{ route('profesionalPDF', $data['profesional']->id) }}" class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="top" title="PDF">
                                 <i class="fa-solid fa-file-lines"></i>
                             </a>
+
+                        @endif                            
                         </td>
 
                         <td>{{ $data['profesional']->curp }}</td>
