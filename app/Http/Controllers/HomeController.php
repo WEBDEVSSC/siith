@@ -43,27 +43,35 @@ class HomeController extends Controller
         $profesionalesJurisdiccion1 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '1')
         ->whereRelation('puesto', 'vigencia', 'ACTIVO')
         ->count();
+
         $profesionalesJurisdiccion2 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '2')
         ->whereRelation('puesto', 'vigencia', 'ACTIVO')
         ->count();
+
         $profesionalesJurisdiccion3 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '3')
         ->whereRelation('puesto', 'vigencia', 'ACTIVO')
         ->count();
+
         $profesionalesJurisdiccion4 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '4')
         ->whereRelation('puesto', 'vigencia', 'ACTIVO')
         ->count();
+
         $profesionalesJurisdiccion5 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '5')
         ->whereRelation('puesto', 'vigencia', 'ACTIVO')
         ->count();
+
         $profesionalesJurisdiccion6 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '6')
         ->whereRelation('puesto', 'vigencia', 'ACTIVO')
         ->count();
+
         $profesionalesJurisdiccion7 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '7')
         ->whereRelation('puesto', 'vigencia', 'ACTIVO')
         ->count();
+
         $profesionalesJurisdiccion8 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '8')
         ->whereRelation('puesto', 'vigencia', 'ACTIVO')
         ->count();
+
         $profesionalesJurisdiccion9 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '9')
         ->whereRelation('puesto', 'vigencia', 'ACTIVO')
         ->count();
@@ -429,6 +437,20 @@ class HomeController extends Controller
             })
             ->count();
 
+        /**
+         * 
+         * 
+         * CONTADORES PARA SAMU
+         *  
+         * 
+         */
+
+        $totalSamu = Profesional::whereRelation('puesto', function($query) {
+            $query->whereIn('clues_adscripcion', ['CLSSA009997','CLSSA009996','CLSSA009995','CLSSA009994','CLSSA009993','CLSSA009992','CLSSA009991','CLSSA009990','CLSSA002093-SC'])
+            ->where('vigencia', 'ACTIVO');
+        })
+        ->count();
+
         // -----------------------------------------------------------------------------------------------
 
         return view('home', compact(
@@ -508,7 +530,9 @@ class HomeController extends Controller
             'ramaAFin',
             'ramaEnfermeria',
             'ramaMedica',
-            'ramaParamedica'
+            'ramaParamedica',
+
+            'totalSamu'
         ));
     }
 }

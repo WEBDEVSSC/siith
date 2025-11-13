@@ -453,7 +453,6 @@ auth()->user()->role === 'csuyr' ||
 auth()->user()->role === 'hospital'|| 
 auth()->user()->role === 'ofJurisdiccional'|| 
 auth()->user()->role === 'criCree'|| 
-auth()->user()->role === 'samuCrum'|| 
 auth()->user()->role === 'ofCentral'|| 
 auth()->user()->role === 'almacen'|| 
 auth()->user()->role === 'psiParras'|| 
@@ -753,7 +752,67 @@ auth()->user()->role === 'hospitalNino'
 
 @endif
 
-<!-- --------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------- -->
+
+<!-- ---------------------------------------------------------- -->
+@if(auth()->user()->role === 'samuCrum')
+
+<div class="row">
+    <div class="col-md-3">
+        <!-- small box -->
+        <div class="small-box bg-info">
+            <div class="inner">
+              <h3>{{$totalSamu}}</h3>
+
+              <p>Trabajadores Activos</p>
+            </div>
+            <div class="icon">
+              <i class="ion-android-contacts"></i>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-3">
+      <!-- small box -->
+      <div class="small-box bg-info">
+          <div class="inner">
+            <h3>{{$profesionalesBajaTemporalUnidad}}</h3>
+
+            <p>Baja Temporal</p>
+          </div>
+          <div class="icon">
+            <i class="ion-ios-minus"></i>
+          </div>
+        </div>
+  </div>
+  <div class="col-md-3">
+    <!-- small box -->
+    <div class="small-box bg-info">
+        <div class="inner">
+          <h3>{{$profesionalesActivosMasculinoUnidad}}</h3>
+
+          <p>Hombres</p>
+        </div>
+        <div class="icon">
+          <i class="ion-male"></i>
+        </div>
+      </div>
+</div>
+<div class="col-md-3">
+  <!-- small box -->
+  <div class="small-box bg-info">
+      <div class="inner">
+        <h3>{{$profesionalesActivosFemeninoUnidad}}</h3>
+
+        <p>Mujeres</p>
+      </div>
+      <div class="icon">
+        <i class="ion-female"></i>
+      </div>
+    </div>
+</div>
+</div>
+
+@endif
 
 @endauth
 
