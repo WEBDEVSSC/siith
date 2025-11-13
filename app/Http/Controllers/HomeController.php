@@ -462,11 +462,10 @@ class HomeController extends Controller
         })
         ->count();
 
-        $totalSamuBajaTemporalOficinaCentral = Profesional::whereHas('puesto', function($query) {
-            $query->whereIn('clues_adscripcion', 'CLSSA002093-SC')
-            ->where('vigencia', 'BAJA TEMPORAL');
-        })
-        ->count();
+       $totalSamuBajaTemporalOficinaCentral = Profesional::whereHas('puesto', function ($query) {
+            $query->whereIn('clues_adscripcion', ['CLSSA002093-SC'])
+                ->where('vigencia', 'BAJA TEMPORAL');
+        })->count();
 
         $totalSamuHombres = Profesional::whereHas('puesto', function($query) {
             $query->whereIn('clues_adscripcion', [
@@ -478,9 +477,9 @@ class HomeController extends Controller
         ->where('sexo', 'M')
         ->count();
 
-        $totalSamuHombresOficinaCentral = Profesional::whereHas('puesto', function($query) {
-            $query->whereIn('clues_adscripcion','CLSSA002093-SC')
-            ->where('vigencia', 'ACTIVO');
+        $totalSamuHombresOficinaCentral = Profesional::whereHas('puesto', function ($query) {
+            $query->whereIn('clues_adscripcion', ['CLSSA002093-SC'])
+                ->where('vigencia', 'ACTIVO');
         })
         ->where('sexo', 'M')
         ->count();
@@ -494,12 +493,13 @@ class HomeController extends Controller
         ->where('sexo', 'F')
         ->count();
 
-        $totalSamuMujeresOficinaCentral = Profesional::whereHas('puesto', function($query) {
-            $query->whereIn('clues_adscripcion','CLSSA002093-SC')
-            ->where('vigencia', 'ACTIVO');
+        $totalSamuMujeresOficinaCentral = Profesional::whereHas('puesto', function ($query) {
+            $query->whereIn('clues_adscripcion', ['CLSSA002093-SC'])
+                ->where('vigencia', 'ACTIVO');
         })
         ->where('sexo', 'F')
         ->count();
+
 
         $profesionalesHonomasticoSamu = Profesional::whereMonth('fecha_nacimiento', $hoy->month)
         ->whereDay('fecha_nacimiento', $hoy->day)
