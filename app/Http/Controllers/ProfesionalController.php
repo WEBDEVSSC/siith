@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\ProfesionalesMexicoExport;
+use App\Exports\ProfesionalesRiesgosEstatalExport;
 use App\Exports\ProfesionalExport;
 use App\Mail\FelicitacionCumpleanos;
 use App\Models\CatOcupacionEnsenanza;
@@ -949,6 +950,19 @@ class ProfesionalController extends Controller
                 })
                 ->get();
         }
+        elseif(Gate::allows('riesgos'))
+        {
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->where(function($q) {
+                    $q->whereRelation('puesto', 'nomina_pago', 'FED - Federal (Unidad 420)')
+                    ->orWhereRelation('puesto', 'nomina_pago', 'FOR - Formalizado 1')
+                    ->orWhereRelation('puesto', 'nomina_pago', 'FO2 - Formalizado 2')
+                    ->orWhereRelation('puesto', 'nomina_pago', 'FO3 - Formalizado 3')
+                    ->orWhereRelation('puesto', 'nomina_pago', 'REG - Regularizado');
+                })
+                ->get();
+        }
         else
         {
             $profesionales = collect(); // colección vacía para evitar errores
@@ -1818,6 +1832,24 @@ class ProfesionalController extends Controller
         
         // Exporta los datos usando la clase CluesExport
         return Excel::download(new ProfesionalesMexicoExport, 'REPORTE-PROFESIONALES.xlsx');
+    }
+
+    /**
+     * 
+     * 
+     * METODO PARA EXPORTAR EN EXCEL PARA EL MODULO DE RIESGOS
+     * 
+     */
+
+    public function reporteRiesgosEstatal()
+    {
+        
+        ini_set('memory_limit', '-1');
+
+        ini_set('max_execution_time', 300); // 300 segundos = 5 minutos
+        
+        // Exporta los datos usando la clase CluesExport
+        return Excel::download(new ProfesionalesRiesgosEstatalExport, 'REPORTE-RIESGOS.xlsx');
     }
 
     /**
