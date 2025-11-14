@@ -452,7 +452,6 @@
 auth()->user()->role === 'csuyr' || 
 auth()->user()->role === 'hospital'|| 
 auth()->user()->role === 'ofJurisdiccional'|| 
-auth()->user()->role === 'criCree'|| 
 auth()->user()->role === 'almacen'|| 
 auth()->user()->role === 'psiParras'|| 
 auth()->user()->role === 'oncologico'|| 
