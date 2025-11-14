@@ -51,13 +51,14 @@
             </div>
         @else
         {{-- <table id="profesionalesTable" class="table table-bordered"> --}}
-        <table  id="profesionalesTable" class="table table-bordered">
+        <table id="profesionalesTable" class="table table-bordered">
             <thead>
                 <tr>
                     <th>CLUES</th>
                     <th>Nombre</th>
                     <th>Localidad</th>
                     <th>Jurisdicción</th>
+                    <th>Total</th>
                     <th></th>
                     
                 </tr>
