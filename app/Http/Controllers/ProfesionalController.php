@@ -127,7 +127,7 @@ class ProfesionalController extends Controller
                 $cluesAdscripcion = Clue::where('id', $usuario->id_unidad)->get();
             }
 
-            return view('profesional.create',compact(
+            /*return view('profesional.create',compact(
                 'curp',
                 'rfc',
                 'sexo',
@@ -141,7 +141,23 @@ class ProfesionalController extends Controller
                 'apellidoPaterno',
                 'apellidoMaterno',
                 'cluesAdscripcion'
-            ));
+            ));*/
+
+           return redirect()->route('datosGenerales', [
+                'curp'               => $curp,
+                'rfc'                => $rfc,
+                'sexo'               => $sexo,
+                'fechaFormateada'    => $fechaFormateada,
+                'paisNacimiento'     => $paisNacimiento,
+                'entidad'            => $entidad,
+                'municipios'         => $municipios,
+                'nacionalidad'       => $nacionalidad,
+                'estadosConyugales'  => $estadosConyuales, // corregido el nombre
+                'nombre'             => $nombre,
+                'apellidoPaterno'    => $apellidoPaterno,
+                'apellidoMaterno'    => $apellidoMaterno,
+                'cluesAdscripcion'   => $cluesAdscripcion
+            ]);
             
             }
     }
