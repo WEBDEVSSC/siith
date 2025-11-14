@@ -512,6 +512,48 @@ class HomeController extends Controller
         })
         ->get();
 
+        /**
+         * 
+         * 
+         * CONTADORES PARA CRI CREE
+         *  
+         * 
+         */
+        
+        $totalCriCree = Profesional::whereRelation('puesto', function($query) {
+            $query->whereIn('clues_adscripcion', ['CLSSA009989','CLSSA009988','CLSSA009987','CLSSA009986','CLSSA009985'])
+            ->where('vigencia', 'ACTIVO');
+        })
+            ->count();
+
+        $totalCriCreeTemporal = Profesional::whereRelation('puesto', function($query) {
+            $query->whereIn('clues_adscripcion', ['CLSSA009989','CLSSA009988','CLSSA009987','CLSSA009986','CLSSA009985'])
+            ->where('vigencia', 'BAJA TEMPORAL');
+        })
+            ->count();
+
+        $totalCriCreeHombres = Profesional::whereHas('puesto', function($query) {
+            $query->whereIn('clues_adscripcion', ['CLSSA009989','CLSSA009988','CLSSA009987','CLSSA009986','CLSSA009985'])
+            ->where('vigencia', 'ACTIVO');
+        })
+            ->where('sexo', 'M')
+            ->count();
+
+        $totalCriCreeMujeres = Profesional::whereHas('puesto', function($query) {
+            $query->whereIn('clues_adscripcion', ['CLSSA009989','CLSSA009988','CLSSA009987','CLSSA009986','CLSSA009985'])
+            ->where('vigencia', 'ACTIVO');
+        })
+            ->where('sexo', 'F')
+            ->count();
+
+        $profesionalesHonomasticoCriCree = Profesional::whereMonth('fecha_nacimiento', $hoy->month)
+        ->whereDay('fecha_nacimiento', $hoy->day)
+        ->whereHas('puesto', function ($query) {
+            $query->where('vigencia', 'ACTIVO')
+                ->whereIn('clues_adscripcion', ['CLSSA009989','CLSSA009988','CLSSA009987','CLSSA009986','CLSSA009985']);
+        })
+        ->get();
+
         // -----------------------------------------------------------------------------------------------
 
         return view('home', compact(
@@ -601,7 +643,13 @@ class HomeController extends Controller
             'totalSamuBajaTemporalOficinaCentral',
             'totalSamuHombresOficinaCentral',
             'totalSamuMujeresOficinaCentral',
-            'profesionalesHonomasticoSamu'
+            'profesionalesHonomasticoSamu',
+
+            'totalCriCree',
+            'totalCriCreeTemporal',
+            'totalCriCreeHombres',
+            'totalCriCreeMujeres',
+            'profesionalesHonomasticoCriCree'
         ));
     }
 }
