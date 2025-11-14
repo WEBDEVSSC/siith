@@ -54,6 +54,7 @@
         <table id="profesionalesTable" class="table table-bordered">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>CLUES</th>
                     <th>Nombre</th>
                     <th>Localidad</th>
@@ -66,6 +67,7 @@
             <tbody>
                 @foreach ($datos as $item)
                     <tr>
+                        <td>{{ $item['id'] }}</td>
                         <td>{{ $item['clues'] }}</td>
                         <td>{{ $item['nombre'] }}</td>
                         <td>{{ $item['localidad'] }}</td>
