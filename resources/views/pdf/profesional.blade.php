@@ -464,12 +464,36 @@
 
     <table>
         <tr class="header-row">
-            <td class="header-cell" style="width: 50%;"><p><strong>COLEGIACIÓN</strong></p></td>
-            <td class="header-cell" style="width: 50%;"><p><strong>CERTIFICACIÓN</strong></p></td>
+            <td class="header-cell" style="width: 15%;"><p><strong>TIPO DE SANGRE</strong></p></td>
+            <td class="header-cell" style="width: 45%;"><p><strong>ALERGIAS</strong></p></td>
+            <td class="header-cell" style="width: 40%;"><p><strong>ENFERMEDADES</strong></p></td>
         </tr>
         <tr>
-            <td><p>{{ $profesional->certificacion?->colegiacion_label }}</p></td>
-            <td><p>{{ $profesional->certificacion?->certificacion_label }}</p></td>
+            <td><p>{{ $profesional->emergencia->tipo_sangre }}</p></td>
+            <td><p>{{ $profesional->emergencia->tipo_alergia }} {{ $profesional->emergencia->alergia_descripcion }}</p></td>
+            <td><p>{{ $profesional->emergencia->enfermedad }}</p></td>
+        </tr>
+    </table>
+
+    <table>
+        <tr class="header-row">
+            <td class="header-cell" style="width: 15%;"><p><strong>TRATAMIENTO</strong></p></td>
+            <td class="header-cell" style="width: 45%;"><p><strong>MEDICAMENTOS</strong></p></td>
+        </tr>
+        <tr>
+            <td><p>{{ $profesional->emergencia->tratamiento }}</p></td>
+            <td><p>{{ $profesional->emergencia->medicamentos }}</p></td>
+        </tr>
+    </table>
+
+    <table>
+        <tr class="header-row">
+            <td class="header-cell" style="width: 15%;"><p><strong>MÉDICO DE CABECERA</strong></p></td>
+            <td class="header-cell" style="width: 45%;"><p><strong>TELÉFONO</strong></p></td>
+        </tr>
+        <tr>
+            <td><p>{{ $profesional->emergencia->medico_nombre }}</p></td>
+            <td><p>{{ $profesional->emergencia->medico_telefono }}</p></td>
         </tr>
     </table>
 
