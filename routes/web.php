@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CatalogoCentroDeSaludUrbanoYRuralController;
+use App\Http\Controllers\CatalogoCluesController;
 use App\Http\Controllers\CatalogoNominaDePagoController;
 use App\Http\Controllers\CatalogoOcupacionAlmacenController;
 use App\Http\Controllers\CatalogoOcupacionCeamController;
@@ -615,6 +616,29 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/usuarios/updateUsuario/{id}', [UsuarioController::class,'updateUsuario'])->name('updateUsuario');
 
      Route::delete('admin/usuarios/deleteUsuario/{id}', [UsuarioController::class, 'deleteUsuario'])->name('deleteUsuario');
+
+     /**
+     * 
+     * 
+     * MODULOS ADMINISRATIVOS
+     * CLUES PANEL DE CONTROL
+     * 
+     * 
+     */
+
+     Route::get('admin/clues/indexClues', [CatalogoCluesController::class,'indexClues'])->name('indexClues');
+
+     Route::get('admin/clues/showClues/{id}', [CatalogoCluesController::class,'showClues'])->name('showClues');
+
+     Route::get('admin/clues/createClues', [CatalogoCluesController::class,'createClues'])->name('createClues');
+
+     Route::post('admin/clues/storeClues', [CatalogoCluesController::class,'storeClues'])->name('storeClues');
+
+     Route::get('admin/clues/editClues/{id}', [CatalogoCluesController::class,'editClues'])->name('editClues');
+
+     Route::put('admin/clues/updateClues/{id}', [CatalogoCluesController::class,'updateClues'])->name('updateClues');
+
+     Route::delete('admin/clues/deleteClues/{id}', [CatalogoCluesController::class, 'deleteClues'])->name('deleteClues');
 
      /**
      * 

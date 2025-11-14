@@ -249,6 +249,17 @@
                 <!-- /.info-box-content -->
                 </div>
             </div>
+
+            <div class="col-md-2">
+                <div class="info-box">
+                <span class="info-box-icon bg-info"><i class="fa fa-cog" aria-hidden="true"></i></span>
+
+                <div class="info-box-content">
+                    <a href="{{ route('indexClues') }}"><span class="info-box-text"><span class="info-box-text"><span class="info-box-text">CLUES</span></a>
+                </div>
+                <!-- /.info-box-content -->
+                </div>
+            </div>
         </div>
 
     </div>
