@@ -18,7 +18,8 @@ class CatalogoCluesController extends Controller
 
             // Contar profesionales cuya relación "puesto" tenga el clues_adscripcion igual al clues de esta unidad
             $total = Profesional::whereHas('puesto', function ($q) use ($clue) {
-                $q->where('clues_adscripcion', $clue->clues);
+            $q->where('clues_adscripcion', $clue->clues)
+              ->where('vigencia', 'ACTIVO');   // ← FILTRO AGREGADO
             })->count();
 
             return [
