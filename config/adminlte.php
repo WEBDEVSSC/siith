@@ -389,16 +389,9 @@ return [
         */
 
         [
-            'text' => 'Usuarios',
-            'url' => 'admin/usuarios/indexUsuario',
-            'icon' => 'fas fa-fw fa-lock',
-            'can' => 'admin', 
-        ],
-
-        [
-            'text' => 'Catalogos',
+            'text' => 'Settings',
             'url' => 'admin/settings/settingsShow',
-            'icon' => 'fas fa-fw fa-lock',
+            'icon' => 'fa-solid fa-gear',
             'can' => 'admin', 
         ],
         

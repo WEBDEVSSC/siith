@@ -15,6 +15,7 @@
     <div class="card-body">
 
         <div class="row">
+            @if(Auth::user()->role != 'riesgos')
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">
@@ -28,11 +29,12 @@
                 <a href="{{ route('profesionalExport') }}" class="small-box-footer">Descargar <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            @endif
 
             
 
 
-            @if(Auth::user()->rol === 'admin')
+            @if(Auth::user()->role === 'admin')
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">

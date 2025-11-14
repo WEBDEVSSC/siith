@@ -1154,7 +1154,7 @@ ADMINISTRADOR
                 </div>
                 <div class="col-md-2">
                     <p><strong>ALERGIAS</strong></p>
-                    {{ $emergencias->alergia_descripcion ?? ''  }}
+                    {{ $emergencias->tipo_alergia ?? ''  }} - {{ $emergencias->alergia_descripcion ?? ''  }}
                 </div>
                 <div class="col-md-2">
                     <p><strong>ENFERMEDAD</strong></p>

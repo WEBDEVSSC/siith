@@ -33,7 +33,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 5px;
-            margin-bottom: 15px;
+            margin-bottom: 2px;
         }
 
         th, td {
@@ -407,6 +407,69 @@
         <tr>
             <td><p>{{ $profesional->gradoAcademico?->cedula_cuatro }} - {{$profesional->gradoAcademico?->numero_cedula_cuatro }}</p></td>
             <td><p>{{ $profesional->gradoAcademico?->observaciones_cuatro }}</p></td>
+        </tr>
+    </table>
+
+    <div class="page-break"></div>
+
+    <div class="section-title">PERSONAL ESTUDIANDO ACTUALMENTE</div>
+
+    <table>
+        <tr class="header-row">
+            <td class="header-cell" style="width: 30%;"><p><strong>TIPO DE FORMACIÓN</strong></p></td>
+            <td class="header-cell" style="width: 70%;"><p><strong>CARRERA</strong></p></td>
+        </tr>
+        <tr>
+            <td><p>{{ $profesional->areaMedica?->tipo_formacion_label }}</p></td>
+            <td><p>{{ $profesional->areaMedica?->carrera_label }}</p></td>
+        </tr>
+    </table>
+
+    <table>
+        <tr class="header-row">
+            <td class="header-cell" style="width: 70%;"><p><strong>INSTITUCIÓN EDUCATIVA</strong></p></td>
+            <td class="header-cell" style="width: 30%;"><p><strong>AÑO EN CURSO / DURACIÓN</strong></p></td>
+        </tr>
+        <tr>
+            <td><p>{{ $profesional->areaMedica?->institucion_educativa_label }}</p></td>
+            <td><p>{{ $profesional->areaMedica?->anio_cursa }} - {{ $profesional->areaMedica?->duracion_formacion }}</p></td>
+        </tr>
+    </table>
+
+    <div class="section-title">CERTIFICACIONES</div>
+
+    <table>
+        <tr class="header-row">
+            <td class="header-cell" style="width: 50%;"><p><strong>COLEGIACIÓN</strong></p></td>
+            <td class="header-cell" style="width: 50%;"><p><strong>CERTIFICACIÓN</strong></p></td>
+        </tr>
+        <tr>
+            <td><p>{{ $profesional->certificacion?->colegiacion_label }}</p></td>
+            <td><p>{{ $profesional->certificacion?->certificacion_label }}</p></td>
+        </tr>
+    </table>
+
+    <table>
+        <tr class="header-row">
+            <td class="header-cell" style="width: 50%;"><p><strong>IDIOMA</strong></p></td>
+            <td class="header-cell" style="width: 50%;"><p><strong>LENGUA INDÍGENA</strong></p></td>
+        </tr>
+        <tr>
+            <td><p>{{ $profesional->certificacion?->idioma_label }} - {{ $profesional->certificacion?->idioma_nivel_de_dominio }}</p></td>
+            <td><p>{{ $profesional->certificacion?->lengua_indigena_label }} - {{ $profesional->certificacion?->lengua_nivel_de_dominio }}</p></td>
+        </tr>
+    </table>
+
+    <div class="section-title">EMERGENCIAS</div>
+
+    <table>
+        <tr class="header-row">
+            <td class="header-cell" style="width: 50%;"><p><strong>COLEGIACIÓN</strong></p></td>
+            <td class="header-cell" style="width: 50%;"><p><strong>CERTIFICACIÓN</strong></p></td>
+        </tr>
+        <tr>
+            <td><p>{{ $profesional->certificacion?->colegiacion_label }}</p></td>
+            <td><p>{{ $profesional->certificacion?->certificacion_label }}</p></td>
         </tr>
     </table>
 
