@@ -41,7 +41,7 @@
     
 <div class="card">
         <div class="card-header">
-            <a href="{{ route('nominaPagoCreate') }}" class="btn btn-success btn-sm">NUEVO REGISTRO</a>
+            <a href="{{ route('createClues') }}" class="btn btn-info btn-sm">NUEVO REGISTRO</a>
         </div>
         <div class="card-body">
 
@@ -75,9 +75,20 @@
                         <td><strong>{{ $item['total_profesionales'] }}</strong></td>
 
                         <td>
-                            <a href="{{ route('nominaPagoEdit', $item['id']) }}" class="btn btn-warning btn-sm">
-                                <i class="fa-solid fa-pen-to-square"></i>
+                            <a href="{{ route('showClues', $item['id']) }}" class="btn btn-success btn-sm">
+                                <i class="fa fa-eye"></i>
                             </a>
+                            <a href="{{ route('editClues', $item['id']) }}" class="btn btn-warning btn-sm">
+                                <i class="fa fa-pencil"></i>
+                            </a>
+
+                            <form action="{{ route('deleteClues', $item['id']) }}" method="POST" style="display:inline;" class="form-eliminar">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
