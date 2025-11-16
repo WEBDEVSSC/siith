@@ -2176,13 +2176,15 @@ class ProfesionalController extends Controller
         // Cargamos los datos del usuario
         $usuario = Auth::user();
 
-        // Cargamos todas las clues de la jurisdiccion
-        $clues = Clue::where('clave_jurisdiccion',$usuario->jurisdiccion_unidad)
-                ->orderBy('nombre', 'asc')
+        // Consultamos todos los usuarios con esa clues adscripcion
+        $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
                 ->get();
 
-        // Retornamos la vista con la lista de clues
-        return view('mi-jurisdiccion.index', compact('clues'));
+        // Regresamos a la vista con el arreglo de objetos
+        return view('mi-jurisdiccion.show', compact('profesionales'));
+
     }
 
     /**

@@ -13,8 +13,6 @@
 <div class="card">
         <div class="card-header">
 
-            <p><strong>UNIDAD : </strong>{{ $clues->clues }} - {{ $clues->nombre }}</p>
-
         </div>
         <div class="card-body">
 
@@ -36,20 +34,53 @@
                                 <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="DETALLES">
                                     <i class="fa-solid fa-address-card"></i>
                                 </a>
-                                <a target='_blank' href="{{ route('profesionalPDF', $profesional->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="PDF">
+                                <a target='_blank' href="{{ route('profesionalPDF', $profesional->id) }}" class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="top" title="PDF">
                                     <i class="fa-solid fa-file-lines"></i>
                                 </a>
                             </td>
                             <td>{{ $profesional->curp }}</td>
                             <td>{{ $profesional->rfc}} {{ $profesional->homoclave }}</td>
                             <td>{{ $profesional->nombre}} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
-                            <td>{{ $profesional->puesto->clues_adscripcion_tipo}}</td>
+                            <td>
+
+                                @if($profesional->puesto->clues_adscripcion_tipo == 1)
+                                    {{ 'CENTROS DE SALUD URBANO Y RURAL' }}
+                                @elseif($profesional->puesto->clues_adscripcion_tipo == 2)
+                                    {{ 'HOSPITAL' }}
+                                @elseif($profesional->puesto->clues_adscripcion_tipo == 3)
+                                    {{ 'OFICINA JURISDICCIONAL' }}
+                                @elseif($profesional->puesto->clues_adscripcion_tipo == 4)
+                                    {{ 'CRI CREE' }}
+                                @elseif($profesional->puesto->clues_adscripcion_tipo == 5)
+                                    {{ 'SAMU CRUM' }}
+                                @elseif($profesional->puesto->clues_adscripcion_tipo == 6)
+                                    {{ 'OFICINA CENTRAL' }}
+                                @elseif($profesional->puesto->clues_adscripcion_tipo == 7)
+                                    {{ 'ALMACEN ESTATAL' }}
+                                @elseif($profesional->puesto->clues_adscripcion_tipo == 8)
+                                    {{ 'CETS LESP' }}
+                                @elseif($profesional->puesto->clues_adscripcion_tipo == 9)
+                                    {{ 'CORS' }}
+                                @elseif($profesional->puesto->clues_adscripcion_tipo == 10)
+                                    {{ 'ISSREEI' }}
+                                @elseif($profesional->puesto->clues_adscripcion_tipo == 11)
+                                    {{ 'CESAME' }}
+                                @elseif($profesional->puesto->clues_adscripcion_tipo == 12)
+                                    {{ 'PSI PARRAS' }}
+                                @elseif($profesional->puesto->clues_adscripcion_tipo == 13)
+                                    {{ 'CEAM' }}
+                                @elseif($profesional->puesto->clues_adscripcion_tipo == 14)
+                                    {{ 'HOSPITAL DEL NIÑO' }}
+                                @elseif($profesional->puesto->clues_adscripcion_tipo == 15)
+                                    {{ 'PASANTES DE ENFERMERIA' }}
+                                @endif
+                            </td>
                             
                             <td>
 
                             <!-- SI EL ROL ES DIFERENTE A DIRECTIVO SE MUESTRAN LOS BOTONES DE EDICION DE LOS MODULOS  -->
                                 <!-- PARA EL DIRECTIVO SOLO SE MUESTRA EL BOTON DE VER DETALLES  -->
-                                @if(Auth::user()->role != 'directivo')
+                               
 
                                 <!-- ------------------------- -->
                                 <!-- ------------------------- -->
@@ -77,7 +108,7 @@
                                         <i class="fa fa-archive" aria-hidden="true"></i>
                                     </a>
                                 @else
-                                    <a href="{{ route('createPuesto', $profesional->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="PUESTO">
+                                    <a href="{{ route('editPuesto', $profesional->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="PUESTO">
                                         <i class="fa fa-archive" aria-hidden="true"></i>
                                     </a>
                                 @endif
@@ -232,6 +263,22 @@
                                                                                                    
                                 @endif
 
+                                <!-- CATALOGO PARA ISSREEI (10) -->
+
+                                @if ( $profesional->puesto?->clues_adscripcion_tipo == 10)
+
+                                    @if(optional($profesional->ocupacionIssreei)->mdl_status == 1)
+                                        <a href="{{ route('editIssreei', $profesional->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="CATALOGO / CARTERA DE SERVICIOS">
+                                            <i class="fa-solid fa-virus-covid"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('createIssreei', $profesional->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="CATALOGO / CARTERA DE SERVICIOS">
+                                            <i class="fa-solid fa-virus-covid"></i>
+                                        </a>
+                                    @endif
+                                                                                                   
+                                @endif
+
                                 <!-- CATALOGO PARA CETS (11) -->
 
                                 @if ( $profesional->puesto?->clues_adscripcion_tipo == 11)
@@ -297,7 +344,7 @@
                                 @endif
                                 
                                 
-                            @endif
+                            
 
                                 <!-- --------------------------- -->
                                 <!-- --------------------------- -->
@@ -314,7 +361,7 @@
                                         <i class="fa fa-camera" aria-hidden="true"></i>
                                     </a>
                                 @endif
-
+                            
                                 <!-- --------------------------- -->
                                 <!-- --------------------------- -->
                                 <!--      MODULO DE HORARIO      -->
