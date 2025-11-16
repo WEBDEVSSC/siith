@@ -4,6 +4,8 @@
 
 @section('plugins.Sweetalert2', true)
 
+@section('plugins.Select2', true)
+
 @section('content_header')
     <h1><strong>Perfil del Trabajador</strong> <small></small></h1>
 @stop
@@ -75,16 +77,6 @@
 @endif
 
 <!-- -->
-
-@if ($usuario->role=="admin")
-
-ADMINISTRADOR
-
-@elseif ($usuario->role == 'ofJurisdiccional')
-
-@else
-    
-@endif
 
 <div class="card mt-3">
     <div class="card-header">
@@ -1486,27 +1478,69 @@ ADMINISTRADOR
     </div>
     --}}
     <!-- --------------------------------------------------------------- -->
+@if(Auth::user()->role == 'admin')
+
+  <div class="card mt-3">
+    <div class="card-header">
+        <i class="fa-solid fa-building-circle-arrow-right"></i>
+        <strong> CAMBIOS DE UNIDAD FORZOSO</strong>
+    </div>
+
+    <form action="{{ route('cambioDeUnidadForzoso') }}" method="POST">
+        @csrf
+
+        @method('PUT')
+
+        <input type="hidden" name="id_profesional" value="{{ $profesional->id }}">
+
+        <div class="card-body">
+            <div class="row">
+
+                <!-- CLUES NOMINA -->
+                <div class="col-md-6">
+                    <p><strong>CLUES NÓMINA</strong></p>
+                    <select name="clues_nomina" id="clues_nomina" class="form-control select2">
+                        <option value="">Seleccione una CLUES</option>
+                        @foreach($clues as $clue)
+                            <option value="{{ $clue->clues }}"
+                                {{ old('clues_nomina', $profesional->puesto->clues_nomina ?? '') == $clue->clues ? 'selected' : '' }}>
+                                {{ $clue->clues }} - {{ $clue->nombre }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <!-- CLUES ADSCRIPCION -->
+                <div class="col-md-6">
+                    <p><strong>CLUES ADSCRIPCIÓN</strong></p>
+                    <select name="clues_adscripcion" id="clues_adscripcion" class="form-control select2">
+                        <option value="">Seleccione una CLUES</option>
+                        @foreach($clues as $clue)
+                            <option value="{{ $clue->clues }}"
+                                {{ old('clues_adscripcion', $profesional->puesto->clues_adscripcion ?? '') == $clue->clues ? 'selected' : '' }}>
+                                {{ $clue->clues }} - {{ $clue->nombre }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-info btn-sm">
+                <i class="fa-solid fa-pen"></i> ACTUALIZAR DATOS
+            </button>
+        </div>
+    </form>
+</div>
+
+@endif
+
 
     <br>
-
-    <!-- Modal -->
-<div class="modal fade" id="pdfModal" tabindex="-1" role="dialog" aria-labelledby="pdfModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="pdfModalLabel">Documento PDF</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <!-- Aquí se insertará el iframe con el documento PDF -->
-          <iframe id="pdfViewer" width="100%" height="700px" frameborder="0"></iframe>
-        </div>
-      </div>
-    </div>
-  </div>
-
+    <br>
+    
 @stop
 
 @include('partials.footer')
@@ -1514,37 +1548,49 @@ ADMINISTRADOR
 @section('css')
     {{-- Add here extra stylesheets --}}
     {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+    <style>
+        /* Asegura que Select2 tenga el mismo alto y bordes redondeados */
+        .select2-container--default .select2-selection--single {
+            height: calc(2.25rem + 2px) !important; /* Ajuste de altura */
+            border-radius: 0.25rem !important; /* Bordes redondeados */
+            border: 1px solid #ced4da !important; /* Color del borde */
+        }
+        
+        /* Alineación del texto */
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: calc(2.25rem - 2px) !important;
+            padding-left: 0.75rem !important;
+        }
+        
+        /* Ajuste del ícono desplegable */
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: calc(2.25rem + 2px) !important;
+        }
+    </style>
 @stop
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
-
-    <script>
-        $(document).ready(function() {
-    // Cuando cualquiera de los enlaces con clase 'openModal' sea clickeado
-    $('.openModal').click(function() {
-        // Obtener la ruta del archivo PDF desde el atributo 'data-pdf'
-        var pdfUrl = $(this).data('pdf');
-        
-        // Establecer la URL del PDF en el iframe
-        $('#pdfViewer').attr('src', pdfUrl);
-        
-        // Mostrar el modal
-        $('#pdfModal').modal('show');
-    });
-
-    // Limpiar el iframe cuando se cierre el modal
-    $('#pdfModal').on('hidden.bs.modal', function () {
-        $('#pdfViewer').attr('src', '');  // Limpiar el iframe
-    });
-});
-
-    </script>
-
     <!-- jQuery -->
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <!-- Bootstrap JS (si no lo tienes) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
-    
+    <script>
+        $(document).ready(function() {
+            $('#clues_nomina').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script>  
+
+    <script>
+        $(document).ready(function() {
+            $('#clues_adscripcion').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script>  
 @stop

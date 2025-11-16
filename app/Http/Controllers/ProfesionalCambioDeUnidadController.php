@@ -12,8 +12,10 @@ use App\Models\ProfesionalOcupacionCesame;
 use App\Models\ProfesionalOcupacionCetsLesp;
 use App\Models\ProfesionalOcupacionCors;
 use App\Models\ProfesionalOcupacionCriCree;
+use App\Models\ProfesionalOcupacionEnsenanza;
 use App\Models\ProfesionalOcupacionHospital;
 use App\Models\ProfesionalOcupacionHospitalNino;
+use App\Models\ProfesionalOcupacionIssreei;
 use App\Models\ProfesionalOcupacionOficinaCentral;
 use App\Models\ProfesionalOcupacionOfJurisdiccional;
 use App\Models\ProfesionalOcupacionPsiParras;
@@ -302,6 +304,9 @@ class ProfesionalCambioDeUnidadController extends Controller
         // Catalogo 9 - CORS
         $buscarOcupacionCors = ProfesionalOcupacionCors::where('id_profesional',$request->id_profesional)->first()?->delete();
 
+        // Catalogo 10 - ISSREEI
+        $buscarOcupacionIssreei = ProfesionalOcupacionIssreei::where('id_profesional',$request->id_profesional)->first()?->delete();
+
         // Catalogo 11 - CESAME
         $buscarOcupacionCesame = ProfesionalOcupacionCesame::where('id_profesional',$request->id_profesional)->first()?->delete();
 
@@ -313,6 +318,11 @@ class ProfesionalCambioDeUnidadController extends Controller
 
         // Catalogo 14 - HOSPITAL DEL NIÑO
         $buscarOcupacionHospitalNino = ProfesionalOcupacionHospitalNino::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 15 - PERSONAL EN FORMACION
+
+        $buscarOcupacionPersonalEnFormacion = ProfesionalOcupacionEnsenanza::where('id_profesional',$request->id_profesional)->first()?->delete();
+
 
         // Redireccionamos al perfil del usuario
         return redirect()->route('profesionalShow',$profesional->id)->with('success', 'Cambio de unidad registrada correctamente');
@@ -399,5 +409,88 @@ class ProfesionalCambioDeUnidadController extends Controller
 
         // Redireccionamos al perfil del usuario
         return redirect()->route('profesionalShow',$profesional->id)->with('success', 'Documento de Respaldo registrado correctamente');
+    }
+
+    public function cambioDeUnidadForzoso(Request $request)
+    {
+        $request->validate([
+            'id_profesional' => 'required',
+            'clues_nomina' => 'required',
+            'clues_adscripcion' => 'required',
+        ],[]);
+
+        // Consultamos los datos de las CLUES
+        $cluesNomina = Clue::where('clues',$request->clues_nomina)->first();
+
+        $cluesAdscripcion = Clue::where('clues',$request->clues_adscripcion)->first();
+
+        // Buscamos el registro en el modulo de puesto
+        $puesto = ProfesionalPuesto::where('id_profesional',$request->id_profesional)->first();
+
+        // Actualizamos y asignamos los valores
+
+        $puesto->clues_nomina = $cluesNomina->clues;
+        $puesto->clues_nomina_nombre = $cluesNomina->nombre;
+        $puesto->clues_nomina_municipio = $cluesNomina->municipio;
+        $puesto->clues_nomina_jurisdiccion = $cluesNomina->jurisdiccion;
+
+        $puesto->clues_adscripcion = $cluesAdscripcion->clues;
+        $puesto->clues_adscripcion_nombre = $cluesAdscripcion->nombre;
+        $puesto->clues_adscripcion_municipio = $cluesAdscripcion->municipio;
+        $puesto->clues_adscripcion_jurisdiccion = $cluesAdscripcion->jurisdiccion;
+        $puesto->clues_adscripcion_tipo = $cluesAdscripcion->clave_establecimiento;
+
+        $puesto->save();
+
+        // Eliminamos todos los registros de los catalogos
+
+        // Catalogo 1 - CENTROS DE SALUD URBANOS Y RURALES
+        $buscarOcupacionCentroSalud = ProfesionalOcupacionCentroSalud::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 2 - HOSPITALES
+        $buscarOcupacionHospital = ProfesionalOcupacionHospital::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 3 - OFICINAS JURISDICCIONALES
+        $buscarOcupacionOficinaCentral = ProfesionalOcupacionOfJurisdiccional::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 4 - CRI CREE
+        $buscarOcupacionCriCree = ProfesionalOcupacionCriCree::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 5 - SAMU CRUM
+        $buscarOcupacionSamuCrum = ProfesionalOcupacionSamuCrum::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 6 - OFICINA CENTRAL
+        $buscarOcupacionOficinaCentral = ProfesionalOcupacionOficinaCentral::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 7 - ALMACEN
+        $buscarOcupacionAlmacen = ProfesionalOcupacionAlmacen::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 8 - LESP CETS
+        $buscarOcupacionCetsLesp = ProfesionalOcupacionCetsLesp::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 9 - CORS
+        $buscarOcupacionCors = ProfesionalOcupacionCors::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 10 - ISSREEI
+        $buscarOcupacionIssreei = ProfesionalOcupacionIssreei::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 11 - CESAME
+        $buscarOcupacionCesame = ProfesionalOcupacionCesame::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 12 - PSI PARRAS
+        $buscarOcupacionPsiParras = ProfesionalOcupacionPsiParras::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 13 - CEAM
+        $buscarOcupacionCeam = ProfesionalOcupacionCeam::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 14 - HOSPITAL DEL NIÑO
+        $buscarOcupacionHospitalNino = ProfesionalOcupacionHospitalNino::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 15 - PERSONAL EN FORMACION
+        $buscarOcupacionPersonalEnFormacion = ProfesionalOcupacionEnsenanza::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Redireccionamos al perfil del usuario
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Cambio de Unidad Forzoso Correctamente');
+
     }
 }

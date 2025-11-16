@@ -400,6 +400,8 @@ Route::middleware(['auth'])->group(function ()
 
      Route::post('admin/profesionales/cambioDeUnidad/storeCambioDeUnidad', [ProfesionalCambioDeUnidadController::class, 'storeCambioDeUnidad'])->name('storeCambioDeUnidad');
 
+     Route::put('admin/profesionales/cambioDeUnidad/cambioDeUnidadForzoso', [ProfesionalCambioDeUnidadController::class, 'cambioDeUnidadForzoso'])->name('cambioDeUnidadForzoso');
+
      // Ruta para cargar el documento de respaldo despues de hacer el registro
      
      Route::get('admin/profesionales/cambioDeUnidad/documentoRespaldoCreate/{id}', [ProfesionalCambioDeUnidadController::class,'documentoRespaldoCreate'])->name('documentoRespaldoCreate');

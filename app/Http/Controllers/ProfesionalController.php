@@ -1707,6 +1707,9 @@ class ProfesionalController extends Controller
         // Cargamos los datos del usuario logeado
         $usuario = Auth::user();
 
+        // Cargamos todos los clues
+        $clues = Clue::all();
+
         // Regresamos la vista con el arreglo
         return view('profesional.show', compact(
             'profesional',
@@ -1828,7 +1831,9 @@ class ProfesionalController extends Controller
 
             'tiposDeNomina',
 
-            'emergencias'
+            'emergencias',
+
+            'clues'
         ));
     }
 
