@@ -5,7 +5,7 @@
 @section('plugins.Datatables', true)
 
 @section('content_header')
-    <h1><strong>Profesionales</strong> <small>Mi Jurisdiccion</small></h1>
+    <h1><strong>Mi Jurisdicción</strong></h1>
 @stop
 
 @section('content')
@@ -23,6 +23,7 @@
                         <th>CURP</th>
                         <th>RFC</th>
                         <th>NOMBRE COMPLETO</th>
+                        <th>CLUES ADSCRIPCIÓN</th>
                         <th>CATALOGO</th>
                         <th>MODULOS</th>
                     </tr>
@@ -41,8 +42,9 @@
                             <td>{{ $profesional->curp }}</td>
                             <td>{{ $profesional->rfc}} {{ $profesional->homoclave }}</td>
                             <td>{{ $profesional->nombre}} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
+                            <td>{{ $profesional->puesto->clues_adscripcion}} - {{ $profesional->puesto->clues_adscripcion_nombre }}</td>
                             <td>
-
+                                
                                 @if($profesional->puesto->clues_adscripcion_tipo == 1)
                                     {{ 'CENTROS DE SALUD URBANO Y RURAL' }}
                                 @elseif($profesional->puesto->clues_adscripcion_tipo == 2)
