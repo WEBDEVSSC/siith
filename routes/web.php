@@ -185,7 +185,9 @@ Route::middleware(['auth'])->group(function ()
 
      Route::get('admin/profesionales/miJurisdiccion', [ProfesionalController::class, 'miJurisdiccion'])->name('miJurisdiccion');
 
-     Route::post('admin/profesionales/miJurisdiccionShow', [ProfesionalController::class, 'miJurisdiccionShow'])->name('miJurisdiccionShow');
+     Route::get('admin/profesionales/miJurisdiccionBajaTemporal', [ProfesionalController::class, 'miJurisdiccionBajaTemporal'])->name('miJurisdiccionBajaTemporal');
+
+     Route::get('admin/profesionales/miJurisdiccionBajaDefinitiva', [ProfesionalController::class, 'miJurisdiccionBajaDefinitiva'])->name('miJurisdiccionBajaDefinitiva');
 
     /**
      * 

@@ -2192,30 +2192,35 @@ class ProfesionalController extends Controller
 
     }
 
-    /**
-     * 
-     * 
-     * METODO PARA MOSTRAR LOS REGISTROS DE LA UNIDAD SELECCIONADA POR JURISDICCION
-     * 
-     */
-    public function miJurisdiccionShow(Request $request)
+    public function miJurisdiccionBajaTemporal()
     {
-        // Validamos los datos
-        $request->validate([
-            'clues'=>'required'
-        ],[]);
-
-        // Consultamos los datos de la clues
-        $clues = Clue::where('clues',$request->clues)->first();
+        // Cargamos los datos del usuario
+        $usuario = Auth::user();
 
         // Consultamos todos los usuarios con esa clues adscripcion
         $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
-                ->whereRelation('puesto', 'clues_adscripcion', $request->clues)
-                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->whereRelation('puesto', 'clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
+                ->whereRelation('puesto', 'vigencia', 'BAJA TEMPORAL')
                 ->get();
 
         // Regresamos a la vista con el arreglo de objetos
-        return view('mi-jurisdiccion.show', compact('clues','profesionales'));
+        return view('mi-jurisdiccion.index-baja-temporal', compact('profesionales'));
+
+    }
+
+    public function miJurisdiccionBajaDefinitiva()
+    {
+        // Cargamos los datos del usuario
+        $usuario = Auth::user();
+
+        // Consultamos todos los usuarios con esa clues adscripcion
+        $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
+                ->whereRelation('puesto', 'vigencia', 'BAJA DEFINITIVA')
+                ->get();
+
+        // Regresamos a la vista con el arreglo de objetos
+        return view('mi-jurisdiccion.index-baja-definitiva', compact('profesionales'));
 
     }
 

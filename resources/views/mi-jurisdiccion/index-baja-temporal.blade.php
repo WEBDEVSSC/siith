@@ -5,7 +5,7 @@
 @section('plugins.Datatables', true)
 
 @section('content_header')
-    <h1><strong>Mi Jurisdicción</strong></h1>
+    <h1><strong>Mi Jurisdicción</strong> Baja Temporal</h1>
 @stop
 
 @section('content')
@@ -14,9 +14,9 @@
         <div class="card-header">
 
                 <div class="d-flex justify-content-end gap-2">
-                    <a href="{{ route('miJurisdiccionBajaTemporal') }}" 
-                    class="btn btn-warning text-white fw-bold">
-                        <i class="fa-solid fa-chart-column"></i> Trabajadores Con Baja Temporal
+                    <a href="{{ route('miJurisdiccion') }}" 
+                    class="btn btn-success text-white fw-bold">
+                        <i class="fa-solid fa-chart-column"></i> Trabajadores Activos
                     </a>
 
                     <span style="color: white;">|||</span>
