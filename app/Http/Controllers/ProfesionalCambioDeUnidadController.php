@@ -119,6 +119,12 @@ class ProfesionalCambioDeUnidadController extends Controller
             $clues = Clue::whereIn('clues', ['CLSSA009997','CLSSA009996','CLSSA009995','CLSSA009994','CLSSA009993','CLSSA009992','CLSSA009991','CLSSA009990','CLSSA002093-SC'])
                         ->get();
         }
+        elseif($user->role == 'ofCentral')
+        {
+            // Cargamos los clues
+            $clues = Clue::whereIn('clues', ['CLSSA002093','CLSSA002093-SC'])
+                        ->get();
+        }
         // Para los otros muestra solo la clues que le pertenece al usuario
         else
         {

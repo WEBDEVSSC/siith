@@ -53,7 +53,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-4" id="campo_entrada">
                         <p><strong>Entrada</strong></p>
                         <input type="time" class="form-control" name="horario_entrada" id="horario_entrada" value="{{ old('horario_entrada') }}">
                         @error('horario_entrada')
@@ -61,7 +61,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-4" id="campo_salida">
                         <p><strong>Salida</strong></p>
                         <input type="time" class="form-control" name="horario_salida" id="horario_salida" value="{{ old('horario_salida') }}">
                         @error('horario_salida')
@@ -263,4 +263,30 @@
             toggleCamposRolador();
         });
     </script>
+
+    <script>
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const selectJornada = document.getElementById('jornada');
+                                const campoEntrada = document.getElementById('campo_entrada');
+                                const campoSalida = document.getElementById('campo_salida');
+
+                                function toggleCampos() {
+                                    const textoSeleccionado = selectJornada.options[selectJornada.selectedIndex].text;
+
+                                    if (textoSeleccionado === 'Rolador') {
+                                        campoEntrada.style.display = 'none';
+                                        campoSalida.style.display = 'none';
+                                    } else {
+                                        campoEntrada.style.display = 'block';
+                                        campoSalida.style.display = 'block';
+                                    }
+                                }
+
+                                // Activar en carga inicial (por si hay old() o edición)
+                                toggleCampos();
+
+                                // Activar cuando cambie el select
+                                selectJornada.addEventListener('change', toggleCampos);
+                            });
+                        </script>
 @stop

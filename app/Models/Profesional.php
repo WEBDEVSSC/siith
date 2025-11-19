@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Casts\Uppercase;
 use Illuminate\Database\Eloquent\Model;
 
 class Profesional extends Model
@@ -11,7 +12,6 @@ class Profesional extends Model
 
     // Definir los campos que pueden ser llenados (asignación masiva)
     protected $fillable = [
-        'id',
         'curp',
         'rfc',
         'homoclave',
@@ -34,37 +34,15 @@ class Profesional extends Model
         'mdl_datos_generales',
     ];
 
-    // Opcional: Definir los campos que deben ser tratados como fechas (Laravel los convierte en objetos Carbon)
-    protected $dates = [
-        'fecha_nacimiento',
+    // Uppercase para mutar los textos
+    protected $casts = [
+        'fecha_nacimiento' => 'date',
+        'homoclave' => Uppercase::class,
+        'nombre' => Uppercase::class,
+        'apellido_paterno' => Uppercase::class,
+        'apellido_materno' => Uppercase::class,
+        'email' => Uppercase::class,
     ];
-
-    // Mutadores para guardar datos
-
-    public function setHomoclaveAttribute($value)
-    {
-        $this->attributes['homoclave'] = strtoupper($value);
-    }
-
-    public function setNombreAttribute($value)
-    {
-        $this->attributes['nombre'] = strtoupper($value);
-    }
-
-    public function setApellidoPaternoAttribute($value)
-    {
-        $this->attributes['apellido_paterno'] = strtoupper($value);
-    }
-
-    public function setApellidoMaternoAttribute($value)
-    {
-        $this->attributes['apellido_materno'] = strtoupper($value);
-    }
-
-    public function setCorreoElectronicoAttribute($value)
-    {
-        $this->attributes['email'] = strtoupper($value);
-    }
 
     /****************************************************************************************** */
 
