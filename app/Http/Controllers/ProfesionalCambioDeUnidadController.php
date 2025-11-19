@@ -110,8 +110,7 @@ class ProfesionalCambioDeUnidadController extends Controller
         elseif($user->role == 'criCree')
         {
             // Cargamos los clues
-
-            $clues = Clue::whereIn('clues_adscripcion', ['CLSSA009989','CLSSA009988','CLSSA009987','CLSSA009986','CLSSA009985'])
+            $clues = Clue::whereIn('clues', ['CLSSA009989','CLSSA009988','CLSSA009987','CLSSA009986','CLSSA009985'])
                         ->get();
         }
         // Para los otros muestra solo la clues que le pertenece al usuario
