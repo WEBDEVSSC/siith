@@ -123,8 +123,9 @@
                         
                         <div class="col-md-3">
                             <p><strong>Fecha de término</strong></p>
-                            <input type="date" name="fecha_termino" class="form-control" value="{{ old('fecha_termino') }}">
-                        
+                            <input type="date" id="fecha_termino" name="fecha_termino" class="form-control"
+                                value="{{ old('fecha_termino') }}" disabled>
+
                             @error('fecha_termino')
                                 <br><div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -179,4 +180,27 @@
             });
         });
     </script>  
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tipoMovimiento = document.getElementById('tipo_movimiento');
+        const fechaTermino = document.getElementById('fecha_termino');
+
+        function toggleFechaTermino() {
+            if (tipoMovimiento.value == "2") {
+                fechaTermino.removeAttribute('disabled');
+            } else {
+                fechaTermino.setAttribute('disabled', 'disabled');
+                fechaTermino.value = ""; // opcional: limpiar valor
+            }
+        }
+
+        // Ejecutar al cargar (útil si old() trae un valor)
+        toggleFechaTermino();
+
+        // Ejecutar cuando cambie el select
+        tipoMovimiento.addEventListener('change', toggleFechaTermino);
+    });
+    </script>
+
 @stop
