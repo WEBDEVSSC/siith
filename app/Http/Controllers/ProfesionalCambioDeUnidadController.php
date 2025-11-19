@@ -171,7 +171,7 @@ class ProfesionalCambioDeUnidadController extends Controller
         }
 
         // Validamos si tipo de movimiento es REGRESA A UNIDAD DE ORIGEN
-        if($tipoMovimiento = 1)
+        if($request->tipo_movimiento == 1)
         {
             if($clues->clues != $profesional->clues_nomina)
             {
@@ -187,8 +187,6 @@ class ProfesionalCambioDeUnidadController extends Controller
                             ->with('error', 'El registro no tiene CLUES NOMINA, no se puede hacer el cambio de unidad. Revisar el módulo de puesto')
                             ->withInput(); 
         }
-
-        
 
         // Consultamos los datos de la adscripcion antigua
         $cluesAnterior = Clue::where('clues',$profesional->clues_adscripcion)->first();
