@@ -364,6 +364,8 @@
     </div>
   </div>
 
+  @if(auth()->user()->role === 'root')
+
   <div class="col-md-6">
     <div class="card">
       <div class="card-header">
@@ -428,7 +430,7 @@
       </div>
     </div>
   </div>
-
+@endif
 </div>
 
 {{-- --------------------------------------------------------------------------------------------------------------------------------- --}}
@@ -677,7 +679,7 @@ auth()->user()->role === 'hospitalNino'
 
 <!-- --------------------------------------------------------------- -->
 
-@if(auth()->user()->role === 'sistematizacion')
+@if(auth()->user()->role === 'sistematizaciones')
 
 <div class="row">
   <div class="col-md-12">
