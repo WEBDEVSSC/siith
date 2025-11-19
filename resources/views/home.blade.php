@@ -1238,7 +1238,6 @@ auth()->user()->role === 'hospitalNino'
   });
   
   </script>
-<
   <!-- -->
 
   <script>
