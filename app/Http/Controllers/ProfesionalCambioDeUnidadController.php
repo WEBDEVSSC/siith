@@ -170,7 +170,7 @@ class ProfesionalCambioDeUnidadController extends Controller
             if($clues->clues != $profesional->clues_nomina)
             {
                 return redirect()->back()
-                            ->with('error', 'La CLUES de destino es diferentes a la Nómina')
+                            ->with('error', 'Unidad de Destino Erronea ( CLUES Nómina Diferente )')
                             ->withInput(); 
             }
         }

@@ -29,12 +29,12 @@
                 
             </div>
 
-            <div class="col-md-6">
-                <p><strong>Nombre:</strong> {{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</p>
-                <p><strong>CURP:</strong> {{ $profesional->curp }}</p>
-                <p><strong>RFC:</strong> {{ $profesional->rfc }} {{ $profesional->homoclave }}</p>
-                <p><strong>CLUES Nómina:</strong> {{ $profesional->puesto->clues_nomina }} - {{ $profesional->puesto->clues_nomina_nombre }}</p>
-                <p><strong>CLUES Adscripción:</strong> {{ $profesional->puesto->clues_adscripcion }} - {{ $profesional->puesto->clues_adscripcion_nombre }}</p>
+            <div class="col-md-9">
+                <p><strong>Nombre :</strong> {{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</p>
+                <p><strong>CURP :</strong> {{ $profesional->curp }}</p>
+                <p><strong>RFC :</strong> {{ $profesional->rfc }} {{ $profesional->homoclave }}</p>
+                <p><strong>CLUES Nómina :</strong> {{ $profesional->puesto->clues_nomina }} - {{ $profesional->puesto->clues_nomina_nombre }}</p>
+                <p><strong>CLUES Adscripción Física :</strong> {{ $profesional->puesto->clues_adscripcion }} - {{ $profesional->puesto->clues_adscripcion_nombre }}</p>
             </div>
             <div class="col-md-3">
                 
