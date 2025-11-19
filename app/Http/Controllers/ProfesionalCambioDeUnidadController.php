@@ -154,6 +154,9 @@ class ProfesionalCambioDeUnidadController extends Controller
         // Obtener el registro
         $profesional = ProfesionalPuesto::where('id_profesional', $request->id_profesional)->first();
 
+        // Consultamos los datos de la CLUES Nueva
+        $clues = Clue::findOrFail($request->clues);
+
         // Verificar si existe y si tiene clues_nomina
         if (!$profesional || $profesional->clues_nomina == null) {
             return redirect()->back()
@@ -161,8 +164,28 @@ class ProfesionalCambioDeUnidadController extends Controller
                             ->withInput(); 
         }
 
-        // Consultamos los datos de la CLUES
-        $clues = Clue::findOrFail($request->clues);
+        // Validamos si tipo de movimiento es REGRESA A UNIDAD DE ORIGEN
+        if($tipoMovimiento = 1)
+        {
+            if($clues->clues != $profesional->clues_nomina)
+            {
+                return redirect()->back()
+                            ->with('error', 'La CLUES de destino es diferentes a la Nómina')
+                            ->withInput(); 
+            }
+        }
+
+        // Verificar si existe y si tiene clues_nomina
+        if (!$profesional || $profesional->clues_nomina == null) {
+            return redirect()->back()
+                            ->with('error', 'El registro no tiene CLUES NOMINA, no se puede hacer el cambio de unidad. Revisar el módulo de puesto')
+                            ->withInput(); 
+        }
+
+        
+
+        // Consultamos los datos de la adscripcion antigua
+        $cluesAnterior = Clue::where('clues',$profesional->clues_adscripcion)->first();
 
         // Consultamos la curp del profesional
         $profesional = Profesional::findOrFail($request->id_profesional);
@@ -170,45 +193,13 @@ class ProfesionalCambioDeUnidadController extends Controller
         // Obtener la fecha y hora actual en el formato deseado
         $timestamp = now()->format('Ymd_His');
 
-        // Regresa a su unidad de origen
-        /*if($request->tipo_movimiento == 1)
-        {
-            // Asignamos el tipo de movimiento
-            $tipoMovimiento = "REGRESA A UNIDAD DE ORIGEN";
-            
-            // Crear el nombre del archivo con la fecha y hora
-            $archivoNombre = $profesional->curp . '_RUO_' . $timestamp . '.' . $request->documento_respaldo->extension();
-        }
-        // Comisionado a otra unidad
-        elseif($request->tipo_movimiento == 2)
-        {
-            // Asignamos el tipo de movimiento
-            $tipoMovimiento = "COMISIONADO A OTRA UNIDAD";
-            
-            // Crear el nombre del archivo con la fecha y hora
-            $archivoNombre = $profesional->curp . '_COU_' . $timestamp . '.' . $request->documento_respaldo->extension();
-        }
-        // Movimiento Escalafonario
-        elseif($request->tipo_movimiento == 3)
-        {
-            // Asignamos el tipo de movimiento
-            $tipoMovimiento = "MOVIMIENTO ESCALAFONARIO";
-            
-            // Crear el nombre del archivo con la fecha y hora
-            $archivoNombre = $profesional->curp . '_ME_' . $timestamp . '.' . $request->documento_respaldo->extension();
-        }
-        else
-        {
-
-        }       
-        
-        // Almacenar el archivo en la carpeta 'documents' en el almacenamiento local
-        $archivoPath = $request->documento_respaldo->storeAs('cambio-unidad', $archivoNombre, 'local');*/
-
-        $archivoNombre = null; // Por si no se sube archivo
+        // Generamos rutas vacias para evitar error si no se sube archivo
+        $archivoNombre = null; 
         $archivoPath = null;
 
-        switch ($request->tipo_movimiento) {
+        // Asignamos el label cal tipo de movimiento
+        switch ($request->tipo_movimiento) 
+        {
             case 1:
                 $tipoMovimiento = "REGRESA A UNIDAD DE ORIGEN";
                 break;
@@ -244,6 +235,10 @@ class ProfesionalCambioDeUnidadController extends Controller
             $archivoPath = $request->documento_respaldo->storeAs('cambio-unidad', $archivoNombre, 'local');
         }
 
+        
+
+        // Generamos un uevo objeto para almacenar los datos
+
         $cambioDeUnidad = new ProfesionalCambioDeUnidad();
 
         $cambioDeUnidad->id_profesional = $request->id_profesional;
@@ -252,16 +247,18 @@ class ProfesionalCambioDeUnidadController extends Controller
         $cambioDeUnidad->documento_respaldo = $archivoPath;
         $cambioDeUnidad->fecha_inicio = $request->fecha_inicio;
         $cambioDeUnidad->fecha_final = $request->fecha_termino;
-        $cambioDeUnidad->unidad_origen_clues = $profesional->puesto->clues_adscripcion;
-        $cambioDeUnidad->unidad_origen_nombre = $profesional->puesto->clues_adscripcion_nombre;
-        $cambioDeUnidad->unidad_origen_jurisdiccion = $profesional->puesto->clues_adscripcion_jurisdiccion;
+
+        $cambioDeUnidad->unidad_origen_clues = $cluesAnterior->clues;
+        $cambioDeUnidad->unidad_origen_nombre = $cluesAnterior->nombre;
+        $cambioDeUnidad->unidad_origen_jurisdiccion = $cluesAnterior->jurisdiccion;
+
         $cambioDeUnidad->unidad_destino_clues = $clues->clues;
         $cambioDeUnidad->unidad_destino_nombre = $clues->nombre;
-        $cambioDeUnidad->unidad_destino_jurisdiccion = $clues->clave_jurisdiccion;
+        $cambioDeUnidad->unidad_destino_jurisdiccion = $clues->jurisdiccion;
 
         $cambioDeUnidad->save();
 
-        // Buscar el registro del puesto actual de ese profesional
+        // Buscar el registro del puesto actual de ese profesional para actualizar el dato
         $puesto = ProfesionalPuesto::where('id_profesional', $request->id_profesional)->first();
 
         if ($puesto) 
@@ -269,7 +266,7 @@ class ProfesionalCambioDeUnidadController extends Controller
             $puesto->clues_adscripcion = $clues->clues;
             $puesto->clues_adscripcion_nombre = $clues->nombre;
             $puesto->clues_adscripcion_municipio = $clues->municipio;
-            $puesto->clues_adscripcion_jurisdiccion = $clues->clave_jurisdiccion;
+            $puesto->clues_adscripcion_jurisdiccion = $clues->jurisdiccion;
             $puesto->clues_adscripcion_tipo = $clues->clave_establecimiento;
 
             $puesto->save();

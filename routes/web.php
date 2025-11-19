@@ -19,6 +19,7 @@ use App\Http\Controllers\CatalogoOcupacionOfJurisdiccionalController;
 use App\Http\Controllers\CatalogoOcupacionPsiParrasController;
 use App\Http\Controllers\CatalogoOcupacionSamuCrumController;
 use App\Http\Controllers\CatalogosController;
+use App\Http\Controllers\GitHubController;
 use App\Http\Controllers\ProfesionalAreaMedicaController;
 use App\Http\Controllers\ProfesionalCambioDeUnidadController;
 use App\Http\Controllers\ProfesionalCambioTipoNominaController;
@@ -113,8 +114,7 @@ Route::middleware(['auth'])->group(function ()
 
     
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
+    
     /**
      * 
      * 
