@@ -53,9 +53,14 @@ class Profesional extends Model
 
     /****************************************************************************************** */
 
-    public function puesto()
+    /*public function puesto()
     {
         return $this->hasOne(ProfesionalPuesto::class, 'id_profesional');
+    }*/
+
+    public function puesto()
+    {
+        return $this->hasOne(ProfesionalPuesto::class, 'id_profesional', 'id');
     }
 
     public function credencializacion()

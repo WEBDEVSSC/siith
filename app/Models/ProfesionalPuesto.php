@@ -42,8 +42,13 @@ class ProfesionalPuesto extends Model
     ];
 
     // Relación con la tabla profesionales_datos_generales
-    public function profesional()
+    /*public function profesional()
     {
         return $this->belongsTo(Profesional::class, 'id_profesional');
+    }*/
+
+    public function profesional()
+    {
+        return $this->belongsTo(Profesional::class, 'id_profesional', 'id');
     }
 }

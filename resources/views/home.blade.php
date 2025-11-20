@@ -136,6 +136,11 @@
                   <td style="font-weight: bold;">J9 - Unidades de Apoyo</td>
                   <td>{{$profesionalesJurisdiccion9}}</td>
                 </tr>
+                <tr>
+                  <td><span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 255, 255, 0.6); margin-right:6px; border-radius:3px;"></span></td>
+                  <td style="font-weight: bold;">Total</td>
+                  <td>{{$profesionalesJurisdiccion1 + $profesionalesJurisdiccion2 + $profesionalesJurisdiccion3 + $profesionalesJurisdiccion4 + $profesionalesJurisdiccion5 + $profesionalesJurisdiccion6 + $profesionalesJurisdiccion7 + $profesionalesJurisdiccion8 +  $profesionalesJurisdiccion9}}</td>
+                </tr>
               </tbody>
             </table>
 
@@ -317,42 +322,49 @@
                     <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 99, 132, 0.6); border-radius:3px; margin-right:6px;"></span>
                     <span style="font-weight: bold;">Confianza</span>
                   </td>
-                  <td>{{$ramaPersonalEnFormacion}}</td>
+                  <td>{{$contratoConfianza}}</td>
                 </tr>
                 <tr>
                   <td>
                     <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 159, 64, 0.6); border-radius:3px; margin-right:6px;"></span>
                     <span style="font-weight: bold;">Base</span>
                   </td>
-                  <td>{{$ramaAdministrativa}}</td>
+                  <td>{{$contratoBase}}</td>
                 </tr>
                 <tr>
                   <td>
                     <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 205, 86, 0.6); border-radius:3px; margin-right:6px;"></span>
                     <span style="font-weight: bold;">Eventual</span>
                   </td>
-                  <td>{{$ramaAFin}}</td>
+                  <td>{{$contratoEventual}}</td>
                 </tr>
                 <tr>
                   <td>
                     <span style="display:inline-block; width:12px; height:12px; background-color: rgba(75, 192, 192, 0.6); border-radius:3px; margin-right:6px;"></span>
                     <span style="font-weight: bold;">Honorarios</span>
                   </td>
-                  <td>{{$ramaEnfermeria}}</td>
+                  <td>{{$contratoHonorarios}}</td>
                 </tr>
                 <tr>
                   <td>
                     <span style="display:inline-block; width:12px; height:12px; background-color: rgba(54, 162, 235, 0.6); border-radius:3px; margin-right:6px;"></span>
                     <span style="font-weight: bold;">Becas</span>
                   </td>
-                  <td>{{$ramaMedica}}</td>
+                  <td>{{$contratoBecas}}</td>
                 </tr>
                 <tr>
                   <td>
                     <span style="display:inline-block; width:12px; height:12px; background-color: rgba(153, 102, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
                     <span style="font-weight: bold;">Otros</span>
                   </td>
-                  <td>{{$ramaParamedica}}</td>
+                  <td>{{$contratoOtros}}</td>
+                </tr>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 255, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">Total</span>
+                  </td>
+                  <td>{{ $contratoConfianza + $contratoBase + $contratoEventual + $contratoHonorarios + $contratoBecas + $contratoOtros}}</td>
                 </tr>
               </tbody>
             </table>
