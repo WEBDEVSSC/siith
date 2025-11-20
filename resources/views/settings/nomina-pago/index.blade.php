@@ -7,7 +7,7 @@
 @section('plugins.Datatables', true)
 
 @section('content_header')
-    <h1><strong>Nóminas de Pago</strong></h1>
+    <h1><strong>Nóminas de Pago y Contratos</strong></h1>
 @stop
 
 @section('content')
