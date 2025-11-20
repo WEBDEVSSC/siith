@@ -172,7 +172,6 @@ Route::middleware(['auth'])->group(function ()
     Route::get('admin/profesionales/profesionalBuscadorCurp',[ProfesionalController::class,'profesionalBuscadorCurp'])->name('profesionalBuscadorCurp');
 
     // Registros incompletos
-
     Route::get('admin/profesionales/profesionalIncompletosIndex',[ProfesionalController::class,'profesionalIncompletosIndex'])->name('profesionalIncompletosIndex');
 
     /**
@@ -590,6 +589,10 @@ Route::middleware(['auth'])->group(function ()
     
      // Ruta para el reporte de Excel
     Route::get('admin/profesionales/reportes/reporteExcel', [ProfesionalController::class, 'export'])->name('profesionalExport');
+
+    Route::get('admin/profesionales/reportes/reporteExcelBajaTemporal', [ProfesionalController::class, 'exportBajasTemporales'])->name('reporteExcelBajaTemporal');
+
+    Route::get('admin/profesionales/reportes/reporteExcelBajaDefinitiva', [ProfesionalController::class, 'exportBajasDefinitivas'])->name('reporteExcelBajaDefinitiva');
 
     Route::get('admin/profesionales/reportes/reporteMexicoExcel', [ProfesionalController::class, 'reporteMexicoExcel'])->name('reporteMexicoExcel');
 

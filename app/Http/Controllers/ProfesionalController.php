@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Exports\ProfesionalesMexicoExport;
 use App\Exports\ProfesionalesRiesgosEstatalExport;
 use App\Exports\ProfesionalExport;
+use App\Exports\ProfesionalExportBajaTemporal;
+use App\Exports\ProfesionalExportBajaDefinitiva;
 use App\Mail\FelicitacionCumpleanos;
 use App\Models\CatOcupacionEnsenanza;
 use App\Models\CatOcupacionHospital;
@@ -1853,6 +1855,42 @@ class ProfesionalController extends Controller
         
         // Exporta los datos usando la clase CluesExport
         return Excel::download(new ProfesionalExport, 'REPORTE.xlsx');
+    }
+
+    /**
+     * 
+     * 
+     * METODO PARA EXPORTAR EN EXCEL LOS REGISTOS DE PROFESIONALES
+     * 
+     */
+
+    public function exportBajasTemporales()
+    {
+        
+        ini_set('memory_limit', '-1');
+
+        ini_set('max_execution_time', 300); // 300 segundos = 5 minutos
+        
+        // Exporta los datos usando la clase CluesExport
+        return Excel::download(new ProfesionalExportBajaTemporal, 'REPORTE-BAJAS-TEMPORALES.xlsx');
+    }
+
+    /**
+     * 
+     * 
+     * METODO PARA EXPORTAR EN EXCEL LOS REGISTOS DE PROFESIONALES
+     * 
+     */
+
+    public function exportBajasDefinitivas()
+    {
+        
+        ini_set('memory_limit', '-1');
+
+        ini_set('max_execution_time', 300); // 300 segundos = 5 minutos
+        
+        // Exporta los datos usando la clase CluesExport
+        return Excel::download(new ProfesionalExportBajaDefinitiva, 'REPORTE-BAJAS-DEFINITIVAS.xlsx');
     }
 
     /**

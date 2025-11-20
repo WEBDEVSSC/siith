@@ -21,12 +21,44 @@
                 <div class="inner">
                     <h3>Mi Unidad</h3>
 
-                    <p>Archivo Excel</p>
+                    <p>Archivo Excel (Activos)</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-bag"></i>
                 </div>
                 <a href="{{ route('profesionalExport') }}" class="small-box-footer">Descargar <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            @endif
+
+            @if(Auth::user()->role != 'riesgos')
+            <div class="col-md-2">
+                <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>Mi Unidad</h3>
+
+                    <p>Archivo Excel (Baja Temporal)</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="{{ route('reporteExcelBajaTemporal') }}" class="small-box-footer">Descargar <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            @endif
+
+            @if(Auth::user()->role != 'riesgos')
+            <div class="col-md-2">
+                <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>Mi Unidad</h3>
+
+                    <p>Archivo Excel (Baja Definitiva)</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="{{ route('reporteExcelBajaDefinitiva') }}" class="small-box-footer">Descargar <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             @endif
