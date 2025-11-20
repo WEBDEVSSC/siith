@@ -38,6 +38,11 @@ class ProfesionalCambioDeUnidadController extends Controller
 
     public function showProfesional(Request $request)
     {
+        // Convertimos la CURP a mayusuclas
+        $request->merge([
+            'curp' => strtoupper($request->curp),
+        ]);
+        
         //Validamos el registro
         $request->validate([
             'curp' => 'required|regex:/^[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{2}$/',

@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class ProfesionalCambioDeUnidad extends Model
 {
     //
-
     protected $table = 'profesionales_cambios_de_unidad';
 
     protected $fillable = [
