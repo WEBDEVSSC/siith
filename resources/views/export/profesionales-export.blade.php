@@ -17,7 +17,7 @@
                 <th colspan="1" style="text-align: center; font-size: 20px; font-weight: bold;">CREDENCIALIZACION</th>
                 <th colspan="6" style="text-align: center; font-size: 20px; font-weight: bold;">SUELDO</th>
                 <th colspan="16" style="text-align: center; font-size: 20px; font-weight: bold;">GRADO ACADEMICO</th>
-                <th colspan="5" style="text-align: center; font-size: 20px; font-weight: bold;">PERSONAL EN FORMACION</th>
+                <th colspan="5" style="text-align: center; font-size: 20px; font-weight: bold;">PERSONAL ESTUDIANDO ACTUALMENTE</th>
                 <th colspan="6" style="text-align: center; font-size: 20px; font-weight: bold;">CERTIFICACIONES</th>
                 <th colspan="25" style="text-align: center; font-size: 20px; font-weight: bold;">OCUPACIONES</th>
                 <th colspan="35" style="text-align: center; font-size: 20px; font-weight: bold;">EMERGENCIA</th>
@@ -36,7 +36,7 @@
                 <th><strong>MUNICIPIO DE NACIMIENTO</strong></th>
                 <th><strong>PAIS DE NACIMIENTO</strong></th>
                 <th><strong>NACIONALIDAD</strong></th>
-                <th><strong>ESTADO CONYUGAL</strong></th>
+                <th><strong>ESTADO CIVIL</strong></th>
                 <th><strong>TELEFONO</strong></th>
                 <th><strong>CELULAR</strong></th>
                 <th><strong>EMAIL</strong></th>
@@ -219,7 +219,7 @@
                     <td>{{ $profesional->puesto?->actividad ?? '' }}</td>
                     <td>{{ $profesional->puesto?->adicional ?? '' }}</td>
                     <td>{{ $profesional->puesto?->tipo_personal ?? '' }}</td>
-                    <td>{{ $profesional->puesto?->codigo_puesto ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->codigo ?? '' }} - {{ $profesional->puesto?->codigo_puesto ?? '' }}</td>
                     <td>{{ $profesional->puesto?->clues_nomina ?? '' }} - {{$profesional->puesto?->clues_nomina_nombre}}</td>
                     <td>{{ $profesional->puesto?->clues_nomina_municipio ?? '' }}</td>
                     <td>{{ $profesional->puesto?->clues_nomina_jurisdiccion ?? '' }}</td>
