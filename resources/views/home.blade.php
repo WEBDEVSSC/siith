@@ -376,7 +376,7 @@
     </div>
   </div>
 
-  @if(auth()->user()->role === 'rootes')
+  @if(auth()->user()->role === 'admin')
 
   <div class="col-md-6">
     <div class="card">
