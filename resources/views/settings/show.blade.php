@@ -222,7 +222,7 @@
                 <span class="info-box-icon bg-info"><i class="fa fa-cog" aria-hidden="true"></i></span>
 
                 <div class="info-box-content">
-                    <a href="{{ route('nominaPagoIndex') }}"><span class="info-box-text"><span class="info-box-text"><span class="info-box-text">Nominas de Pago</span></a>
+                    <a href="{{ route('nominaPagoIndex') }}"><span class="info-box-text"><span class="info-box-text"><span class="info-box-text">Nóminas de Pago</span></a>
                 </div>
                 <!-- /.info-box-content -->
                 </div>
