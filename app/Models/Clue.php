@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Clue extends Model
 {
-    protected $table = 'cat_clues'; // Especifica la tabla en la base de datos
+    use SoftDeletes;
+
+    protected $table = 'cat_clues'; 
 
     protected $fillable = [
         'clues',
@@ -20,4 +23,6 @@ class Clue extends Model
         'clave_establecimiento',
         'tipologia',
     ]; 
+
+    protected $dates = ['deleted_at'];
 }
