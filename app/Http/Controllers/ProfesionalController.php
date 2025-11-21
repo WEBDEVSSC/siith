@@ -506,7 +506,6 @@ class ProfesionalController extends Controller
         $puesto->clues_adscripcion_tipo = $cluesAdscripcion->clave_establecimiento;
 
         $puesto->mdl_puesto = 0;
-        
 
         $puesto->save();
 

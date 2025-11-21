@@ -420,6 +420,7 @@ class ProfesionalPuestoController extends Controller
             //'temporalidad' => $request->temporalidad,
             //'licencia_maternidad' => $request->licencia_maternidad,
             //'seguro_salud' => $request->seguro_salud,
+            'mdl_puesto' => 1,
 
         ]);
 
