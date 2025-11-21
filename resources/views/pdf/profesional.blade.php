@@ -469,9 +469,9 @@
             <td class="header-cell" style="width: 40%;"><p><strong>ENFERMEDADES</strong></p></td>
         </tr>
         <tr>
-            <td><p>{{ $profesional->emergencia->tipo_sangre }}</p></td>
-            <td><p>{{ $profesional->emergencia->tipo_alergia }} {{ $profesional->emergencia->alergia_descripcion }}</p></td>
-            <td><p>{{ $profesional->emergencia->enfermedad }}</p></td>
+            <td><p>{{ $profesional->emergencia?->tipo_sangre }}</p></td>
+            <td><p>{{ $profesional->emergencia?->tipo_alergia }} {{ $profesional->emergencia?->alergia_descripcion }}</p></td>
+            <td><p>{{ $profesional->emergencia?->enfermedad }}</p></td>
         </tr>
     </table>
 
@@ -481,8 +481,8 @@
             <td class="header-cell" style="width: 45%;"><p><strong>MEDICAMENTOS</strong></p></td>
         </tr>
         <tr>
-            <td><p>{{ $profesional->emergencia->tratamiento }}</p></td>
-            <td><p>{{ $profesional->emergencia->medicamentos }}</p></td>
+            <td><p>{{ $profesional->emergencia?->tratamiento }}</p></td>
+            <td><p>{{ $profesional->emergencia?->medicamentos }}</p></td>
         </tr>
     </table>
 
@@ -492,8 +492,8 @@
             <td class="header-cell" style="width: 45%;"><p><strong>TELÉFONO</strong></p></td>
         </tr>
         <tr>
-            <td><p>{{ $profesional->emergencia->medico_nombre }}</p></td>
-            <td><p>{{ $profesional->emergencia->medico_telefono }}</p></td>
+            <td><p>{{ $profesional->emergencia?->medico_nombre }}</p></td>
+            <td><p>{{ $profesional->emergencia?->medico_telefono }}</p></td>
         </tr>
     </table>
 
