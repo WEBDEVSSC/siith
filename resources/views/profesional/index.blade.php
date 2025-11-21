@@ -154,8 +154,6 @@
                                 <!-- ------------------------- -->
                                 <!-- ------------------------- -->
 
-                                {{ $data['profesional']->puesto->mdl_puesto }}
-
                                 @if(optional($data['profesional']->puesto)->mdl_puesto == 1)
                                     <a href="{{ route('editPuesto', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="PUESTO">
                                         <i class="fa fa-archive" aria-hidden="true"></i>
