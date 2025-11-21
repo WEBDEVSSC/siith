@@ -47,7 +47,7 @@
             </div>
             @endif
 
-            @if(Auth::user()->role != 'riesgos')
+            @if(Auth::user()->role == 'admin')
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">
