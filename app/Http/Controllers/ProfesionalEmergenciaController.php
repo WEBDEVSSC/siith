@@ -365,7 +365,7 @@ class ProfesionalEmergenciaController extends Controller
             'emergencia_municipio_uno.required_with' => 'Debe seleccionar el municipio de la persona de emergencia.',
         ]);
 
-        dd($request->alergia_descripcion);
+        //dd($request->alergia_descripcion);
 
         // Tipo de alergia
         $tipoAlergia = null;

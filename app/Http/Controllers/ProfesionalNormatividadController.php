@@ -90,11 +90,6 @@ class ProfesionalNormatividadController extends Controller
         // CONSULTA PARA UNIDADES
         else
         {            
-            /*$bajasComision = ProfesionalCambioDeUnidad::where('profesional.puesto','clues_adscripcion',$user->clues_unidad)
-                ->whereBetween('fecha_final', [$request->fecha_inicio, $request->fecha_termino])
-                ->orderBy('fecha_final', 'asc')
-                ->get();*/
-
             $bajasComision = ProfesionalCambioDeUnidad::whereHas('profesional.puesto', function ($q) use ($user) {
                     $q->where('clues_adscripcion', $user->clues_unidad);
                 })
