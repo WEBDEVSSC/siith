@@ -169,7 +169,7 @@ class ProfesionalGradoAcademicoController extends Controller
             $extension = $request->file('reg_nac_prof_uno')->getClientOriginalExtension();
             $nombreArchivoUno = $profesional->curp . '-' . $request->cedula_numero_uno . '.' . $extension;
 
-            $rutaUno = $request->reg_nac_prof_uno->storeAs('reg-nac-prof', $nombreArchivoUno, 'local');
+            $rutaUno = $request->reg_nac_prof_uno->storeAs('reg-nac-prof', $nombreArchivoUno, 'public');
         } 
         else 
         {
@@ -183,7 +183,7 @@ class ProfesionalGradoAcademicoController extends Controller
             $extension = $request->file('reg_nac_prof_dos')->getClientOriginalExtension();
             $nombreArchivoDos = $profesional->curp . '-' . $request->cedula_numero_dos . '.' . $extension;
 
-             $rutaDos = $request->reg_nac_prof_dos->storeAs('reg-nac-prof', $nombreArchivoDos, 'local');
+             $rutaDos = $request->reg_nac_prof_dos->storeAs('reg-nac-prof', $nombreArchivoDos, 'public');
         } 
         else 
         {
@@ -197,7 +197,7 @@ class ProfesionalGradoAcademicoController extends Controller
             $extension = $request->file('reg_nac_prof_tres')->getClientOriginalExtension();
             $nombreArchivoTres = $profesional->curp . '-' . $request->cedula_numero_tres . '.' . $extension;
 
-            $rutaTres = $request->reg_nac_prof_tres->storeAs('reg-nac-prof', $nombreArchivoTres, 'local');
+            $rutaTres = $request->reg_nac_prof_tres->storeAs('reg-nac-prof', $nombreArchivoTres, 'public');
         } 
         else 
         {
@@ -211,7 +211,7 @@ class ProfesionalGradoAcademicoController extends Controller
             $extension = $request->file('reg_nac_prof_tres')->getClientOriginalExtension();
             $nombreArchivoCuatro = $profesional->curp . '-' . $request->cedula_numero_cuatro . '.' . $extension;
 
-            $rutaCuatro = $request->reg_nac_prof_cuatro->storeAs('reg-nac-prof', $nombreArchivoCuatro, 'local');
+            $rutaCuatro = $request->reg_nac_prof_cuatro->storeAs('reg-nac-prof', $nombreArchivoCuatro, 'public');
         } 
         else 
         {
@@ -427,49 +427,51 @@ class ProfesionalGradoAcademicoController extends Controller
         if ($request->hasFile('reg_nac_prof_uno')) {
             
             // ✅ Si ya existe un archivo anterior, lo borramos
-            if ($grado->reg_nac_prof_uno && Storage::disk('local')->exists($grado->reg_nac_prof_uno)) {
-                Storage::disk('local')->delete($grado->reg_nac_prof_uno);
+            if ($grado->reg_nac_prof_uno && Storage::disk('public')->exists($grado->reg_nac_prof_uno)) {
+                Storage::disk('public')->delete($grado->reg_nac_prof_uno);
             }
             
+            
+
             $extension = $request->file('reg_nac_prof_uno')->getClientOriginalExtension();
-            $nombreArchivoUno = $profesional->curp . '-grado-uno.' . $extension;
-            $rutaUno = $request->reg_nac_prof_uno->storeAs('reg-nac-prof', $nombreArchivoUno, 'local');
+            $nombreArchivoUno = $profesional->curp . '-' . $request->cedula_numero_uno . '.' . $extension;
+            $rutaUno = $request->reg_nac_prof_uno->storeAs('reg-nac-prof', $nombreArchivoUno, 'public');
         }
 
         if ($request->hasFile('reg_nac_prof_dos')) {
 
             // ✅ Si ya existe un archivo anterior, lo borramos
-            if ($grado->reg_nac_prof_dos && Storage::disk('local')->exists($grado->reg_nac_prof_dos)) {
-                Storage::disk('local')->delete($grado->reg_nac_prof_dos);
+            if ($grado->reg_nac_prof_dos && Storage::disk('public')->exists($grado->reg_nac_prof_dos)) {
+                Storage::disk('public')->delete($grado->reg_nac_prof_dos);
             }
 
             $extension = $request->file('reg_nac_prof_dos')->getClientOriginalExtension();
-            $nombreArchivoDos = $profesional->curp . '-grado-dos.' . $extension;
-            $rutaDos = $request->reg_nac_prof_dos->storeAs('reg-nac-prof', $nombreArchivoDos, 'local');
+            $nombreArchivoDos = $profesional->curp . '-' . $request->cedula_numero_dos . '.' . $extension;
+            $rutaDos = $request->reg_nac_prof_dos->storeAs('reg-nac-prof', $nombreArchivoDos, 'public');
         }
 
         if ($request->hasFile('reg_nac_prof_tres')) {
 
             // ✅ Si ya existe un archivo anterior, lo borramos
-            if ($grado->reg_nac_prof_tres && Storage::disk('local')->exists($grado->reg_nac_prof_tres)) {
-                Storage::disk('local')->delete($grado->reg_nac_prof_tres);
+            if ($grado->reg_nac_prof_tres && Storage::disk('public')->exists($grado->reg_nac_prof_tres)) {
+                Storage::disk('public')->delete($grado->reg_nac_prof_tres);
             }
 
             $extension = $request->file('reg_nac_prof_tres')->getClientOriginalExtension();
-            $nombreArchivoTres = $profesional->curp . '-grado-tres.' . $extension;
-            $rutaTres = $request->reg_nac_prof_tres->storeAs('reg-nac-prof', $nombreArchivoTres, 'local');
+            $nombreArchivoTres = $profesional->curp . '-' . $request->cedula_numero_tres . '.' . $extension;
+            $rutaTres = $request->reg_nac_prof_tres->storeAs('reg-nac-prof', $nombreArchivoTres, 'public');
         }
 
         if ($request->hasFile('reg_nac_prof_cuatro')) {
 
             // ✅ Si ya existe un archivo anterior, lo borramos
-            if ($grado->reg_nac_prof_cuatro && Storage::disk('local')->exists($grado->reg_nac_prof_cuatro)) {
-                Storage::disk('local')->delete($grado->reg_nac_prof_cuatro);
+            if ($grado->reg_nac_prof_cuatro && Storage::disk('public')->exists($grado->reg_nac_prof_cuatro)) {
+                Storage::disk('public')->delete($grado->reg_nac_prof_cuatro);
             }
 
             $extension = $request->file('reg_nac_prof_cuatro')->getClientOriginalExtension();
-            $nombreArchivoCuatro = $profesional->curp . '-grado-cuatro.' . $extension;
-            $rutaCuatro = $request->reg_nac_prof_cuatro->storeAs('reg-nac-prof', $nombreArchivoCuatro, 'local');
+            $nombreArchivoCuatro = $profesional->curp . '-' . $request->cedula_numero_cuatro . '.' . $extension;
+            $rutaCuatro = $request->reg_nac_prof_cuatro->storeAs('reg-nac-prof', $nombreArchivoCuatro, 'public');
         }        
 
         // Asignamos los campos
@@ -519,83 +521,4 @@ class ProfesionalGradoAcademicoController extends Controller
         return redirect()->route('profesionalShow', $request->id_profesional)->with('updateGradoAcademico', 'Grado Academico actualizado correctamente.');
     }
 
-    public function regNacProfUno ($id)
-    {
-        $grado = ProfesionalGradoAcademico::findOrFail($id);
-        $path = $grado->reg_nac_prof_uno;
-
-        //dd($path);
-
-        if (Storage::disk('local')->exists($path)) {
-            // Obtener contenido
-            $file = Storage::disk('local')->get($path);
-            $mime = Storage::disk('local')->mimeType($path);
-
-            return response($file, 200)
-                ->header('Content-Type', $mime)
-                ->header('Content-Disposition', 'inline; filename="' . basename($path) . '"');
-        }
-
-        abort(404, 'Archivo no encontrado');
-    }
-
-    public function regNacProfDos ($id)
-    {
-        $grado = ProfesionalGradoAcademico::findOrFail($id);
-        $path = $grado->reg_nac_prof_dos;
-
-        //dd($path);
-
-        if (Storage::disk('local')->exists($path)) {
-            // Obtener contenido
-            $file = Storage::disk('local')->get($path);
-            $mime = Storage::disk('local')->mimeType($path);
-
-            return response($file, 200)
-                ->header('Content-Type', $mime)
-                ->header('Content-Disposition', 'inline; filename="' . basename($path) . '"');
-        }
-
-        abort(404, 'Archivo no encontrado');
-    }
-
-    public function regNacProfTres ($id)
-    {
-        $grado = ProfesionalGradoAcademico::findOrFail($id);
-        $path = $grado->reg_nac_prof_tres;
-
-        //dd($path);
-
-        if (Storage::disk('local')->exists($path)) {
-            // Obtener contenido
-            $file = Storage::disk('local')->get($path);
-            $mime = Storage::disk('local')->mimeType($path);
-
-            return response($file, 200)
-                ->header('Content-Type', $mime)
-                ->header('Content-Disposition', 'inline; filename="' . basename($path) . '"');
-        }
-
-        abort(404, 'Archivo no encontrado');
-    }
-
-    public function regNacProfCuatro ($id)
-    {
-        $grado = ProfesionalGradoAcademico::findOrFail($id);
-        $path = $grado->reg_nac_prof_cuatro;
-
-        //dd($path);
-
-        if (Storage::disk('local')->exists($path)) {
-            // Obtener contenido
-            $file = Storage::disk('local')->get($path);
-            $mime = Storage::disk('local')->mimeType($path);
-
-            return response($file, 200)
-                ->header('Content-Type', $mime)
-                ->header('Content-Disposition', 'inline; filename="' . basename($path) . '"');
-        }
-
-        abort(404, 'Archivo no encontrado');
-    }
 }

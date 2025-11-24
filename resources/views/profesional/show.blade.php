@@ -971,8 +971,9 @@
                                 <td>{{ $tituloUno }}</td>
                                 <td>{{ $institucionEducativaUno }}</td>
                                 <td>{{ $cedulaUno }} - {{ $numeroCedulaUno }}</td>
-                                <td>@if ($regNacProfUno)
-                                        <a href="{{ route('regNacProfUno', $gradoAcademicoUnoId) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
+                                <td>
+                                    @if ($regNacProfUno)
+                                        <a href="{{ asset('storage/' . $profesional->gradoAcademico->reg_nac_prof_uno) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
                                     @else
                                         
                                     @endif
@@ -984,8 +985,9 @@
                                 <td>{{ $tituloDos }}</td>
                                 <td>{{ $institucionEducativaDos }}</td>
                                 <td>{{ $cedulaDos }} - {{ $numeroCedulaDos }}</td>
-                                <td>@if ($regNacProfDos)
-                                        <a href="{{ route('regNacProfDos', $gradoAcademicoDosId) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
+                                <td>
+                                    @if ($regNacProfDos)
+                                        <a href="{{ asset('storage/' . $profesional->gradoAcademico->reg_nac_prof_dos) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
                                     @else
                                         
                                     @endif
@@ -997,8 +999,9 @@
                                 <td>{{ $tituloTres }}</td>
                                 <td>{{ $institucionEducativaTres }}</td>
                                 <td>{{ $cedulaTres }} - {{ $numeroCedulaTres }}</td>
-                                <td>@if ($regNacProfTres)
-                                        <a href="{{ route('regNacProfTres', $gradoAcademicoTresId) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
+                                <td>
+                                    @if ($regNacProfTres)
+                                        <a href="{{ asset('storage/' . $profesional->gradoAcademico->reg_nac_prof_tres) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
                                     @else
                                         
                                     @endif
@@ -1010,8 +1013,9 @@
                                 <td>{{ $tituloCuatro }}</td>
                                 <td>{{ $institucionEducativaCuatro }}</td>
                                 <td>{{ $cedulaCuatro }} - {{ $numeroCedulaCuatro }}</td>
-                                <td>@if ($regNacProfCuatro)
-                                        <a href="{{ route('regNacProfCuatro', $gradoAcademicoCuatroId) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
+                                <td>
+                                    @if ($regNacProfCuatro)
+                                        <a href="{{ asset('storage/' . $profesional->gradoAcademico->reg_nac_prof_cuatro) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
                                     @else
                                         
                                     @endif
