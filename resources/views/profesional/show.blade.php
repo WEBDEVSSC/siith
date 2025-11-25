@@ -973,11 +973,22 @@
                                 <td>{{ $cedulaUno }} - {{ $numeroCedulaUno }}</td>
                                 <td>
                                     @if ($regNacProfUno)
-                                        <a href="{{ asset('storage/' . $profesional->gradoAcademico->reg_nac_prof_uno) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
-                                    @else
-                                        
+                                        <a href="{{ asset('storage/' . $profesional->gradoAcademico->reg_nac_prof_uno) }}" 
+                                        target="_blank" 
+                                        class="btn btn-info btn-sm me-2">
+                                            <i class="fa-solid fa-file-lines"></i> VER DOCUMENTO
+                                        </a>
                                     @endif
+
+                                    <!-- <form action="" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fa-solid fa-trash"></i> ELIMINAR REGISTRO
+                                        </button>
+                                    </form> -->
                                 </td>
+
                             </tr>
                             <tr>
                                 <td>2</td>

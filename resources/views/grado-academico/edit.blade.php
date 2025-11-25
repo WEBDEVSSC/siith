@@ -128,21 +128,19 @@
                     </div>    
 
                     <div class="col-md-3">
-                        <p>
-                            <strong>Archivo de Título, Cédula, R.N.P.</strong> 
-                            
-                            @if ($gradoAcademico->reg_nac_prof_uno == NULL)
-                                <i class="fa-solid fa-ban"></i>
-                            @else
-                                <i class="fa-solid fa-circle-check"></i>
-                            @endif
 
-                        </p>
-                        <input type="file" name="reg_nac_prof_uno" class="form-control-file">
-                         
+                        <p><strong>Archivo de Título, Cédula, R.N.P.</strong></p>
+                        
+                        @if ($gradoAcademico->reg_nac_prof_uno == NULL)
+                            <input type="file" name="reg_nac_prof_uno" class="form-control-file">
+                        @else
+                            <a href="{{ asset('storage/' . $profesional->gradoAcademico->reg_nac_prof_uno) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
+                        @endif
+
                         @error('reg_nac_prof_uno')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+                              
                     </div>                   
                     
                 </div>
@@ -156,8 +154,7 @@
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                </div>
-                
+                </div>                
 
                 <!-- ---------------------------------- -->
                 <!-- 2 -->
@@ -249,25 +246,22 @@
                 <br><div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div> 
-            
+
             <div class="col-md-3">
-                <p>
-                    <strong>Archivo de Título, Cédula, R.N.P.</strong>
+                        
+                <p><strong>Archivo de Título, Cédula, R.N.P.</strong></p>
+                        
+                @if ($gradoAcademico->reg_nac_prof_dos == NULL)
+                    <input type="file" name="reg_nac_prof_dos" class="form-control-file">
+                @else
+                    <a href="{{ asset('storage/' . $profesional->gradoAcademico->reg_nac_prof_dos) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
+                @endif
 
-                    @if ($gradoAcademico->reg_nac_prof_dos == NULL)
-                        <i class="fa-solid fa-ban"></i>
-                    @else
-                        <i class="fa-solid fa-circle-check"></i>
-                    @endif
-
-                </p>
-                <input type="file" name="reg_nac_prof_dos" class="form-control-file">
                 @error('reg_nac_prof_dos')
-                <br><div class="alert alert-danger">{{ $message }}</div>
+                    <br><div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-            </div>
-            
-            
+                              
+            </div>   
             
         </div>
 
@@ -374,23 +368,20 @@
             </div> 
             
             <div class="col-md-3">
-                <p>
-                    <strong>Archivo de Título, Cédula, R.N.P.</strong>
+                        
+                <p><strong>Archivo de Título, Cédula, R.N.P.</strong></p>
+                        
+                @if ($gradoAcademico->reg_nac_prof_tres == NULL)
+                    <input type="file" name="reg_nac_prof_tres" class="form-control-file">
+                @else
+                    <a href="{{ asset('storage/' . $profesional->gradoAcademico->reg_nac_prof_tres) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
+                @endif
 
-                    @if ($gradoAcademico->reg_nac_prof_tres == NULL)
-                        <i class="fa-solid fa-ban"></i>
-                    @else
-                        <i class="fa-solid fa-circle-check"></i>
-                    @endif
-
-                </p>
-                <input type="file" name="reg_nac_prof_tres" class="form-control-file">
                 @error('reg_nac_prof_tres')
-                <br><div class="alert alert-danger">{{ $message }}</div>
+                    <br><div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-            </div>
-            
-            
+                              
+            </div>   
             
         </div>
 
@@ -495,23 +486,22 @@
                 <br><div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div> 
-            
-            <div class="col-md-3">
-                <p>
-                    <strong>Archivo de Título, Cédula, R.N.P.</strong>
-                    
-                    @if ($gradoAcademico->reg_nac_prof_cuatro == NULL)
-                        <i class="fa-solid fa-ban"></i>
-                    @else
-                        <i class="fa-solid fa-circle-check"></i>
-                    @endif
 
-                </p>
-                <input type="file" name="reg_nac_prof_cuatro" class="form-control-file">
+            <div class="col-md-3">
+                        
+                <p><strong>Archivo de Título, Cédula, R.N.P.</strong></p>
+                        
+                @if ($gradoAcademico->reg_nac_prof_cuatro == NULL)
+                    <input type="file" name="reg_nac_prof_cuatro" class="form-control-file">
+                @else
+                    <a href="{{ asset('storage/' . $profesional->gradoAcademico->reg_nac_prof_cuatro) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file-lines"></i> VER DOCUMENTO</a>
+                @endif
+
                 @error('reg_nac_prof_cuatro')
-                <br><div class="alert alert-danger">{{ $message }}</div>
+                    <br><div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-            </div>
+                              
+            </div>  
             
             
             
