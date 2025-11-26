@@ -352,7 +352,6 @@
                             <td>{{ $profesional->ocupacionHospital->programa_uno ?? '' }}</td>
                             <td>{{ $profesional->ocupacionHospital->componente_uno ?? '' }}</td>
                             <td>{{ $profesional->ocupacionHospital->servicio_uno ?? '' }}</td>
-                            <td>{{ $profesional->ocupacionHospital->ocupacion_uno ?? '' }}</td>
                             <td>{{ $profesional->ocupacionHospital->puesto_uno ?? '' }}</td>
 
                             <td>{{ $profesional->ocupacionHospital->unidad_dos ?? '' }}</td>
@@ -365,7 +364,6 @@
                             <td>{{ $profesional->ocupacionHospital->programa_dos ?? '' }}</td>
                             <td>{{ $profesional->ocupacionHospital->componente_dos ?? '' }}</td>
                             <td>{{ $profesional->ocupacionHospital->servicio_dos ?? '' }}</td>
-                            <td>{{ $profesional->ocupacionHospital->ocupacion_dos ?? '' }}</td>
                             <td>{{ $profesional->ocupacionHospital->puesto_dos ?? '' }}</td>
                         @break
 
