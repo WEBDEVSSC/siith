@@ -328,7 +328,7 @@ return [
             'url' => 'admin/profesionales/buscarCurp',
             'icon' => 'fas fa-plus',
             'label_color' => 'success',
-            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei', 'universitario'],
+            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'universitario'],
         ],
 
         [
@@ -344,7 +344,7 @@ return [
             'url' => 'admin/normatividad/indexNormatividad',
             'icon' => 'fa-solid fa-magnifying-glass',
             'label_color' => 'success',
-            'can' => ['directivo', 'admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei','rhauditoria','normatividad'],
+            'can' => ['directivo', 'admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino','rhauditoria','normatividad'],
         ],
 
         
@@ -364,7 +364,7 @@ return [
             'url' => 'admin/profesionales/reportes/reporteIndex',
             'icon' => 'fa-solid fa-file-excel',
             'label_color' => 'success',
-            'can' => ['admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei','ensenanza','universitario','riesgos'],
+            'can' => ['admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'ensenanza', 'universitario', 'riesgos'],
         ],
         [
             'text' => 'Pases de Salida',
