@@ -121,7 +121,7 @@ class HomeController extends Controller
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
             ->count();
 
-        $nominaUnemes = Profesional::whereRelation('puesto', 'nomina_pago', 'UNE - UNEMES')
+        $nominaUnemes = Profesional::whereRelation('puesto', 'nomina_pago', 'UNEME - CECOSAMA')
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
             ->count();
 

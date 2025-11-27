@@ -154,7 +154,7 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title"><strong>Nómina de Pago</strong></h3>
+        <h3 class="card-title"><strong>Nómina de Pago</strong> {{ $nominaRegularizado + $nominaFormalizadoUno + $nominaFormalizadoDos + $nominaFormalizadoTres + $nominaPasanteServicioSocial + $nominaMedicoResidente + $nominaFederal420 + $nominaEventual + $nominaHomogado + $nominaBurocrata + $nominaImssBienestar + $nominaUnemes + $nominaDifPs + $nominaDifOc + $nominaRamoDoce + $nominaPasanteSinPago + $nominaHonorarios + $nominaIssreei + $nominaUmmFam }}</h3>
       </div>
       <div class="card-body">
 
