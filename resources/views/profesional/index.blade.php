@@ -483,11 +483,11 @@
                                 <!-- ------------------------------------- -->
 
                                 @if(optional($data['profesional']->areaMedica)->mdl_area_medica == 1)
-                                    <a href="{{ route('editAreaMedica', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="PERSONAL EN FORMACIÓN">
+                                    <a href="{{ route('editAreaMedica', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="ESTUDIANDO ACTUALMENTE">
                                         <i class="fa fa-stethoscope" aria-hidden="true"></i>
                                     </a>
                                 @else
-                                    <a href="{{ route('createAreaMedica', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="PERSONAL EN FORMACIÓN">
+                                    <a href="{{ route('createAreaMedica', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="ESTUDIANDO ACTUALMENTE">
                                         <i class="fa fa-stethoscope" aria-hidden="true"></i>
                                     </a>
                                 @endif
