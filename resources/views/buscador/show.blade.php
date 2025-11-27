@@ -41,7 +41,7 @@
                             <td>
                                 @if (Auth::user()->role === 'credencializacion')
 
-                                    <a href="{{ route('credencializacion.descargar', $profesional->credencializacion->id) }}" 
+                                    <a href="{{ route('credencializacion.descargar', $profesional->credencializacion->id_profesional) }}" 
                                     class="btn btn-info btn-sm" target="_blank">
                                     Descargar fotografía original
                                     </a>
