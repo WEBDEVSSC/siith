@@ -68,7 +68,7 @@
     
 <div class="card">
         <div class="card-header">
-            @if (auth()->user()->role != 'universitario' && Auth::user()->role != 'ensenanza' && Auth::user()->role != 'riesgos')
+            @if (auth()->user()->role != 'universitario' && Auth::user()->role != 'ensenanza' && Auth::user()->role != 'riesgos' && Auth::user()->role != 'prestaciones' && Auth::user()->role != 'eventual')
 
             <div class="d-flex justify-content-end gap-2">
                     <a href="{{ route('profesionalesBajasTemporalesIndex') }}" 
