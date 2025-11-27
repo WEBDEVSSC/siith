@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AvisoController;
 use App\Http\Controllers\CatalogoCentroDeSaludUrbanoYRuralController;
 use App\Http\Controllers\CatalogoCluesController;
 use App\Http\Controllers\CatalogoNominaDePagoController;
@@ -701,7 +702,7 @@ Route::middleware(['auth'])->group(function ()
 
 
 
-      /**
+    /**
      * 
      * 
      * NORMATIVIDAD
@@ -715,6 +716,15 @@ Route::middleware(['auth'])->group(function ()
 
      Route::post('admin/normatividad/createBajasComision', [ProfesionalNormatividadController::class,'createBajasComision'])->name('createBajasComision');
 
+      /**
+     * 
+     * 
+     * AVISOS
+     * 
+     * 
+     */
+
+    Route::get('admin/avisis/declaracion-patrimonial', [AvisoController::class,'declaracionPatrimonial'])->name('declaracionPatrimonial');
     /**
      * 
      * 

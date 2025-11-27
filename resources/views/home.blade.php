@@ -13,6 +13,22 @@
 
 @section('content')
 
+<div class="row">
+  <div class="col-md-12">
+    <div class="small-box bg-warning">
+              <div class="inner">
+                <h3 style="color: white;">DECLARACION PATRIMONIAL</h3>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="{{ route('declaracionPatrimonial') }}" class="small-box-footer" style="color: white !important;">
+                  Más información <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+  </div>
+</div>
+
 @auth
 
 @if(auth()->user()->role === 'root' || auth()->user()->role === 'admin'|| auth()->user()->role === 'directivo')
@@ -72,6 +88,10 @@
     </div>
 </div>
 </div>
+
+{{-- --------------------------------------------------------------------------------------------------------------------------------- --}}
+
+
 
 {{-- --------------------------------------------------------------------------------------------------------------------------------- --}}
 
