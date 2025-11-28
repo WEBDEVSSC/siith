@@ -18,6 +18,7 @@ use App\Models\Municipio;
 use App\Models\Profesional;
 use App\Models\ProfesionalBitacora;
 use App\Models\ProfesionalCambioTipoNomina;
+use App\Models\ProfesionalComisionHistorico;
 use App\Models\ProfesionalOcupacionAlmacen;
 use App\Models\ProfesionalOcupacionCeam;
 use App\Models\ProfesionalOcupacionCentroSalud;
@@ -1711,6 +1712,9 @@ class ProfesionalController extends Controller
         // Cargamos todos los clues
         $clues = Clue::all();
 
+        /** CONSULTAMOS TODOS LOS DOCUMENTO ANTERIORES DE COMISION */
+        $comisionesHistoricos = ProfesionalComisionHistorico::where('id_profesional',$id)->get();
+
         // Regresamos la vista con el arreglo
         return view('profesional.show', compact(
             'profesional',
@@ -1834,7 +1838,9 @@ class ProfesionalController extends Controller
 
             'emergencias',
 
-            'clues'
+            'clues',
+
+            'comisionesHistoricos'
         ));
     }
 

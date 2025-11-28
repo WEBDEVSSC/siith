@@ -200,7 +200,13 @@ class Profesional extends Model
     public function pasesDeSalida()
     {
         return $this->hasMany(ProfesionalPaseDeSalida::class, 'id_profesional')
-                    ->orderBy('created_at', 'desc');;
+                    ->orderBy('created_at', 'desc');
+    }
+
+    public function comisionesHistorico()
+    {
+        return $this->hasMany(ProfesionalComisionHistorico::class, 'id_profesional')
+                    ->orderBy('id', 'desc');;
     }
 
 }

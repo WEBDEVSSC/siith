@@ -1555,6 +1555,47 @@
 
     <br>
     <br>
+
+    <div class="card">
+        <div class="card-header">
+            <i class="fa-solid fa-cloud"></i>
+            <strong>DOCUMENTOS DE COMISION EN LA PLATAFORMA WEB PROFESIONALES</strong>
+        </div>
+        <div class="card-body">
+            <table class="table table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Documento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($comisionesHistoricos as $index => $historico)
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td>
+                            @if($historico->documento)
+                                <a href="{{ asset('storage/' . $historico->documento) }}" target="_blank">
+                                    {{$historico->documento}}
+                                </a>
+                            @else
+                                <span class="text-muted">Sin documento</span>
+                            @endif
+                        </td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">
+                            No hay registros históricos
+                        </td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+
+        </div>
+        <div class="card-footer"></div>
+    </div>
     
 @stop
 
