@@ -88,7 +88,7 @@
             <div class="col-md-2">
                 
                 <center>
-                    @if (Auth::user()->role == 'admin' || Auth::user()->role == 'directivo' || Auth::user()->role == 'rhasistente' || Auth::user()->role == 'rhauditoria' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'cors'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei')
+                    @if (Auth::user()->role == 'admin' || Auth::user()->role == 'directivo'  || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'cors'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei')
                         @if($fotoUrl)
                             <img src="{{ $fotoUrl }}" alt="Fotografía del profesional" style="max-width:100%; height:auto;" class="img-thumbnail"/>
                         @else
@@ -971,7 +971,7 @@
                                 <td>{{ $tituloUno }}</td>
                                 <td>{{ $institucionEducativaUno }}</td>
                                 <td>{{ $cedulaUno }} - {{ $numeroCedulaUno }}</td>
-                                <td>
+                                <td>{{ $profesional->gradoAcademico->reg_nac_prof_uno }}
                                     @if ($regNacProfUno)
                                         <a href="{{ asset('storage/' . $profesional->gradoAcademico->reg_nac_prof_uno) }}" 
                                         target="_blank" 
