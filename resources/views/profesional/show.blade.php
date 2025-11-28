@@ -971,7 +971,7 @@
                                 <td>{{ $tituloUno }}</td>
                                 <td>{{ $institucionEducativaUno }}</td>
                                 <td>{{ $cedulaUno }} - {{ $numeroCedulaUno }}</td>
-                                <td>{{ $profesional->gradoAcademico->reg_nac_prof_uno }}
+                                <td>
                                     @if ($regNacProfUno)
                                         <a href="{{ asset('storage/' . $profesional->gradoAcademico->reg_nac_prof_uno) }}" 
                                         target="_blank" 
