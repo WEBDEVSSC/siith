@@ -133,14 +133,8 @@ Route::middleware(['auth'])->group(function ()
     // Ruta para mostrar el formulario de datos generales
     Route::get('admin/profesionales/datosGenerales/{curp}', [ProfesionalController::class, 'datosGenerales'])->name('datosGenerales');
 
-    // Ruta para mostrar el formulario de registro para Ensenanza
-    Route::get('admin/profesionales/datosGeneralesEnsenanza/{curp}', [ProfesionalController::class, 'datosGeneralesEnsenanza'])->name('datosGeneralesEnsenanza');
-
     // Ruta para guardar los datos generales
     Route::post('admin/profesionales/datosGeneralesStore',[ProfesionalController::class, 'datosGeneralesStore'])->name('datosGeneralesStore');
-
-    // Ruta para guardar los datos generales para ensenanza
-    Route::post('admin/profesionales/datosGeneralesStoreEnsenanza',[ProfesionalController::class, 'datosGeneralesStoreEnsenanza'])->name('datosGeneralesStoreEnsenanza');
 
     // Ruta para ver los registros
     Route::get('admin/profesionales/profesionalIndex',[ProfesionalController::class, 'profesionalIndex'])->name('profesionalIndex');
@@ -174,6 +168,18 @@ Route::middleware(['auth'])->group(function ()
 
     // Registros incompletos
     Route::get('admin/profesionales/profesionalIncompletosIndex',[ProfesionalController::class,'profesionalIncompletosIndex'])->name('profesionalIncompletosIndex');
+
+    // Ruta para mostrar el formulario de registro para Ensenanza
+    Route::get('admin/profesionales/datosGeneralesEnsenanza/{curp}', [ProfesionalController::class, 'datosGeneralesEnsenanza'])->name('datosGeneralesEnsenanza');
+
+     // Ruta para guardar los datos generales para ensenanza
+    Route::post('admin/profesionales/datosGeneralesStoreEnsenanza',[ProfesionalController::class, 'datosGeneralesStoreEnsenanza'])->name('datosGeneralesStoreEnsenanza');
+
+    // Ruta para editar los datos de registro de Enseñanza
+
+    Route::get('admin/profesionales/editDatosGeneralesEnsenanza/{id}',[ProfesionalController::class,'editDatosGeneralesEnsenanza'])->name('editDatosGeneralesEnsenanza');
+
+    Route::put('admin/profesionales/updateDatosGeneralesEnsenanza/{id}',[ProfesionalController::class,'updateDatosGeneralesEnsenanza'])->name('updateDatosGeneralesEnsenanza');
 
     /**
      * 

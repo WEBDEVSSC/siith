@@ -184,6 +184,11 @@
     <!-- -- -->
     
     <div class="card-footer">
+
+        @if(Auth::user()->role == 'universitario')
+            <a href="{{ route('editDatosGeneralesEnsenanza', $profesional->id) }}" class="btn btn-info btn-sm"> <i class="fa-solid fa-pen"></i> EDITAR DATOS GENERALES</a>
+        @endif
+
         @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei')
             @if ($profesional->mdl_datos_generales == 1)
                 <a href="{{ route('profesionalEdit', $profesional->id) }}" class="btn btn-info btn-sm"> <i class="fa-solid fa-pen"></i> EDITAR DATOS GENERALES</a>

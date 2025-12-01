@@ -2334,7 +2334,78 @@ class ProfesionalController extends Controller
         return view('buscador.show', compact('profesionales','usuario'));
     }
 
-    
+    public function editDatosGeneralesEnsenanza($id)
+    {
+        // Buscamos el registro del profesioinal
+        $profesional = Profesional::findOrFail($id);
 
+        $estadoCodigo = substr($profesional->curp, 11, 2);
+
+        $estado = Entidad::where('abreviacion',$estadoCodigo)->first();
+
+        $municipios = Municipio::where('relacion',$estado->id)->get();
+
+        $estadosConyuales = EstadoConyugal::all();
+
+        $ocupaciones = CatOcupacionEnsenanza::all();
+
+        $codigosDePuesto = CodigoPuesto::where('personal_formacion',1)->get();
+
+        return view('profesional.edit-ensenanza', compact('profesional','municipios','estadosConyuales','ocupaciones', 'codigosDePuesto'));
+    }
+
+    public function updateDatosGeneralesEnsenanza(Request $request, $id)
+    {        
+        
+
+        $request->validate([
+            'homoclave'             => 'required|string|max:3',
+            'nombre'                => 'required|string|max:100|regex:/^[A-Za-zÁÉÍÓÚÑáéíóú\s]+$/',
+            'apellido_paterno'      => 'required|string|max:80|regex:/^[A-Za-zÁÉÍÓÚÑáéíóú\s]+$/',
+            'apellido_materno'      => 'required|string|max:80|regex:/^[A-Za-zÁÉÍÓÚÑáéíóú\s]+$/',
+            'municipio_nacimiento'  => 'required|string',
+            'estado_conyugal'          => 'required|string',
+            'telefono_casa'         => 'nullable|numeric|digits_between:7,10',
+            'celular'               => 'required|numeric|digits:10',
+            'email'                 => 'required|email|max:120',
+            'padre_madre_familia'   => 'required|in:SI,NO',
+            'fecha_inicio'          => 'required|date|before_or_equal:today',
+            'tipo_nomina'           => 'required|string',
+            'ocupacion'             => 'required|integer',
+            'codigo_puesto'         => 'required|integer',
+
+        ],[
+            'required'          => 'El campo :attribute es obligatorio.',
+            'string'            => 'El campo :attribute debe ser texto.',
+            'regex'             => 'El campo :attribute contiene caracteres no válidos.',
+            'max'               => 'El campo :attribute no debe exceder :max caracteres.',
+            'numeric'           => 'El campo :attribute debe ser numérico.',
+            'digits'            => 'El campo :attribute debe tener :digits dígitos.',
+            'digits_between'    => 'El campo :attribute debe tener entre :min y :max dígitos.',
+            'email'             => 'Debe ingresar un correo electrónico válido.',
+            'date'              => 'El campo :attribute debe ser una fecha válida.',
+            'before_or_equal'   => 'El campo :attribute no puede ser una fecha futura.',
+            'in'                => 'El campo :attribute contiene un valor no permitido.',
+        ],[
+            // Alias para nombre amigable del campo
+            'homoclave'             => 'homoclave de CURP',
+            'apellido_paterno'      => 'apellido paterno',
+            'apellido_materno'      => 'apellido materno',
+            'municipio_nacimiento'  => 'municipio de nacimiento',
+            'estado_civil'          => 'estado civil',
+            'telefono_casa'         => 'teléfono de casa',
+            'celular'               => 'teléfono celular',
+            'padre_madre_familia'   => 'padre/madre de familia',
+            'fecha_inicio'          => 'fecha de inicio',
+            'tipo_nomina'           => 'tipo de nómina',
+            'codigo_puesto'         => 'código de puesto',
+        ]);
+
+       // Consultamos la ocupacion
+       $ocupacion = CatOcupacionEnsenanza::findOrFail($request->ocupacion);
+
+       // Consultamos el codigo de puesto
+       $codigoPuesto = CodigoPuesto::findOrFail($request->codigo_puesto);
+    }
 
 }
