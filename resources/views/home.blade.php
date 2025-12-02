@@ -174,7 +174,7 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title"><strong>Nómina de Pago</strong> {{ $nominaRegularizado + $nominaFormalizadoUno + $nominaFormalizadoDos + $nominaFormalizadoTres + $nominaPasanteServicioSocial + $nominaMedicoResidente + $nominaFederal420 + $nominaEventual + $nominaHomogado + $nominaBurocrata + $nominaImssBienestar + $nominaUnemes + $nominaDifPs + $nominaDifOc + $nominaRamoDoce + $nominaPasanteSinPago + $nominaHonorarios + $nominaIssreei + $nominaUmmFam }}</h3>
+        <h3 class="card-title"><strong>Nómina de Pago</strong> {{ $nominaRegularizado + $nominaFormalizadoUno + $nominaFormalizadoDos + $nominaFormalizadoTres + $nominaPasanteServicioSocial + $nominaMedicoResidente + $nominaFederal420 + $nominaEventual + $nominaHomogado + $nominaBurocrata + $nominaImssBienestar + $nominaUnemes + $nominaDifPs + $nominaDifOc + $nominaRamoDoce + $nominaPasanteSinPago + $nominaHonorarios + $nominaIssreei + $nominaUmmFam + $nominau013}}</h3>
       </div>
       <div class="card-body">
 
@@ -307,6 +307,12 @@
                     <span style="font-weight: bold;">BUR</span>
                   </td>
                   <td>{{$nominaBurocrata}}</td>
+
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(102, 102, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">U013</span>
+                  </td>
+                  <td>{{$nominau013}}</td>
                 </tr>
               </tbody>
             </table>
@@ -1282,10 +1288,10 @@ auth()->user()->role === 'hospitalNino'
       var myDoughnutChart = new Chart(ctx, {
           type: 'pie',
           data: {
-              labels: ['REG','FOR','FOR2','FOR3','610','6MR','FED','EVE','HOM','BUR','IB','UNE','DIF PS', 'DIF OC','RAMO 12','PASANTE SP', 'HON', 'ISSREEI', 'FAM'],
+              labels: ['REG','FOR','FOR2','FOR3','610','6MR','FED','EVE','HOM','BUR','IB','UNE','DIF PS', 'DIF OC','RAMO 12','PASANTE SP', 'HON', 'ISSREEI', 'FAM', 'U013'],
               datasets: [{
                   label: 'Número de votos',
-                  data: [{{$nominaRegularizado}}, {{$nominaFormalizadoUno}}, {{$nominaFormalizadoDos}}, {{$nominaFormalizadoTres}}, {{$nominaPasanteServicioSocial}}, {{$nominaMedicoResidente}}, {{$nominaFederal420}}, {{$nominaEventual}}, {{$nominaHomogado}}, {{$nominaBurocrata}}, {{$nominaImssBienestar}}, {{$nominaUnemes}}, {{$nominaDifPs}},  {{$nominaDifOc}}, {{$nominaRamoDoce}}, {{$nominaPasanteSinPago}}, {{$nominaHonorarios}}, {{$nominaIssreei}}, {{$nominaUmmFam}}], 
+                  data: [{{$nominaRegularizado}}, {{$nominaFormalizadoUno}}, {{$nominaFormalizadoDos}}, {{$nominaFormalizadoTres}}, {{$nominaPasanteServicioSocial}}, {{$nominaMedicoResidente}}, {{$nominaFederal420}}, {{$nominaEventual}}, {{$nominaHomogado}}, {{$nominaBurocrata}}, {{$nominaImssBienestar}}, {{$nominaUnemes}}, {{$nominaDifPs}},  {{$nominaDifOc}}, {{$nominaRamoDoce}}, {{$nominaPasanteSinPago}}, {{$nominaHonorarios}}, {{$nominaIssreei}}, {{$nominaUmmFam}}, {{$nominau013}}], 
               backgroundColor: [
                 'rgba(255, 99, 132, 0.6)', // REG
                 'rgba(255, 159, 64, 0.6)', // FOR
@@ -1305,7 +1311,8 @@ auth()->user()->role === 'hospitalNino'
                 'rgba(255, 102, 102, 0.6)', // PASANTE SP
                 'rgba(102, 255, 255, 0.6)', // HON
                 'rgba(255, 178, 102, 0.6)', // ISSREEI
-                'rgba(178, 255, 102, 0.6)'  // UMM
+                'rgba(178, 255, 102, 0.6)', // UMM
+                'rgba(102, 102, 255, 0.6)'  // U013
               ],
               borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -1326,7 +1333,8 @@ auth()->user()->role === 'hospitalNino'
                 'rgba(255, 102, 102, 1)',
                 'rgba(102, 255, 255, 1)',
                 'rgba(255, 178, 102, 1)',
-                'rgba(178, 255, 102, 1)'
+                'rgba(178, 255, 102, 1)',
+                'rgba(102, 102, 255, 1)'
               ],
                   borderWidth: 1
               }]

@@ -76,7 +76,12 @@ class HomeController extends Controller
         ->whereRelation('puesto', 'vigencia', 'ACTIVO')
         ->count();
 
+        /**************************************************************************************************** */
+        
         // CONTADOR PARA GRAFICA DE TIPO DE NOMINA
+
+        /**************************************************************************************************** */
+        
         $nominaRegularizado = Profesional::whereRelation('puesto', 'nomina_pago', 'REG - Regularizado')
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
             ->count();
@@ -150,6 +155,10 @@ class HomeController extends Controller
             ->count();
 
         $nominaUmmFam = Profesional::whereRelation('puesto', 'nomina_pago', 'FAM - UMM - IMSS B.')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominau013 = Profesional::whereRelation('puesto', 'nomina_pago', 'U013 - PAGO CDMX')
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
             ->count();
 
@@ -605,6 +614,7 @@ class HomeController extends Controller
             'nominaIssreei',
             'nominaUmmFam',
             'nominaDifPs',
+            'nominau013',
 
             'contratoConfianza',
             'contratoBase',
