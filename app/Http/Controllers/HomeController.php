@@ -41,40 +41,40 @@ class HomeController extends Controller
 
         // CONTADOR PARA EL PERSONAL DE JURISDICCION 1
         $profesionalesJurisdiccion1 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '1')
-        ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-        ->count();
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
 
         $profesionalesJurisdiccion2 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '2')
-        ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-        ->count();
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
 
         $profesionalesJurisdiccion3 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '3')
-        ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-        ->count();
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
 
         $profesionalesJurisdiccion4 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '4')
-        ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-        ->count();
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
 
         $profesionalesJurisdiccion5 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '5')
-        ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-        ->count();
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
 
         $profesionalesJurisdiccion6 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '6')
-        ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-        ->count();
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
 
         $profesionalesJurisdiccion7 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '7')
-        ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-        ->count();
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
 
         $profesionalesJurisdiccion8 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '8')
-        ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-        ->count();
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
 
         $profesionalesJurisdiccion9 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '9')
-        ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-        ->count();
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
 
         /**************************************************************************************************** */
         
@@ -159,6 +159,10 @@ class HomeController extends Controller
             ->count();
 
         $nominau013 = Profesional::whereRelation('puesto', 'nomina_pago', 'U013 - PAGO CDMX')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $nominaAsimilados = Profesional::whereRelation('puesto', 'nomina_pago', 'ASIMILADOS')
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
             ->count();
 
@@ -615,6 +619,7 @@ class HomeController extends Controller
             'nominaUmmFam',
             'nominaDifPs',
             'nominau013',
+            'nominaAsimilados',
 
             'contratoConfianza',
             'contratoBase',

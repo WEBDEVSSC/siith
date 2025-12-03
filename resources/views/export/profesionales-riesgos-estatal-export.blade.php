@@ -80,7 +80,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $profesional->curp ?? '' }}</td>
                     <td>{{ $profesional->rfc ?? '' }}</td>
-                    <td>{{ $profesional->homoclave ?? '' }}</td>
+                    <td>&nbsp;{{ $profesional->homoclave ?? '' }}</td>
                     <td>{{ $profesional->nombre ?? '' }}</td>
                     <td>{{ $profesional->apellido_paterno ?? '' }}</td>
                     <td>{{ $profesional->apellido_materno ?? '' }}</td>

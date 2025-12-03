@@ -85,7 +85,7 @@
                     </div>
                     <div class="col-md-3">
                         <p><strong>Fecha de nacimiento</strong></p>
-                        <input type="text" name="fecha_nacimiento" id='fecha_nacimiento' class="form-control" value="{{ $profesional->fecha_nacimiento }}" disabled>
+                        <input type="text" name="fecha_nacimiento" id='fecha_nacimiento' class="form-control" value="{{ $profesional->fecha_nacimiento->format('d/m/Y') }}" disabled>
                         @error('fecha_nacimiento')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror

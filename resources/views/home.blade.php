@@ -174,7 +174,7 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title"><strong>Nómina de Pago</strong> {{ $nominaRegularizado + $nominaFormalizadoUno + $nominaFormalizadoDos + $nominaFormalizadoTres + $nominaPasanteServicioSocial + $nominaMedicoResidente + $nominaFederal420 + $nominaEventual + $nominaHomogado + $nominaBurocrata + $nominaImssBienestar + $nominaUnemes + $nominaDifPs + $nominaDifOc + $nominaRamoDoce + $nominaPasanteSinPago + $nominaHonorarios + $nominaIssreei + $nominaUmmFam + $nominau013}}</h3>
+        <h3 class="card-title"><strong>Nómina de Pago</strong> {{ $nominaRegularizado + $nominaFormalizadoUno + $nominaFormalizadoDos + $nominaFormalizadoTres + $nominaPasanteServicioSocial + $nominaMedicoResidente + $nominaFederal420 + $nominaEventual + $nominaHomogado + $nominaBurocrata + $nominaImssBienestar + $nominaUnemes + $nominaDifPs + $nominaDifOc + $nominaRamoDoce + $nominaPasanteSinPago + $nominaHonorarios + $nominaIssreei + $nominaUmmFam + $nominau013 + $nominaAsimilados}}</h3>
       </div>
       <div class="card-body">
 
@@ -195,6 +195,11 @@
                     <span style="font-weight: bold;">IB</span>
                   </td>
                   <td>{{$nominaImssBienestar}}</td>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(102, 204, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">ASIM</span>
+                  </td>
+                  <td>{{$nominaAsimilados}}</td>
                 </tr>
 
                 <tr>
