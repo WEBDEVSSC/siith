@@ -9,18 +9,28 @@ use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+use Maatwebsite\Excel\Concerns\WithColumnFormatting;
+use Maatwebsite\Excel\Events\AfterSheet;
+use Maatwebsite\Excel\Concerns\WithEvents;
 
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class ProfesionalExport implements FromView, WithStyles
+class ProfesionalExport implements FromView, WithStyles, WithColumnFormatting
 {
 
+    public function columnFormats(): array
+    {
+        return [
+            'D' => NumberFormat::FORMAT_TEXT, // Columna de homoclave en tu Excel
+            'C' => NumberFormat::FORMAT_TEXT, // Si quieres también proteger RFC
+            'B' => NumberFormat::FORMAT_TEXT, // Si CURP va como texto
+        ];
+    }
+    
     public function view(): View
     {
         // Cargamos los datos del usuario que inicio sesion
         $user = Auth::user();
-
-        $userRol = $user->role;
 
         // Filtramos la consulta por el nivel del usuario
 
@@ -83,21 +93,6 @@ class ProfesionalExport implements FromView, WithStyles
 
         $profesionales = $profesionalesQuery->get();
 
-        /*$profesionales = Profesional::with([
-            'puesto', 
-            'horario', 
-            'sueldo', 
-            'gradoAcademico', 
-            'areaMedica', 
-            
-            'ocupacionCeam',
-            'ocupacionAlmacen'
-            ])
-        ->whereHas('puesto', function ($query) {
-            $query->where('vigencia', 'ACTIVO');
-        })
-        ->get();*/
-
         // Pasamos los datos a la vista
         return view('export.profesionales-export', [
             'profesionales' => $profesionales
@@ -105,7 +100,8 @@ class ProfesionalExport implements FromView, WithStyles
     }
 
     public function styles(Worksheet $sheet)
-    {
+    {       
+
         return [
 
             // Estilo para la columna ID
@@ -287,5 +283,7 @@ class ProfesionalExport implements FromView, WithStyles
             'EL2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6BA66B']]],
         ];
     }
+
+    
 
 }
