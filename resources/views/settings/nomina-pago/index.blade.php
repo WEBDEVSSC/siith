@@ -51,7 +51,7 @@
             </div>
         @else
         {{-- <table id="profesionalesTable" class="table table-bordered"> --}}
-        <table class="table table-bordered">
+        <table id="profesionalesTable" class="table table-bordered">
             <thead>
                 <tr>
                     <th>Tipo de Nómina</th>

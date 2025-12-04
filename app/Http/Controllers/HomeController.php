@@ -165,6 +165,10 @@ class HomeController extends Controller
         $nominaAsimilados = Profesional::whereRelation('puesto', 'nomina_pago', 'ASIMILADOS')
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
             ->count();
+        
+        $nominaSNSP = Profesional::whereRelation('puesto', 'nomina_pago', 'PAGO - SNSP')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
 
         // GRAFICA POR TIPO DE CONTRATO
         $contratoConfianza = Profesional::whereRelation('puesto', 'tipo_contrato', 'CONFIANZA')
@@ -620,6 +624,7 @@ class HomeController extends Controller
             'nominaDifPs',
             'nominau013',
             'nominaAsimilados',
+            'nominaSNSP',
 
             'contratoConfianza',
             'contratoBase',
