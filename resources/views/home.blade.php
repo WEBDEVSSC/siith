@@ -100,7 +100,7 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title"><strong>Jurisdicción</strong></h3>
+        <h3 class="card-title"><strong>JURISDICCIÓN</strong></h3>
       </div>
       <div class="card-body">
 
@@ -174,7 +174,7 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title"><strong>Nómina de Pago</strong> </h3>
+        <h3 class="card-title"><strong>NÓMINAS DE PAGO</strong> </h3>
       </div>
       <div class="card-body">
 
@@ -396,7 +396,7 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title"><strong>Tipo de Contrato</strong></h3>
+        <h3 class="card-title"><strong>CONTRATO</strong></h3>
       </div>
       <div class="card-body">
         <div class="row">
@@ -406,58 +406,70 @@
           <div class="col-md-6">
 
             <table class="table table-sm small">
-              <tbody>
+            <tbody>
+
                 <tr>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 99, 132, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">Confianza</span>
-                  </td>
-                  <td>{{$contratoConfianza}}</td>
+                    <td>
+                        <span style="display:inline-block; width:12px; height:12px; background-color: rgba(153, 102, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                        <span style="font-weight: bold;">Asimilados</span>
+                    </td>
+                    <td>{{$contratoAsimilados}}</td>
                 </tr>
+
                 <tr>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 159, 64, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">Base</span>
-                  </td>
-                  <td>{{$contratoBase}}</td>
+                    <td>
+                        <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 159, 64, 0.6); border-radius:3px; margin-right:6px;"></span>
+                        <span style="font-weight: bold;">Base</span>
+                    </td>
+                    <td>{{$contratoBase}}</td>
                 </tr>
+
                 <tr>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 205, 86, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">Eventual</span>
-                  </td>
-                  <td>{{$contratoEventual}}</td>
+                    <td>
+                        <span style="display:inline-block; width:12px; height:12px; background-color: rgba(54, 162, 235, 0.6); border-radius:3px; margin-right:6px;"></span>
+                        <span style="font-weight: bold;">Becas</span>
+                    </td>
+                    <td>{{$contratoBecas}}</td>
                 </tr>
+
                 <tr>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(75, 192, 192, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">Honorarios</span>
-                  </td>
-                  <td>{{$contratoHonorarios}}</td>
+                    <td>
+                        <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 99, 132, 0.6); border-radius:3px; margin-right:6px;"></span>
+                        <span style="font-weight: bold;">Confianza</span>
+                    </td>
+                    <td>{{$contratoConfianza}}</td>
                 </tr>
+
                 <tr>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(54, 162, 235, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">Becas</span>
-                  </td>
-                  <td>{{$contratoBecas}}</td>
+                    <td>
+                        <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 205, 86, 0.6); border-radius:3px; margin-right:6px;"></span>
+                        <span style="font-weight: bold;">Eventual</span>
+                    </td>
+                    <td>{{$contratoEventual}}</td>
                 </tr>
+
                 <tr>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(153, 102, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">Asimilados</span>
-                  </td>
-                  <td>{{$contratoAsimilados}}</td>
+                    <td>
+                        <span style="display:inline-block; width:12px; height:12px; background-color: rgba(75, 192, 192, 0.6); border-radius:3px; margin-right:6px;"></span>
+                        <span style="font-weight: bold;">Honorarios</span>
+                    </td>
+                    <td>{{$contratoHonorarios}}</td>
                 </tr>
+
+                <!-- TOTAL -->
                 <tr>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 255, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">Total</span>
-                  </td>
-                  <td>{{ $contratoConfianza + $contratoBase + $contratoEventual + $contratoHonorarios + $contratoBecas + $contratoAsimilados}}</td>
+                    <td>
+                        <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 255, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                        <span style="font-weight: bold;">Total</span>
+                    </td>
+                    <td>
+                        {{ $contratoConfianza + $contratoBase + $contratoEventual + $contratoHonorarios + $contratoBecas + $contratoAsimilados }}
+                    </td>
                 </tr>
-              </tbody>
-            </table>
+
+            </tbody>
+        </table>
+
 
           </div>
         </div>
@@ -471,7 +483,7 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title"><strong>Ramas</strong></h3>
+        <h3 class="card-title"><strong>RAMAS</strong></h3>
       </div>
       <div class="card-body">
 
