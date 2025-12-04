@@ -174,7 +174,7 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title"><strong>Nómina de Pago</strong> {{ $nominaRegularizado + $nominaFormalizadoUno + $nominaFormalizadoDos + $nominaFormalizadoTres + $nominaPasanteServicioSocial + $nominaMedicoResidente + $nominaFederal420 + $nominaEventual + $nominaHomogado + $nominaBurocrata + $nominaImssBienestar + $nominaUnemes + $nominaDifPs + $nominaDifOc + $nominaRamoDoce + $nominaPasanteSinPago + $nominaHonorarios + $nominaIssreei + $nominaUmmFam + $nominau013 + $nominaAsimilados + $nominaSNSP + $nominaTamiz}}</h3>
+        <h3 class="card-title"><strong>Nómina de Pago</strong> </h3>
       </div>
       <div class="card-body">
 
@@ -183,154 +183,203 @@
           <div class="col-md-6">
 
             <table class="table table-sm small">
-              <tbody>
-                <tr>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 99, 132, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">REG</span>
-                  </td>
-                  <td>{{$nominaRegularizado}}</td>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(102, 204, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">IB</span>
-                  </td>
-                  <td>{{$nominaImssBienestar}}</td>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(0, 153, 153, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">ASIMI</span>
-                  </td>
-                  <td>{{$nominaAsimilados}}</td>
-                </tr>
+        <tbody>
 
-                <tr>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 159, 64, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">FOR</span>
-                  </td>
-                  <td>{{$nominaFormalizadoUno}}</td>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(204, 153, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">UNE</span>
-                  </td>
-                  <td>{{$nominaUnemes}}</td>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(0, 102, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">SNSP</span>
-                  </td>
-                  <td>{{$nominaSNSP}}</td>
-                </tr>
+          <!-- 1 -->
+          <tr>
+              <!-- ASIMI -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(0, 153, 153, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">ASIMI</span>
+              </td>
+              <td>{{ $nominaAsimilados }}</td>
 
-                <tr>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 205, 86, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">FOR 2</span>
-                  </td>
-                  <td>{{$nominaFormalizadoDos}}</td>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 153, 153, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">DIF PS</span>
-                  </td>
-                  <td>{{$nominaDifPs}}</td>nominaTamiz
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 87, 51, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">TAMIZ</span>
-                  </td>
-                  <td>{{$nominaTamiz}}</td>
-                </tr>
+              <!-- BUR -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 204, 102, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">BUR</span>
+              </td>
+              <td>{{ $nominaBurocrata }}</td>
 
-                <tr>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(75, 192, 192, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">FOR 3</span>
-                  </td>
-                  <td>{{$nominaFormalizadoTres}}</td>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(204, 255, 153, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">DIF OC</span>
-                  </td>
-                  <td>{{$nominaDifOc}}</td>
-                </tr>
+              <!-- DIF OC -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(204, 255, 153, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">DIF OC</span>
+              </td>
+              <td>{{ $nominaDifOc }}</td>
+          </tr>
 
-                <tr>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(54, 162, 235, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">610</span>
-                  </td>
-                  <td>{{$nominaPasanteServicioSocial}}</td>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(153, 255, 204, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">RAMO 12</span>
-                  </td>
-                  <td>{{$nominaRamoDoce}}</td>
-                </tr>
+          <!-- 2 -->
+          <tr>
+              <!-- DIF PS -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 153, 153, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">DIF PS</span>
+              </td>
+              <td>{{ $nominaDifPs }}</td>
 
-                <tr>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(153, 102, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">6MR</span>
-                  </td>
-                  <td>{{$nominaMedicoResidente}}</td>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 102, 102, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">PASANTE SP</span>
-                  </td>
-                  <td>{{$nominaPasanteSinPago}}</td>
-                </tr>
+              <!-- EVE -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(0, 204, 102, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">EVE</span>
+              </td>
+              <td>{{ $nominaEventual }}</td>
 
-                <tr>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 102, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">FED</span>
-                  </td>
-                  <td>{{$nominaFederal420}}</td>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(102, 255, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">HON</span>
-                  </td>
-                  <td>{{$nominaHonorarios}}</td>
-                </tr>
+              <!-- FAM -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(178, 255, 102, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">FAM</span>
+              </td>
+              <td>{{ $nominaUmmFam }}</td>
+          </tr>
 
-                <tr>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(0, 204, 102, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">EVE</span>
-                  </td>
-                  <td>{{$nominaEventual}}</td>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 178, 102, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">ISSREEI</span>
-                  </td>
-                  <td>{{$nominaIssreei}}</td>
-                </tr>
+          <!-- 3 -->
+          <tr>
+              <!-- FED -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 102, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">FED</span>
+              </td>
+              <td>{{ $nominaFederal420 }}</td>
 
-                <tr>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 153, 204, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">HOM</span>
-                  </td>
-                  <td>{{$nominaHomogado}}</td>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(178, 255, 102, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">FAM</span>
-                  </td>
-                  <td>{{$nominaUmmFam}}</td>
-                </tr>
+              <!-- FOR -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 159, 64, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">FOR</span>
+              </td>
+              <td>{{ $nominaFormalizadoUno }}</td>
 
-                <tr>
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 204, 102, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">BUR</span>
-                  </td>
-                  <td>{{$nominaBurocrata}}</td>
+              <!-- FOR 2 -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 205, 86, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">FOR 2</span>
+              </td>
+              <td>{{ $nominaFormalizadoDos }}</td>
+          </tr>
 
-                  <td>
-                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(102, 102, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">U013</span>
-                  </td>
-                  <td>{{$nominau013}}</td>
-                </tr>
-              </tbody>
-            </table>
+          <!-- 4 -->
+          <tr>
+              <!-- FOR 3 -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(75, 192, 192, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">FOR 3</span>
+              </td>
+              <td>{{ $nominaFormalizadoTres }}</td>
+
+              <!-- 610 -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(54, 162, 235, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">610</span>
+              </td>
+              <td>{{ $nominaPasanteServicioSocial }}</td>
+
+              <!-- HOM -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 153, 204, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">HOM</span>
+              </td>
+              <td>{{ $nominaHomogado }}</td>
+          </tr>
+
+          <!-- 5 -->
+          <tr>
+              <!-- HON -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(102, 255, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">HON</span>
+              </td>
+              <td>{{ $nominaHonorarios }}</td>
+
+              <!-- IB -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(102, 204, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">IB</span>
+              </td>
+              <td>{{ $nominaImssBienestar }}</td>
+
+              <!-- ISSREEI -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 178, 102, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">ISSREEI</span>
+              </td>
+              <td>{{ $nominaIssreei }}</td>
+          </tr>
+
+          <!-- 6 -->
+          <tr>
+              <!-- PASANTE SP -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 102, 102, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">PASANTE SP</span>
+              </td>
+              <td>{{ $nominaPasanteSinPago }}</td>
+
+              <!-- RAMO 12 -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(153, 255, 204, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">RAMO 12</span>
+              </td>
+              <td>{{ $nominaRamoDoce }}</td>
+
+              <!-- REG -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 99, 132, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">REG</span>
+              </td>
+              <td>{{ $nominaRegularizado }}</td>
+          </tr>
+
+          <!-- 7 -->
+          <tr>
+              <!-- SNSP -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(0, 102, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">SNSP</span>
+              </td>
+              <td>{{ $nominaSNSP }}</td>
+
+              <!-- TAMIZ -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 87, 51, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">TAMIZ</span>
+              </td>
+              <td>{{ $nominaTamiz }}</td>
+
+              <!-- U013 -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(102, 102, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">U013</span>
+              </td>
+              <td>{{ $nominau013 }}</td>
+          </tr>
+
+          <!-- 8 -->
+          <tr>
+              <!-- UNE -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(204, 153, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">UNE</span>
+              </td>
+              <td>{{ $nominaUnemes }}</td>
+
+              <!-- UMM -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(178, 255, 102, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">UMM</span>
+              </td>
+              <td>{{ $nominaUmmFam }}</td>
+
+              <!-- TOTAL -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 255, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">TOTAL</span>
+              </td>
+              <td>{{ $nominaRegularizado + $nominaFormalizadoUno + $nominaFormalizadoDos + $nominaFormalizadoTres + $nominaPasanteServicioSocial + $nominaMedicoResidente + $nominaFederal420 + $nominaEventual + $nominaHomogado + $nominaBurocrata + $nominaImssBienestar + $nominaUnemes + $nominaDifPs + $nominaDifOc + $nominaRamoDoce + $nominaPasanteSinPago + $nominaHonorarios + $nominaIssreei + $nominaUmmFam + $nominau013 + $nominaAsimilados + $nominaSNSP + $nominaTamiz}}</td>
+          </tr>
+
+      </tbody>
+  </table>
+
 
 
           </div>
