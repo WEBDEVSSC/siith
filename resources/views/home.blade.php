@@ -445,16 +445,16 @@
                 <tr>
                   <td>
                     <span style="display:inline-block; width:12px; height:12px; background-color: rgba(153, 102, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
-                    <span style="font-weight: bold;">Otros</span>
+                    <span style="font-weight: bold;">Asimilados</span>
                   </td>
-                  <td>{{$contratoOtros}}</td>
+                  <td>{{$contratoAsimilados}}</td>
                 </tr>
                 <tr>
                   <td>
                     <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 255, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
                     <span style="font-weight: bold;">Total</span>
                   </td>
-                  <td>{{ $contratoConfianza + $contratoBase + $contratoEventual + $contratoHonorarios + $contratoBecas + $contratoOtros}}</td>
+                  <td>{{ $contratoConfianza + $contratoBase + $contratoEventual + $contratoHonorarios + $contratoBecas + $contratoAsimilados}}</td>
                 </tr>
               </tbody>
             </table>
@@ -1440,10 +1440,10 @@ auth()->user()->role === 'hospitalNino'
       var myDoughnutChart = new Chart(ctx, {
           type: 'pie',
           data: {
-              labels: ['CONFIANZA','BASE','EVENTUAL','HONORARIOS','BECAS','OTROS'],
+              labels: ['CONFIANZA','BASE','EVENTUAL','HONORARIOS','BECAS','ASIMILADOS'],
               datasets: [{
                   label: 'Número de votos',
-                  data: [{{$contratoConfianza}}, {{$contratoBase}}, {{$contratoEventual}}, {{$contratoHonorarios}}, {{$contratoBecas}}, {{$contratoOtros}}], 
+                  data: [{{$contratoConfianza}}, {{$contratoBase}}, {{$contratoEventual}}, {{$contratoHonorarios}}, {{$contratoBecas}}, {{$contratoAsimilados}}], 
               backgroundColor: [
                 'rgba(255, 99, 132, 0.6)',   // Rojo fresa
                 'rgba(255, 159, 64, 0.6)',   // Naranja vibrante

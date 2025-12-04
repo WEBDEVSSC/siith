@@ -195,7 +195,7 @@ class HomeController extends Controller
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
             ->count();
 
-        $contratoOtros = Profesional::whereRelation('puesto', 'tipo_contrato', 'OTROS')
+        $contratoAsimilados = Profesional::whereRelation('puesto', 'tipo_contrato', 'ASIMILADOS')
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
             ->count();
 
@@ -636,7 +636,7 @@ class HomeController extends Controller
             'contratoEventual',
             'contratoHonorarios',
             'contratoBecas',
-            'contratoOtros',
+            'contratoAsimilados',
 
             'edadMenor20',
             'edad20a29',
