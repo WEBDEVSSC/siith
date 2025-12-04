@@ -18,8 +18,8 @@
                 <th><strong>APELLIDO MATERNO</strong></th>
 
                 <th><strong>CLUES ADSCRIPCION</strong></th>
-                <th><strong>CLUES MUNICIPIO</strong></th>
-                <th><strong>CLUES JURISDICCION</strong></th>
+
+                <th><strong>NÓMINA PAGO</strong></th>
                 
                 <th><strong>OCUPACION</strong></th>
                 <th><strong>CODIGO DE PUESTO</strong></th>
@@ -87,10 +87,14 @@
                    
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}} 
            
-                    <td>{{ $profesional->puesto?->clues_adscripcion ?? '' }} - {{$profesional->puesto?->clues_adscripcion_nombre}}</td>
-                    <td>{{ $profesional->puesto?->clues_adscripcion_municipio ?? '' }}</td>
-                    <td>{{ $profesional->puesto?->clues_adscripcion_jurisdiccion ?? '' }}</td>
+                    <td>
+                        J{{$profesional->puesto->clues_adscripcion_jurisdiccion ?? ''}} - 
+                        {{ $profesional->puesto?->clues_adscripcion ?? '' }} - 
+                        {{$profesional->puesto?->clues_adscripcion_nombre}}
+                    </td>
                     
+                    <td>{{$profesional->puesto->nomina_pago ?? ''}}</td>
+
                     <td>{{ $profesional->puesto?->ocupacion ?? '' }}</td>
                     <td>{{ $profesional->puesto?->codigo ?? '' }} - {{ $profesional->puesto?->codigo_puesto ?? '' }}</td>
 
