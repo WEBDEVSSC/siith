@@ -174,7 +174,7 @@
   <div class="col-md-6">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title"><strong>Nómina de Pago</strong> {{ $nominaRegularizado + $nominaFormalizadoUno + $nominaFormalizadoDos + $nominaFormalizadoTres + $nominaPasanteServicioSocial + $nominaMedicoResidente + $nominaFederal420 + $nominaEventual + $nominaHomogado + $nominaBurocrata + $nominaImssBienestar + $nominaUnemes + $nominaDifPs + $nominaDifOc + $nominaRamoDoce + $nominaPasanteSinPago + $nominaHonorarios + $nominaIssreei + $nominaUmmFam + $nominau013 + $nominaAsimilados + $nominaSNSP}}</h3>
+        <h3 class="card-title"><strong>Nómina de Pago</strong> {{ $nominaRegularizado + $nominaFormalizadoUno + $nominaFormalizadoDos + $nominaFormalizadoTres + $nominaPasanteServicioSocial + $nominaMedicoResidente + $nominaFederal420 + $nominaEventual + $nominaHomogado + $nominaBurocrata + $nominaImssBienestar + $nominaUnemes + $nominaDifPs + $nominaDifOc + $nominaRamoDoce + $nominaPasanteSinPago + $nominaHonorarios + $nominaIssreei + $nominaUmmFam + $nominau013 + $nominaAsimilados + $nominaSNSP + $nominaTamiz}}</h3>
       </div>
       <div class="card-body">
 
@@ -230,7 +230,12 @@
                     <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 153, 153, 0.6); border-radius:3px; margin-right:6px;"></span>
                     <span style="font-weight: bold;">DIF PS</span>
                   </td>
-                  <td>{{$nominaDifPs}}</td>
+                  <td>{{$nominaDifPs}}</td>nominaTamiz
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255, 87, 51, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">TAMIZ</span>
+                  </td>
+                  <td>{{$nominaTamiz}}</td>
                 </tr>
 
                 <tr>
@@ -1325,6 +1330,7 @@ auth()->user()->role === 'hospitalNino'
                 'rgba(102, 102, 255, 0.6)', // U013
                 'rgba(0, 153, 153, 0.6)', // ASIMILADOS
                 'rgba(0, 102, 255, 0.6)', // SNSP
+                'rgba(255, 87, 51, 0.6)', // TAMIZ
 
               ],
               borderColor: [
@@ -1350,6 +1356,7 @@ auth()->user()->role === 'hospitalNino'
                 'rgba(102, 102, 255, 1)',
                 'rgba(0, 153, 153, 1)',
                 'rgba(0, 102, 255, 1)',
+                'rgba(255, 87, 51, 1)'
               ],
                   borderWidth: 1
               }]

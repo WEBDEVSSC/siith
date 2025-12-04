@@ -170,6 +170,10 @@ class HomeController extends Controller
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
             ->count();
 
+        $nominaTamiz = Profesional::whereRelation('puesto', 'nomina_pago', 'TAMIZ - FEDERAL')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
         // GRAFICA POR TIPO DE CONTRATO
         $contratoConfianza = Profesional::whereRelation('puesto', 'tipo_contrato', 'CONFIANZA')
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
@@ -625,6 +629,7 @@ class HomeController extends Controller
             'nominau013',
             'nominaAsimilados',
             'nominaSNSP',
+            'nominaTamiz',
 
             'contratoConfianza',
             'contratoBase',
