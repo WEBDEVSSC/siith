@@ -3,6 +3,7 @@
 use App\Http\Controllers\AvisoController;
 use App\Http\Controllers\CatalogoCentroDeSaludUrbanoYRuralController;
 use App\Http\Controllers\CatalogoCluesController;
+use App\Http\Controllers\CatalogoCodigosPuestoController;
 use App\Http\Controllers\CatalogoNominaDePagoController;
 use App\Http\Controllers\CatalogoOcupacionAlmacenController;
 use App\Http\Controllers\CatalogoOcupacionCeamController;
@@ -653,6 +654,29 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/clues/updateClues/{id}', [CatalogoCluesController::class,'updateClues'])->name('updateClues');
 
      Route::delete('admin/clues/deleteClues/{id}', [CatalogoCluesController::class, 'deleteClues'])->name('deleteClues');
+
+     /**
+     * 
+     * 
+     * MODULOS ADMINISRATIVOS
+     * CODIGOS DE NOMINA PANEL DE CONTROL
+     * 
+     * 
+     */
+
+     Route::get('admin/clues/indexCodigos', [CatalogoCodigosPuestoController::class,'indexCodigos'])->name('indexCodigos');
+
+     Route::get('admin/clues/showCodigos/{id}', [CatalogoCodigosPuestoController::class,'showCodigos'])->name('showCodigos');
+
+     Route::get('admin/clues/createCodigos', [CatalogoCodigosPuestoController::class,'createCodigos'])->name('createCodigos');
+
+     Route::post('admin/clues/storeCodigos', [CatalogoCodigosPuestoController::class,'storeCodigos'])->name('storeCodigos');
+
+     Route::get('admin/clues/editCodigos/{id}', [CatalogoCodigosPuestoController::class,'editCodigos'])->name('editCodigos');
+
+     Route::put('admin/clues/updateCodigos/{id}', [CatalogoCodigosPuestoController::class,'updateCodigos'])->name('updateCodigos');
+
+     Route::delete('admin/clues/deleteCodigos/{id}', [CatalogoCodigosPuestoController::class, 'deleteCodigos'])->name('deleteCodigos');
 
      /**
      * 
