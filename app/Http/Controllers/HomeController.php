@@ -166,7 +166,7 @@ class HomeController extends Controller
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
             ->count();
         
-        $nominaSNSP = Profesional::whereRelation('puesto', 'nomina_pago', 'PAGO - SNSP')
+        $nominaSNSP = Profesional::whereRelation('puesto', 'nomina_pago', 'SNSP')
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
             ->count();
 
