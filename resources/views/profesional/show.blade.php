@@ -1433,7 +1433,7 @@
                                 <td>{{ $cambio->fecha_final ? \Carbon\Carbon::parse($cambio->fecha_final)->format('d/m/Y') : '' }}</td>
                                 <td>
                                     @if ($cambio->documento_respaldo)
-                                        <a href="{{ route('descargar.documento', $cambio->id) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file"></i></a>
+                                        <a href="{{ Storage::url('cambio-unidad/'.$cambio->documento_respaldo) }}" target="_blank" class="btn btn-info btn-sm"><i class="fa-solid fa-file"></i></a>
                                     @else
                                         <a href="{{ route('documentoRespaldoCreate', $cambio->id) }}" class="btn btn-warning btn-sm"><i class="fa-solid fa-file-import"></i></a>
                                     @endif

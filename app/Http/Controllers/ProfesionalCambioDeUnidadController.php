@@ -155,7 +155,7 @@ class ProfesionalCambioDeUnidadController extends Controller
             'clues' => 'required',
             'documento_respaldo' => 'nullable|mimes:pdf|max:5120',
             'fecha_inicio' => 'required|date_format:Y-m-d',
-            'fecha_termino' => 'required_if:tipo_movimiento,2|nullable|date_format:Y-m-d|after:fecha_inicio',
+            'fecha_termino' => 'required_if:tipo_movimiento,2,4|nullable|date_format:Y-m-d|after:fecha_inicio',
         ], [
             'id_profesional.required'       => 'El profesional es obligatorio.',
             'clues.required'                => 'La unidad de destino es obligatoria.',
@@ -230,6 +230,9 @@ class ProfesionalCambioDeUnidadController extends Controller
             case 3:
                 $tipoMovimiento = "MOVIMIENTO ESCALAFONARIO";
                 break;
+            case 4:
+                $tipoMovimiento = "PERSONAL EN FORMACION";
+                break;
             default:
                 $tipoMovimiento = null;
                 break;
@@ -250,13 +253,16 @@ class ProfesionalCambioDeUnidadController extends Controller
                 case 3:
                     $archivoNombre = $profesional->curp . '_ME_' . $timestamp . '.' . $extension;
                     break;
+                case 4:
+                    $archivoNombre = $profesional->curp . '_PEF_' . $timestamp . '.' . $extension;
+                    break;
             }
 
-            // Guardar archivo
-            $archivoPath = $request->documento_respaldo->storeAs('cambio-unidad', $archivoNombre, 'local');
-        }
+            $request->documento_respaldo->storeAs('cambio-unidad', $archivoNombre, 'public');
 
-        
+            // Guardar archivo
+            //$archivoPath = $request->documento_respaldo->storeAs('cambio-unidad', $archivoNombre, 'public');
+        }
 
         // Generamos un uevo objeto para almacenar los datos
 
@@ -265,17 +271,17 @@ class ProfesionalCambioDeUnidadController extends Controller
         $cambioDeUnidad->id_profesional = $request->id_profesional;
         $cambioDeUnidad->tipo_movimiento_id = $request->tipo_movimiento;
         $cambioDeUnidad->tipo_movimiento = $tipoMovimiento;
-        $cambioDeUnidad->documento_respaldo = $archivoPath;
+        $cambioDeUnidad->documento_respaldo = $archivoNombre;
         $cambioDeUnidad->fecha_inicio = $request->fecha_inicio;
         $cambioDeUnidad->fecha_final = $request->fecha_termino;
 
         $cambioDeUnidad->unidad_origen_clues = $cluesAnterior->clues;
         $cambioDeUnidad->unidad_origen_nombre = $cluesAnterior->nombre;
-        $cambioDeUnidad->unidad_origen_jurisdiccion = $cluesAnterior->jurisdiccion;
+        $cambioDeUnidad->unidad_origen_jurisdiccion = $cluesAnterior->clave_jurisdiccion;
 
         $cambioDeUnidad->unidad_destino_clues = $clues->clues;
         $cambioDeUnidad->unidad_destino_nombre = $clues->nombre;
-        $cambioDeUnidad->unidad_destino_jurisdiccion = $clues->jurisdiccion;
+        $cambioDeUnidad->unidad_destino_jurisdiccion = $clues->clave_jurisdiccion;
 
         $cambioDeUnidad->save();
 
@@ -347,7 +353,7 @@ class ProfesionalCambioDeUnidadController extends Controller
 
     }
 
-    public function descargar($id)
+    /*public function descargar($id)
     {
         $cambio = ProfesionalCambioDeUnidad::findOrFail($id);
         $path = $cambio->documento_respaldo;
@@ -363,7 +369,7 @@ class ProfesionalCambioDeUnidadController extends Controller
         }
 
         abort(404, 'Archivo no encontrado');
-    }
+    }*/
 
     public function documentoRespaldoCreate($id)
     {
@@ -414,13 +420,18 @@ class ProfesionalCambioDeUnidadController extends Controller
                 case 3:
                     $archivoNombre = $profesional->curp . '_ME_' . $timestamp . '.' . $extension;
                     break;
+                case 4:
+                    $archivoNombre = $profesional->curp . '_PEF_' . $timestamp . '.' . $extension;
+                    break;
             }
 
+        $request->documento_respaldo->storeAs('cambio-unidad', $archivoNombre, 'public');
+
         // Guardar archivo
-        $archivoPath = $request->documento_respaldo->storeAs('cambio-unidad', $archivoNombre, 'local');
+        //$archivoPath = $request->documento_respaldo->storeAs('cambio-unidad', $archivoNombre, 'local');
 
         // Asignamos los valores al registro
-        $cambio->documento_respaldo = $archivoPath;
+        $cambio->documento_respaldo = $archivoNombre;
         
         // Guardamos el registro
         $cambio->save();

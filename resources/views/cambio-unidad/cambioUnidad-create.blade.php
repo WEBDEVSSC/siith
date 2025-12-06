@@ -76,6 +76,7 @@
                                 <option value="1" {{ old('tipo_movimiento') == '1' ? 'selected' : '' }}>Regresa a su unidad de origen</option>
                                 <option value="2" {{ old('tipo_movimiento') == '2' ? 'selected' : '' }}>Comisionado a la unidad</option>
                                 <option value="3" {{ old('tipo_movimiento') == '3' ? 'selected' : '' }}>Movimiento escalafonario</option>
+                                <option value="4" {{ old('tipo_movimiento') == '3' ? 'selected' : '' }}>Personal en formación</option>
                             </select>
 
                             @error('tipo_movimiento')
@@ -182,6 +183,31 @@
     </script>  
 
     <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tipoMovimiento = document.getElementById('tipo_movimiento');
+        const fechaTermino = document.getElementById('fecha_termino');
+
+        // Valores que deben activar el campo
+        const activarValores = ["2", "4"];
+
+        function toggleFechaTermino() {
+            if (activarValores.includes(tipoMovimiento.value)) {
+                fechaTermino.removeAttribute('disabled');
+            } else {
+                fechaTermino.setAttribute('disabled', 'disabled');
+                fechaTermino.value = ""; // limpiar si no corresponde
+            }
+        }
+
+        // Ejecutar al iniciar (por si old() trae valor)
+        toggleFechaTermino();
+
+        // Ejecutar al cambiar el select
+        tipoMovimiento.addEventListener('change', toggleFechaTermino);
+    });
+    </script>
+
+    <!-- <script>
     document.addEventListener('DOMContentLoaded', function () {
         const tipoMovimiento = document.getElementById('tipo_movimiento');
         const fechaTermino = document.getElementById('fecha_termino');
@@ -201,6 +227,8 @@
         // Ejecutar cuando cambie el select
         tipoMovimiento.addEventListener('change', toggleFechaTermino);
     });
-    </script>
+    </script> -->
+
+   
 
 @stop
