@@ -188,8 +188,9 @@ class ProfesionalController extends Controller
     {
         // Validación para CURP
         $request->validate([
-            'curp' => 'required|regex:/^[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{2}$/',
-            'curp_confirma' => 'required|same:curp|regex:/^[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{2}$/',
+          //'curp' => 'required|regex:/^[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{2}$/',
+            'curp' => 'required|regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[A-Z0-9][0-9]$/',
+            'curp_confirma' => 'required|same:curp|regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[A-Z0-9][0-9]$/',
         ], [
             'curp.required' => 'La CURP es obligatoria.',
             'curp.regex' => 'La CURP debe tener un formato válido.',
