@@ -1336,22 +1336,27 @@ class ProfesionalController extends Controller
      * METODO PARA MOSTRAR EL FORMULARIO DE EDICION DE DATOS GENERALES
      * 
      */
-
     public function profesionalEdit($id)
     {
         // Buscamos el registro por el ID
         $profesional = Profesional::findOrFail($id);
 
-        // Creamos el arreglo para los municipios select
+        //dd($profesional->entidad_nacimiento);
 
-        $municipioRelacion = Municipio::where('nombre',$profesional->municipio_nacimiento)->first();
+        if($profesional->municipio_nacimiento == '')
+        {
+            $entidad = Entidad::where('nombre',$profesional->entidad_nacimiento)->first();
+            $municipios = Municipio::where('relacion',$entidad->id)->get();
+        }
+        else
+        {
+            $municipioRelacion = Municipio::where('nombre', $profesional->municipio_nacimiento)->first();
+            $municipios = Municipio::where('relacion', $municipioRelacion->relacion)->get();
+        }
 
-        $municipios = Municipio::where('relacion',$municipioRelacion->relacion)->get();
-
-        // Creamos el arreglo para los estados conyugales
+        // Estados conyugales
         $estadosConyuales = EstadoConyugal::all();
 
-        // Regresamos la vista con el arreglo
         return view('profesional.edit', compact('profesional','municipios','estadosConyuales'));
     }
 
