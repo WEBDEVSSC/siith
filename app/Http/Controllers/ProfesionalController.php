@@ -15,6 +15,7 @@ use App\Models\CodigoPuesto;
 use App\Models\Entidad;
 use App\Models\EstadoConyugal;
 use App\Models\Municipio;
+use App\Models\NominaPago;
 use App\Models\Profesional;
 use App\Models\ProfesionalBitacora;
 use App\Models\ProfesionalCambioTipoNomina;
@@ -36,6 +37,9 @@ use App\Models\ProfesionalOcupacionPsiParras;
 use App\Models\ProfesionalOcupacionSamuCrum;
 use App\Models\ProfesionalPuesto;
 use App\Models\ProfesionalVigencia;
+use App\Models\TipoContrato;
+use App\Models\Vigencia;
+use App\Models\VigenciaMotivo;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -1586,13 +1590,6 @@ class ProfesionalController extends Controller
         }
 
         // Cargamos los datos del MODULO CREDENCIALIZACION
-        //$credencializacion = $profesional->credencializacion;
-        //$fotografia = $credencializacion ? $credencializacion->fotografia : null;
-
-        // Generamos la URL de la fotografía
-        //$fotoUrl = $fotografia ? url('/foto/' . basename($fotografia)) : null;
-
-        // Cargamos los datos del MODULO CREDENCIALIZACION
         $credencializacion = $profesional->credencializacion;
         $fotografia = $credencializacion ? $credencializacion->fotografia : null;
 
@@ -1721,6 +1718,25 @@ class ProfesionalController extends Controller
         /** CONSULTAMOS TODOS LOS DOCUMENTO ANTERIORES DE COMISION */
         $comisionesHistoricos = ProfesionalComisionHistorico::where('id_profesional',$id)->get();
 
+        /***
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         */
+
+        $nominasDePago = NominaPago::all();
+
+        $tiposDeContrato = TipoContrato::all();
+
+        $vigencias = Vigencia::all();
+
+        $vigenciasMotivos = VigenciaMotivo::all();
+
         // Regresamos la vista con el arreglo
         return view('profesional.show', compact(
             'profesional',
@@ -1846,7 +1862,12 @@ class ProfesionalController extends Controller
 
             'clues',
 
-            'comisionesHistoricos'
+            'comisionesHistoricos',
+            'nominasDePago',
+            'tiposDeContrato',
+            'vigencias',
+            'vigenciasMotivos'
+
         ));
     }
 

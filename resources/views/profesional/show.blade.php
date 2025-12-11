@@ -1503,7 +1503,7 @@
   <div class="card mt-3">
     <div class="card-header">
         <i class="fa-solid fa-building-circle-arrow-right"></i>
-        <strong> CAMBIOS DE UNIDAD FORZOSO</strong>
+        <strong> CAMBIOS FORZOSOS</strong>
     </div>
 
     <form action="{{ route('cambioDeUnidadForzoso') }}" method="POST">
@@ -1545,6 +1545,74 @@
                 </div>
 
             </div>
+
+           {{-- --}}
+           <div class="row mt-3">
+                
+            <div class="col-md-3">
+                    <p><strong>Nómina de Pago</strong></p>
+
+                    <select name="nomina_pago" id="nomina_pago" class="form-control">
+                        <option value="">Seleccione una nómina</option>
+
+                        @foreach($nominasDePago as $nominaDePago)
+                            <option value="{{ $nominaDePago->nomina }}"
+                                {{ old('nomina_pago', $profesional->puesto->nomina_pago ?? '') == $nominaDePago->nomina ? 'selected' : '' }}>
+                                {{ $nominaDePago->nomina }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <p><strong>Tipo de Contrato</strong></p>
+
+                    <select name="tipo_contrato" id="tipo_contrato" class="form-control">
+                        <option value="">Seleccione una nómina</option>
+
+                        @foreach($tiposDeContrato as $tipoDeContrato)
+                            <option value="{{ $tipoDeContrato->tipo_contrato }}"
+                                {{ old('tipo_contrato', $profesional->puesto->tipo_contrato ?? '') == $tipoDeContrato->tipo_contrato ? 'selected' : '' }}>
+                                {{ $tipoDeContrato->tipo_contrato }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-3">
+                    <p><strong>Fecha de ingreso</strong></p>
+                    <input type="date" class="form-control" name="fecha_ingreso" id="fecha_ingreso" value={{ old('fecha_ingreso',$profesional->puesto->fecha_ingreso)}}>                        
+                </div>
+
+            </div>
+            {{--
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <p><strong>Vigencia</strong></p>
+
+                    <select name="vigencia" id="tipo_contrato" class="form-control">
+                        <option value="">Seleccione una nómina</option>
+
+                        @foreach($vigencias as $vigencia)
+                            <option value="{{ $vigencia->vigencia }}"
+                                {{ old('vigencia', $profesional->puesto->vigencia ?? '') == $vigencia->vigencia ? 'selected' : '' }}>
+                                {{ $vigencia->vigencia }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <p><strong>Motivo</strong></p>
+                    <select name="vigencia_motivo" id="vigencia_motivo" class="form-control">
+                        <option value="">Seleccione un motivo</option>
+                    </select>
+                    @error('vigencia_motivo')
+                    <br><div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            --}}
         </div>
 
         <div class="card-footer">
@@ -1636,6 +1704,41 @@
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <!-- Bootstrap JS (si no lo tienes) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    $(document).ready(function(){
+    let vigenciaSeleccionada = $('#vigencia').val();
+    let motivoSeleccionado = "{{ old('vigencia_motivo', $profesional->vigencia_motivo) }}";
+    let tipoNomina = "{{ $profesional->puesto->nomina_pago }}"; // Tipo de nómina
+
+    function cargarMotivos(vigencia, motivoSeleccionado = null) {
+        $('#vigencia_motivo').empty().append('<option value="">Seleccione un motivo</option>');
+
+        if(vigencia) {
+            $.ajax({
+                url: `/vigencias-motivos/${vigencia}`,
+                type: 'GET',
+                data: { nomina: tipoNomina },
+                success: function(response) {
+                    $.each(response, function(index, motivo){
+                        let selected = (motivoSeleccionado && motivoSeleccionado == motivo) ? 'selected' : '';
+                        $('#vigencia_motivo').append(`<option value="${motivo}" ${selected}>${motivo}</option>`);
+                    });
+                }
+            });
+        }
+    }
+
+    if (vigenciaSeleccionada) {
+        cargarMotivos(vigenciaSeleccionada, motivoSeleccionado);
+    }
+
+    $('#vigencia').change(function(){
+        let nuevaVigencia = $(this).val();
+        cargarMotivos(nuevaVigencia);
+    });
+});
+</script>
 
     <script>
         $(document).ready(function() {

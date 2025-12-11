@@ -8,10 +8,12 @@ use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
+    
     public function boot(): void
     {
         // Ajuste para el campo de correo en la tabla users
         Schema::defaultStringLength(191);
+        
 
         //------------------------------------------------//
         //               ROLES Y PERMISOS                 //

@@ -341,8 +341,6 @@ Route::middleware(['auth'])->group(function ()
 
     Route::get('/contratos-por-nomina/{nomina}', [ProfesionalCambioTipoNominaController::class, 'getContratosPorNomina']);
 
-
-
      /**
      * 
      * 

@@ -446,6 +446,9 @@ class ProfesionalCambioDeUnidadController extends Controller
             'id_profesional' => 'required',
             'clues_nomina' => 'required',
             'clues_adscripcion' => 'required',
+            'nomina_pago' => 'required',
+            'tipo_contrato' => 'required',
+            'fecha_ingreso' => 'required|date_format:Y-m-d',
         ],[]);
 
         // Consultamos los datos de las CLUES
@@ -468,6 +471,10 @@ class ProfesionalCambioDeUnidadController extends Controller
         $puesto->clues_adscripcion_municipio = $cluesAdscripcion->municipio;
         $puesto->clues_adscripcion_jurisdiccion = $cluesAdscripcion->jurisdiccion;
         $puesto->clues_adscripcion_tipo = $cluesAdscripcion->clave_establecimiento;
+
+        $puesto->nomina_pago = $request->nomina_pago;
+        $puesto->tipo_contrato = $request->tipo_contrato;
+        $puesto->fecha_ingreso = $request->fecha_ingreso;
 
         $puesto->save();
 

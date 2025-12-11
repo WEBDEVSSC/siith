@@ -14,14 +14,6 @@ use Illuminate\Support\Facades\Auth;
 class ProfesionalVigenciaController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
     public function createVigencia($id)
@@ -121,5 +113,48 @@ class ProfesionalVigenciaController extends Controller
 
         // Retornar o redirigir a donde lo necesites, por ejemplo:
         return redirect()->route('profesionalShow', $request->id_profesional)->with('success', 'Vigencia actualizada correctamente.');
+    }
+
+    public function editVigencia($id)
+    {
+        // Buscamos el registro
+        $profesionalVigencia = ProfesionalVigencia::findOrFail($id);
+
+        // Buscamos al profesional
+        $profesional = Profesional::where('id',$profesionalVigencia->id_profesional)->first();
+
+        // Llenamos los select
+        $vigencias = Vigencia::all();
+
+        // Regresamos la vista con el objeto
+        return view('vigencia.edit', compact('id','profesionalVigencia','profesional','vigencias'));
+
+    }
+
+    public function updateVigencia(Request $request, $id)
+    {
+        // Validamos los datos
+        $request->validate([
+            'vigencia'=>'required',
+            'vigencia_motivo'=>'required',
+            'fecha_inicio'=>'required',
+            'fecha_termino'=>'nullable',
+        ],[
+
+        ]);
+
+        // Buscamos el registro a editar
+        $profesionalVigencia = ProfesionalVigencia::findOrFail($id);
+
+        // Asignamos los valores
+        $profesionalVigencia->vigencia = $request->vigencia;
+        $profesionalVigencia->vigencia_motivo = $request->vigencia_motivo;
+        $profesionalVigencia->fecha_inicio = $request->fecha_inicio;
+        $profesionalVigencia->fecha_final = $request->fecha_termino;
+
+        $profesionalVigencia->save();
+
+        // Retornar o redirigir a donde lo necesites, por ejemplo:
+        return redirect()->route('profesionalShow', $profesionalVigencia->id_profesional)->with('success', 'Vigencia actualizada correctamente.');
     }
 }
