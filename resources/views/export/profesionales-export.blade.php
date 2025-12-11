@@ -801,48 +801,6 @@
                     <td>{{ $profesional->sueldo->estimulos ?? '' }}</td>
                     <td>{{ $profesional->sueldo->total ?? '' }}</td>
 
-                    {{-- EMERGENCIAS --}}
-
-                    <td>{{ $profesional->emergencia->tipo_sangre ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->tipo_alergia ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->alergia_descripcion ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->enfermedad ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->tratamiento ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->medicamentos ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->medico_nombre ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->medico_telefono ?? '' }}</td>
-
-                    <td>{{ $profesional->emergencia->emergencia_nombre_uno ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_relacion_uno ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_telefono_uno_uno ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_telefono_dos_uno ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_email_uno ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_calle_uno ?? '' }} {{ $profesional->emergencia->emergencia_numero_uno ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_colonia_uno ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_codigo_postal_uno ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_municipio_label_uno ?? '' }}</td>
-
-                    <td>{{ $profesional->emergencia->emergencia_nombre_dos ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_relacion_dos ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_telefono_uno_dos ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_telefono_dos_dos ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_email_dos ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_calle_dos ?? '' }} {{ $profesional->emergencia->emergencia_numero_dos ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_colonia_dos ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_codigo_postal_dos ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_municipio_label_dos ?? '' }}</td>
-
-                    <td>{{ $profesional->emergencia->emergencia_nombre_tres ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_relacion_tres ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_telefono_uno_tres ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_telefono_dos_tres ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_email_tres ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_calle_tres ?? '' }} {{ $profesional->emergencia->emergencia_numero_tres ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_colonia_tres ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_codigo_postal_tres ?? '' }}</td>
-                    <td>{{ $profesional->emergencia->emergencia_municipio_label_tres ?? '' }}</td>
-
-
                 </tr>
             @endforeach
         </tbody>
