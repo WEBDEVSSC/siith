@@ -59,11 +59,6 @@ class ProfesionalExport implements FromView, WithStyles, WithColumnFormatting
             {
                 $query->where('clues_adscripcion_jurisdiccion', $user->jurisdiccion_unidad);
             }
-            // Catalogo 4 - CRI CREE
-            elseif ($user->role == 'ofJurisdiccional') 
-            {
-                $query->where('clues_adscripcion_jurisdiccion', $user->jurisdiccion_unidad);
-            }
             // Catalogo 6 - Oficina Central
             elseif ($user->role == 'ofCentral') 
             {
@@ -94,6 +89,17 @@ class ProfesionalExport implements FromView, WithStyles, WithColumnFormatting
                 $query->whereHas('profesional.puesto', function ($q) {
                     $q->whereIn('clues_adscripcion', ['CLSSA009989','CLSSA009988','CLSSA009987','CLSSA009986','CLSSA009985']);
                 });
+            }
+            elseif($user->role == 'samuCrum')
+            {
+                $query->whereHas('profesional.puesto', function ($q) {
+                    $q->whereIn('clues_adscripcion', ['CLSSA009997','CLSSA009996','CLSSA009995','CLSSA009994','CLSSA009993','CLSSA009992','CLSSA009991','CLSSA009990','CLSSA002093-SC']);
+                });
+            }
+            else 
+            {
+                // No mostrar nada
+                $query->whereRaw('1 = 0');
             }
         });
 
