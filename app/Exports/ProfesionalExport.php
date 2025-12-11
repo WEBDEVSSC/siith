@@ -89,6 +89,12 @@ class ProfesionalExport implements FromView, WithStyles, WithColumnFormatting
             {
                 $query->where('clues_adscripcion', 'CLHUN000015');
             }
+            elseif ($user->role == 'criCree') 
+            {
+                $query->whereHas('profesional.puesto', function ($q) {
+                    $q->whereIn('clues_adscripcion', ['CLSSA009989','CLSSA009988','CLSSA009987','CLSSA009986','CLSSA009985']);
+                });
+            }
         });
 
         $profesionales = $profesionalesQuery->get();
