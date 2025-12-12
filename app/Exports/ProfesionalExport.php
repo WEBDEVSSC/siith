@@ -99,14 +99,34 @@ class ProfesionalExport implements FromView, WithStyles, WithColumnFormatting
                     $q->whereIn('clues_adscripcion', ['CLSSA009997','CLSSA009996','CLSSA009995','CLSSA009994','CLSSA009993','CLSSA009992','CLSSA009991','CLSSA009990','CLSSA002093-SC']);
                 });
             }
-
-            // SI ES DISTINTO A ADMIN VA A MISTRAR CERO
+            elseif ($user->role == 'psiParras') 
+            {
+                $query->where('clues_adscripcion', 'CLSSA000832');
+            }
+            elseif ($user->role == 'cets') 
+            {
+                $query->where('clues_adscripcion', 'CLSSA002076');
+            }
+            elseif ($user->role == 'lesp') 
+            {
+                $query->where('clues_adscripcion', 'CLSSA002052');
+            }
+            elseif ($user->role == 'cesame') 
+            {
+                $query->where('clues_adscripcion', 'CLSSA001141');
+            }
+            elseif ($user->role == 'ceam') 
+            {
+                $query->where('clues_adscripcion', 'CLSSA002192');
+            }
+            elseif ($user->role == 'hospitalNino') 
+            {
+                $query->where('clues_adscripcion', 'CLSSA001136');
+            }
             elseif ($user->role !== 'admin') {
 
                 $query->whereRaw('1 = 0'); 
             }
-            
-            // SI ES ADMIN LO DEJAMOS EN BLANCO PARA QUE MUESTRE TODOS
             else 
             {
                 
