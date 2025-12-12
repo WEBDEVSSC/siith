@@ -314,6 +314,13 @@ return [
             'label_color' => 'success',
             'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei', 'ensenanza', 'universitario','riesgos','prestaciones','eventual'],
         ],
+        [
+            'text' => 'Mis Centros',
+            'url' => 'admin/profesionales/miJurisdiccion',
+            'icon' => 'fa-solid fa-building-user',
+            'label_color' => 'success',
+            'can' => 'ofJurisdiccional',
+        ],
 
         [
             'text' => 'Cambio de Unidad',
@@ -349,13 +356,7 @@ return [
 
         
 
-        [
-            'text' => 'Mis Centros',
-            'url' => 'admin/profesionales/miJurisdiccion',
-            'icon' => 'fa-solid fa-building-user',
-            'label_color' => 'success',
-            'can' => 'ofJurisdiccional',
-        ],
+        
 
         
 
