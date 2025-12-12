@@ -50,6 +50,11 @@ class ProfesionalExport implements FromView, WithStyles, WithColumnFormatting
             // Agregamos el filtro por rol
 
             // Catalogo 2 - Hospitales
+            if ($user->role == 'admin') 
+            {
+                //$query->where('clues_adscripcion', $user->clues_unidad);
+            }
+            // Catalogo 2 - Hospitales
             if ($user->role == 'hospital') 
             {
                 $query->where('clues_adscripcion', $user->clues_unidad);
