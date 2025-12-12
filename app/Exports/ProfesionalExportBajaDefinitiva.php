@@ -112,6 +112,10 @@ class ProfesionalExportBajaDefinitiva implements FromView, WithStyles
             {
                 $query->where('clues_adscripcion', 'CLSSA001136');
             }
+            elseif ($user->role == 'csuyr') 
+            {
+                $query->where('clues_adscripcion', $user->clues_unidad);
+            }
             elseif ($user->role !== 'admin') {
 
                 $query->whereRaw('1 = 0'); 
