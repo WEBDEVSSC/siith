@@ -2384,7 +2384,6 @@ class ProfesionalController extends Controller
     public function updateDatosGeneralesEnsenanza(Request $request, $id)
     {        
         
-
         $request->validate([
             'homoclave'             => 'required|string|max:3',
             'nombre'                => 'required|string|max:100|regex:/^[A-Za-zÁÉÍÓÚÑáéíóú\s]+$/',
@@ -2419,7 +2418,7 @@ class ProfesionalController extends Controller
             'apellido_paterno'      => 'apellido paterno',
             'apellido_materno'      => 'apellido materno',
             'municipio_nacimiento'  => 'municipio de nacimiento',
-            'estado_civil'          => 'estado civil',
+            'estado_conyugal'       => 'estado civil',
             'telefono_casa'         => 'teléfono de casa',
             'celular'               => 'teléfono celular',
             'padre_madre_familia'   => 'padre/madre de familia',
@@ -2433,6 +2432,67 @@ class ProfesionalController extends Controller
 
        // Consultamos el codigo de puesto
        $codigoPuesto = CodigoPuesto::findOrFail($request->codigo_puesto);
+
+       // Cargamos el usuario logeado
+       $usuario = Auth::user();
+
+       //dd($request->ocupacion);
+
+       // Buscamos el registro a editar
+       $profesional = Profesional::findOrFail($id);
+
+       // Asignamos los campos para el modulo de Datos Generales
+       $profesional->homoclave = $request->homoclave;
+       $profesional->nombre = $request->nombre;
+       $profesional->apellido_paterno = $request->apellido_paterno;
+       $profesional->apellido_materno = $request->apellido_materno;
+       $profesional->municipio_nacimiento = $request->municipio_nacimiento;
+       $profesional->estado_conyugal = $request->estado_conyugal;
+       $profesional->telefono_casa = $request->telefono_casa;
+       $profesional->celular = $request->celular;
+       $profesional->email = $request->email;
+       $profesional->padre_madre_familia = $request->padre_madre_familia;
+
+       $profesional->save();
+
+       // Asignamos los datos para el modulo de PUESTO
+       $puesto = ProfesionalPuesto::where('id_profesional',$id)->first();
+
+       $puesto->nomina_pago = $request->tipo_nomina;
+       $puesto->codigo_puesto_id = $request->codigo_puesto;
+       $puesto->codigo_puesto = $codigoPuesto->codigo_puesto;
+       $puesto->codigo = $codigoPuesto->codigo;
+       $puesto->grupo = $codigoPuesto->grupo;
+       $puesto->mdl_puesto = 1;
+
+       $puesto->save();
+
+       // Asignamos los datos para el modulo de Cartera de Servicios / Ocupacion
+       $universitario = ProfesionalOcupacionEnsenanza::where('id_profesional', $id)->first();
+
+       $universitario->id_catalogo = $request->ocupacion;
+       $universitario->unidad = $ocupacion->unidad;
+       $universitario->area = $ocupacion->area;
+       $universitario->subarea = $ocupacion->subarea;
+       $universitario->ocupacion = $ocupacion->ocupacion;
+       $universitario->mdl_status = 1;
+
+       $universitario->save();
+
+       // Creamos el registro en la bitacora
+       $bitacora = new ProfesionalBitacora();
+
+       $bitacora->id_capturista = $usuario->id;
+       $bitacora->capturista_label = $usuario->responsable;
+       $bitacora->accion = "EDICION DEL MODULO DE ENSENANZA PASANTES";
+       $bitacora->id_profesional = $profesional->id;
+
+       $bitacora->save();
+
+       // Redireccionamos
+       return redirect()->route('profesionalShow', $id)->with('success', 'Registro editado correctamente.');
+
+
     }
 
 }

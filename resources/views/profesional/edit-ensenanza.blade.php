@@ -209,12 +209,12 @@
                     <div class="col-md-3">
                         <p><strong>Tipo de Nómina</strong></p>
                         <select name="tipo_nomina" id="tipo_nomina" class="form-control">
-                             <option value="6MR"
+                             <option value="6MR - Médico Residente"
                                 {{ old('tipo_nomina', $profesional->puesto->tipo_nomina) == '6MR' ? 'selected' : '' }}>
                                 6MR - Médico Residente
                             </option>
 
-                            <option value="610"
+                            <option value="610 - Pasante en Servicio Social"
                                 {{ old('tipo_nomina', $profesional->puesto->tipo_nomina) == '610' ? 'selected' : '' }}>
                                 610 - Pasante en Servicio Social
                             </option>
@@ -237,7 +237,7 @@
                             <option value="">-- Selecciona una opción --</option>
                             @foreach($ocupaciones as $ocup)
                                 <option value="{{ $ocup->id }}"
-                                    {{ old('ocupacion', $profesional->ocupacionEnsenanza->id) == $ocup->id ? 'selected' : '' }}>
+                                    {{ old('ocupacion', $profesional->ocupacionEnsenanza->id_catalogo) == $ocup->id ? 'selected' : '' }}>
                                     {{ $ocup->unidad }} - {{ $ocup->area }} - {{ $ocup->subarea }} - {{ $ocup->ocupacion }}
                                 </option>
                             @endforeach

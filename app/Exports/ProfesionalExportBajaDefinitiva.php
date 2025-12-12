@@ -85,6 +85,11 @@ class ProfesionalExportBajaDefinitiva implements FromView, WithStyles
                     $q->whereIn('clues_adscripcion', ['CLSSA009997','CLSSA009996','CLSSA009995','CLSSA009994','CLSSA009993','CLSSA009992','CLSSA009991','CLSSA009990','CLSSA002093-SC']);
                 });
             }
+            else 
+            {
+                // No mostrar nada
+                $query->whereRaw('1 = 0');
+            }
         });
 
         $profesionales = $profesionalesQuery->get();

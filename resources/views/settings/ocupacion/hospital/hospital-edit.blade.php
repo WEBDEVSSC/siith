@@ -57,6 +57,16 @@
                 </div>
             </div>
 
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <p>Orden</p>
+                    <input type="text" name="orden" id="orden" class="form-control" value="{{ old('orden', $ocupacion->orden) }}">
+                    @error('orden')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+
         </div>
         <div class="card-footer">
 

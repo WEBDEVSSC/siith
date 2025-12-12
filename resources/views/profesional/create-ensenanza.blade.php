@@ -222,8 +222,8 @@
                         <p><strong>Tipo de Nómina</strong></p>
                         <select name="tipo_nomina" id="tipo_nomina" class="form-control">
                             <option value="">-- Selecciona una opción --</option>
-                            <option value="6MR">6MR - Médico Residente</option>
-                            <option value="610">610 - Pasante en Servicio Social</option>
+                            <option value="6MR - Médico Residente">6MR - Médico Residente</option>
+                            <option value="610 - Pasante en Servicio Social">610 - Pasante en Servicio Social</option>
                         </select>
 
                         @error('tipo_nomina')

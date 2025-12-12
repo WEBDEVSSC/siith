@@ -32,6 +32,7 @@ class CatalogoOcupacionHospitalController extends Controller
             'area' => 'required|string',
             'subarea' => 'required|string',
             'puesto' => 'required|string',
+            'orden' => 'required',
         ],[
             'unidad.required' => 'El campo unidad es obligatorio.',
             'unidad.string' => 'El campo unidad debe ser una cadena de texto.',
@@ -54,6 +55,7 @@ class CatalogoOcupacionHospitalController extends Controller
         $ocupacion->area = $request->area;
         $ocupacion->subarea = $request->subarea;
         $ocupacion->puesto = $request->puesto;
+        $ocupacion->orden = $request->orden;
 
         // Guardamos los valores
         $ocupacion->save();
@@ -79,6 +81,7 @@ class CatalogoOcupacionHospitalController extends Controller
             'area' => 'required|string',
             'subarea' => 'required|string',
             'puesto' => 'required|string',
+            'orden' => 'required',
         ],[
             'unidad.required' => 'El campo unidad es obligatorio.',
             'unidad.string' => 'El campo unidad debe ser una cadena de texto.',
@@ -101,6 +104,7 @@ class CatalogoOcupacionHospitalController extends Controller
         $ocupacion->area = $request->area;
         $ocupacion->subarea = $request->subarea;
         $ocupacion->puesto = $request->puesto;
+        $ocupacion->orden = $request->orden;
 
         // Guardamos los cambios
         $ocupacion->save();

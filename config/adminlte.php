@@ -308,7 +308,7 @@ return [
         ],
 
         [
-            'text' => 'Panel de Control',
+            'text' => 'Mi Unidad',
             'url' => 'admin/profesionales/profesionalIndex',
             'icon' => 'fa-solid fa-list',
             'label_color' => 'success',
@@ -350,7 +350,7 @@ return [
         
 
         [
-            'text' => 'Mi Jurisdicción',
+            'text' => 'Mis Centros',
             'url' => 'admin/profesionales/miJurisdiccion',
             'icon' => 'fa-solid fa-building-user',
             'label_color' => 'success',
