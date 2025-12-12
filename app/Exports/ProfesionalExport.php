@@ -50,11 +50,6 @@ class ProfesionalExport implements FromView, WithStyles, WithColumnFormatting
             // Agregamos el filtro por rol
 
             // Catalogo 2 - Hospitales
-            if ($user->role == 'admin') 
-            {
-                //$query->where('clues_adscripcion', $user->clues_unidad);
-            }
-            // Catalogo 2 - Hospitales
             if ($user->role == 'hospital') 
             {
                 $query->where('clues_adscripcion', $user->clues_unidad);
@@ -67,7 +62,10 @@ class ProfesionalExport implements FromView, WithStyles, WithColumnFormatting
             // Catalogo 6 - Oficina Central
             elseif ($user->role == 'ofCentral') 
             {
-                $query->where('clues_adscripcion', 'CLSSA002093');
+                //$query->where('clues_adscripcion', 'CLSSA002093');
+                $query->whereHas('profesional.puesto', function ($q) {
+                    $q->whereIn('clues_adscripcion', ['CLSSA002093','CLSSA009997','CLSSA009996','CLSSA009995','CLSSA009994','CLSSA009993','CLSSA009992','CLSSA009991','CLSSA009990','CLSSA002093-SC']);
+                });
             }
             // Catalogo 7 - Almacen
             elseif ($user->role == 'almacen') 
@@ -101,11 +99,19 @@ class ProfesionalExport implements FromView, WithStyles, WithColumnFormatting
                     $q->whereIn('clues_adscripcion', ['CLSSA009997','CLSSA009996','CLSSA009995','CLSSA009994','CLSSA009993','CLSSA009992','CLSSA009991','CLSSA009990','CLSSA002093-SC']);
                 });
             }
+
+            // SI ES DISTINTO A ADMIN VA A MISTRAR CERO
+            elseif ($user->role !== 'admin') {
+
+                $query->whereRaw('1 = 0'); 
+            }
+            
+            // SI ES ADMIN LO DEJAMOS EN BLANCO PARA QUE MUESTRE TODOS
             else 
             {
-                // No mostrar nada
-                $query->whereRaw('1 = 0');
+                
             }
+            
         });
 
         $profesionales = $profesionalesQuery->get();
