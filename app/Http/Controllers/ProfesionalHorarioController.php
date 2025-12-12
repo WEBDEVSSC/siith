@@ -95,6 +95,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =NULL;
 
             $label_jornada = "Jornada Diurna (Matutina L-V)";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }
 
         // 2 -> JORNADA MIXTA VESPERTINO L - V
@@ -119,6 +176,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =NULL;
 
             $label_jornada = "Jornada Mixta (Vespertino L-V)";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }
 
         // 3 -> JORNADA ESPECIAL NOCTURNO A L - M - V
@@ -143,6 +257,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =NULL;
 
             $label_jornada = "Jornada Especial (Nocturno A LUN-MIE-VIE)";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }
 
         // 4 -> JORNADA ESPECIAL NOCTURNO B M - J - S
@@ -167,6 +338,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =NULL;
 
             $label_jornada = "Jornada Especial (Nocturno B MAR-JUE-SAB)";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }
 
         // 5 -> JORNADA ESPECIAL NOCTURNO C M - J - d
@@ -191,6 +419,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =NULL;
 
             $label_jornada = "Jornada Especial (Nocturno C MAR-JUE-DOM)";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }
 
         // 6 -> JORNADA ESPECIAL NOCTURNO D M - V - D
@@ -215,6 +500,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =NULL;
 
             $label_jornada = "Jornada Especial (Nocturno D MIE-VIE-DOM)";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }
 
         // 7 -> JORNADA ESPECIAL S - D - F
@@ -239,6 +581,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =$request->horario_salida;
 
             $label_jornada = "Jornada Especial (Acumulada Diurno S-D-F)";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }
 
          // 8 -> JORNADA ESPECIAL S - D - F
@@ -263,6 +662,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =$request->horario_salida;
 
             $label_jornada = "Jornada Especial (Acumulada Nocturno S-D-F)";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }   
 
         // JORNADA ESPECIAL
@@ -287,6 +743,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =$request->horario_salida;
 
             $label_jornada = "Jornada Especial";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }
 
         // ROLADOR
@@ -311,6 +824,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =$request->salida_festivo;
 
             $label_jornada = "Rolador";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }
 
         else
@@ -332,6 +902,9 @@ class ProfesionalHorarioController extends Controller
             $entrada_festivo = NULL;
             $salida_festivo = NULL;
 
+            $entrada_promedio =  NULL;
+            $salida_promedio =  NULL;
+
             $label_jornada = "ERROR - VALIDACION DE JORNADA";
         }
         
@@ -342,6 +915,9 @@ class ProfesionalHorarioController extends Controller
         $horario->id_profesional = $request->id_profesional;
         $horario->id_jornada = $request->jornada;
         $horario->jornada = $label_jornada;
+
+        $horario->entrada_promedio = $entrada_promedio;
+        $horario->salida_promedio = $salida_promedio;
 
         $horario->entrada_lunes = $entrada_lunes;
         $horario->salida_lunes = $salida_lunes;
@@ -366,76 +942,6 @@ class ProfesionalHorarioController extends Controller
 
         return redirect()->route('profesionalShow',$request->id_profesional)->with('successHorario', 'Registro realizado correctamente.');
 
-        /*
-        //Validamos los datos
-        $validated = $request->validate([
-            'id_profesional' => 'required',
-            'jornada' => 'required',
-            'entrada_lunes' => 'nullable|date_format:H:i',
-            'salida_lunes' => 'nullable|date_format:H:i',
-            'entrada_martes' => 'nullable|date_format:H:i',
-            'salida_martes' => 'nullable|date_format:H:i',
-            'entrada_miercoles' => 'nullable|date_format:H:i',
-            'salida_miercoles' => 'nullable|date_format:H:i',
-            'entrada_jueves' => 'nullable|date_format:H:i',
-            'salida_jueves' => 'nullable|date_format:H:i',
-            'entrada_viernes' => 'nullable|date_format:H:i',
-            'salida_viernes' => 'nullable|date_format:H:i',
-            'entrada_sabado' => 'nullable|date_format:H:i',
-            'salida_sabado' => 'nullable|date_format:H:i',
-            'entrada_domingo' => 'nullable|date_format:H:i',
-            'salida_domingo' => 'nullable|date_format:H:i',
-            'entrada_festivo' => 'nullable|date_format:H:i',
-            'salida_festivo' => 'nullable|date_format:H:i',
-        ],[
-            'id_profesional.required' => 'El campo "Profesional" es obligatorio.',
-            'jornada.required' => 'El campo "Jornada" es obligatorio.',
-            'entrada_lunes.date_format' => 'La hora de entrada del lunes debe estar en formato 24 horas (HH:MM).',
-            'salida_lunes.date_format' => 'La hora de salida del lunes debe estar en formato 24 horas (HH:MM).',
-            'entrada_martes.date_format' => 'La hora de entrada del martes debe estar en formato 24 horas (HH:MM).',
-            'salida_martes.date_format' => 'La hora de salida del martes debe estar en formato 24 horas (HH:MM).',
-            'entrada_miercoles.date_format' => 'La hora de entrada del miércoles debe estar en formato 24 horas (HH:MM).',
-            'salida_miercoles.date_format' => 'La hora de salida del miércoles debe estar en formato 24 horas (HH:MM).',
-            'entrada_jueves.date_format' => 'La hora de entrada del jueves debe estar en formato 24 horas (HH:MM).',
-            'salida_jueves.date_format' => 'La hora de salida del jueves debe estar en formato 24 horas (HH:MM).',
-            'entrada_viernes.date_format' => 'La hora de entrada del viernes debe estar en formato 24 horas (HH:MM).',
-            'salida_viernes.date_format' => 'La hora de salida del viernes debe estar en formato 24 horas (HH:MM).',
-            'entrada_sabado.date_format' => 'La hora de entrada del sábado debe estar en formato 24 horas (HH:MM).',
-            'salida_sabado.date_format' => 'La hora de salida del sábado debe estar en formato 24 horas (HH:MM).',
-            'entrada_domingo.date_format' => 'La hora de entrada del domingo debe estar en formato 24 horas (HH:MM).',
-            'salida_domingo.date_format' => 'La hora de salida del domingo debe estar en formato 24 horas (HH:MM).',
-            'entrada_festivo.date_format' => 'La hora de entrada del festivo debe estar en formato 24 horas (HH:MM).',
-            'salida_festivo.date_format' => 'La hora de salida del festivo debe estar en formato 24 horas (HH:MM).',
-        ]);
-
-        $horario_status = 1;
-
-        $horario = new ProfesionalHorario();
-
-        $horario->id_profesional = $request->id_profesional;
-        $horario->jornada = $request->jornada;
-        $horario->entrada_lunes = $request->entrada_lunes;
-        $horario->salida_lunes = $request->salida_lunes;
-        $horario->entrada_martes = $request->entrada_martes;
-        $horario->salida_martes = $request->salida_martes;
-        $horario->entrada_miercoles = $request->entrada_miercoles;
-        $horario->salida_miercoles = $request->salida_miercoles;
-        $horario->entrada_jueves = $request->entrada_jueves;
-        $horario->salida_jueves = $request->salida_jueves;
-        $horario->entrada_viernes = $request->entrada_viernes;
-        $horario->salida_viernes = $request->salida_viernes;
-        $horario->entrada_sabado = $request->entrada_sabado;
-        $horario->salida_sabado = $request->salida_sabado;
-        $horario->entrada_domingo = $request->entrada_domingo;
-        $horario->salida_domingo = $request->salida_domingo;
-        $horario->entrada_festivo = $request->entrada_festivo;
-        $horario->salida_festivo = $request->salida_festivo;
-        $horario->mdl_horario = $horario_status;
-
-        $horario -> save();
-
-        return redirect()->route('profesionalIndex')->with('successHorario', 'Registro realizado correctamente.');
-        */
     }
 
     public function editHorario($id)
@@ -524,6 +1030,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =NULL;
 
             $label_jornada = "Jornada Diurna (Matutina L-V)";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }
 
         // 2 -> JORNADA MIXTA VESPERTINO L - V
@@ -548,6 +1111,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =NULL;
 
             $label_jornada = "Jornada Mixta (Vespertino L-V)";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }
 
         // 3 -> JORNADA ESPECIAL NOCTURNO A L - M - V
@@ -572,6 +1192,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =NULL;
 
             $label_jornada = "Jornada Especial (Nocturno A LUN-MIE-VIE)";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }
 
         // 4 -> JORNADA ESPECIAL NOCTURNO B M - J - S
@@ -596,6 +1273,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =NULL;
 
             $label_jornada = "Jornada Especial (Nocturno B MAR-JUE-SAB)";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }
 
         // 5 -> JORNADA ESPECIAL NOCTURNO C M - J - d
@@ -620,6 +1354,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =NULL;
 
             $label_jornada = "Jornada Especial (Nocturno C MAR-JUE-DOM)";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }
 
         // 6 -> JORNADA ESPECIAL NOCTURNO D M - V - D
@@ -644,6 +1435,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =NULL;
 
             $label_jornada = "Jornada Especial (Nocturno D MIE-VIE-DOM)";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }
 
         // 7 -> JORNADA ESPECIAL S - D - F
@@ -668,6 +1516,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =$request->horario_salida;
 
             $label_jornada = "Jornada Especial (Acumulada Diurno S-D-F)";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }
 
          // 8 -> JORNADA ESPECIAL S - D - F
@@ -692,6 +1597,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =$request->horario_salida;
 
             $label_jornada = "Jornada Especial (Acumulada Nocturno S-D-F)";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }   
 
         // JORNADA ESPECIAL
@@ -716,6 +1678,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =$request->horario_salida;
 
             $label_jornada = "Jornada Especial";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }
 
         // ROLADOR
@@ -740,6 +1759,63 @@ class ProfesionalHorarioController extends Controller
             $salida_festivo =$request->salida_festivo;
 
             $label_jornada = "Rolador";
+
+            /****************************************************************************************** */
+
+            $entradas = [
+                $entrada_lunes,
+                $entrada_martes,
+                $entrada_miercoles,
+                $entrada_jueves,
+                $entrada_viernes,
+                $entrada_sabado,
+                $entrada_domingo,
+                $entrada_festivo,
+            ];
+
+            // Convertir cada hora a segundos (ignorando NULL y 00:00:00)
+            $entradasSegundos = [];
+
+            foreach ($entradas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $entradasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $entrada_promedio = null;
+
+            if (count($entradasSegundos) > 0) {
+                $avg = array_sum($entradasSegundos) / count($entradasSegundos);
+                $entrada_promedio = gmdate("H:i:s", $avg);
+            }
+
+            /****************************************************************************************** */
+
+            $salidas = [
+                $salida_lunes,
+                $salida_martes,
+                $salida_miercoles,
+                $salida_jueves,
+                $salida_viernes,
+                $salida_sabado,
+                $salida_domingo,
+                $salida_festivo,
+            ];
+
+            $salidasSegundos = [];
+
+            foreach ($salidas as $t) {
+                if (!empty($t) && $t !== "00:00:00") {
+                    $salidasSegundos[] = strtotime($t) - strtotime('TODAY');
+                }
+            }
+
+            $salida_promedio = null;
+
+            if (count($salidasSegundos) > 0) {
+                $avg = array_sum($salidasSegundos) / count($salidasSegundos);
+                $salida_promedio = gmdate("H:i:s", $avg);
+            }
         }
 
         else
@@ -761,7 +1837,12 @@ class ProfesionalHorarioController extends Controller
             $entrada_festivo = NULL;
             $salida_festivo = NULL;
 
+            $entrada_promedio = NULL;
+            $salida_promedio = NULL;
+
             $label_jornada = "ERROR - VALIDACION DE JORNADA";
+
+
         }
         
         $horario_status = 1;
@@ -775,6 +1856,9 @@ class ProfesionalHorarioController extends Controller
 
         $horario->id_jornada = $request->jornada;
         $horario->jornada = $label_jornada;
+
+        $horario->entrada_promedio = $entrada_promedio;
+        $horario->salida_promedio = $salida_promedio;
 
         $horario->entrada_lunes = $entrada_lunes;
         $horario->salida_lunes = $salida_lunes;
@@ -799,75 +1883,5 @@ class ProfesionalHorarioController extends Controller
 
         return redirect()->route('profesionalShow',$profesional->id)->with('successHorario', 'Registro realizado correctamente.');
         
-        /*
-        //Validamos los datos
-        $validated = $request->validate([
-            'id_profesional' => 'required',
-            'jornada' => 'required',
-            'entrada_lunes' => 'nullable|date_format:H:i',
-            'salida_lunes' => 'nullable|date_format:H:i',
-            'entrada_martes' => 'nullable|date_format:H:i',
-            'salida_martes' => 'nullable|date_format:H:i',
-            'entrada_miercoles' => 'nullable|date_format:H:i',
-            'salida_miercoles' => 'nullable|date_format:H:i',
-            'entrada_jueves' => 'nullable|date_format:H:i',
-            'salida_jueves' => 'nullable|date_format:H:i',
-            'entrada_viernes' => 'nullable|date_format:H:i',
-            'salida_viernes' => 'nullable|date_format:H:i',
-            'entrada_sabado' => 'nullable|date_format:H:i',
-            'salida_sabado' => 'nullable|date_format:H:i',
-            'entrada_domingo' => 'nullable|date_format:H:i',
-            'salida_domingo' => 'nullable|date_format:H:i',
-            'entrada_festivo' => 'nullable|date_format:H:i',
-            'salida_festivo' => 'nullable|date_format:H:i',
-        ],[
-            'id_profesional.required' => 'El campo "Profesional" es obligatorio.',
-            'jornada.required' => 'El campo "Jornada" es obligatorio.',
-            'entrada_lunes.date_format' => 'La hora de entrada del lunes debe estar en formato 24 horas (HH:MM).',
-            'salida_lunes.date_format' => 'La hora de salida del lunes debe estar en formato 24 horas (HH:MM).',
-            'entrada_martes.date_format' => 'La hora de entrada del martes debe estar en formato 24 horas (HH:MM).',
-            'salida_martes.date_format' => 'La hora de salida del martes debe estar en formato 24 horas (HH:MM).',
-            'entrada_miercoles.date_format' => 'La hora de entrada del miércoles debe estar en formato 24 horas (HH:MM).',
-            'salida_miercoles.date_format' => 'La hora de salida del miércoles debe estar en formato 24 horas (HH:MM).',
-            'entrada_jueves.date_format' => 'La hora de entrada del jueves debe estar en formato 24 horas (HH:MM).',
-            'salida_jueves.date_format' => 'La hora de salida del jueves debe estar en formato 24 horas (HH:MM).',
-            'entrada_viernes.date_format' => 'La hora de entrada del viernes debe estar en formato 24 horas (HH:MM).',
-            'salida_viernes.date_format' => 'La hora de salida del viernes debe estar en formato 24 horas (HH:MM).',
-            'entrada_sabado.date_format' => 'La hora de entrada del sábado debe estar en formato 24 horas (HH:MM).',
-            'salida_sabado.date_format' => 'La hora de salida del sábado debe estar en formato 24 horas (HH:MM).',
-            'entrada_domingo.date_format' => 'La hora de entrada del domingo debe estar en formato 24 horas (HH:MM).',
-            'salida_domingo.date_format' => 'La hora de salida del domingo debe estar en formato 24 horas (HH:MM).',
-            'entrada_festivo.date_format' => 'La hora de entrada del festivo debe estar en formato 24 horas (HH:MM).',
-            'salida_festivo.date_format' => 'La hora de salida del festivo debe estar en formato 24 horas (HH:MM).',
-        ]);
-
-        //dd($request->entrada_miercoles);
-
-        // Buscamos el registro a editar
-        $horario = ProfesionalHorario::findOrFail($id);
-
-        // Asignamos los valores
-        $horario->update([
-            'jornada'=> $request->jornada,
-            'entrada_lunes' => $request->entrada_lunes,
-            'salida_lunes' => $request->salida_lunes,
-            'entrada_martes' => $request->entrada_martes,
-            'salida_martes' => $request->salida_martes, 
-            'entrada_miercoles' => $request->entrada_miercoles,
-            'salida_miercoles' => $request->salida_miercoles,
-            'entrada_jueves' => $request->entrada_jueves,
-            'salida_jueves' => $request->salida_jueves,
-            'entrada_viernes' => $request->entrada_viernes,
-            'salida_viernes' => $request->salida_viernes,
-            'entrada_sabado' => $request->entrada_sabado,
-            'salida_sabado' => $request->salida_sabado,
-            'entrada_domingo' => $request->entrada_domingo,
-            'salida_domingo' => $request->salida_domingo,
-            'entrada_festivo' => $request->entrada_festivo,
-            'salida_festivo' => $request->salida_festivo,
-        ]);
-
-        // Redireccionar con un mensaje de éxito
-        return redirect()->route('profesionalIndex')->with('successUpdateHorario', 'Registro actualizado correctamente.');*/
     }
 }
