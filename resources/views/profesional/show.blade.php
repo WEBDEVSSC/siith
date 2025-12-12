@@ -99,7 +99,7 @@
                     <br>
                     <br>
                     <!-- SOLO SE MUESTRA EL BOTON AL ROL DE CREDENCIALIZACION -->
-                    @if(Auth::user()->role === 'credencializacion')
+                    @if(Auth::user()->role === 'credencializacion' || Auth::user()->role === 'admin')
                         @if($profesional->credencializacion && $profesional->credencializacion->fotografia)
                             <a href="{{ route('credencializacion.descargar', $profesional->credencializacion->id) }}" 
                             class="btn btn-info btn-sm" target="_blank">
@@ -193,7 +193,7 @@
             @if ($profesional->mdl_datos_generales == 1)
                 <a href="{{ route('profesionalEdit', $profesional->id) }}" class="btn btn-info btn-sm"> <i class="fa-solid fa-pen"></i> EDITAR DATOS GENERALES</a>
             @elseif ($profesional->mdl_datos_generales == 0)
-                <p>El módulo de datos generales está inactivo.</p>
+                <a href="{{ route('profesionalEdit', $profesional->id) }}" class="btn btn-info btn-sm"> <i class="fa-solid fa-pen"></i> EDITAR DATOS GENERALES</a>
             @endif
         @endif
 
