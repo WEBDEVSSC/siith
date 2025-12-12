@@ -833,11 +833,25 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-3">
-                    <p><strong>Jornada</strong></p>
-                    {{ $jornada }}
+                <div class="col-md-4">
+                    <table class="table table-striped">
+                        <tr>
+                            <td><strong>Jornada</strong></td>
+                            <td>{{ $jornada }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Promedio de Entrada</strong></td>
+                            <td>{{ \Carbon\Carbon::parse($profesional->horario->entrada_promedio)->format('h:i A') }}</td>
+
+                        </tr>
+                        <tr>
+                            <td><strong>Promedio de Salida</strong></td>
+                            <td>{{ \Carbon\Carbon::parse($profesional->horario->salida_promedio)->format('h:i A') }}</td>
+                        </tr>
+                    </table>
+                    
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-8">
                     <table class="table table-striped">
                         <tr>
                             <th><strong>DÍA</strong></th>
