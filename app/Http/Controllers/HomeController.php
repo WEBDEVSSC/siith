@@ -298,70 +298,37 @@ class HomeController extends Controller
          */
         /************************************************************************************************************* */
 
-        $ramaPersonalEnFormacion = Profesional::whereRelation('puesto', function($query) {
-            $query->whereIn('codigo', [
-                'AM98572', 'EP98572', 'EP98582', 'EP98592', 'IP98510', 'M04001','M04002',
-                'M04003', 'M04004', 'MP98512', 'MP98522', 'MP98532', 'OP98542', 'OP98552', 
-                'OP98562', 'R12033'
-                ])
-              ->where('vigencia', 'ACTIVO');
-        })
-        ->count();
+       $ramaPersonalEnFormacion = Profesional::whereRelation('puesto', function ($query) {
+            $query->where('grupo', 'FORMACION')
+                ->where('vigencia', 'ACTIVO');
+        })->count();
 
         $ramaAdministrativa = Profesional::whereRelation('puesto', function ($query) {
-            $query->whereIn('codigo', [
-                'ATO0216', 'ATO0301', 'ATO0616', 'ATO0701', 'ATO0703', 'ATO1001', 'CF01030', 
-                'CF21135', 'CF21905', 'CF34068', 'CF34245', 'CF34260', 'CF34261', 'CF34263', 
-                'CF40002', 'CF40003', 'CF40004', 'CF41001', 'CF41004', 'CF41006', 'CF41007', 
-                'CF41011', 'CF41013', 'CF41014', 'CF52254', 'CF53083', 'CFOA001', 'DAC0001', 
-                'DGA0001', 'M01004', 'M03005', 'M03018', 'M03019', 'M03020', 'M03021', 'M03022', 
-                'M03023', 'M03024', 'M03025', 'MM01001', 'MM02001', 'MM04001', 'MM05001', 'MM06001', 
-                'MM07001', 'MMS0301', 'MMS0401', 'MMS0101', 'SO08001', 'SO08803', 'SO08805', 'SO10801', 
-                'SO16801', 'SSA0001', 'SSB0001', 'AD01', 'AD02', 'MM01', 'MM05'
-                ])
+            $query->where('grupo', 'ADMINISTRATIVA')
                 ->where('vigencia', 'ACTIVO');
         })
         ->count();
 
         $ramaAFin = Profesional::whereRelation('puesto', function($query) {
-            $query->whereIn('codigo', [
-                'MM01', 'ATO0502', 'ATO0702', 'CF01030', 'CF41015','CF41016','CF41038','CF41040',
-                'CF41059','CF41060','CF41061','CF41062','CF41063','CF41064','CF41065','CF41074',
-                'M02047','M02072','M02112','M03002','M03004','M03005','M03006','M03009','M03010',
-                'M03011','M03012','M03013','M03025',
-                ])
+            $query->where('grupo', 'AFIN')
             ->where('vigencia', 'ACTIVO');
         })
         ->count();
 
         $ramaEnfermeria = Profesional::whereRelation('puesto', function($query) {
-            $query->whereIn('codigo', [
-                'ATO0311','ATO0411','ATO1011','CF41024','CF41052','M02031','M02032','M02034','M02035',
-                'M02036','M02081','M02082','M02087','M02105','M02107','SO08017',])
+            $query->where('grupo', 'ENFERMERIA')
             ->where('vigencia', 'ACTIVO');
         })
         ->count();
 
         $ramaMedica = Profesional::whereRelation('puesto', function($query) {
-            $query->whereIn('codigo', [
-                'MM07','ATO0123','CF41001','CFOA001','M01003','M01004','M01006','M01007',
-                'M01008','M01009','M01010','M01011','M01015','M03001','MM02001','MM06001',
-                'MMS0401',
-                ])
+            $query->where('grupo', 'MEDICA')
             ->where('vigencia', 'ACTIVO');
         })
         ->count();
 
         $ramaParamedica = Profesional::whereRelation('puesto', function($query) {
-            $query->whereIn('codigo', [
-                'ATO0313','ATO0509','ATO0609','CF41018','CF41030','CF41031','CF41032','CF41054',
-                'CF41056','CF41057','CF41058','CF41075','CF41076','M01006','M02001','M02003','M02006',
-                'M02009','M02011','M02012','M02015','M02016','M02029','M02037','M02038','M02040','M02042',
-                'M02043','M02044','M02045','M02046','M02047','M02048','M02049','M02050','M02055','M02057',
-                'M02058','M02059','M02060','M02061','M02066','M02068','M02069','M02073','M02074','M02076',
-                'M02077','M02078','M02085','M02086','M02088','M02089','M02090','M02091','M02095','M02097',
-                'M02110','MM04001','MM05001','SO08043',
-                ])
+            $query->where('grupo', 'PARAMEDICA')
             ->where('vigencia', 'ACTIVO');
         })
         ->count();
