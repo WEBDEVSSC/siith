@@ -837,16 +837,16 @@
                     <table class="table table-striped">
                         <tr>
                             <td><strong>Jornada</strong></td>
-                            <td>{{ $jornada ?? 'Sin jornada' }}</td>
+                            <td>{{ $jornada ?? '' }}</td>
                         </tr>
                         <tr>
                             <td><strong>Promedio de Entrada</strong></td>
-                            <td>{{ $profesional->horario?->entrada_promedio ? \Carbon\Carbon::parse($profesional->horario->entrada_promedio)->format('h:i A') : 'Sin horario' }}</td>
+                            <td>{{ $profesional->horario?->entrada_promedio ? \Carbon\Carbon::parse($profesional->horario->entrada_promedio)->format('h:i A') : '' }}</td>
 
                         </tr>
                         <tr>
                             <td><strong>Promedio de Salida</strong></td>
-                            <td>{{ $profesional->horario?->salida_promedio ? \Carbon\Carbon::parse($profesional->horario->salida_promedio)->format('h:i A') : 'Sin horario' }}</td>
+                            <td>{{ $profesional->horario?->salida_promedio ? \Carbon\Carbon::parse($profesional->horario->salida_promedio)->format('h:i A') : '' }}</td>
                         </tr>
                     </table>
                     

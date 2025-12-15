@@ -1733,7 +1733,7 @@ class ProfesionalController extends Controller
 
         $tiposDeContrato = TipoContrato::all();
 
-        $vigencias = Vigencia::all();
+        $vigenciasLabel = Vigencia::all();
 
         $vigenciasMotivos = VigenciaMotivo::all();
 
@@ -1865,7 +1865,7 @@ class ProfesionalController extends Controller
             'comisionesHistoricos',
             'nominasDePago',
             'tiposDeContrato',
-            'vigencias',
+            'vigenciasLabel',
             'vigenciasMotivos'
 
         ));
