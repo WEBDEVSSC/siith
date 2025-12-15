@@ -837,16 +837,16 @@
                     <table class="table table-striped">
                         <tr>
                             <td><strong>Jornada</strong></td>
-                            <td>{{ $jornada }}</td>
+                            <td>{{ $jornada ?? 'Sin jornada' }}</td>
                         </tr>
                         <tr>
                             <td><strong>Promedio de Entrada</strong></td>
-                            <td>{{ \Carbon\Carbon::parse($profesional->horario->entrada_promedio)->format('h:i A') }}</td>
+                            <td>{{ $profesional->horario?->entrada_promedio ? \Carbon\Carbon::parse($profesional->horario->entrada_promedio)->format('h:i A') : 'Sin horario' }}</td>
 
                         </tr>
                         <tr>
                             <td><strong>Promedio de Salida</strong></td>
-                            <td>{{ \Carbon\Carbon::parse($profesional->horario->salida_promedio)->format('h:i A') }}</td>
+                            <td>{{ $profesional->horario?->salida_promedio ? \Carbon\Carbon::parse($profesional->horario->salida_promedio)->format('h:i A') : 'Sin horario' }}</td>
                         </tr>
                     </table>
                     
@@ -860,43 +860,43 @@
                         </tr>
                         <tr>
                             <th><strong>LUNES</strong></th>
-                            <td>{{ $entradaLunes }}</td>
-                            <td>{{ $salidaLunes }}</td>
+                            <td>{{ $entradaLunes ?? ''}}</td>
+                            <td>{{ $salidaLunes ?? '' }}</td>
                         </tr>
                         <tr>
                             <th><strong>MARTES</strong></th>
-                            <td>{{ $entradaMartes }}</td>
-                            <td>{{ $salidaMartes }}</td>
+                            <td>{{ $entradaMartes ?? '' }}</td>
+                            <td>{{ $salidaMartes ?? '' }}</td>
                         </tr>
                         <tr>
                             <th><strong>MIÉRCOLES</strong></th>
-                            <td>{{ $entradaMiercoles }}</td>
-                            <td>{{ $salidaMiercoles }}</td>
+                            <td>{{ $entradaMiercoles ?? '' }}</td>
+                            <td>{{ $salidaMiercoles ?? '' }}</td>
                         </tr>
                         <tr>
                             <th><strong>JUEVES</strong></th>
-                            <td>{{ $entradaJueves }}</td>
-                            <td>{{ $salidaJueves }}</td>
+                            <td>{{ $entradaJueves ?? '' }}</td>
+                            <td>{{ $salidaJueves ?? '' }}</td>
                         </tr>
                         <tr>
                             <th><strong>VIERNES</strong></th>
-                            <td>{{ $entradaViernes }}</td>
-                            <td>{{ $salidaViernes }}</td>
+                            <td>{{ $entradaViernes ?? '' }}</td>
+                            <td>{{ $salidaViernes ?? '' }}</td>
                         </tr>
                         <tr>
                             <th><strong>SÁBADO</strong></th>
-                            <td>{{ $entradaSabado }}</td>
-                            <td>{{ $salidaSabado }}</td>
+                            <td>{{ $entradaSabado ?? '' }}</td>
+                            <td>{{ $salidaSabado ?? '' }}</td>
                         </tr>
                         <tr>
                             <th><strong>DOMINGO</strong></th>
-                            <td>{{ $entradaDomingo }}</td>
-                            <td>{{ $salidaDomingo }}</td>
+                            <td>{{ $entradaDomingo ?? '' }}</td>
+                            <td>{{ $salidaDomingo ?? '' }}</td>
                         </tr>
                         <tr>
                             <th><strong>FESTIVO</strong></th>
-                            <td>{{ $entradaFestivo }}</td>
-                            <td>{{ $salidaFestivo }}</td>
+                            <td>{{ $entradaFestivo ?? '' }}</td>
+                            <td>{{ $salidaFestivo ?? '' }}</td>
                         </tr>
                         
                     </table>
