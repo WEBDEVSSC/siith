@@ -536,6 +536,13 @@
                   </td>
                   <td>{{$ramaParamedica}}</td>
                 </tr>
+                <tr>
+                  <td>
+                    <span style="display:inline-block; width:12px; height:12px; background-color: rgba(255,255,255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                    <span style="font-weight: bold;">Total</span>
+                  </td>
+                  <td>{{$ramaPersonalEnFormacion + $ramaAdministrativa + $ramaAFin + $ramaEnfermeria + $ramaMedica + $ramaParamedica}}</td>
+                </tr>
               </tbody>
             </table>
           </div>
