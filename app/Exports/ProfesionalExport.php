@@ -141,9 +141,7 @@ class ProfesionalExport implements FromView, WithStyles, WithColumnFormatting
         $profesionales = $profesionalesQuery->get();
 
         // Pasamos los datos a la vista
-        return view('export.profesionales-export', [
-            'profesionales' => $profesionales
-        ]);
+        return view('export.profesionales-export', ['profesionales' => $profesionales]);
     }
 
     public function styles(Worksheet $sheet)

@@ -639,7 +639,7 @@
                         @break
 
                         @default
-                            <td colspan="26">Sin información disponible</td>
+                            <td colspan="25"></td>
                     @endswitch
 
                     {{-- DATOS GENERALES --}}
