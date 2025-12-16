@@ -792,7 +792,6 @@
                     <td>{{ $profesional->emergencia->emergencia_colonia_tres ?? '' }}</td>
                     <td>{{ $profesional->emergencia->emergencia_codigo_postal_tres ?? '' }}</td>
                     <td>{{ $profesional->emergencia->emergencia_municipio_label_tres ?? '' }}</td>
-
                     
                     <td>{{ $profesional->sueldo->sueldo_mensual ?? '' }}</td>
                     <td>{{ $profesional->sueldo->compensaciones ?? '' }}</td>
