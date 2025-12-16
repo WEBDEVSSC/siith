@@ -700,8 +700,8 @@
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}
 
                     <td>{{ $profesional->horario->jornada ?? '' }}</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $profesional->horario->entrada_promedio ?? '' }}</td>
+                    <td>{{ $profesional->horario->salida_promedio ?? '' }}</td>
                     <td>{{ $profesional->horario->entrada_lunes ?? '' }} - {{ $profesional->horario->salida_lunes ?? '' }}</td>
                     <td>{{ $profesional->horario->entrada_martes ?? '' }} - {{ $profesional->horario->salida_martes ?? '' }}</td>
                     <td>{{ $profesional->horario->entrada_miercoles ?? '' }} - {{ $profesional->horario->salida_miercoles ?? '' }}</td>
