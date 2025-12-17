@@ -44,11 +44,14 @@ use App\Http\Controllers\SystemSettingsController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\ProfesionalOcupacionEnsenanza;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*Route::get('/', function () {
     return view('welcome');
 });*/
+
+
 
 Route::get('/pase-de-salida',[ProfesionalPaseDeSalidaController::class,'paseDeSalidaIndex'])->name('paseDeSalidaIndex');
 
@@ -87,6 +90,8 @@ Auth::routes([
 Route::middleware(['auth'])->group(function () 
 {
 
+    
+    
     /*******************************************************************************************
      * 
      * 
@@ -359,6 +364,12 @@ Route::middleware(['auth'])->group(function ()
 
      Route::get('admin/profesionales/emergencias/emergenciaPDF/{id}', [ProfesionalEmergenciaController::class, 'emergenciaPDF'])->name('emergenciaPDF');
 
+     Route::get('/entidades', [ProfesionalEmergenciaController::class, 'entidades'])->name('entidades');
+
+     Route::get('/municipios/{entidad}', [ProfesionalEmergenciaController::class, 'municipios'])->name('municipios');
+
+     
+
      /**
      * 
      * 
@@ -374,6 +385,8 @@ Route::middleware(['auth'])->group(function ()
      Route::get('admin/profesionales/vigencias/editVigencia/{id}', [ProfesionalVigenciaController::class, 'editVigencia'])->name('editVigencia');
  
      Route::put('admin/profesionales/vigencias/updateVigencia/{id}', [ProfesionalVigenciaController::class, 'updateVigencia'])->name('updateVigencia');
+
+     
 
           /**
      * 

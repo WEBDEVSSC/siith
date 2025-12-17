@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CatAlergia;
 use App\Models\CatRelacionEmergencia;
 use App\Models\CatTipoDeSangre;
+use App\Models\Entidad;
 use App\Models\Municipio;
 use App\Models\Profesional;
 use App\Models\ProfesionalBitacora;
@@ -12,9 +13,19 @@ use App\Models\ProfesionalEmergencia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Log;
 
 class ProfesionalEmergenciaController extends Controller
 {
+    public function municipios(Entidad $entidad)
+    { 
+
+        return response()->json(
+        Municipio::where('relacion', $entidad->id)
+            ->orderBy('nombre')
+            ->get()
+        );
+    }
 
     public function createEmergencia($id)
     {
@@ -28,13 +39,24 @@ class ProfesionalEmergenciaController extends Controller
         $tiposDeAlergia = CatAlergia::all();
 
         // Llenamos el select de municipios de Coahuila
-        $municipios = Municipio::where('relacion',7)->get();
+        //$municipios = Municipio::where('relacion',7)->get();
 
         // Llenamos el select de Contactos de Emergencia
         $relacionesDeEmergencia = CatRelacionEmergencia::all();
 
+
+
+
+         // Entidades (todas)
+        $entidades = Entidad::orderBy('nombre')->get();
+
+        // Municipios VACÍO al iniciar (se llenará por AJAX)
+        $municipios = collect();
+
+
+
         // Retornamos la vista con todos los objetos
-        return view('emergencia.create', compact('profesional','tiposDeSangre','tiposDeAlergia','municipios','relacionesDeEmergencia'));
+        return view('emergencia.create', compact('profesional','tiposDeSangre','tiposDeAlergia','entidades','municipios','relacionesDeEmergencia'));
         
     }
 
@@ -243,29 +265,28 @@ class ProfesionalEmergenciaController extends Controller
         // Buscamos el profesional
         $profesional = Profesional::where('id',$emergencia->id_profesional)->firstOrFail();
 
-        $credencializacion = $profesional->credencializacion;
-        $fotografia = $credencializacion ? $credencializacion->fotografia : null;
-
-        // Generamos la URL de la fotografía desde storage
-        $fotoUrl = $fotografia 
-            ? asset('storage/credencializacion/thumbs/' . $fotografia) 
-            : null;
-
-
         // Llenamos el select de ocupaciones
         $tiposDeSangre = CatTipoDeSangre::all();
 
         // Llenamos el select de tipos de alergias
         $tiposDeAlergia = CatAlergia::all();
 
-        // Llenamos el select de municipios de Coahuila
-        $municipios = Municipio::where('relacion',7)->get();
+        // Entidades
+        $entidades = Entidad::orderBy('nombre')->get();
+
+        // Entidad y municipio actuales (para editar)
+        $entidadSeleccionada = optional($emergencia->municipio)->relacion ?? 7;
+
+        // Municipios de la entidad seleccionada
+        $municipios = Municipio::where('relacion', $entidadSeleccionada)
+            ->orderBy('nombre')
+            ->get();
 
         // Llenamos el select de Contactos de Emergencia
         $relacionesDeEmergencia = CatRelacionEmergencia::all();
 
         // Retornamos la vista con todos los objetos
-        return view('emergencia.edit', compact('profesional','fotoUrl','emergencia','tiposDeSangre','tiposDeAlergia','municipios','relacionesDeEmergencia'));
+        return view('emergencia.edit', compact('profesional','emergencia','tiposDeSangre','tiposDeAlergia','municipios','relacionesDeEmergencia','entidades','entidadSeleccionada'));
     }
 
     public function updateEmergencia(Request $request, $id)

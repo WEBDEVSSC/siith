@@ -10,26 +10,11 @@
 
 <div class="alert alert-info" role="alert">
 
-    <div class="row">
-        <div class="col-md-2">
-
-        <center>
-            @if($fotoUrl)
-                <img src="{{ $fotoUrl }}" alt="Fotografía del profesional" style="max-width:200px; height:auto;" class="img-thumbnail"/>
-            @else
-                <img src="{{ asset('images/avatar-placeholder.png') }}" alt="Sin foto" style="max-width:200px; height:auto;" class="img-thumbnail"/>
-            @endif
-        </center>
-
-        </div>
-        <div class="col-md-10">
-            <ul>
-                <li><strong>Nombre</strong> : {{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</li>
-                <li><strong>CURP</strong> : {{ $profesional->curp }}</li>
-            </ul>
-        </div>
-    </div>
- 
+    <ul>
+        <li><strong>Nombre</strong> : {{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</li>
+        <li><strong>CURP</strong> : {{ $profesional->curp }}</li>
+    </ul>
+    
 </div>
     
     <div class="card">
@@ -120,10 +105,6 @@
                 <!-- ---------------------------------- -->
 
                 <div class="row mt-3">      
-
-                    
-
-                    
 
                     <div class="col-md-12">
                         <p><strong>Describa Brevemente</strong></p>
@@ -323,6 +304,8 @@
                     </div>
 
                 </div>
+
+                <!-- -->
 
                 <!-- -->
 

@@ -636,6 +636,35 @@
                             <td>{{ $profesional->ocupacionHospitalNino->servicio_dos ?? '' }}</td>
                             <td>{{ $profesional->ocupacionHospitalNino->ocupacion_dos ?? '' }}</td>
                             <td>{{ $profesional->ocupacionHospitalNino->puesto_dos ?? '' }}</td>
+
+                        {{-- PASANTES ENSENANZA --}}
+                        @case(15)
+                            <td>PASANTES ENSEÑANZA</td>
+                            <td>{{ $profesional->ocupacionEnsenanza->unidad ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionEnsenanza->area ?? '' }}</td>
+                            <td></td>
+                            <td>{{ $profesional->ocupacionEnsenanza->subarea ?? '' }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>{{ $profesional->ocupacionEnsenanza->ocupacion ?? '' }}</td>
+                            <td></td>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         @break
 
                         @default

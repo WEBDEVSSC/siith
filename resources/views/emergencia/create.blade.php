@@ -26,6 +26,10 @@
 
         </div>
 
+        
+
+
+
         <form action="{{ route('storeEmergencia') }}" method="POST">
 
         @csrf 
@@ -302,6 +306,39 @@
 
                 <!-- -->
 
+                <div class="row mt-3">
+                    <div class="col-md-3">
+
+                        <p><strong>Entidad</strong></p>
+                        <select id="entidad" name="entidad_id" class="form-control">
+                            <option value="">Seleccione entidad</option>
+                            @foreach($entidades as $entidad)
+                                <option value="{{ $entidad->id }}"
+                                    {{ old('entidad_id') == $entidad->id ? 'selected' : '' }}>
+                                    {{ $entidad->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                    </div>
+                    <div class="col-md-3">
+
+                        <p><strong>Municipio</strong></p>
+                        <select id="municipio" name="municipio_id" class="form-control">
+                        <option value="">Seleccione municipio</option>
+                        @foreach($municipios as $municipio)
+                            <option value="{{ $municipio->id }}">
+                                {{ $municipio->nombre }}
+                            </option>
+                        @endforeach
+                    </select>
+
+                    </div>
+
+                </div>
+
+                <!-- -->
+
                 <div class="row">
                     <div class="col-md-12">
                         <blockquote class="quote-secondary">
@@ -566,4 +603,42 @@
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const entidadSelect = document.getElementById('entidad');
+            const municipioSelect = document.getElementById('municipio');    
+
+            entidadSelect.addEventListener('change', function () {
+                console.log('Entidad seleccionada:', this.value);
+                const entidadId = this.value;
+
+                municipioSelect.innerHTML = '<option value="">Cargando...</option>';
+
+                if (!entidadId) {
+                    municipioSelect.innerHTML = '<option value="">Seleccione municipio</option>';
+                    return;
+                }
+
+                fetch(`{{ route('municipios', '') }}/${entidadId}`)
+                
+                    .then(response => response.json())
+                    .then(data => {
+                        municipioSelect.innerHTML = '<option value="">Seleccione municipio</option>';
+
+                        data.forEach(municipio => {
+                            municipioSelect.innerHTML +=
+                                `<option value="${municipio.id}">${municipio.nombre}</option>`;
+                        });
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        municipioSelect.innerHTML = '<option value="">Error al cargar municipios</option>';
+                    });
+            });
+
+        });
+        </script>
+
 @stop
