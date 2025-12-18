@@ -16,4 +16,9 @@ class UserLogin extends Model
     ];
 
     public $timestamps = true;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

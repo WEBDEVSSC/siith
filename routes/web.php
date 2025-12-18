@@ -38,6 +38,7 @@ use App\Http\Controllers\ProfesionalPaseDeSalidaController;
 use App\Http\Controllers\ProfesionalPuestoController;
 use App\Http\Controllers\ProfesionalReporteController;
 use App\Http\Controllers\ProfesionalRolController;
+use App\Http\Controllers\ProfesionalSessionsController;
 use App\Http\Controllers\ProfesionalSueldoController;
 use App\Http\Controllers\ProfesionalVigenciaController;
 use App\Http\Controllers\SystemSettingsController;
@@ -1091,6 +1092,10 @@ Route::middleware(['auth'])->group(function ()
      */
 
     Route::get('admin/settings/settingsShow',[SystemSettingsController::class, 'settingsShow'])->name('settingsShow');
+
+    Route::get('admin/settings/sessions/activas',[ProfesionalSessionsController::class, 'sesionesActivas'])->name('sesionesActivas');
+
+    Route::get('admin/settings/sessions/bitacora',[ProfesionalSessionsController::class, 'sesionesBitacora'])->name('sesionesBitacora');
 
 });
 
