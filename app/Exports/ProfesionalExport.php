@@ -127,7 +127,8 @@ class ProfesionalExport implements FromView, WithStyles, WithColumnFormatting
             {
                 $query->where('clues_adscripcion', $user->clues_unidad);
             }
-            elseif ($user->role !== 'admin') {
+            elseif ($user->role !== 'admin') 
+            {
 
                 $query->whereRaw('1 = 0'); 
             }
