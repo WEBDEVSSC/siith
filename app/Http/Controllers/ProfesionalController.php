@@ -2256,6 +2256,10 @@ class ProfesionalController extends Controller
         // Consultamos todos los usuarios con esa clues adscripcion
         $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
                 ->whereRelation('puesto', 'clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
+                /*->whereRelation('puesto', function ($q) {
+                        $q->whereIn('clues_adscripcion_tipo', [1, 3]);
+                    })*/
+                ->whereRelation('puesto', 'clues_adscripcion_tipo', 1)
                 ->whereRelation('puesto', 'vigencia', 'ACTIVO')
                 ->get();
 
