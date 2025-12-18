@@ -2248,6 +2248,8 @@ class ProfesionalController extends Controller
      */
     public function miJurisdiccion()
     {
+        ini_set('memory_limit', '-1');
+        
         // Cargamos los datos del usuario
         $usuario = Auth::user();
 
