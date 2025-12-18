@@ -163,11 +163,15 @@ class ProfesionalEmergenciaController extends Controller
     if (!is_null($request->tipo_alergia_id) && $request->tipo_alergia_id != 6) {
         $tipoAlergia = CatAlergia::find($request->tipo_alergia_id);
     }
+    else
+    {
+        $tipoAlergia = "NINGUNA";
+    }
 
     // Estados
     $estado_uno = $request->emergencia_estado_uno ? Entidad::find($request->emergencia_estado_uno) : null;
     $estado_dos = $request->emergencia_estado_dos ? Entidad::find($request->emergencia_estado_dos) : null;
-    $estado_tres = $request->emergencia_estado_tres ? Entidad::find($request->emergencia_estado_tres) : null;
+    $estado_tres = $request->emergencia_estado_tres ? Entidad::find($request->emergencia_estado_tres) : null;   
 
     // Municipios
     $municipio_uno = $request->emergencia_municipio_uno ? Municipio::find($request->emergencia_municipio_uno) : null;
@@ -188,7 +192,7 @@ class ProfesionalEmergenciaController extends Controller
     $emergencia->tipo_sangre = $request->tipo_sangre;
     $emergencia->tipo_alergia_id = $request->tipo_alergia_id;
     $emergencia->tipo_alergia = $tipoAlergia ? $tipoAlergia->tipo_alergia : $request->tipo_alergia_id;
-    $emergencia->alergia_descripcion = $tipoAlergia ? $tipoAlergia->tipo_alergia : $request->alergia_descripcion;
+    $emergencia->alergia_descripcion = $request->alergia_descripcion;
 
     $emergencia->enfermedad = $request->enfermedad;
     $emergencia->medicamentos = $request->medicamentos;
@@ -227,7 +231,7 @@ class ProfesionalEmergenciaController extends Controller
     $emergencia->emergencia_codigo_postal_dos = $request->emergencia_codigo_postal_dos;
 
     $emergencia->emergencia_estado_dos_id = $request->emergencia_estado_dos;
-    $emergencia->emergencia_estado_dos_label = $estado_dos->nombre;
+    $emergencia->emergencia_estado_dos_label = $estado_dos?->nombre;
 
     $emergencia->emergencia_municipio_id_dos = $request->emergencia_municipio_dos;
     $emergencia->emergencia_municipio_label_dos = $municipio_dos?->nombre;
@@ -245,7 +249,7 @@ class ProfesionalEmergenciaController extends Controller
     $emergencia->emergencia_codigo_postal_tres = $request->emergencia_codigo_postal_tres;
 
     $emergencia->emergencia_estado_tres_id = $request->emergencia_estado_tres;
-    $emergencia->emergencia_estado_tres_label = $estado_tres->nombre;
+    $emergencia->emergencia_estado_tres_label = $estado_tres?->nombre;
 
     $emergencia->emergencia_municipio_id_tres = $request->emergencia_municipio_tres;
     $emergencia->emergencia_municipio_label_tres = $municipio_tres?->nombre;

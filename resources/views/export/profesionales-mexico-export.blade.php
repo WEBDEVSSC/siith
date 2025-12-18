@@ -9,27 +9,88 @@
     <table>
         <thead>
             <tr>
-                <!-- Título grande que abarca todas las columnas -->
-                <th colspan="1" style="text-align: center; font-size: 20px; font-weight: bold;"></th>
-                <th colspan="16" style="text-align: center; font-size: 20px; font-weight: bold;">DATOS GENERALES</th>
-                <th colspan="22" style="text-align: center; font-size: 20px; font-weight: bold;">PUESTO</th>
-                <th colspan="9" style="text-align: center; font-size: 20px; font-weight: bold;">JORNADA LABORAL</th>
-                <th colspan="1" style="text-align: center; font-size: 20px; font-weight: bold;">CREDENCIALIZACION</th>
-                <th colspan="6" style="text-align: center; font-size: 20px; font-weight: bold;">SUELDO</th>
-                <th colspan="16" style="text-align: center; font-size: 20px; font-weight: bold;">GRADO ACADEMICO</th>
-                <th colspan="5" style="text-align: center; font-size: 20px; font-weight: bold;">PERSONAL EN FORMACION</th>
-                <th colspan="6" style="text-align: center; font-size: 20px; font-weight: bold;">CERTIFICACIONES</th>
-                <th colspan="25" style="text-align: center; font-size: 20px; font-weight: bold;">OCUPACIONES</th>
-                <th colspan="35" style="text-align: center; font-size: 20px; font-weight: bold;">EMERGENCIA</th>
-            </tr>
-            <tr>
-                <th><strong>No</strong></th>
-                <th><strong>CURP</strong></th>
-                <th><strong>RFC</strong></th>
-                <th><strong>HOMOCLAVE</strong></th>
-                <th><strong>NOMBRE</strong></th>
-                <th><strong>APELLIDO PATERNO</strong></th>
-                <th><strong>APELLIDO MATERNO</strong></th>
+                <th style="color: white;"><strong>CONTADOR</strong></th>
+                <th style="color: white;"><strong>CURP</strong></th>
+                <th style="color: white;"><strong>RFC</strong></th>
+                <th style="color: white;"><strong>NOMBRE(S)</strong></th>
+                <th style="color: white;"><strong>PRIMER APELLIDO</strong></th>
+                <th style="color: white;"><strong>SEGUNDO APELLIDO</strong></th>
+
+                <th style="color: white;"><strong>PAIS DE NACIMIENTO</strong></th>
+                <th style="color: white;"><strong>ENTIDAD DE NACIMIENTO</strong></th>
+                <th style="color: white;"><strong>MUNICIPIO DE NACIMIENTO</strong></th>
+                <th style="color: white;"><strong>NACIONALIDAD</strong></th>
+                <th style="color: white;"><strong>ESTADO CONYUGAL</strong></th>
+                <th style="color: white;"><strong>TIENE FIEL</strong></th>
+                <th style="color: white;"><strong>VIGENCIA DE LA FIEL</strong></th>
+
+                <th style="color: white;"><strong>CORREO ELECTRONICO</strong></th>
+
+                <th style="color: white;"><strong>ACTIVIDAD</strong></th>
+                <th style="color: white;"><strong>ACTIVIDADES ADICIONALES</strong></th>
+                <th style="color: white;"><strong>AREA DE TRABAJO</strong></th>
+                <th style="color: white;"><strong>TIPO DE PERSONAL</strong></th>
+                <th style="color: white;"><strong>CODIGO DE PUESTO</strong></th>
+                <th style="color: white;"><strong>FECHA DE INGRESO (A LA INSTITUCION)</strong></th>
+
+                <th style="color: white;"><strong>CLUES DE ADSCRIPCION DE NOMINA</strong></th>
+                <th style="color: white;"><strong>CLUES DE ADSCRIPCION REAL</strong></th>
+                <th style="color: white;"><strong>SS</strong></th>
+                <th style="color: white;"><strong>TIPO DE CONTRATO</strong></th>
+                <th style="color: white;"><strong>TIPO DE PLAZA</strong></th>
+                <th style="color: white;"><strong>INSTITUCION A LA QUE PERTENECE EL PUESTO</strong></th>
+
+                <th style="color: white;"><strong>VIGENCIA</strong></th>
+                <th style="color: white;"><strong>MOTIVO</strong></th>
+
+                <th style="color: white;"><strong>TEMPORALIDAD</strong></th>
+                <th style="color: white;"><strong>SEGURO DE SALUD</strong></th>
+                <th style="color: white;"><strong>LICENCIA DE MATERNIDAD</strong></th>
+                <th style="color: white;"><strong>SEGURO DE RETIRO</strong></th>
+
+                <th style="color: white;"><strong>LABORA LUNES</strong></th>
+                <th style="color: white;"><strong>HORA DE ENTRADA LUNES</strong></th>
+                <th style="color: white;"><strong>HORA DE SALIDA LUNES</strong></th>
+
+                <th style="color: white;"><strong>LABORA MARTES</strong></th>
+                <th style="color: white;"><strong>HORA DE ENTRADA MARTES</strong></th>
+                <th style="color: white;"><strong>HORA DE SALIDA MARTES</strong></th>
+
+                <th style="color: white;"><strong>LABORA MIERCOLES</strong></th>
+                <th style="color: white;"><strong>HORA DE ENTRADA MIERCOLES</strong></th>
+                <th style="color: white;"><strong>HORA DE SALIDA MIERCOLES</strong></th>
+
+                <th style="color: white;"><strong>LABORA JUEVES</strong></th>
+                <th style="color: white;"><strong>HORA DE ENTRADA JUEVES</strong></th>
+                <th style="color: white;"><strong>HORA DE SALIDA JUEVES</strong></th>
+
+                <th style="color: white;"><strong>LABORA VIERNES</strong></th>
+                <th style="color: white;"><strong>HORA DE ENTRADA VIERNES</strong></th>
+                <th style="color: white;"><strong>HORA DE SALIDA VIERNES</strong></th>
+
+                <th style="color: white;"><strong>LABORA SABADO</strong></th>
+                <th style="color: white;"><strong>HORA DE ENTRADA SABADO</strong></th>
+                <th style="color: white;"><strong>HORA DE SALIDA SABADO</strong></th>
+
+                <th style="color: white;"><strong>LABORA DOMINGO</strong></th>
+                <th style="color: white;"><strong>HORA DE ENTRADA DOMINGO</strong></th>
+                <th style="color: white;"><strong>HORA DE SALIDA DOMINGO</strong></th>
+
+                <th style="color: white;"><strong>LABORA DIAS FESTIVOS</strong></th>
+                <th style="color: white;"><strong>HORA DE ENTRADA DIAS FESTIVOS</strong></th>
+                <th style="color: white;"><strong>HORA DE SALIDA DIAS FESTIVOS</strong></th>
+
+                <th style="color: white;"><strong>JORNADA</strong></th>
+
+                <th style="color: white;"><strong>SUELDO O SALARIO MENSUAL</strong></th>
+                <th style="color: white;"><strong>COMPENSACIONES</strong></th>
+                <th style="color: white;"><strong>PRESTACIONES POR MANDATO DE LEY</strong></th>
+                <th style="color: white;"><strong>PRESTACIONES DERIVADAS DE CGT O CONTRATO COLECTIVO</strong></th>
+                <th style="color: white;"><strong>ESTIMULOS</strong></th>
+                <th style="color: white;"><strong>REMUNERACION ORDINARIA MENSUAL</strong></th>
+
+
+                {{--
                 <th><strong>SEXO</strong></th>
                 <th><strong>FECHA DE NACIMIENTO</strong></th>
                 <th><strong>ENTIDAD DE NACIMIENTO</strong></th>
@@ -114,7 +175,7 @@
                 <th><strong>IDIOMA</strong></th>
                 <th><strong>NIVEL</strong></th>
                 <th><strong>LENGUA INDIGENA</strong></th>
-                <th><strong>NIVEL</strong></th>
+                <th><strong>NIVEL</strong></th> --}}
 
                
 
@@ -125,11 +186,140 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $profesional->curp ?? '' }}</td>
-                    <td>{{ $profesional->rfc ?? '' }}</td>
-                    <td>&nbsp;{{ $profesional->homoclave ?? '' }}</td>
+                    <td>{{ $profesional->rfc ?? '' }}{{ $profesional->homoclave ?? '' }}</td>
                     <td>{{ $profesional->nombre ?? '' }}</td>
                     <td>{{ $profesional->apellido_paterno ?? '' }}</td>
                     <td>{{ $profesional->apellido_materno ?? '' }}</td>
+
+                    <td>{{ $profesional->pais_nacimiento ?? ''  }}</td>
+                    <td>{{ $profesional->entidad_nacimiento ?? ''  }}</td>
+                    <td>{{ $profesional->municipio_nacimiento ?? ''  }}</td>
+                    <td>{{ $profesional->nacionalidad ?? ''  }}</td>
+                    <td>{{ $profesional->estado_conyugal ?? ''  }}</td>
+                    <td>{{ $profesional->puesto?->fiel ?? '' }}</td>
+                    <td>{{ $profesional->puesto->fiel_vigencia ?? '' }}</td>
+
+                    <td>{{ $profesional->email ?? ''  }}</td>
+
+                    <td>{{ $profesional->puesto?->actividad ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->adicional ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->area_trabajo ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->tipo_personal ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->codigo_puesto ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->fecha_ingreso ?? '' }}</td>
+
+                    <td>{{ $profesional->puesto?->clues_nomina ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->clues_adscripcion ?? '' }}</td>
+                    <td></td>
+                    <td>{{ $profesional->puesto?->tipo_contrato ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->tipo_plaza ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->institucion_puesto ?? '' }}</td>
+
+                    <td>{{ $profesional->puesto?->vigencia ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->vigencia_motivo ?? '' }}</td>
+
+                    @if ($profesional->puesto?->vigencia == "BAJA TEMPORAL")
+                         <td>SI</td>
+                    @else
+                         <td>NO</td>
+                    @endif
+
+                    <td>{{ $profesional->puesto?->seguro_salud ?? '' }}</td> 
+
+                    @if ($profesional->puesto?->vigencia_motivo == "PERMISO POR LIC. MATERNIDAD - PATERNIDAD")
+                         <td>SI</td>
+                    @else
+                         <td>NO</td>
+                    @endif
+
+                    <td></td>
+
+                    @if ($profesional->horario?->entrada_lunes !== null && $profesional->horario->entrada_lunes !== '00:00:00')
+                         <td>1</td>
+                    @else
+                         <td>0</td>
+                    @endif
+
+                    <td>{{ $profesional->horario->entrada_lunes ?? '' }}</td>
+                    <td>{{ $profesional->horario->salida_lunes ?? '' }}</td>
+
+                    @if ($profesional->horario?->entrada_martes !== null && $profesional->horario->entrada_martes !== '00:00:00')
+                         <td>1</td>
+                    @else
+                         <td>0</td>
+                    @endif
+
+                    <td>{{ $profesional->horario->entrada_martes ?? '' }}</td>
+                    <td>{{ $profesional->horario->salida_martes ?? '' }}</td>
+
+                    @if ($profesional->horario?->entrada_miercoles !== null && $profesional->horario->entrada_miercoles !== '00:00:00')
+                         <td>1</td>
+                    @else
+                         <td>0</td>
+                    @endif
+
+                    <td>{{ $profesional->horario->entrada_miercoles ?? '' }}</td>
+                    <td>{{ $profesional->horario->salida_miercoles ?? '' }}</td>
+
+                    @if ($profesional->horario?->entrada_jueves !== null && $profesional->horario->entrada_jueves !== '00:00:00')
+                         <td>1</td>
+                    @else
+                         <td>0</td>
+                    @endif
+
+                    <td>{{ $profesional->horario->entrada_jueves ?? '' }}</td>
+                    <td>{{ $profesional->horario->salida_jueves ?? '' }}</td>
+
+                    @if ($profesional->horario?->entrada_viernes !== null && $profesional->horario->entrada_viernes !== '00:00:00')
+                         <td>1</td>
+                    @else
+                         <td>0</td>
+                    @endif
+
+                    <td>{{ $profesional->horario->entrada_viernes ?? '' }}</td>
+                    <td>{{ $profesional->horario->salida_viernes ?? '' }}</td>
+
+                    @if ($profesional->horario?->entrada_sabado !== null && $profesional->horario->entrada_sabado !== '00:00:00')
+                         <td>1</td>
+                    @else
+                         <td>0</td>
+                    @endif
+
+                    <td>{{ $profesional->horario->entrada_sabado ?? '' }}</td>
+                    <td>{{ $profesional->horario->salida_sabado ?? '' }}</td>
+
+                    @if ($profesional->horario?->entrada_domingo !== null && $profesional->horario->entrada_domingo !== '00:00:00')
+                         <td>1</td>
+                    @else
+                         <td>0</td>
+                    @endif
+
+                    <td>{{ $profesional->horario->entrada_domingo ?? '' }}</td>
+                    <td>{{ $profesional->horario->salida_domingo ?? '' }}</td>
+
+                    @if ($profesional->horario?->entrada_festivo !== null && $profesional->horario->entrada_festivo !== '00:00:00')
+                         <td>1</td>
+                    @else
+                         <td>0</td>
+                    @endif
+
+                    <td>{{ $profesional->horario->entrada_festivo ?? '' }}</td>
+                    <td>{{ $profesional->horario->salida_festivo ?? '' }}</td>
+
+                    <td>{{ $profesional->horario->jornada ?? '' }}</td>
+
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+
+
+
+
+                    {{-- 
                     <td>{{ $profesional->sexo ?? '' }}</td>
                     <td>{{ $profesional->fecha_nacimiento ?? ''  }}</td>
                     <td>{{ $profesional->entidad_nacimiento ?? ''  }}</td>
@@ -139,11 +329,11 @@
                     <td>{{ $profesional->estado_conyugal ?? ''  }}</td>
                     <td>{{ $profesional->telefono_casa ?? ''  }}</td>
                     <td>{{ $profesional->celular ?? ''  }}</td>
-                    <td>{{ $profesional->email ?? ''  }}</td>
+                    <td>{{ $profesional->email ?? ''  }}</td> --}}
 
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}
 
-                    <td>{{ $profesional->puesto?->fiel ?? '' }} - {{ $profesional->puesto->fiel_vigencia ?? '' }}</td>
+                    {{-- <td>{{ $profesional->puesto?->fiel ?? '' }} - {{ $profesional->puesto->fiel_vigencia ?? '' }}</td>
                     <td>{{ $profesional->puesto?->actividad ?? '' }}</td>
                     <td>{{ $profesional->puesto?->adicional ?? '' }}</td>
                     <td>{{ $profesional->puesto?->tipo_personal ?? '' }}</td>
@@ -170,11 +360,11 @@
                     @endif
 
                     <td>{{ $profesional->puesto?->licencia_maternidad ?? '' }}</td>
-                    <td>{{ $profesional->puesto?->seguro_salud ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->seguro_salud ?? '' }}</td> --}}
 
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}
 
-                    <td>{{ $profesional->horario->jornada ?? '' }}</td>
+                    {{-- <td>{{ $profesional->horario->jornada ?? '' }}</td>
                     <td>{{ $profesional->horario->entrada_lunes ?? '' }} - {{ $profesional->horario->salida_lunes ?? '' }}</td>
                     <td>{{ $profesional->horario->entrada_martes ?? '' }} - {{ $profesional->horario->salida_martes ?? '' }}</td>
                     <td>{{ $profesional->horario->entrada_miercoles ?? '' }} - {{ $profesional->horario->salida_miercoles ?? '' }}</td>
@@ -182,12 +372,12 @@
                     <td>{{ $profesional->horario->entrada_viernes ?? '' }} - {{ $profesional->horario->salida_viernes ?? '' }}</td>
                     <td>{{ $profesional->horario->entrada_sabado ?? '' }} - {{ $profesional->horario->salida_sabado ?? '' }}</td>
                     <td>{{ $profesional->horario->entrada_domingo ?? '' }} - {{ $profesional->horario->salida_domingo ?? '' }}</td>
-                    <td>{{ $profesional->horario->entrada_festivo ?? '' }} - {{ $profesional->horario->salida_festivo ?? '' }}</td>
+                    <td>{{ $profesional->horario->entrada_festivo ?? '' }} - {{ $profesional->horario->salida_festivo ?? '' }}</td> --}}
 
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}
 
                     {{-- <td>{{ $profesional->credencializacion->fotografia ?? '' }}</td> --}}
-                    <td></td>
+                    {{-- <td></td> --}}
 
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}
 
@@ -198,16 +388,16 @@
                     <td>{{ $profesional->sueldo->estimulos ?? '' }}</td>
                     <td>{{ $profesional->sueldo->total ?? '' }}</td> --}}
 
+                    {{-- <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td></td>
-                    <td></td>
+                    <td></td> --}}
 
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}
 
-                    <td>{{ $profesional->gradoAcademico->cve_grado_uno ?? '' }} - {{ $profesional->gradoAcademico->grado_academico_uno ?? '' }}</td>
+                    {{-- <td>{{ $profesional->gradoAcademico->cve_grado_uno ?? '' }} - {{ $profesional->gradoAcademico->grado_academico_uno ?? '' }}</td>
                     <td>{{ $profesional->gradoAcademico->titulo_uno ?? '' }}</td>
                     <td>{{ $profesional->gradoAcademico->institucion_educativa_uno ?? '' }}</td>
                     <td>{{ $profesional->gradoAcademico->cedula_uno ?? '' }} - {{ $profesional->gradoAcademico->numero_cedula_uno ?? '' }}</td>
@@ -225,24 +415,24 @@
                     <td>{{ $profesional->gradoAcademico->cve_grado_cuatro ?? '' }} - {{ $profesional->gradoAcademico->grado_academico_cuatro ?? '' }}</td>
                     <td>{{ $profesional->gradoAcademico->titulo_cuatro ?? '' }}</td>
                     <td>{{ $profesional->gradoAcademico->institucion_educativa_cuatro ?? '' }}</td>
-                    <td>{{ $profesional->gradoAcademico->cedula_cuatro ?? '' }} - {{ $profesional->gradoAcademico->numero_cedula_cuatro ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->cedula_cuatro ?? '' }} - {{ $profesional->gradoAcademico->numero_cedula_cuatro ?? '' }}</td> --}}
 
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}
 
-                    <td>{{ $profesional->areaMedica->tipo_formacion ?? '' }} - {{ $profesional->areaMedica->tipo_formacion_label ?? '' }}</td>
+                    {{-- <td>{{ $profesional->areaMedica->tipo_formacion ?? '' }} - {{ $profesional->areaMedica->tipo_formacion_label ?? '' }}</td>
                     <td>{{ $profesional->areaMedica->carrera_label ?? '' }}</td>
                     <td>{{ $profesional->areaMedica->institucion_educativa_label ?? '' }}</td>
                     <td>{{ $profesional->areaMedica->anio_cursa ?? '' }}</td>
-                    <td>{{ $profesional->areaMedica->duracion_formacion ?? '' }}</td>
+                    <td>{{ $profesional->areaMedica->duracion_formacion ?? '' }}</td> --}}
 
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}
 
-                    <td>{{ $profesional->certificacion->colegiacion_label ?? '' }}</td>
+                    {{-- <td>{{ $profesional->certificacion->colegiacion_label ?? '' }}</td>
                     <td>{{ $profesional->certificacion->certificacion_label ?? '' }}</td>
                     <td>{{ $profesional->certificacion->idioma_label ?? '' }}</td>
                     <td>{{ $profesional->certificacion->idioma_nivel_de_dominio ?? '' }}</td>
                     <td>{{ $profesional->certificacion->lengua_indigena_label ?? '' }}</td>
-                    <td>{{ $profesional->certificacion->lengua_nivel_de_dominio ?? '' }}</td>
+                    <td>{{ $profesional->certificacion->lengua_nivel_de_dominio ?? '' }}</td> --}}
 
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}
 
