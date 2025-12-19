@@ -60,113 +60,103 @@ class ProfesionalEmergenciaController extends Controller
     public function storeEmergencia(Request $request)
     {                      
         // Validación
-    $request->validate([
-        'id_profesional' => 'required',
+        $request->validate([
+            'id_profesional' => 'required',
 
-        'telefono_celular'   => 'required|digits:10',
-        'correo_electronico' => 'required|email|max:100',
+            'telefono_celular'   => 'required|digits:10',
+            'correo_electronico' => 'required|email|max:100',
 
-        'tipo_sangre' => 'required',
-        'tipo_alergia_id' => 'required|integer|in:1,2,3,4,5,6',
-        'alergia_descripcion' => 'nullable|string|max:255|required_unless:tipo_alergia_id,1',
+            'tipo_sangre' => 'required',
+            'tipo_alergia_id' => 'nullable',
+            'alergia_descripcion' => 'required_with:tipo_alergia_id',
 
-        'enfermedad'    => 'nullable|string',
-        'medicamentos'  => 'nullable|string',
-        'tratamiento'   => 'nullable|string',
-        'medico_nombre' => 'nullable|string',
-        'medico_telefono' => 'nullable|string',
+            'enfermedad'    => 'nullable|string',
+            'medicamentos'  => 'nullable|string',
+            'tratamiento'   => 'nullable|string',
+            'medico_nombre' => 'nullable|string',
+            'medico_telefono' => 'nullable|string',
 
-        // Emergencias UNO, DOS, TRES
-        'emergencia_nombre_uno' => 'nullable|string|max:128',
-        'emergencia_relacion_uno' => 'nullable|string|required_with:emergencia_nombre_uno',
-        'emergencia_telefono_uno_uno' => 'nullable|string|digits:10|required_with:emergencia_nombre_uno',
-        'emergencia_telefono_dos_uno' => 'nullable|string|digits:10',
-        'emergencia_email_uno' => 'nullable|string|email|max:100',
-        'emergencia_calle_uno' => 'nullable|string|max:128|required_with:emergencia_nombre_uno',
-        'emergencia_numero_uno' => 'nullable|string|max:128|required_with:emergencia_nombre_uno',
-        'emergencia_colonia_uno' => 'nullable|string|max:128|required_with:emergencia_nombre_uno',
-        'emergencia_codigo_postal_uno' => 'nullable|string|max:5|required_with:emergencia_nombre_uno',
-        'emergencia_estado_uno' => 'nullable|integer|required_with:emergencia_nombre_uno',
-        'emergencia_municipio_uno' => 'nullable|integer|required_with:emergencia_nombre_uno',
+            // Emergencias UNO, DOS, TRES
+            'emergencia_nombre_uno' => 'nullable|string|max:128',
+            'emergencia_relacion_uno' => 'nullable|string|required_with:emergencia_nombre_uno',
+            'emergencia_telefono_uno_uno' => 'nullable|string|digits:10|required_with:emergencia_nombre_uno',
+            'emergencia_telefono_dos_uno' => 'nullable|string|digits:10',
+            'emergencia_email_uno' => 'nullable|string|email|max:100',
+            'emergencia_calle_uno' => 'nullable|string|max:128|required_with:emergencia_nombre_uno',
+            'emergencia_numero_uno' => 'nullable|string|max:128|required_with:emergencia_nombre_uno',
+            'emergencia_colonia_uno' => 'nullable|string|max:128|required_with:emergencia_nombre_uno',
+            'emergencia_codigo_postal_uno' => 'nullable|string|max:5|required_with:emergencia_nombre_uno',
+            'emergencia_estado_uno' => 'nullable|integer|required_with:emergencia_nombre_uno',
+            'emergencia_municipio_uno' => 'nullable|integer|required_with:emergencia_nombre_uno',
 
-        'emergencia_nombre_dos' => 'nullable|string|max:128',
-        'emergencia_relacion_dos' => 'nullable|string',
-        'emergencia_telefono_uno_dos' => 'nullable|string|digits:10',
-        'emergencia_telefono_dos_dos' => 'nullable|string|digits:10',
-        'emergencia_email_dos' => 'nullable|string|email|max:100',
-        'emergencia_calle_dos' => 'nullable|string|max:128',
-        'emergencia_numero_dos' => 'nullable|string|max:128',
-        'emergencia_colonia_dos' => 'nullable|string|max:128',
-        'emergencia_codigo_postal_dos' => 'nullable|string|max:5',
-        'emergencia_estado_dos' => 'nullable|integer',
-        'emergencia_municipio_dos' => 'nullable|integer',
+            'emergencia_nombre_dos' => 'nullable|string|max:128',
+            'emergencia_relacion_dos' => 'nullable|string',
+            'emergencia_telefono_uno_dos' => 'nullable|string|digits:10',
+            'emergencia_telefono_dos_dos' => 'nullable|string|digits:10',
+            'emergencia_email_dos' => 'nullable|string|email|max:100',
+            'emergencia_calle_dos' => 'nullable|string|max:128',
+            'emergencia_numero_dos' => 'nullable|string|max:128',
+            'emergencia_colonia_dos' => 'nullable|string|max:128',
+            'emergencia_codigo_postal_dos' => 'nullable|string|max:5',
+            'emergencia_estado_dos' => 'nullable|integer',
+            'emergencia_municipio_dos' => 'nullable|integer',
 
-        'emergencia_nombre_tres' => 'nullable|string|max:128',
-        'emergencia_relacion_tres' => 'nullable|string',
-        'emergencia_telefono_uno_tres' => 'nullable|string|digits:10',
-        'emergencia_telefono_dos_tres' => 'nullable|string|digits:10',
-        'emergencia_email_tres' => 'nullable|string|email|max:100',
-        'emergencia_calle_tres' => 'nullable|string|max:128',
-        'emergencia_numero_tres' => 'nullable|string|max:128',
-        'emergencia_colonia_tres' => 'nullable|string|max:128',
-        'emergencia_codigo_postal_tres' => 'nullable|string|max:5',
-        'emergencia_estado_tres' => 'nullable|integer',
-        'emergencia_municipio_tres' => 'nullable|integer',
-    ],[
-        // --- Mensajes personalizados ---
-        'id_profesional.required' => 'El campo profesional es obligatorio.',
+            'emergencia_nombre_tres' => 'nullable|string|max:128',
+            'emergencia_relacion_tres' => 'nullable|string',
+            'emergencia_telefono_uno_tres' => 'nullable|string|digits:10',
+            'emergencia_telefono_dos_tres' => 'nullable|string|digits:10',
+            'emergencia_email_tres' => 'nullable|string|email|max:100',
+            'emergencia_calle_tres' => 'nullable|string|max:128',
+            'emergencia_numero_tres' => 'nullable|string|max:128',
+            'emergencia_colonia_tres' => 'nullable|string|max:128',
+            'emergencia_codigo_postal_tres' => 'nullable|string|max:5',
+            'emergencia_estado_tres' => 'nullable|integer',
+            'emergencia_municipio_tres' => 'nullable|integer',
+        ],[
+            // --- Mensajes personalizados ---
+            'id_profesional.required' => 'El campo profesional es obligatorio.',
 
-        'tipo_sangre.required' => 'El tipo de sangre es obligatorio.',
+            'tipo_sangre.required' => 'El tipo de sangre es obligatorio.',
 
-        'telefono_celular.required' => 'El teléfono celular es obligatorio.',
-        'telefono_celular.digits'   => 'El teléfono celular debe tener exactamente 10 dígitos.',
+            'telefono_celular.required' => 'El teléfono celular es obligatorio.',
+            'telefono_celular.digits'   => 'El teléfono celular debe tener exactamente 10 dígitos.',
 
-        'correo_electronico.required' => 'El correo electrónico es obligatorio.',
-        'correo_electronico.email'    => 'Debe ingresar un correo electrónico válido.',
-        'correo_electronico.max'      => 'El correo electrónico no debe superar los 100 caracteres.',
+            'correo_electronico.required' => 'El correo electrónico es obligatorio.',
+            'correo_electronico.email'    => 'Debe ingresar un correo electrónico válido.',
+            'correo_electronico.max'      => 'El correo electrónico no debe superar los 100 caracteres.',
 
-        'tipo_alergia_id.required' => 'Debe seleccionar un tipo de alergia.',
-        'tipo_alergia_id.in'       => 'El tipo de alergia seleccionado no es válido.',
+            'tipo_alergia_id.required' => 'Debe seleccionar un tipo de alergia.',
+            'tipo_alergia_id.in'       => 'El tipo de alergia seleccionado no es válido.',
 
-        'alergia_descripcion.required_unless' => 'Debe especificar la alergia cuando se selecciona un tipo de alergia.',
-        'alergia_descripcion.max'         => 'La descripción de la alergia no debe superar los 255 caracteres.',
+            'alergia_descripcion.required_unless' => 'Debe especificar la alergia cuando se selecciona un tipo de alergia.',
+            'alergia_descripcion.max'         => 'La descripción de la alergia no debe superar los 255 caracteres.',
 
-        // Emergencias
-        'emergencia_telefono_uno_uno.digits' => 'El teléfono de emergencia (1.1) debe tener 10 dígitos.',
-        'emergencia_telefono_dos_uno.digits' => 'El teléfono de emergencia (1.2) debe tener 10 dígitos.',
-        'emergencia_email_uno.email'         => 'El correo de emergencia (1) debe ser válido.',
-        'emergencia_email_uno.max'           => 'El correo de emergencia (1) no debe superar los 100 caracteres.',
+            // Emergencias
+            'emergencia_telefono_uno_uno.digits' => 'El teléfono de emergencia (1.1) debe tener 10 dígitos.',
+            'emergencia_telefono_dos_uno.digits' => 'El teléfono de emergencia (1.2) debe tener 10 dígitos.',
+            'emergencia_email_uno.email'         => 'El correo de emergencia (1) debe ser válido.',
+            'emergencia_email_uno.max'           => 'El correo de emergencia (1) no debe superar los 100 caracteres.',
 
-        'emergencia_telefono_uno_dos.digits' => 'El teléfono de emergencia (2.1) debe tener 10 dígitos.',
-        'emergencia_telefono_dos_dos.digits' => 'El teléfono de emergencia (2.2) debe tener 10 dígitos.',
-        'emergencia_email_dos.email'         => 'El correo de emergencia (2) debe ser válido.',
-        'emergencia_email_dos.max'           => 'El correo de emergencia (2) no debe superar los 100 caracteres.',
+            'emergencia_telefono_uno_dos.digits' => 'El teléfono de emergencia (2.1) debe tener 10 dígitos.',
+            'emergencia_telefono_dos_dos.digits' => 'El teléfono de emergencia (2.2) debe tener 10 dígitos.',
+            'emergencia_email_dos.email'         => 'El correo de emergencia (2) debe ser válido.',
+            'emergencia_email_dos.max'           => 'El correo de emergencia (2) no debe superar los 100 caracteres.',
 
-        'emergencia_telefono_uno_tres.digits' => 'El teléfono de emergencia (3.1) debe tener 10 dígitos.',
-        'emergencia_telefono_dos_tres.digits' => 'El teléfono de emergencia (3.2) debe tener 10 dígitos.',
-        'emergencia_email_tres.email'         => 'El correo de emergencia (3) debe ser válido.',
-        'emergencia_email_tres.max'           => 'El correo de emergencia (3) no debe superar los 100 caracteres.',
+            'emergencia_telefono_uno_tres.digits' => 'El teléfono de emergencia (3.1) debe tener 10 dígitos.',
+            'emergencia_telefono_dos_tres.digits' => 'El teléfono de emergencia (3.2) debe tener 10 dígitos.',
+            'emergencia_email_tres.email'         => 'El correo de emergencia (3) debe ser válido.',
+            'emergencia_email_tres.max'           => 'El correo de emergencia (3) no debe superar los 100 caracteres.',
 
-        'emergencia_relacion_uno.required_with' => 'Debe indicar la relación con la persona de emergencia.',
-        'emergencia_telefono_uno_uno.required_with' => 'Debe proporcionar al menos un número de teléfono de la persona de emergencia.',
-        'emergencia_telefono_dos_uno.required_with' => 'Debe proporcionar el segundo número de teléfono de la persona de emergencia.',
-        'emergencia_email_uno.required_with' => 'Debe ingresar el correo electrónico de la persona de emergencia.',
-        'emergencia_calle_uno.required_with' => 'Debe indicar la calle donde vive la persona de emergencia.',
-        'emergencia_numero_uno.required_with' => 'Debe indicar el número del domicilio de la persona de emergencia.',
-        'emergencia_colonia_uno.required_with' => 'Debe indicar la colonia de la persona de emergencia.',
-        'emergencia_codigo_postal_uno.required_with' => 'Debe indicar el código postal de la persona de emergencia.',
-        'emergencia_municipio_uno.required_with' => 'Debe seleccionar el municipio de la persona de emergencia.',
-    ]);
-
-    // Tipo de alergia
-    $tipoAlergia = null;
-    if (!is_null($request->tipo_alergia_id) && $request->tipo_alergia_id != 6) {
-        $tipoAlergia = CatAlergia::find($request->tipo_alergia_id);
-    }
-    else
-    {
-        $tipoAlergia = "NINGUNA";
-    }
+            'emergencia_relacion_uno.required_with' => 'Debe indicar la relación con la persona de emergencia.',
+            'emergencia_telefono_uno_uno.required_with' => 'Debe proporcionar al menos un número de teléfono de la persona de emergencia.',
+            'emergencia_telefono_dos_uno.required_with' => 'Debe proporcionar el segundo número de teléfono de la persona de emergencia.',
+            'emergencia_email_uno.required_with' => 'Debe ingresar el correo electrónico de la persona de emergencia.',
+            'emergencia_calle_uno.required_with' => 'Debe indicar la calle donde vive la persona de emergencia.',
+            'emergencia_numero_uno.required_with' => 'Debe indicar el número del domicilio de la persona de emergencia.',
+            'emergencia_colonia_uno.required_with' => 'Debe indicar la colonia de la persona de emergencia.',
+            'emergencia_codigo_postal_uno.required_with' => 'Debe indicar el código postal de la persona de emergencia.',
+            'emergencia_municipio_uno.required_with' => 'Debe seleccionar el municipio de la persona de emergencia.',
+        ]);
 
     // Estados
     $estado_uno = $request->emergencia_estado_uno ? Entidad::find($request->emergencia_estado_uno) : null;
@@ -191,7 +181,7 @@ class ProfesionalEmergenciaController extends Controller
     $emergencia->correo_electronico = $request->correo_electronico;
     $emergencia->tipo_sangre = $request->tipo_sangre;
     $emergencia->tipo_alergia_id = $request->tipo_alergia_id;
-    $emergencia->tipo_alergia = $tipoAlergia ? $tipoAlergia->tipo_alergia : $request->tipo_alergia_id;
+    $emergencia->tipo_alergia = $request->tipo_alergia_id;
     $emergencia->alergia_descripcion = $request->alergia_descripcion;
 
     $emergencia->enfermedad = $request->enfermedad;
@@ -212,10 +202,10 @@ class ProfesionalEmergenciaController extends Controller
     $emergencia->emergencia_colonia_uno = $request->emergencia_colonia_uno;
     $emergencia->emergencia_codigo_postal_uno = $request->emergencia_codigo_postal_uno;
 
-    $emergencia->emergencia_estado_uno_id = $request->emergencia_estado_uno;
-    $emergencia->emergencia_estado_uno_label = $estado_uno->nombre;
+    $emergencia->emergencia_estado_uno_id = $request?->emergencia_estado_uno;
+    $emergencia->emergencia_estado_uno_label = $estado_uno?->nombre;
 
-    $emergencia->emergencia_municipio_id_uno = $request->emergencia_municipio_uno;
+    $emergencia->emergencia_municipio_id_uno = $request?->emergencia_municipio_uno;
     $emergencia->emergencia_municipio_label_uno = $municipio_uno?->nombre;
 
     // Emergencia DOS?->relacion;
@@ -230,10 +220,10 @@ class ProfesionalEmergenciaController extends Controller
     $emergencia->emergencia_colonia_dos = $request->emergencia_colonia_dos;
     $emergencia->emergencia_codigo_postal_dos = $request->emergencia_codigo_postal_dos;
 
-    $emergencia->emergencia_estado_dos_id = $request->emergencia_estado_dos;
+    $emergencia->emergencia_estado_dos_id = $request?->emergencia_estado_dos;
     $emergencia->emergencia_estado_dos_label = $estado_dos?->nombre;
 
-    $emergencia->emergencia_municipio_id_dos = $request->emergencia_municipio_dos;
+    $emergencia->emergencia_municipio_id_dos = $request?->emergencia_municipio_dos;
     $emergencia->emergencia_municipio_label_dos = $municipio_dos?->nombre;
 
     // Emergencia TRES
@@ -248,10 +238,10 @@ class ProfesionalEmergenciaController extends Controller
     $emergencia->emergencia_colonia_tres = $request->emergencia_colonia_tres;
     $emergencia->emergencia_codigo_postal_tres = $request->emergencia_codigo_postal_tres;
 
-    $emergencia->emergencia_estado_tres_id = $request->emergencia_estado_tres;
+    $emergencia->emergencia_estado_tres_id = $request?->emergencia_estado_tres;
     $emergencia->emergencia_estado_tres_label = $estado_tres?->nombre;
 
-    $emergencia->emergencia_municipio_id_tres = $request->emergencia_municipio_tres;
+    $emergencia->emergencia_municipio_id_tres = $request?->emergencia_municipio_tres;
     $emergencia->emergencia_municipio_label_tres = $municipio_tres?->nombre;
 
     $emergencia->mdl_emergencia = 1;
@@ -273,8 +263,7 @@ class ProfesionalEmergenciaController extends Controller
     $datosGenerales->email = $request->correo_electronico;
     $datosGenerales->save();
 
-    return redirect()->route('profesionalShow', $request->id_profesional)
-        ->with('success', 'Registro realizado correctamente.');
+    return redirect()->route('profesionalShow', $request->id_profesional)->with('success', 'Registro realizado correctamente.');
         
     }
 
