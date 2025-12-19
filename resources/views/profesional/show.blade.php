@@ -1531,8 +1531,8 @@
             <div class="row">
 
                 <!-- CLUES NOMINA -->
-                <div class="col-md-6">
-                    <p><strong>CLUES NÓMINA</strong></p>
+                <div class="col-md-4">
+                    <p><strong>CLUES Nómina</strong></p>
                     <select name="clues_nomina" id="clues_nomina" class="form-control select2">
                         <option value="">Seleccione una CLUES</option>
                         @foreach($clues as $clue)
@@ -1545,8 +1545,8 @@
                 </div>
 
                 <!-- CLUES ADSCRIPCION -->
-                <div class="col-md-6">
-                    <p><strong>CLUES ADSCRIPCIÓN</strong></p>
+                <div class="col-md-4">
+                    <p><strong>CLUES Adscripción</strong></p>
                     <select name="clues_adscripcion" id="clues_adscripcion" class="form-control select2">
                         <option value="">Seleccione una CLUES</option>
                         @foreach($clues as $clue)
@@ -1558,12 +1558,26 @@
                     </select>
                 </div>
 
+                <!-- VIGENCIA MOTIVO -->
+                <div class="col-md-4">
+                    <p><strong>Vigencia - Motivo</strong></p>
+                    <select name="vigencia_motivo" id="vigencia_motivo" class="form-control">
+                        <option value="">-- SELECCIONE UNA OPCIÓN --</option>
+                        @foreach($vigenciasMotivos as $motivo)
+                            <option value="{{ $motivo->id }}"
+                                {{ old('vigencia_motivo',$profesional->puesto->vigencia_motivo ?? '') == $motivo->motivo ? 'selected' : '' }}>
+                                {{ $motivo->label_vigencia }} - {{ $motivo->motivo }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
             </div>
 
            {{-- --}}
            <div class="row mt-3">
                 
-            <div class="col-md-3">
+            <div class="col-md-4">
                     <p><strong>Nómina de Pago</strong></p>
 
                     <select name="nomina_pago" id="nomina_pago" class="form-control">
@@ -1578,7 +1592,7 @@
                     </select>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <p><strong>Tipo de Contrato</strong></p>
 
                     <select name="tipo_contrato" id="tipo_contrato" class="form-control">
@@ -1593,40 +1607,12 @@
                     </select>
                 </div>
 
-                <div class="col-md-3">
-                    <p><strong>Fecha de ingreso</strong></p>
+                <div class="col-md-4">
+                    <p><strong>Fecha de ingreso a la Institución</strong></p>
                     <input type="date" class="form-control" name="fecha_ingreso" id="fecha_ingreso" value={{ old('fecha_ingreso',$profesional->puesto->fecha_ingreso)}}>                        
                 </div>
 
             </div>
-            {{--
-            <div class="row mt-3">
-                <div class="col-md-3">
-                    <p><strong>Vigencia</strong></p>
-
-                    <select name="vigencia" id="tipo_contrato" class="form-control">
-                        <option value="">Seleccione una nómina</option>
-
-                        @foreach($vigencias as $vigencia)
-                            <option value="{{ $vigencia->vigencia }}"
-                                {{ old('vigencia', $profesional->puesto->vigencia ?? '') == $vigencia->vigencia ? 'selected' : '' }}>
-                                {{ $vigencia->vigencia }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="col-md-6">
-                    <p><strong>Motivo</strong></p>
-                    <select name="vigencia_motivo" id="vigencia_motivo" class="form-control">
-                        <option value="">Seleccione un motivo</option>
-                    </select>
-                    @error('vigencia_motivo')
-                    <br><div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                </div>
-            </div>
-            --}}
         </div>
 
         <div class="card-footer">

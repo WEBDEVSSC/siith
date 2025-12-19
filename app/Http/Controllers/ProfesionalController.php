@@ -1735,7 +1735,7 @@ class ProfesionalController extends Controller
 
         $vigenciasLabel = Vigencia::all();
 
-        $vigenciasMotivos = VigenciaMotivo::all();
+        $vigenciasMotivos = VigenciaMotivo::orderBy('id_vigencia','asc')->get();
 
         // Regresamos la vista con el arreglo
         return view('profesional.show', compact(

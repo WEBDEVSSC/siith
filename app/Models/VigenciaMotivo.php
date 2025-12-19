@@ -13,6 +13,7 @@ class VigenciaMotivo extends Model
 
     protected $fillable = [
         'id_vigencia', 
+        'label_vigencia',
         'motivo'
     ];
 

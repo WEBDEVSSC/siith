@@ -21,6 +21,7 @@ use App\Models\ProfesionalOcupacionOfJurisdiccional;
 use App\Models\ProfesionalOcupacionPsiParras;
 use App\Models\ProfesionalOcupacionSamuCrum;
 use App\Models\ProfesionalPuesto;
+use App\Models\VigenciaMotivo;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -450,7 +451,11 @@ class ProfesionalCambioDeUnidadController extends Controller
             'nomina_pago' => 'required',
             'tipo_contrato' => 'required',
             'fecha_ingreso' => 'required|date_format:Y-m-d',
+            'vigencia_motivo' => 'required',
         ],[]);
+
+        // Consultamos los datos de la vigencia
+        $vigencia = VigenciaMotivo::findOrFail($request->vigencia_motivo);
 
         // Consultamos los datos de las CLUES
         $cluesNomina = Clue::where('clues',$request->clues_nomina)->first();
@@ -461,7 +466,6 @@ class ProfesionalCambioDeUnidadController extends Controller
         $puesto = ProfesionalPuesto::where('id_profesional',$request->id_profesional)->first();
 
         // Actualizamos y asignamos los valores
-
         $puesto->clues_nomina = $cluesNomina->clues;
         $puesto->clues_nomina_nombre = $cluesNomina->nombre;
         $puesto->clues_nomina_municipio = $cluesNomina->municipio;
@@ -476,6 +480,9 @@ class ProfesionalCambioDeUnidadController extends Controller
         $puesto->nomina_pago = $request->nomina_pago;
         $puesto->tipo_contrato = $request->tipo_contrato;
         $puesto->fecha_ingreso = $request->fecha_ingreso;
+
+        $puesto->vigencia = $vigencia->label_vigencia;
+        $puesto->vigencia_motivo = $vigencia->motivo;
 
         $puesto->save();
 
