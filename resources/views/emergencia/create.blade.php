@@ -14,16 +14,6 @@
         <li><strong>Nombre</strong> : {{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</li>
         <li><strong>CURP</strong> : {{ $profesional->curp }}</li>
     </ul>
-
-    {{-- @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif--}}
     
 </div>
 
@@ -35,10 +25,6 @@
             <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm">PERFIL DEL TRABAJADOR</a>
 
         </div>
-
-        
-
-
 
         <form action="{{ route('storeEmergencia') }}" method="POST">
 

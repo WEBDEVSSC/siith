@@ -158,6 +158,8 @@ class ProfesionalEmergenciaController extends Controller
             'emergencia_municipio_uno.required_with' => 'Debe seleccionar el municipio de la persona de emergencia.',
         ]);
 
+    $tipoAlergia = CatAlergia::findOrFail($request->tipo_alergia_id);
+
     // Estados
     $estado_uno = $request->emergencia_estado_uno ? Entidad::find($request->emergencia_estado_uno) : null;
     $estado_dos = $request->emergencia_estado_dos ? Entidad::find($request->emergencia_estado_dos) : null;
@@ -181,7 +183,7 @@ class ProfesionalEmergenciaController extends Controller
     $emergencia->correo_electronico = $request->correo_electronico;
     $emergencia->tipo_sangre = $request->tipo_sangre;
     $emergencia->tipo_alergia_id = $request->tipo_alergia_id;
-    $emergencia->tipo_alergia = $request->tipo_alergia_id;
+    $emergencia->tipo_alergia = $tipoAlergia->tipo_alergia;
     $emergencia->alergia_descripcion = $request->alergia_descripcion;
 
     $emergencia->enfermedad = $request->enfermedad;
@@ -307,8 +309,8 @@ class ProfesionalEmergenciaController extends Controller
             'correo_electronico' => 'required|email|max:100',
 
             'tipo_sangre' => 'required',
-            'tipo_alergia_id' => 'required|integer|in:1,2,3,4,5,6',
-            'alergia_descripcion' => 'nullable|string|max:255|required_unless:tipo_alergia_id,1',
+            'tipo_alergia_id' => 'nullable',
+            'alergia_descripcion' => 'required_with:tipo_alergia_id',
 
             'enfermedad'    => 'nullable|string',
             'medicamentos'  => 'nullable|string',
@@ -396,13 +398,8 @@ class ProfesionalEmergenciaController extends Controller
             'emergencia_municipio_uno.required_with' => 'Debe seleccionar el municipio de la persona de emergencia.',
         ]);
 
-        //dd($request->alergia_descripcion);
-
-        // Tipo de alergia
-        $tipoAlergia = null;
-        if (!is_null($request->tipo_alergia_id) && $request->tipo_alergia_id != 6) {
-            $tipoAlergia = CatAlergia::find($request->tipo_alergia_id);
-        }
+        // Consultamos el tipo de Alergia
+        $tipoAlergia = CatAlergia::findOrFail($request->tipo_alergia);
 
         // Municipios
         $municipio_uno = $request->emergencia_municipio_uno ? Municipio::find($request->emergencia_municipio_uno) : null;
@@ -421,7 +418,7 @@ class ProfesionalEmergenciaController extends Controller
         $emergencia->correo_electronico = $request->correo_electronico;
         $emergencia->tipo_sangre = $request->tipo_sangre;
         $emergencia->tipo_alergia_id = $request->tipo_alergia_id;
-        $emergencia->tipo_alergia = $tipoAlergia ? $tipoAlergia->tipo_alergia : $request->tipo_alergia_id;
+        $emergencia->$request->tipo_alergia_id;
         $emergencia->alergia_descripcion = $tipoAlergia ? $tipoAlergia->tipo_alergia : $request->alergia_descripcion;
 
         $emergencia->enfermedad = $request->enfermedad;
