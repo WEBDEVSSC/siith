@@ -286,24 +286,54 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-2">
-                        <p><strong>Municipio</strong></p>
-                        <select name="emergencia_municipio_uno" id="emergencia_municipio_uno" class="form-control">
-                            <option value="">-- Seleccione una opción --</option>
-                            @foreach($municipios as $municipio)
-                                <option value="{{ $municipio->id }}" 
-                                    {{ old('emergencia_municipio_uno', $emergencia->emergencia_municipio_id_uno) == $municipio->id ? 'selected' : '' }}>
-                                    {{ $municipio->nombre }}
+                    
+
+                </div>
+
+                <!-- -->
+
+                <!-- -->
+
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <p><strong>Entidad</strong></p>
+                        <select class="entidad-select form-control"
+                                data-target="municipio_uno"
+                                name="emergencia_estado_uno">
+                            <option value="">Seleccione entidad</option>
+                            @foreach($entidades as $entidad)
+                                <option value="{{ $entidad->id }}"
+                                    {{ old('emergencia_estado_uno',$profesional->emergencia->emergencia_estado_uno_id) == $entidad->id ? 'selected' : '' }}>
+                                    {{ $entidad->nombre }}
                                 </option>
                             @endforeach
                         </select>
 
+                        @error('emergencia_estado_uno')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-3">
+                        <p><strong>Municipio</strong></p>
+                        <select id="municipio_uno"
+                            name="emergencia_municipio_uno"
+                            class="form-control"
+                            data-old="{{ old('emergencia_municipio_uno',$profesional->emergencia->emergencia_municipio_id_uno) }}">
+                            <option value="">Seleccione municipio</option>
+                        </select>
+
                         @error('emergencia_municipio_uno')
-                            <br><div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
                     </div>
 
+                    
                 </div>
+
+                
+
+                
+
 
                 <!-- -->
 
@@ -410,24 +440,53 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-2">
-                        <p><strong>Municipio</strong></p>
-                        <select name="emergencia_municipio_dos" id="emergencia_municipio_dos" class="form-control">
-                            <option value="">-- Seleccione una opción --</option>
-                            @foreach($municipios as $municipio)
-                                <option value="{{ $municipio->id }}" 
-                                    {{ old('emergencia_municipio_dos',$emergencia->emergencia_municipio_id_dos) == $municipio->id ? 'selected' : '' }}>
-                                    {{ $municipio->nombre }}
+                    
+
+                </div>
+
+                <!-- -->
+
+                <!-- -->
+
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <p><strong>Entidad</strong></p>
+                        <select class="entidad-select form-control"
+                                data-target="municipio_dos"
+                                name="emergencia_estado_dos">
+                            <option value="">Seleccione entidad</option>
+                            @foreach($entidades as $entidad)
+                                <option value="{{ $entidad->id }}"
+                                    {{ old('emergencia_estado_dos',$profesional->emergencia->emergencia_estado_dos_id) == $entidad->id ? 'selected' : '' }}>
+                                    {{ $entidad->nombre }}
                                 </option>
                             @endforeach
                         </select>
 
-                        @error('emergencia_municipio_dos')
-                            <br><div class="alert alert-danger">{{ $message }}</div>
+                        @error('emergencia_estado_dos')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="col-md-3">
+                        <p><strong>Municipio</strong></p>
 
+                        <select id="municipio_dos"
+                            name="emergencia_municipio_dos"
+                            class="form-control"
+                            data-old="{{ old('emergencia_municipio_dos',$profesional->emergencia->emergencia_municipio_id_dos) }}">
+                            <option value="">Seleccione municipio</option>
+                        </select>
+
+                        @error('emergencia_municipio_dos')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
+
+                
+
+
+
 
                 <!-- -->
 
@@ -531,26 +590,52 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-2">
-                        <p><strong>Municipio</strong></p>
-                        <select name="emergencia_municipio_tres" id="emergencia_municipio_tres" class="form-control">
-                            <option value="">-- Seleccione una opción --</option>
-                            @foreach($municipios as $municipio)
-                                <option value="{{ $municipio->id }}" 
-                                    {{ old('emergencia_municipio_tres',$emergencia->emergencia_municipio_id_tres) == $municipio->id ? 'selected' : '' }}>
-                                    {{ $municipio->nombre }}
-                                </option>
-                            @endforeach
-                        </select>
-
-                        @error('emergencia_municipio_tres')
-                            <br><div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
+                    
 
                 </div>
 
         <!-- ---------------------------------------------------------------------- --> 
+
+        <!-- ------------------------------------------------------------- -->
+
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <p><strong>Entidad</strong></p>
+                        <select class="entidad-select form-control"
+                                data-target="municipio_tres"
+                                name="emergencia_estado_tres">
+                            <option value="">Seleccione entidad</option>
+                            @foreach($entidades as $entidad)
+                                <option value="{{ $entidad->id }}"
+                                    {{ old('emergencia_estado_tres',$profesional->emergencia->emergencia_estado_tres_id) == $entidad->id ? 'selected' : '' }}>
+                                    {{ $entidad->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        @error('emergencia_estado_tres')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-3">
+                        <p><strong>Municipio</strong></p>
+
+                        <select id="municipio_tres"
+                            name="emergencia_municipio_tres"
+                            class="form-control"
+                            data-old="{{ old('emergencia_municipio_tres',$profesional->emergencia->emergencia_municipio_id_tres) }}">
+                            <option value="">Seleccione municipio</option>
+                        </select>
+
+                        @error('emergencia_municipio_tres')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+
+
+                <!-- ------------------------------------------------------------- -->
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-success btn-sm btn-info">ACTUALIZAR DATOS</button>
@@ -573,4 +658,61 @@
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+                document.addEventListener('DOMContentLoaded', function () {
+
+                    document.querySelectorAll('.entidad-select').forEach(entidadSelect => {
+
+                        const targetMunicipioId = entidadSelect.dataset.target;
+                        const municipioSelect = document.getElementById(targetMunicipioId);
+
+                        // 👉 Si existe old() de entidad, dispara el change automáticamente
+                        if (entidadSelect.value) {
+                            cargarMunicipios(entidadSelect.value, municipioSelect);
+                        }
+
+                        entidadSelect.addEventListener('change', function () {
+                            cargarMunicipios(this.value, municipioSelect);
+                        });
+
+                    });
+
+                    function cargarMunicipios(entidadId, municipioSelect) {
+
+                        municipioSelect.innerHTML = '<option value="">Cargando...</option>';
+
+                        if (!entidadId) {
+                            municipioSelect.innerHTML = '<option value="">Seleccione municipio</option>';
+                            return;
+                        }
+
+                        fetch(`{{ route('municipios', '') }}/${entidadId}`)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Error en la respuesta');
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+
+                                municipioSelect.innerHTML = '<option value="">Seleccione municipio</option>';
+
+                                const municipioOld = municipioSelect.dataset.old;
+
+                                data.forEach(municipio => {
+                                    const selected = municipioOld == municipio.id ? 'selected' : '';
+                                    municipioSelect.innerHTML +=
+                                        `<option value="${municipio.id}" ${selected}>${municipio.nombre}</option>`;
+                                });
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                municipioSelect.innerHTML = '<option value="">Error al cargar municipios</option>';
+                            });
+                    }
+
+                });
+                </script>
+
 @stop

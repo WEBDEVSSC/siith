@@ -36,6 +36,7 @@ use App\Http\Controllers\ProfesionalNormatividadController;
 use App\Http\Controllers\ProfesionalOcupacionController;
 use App\Http\Controllers\ProfesionalPaseDeSalidaController;
 use App\Http\Controllers\ProfesionalPuestoController;
+use App\Http\Controllers\ProfesionalRecontratacionController;
 use App\Http\Controllers\ProfesionalReporteController;
 use App\Http\Controllers\ProfesionalRolController;
 use App\Http\Controllers\ProfesionalSessionsController;
@@ -418,6 +419,24 @@ Route::middleware(['auth'])->group(function ()
      Route::get('admin/profesionales/cambioDeUnidad/createCambioDeUnidad/{id}', [ProfesionalCambioDeUnidadController::class, 'createCambioDeUnidad'])->name('createCambioDeUnidad');
 
      Route::post('admin/profesionales/cambioDeUnidad/storeCambioDeUnidad', [ProfesionalCambioDeUnidadController::class, 'storeCambioDeUnidad'])->name('storeCambioDeUnidad');
+
+     Route::put('admin/profesionales/cambioDeUnidad/cambioDeUnidadForzoso', [ProfesionalCambioDeUnidadController::class, 'cambioDeUnidadForzoso'])->name('cambioDeUnidadForzoso');
+
+     /**
+     * 
+     * 
+     * RECONTRATACION
+     * 
+     * 
+     */
+
+     Route::get('admin/profesionales/recontratacion/findRecontratacionProfesional', [ProfesionalRecontratacionController::class,'findRecontratacionProfesional'])->name('findRecontratacionProfesional');
+
+     Route::post('admin/profesionales/recontratacion/showRecontratacionProfesional', [ProfesionalRecontratacionController::class, 'showRecontratacionProfesional'])->name('showRecontratacionProfesional');
+
+     Route::get('admin/profesionales/recontratacion/createRecontratacion/{id}', [ProfesionalRecontratacionController::class, 'createRecontratacion'])->name('createRecontratacion');
+
+     Route::post('admin/profesionales/recontratacion/storeRecontratacion', [ProfesionalRecontratacionController::class, 'storeRecontratacion'])->name('storeRecontratacion');
 
      Route::put('admin/profesionales/cambioDeUnidad/cambioDeUnidadForzoso', [ProfesionalCambioDeUnidadController::class, 'cambioDeUnidadForzoso'])->name('cambioDeUnidadForzoso');
 

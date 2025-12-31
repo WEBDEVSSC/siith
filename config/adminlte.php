@@ -339,6 +339,14 @@ return [
         ],
 
         [
+            'text' => 'Recontratación',
+            'url' => 'admin/profesionales/recontratacion/findRecontratacionProfesional',
+            'icon' => 'fa fa-archive',
+            'label_color' => 'success',
+            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'universitario'],
+        ],
+
+        [
             'text' => 'Buscador',
             'url' => 'admin/profesionales/profesionalBuscadorForm',
             'icon' => 'fa-solid fa-magnifying-glass',

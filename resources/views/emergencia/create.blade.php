@@ -775,60 +775,60 @@
             </script>--}}
 
             <script>
-document.addEventListener('DOMContentLoaded', function () {
+                document.addEventListener('DOMContentLoaded', function () {
 
-    document.querySelectorAll('.entidad-select').forEach(entidadSelect => {
+                    document.querySelectorAll('.entidad-select').forEach(entidadSelect => {
 
-        const targetMunicipioId = entidadSelect.dataset.target;
-        const municipioSelect = document.getElementById(targetMunicipioId);
+                        const targetMunicipioId = entidadSelect.dataset.target;
+                        const municipioSelect = document.getElementById(targetMunicipioId);
 
-        // 👉 Si existe old() de entidad, dispara el change automáticamente
-        if (entidadSelect.value) {
-            cargarMunicipios(entidadSelect.value, municipioSelect);
-        }
+                        // 👉 Si existe old() de entidad, dispara el change automáticamente
+                        if (entidadSelect.value) {
+                            cargarMunicipios(entidadSelect.value, municipioSelect);
+                        }
 
-        entidadSelect.addEventListener('change', function () {
-            cargarMunicipios(this.value, municipioSelect);
-        });
+                        entidadSelect.addEventListener('change', function () {
+                            cargarMunicipios(this.value, municipioSelect);
+                        });
 
-    });
+                    });
 
-    function cargarMunicipios(entidadId, municipioSelect) {
+                    function cargarMunicipios(entidadId, municipioSelect) {
 
-        municipioSelect.innerHTML = '<option value="">Cargando...</option>';
+                        municipioSelect.innerHTML = '<option value="">Cargando...</option>';
 
-        if (!entidadId) {
-            municipioSelect.innerHTML = '<option value="">Seleccione municipio</option>';
-            return;
-        }
+                        if (!entidadId) {
+                            municipioSelect.innerHTML = '<option value="">Seleccione municipio</option>';
+                            return;
+                        }
 
-        fetch(`{{ route('municipios', '') }}/${entidadId}`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Error en la respuesta');
-                }
-                return response.json();
-            })
-            .then(data => {
+                        fetch(`{{ route('municipios', '') }}/${entidadId}`)
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Error en la respuesta');
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
 
-                municipioSelect.innerHTML = '<option value="">Seleccione municipio</option>';
+                                municipioSelect.innerHTML = '<option value="">Seleccione municipio</option>';
 
-                const municipioOld = municipioSelect.dataset.old;
+                                const municipioOld = municipioSelect.dataset.old;
 
-                data.forEach(municipio => {
-                    const selected = municipioOld == municipio.id ? 'selected' : '';
-                    municipioSelect.innerHTML +=
-                        `<option value="${municipio.id}" ${selected}>${municipio.nombre}</option>`;
+                                data.forEach(municipio => {
+                                    const selected = municipioOld == municipio.id ? 'selected' : '';
+                                    municipioSelect.innerHTML +=
+                                        `<option value="${municipio.id}" ${selected}>${municipio.nombre}</option>`;
+                                });
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                municipioSelect.innerHTML = '<option value="">Error al cargar municipios</option>';
+                            });
+                    }
+
                 });
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                municipioSelect.innerHTML = '<option value="">Error al cargar municipios</option>';
-            });
-    }
-
-});
-</script>
+                </script>
 
 
 
