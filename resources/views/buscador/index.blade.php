@@ -4,6 +4,8 @@
 
 @section('plugins.Select2', true)
 
+@section('plugins.Sweetalert2', true)
+
 @section('content_header')
     <h1><strong>Buscador</strong></h1>
 @stop
@@ -124,4 +126,18 @@
             });
         });
     </script>  
+
+    @section('js')
+        @if(session('success'))
+            <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Correcto',
+                    text: '{{ session('success') }}',
+                    timer: 2500,
+                    showConfirmButton: false
+                });
+            </script>
+        @endif
+    @endsection
 @stop

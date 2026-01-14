@@ -1625,6 +1625,29 @@
 
 @endif
 
+<!-- ----------------------------------------------------------------------- -->
+
+
+@if(Auth::user()->role == 'admin')
+
+<button type="button"
+        class="btn btn-danger btn-sm btn-block"
+        onclick="confirmarEliminacion({{ $profesional->id }})">
+    <i class="fas fa-trash"></i> ELIMINAR REGISTRO
+</button>
+
+<form id="delete-form-{{ $profesional->id }}"
+      action="{{ route('profesionalDelete', $profesional->id) }}"
+      method="POST"
+      style="display:none;">
+    
+    @csrf
+    @method('DELETE')
+
+</form>
+
+@endif
+
 
     <br>
     <br>
@@ -1757,4 +1780,23 @@
             });
         });
     </script>  
+
+    <script>
+        function confirmarEliminacion(id) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: 'Este registro será eliminado, pero puede restaurarse posteriormente.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            });
+        }
+    </script>
 @stop

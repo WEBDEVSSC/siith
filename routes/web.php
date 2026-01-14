@@ -160,6 +160,9 @@ Route::middleware(['auth'])->group(function ()
     // Ruta para mostrar el perfil del trabajador
     Route::get('admin/profesionales/profesionalShow/{id}', [ProfesionalController::class, 'profesionalShow'])->name('profesionalShow');
 
+    //Ruta para eliminar SOFTDELETE el registro
+    Route::delete('admin/profesionales/profesionalDelete/{id}', [ProfesionalController::class, 'profesionalDelete'])->name('profesionalDelete');
+
     // Ruta para generar el PDF
     Route::get('admin/profesionales/profesionalPDF/{id}', [ProfesionalController::class, 'profesionalPDF'])->name('profesionalPDF');
 

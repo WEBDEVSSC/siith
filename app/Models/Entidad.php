@@ -14,4 +14,21 @@ class Entidad extends Model
         'nombre', 
         'abreviacion',
     ];
+
+    /***
+     * 
+     * 
+     * ARREGLO INVERSO PARA MMOSTRAR LA CLAVE DE LA ENTIDAD
+     * 
+     * 
+     */
+
+    public function entidadNacimiento()
+    {
+        return $this->belongsTo(
+            Entidad::class,
+            'entidad_nacimiento', // campo local
+            'nombre'              // campo en cat_entidades
+        );
+    }
 }

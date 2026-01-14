@@ -158,7 +158,7 @@
                     <td>{{ $profesional->apellido_materno ?? '' }}</td>
 
                     <td>{{ $profesional->pais_nacimiento ?? ''  }}</td>
-                    <td>{{ $profesional->entidad_nacimiento ?? ''  }}</td>
+                    <td>{{ $profesional->datosGenerales?->entidadNacimiento?->clave ?? 'N/D' }}</td>
                     <td>{{ $profesional->municipio_nacimiento ?? ''  }}</td>
                     <td>{{ $profesional->nacionalidad ?? ''  }}</td>
                     <td>{{ $profesional->estado_conyugal ?? ''  }}</td>

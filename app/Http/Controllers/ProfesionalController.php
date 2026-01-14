@@ -2523,4 +2523,16 @@ class ProfesionalController extends Controller
 
     }
 
+    public function profesionalDelete($id)
+    {
+        // Buscamos el registro del profesional    
+        $profesional = Profesional::findOrFail($id);
+
+        // Eliminamos el registro con SOFTDELETE
+        $profesional->delete(); 
+
+        // Redirigemos a la vista de
+        return redirect()->route('profesionalBuscadorForm')->with('success', 'Registro eliminado correctamente.');
+    }
+
 }

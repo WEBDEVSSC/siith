@@ -19,7 +19,8 @@ class ProfesionalesMexicoExport implements FromView, WithStyles
             'gradoAcademico', 
             'areaMedica', 
             'ocupacionCeam',
-            'ocupacionAlmacen'
+            'ocupacionAlmacen',
+            'datosGenerales.entidadNacimiento',
         ])->get();
 
         // Pasamos los datos a la vista

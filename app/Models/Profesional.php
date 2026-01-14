@@ -4,9 +4,12 @@ namespace App\Models;
 
 use App\Casts\Uppercase;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Profesional extends Model
 {
+    use SoftDeletes;    
+
     // Definir la tabla correspondiente
     protected $table = 'profesionales_datos_generales';
 
@@ -207,6 +210,21 @@ class Profesional extends Model
     {
         return $this->hasMany(ProfesionalComisionHistorico::class, 'id_profesional')
                     ->orderBy('id', 'desc');;
+    }
+
+    /***
+     * 
+     * 
+     * ARREGLO PARA RELACIONAR LA CLAVE DE LA ENTIDAD DE NACIMIENTO
+     * 
+     */
+
+    public function datosGenerales()
+    {
+        return $this->hasOne(
+            Profesional::class,
+            'id'
+        );
     }
 
 }
