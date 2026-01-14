@@ -9,12 +9,10 @@ use Maatwebsite\Excel\Concerns\WithStyles;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
-
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class ProfesionalExport implements FromView, WithStyles, WithColumnFormatting
+class ProfesionalExportGeneral implements FromView, WithStyles, WithColumnFormatting
 {
-
     public function columnFormats(): array
     {
         return [
@@ -41,105 +39,16 @@ class ProfesionalExport implements FromView, WithStyles, WithColumnFormatting
             'ocupacionAlmacen'
         ]);
 
-            $profesionalesQuery->whereHas('puesto', function ($query) use ($user) {
-            $query->where('vigencia', 'ACTIVO');
-
-            // Agregamos el filtro por rol
-
-            // Catalogo 2 - Hospitales
-            if ($user->role == 'hospital') 
+            $profesionalesQuery->whereHas('puesto', function ($query) use ($user) 
             {
-                $query->where('clues_adscripcion', $user->clues_unidad);
-            }
-            // Catalogo 3 - Oficina Jurisdiccional
-            elseif ($user->role == 'ofJurisdiccional') 
-            {
-                $query->where('clues_adscripcion_jurisdiccion', $user->jurisdiccion_unidad);
-            }
-            // Catalogo 6 - Oficina Central
-            elseif ($user->role == 'ofCentral') 
-            {
-                //$query->where('clues_adscripcion', 'CLSSA002093');
-                $query->whereHas('profesional.puesto', function ($q) {
-                    $q->whereIn('clues_adscripcion', ['CLSSA002093','CLSSA009997','CLSSA009996','CLSSA009995','CLSSA009994','CLSSA009993','CLSSA009992','CLSSA009991','CLSSA009990','CLSSA002093-SC']);
-                });
-            }
-            // Catalogo 7 - Almacen
-            elseif ($user->role == 'almacen') 
-            {
-                $query->where('clues_adscripcion', 'CLSSA002064');
-            }
-            // Catalogo 9 - Oncologico
-            elseif ($user->role == 'oncologico') 
-            {
-                $query->where('clues_adscripcion', 'CLSSA002932');
-            }
-            elseif($user->role == 'ensenanza')
-            {
-                $query->whereHas('profesional.puesto', function ($q) {
-                    $q->whereIn('nomina_pago', ['610 - Pasante en Servicio Social', '6MR - Médico Residente ','Pasante - Sin pago','PASANTE ENF. - BN']);
-                });
-            }
-            elseif ($user->role == 'universitario') 
-            {
-                $query->where('clues_adscripcion', 'CLHUN000015');
-            }
-            elseif ($user->role == 'criCree') 
-            {
-                $query->whereHas('profesional.puesto', function ($q) {
-                    $q->whereIn('clues_adscripcion', ['CLSSA009989','CLSSA009988','CLSSA009987','CLSSA009986','CLSSA009985']);
-                });
-            }
-            elseif($user->role == 'samuCrum')
-            {
-                $query->whereHas('profesional.puesto', function ($q) {
-                    $q->whereIn('clues_adscripcion', ['CLSSA009997','CLSSA009996','CLSSA009995','CLSSA009994','CLSSA009993','CLSSA009992','CLSSA009991','CLSSA009990','CLSSA002093-SC']);
-                });
-            }
-            elseif ($user->role == 'psiParras') 
-            {
-                $query->where('clues_adscripcion', 'CLSSA000832');
-            }
-            elseif ($user->role == 'cets') 
-            {
-                $query->where('clues_adscripcion', 'CLSSA002076');
-            }
-            elseif ($user->role == 'lesp') 
-            {
-                $query->where('clues_adscripcion', 'CLSSA002052');
-            }
-            elseif ($user->role == 'cesame') 
-            {
-                $query->where('clues_adscripcion', 'CLSSA001141');
-            }
-            elseif ($user->role == 'ceam') 
-            {
-                $query->where('clues_adscripcion', 'CLSSA002192');
-            }
-            elseif ($user->role == 'hospitalNino') 
-            {
-                $query->where('clues_adscripcion', 'CLSSA001136');
-            }
-            elseif ($user->role == 'csuyr') 
-            {
-                $query->where('clues_adscripcion', $user->clues_unidad);
-            }
-            elseif ($user->role !== 'admin') 
-            {
-
-                $query->whereRaw('1 = 0'); 
-            }
-            else 
-            {
-                
-            }
             
-        });
+            }
+        );
 
         $profesionales = $profesionalesQuery->get();
 
         // Pasamos los datos a la vista
-        return view('export.profesionales-export', ['profesionales' => $profesionales]);
+        return view('export.profesionales-general-export', ['profesionales' => $profesionales]);
     }
 
     public function styles(Worksheet $sheet)
@@ -333,7 +242,4 @@ class ProfesionalExport implements FromView, WithStyles, WithColumnFormatting
     
         ];
     }
-
-    
-
 }

@@ -15,6 +15,23 @@
     <div class="card-body">
 
         <div class="row">
+
+            @if(Auth::user()->role == 'admin')
+            <div class="col-md-2">
+                <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>Reporte General</h3>
+
+                    <p>Archivo Excel</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a href="{{ route('exportGeneral') }}" class="small-box-footer">Descargar <i class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            @endif
+
             @if(Auth::user()->role != 'riesgos')
             <div class="col-md-2">
                 <div class="small-box bg-info">

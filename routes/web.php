@@ -627,6 +627,8 @@ Route::middleware(['auth'])->group(function ()
      // Ruta para el reporte de Excel
     Route::get('admin/profesionales/reportes/reporteExcel', [ProfesionalController::class, 'export'])->name('profesionalExport');
 
+    Route::get('admin/profesionales/reportes/reporteExcelGeneral', [ProfesionalController::class, 'exportGeneral'])->name('exportGeneral');
+
     Route::get('admin/profesionales/reportes/reporteExcelBajaTemporal', [ProfesionalController::class, 'exportBajasTemporales'])->name('reporteExcelBajaTemporal');
 
     Route::get('admin/profesionales/reportes/reporteExcelBajaDefinitiva', [ProfesionalController::class, 'exportBajasDefinitivas'])->name('reporteExcelBajaDefinitiva');

@@ -12,22 +12,6 @@ class ProfesionalesMexicoExport implements FromView, WithStyles
 {
     public function view(): View
     {
-
-        /*$profesionales = Profesional::with([
-            'puesto', 
-            'horario', 
-            'sueldo', 
-            'gradoAcademico', 
-            'areaMedica', 
-            
-            'ocupacionCeam',
-            'ocupacionAlmacen'
-            ])
-        ->whereHas('puesto', function ($query) {
-            $query->where('vigencia', 'ACTIVO');
-        })
-        ->get();*/
-
         $profesionales = Profesional::with([
             'puesto', 
             'horario', 

@@ -7,6 +7,7 @@ use App\Exports\ProfesionalesRiesgosEstatalExport;
 use App\Exports\ProfesionalExport;
 use App\Exports\ProfesionalExportBajaTemporal;
 use App\Exports\ProfesionalExportBajaDefinitiva;
+use App\Exports\ProfesionalExportGeneral;
 use App\Mail\FelicitacionCumpleanos;
 use App\Models\CatOcupacionEnsenanza;
 use App\Models\CatOcupacionHospital;
@@ -1869,6 +1870,24 @@ class ProfesionalController extends Controller
             'vigenciasMotivos'
 
         ));
+    }
+
+    /**
+     * 
+     * 
+     * METODO PARA EXPORTAR EN EXCEL LOS REGISTOS DE PROFESIONALES COMPLETOS
+     * 
+     */
+
+    public function exportGeneral()
+    {
+        
+        ini_set('memory_limit', '-1');
+
+        ini_set('max_execution_time', 300); // 300 segundos = 5 minutos
+        
+        // Exporta los datos usando la clase CluesExport
+        return Excel::download(new ProfesionalExportGeneral, 'REPORTE.xlsx');
     }
 
     /**
