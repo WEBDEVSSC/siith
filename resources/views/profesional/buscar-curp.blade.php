@@ -21,9 +21,10 @@
             
             <div class="card-body">
 
-                @if (session('error'))
+
+                @if(session('error'))
                     <div class="alert alert-danger">
-                        {{ session('error') }}
+                        {!! session('error') !!}
                     </div>
                 @endif
 
