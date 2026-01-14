@@ -35,7 +35,6 @@
 
                 <th style="color: white;"><strong>CLUES DE ADSCRIPCION DE NOMINA</strong></th>
                 <th style="color: white;"><strong>CLUES DE ADSCRIPCION REAL</strong></th>
-                <th style="color: white;"><strong>SS</strong></th>
                 <th style="color: white;"><strong>TIPO DE CONTRATO</strong></th>
                 <th style="color: white;"><strong>TIPO DE PLAZA</strong></th>
                 <th style="color: white;"><strong>INSTITUCION A LA QUE PERTENECE EL PUESTO</strong></th>
@@ -88,6 +87,63 @@
                 <th style="color: white;"><strong>PRESTACIONES DERIVADAS DE CGT O CONTRATO COLECTIVO</strong></th>
                 <th style="color: white;"><strong>ESTIMULOS</strong></th>
                 <th style="color: white;"><strong>REMUNERACION ORDINARIA MENSUAL</strong></th>
+
+                <th style="color: white;"><strong>GRADO ACADEMICO 1</strong></th>
+                <th style="color: white;"><strong>NOMBRE DEL TITULO O DIPLOMA 1</strong></th>
+                <th style="color: white;"><strong>OTRO NOMBRE DEL TITULO O DIPLOMA 1</strong></th>
+                <th style="color: white;"><strong>INSTITUCION EDUCATIVA 1</strong></th>
+                <th style="color: white;"><strong>OTRA INSTITUCION EDUCATIVA 1</strong></th>
+                <th style="color: white;"><strong>TIENE CEDULA 1</strong></th>
+                <th style="color: white;"><strong>NUMERO CEDULA 1</strong></th>
+
+                <th style="color: white;"><strong>GRADO ACADEMICO 2</strong></th>
+                <th style="color: white;"><strong>NOMBRE DEL TITULO O DIPLOMA 2</strong></th>
+                <th style="color: white;"><strong>OTRO NOMBRE DEL TITULO O DIPLOMA 2</strong></th>
+                <th style="color: white;"><strong>INSTITUCION EDUCATIVA 2</strong></th>
+                <th style="color: white;"><strong>OTRA INSTITUCION EDUCATIVA 2</strong></th>
+                <th style="color: white;"><strong>TIENE CEDULA 2</strong></th>
+                <th style="color: white;"><strong>NUMERO CEDULA 2</strong></th>
+
+                <th style="color: white;"><strong>GRADO ACADEMICO 3</strong></th>
+                <th style="color: white;"><strong>NOMBRE DEL TITULO O DIPLOMA 3</strong></th>
+                <th style="color: white;"><strong>OTRO NOMBRE DEL TITULO O DIPLOMA 3</strong></th>
+                <th style="color: white;"><strong>INSTITUCION EDUCATIVA 3</strong></th>
+                <th style="color: white;"><strong>OTRA INSTITUCION EDUCATIVA 3</strong></th>
+                <th style="color: white;"><strong>TIENE CEDULA 3</strong></th>
+                <th style="color: white;"><strong>NUMERO CEDULA 3</strong></th>
+
+                <th style="color: white;"><strong>GRADO ACADEMICO 4</strong></th>
+                <th style="color: white;"><strong>NOMBRE DEL TITULO O DIPLOMA 4</strong></th>
+                <th style="color: white;"><strong>OTRO NOMBRE DEL TITULO O DIPLOMA 4</strong></th>
+                <th style="color: white;"><strong>INSTITUCION EDUCATIVA 4</strong></th>
+                <th style="color: white;"><strong>OTRA INSTITUCION EDUCATIVA 4</strong></th>
+                <th style="color: white;"><strong>TIENE CEDULA 4</strong></th>
+                <th style="color: white;"><strong>NUMERO CEDULA 4</strong></th>
+
+                <th style="color: white;"><strong>GRADO ACADEMICO 5</strong></th>
+                <th style="color: white;"><strong>NOMBRE DEL TITULO O DIPLOMA 5</strong></th>
+                <th style="color: white;"><strong>OTRO NOMBRE DEL TITULO O DIPLOMA 5</strong></th>
+                <th style="color: white;"><strong>INSTITUCION EDUCATIVA 5</strong></th>
+                <th style="color: white;"><strong>OTRA INSTITUCION EDUCATIVA 5</strong></th>
+                <th style="color: white;"><strong>TIENE CEDULA 5</strong></th>
+                <th style="color: white;"><strong>NUMERO CEDULA 5</strong></th>
+
+                <th style="color: white;"><strong>TIPO DE FORMACION AREA MEDICA-ENFERMERIA-PROFESIONAL</strong></th>
+                <th style="color: white;"><strong>CARRERA</strong></th>
+                <th style="color: white;"><strong>INSTITUCION EDUCATIVA FORMADORA</strong></th>
+                <th style="color: white;"><strong>AÑO QUE CURSA</strong></th>
+                <th style="color: white;"><strong>DURACION DE AÑOS DE FORMACION</strong></th>
+
+                <th style="color: white;"><strong>COLEGIACION</strong></th>
+                <th style="color: white;"><strong>COLEGIO</strong></th>
+                <th style="color: white;"><strong>CERTIFICACION</strong></th>
+                <th style="color: white;"><strong>NOMBRE DE LA CERTIFICACION</strong></th>
+                <th style="color: white;"><strong>CONSEJO</strong></th>
+                <th style="color: white;"><strong>IDIOMA</strong></th>
+                <th style="color: white;"><strong>NIVEL DE DOMINIO</strong></th>
+                <th style="color: white;"><strong>LENGUA INDIGENA</strong></th>
+                <th style="color: white;"><strong>NIVEL DE DOMINIO</strong></th>
+                <th style="color: white;"><strong>LENGUA DE SEÑAS</strong></th>
 
 
                 {{--
@@ -197,7 +253,11 @@
                     <td>{{ $profesional->nacionalidad ?? ''  }}</td>
                     <td>{{ $profesional->estado_conyugal ?? ''  }}</td>
                     <td>{{ $profesional->puesto?->fiel ?? '' }}</td>
-                    <td>{{ $profesional->puesto->fiel_vigencia ?? '' }}</td>
+                    <td>
+                         @if ($profesional->puesto?->fiel === 'SI')
+                              {{ $profesional->puesto?->fiel_vigencia }}
+                         @endif
+                    </td>
 
                     <td>{{ $profesional->email ?? ''  }}</td>
 
@@ -210,7 +270,6 @@
 
                     <td>{{ $profesional->puesto?->clues_nomina ?? '' }}</td>
                     <td>{{ $profesional->puesto?->clues_adscripcion ?? '' }}</td>
-                    <td></td>
                     <td>{{ $profesional->puesto?->tipo_contrato ?? '' }}</td>
                     <td>{{ $profesional->puesto?->tipo_plaza ?? '' }}</td>
                     <td>{{ $profesional->puesto?->institucion_puesto ?? '' }}</td>
@@ -313,6 +372,67 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
+
+                    <td>{{ $profesional->gradoAcademico->cve_grado_uno ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->grado_academico_uno ?? '' }}</td>
+                    <td></td>
+                    <td>{{ $profesional->gradoAcademico->institucion_educativa_uno ?? '' }}</td>
+                    <td></td>
+                    <td>{{ $profesional->gradoAcademico->cedula_uno ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->numero_cedula_uno ?? '' }}</td>
+
+                    <td>{{ $profesional->gradoAcademico->cve_grado_dos ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->grado_academico_dos ?? '' }}</td>
+                    <td></td>
+                    <td>{{ $profesional->gradoAcademico->institucion_educativa_dos ?? '' }}</td>
+                    <td></td>
+                    <td>{{ $profesional->gradoAcademico->cedula_dos ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->numero_cedula_dos ?? '' }}</td>
+
+                    <td>{{ $profesional->gradoAcademico->cve_grado_tres ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->grado_academico_tres ?? '' }}</td>
+                    <td></td>
+                    <td>{{ $profesional->gradoAcademico->institucion_educativa_tres ?? '' }}</td>
+                    <td></td>
+                    <td>{{ $profesional->gradoAcademico->cedula_tres ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->numero_cedula_tres ?? '' }}</td>
+
+                    <td>{{ $profesional->gradoAcademico->cve_grado_cuatro ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->grado_academico_cuatro ?? '' }}</td>
+                    <td></td>
+                    <td>{{ $profesional->gradoAcademico->institucion_educativa_cuatro ?? '' }}</td>
+                    <td></td>
+                    <td>{{ $profesional->gradoAcademico->cedula_cuatro ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->numero_cedula_cuatro ?? '' }}</td>
+
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                    <td>{{ $profesional->areaMedica->tipo_formacion ?? '' }}</td>
+                    <td>{{ $profesional->areaMedica->carrera_label ?? '' }}</td>
+                    <td>{{ $profesional->areaMedica->institucion_educativa_label ?? '' }}</td>
+                    <td>{{ $profesional->areaMedica->anio_cursa ?? '' }}</td>
+                    <td>{{ $profesional->areaMedica->duracion_formacion ?? '' }}</td>
+                    
+                    <td>
+                         {{ $profesional->certificacion?->colegiacion_id == 0 ? 'NO' : 'SI' }}
+                    </td>
+                    <td>{{ $profesional->certificacion->colegiacion_label ?? '' }}</td>
+                    <td>
+                         {{ $profesional->certificacion?->certificacion_id == 0 ? 'NO' : 'SI' }}
+                    </td>
+                    <td>{{ $profesional->certificacion->certificacion_label ?? '' }}</td>
+                    <td></td>
+                    <td>{{ $profesional->certificacion->idioma_label ?? '' }}</td>
+                    <td>{{ $profesional->certificacion->idioma_nivel_de_dominio ?? '' }}</td>
+                    <td>{{ $profesional->certificacion->lengua_indigena_label ?? '' }}</td>
+                    <td>{{ $profesional->certificacion->lengua_nivel_de_dominio ?? '' }}</td>
                     <td></td>
 
 
