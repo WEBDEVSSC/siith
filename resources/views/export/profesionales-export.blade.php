@@ -636,7 +636,8 @@
                             <td>{{ $profesional->ocupacionHospitalNino->servicio_dos ?? '' }}</td>
                             <td>{{ $profesional->ocupacionHospitalNino->ocupacion_dos ?? '' }}</td>
                             <td>{{ $profesional->ocupacionHospitalNino->puesto_dos ?? '' }}</td>
-
+                        @break
+                        
                         {{-- PASANTES ENSENANZA --}}
                         @case(15)
                             <td>PASANTES ENSEÑANZA</td>
