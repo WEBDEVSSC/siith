@@ -219,6 +219,15 @@ class Profesional extends Model
      * 
      */
 
+    public function entidadNacimiento()
+    {
+        return $this->belongsTo(
+            Entidad::class,
+            'entidad_nacimiento', // campo LOCAL
+            'nombre'              // campo en cat_entidades
+        );
+    }
+
     public function datosGenerales()
     {
         return $this->hasOne(

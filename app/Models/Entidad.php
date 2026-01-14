@@ -23,6 +23,15 @@ class Entidad extends Model
      * 
      */
 
+    public function profesionales()
+    {
+        return $this->hasMany(
+            Profesional::class,
+            'entidad_nacimiento',
+            'nombre'
+        );
+    }
+
     public function entidadNacimiento()
     {
         return $this->belongsTo(
