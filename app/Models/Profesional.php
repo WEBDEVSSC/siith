@@ -73,7 +73,7 @@ class Profesional extends Model
 
     public function horario()
     {
-        return $this->hasOne(ProfesionalHorario::class, 'id_profesional');
+        return $this->hasOne(ProfesionalHorario::class, 'id_profesional','id');
     }
 
     public function sueldo()
@@ -233,22 +233,6 @@ class Profesional extends Model
             Entidad::class,
             'entidad_nacimiento', // campo LOCAL
             'nombre'              // campo en cat_entidades
-        );
-    }
-
-    /***
-     * 
-     * 
-     * ARREGLO PARA RELACIONAR LA JORNADA CON EL LABEL DE MEXICO
-     * 
-     */
-
-    public function jornadaMexico()
-    {
-        return $this->belongsTo(
-            Jornada::class,
-            'id', // campo LOCAL
-            'jornada_mexico'              // campo en cat_entidades
         );
     }
 }

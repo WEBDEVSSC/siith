@@ -65,6 +65,9 @@ class ProfesionalHorarioController extends Controller
             'horario_salida.required' => 'El campo es obligatorio',
         ]);
 
+        // Consultamos el label de Jornada Mexico
+        $jornadaMexico = Jornada::findOrFail($request->jornada);
+
         /**********************************************************************************
          * 
          * 
@@ -915,6 +918,7 @@ class ProfesionalHorarioController extends Controller
         $horario->id_profesional = $request->id_profesional;
         $horario->id_jornada = $request->jornada;
         $horario->jornada = $label_jornada;
+        $horario->jornada_mexico = $jornadaMexico->jornada_mexico;
 
         $horario->entrada_promedio = $entrada_promedio;
         $horario->salida_promedio = $salida_promedio;
@@ -998,7 +1002,8 @@ class ProfesionalHorarioController extends Controller
             'horario_salida.required' => 'El campo es obligatorio',
         ]);
 
-        
+        // Consultamos el label de Jornada Mexico
+        $jornadaMexico = Jornada::findOrFail($request->jornada);
 
         /**********************************************************************************
          * 
@@ -1856,6 +1861,7 @@ class ProfesionalHorarioController extends Controller
 
         $horario->id_jornada = $request->jornada;
         $horario->jornada = $label_jornada;
+        $horario->jornada_mexico = $jornadaMexico->jornada_mexico;
 
         $horario->entrada_promedio = $entrada_promedio;
         $horario->salida_promedio = $salida_promedio;

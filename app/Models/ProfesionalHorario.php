@@ -33,9 +33,4 @@ class ProfesionalHorario extends Model
         'mdl_horario',
     ];
 
-    public function jornada()
-    {
-        return $this->belongsTo(Jornada::class, 'id_jornada', 'id');
-    }
-
 }
