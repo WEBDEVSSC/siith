@@ -267,7 +267,7 @@ class ProfesionalController extends Controller
          $estadosConyuales = EstadoConyugal::all();
 
          // Ajustamos la nacionalidad
-         if($entidadNacimiento === 'X')
+         if($entidadNacimiento === 'NE')
          {
              $paisNacimiento = 'EXTRANGERO';
              $nacionalidad = 'EXTRANGERA';
