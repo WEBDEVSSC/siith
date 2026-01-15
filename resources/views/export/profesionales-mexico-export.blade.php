@@ -290,7 +290,7 @@
                     <td>{{ $profesional->horario->entrada_festivo ?? '' }}</td>
                     <td>{{ $profesional->horario->salida_festivo ?? '' }}</td>
 
-                    <td>{{ $profesional->horario->jornada ?? '' }}</td>
+                    <td>{{ $profesional->horario?->jornada?->jornada_mexico ?? 'N/D' }}</td>
 
                     <td></td>
                     <td></td>

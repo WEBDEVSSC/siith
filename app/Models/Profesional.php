@@ -212,6 +212,14 @@ class Profesional extends Model
                     ->orderBy('id', 'desc');;
     }
 
+    public function datosGenerales()
+    {
+        return $this->hasOne(
+            Profesional::class,
+            'id'
+        );
+    }
+
     /***
      * 
      * 
@@ -228,12 +236,19 @@ class Profesional extends Model
         );
     }
 
-    public function datosGenerales()
+    /***
+     * 
+     * 
+     * ARREGLO PARA RELACIONAR LA JORNADA CON EL LABEL DE MEXICO
+     * 
+     */
+
+    public function jornadaMexico()
     {
-        return $this->hasOne(
-            Profesional::class,
-            'id'
+        return $this->belongsTo(
+            Jornada::class,
+            'id', // campo LOCAL
+            'jornada_mexico'              // campo en cat_entidades
         );
     }
-
 }

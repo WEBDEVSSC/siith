@@ -32,4 +32,10 @@ class ProfesionalHorario extends Model
         'salida_festivo',
         'mdl_horario',
     ];
+
+    public function jornada()
+    {
+        return $this->belongsTo(Jornada::class, 'id_jornada', 'id');
+    }
+
 }
