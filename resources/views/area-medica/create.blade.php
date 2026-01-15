@@ -54,7 +54,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <p><strong>Carrera</strong></p>
                         <select name="carrera_id" id="carrera_id" class="form-control select2">
                             <option value="" disabled selected>-- Seleccione una opción --</option>
@@ -69,7 +69,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                         <p><strong>Institución Educativa Formadora</strong></p>
                         <select name="institucion_educativa_id" id="institucion_educativa_id" class="form-control select2">
                             <option value="" disabled selected>-- Seleccione una opción --</option>
@@ -93,16 +93,43 @@
                 <div class="row mt-3">
 
                     <div class="col-md-3">
-                        <p><strong>Año que Cursa</strong></p>
-                        <input type="text" name="anio_cursa" id="anio_cursa" class="form-control" value="{{ old('anio_cursa') }}">                 
+                        <p><strong>Año que Cursa</strong></p>   
+                        
+                        <select name="anio_cursa" id="anio_cursa" class="form-control">
+                            <option value="" disabled selected>Selecciona un tipo de formación</option>
+                            @foreach ($aniosCursa as $anioCursa)
+                                <option value="{{ $anioCursa->id }}" {{ old('anio_cursa') == $anioCursa->id ? 'selected' : '' }}>
+                                    {{ $anioCursa->anio }}
+                                </option>
+                            @endforeach
+                        </select>
+
                         @error('anio_cursa')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+
+                        
+
                     </div>        
-                    
+
                     <div class="col-md-3">
                         <p><strong>Duración de Años de Formación</strong></p>
-                        <input type="text" name="duracion_formacion" id="duracion_formacion" class="form-control" value="{{ old('duracion_formacion') }}">                     
+
+                        <select name="duracion_formacion" id="duracion_formacion" class="form-control">
+                            <option value="">Seleccione la duración</option>
+
+                            <option value="1"  {{ old('duracion_formacion') == 1  ? 'selected' : '' }}>1 año</option>
+                            <option value="2"  {{ old('duracion_formacion') == 2  ? 'selected' : '' }}>2 años</option>
+                            <option value="3"  {{ old('duracion_formacion') == 3  ? 'selected' : '' }}>3 años</option>
+                            <option value="4"  {{ old('duracion_formacion') == 4  ? 'selected' : '' }}>4 años</option>
+                            <option value="5"  {{ old('duracion_formacion') == 5  ? 'selected' : '' }}>5 años</option>
+                            <option value="6"  {{ old('duracion_formacion') == 6  ? 'selected' : '' }}>6 años</option>
+                            <option value="7"  {{ old('duracion_formacion') == 7  ? 'selected' : '' }}>7 años</option>
+                            <option value="8"  {{ old('duracion_formacion') == 8  ? 'selected' : '' }}>8 años</option>
+                            <option value="9"  {{ old('duracion_formacion') == 9  ? 'selected' : '' }}>9 años</option>
+                            <option value="10" {{ old('duracion_formacion') == 10 ? 'selected' : '' }}>10 años</option>
+                        </select>
+
                         @error('duracion_formacion')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror

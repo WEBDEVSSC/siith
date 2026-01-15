@@ -56,7 +56,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-6">
                         <p><strong>Carrera</strong></p>
                         <select name="carrera_id" id="carrera_id" class="form-control select2">
                             <option value="" disabled selected>-- Seleccione una opción --</option>
@@ -66,7 +66,7 @@
                                 </option>
                             @endforeach
                         </select>
-                        
+
                         @error('carrera_id')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -88,6 +88,14 @@
                         @enderror
                     </div>
 
+                                     
+
+                </div>
+
+                <!-- -->
+
+                <div class="row mt-3">
+
                     <div class="col-md-3">
                         <p><strong>Año que cursa</strong></p>    
                         
@@ -103,13 +111,7 @@
                         @error('anio_cursa')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                    </div>                   
-
-                </div>
-
-                <!-- -->
-
-                <div class="row mt-3">
+                    </div>  
                     
                     <div class="col-md-3">
                         <p><strong>Duración de Años de Formación</strong></p>
