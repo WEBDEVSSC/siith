@@ -41,7 +41,7 @@
                 <div class="row mt-3">      
 
                     <div class="col-md-3">
-                        <p>Tipo de formación Area médica-enfermeria-profesional</p>
+                        <p><strong>Tipo de formación Area médica-enfermeria-profesional</strong></p>
                         
                         <select name="tipo_formacion" id="tipo_formacion" class="form-control">
                             <option value="" disabled selected>Selecciona un tipo de formación</option>
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <p>Carrera</p>
+                        <p><strong>Carrera</strong></p>
                         <select name="carrera_id" id="carrera_id" class="form-control select2">
                             <option value="" disabled selected>-- Seleccione una opción --</option>
                             @foreach ($carreras as $carrera)
@@ -66,13 +66,14 @@
                                 </option>
                             @endforeach
                         </select>
+                        
                         @error('carrera_id')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-3">
-                        <p>Institución Educativa Formadora</p>
+                        <p><strong>Institución Educativa Formadora</strong></p>
                         <select name="institucion_educativa_id" id="institucion_educativa_id" class="form-control select2">
                             <option value="" disabled selected>-- Seleccione una opción --</option>
                             @foreach ($institucionesEducativas as $institucionEducativa)
@@ -81,14 +82,24 @@
                                 </option>
                             @endforeach
                         </select>
+
                         @error('institucion_educativa_id')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-3">
-                        <p>Año que cursa</p>
-                        <input type="text" name="anio_cursa" id="anio_cursa" class="form-control" value="{{ old('anio_cursa', $areaMedica->anio_cursa) }}">                 
+                        <p><strong>Año que cursa</strong></p>    
+                        
+                        <select name="anio_cursa" id="anio_cursa" class="form-control">
+                            <option value="" disabled selected>Selecciona un tipo de formación</option>
+                            @foreach ($aniosCursa as $anioCursa)
+                                <option value="{{ $anioCursa->id }}" {{ old('anio_cursa', $areaMedica->anio_cursa_id) == $anioCursa->id ? 'selected' : '' }}>
+                                    {{ $anioCursa->anio }}
+                                </option>
+                            @endforeach
+                        </select>
+                        
                         @error('anio_cursa')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -101,8 +112,23 @@
                 <div class="row mt-3">
                     
                     <div class="col-md-3">
-                        <p>Duración de Años de Formación</p>
-                        <input type="text" name="duracion_formacion" id="duracion_formacion" class="form-control" value="{{ old('duracion_formacion', $areaMedica->duracion_formacion) }}">                     
+                        <p><strong>Duración de Años de Formación</strong></p>
+
+                        <select name="duracion_formacion" id="duracion_formacion" class="form-control">
+                            <option value="">Seleccione la duración</option>
+
+                            <option value="1"  {{ old('duracion_formacion', $areaMedica->duracion_formacion) == 1  ? 'selected' : '' }}>1 año</option>
+                            <option value="2"  {{ old('duracion_formacion', $areaMedica->duracion_formacion) == 2  ? 'selected' : '' }}>2 años</option>
+                            <option value="3"  {{ old('duracion_formacion', $areaMedica->duracion_formacion) == 3  ? 'selected' : '' }}>3 años</option>
+                            <option value="4"  {{ old('duracion_formacion', $areaMedica->duracion_formacion) == 4  ? 'selected' : '' }}>4 años</option>
+                            <option value="5"  {{ old('duracion_formacion', $areaMedica->duracion_formacion) == 5  ? 'selected' : '' }}>5 años</option>
+                            <option value="6"  {{ old('duracion_formacion', $areaMedica->duracion_formacion) == 6  ? 'selected' : '' }}>6 años</option>
+                            <option value="7"  {{ old('duracion_formacion', $areaMedica->duracion_formacion) == 7  ? 'selected' : '' }}>7 años</option>
+                            <option value="8"  {{ old('duracion_formacion', $areaMedica->duracion_formacion) == 8  ? 'selected' : '' }}>8 años</option>
+                            <option value="9"  {{ old('duracion_formacion', $areaMedica->duracion_formacion) == 9  ? 'selected' : '' }}>9 años</option>
+                            <option value="10" {{ old('duracion_formacion', $areaMedica->duracion_formacion) == 10 ? 'selected' : '' }}>10 años</option>
+                        </select>
+
                         @error('duracion_formacion')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -113,7 +139,7 @@
         <!-- ---------------------------------------------------------------------- --> 
         </div>
         <div class="card-footer">
-            <button type="submit" class="btn btn-success btn-sm btn-info">REGISTRAR DATOS DE AREA MEDICA</button>
+            <button type="submit" class="btn btn-success btn-sm btn-info">ACTUALIZAR DATOS</button>
         </div>
 
     </form>

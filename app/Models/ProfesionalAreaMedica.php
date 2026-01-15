@@ -18,7 +18,9 @@ class ProfesionalAreaMedica extends Model
         'carrera_label',
         'institucion_educativa_id',
         'institucion_educativa_label',
+        'anio_cursa_id',
         'anio_cursa',
         'duracion_formacion',
+        'mdl_area_medica'
     ];
 }

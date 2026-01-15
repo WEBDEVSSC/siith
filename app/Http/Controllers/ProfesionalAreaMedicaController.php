@@ -7,6 +7,7 @@ use App\Models\InstitucionEducativa;
 use App\Models\Profesional;
 use App\Models\ProfesionalAreaMedica;
 use App\Models\TiposFormacionMedica;
+use App\Models\CatAnioCursa;
 use Illuminate\Http\Request;
 
 class ProfesionalAreaMedicaController extends Controller
@@ -31,12 +32,14 @@ class ProfesionalAreaMedicaController extends Controller
         // Llenamos el select de Carrera
         $carreras = Carrera::all();
 
-        //Llenamos el select de Institucion formadora
+        // Llenamos el select de Institucion formadora
         $institucionesEducativas = InstitucionEducativa::orderBy('institucion', 'asc')->get();
 
+        // Llenamos el select de Años de duracion
+        $aniosCursa = CatAnioCursa::all();
 
         // Regresamos la vista con el objeto
-        return view('area-medica.create', compact('profesional','tiposFormacion','carreras','institucionesEducativas'));
+        return view('area-medica.create', compact('profesional','tiposFormacion','carreras','institucionesEducativas','aniosCursa'));
     }
 
     /**
@@ -44,21 +47,29 @@ class ProfesionalAreaMedicaController extends Controller
      */
     public function storeAreaMedica(Request $request)
     {
-        // Validamos los datos
         $request->validate([
             'id_profesional' => 'required|integer',
-            'tipo_formacion' => 'nullable',
-            'carrera_id' => 'nullable',
-            'institucion_educativa_id' => 'nullable',
-            'anio_cursa' => 'required|string',
-            'duracion_formacion' => 'required|string',
-        ],[
+
+            'tipo_formacion' => 'nullable|string',
+
+            'carrera_id' => 'required_with:tipo_formacion|integer',
+            'institucion_educativa_id' => 'required_with:tipo_formacion|integer',
+
+            'anio_cursa' => 'required_with:tipo_formacion|string|max:4',
+            'duracion_formacion' => 'required_with:tipo_formacion|string',
+        ], [
             'id_profesional.required' => 'El campo "ID del profesional" es obligatorio.',
             'id_profesional.integer' => 'El campo "ID del profesional" debe ser un número entero.',
-            'anio_cursa.string' => 'El campo "Año que cursa" debe ser una cadena de texto.',
-            'anio_cursa.required' => 'El campo es obligatorio.',
-            'duracion_formacion.string' => 'El campo "Duración de la formación" debe ser una cadena de texto.',
-            'duracion_formacion.required' => 'El campo es obligatorio.',
+
+            'carrera_id.required_with' => 'La carrera es obligatoria cuando se selecciona un tipo de formación.',
+            'institucion_educativa_id.required_with' => 'La institución educativa es obligatoria cuando se selecciona un tipo de formación.',
+
+            'anio_cursa.required_with' => 'El año que cursa es obligatorio cuando se selecciona un tipo de formación.',
+            'anio_cursa.string' => 'El año que cursa debe ser una cadena de texto.',
+            'anio_cursa.max' => 'El año que cursa no debe exceder 4 caracteres.',
+
+            'duracion_formacion.required_with' => 'La duración de la formación es obligatoria cuando se selecciona un tipo de formación.',
+            'duracion_formacion.string' => 'La duración de la formación debe ser una cadena de texto.',
         ]);
 
         // Consultamos los datos de carrera
@@ -69,6 +80,9 @@ class ProfesionalAreaMedicaController extends Controller
 
         // Consultamos el tipo de formacion
         $tipoFormacion = TiposFormacionMedica::findOrFail($request->tipo_formacion);
+
+        // Consultamos el año que cursa
+        $anioCursa = CatAnioCursa::findOrFail($request->anio_cursa);
 
         // Activamos el modulo
         $mdlAreaMedica = 1;
@@ -85,7 +99,8 @@ class ProfesionalAreaMedicaController extends Controller
         $areaMedica->carrera_label = $carrera->carrera;
         $areaMedica->institucion_educativa_id = $request->institucion_educativa_id;
         $areaMedica->institucion_educativa_label = $institucionEducativa->institucion;
-        $areaMedica->anio_cursa = $request->anio_cursa;
+        $areaMedica->anio_cursa_id = $request->anio_cursa;
+        $areaMedica->anio_cursa = $anioCursa->anio;
         $areaMedica->duracion_formacion = $request->duracion_formacion;
         $areaMedica->mdl_area_medica = $mdlAreaMedica;
 
@@ -125,8 +140,11 @@ class ProfesionalAreaMedicaController extends Controller
         //Llenamos el select de Institucion formadora
         $institucionesEducativas = InstitucionEducativa::orderBy('institucion', 'asc')->get();
 
+        // Llenamos el select de Años de duracion
+        $aniosCursa = CatAnioCursa::all();
+
         // Regresamos la vista con el objeto
-        return view('area-medica.edit', compact('areaMedica', 'profesional','tiposFormacion','carreras','institucionesEducativas'));
+        return view('area-medica.edit', compact('areaMedica', 'profesional','tiposFormacion','carreras','institucionesEducativas','aniosCursa'));
 
         
 
@@ -137,23 +155,30 @@ class ProfesionalAreaMedicaController extends Controller
      */
     public function updateAreaMedica(Request $request, $id)
     {
-        // Validamos los datos
         $request->validate([
             'id_profesional' => 'required|integer',
-            'tipo_formacion' => 'nullable',
-            'carrera_id' => 'nullable',
-            'institucion_educativa_id' => 'nullable',
-            'anio_cursa' => 'required|string',
-            'duracion_formacion' => 'required|string',
-        ],[
+
+            'tipo_formacion' => 'nullable|string',
+
+            'carrera_id' => 'required_with:tipo_formacion|integer',
+            'institucion_educativa_id' => 'required_with:tipo_formacion|integer',
+
+            'anio_cursa' => 'required_with:tipo_formacion|string|max:4',
+            'duracion_formacion' => 'required_with:tipo_formacion|string',
+        ], [
             'id_profesional.required' => 'El campo "ID del profesional" es obligatorio.',
             'id_profesional.integer' => 'El campo "ID del profesional" debe ser un número entero.',
-            'anio_cursa.string' => 'El campo "Año que cursa" debe ser una cadena de texto.',
-            'anio_cursa.required' => 'El campo es obligatorio.',
-            'duracion_formacion.string' => 'El campo "Duración de la formación" debe ser una cadena de texto.',
-            'duracion_formacion.required' => 'El campo es obligatorio.',
+
+            'carrera_id.required_with' => 'La carrera es obligatoria cuando se selecciona un tipo de formación.',
+            'institucion_educativa_id.required_with' => 'La institución educativa es obligatoria cuando se selecciona un tipo de formación.',
+
+            'anio_cursa.required_with' => 'El año que cursa es obligatorio cuando se selecciona un tipo de formación.',
+            'anio_cursa.string' => 'El año que cursa debe ser una cadena de texto.',
+            'anio_cursa.max' => 'El año que cursa no debe exceder 4 caracteres.',
+
+            'duracion_formacion.required_with' => 'La duración de la formación es obligatoria cuando se selecciona un tipo de formación.',
+            'duracion_formacion.string' => 'La duración de la formación debe ser una cadena de texto.',
         ]);
-        
 
         // Buscamos el registro a editar
         $areaMedica = ProfesionalAreaMedica::findOrFail($id);
@@ -167,6 +192,9 @@ class ProfesionalAreaMedicaController extends Controller
         // Consultamos el tipo de formacion
         $tipoFormacion = TiposFormacionMedica::findOrFail($request->tipo_formacion);
 
+        // Consultamos el año que cursa
+        $anioCursa = CatAnioCursa::findOrFail($request->anio_cursa);
+
         // Asignamos los valores
         $areaMedica->update([
             'tipo_formacion' => $tipoFormacion->cve,
@@ -176,7 +204,8 @@ class ProfesionalAreaMedicaController extends Controller
             'carrera_label' => $carrera->carrera,
             'institucion_educativa_id' => $request->institucion_educativa_id,
             'institucion_educativa_label' => $institucionEducativa->institucion,
-            'anio_cursa' => $request->anio_cursa,
+            'anio_cursa_id' => $request->anio_cursa,
+            'anio_cursa' => $anioCursa->anio,
             'duracion_formacion' => $request->duracion_formacion,
         ]);
 
