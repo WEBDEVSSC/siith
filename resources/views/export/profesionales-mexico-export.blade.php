@@ -158,8 +158,23 @@
                     <td>{{ $profesional->apellido_materno ?? '' }}</td>
 
                     <td>{{ $profesional->pais_nacimiento ?? ''  }}</td>
-                    <td>{{ $profesional->datosGenerales?->entidadNacimiento?->clave ?? 'N/D' }}</td>
-                    <td>{{ $profesional->municipio_nacimiento ?? ''  }}</td>
+
+                    <td>
+                         @if ($profesional->entidad_nacimiento === 'NACIDO EN EL EXTRANJERO')
+                              {{-- vacío --}}
+                         @else
+                              {{ $profesional->datosGenerales?->entidadNacimiento?->clave ?? 'N/D' }}
+                         @endif
+                    </td>
+
+                    <td>
+                         @if ($profesional->entidad_nacimiento === 'NACIDO EN EL EXTRANJERO')
+                              {{-- vacío --}}
+                         @else
+                              {{ $profesional->municipio_nacimiento ?? ''  }}
+                         @endif
+                    </td>
+                    
                     <td>{{ $profesional->nacionalidad ?? ''  }}</td>
                     <td>{{ $profesional->estado_conyugal ?? ''  }}</td>
                     <td>{{ $profesional->puesto?->fiel ?? '' }}</td>
