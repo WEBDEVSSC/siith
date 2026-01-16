@@ -414,7 +414,7 @@
                     {{-- --------------------------------------------------------------------------------------------------------------}}
 
                     <td>{{ $profesional->gradoAcademico->cve_grado_uno ?? '' }}</td>
-                    <td>{{ $profesional->gradoAcademico->grado_academico_uno ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->titulo_uno ?? '' }}</td>
                     <td></td>
                     <td>{{ $profesional->gradoAcademico->institucion_educativa_uno ?? '' }}</td>
                     <td></td>
@@ -422,7 +422,7 @@
                     <td>{{ $profesional->gradoAcademico->numero_cedula_uno ?? '' }}</td>
 
                     <td>{{ $profesional->gradoAcademico->cve_grado_dos ?? '' }}</td>
-                    <td>{{ $profesional->gradoAcademico->grado_academico_dos ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->titulo_dos ?? '' }}</td>
                     <td></td>
                     <td>{{ $profesional->gradoAcademico->institucion_educativa_dos ?? '' }}</td>
                     <td></td>
@@ -430,7 +430,7 @@
                     <td>{{ $profesional->gradoAcademico->numero_cedula_dos ?? '' }}</td>
 
                     <td>{{ $profesional->gradoAcademico->cve_grado_tres ?? '' }}</td>
-                    <td>{{ $profesional->gradoAcademico->grado_academico_tres ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->titulo_tres ?? '' }}</td>
                     <td></td>
                     <td>{{ $profesional->gradoAcademico->institucion_educativa_tres ?? '' }}</td>
                     <td></td>
@@ -438,7 +438,7 @@
                     <td>{{ $profesional->gradoAcademico->numero_cedula_tres ?? '' }}</td>
 
                     <td>{{ $profesional->gradoAcademico->cve_grado_cuatro ?? '' }}</td>
-                    <td>{{ $profesional->gradoAcademico->grado_academico_cuatro ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->titulo_cuatro ?? '' }}</td>
                     <td></td>
                     <td>{{ $profesional->gradoAcademico->institucion_educativa_cuatro ?? '' }}</td>
                     <td></td>
