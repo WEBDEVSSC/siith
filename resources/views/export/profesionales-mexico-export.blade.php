@@ -241,13 +241,13 @@
                     @if($profesional->horario?->entrada_lunes_formatted == '00:00')
                          <td></td>
                     @else
-                         <td>{{ $profesional->horario->entrada_lunes_formatted ?? 'N/D' }}</td>
+                         <td>{{ $profesional->horario->entrada_lunes_formatted ?? '' }}</td>
                     @endif
 
                     @if($profesional->horario?->salida_lunes_formatted == '00:00')
                          <td></td>
                     @else
-                         <td>{{ $profesional->horario->salida_lunes_formatted ?? 'N/D' }}</td>
+                         <td>{{ $profesional->horario->salida_lunes_formatted ?? '' }}</td>
                     @endif
                     
                     {{-- MARTES --}}
@@ -261,13 +261,13 @@
                     @if($profesional->horario?->entrada_martes_formatted == '00:00')
                          <td></td>
                     @else
-                         <td>{{ $profesional->horario->entrada_martes_formatted ?? 'N/D' }}</td>
+                         <td>{{ $profesional->horario->entrada_martes_formatted ?? '' }}</td>
                     @endif
 
                     @if($profesional->horario?->salida_martes_formatted == '00:00')
                          <td></td>
                     @else
-                         <td>{{ $profesional->horario->salida_martes_formatted ?? 'N/D' }}</td>
+                         <td>{{ $profesional->horario->salida_martes_formatted ?? '' }}</td>
                     @endif
 
                     {{-- MIERCOLES --}}
@@ -281,13 +281,13 @@
                     @if($profesional->horario?->entrada_miercoles_formatted == '00:00')
                          <td></td>
                     @else
-                         <td>{{ $profesional->horario->entrada_miercoles_formatted ?? 'N/D' }}</td>
+                         <td>{{ $profesional->horario->entrada_miercoles_formatted ?? '' }}</td>
                     @endif
 
                     @if($profesional->horario?->salida_miercoles_formatted == '00:00')
                          <td></td>
                     @else
-                         <td>{{ $profesional->horario->salida_miercoles_formatted ?? 'N/D' }}</td>
+                         <td>{{ $profesional->horario->salida_miercoles_formatted ?? '' }}</td>
                     @endif
 
                     {{-- JUEVES --}}
@@ -301,13 +301,13 @@
                     @if($profesional->horario?->entrada_jueves_formatted == '00:00')
                          <td></td>
                     @else
-                         <td>{{ $profesional->horario->entrada_jueves_formatted ?? 'N/D' }}</td>
+                         <td>{{ $profesional->horario->entrada_jueves_formatted ?? '' }}</td>
                     @endif
 
                     @if($profesional->horario?->salida_jueves_formatted == '00:00')
                          <td></td>
                     @else
-                         <td>{{ $profesional->horario->salida_jueves_formatted ?? 'N/D' }}</td>
+                         <td>{{ $profesional->horario->salida_jueves_formatted ?? '' }}</td>
                     @endif
 
                     {{-- VIERNES --}}
@@ -321,13 +321,13 @@
                     @if($profesional->horario?->entrada_viernes_formatted == '00:00')
                          <td></td>
                     @else
-                         <td>{{ $profesional->horario->entrada_viernes_formatted ?? 'N/D' }}</td>
+                         <td>{{ $profesional->horario->entrada_viernes_formatted ?? '' }}</td>
                     @endif
 
                     @if($profesional->horario?->salida_viernes_formatted == '00:00')
                          <td></td>
                     @else
-                         <td>{{ $profesional->horario->salida_viernes_formatted ?? 'N/D' }}</td>
+                         <td>{{ $profesional->horario->salida_viernes_formatted ?? '' }}</td>
                     @endif
 
                     {{-- SABADO --}}
@@ -341,13 +341,13 @@
                     @if($profesional->horario?->entrada_sabado_formatted == '00:00')
                          <td></td>
                     @else
-                         <td>{{ $profesional->horario->entrada_sabado_formatted ?? 'N/D' }}</td>
+                         <td>{{ $profesional->horario->entrada_sabado_formatted ?? '' }}</td>
                     @endif
 
                     @if($profesional->horario?->salida_sabado_formatted == '00:00')
                          <td></td>
                     @else
-                         <td>{{ $profesional->horario->salida_sabado_formatted ?? 'N/D' }}</td>
+                         <td>{{ $profesional->horario->salida_sabado_formatted ?? '' }}</td>
                     @endif
 
                     {{-- DOMINGO --}}
@@ -361,13 +361,13 @@
                     @if($profesional->horario?->entrada_domingo_formatted == '00:00')
                          <td></td>
                     @else
-                         <td>{{ $profesional->horario->entrada_domingo_formatted ?? 'N/D' }}</td>
+                         <td>{{ $profesional->horario->entrada_domingo_formatted ?? '' }}</td>
                     @endif
 
                     @if($profesional->horario?->salida_domingo_formatted == '00:00')
                          <td></td>
                     @else
-                         <td>{{ $profesional->horario->salida_domingo_formatted ?? 'N/D' }}</td>
+                         <td>{{ $profesional->horario->salida_domingo_formatted ?? '' }}</td>
                     @endif
 
                     {{-- FESTIVOS --}}
@@ -381,13 +381,13 @@
                     @if($profesional->horario?->entrada_festivo_formatted == '00:00')
                          <td></td>
                     @else
-                         <td>{{ $profesional->horario->entrada_festivo_formatted ?? 'N/D' }}</td>
+                         <td>{{ $profesional->horario->entrada_festivo_formatted ?? '' }}</td>
                     @endif
 
                     @if($profesional->horario?->salida_festivo_formatted == '00:00')
                          <td></td>
                     @else
-                         <td>{{ $profesional->horario->salida_festivo_formatted ?? 'N/D' }}</td>
+                         <td>{{ $profesional->horario->salida_festivo_formatted ?? '' }}</td>
                     @endif
 
                     {{-- JORNADA LABEL MEXICO --}}
