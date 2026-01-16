@@ -17,7 +17,27 @@ class CatalogoCodigosPuestoController extends Controller
 
     public function createCodigos()
     {
-        dd("FORMULARIO EN CONSTRUCCION");
+         return view('settings.codigo-puesto.create');
+    }
+
+    public function storeCodigos(Request $request)
+    {
+        $request->validate([
+            'codigo' => 'required',
+            'puesto' => 'required',
+            'rama' => 'required',
+        ],[]);
+
+        $codigoPuesto = new CodigoPuesto;
+
+        $codigoPuesto->codigo_puesto = $request->puesto;
+        $codigoPuesto->codigo = $request->codigo;
+        $codigoPuesto->grupo = $request->rama;
+
+        $codigoPuesto->save();
+
+        return redirect()->route('indexCodigos')->with('success', 'Código de Puesto Registrado Correctamente');
+
     }
 
     public function editCodigos($id)

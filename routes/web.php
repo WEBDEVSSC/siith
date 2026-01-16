@@ -696,19 +696,19 @@ Route::middleware(['auth'])->group(function ()
      * 
      */
 
-     Route::get('admin/clues/indexCodigos', [CatalogoCodigosPuestoController::class,'indexCodigos'])->name('indexCodigos');
+     Route::get('admin/settings/codigos-puesto/indexCodigos', [CatalogoCodigosPuestoController::class,'indexCodigos'])->name('indexCodigos');
 
-     Route::get('admin/clues/showCodigos/{id}', [CatalogoCodigosPuestoController::class,'showCodigos'])->name('showCodigos');
+     Route::get('admin/settings/codigos-puesto/showCodigos/{id}', [CatalogoCodigosPuestoController::class,'showCodigos'])->name('showCodigos');
 
-     Route::get('admin/clues/createCodigos', [CatalogoCodigosPuestoController::class,'createCodigos'])->name('createCodigos');
+     Route::get('admin/settings/codigos-puesto/createCodigos', [CatalogoCodigosPuestoController::class,'createCodigos'])->name('createCodigos');
 
-     Route::post('admin/clues/storeCodigos', [CatalogoCodigosPuestoController::class,'storeCodigos'])->name('storeCodigos');
+     Route::post('admin/settings/codigos-puesto/storeCodigos', [CatalogoCodigosPuestoController::class,'storeCodigos'])->name('storeCodigos');
 
-     Route::get('admin/clues/editCodigos/{id}', [CatalogoCodigosPuestoController::class,'editCodigos'])->name('editCodigos');
+     Route::get('admin/settings/codigos-puesto/editCodigos/{id}', [CatalogoCodigosPuestoController::class,'editCodigos'])->name('editCodigos');
 
-     Route::put('admin/clues/updateCodigos/{id}', [CatalogoCodigosPuestoController::class,'updateCodigos'])->name('updateCodigos');
+     Route::put('admin/settings/codigos-puesto/updateCodigos/{id}', [CatalogoCodigosPuestoController::class,'updateCodigos'])->name('updateCodigos');
 
-     Route::delete('admin/clues/deleteCodigos/{id}', [CatalogoCodigosPuestoController::class, 'deleteCodigos'])->name('deleteCodigos');
+     Route::delete('admin/settings/codigos-puesto/deleteCodigos/{id}', [CatalogoCodigosPuestoController::class, 'deleteCodigos'])->name('deleteCodigos');
 
      /**
      * 
