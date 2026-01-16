@@ -177,13 +177,19 @@
                     
                     <td>{{ $profesional->nacionalidad ?? ''  }}</td>
                     <td>{{ $profesional->estado_conyugal ?? ''  }}</td>
-                    <td>{{ $profesional->puesto?->fiel ?? '' }}</td>
-                    <td>
-                         @if ($profesional->puesto?->fiel === 'SI')
-                              {{ $profesional->puesto?->fiel_vigencia }}
-                         @endif
-                    </td>
+                    
+                    @if($profesional->puesto->fiel_vigencia == '0000-00-00')
+                         <td>NO</td>
+                    @else
+                         <td>{{ $profesional->puesto?->fiel ?? '' }}</td>
+                    @endif
 
+                    @if ($profesional->puesto?->fiel_vigencia === '0000-00-00')
+                           <td></td>   
+                    @else
+                         <td>{{ $profesional->puesto?->fiel_vigencia ?? '' }}</td>
+                    @endif
+                    
                     <td>{{ $profesional->email ?? ''  }}</td>
 
                     <td>{{ $profesional->puesto?->actividad ?? '' }}</td>

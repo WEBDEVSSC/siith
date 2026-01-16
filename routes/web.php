@@ -317,8 +317,6 @@ Route::middleware(['auth'])->group(function ()
  
      Route::put('admin/profesionales/area-medica/updateAreaMedica/{id}', [ProfesionalAreaMedicaController::class, 'updateAreaMedica'])->name('updateAreaMedica');
 
-     Route::get('/get-carreras/{id}', [ProfesionalAreaMedicaController::class, 'getCarreras']);
-
      /**
      * 
      * 

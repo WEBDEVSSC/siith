@@ -8,15 +8,11 @@ use App\Models\Profesional;
 use App\Models\ProfesionalAreaMedica;
 use App\Models\TiposFormacionMedica;
 use App\Models\CatAnioCursa;
+use App\Models\GradoAcademicoTitulo;
 use Illuminate\Http\Request;
 
 class ProfesionalAreaMedicaController extends Controller
 {
-    public function getCarreras($tipoFormacionId)
-    {
-        $carreras = Carrera::where('tipo_formacion', $tipoFormacionId)->orderBy('carrera')->get();
-        return response()->json($carreras);
-    }
     
     /**
      * Show the form for creating a new resource.
@@ -52,7 +48,8 @@ class ProfesionalAreaMedicaController extends Controller
 
             'tipo_formacion' => 'nullable|string',
 
-            'carrera_id' => 'required_with:tipo_formacion|integer',
+            //'carrera_id' => 'required_with:tipo_formacion|integer',
+            'carrera_id' => 'nullable|integer',
             'institucion_educativa_id' => 'required_with:tipo_formacion|integer',
 
             'anio_cursa' => 'required_with:tipo_formacion|string|max:4',

@@ -13,8 +13,4 @@ class GradoAcademicoTitulo extends Model
         'relacion',
     ];
 
-    public function titulo()
-    {
-        return $this->belongsTo(GradoAcademico::class, 'cve');
-    }
 }
