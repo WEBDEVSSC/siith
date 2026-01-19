@@ -859,9 +859,6 @@ class ProfesionalController extends Controller
                 })
                 ->get();
 
-                /*->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002093')
-                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-                ->get();*/
         } 
         elseif(Gate::allows('almacen'))
         {
@@ -993,6 +990,22 @@ class ProfesionalController extends Controller
                     ->orWhereRelation('puesto', 'nomina_pago', 'FO2 - Formalizado 2')
                     ->orWhereRelation('puesto', 'nomina_pago', 'FO3 - Formalizado 3')
                     ->orWhereRelation('puesto', 'nomina_pago', 'REG - Regularizado');
+                })
+                ->get();
+        }
+        elseif(Gate::allows('cecosama'))
+        {
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->where(function($q) {
+                    $q->whereRelation('puesto', 'clues_nomina', 'CLSSA002355')
+                    ->orWhereRelation('puesto', 'clues_nomina', 'CLSSA002483')
+                    ->orWhereRelation('puesto', 'clues_nomina', 'CLSSA002500')
+                    ->orWhereRelation('puesto', 'clues_nomina', 'CLSSA002524')
+                    ->orWhereRelation('puesto', 'clues_nomina', 'CLSSA002553')
+                    ->orWhereRelation('puesto', 'clues_nomina', 'CLSSA002570')
+                    ->orWhereRelation('puesto', 'clues_nomina', 'CLSSA002582')
+                    ->orWhereRelation('puesto', 'clues_nomina', 'CLSSA002780');
                 })
                 ->get();
         }
