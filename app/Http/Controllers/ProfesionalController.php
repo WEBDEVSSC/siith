@@ -998,14 +998,14 @@ class ProfesionalController extends Controller
             $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
                 ->whereRelation('puesto', 'vigencia', 'ACTIVO')
                 ->where(function($q) {
-                    $q->whereRelation('puesto', 'clues_nomina', 'CLSSA002355')
-                    ->orWhereRelation('puesto', 'clues_nomina', 'CLSSA002483')
-                    ->orWhereRelation('puesto', 'clues_nomina', 'CLSSA002500')
-                    ->orWhereRelation('puesto', 'clues_nomina', 'CLSSA002524')
-                    ->orWhereRelation('puesto', 'clues_nomina', 'CLSSA002553')
-                    ->orWhereRelation('puesto', 'clues_nomina', 'CLSSA002570')
-                    ->orWhereRelation('puesto', 'clues_nomina', 'CLSSA002582')
-                    ->orWhereRelation('puesto', 'clues_nomina', 'CLSSA002780');
+                    $q->whereRelation('puesto', 'clues_adscripcion', 'CLSSA002355')
+                    ->orWhereRelation('puesto', 'clues_adscripcion', 'CLSSA002483')
+                    ->orWhereRelation('puesto', 'clues_adscripcion', 'CLSSA002500')
+                    ->orWhereRelation('puesto', 'clues_adscripcion', 'CLSSA002524')
+                    ->orWhereRelation('puesto', 'clues_adscripcion', 'CLSSA002553')
+                    ->orWhereRelation('puesto', 'clues_adscripcion', 'CLSSA002570')
+                    ->orWhereRelation('puesto', 'clues_adscripcion', 'CLSSA002582')
+                    ->orWhereRelation('puesto', 'clues_adscripcion', 'CLSSA002780');
                 })
                 ->get();
         }
