@@ -7,6 +7,7 @@ use App\Http\Controllers\CatalogoCodigosPuestoController;
 use App\Http\Controllers\CatalogoNominaDePagoController;
 use App\Http\Controllers\CatalogoOcupacionAlmacenController;
 use App\Http\Controllers\CatalogoOcupacionCeamController;
+use App\Http\Controllers\CatalogoOcupacionCecosamaController;
 use App\Http\Controllers\CatalogoOcupacionCentroDeSaludUrbanoYRuralController;
 use App\Http\Controllers\CatalogoOcupacionCesameController;
 use App\Http\Controllers\CatalogoOcupacionCetsLespController;
@@ -1084,6 +1085,25 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/settings/ocupacion/ensenanza/update/{id}', [CatalogoOcupacionEnsenanzaController::class, 'ocupacionEnsenanzaUpdate'])->name('ocupacionEnsenanzaUpdate');
 
      Route::delete('admin/settings/ocupacion/ensenanza/delete/{id}', [CatalogoOcupacionEnsenanzaController::class, 'ocupacionEnsenanzaDestroy'])->name('ocupacionEnsenanzaDestroy');
+
+     /**
+     * 
+     * 
+     * 16 - CECOSAMA
+     * 
+     * 
+     */
+     Route::get('admin/settings/ocupacion/cecosama/index', [CatalogoOcupacionCecosamaController::class, 'ocupacionCecosamaIndex'])->name('ocupacionCecosamaIndex'); 
+
+     Route::get('admin/settings/ocupacion/cecosama/create', [CatalogoOcupacionCecosamaController::class, 'ocupacionCecosamaCreate'])->name('ocupacionCecosamaCreate');  
+
+     Route::post('admin/settings/ocupacion/cecosama/store', [CatalogoOcupacionCecosamaController::class, 'ocupacionCecosamaStore'])->name('ocupacionCecosamaStore'); 
+
+     Route::get('admin/settings/ocupacion/cecosama/edit/{id}', [CatalogoOcupacionCecosamaController::class, 'ocupacionCecosamaEdit'])->name('ocupacionCecosamaEdit');  
+
+     Route::put('admin/settings/ocupacion/cecosama/update/{id}', [CatalogoOcupacionCecosamaController::class, 'ocupacionCecosamaUpdate'])->name('ocupacionCecosamaUpdate');
+     
+     Route::delete('admin/settings/ocupacion/cecosama/delete/{id}', [CatalogoOcupacionCecosamaController::class, 'ocupacionCecosamaDestroy'])->name('ocupacionCecosamaDestroy');
  
      /**
      * 
