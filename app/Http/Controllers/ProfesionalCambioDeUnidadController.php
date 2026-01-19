@@ -482,7 +482,7 @@ class ProfesionalCambioDeUnidadController extends Controller
         $puesto->clues_nomina = $cluesNomina->clues;
         $puesto->clues_nomina_nombre = $cluesNomina->nombre;
         $puesto->clues_nomina_municipio = $cluesNomina->municipio;
-        $puesto->clues_nomina_jurisdiccion = $cluesNomina->jurisdiccion;
+        $puesto->clues_nomina_jurisdiccion = $cluesNomina->clave_jurisdiccion;
 
         $puesto->clues_adscripcion = $cluesAdscripcion->clues;
         $puesto->clues_adscripcion_nombre = $cluesAdscripcion->nombre;
