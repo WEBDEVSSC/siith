@@ -312,7 +312,7 @@ return [
             'url' => 'admin/profesionales/profesionalIndex',
             'icon' => 'fa-solid fa-list',
             'label_color' => 'success',
-            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei', 'ensenanza', 'universitario','riesgos','prestaciones','eventual'],
+            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei', 'ensenanza', 'universitario','riesgos','prestaciones','eventual','cecosama'],
         ],
         [
             'text' => 'Mis Centros',
@@ -327,7 +327,7 @@ return [
             'url' => 'admin/profesionales/cambioDeUnidad/findProfesional',
             'icon' => 'fa-solid fa-building-circle-arrow-right',
             'label_color' => 'success',
-            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino'],
+            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino','cecosama'],
         ],
 
         [
@@ -335,7 +335,7 @@ return [
             'url' => 'admin/profesionales/buscarCurp',
             'icon' => 'fas fa-plus',
             'label_color' => 'success',
-            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'universitario'],
+            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'universitario','cecosama'],
         ],
 
         [
@@ -343,7 +343,7 @@ return [
             'url' => 'admin/profesionales/recontratacion/findRecontratacionProfesional',
             'icon' => 'fa fa-archive',
             'label_color' => 'success',
-            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'universitario'],
+            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'universitario','cecosama'],
         ],
 
         [
@@ -373,7 +373,7 @@ return [
             'url' => 'admin/profesionales/reportes/reporteIndex',
             'icon' => 'fa-solid fa-file-excel',
             'label_color' => 'success',
-            'can' => ['admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'ensenanza', 'universitario', 'riesgos'],
+            'can' => ['admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'ensenanza', 'universitario', 'riesgos','cecosama'],
         ],
         [
             'text' => 'Pases de Salida',
