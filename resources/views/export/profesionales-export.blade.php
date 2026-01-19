@@ -668,6 +668,36 @@
                             <td></td>
                         @break
 
+                        {{-- CECOSAMA --}}
+                        @case(16)
+                            <td>CECOSAMA</td>
+                            <td>{{ $profesional->ocupacionCecosama->unidad ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionCecosama->area ?? '' }}</td>
+                            <td></td>
+                            <td>{{ $profesional->ocupacionEnsenanza->subarea ?? '' }}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>{{ $profesional->ocupacionEnsenanza->ocupacion ?? '' }}</td>
+                            <td></td>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        @break
+
                         @default
                             <td colspan="25"></td>
                     @endswitch
