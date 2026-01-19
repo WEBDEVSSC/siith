@@ -171,7 +171,7 @@
                          @if ($profesional->entidad_nacimiento === 'NACIDO EN EL EXTRANJERO')
                               {{-- vacío --}}
                          @else
-                              {{ $profesional->municipio_nacimiento ?? ''  }}
+                              {{ eliminar_acentos($profesional->municipio_nacimiento ?? '')  }}
                          @endif
                     </td>
                     
