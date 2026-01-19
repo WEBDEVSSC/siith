@@ -1348,6 +1348,15 @@ class ProfesionalController extends Controller
                 })
                 ->get();
         }
+        elseif(Gate::allows('cecosama'))
+        {
+            $profesionales = Profesional::with(['puesto','credencializacion','horario','sueldo','gradoAcademico','areaMedica'])
+            ->whereHas('puesto', function ($query) {
+                $query->whereIn('clues_adscripcion', ['CLSSA002355','CLSSA002483','CLSSA002500','CLSSA002524','CLSSA002553','CLSSA002570','CLSSA002582','CLSSA002780'])
+                ->where('vigencia', 'BAJA DEFINITIVA');
+                })
+                ->get();
+        }
         else
         {
             $profesionales = collect(); // colección vacía para evitar errores
