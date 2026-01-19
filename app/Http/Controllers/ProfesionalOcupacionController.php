@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CatOcupacionAlmacen;
 use App\Models\CatOcupacionCeam;
+use App\Models\CatOcupacionCecosama;
 use App\Models\CatOcupacionCentroSalud;
 use App\Models\CatOcupacionCesame;
 use App\Models\CatOcupacionCetsLesp;
@@ -20,6 +21,7 @@ use App\Models\CatOcupacionSamuCrum;
 use App\Models\Profesional;
 use App\Models\ProfesionalOcupacionAlmacen;
 use App\Models\ProfesionalOcupacionCeam;
+use App\Models\ProfesionalOcupacionCecosama;
 use App\Models\ProfesionalOcupacionCentroSalud;
 use App\Models\ProfesionalOcupacionCesame;
 use App\Models\ProfesionalOcupacionCetsLesp;
@@ -2102,6 +2104,119 @@ class ProfesionalOcupacionController extends Controller
                 'area'=>$ocupacionUno->area,
                 'subarea'=>$ocupacionUno->subarea,
                 'ocupacion'=>$ocupacionUno->ocupacion,
+            ]);
+
+        }
+
+        // Redireccionar con un mensaje de éxito
+        return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
+
+    }
+
+    /** ************************************************************************************************************************************************
+     * 
+     * 
+     * CECOSAMA
+     * 
+     * 
+     ***************************************************************************************************************************************************/
+
+     public function createCecosama($id)
+    {
+        // Consultamos los datos del profesional
+        $profesional = Profesional::findOrFail($id);
+
+        // Llenamos el select de ocupaciones
+        $ocupaciones = CatOcupacionCecosama::all();
+
+        // Retornamos la vista con todos los objetos
+        return view('ocupacion.cecosama-create', compact('profesional','ocupaciones'));
+    }
+
+    public function storeCecosama(Request $request)
+    {
+        // Validamos los datos
+        $request->validate([
+            'id_profesional'=>'required',
+            'ocupacion_uno'=>'required',
+        ],[
+            'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
+
+        // Consultamos los datos para registrar
+        $ocupacionUno = CatOcupacionCecosama::where('id',$request->ocupacion_uno)->first();
+
+        // Activamos el modulo
+        $mdl_status = 1;
+
+        // Creamos el objeto
+        $ocupacion = new ProfesionalOcupacionCecosama();
+
+        // Asignamos los valores
+        $ocupacion->id_profesional = $request->id_profesional;
+
+        $ocupacion->id_catalogo = $request->ocupacion_uno;
+        $ocupacion->unidad = $ocupacionUno->unidad;
+        $ocupacion->area = $ocupacionUno->area;
+        $ocupacion->subarea = $ocupacionUno->subarea;
+        $ocupacion->ocupacion = $ocupacionUno->ocupacion;
+
+        $ocupacion->mdl_status = $mdl_status;
+
+        // Registramos los datos
+        $ocupacion->save();
+
+        // Regresamos a la vista con su mensaje
+        return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Ocupaciones registradas correctamente.');
+    }
+
+    public function editCecosama($id)
+    {
+        // Consultamos los datos del profesional
+        $profesional = Profesional::findOrFail($id);
+
+        // Llenamos el select de ocupaciones
+        $ocupaciones = CatOcupacionCecosama::all();
+
+        // Consultamos si tiene registros en la tabla
+        $profesionalOcupaciones = ProfesionalOcupacionCecosama::where('id_profesional',$id)->first();
+
+        // Retornamos la vista con todos los objetos
+        return view('ocupacion.cecosama-edit', compact('profesional','ocupaciones','profesionalOcupaciones'));
+    }
+
+    public function updateCecosama(Request $request, $id)
+    {
+        // Validamos los datos
+        $request->validate([
+            'ocupacion'=>'required',
+            'eliminar_ocupacion' => 'nullable'
+        ],[
+            'ocupacion.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
+        ]);
+
+        // Consultamos los datos para registrar
+        $ocupacionUno = CatOcupacionCecosama::where('id',$request->ocupacion)->first();
+
+        // Buscamos el registro a editar
+        $ocupaciones = ProfesionalOcupacionCecosama::findOrFail($id);
+
+        if($request->eliminar_ocupacion == 1)
+        {
+           $ocupaciones->delete();
+            return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('destroy', 'Ocupación eliminada correctamente.');
+        }
+        else
+        {
+            // Asignamos los valores
+            $ocupaciones->update([
+
+                'id_catalogo'=>$request->ocupacion,
+                'unidad'=>$ocupacionUno->unidad,
+                'area'=>$ocupacionUno->area,
+                'subarea'=>$ocupacionUno->subarea,
+                'ocupacion'=>$ocupacionUno->ocupacion,
+                
             ]);
 
         }

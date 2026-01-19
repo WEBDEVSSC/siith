@@ -107,7 +107,8 @@
             </thead>
             <tbody>
                 @foreach ($profesionalesData as $data)
-                    <tr>
+                
+                <tr>
                         <td>
                             <a href="{{ route('profesionalShow', $data['profesional']->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="DETALLES">
                                 <i class="fa-solid fa-address-card"></i>
@@ -389,6 +390,25 @@
                                     @else
                                         <a href="{{ route('createHospitalNino', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="CATALOGO / CARTERA DE SERVICIOS">
                                             <i class="fa-solid fa-children"></i>
+                                        </a>
+                                    @endif
+                                                                                                   
+                                @endif
+
+                                <!-- CATALOGO PARA HOSPITAL DEL NIÑO (15) -->
+
+                                <!-- CATALOGO PARA HOSPITAL DEL NIÑO (16) -->
+
+                                @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 16)
+                                
+
+                                    @if(optional($data['profesional']->ocupacionCecosama)->mdl_status == 1)
+                                        <a href="{{ route('editCecosama', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="CATALOGO / CARTERA DE SERVICIOS">
+                                            <i class="fa-solid fa-brain"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{ route('createCecosama', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="CATALOGO / CARTERA DE SERVICIOS">
+                                            <i class="fa-solid fa-brain"></i>
                                         </a>
                                     @endif
                                                                                                    

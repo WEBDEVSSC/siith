@@ -618,6 +618,16 @@ Route::middleware(['auth'])->group(function ()
  
       Route::put('admin/profesionales/ocupaciones/updateEnsenanza/{id}', [ProfesionalOcupacionController::class, 'updateEnsenanza'])->name('updateEnsenanza');
 
+       /**RUTAS PARA EL CATALOGO 16 - CECOSAMA */
+
+      Route::get('admin/profesionales/ocupaciones/createCecosama/{id}', [ProfesionalOcupacionController::class, 'createCecosama'])->name('createCecosama');
+
+      Route::post('admin/profesionales/ocupaciones/storeCecosama', [ProfesionalOcupacionController::class, 'storeCecosama'])->name('storeCecosama');
+ 
+      Route::get('admin/profesionales/ocupaciones/editCecosama/{id}', [ProfesionalOcupacionController::class, 'editCecosama'])->name('editCecosama');
+ 
+      Route::put('admin/profesionales/ocupaciones/updateCecosama/{id}', [ProfesionalOcupacionController::class, 'updateCecosama'])->name('updateCecosama');
+
     /**
      * 
      * 

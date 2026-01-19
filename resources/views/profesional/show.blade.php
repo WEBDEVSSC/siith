@@ -348,11 +348,19 @@
                     <li>{{ optional($ocupacion)->unidad }} - {{ optional($ocupacion)->area }} - {{ optional($ocupacion)->subarea }} - {{ optional($ocupacion)->ocupacion }}</li>
                 </ul>
             @endif
+
+            <!-- OCUPACION PARA CECOSAMA (16) -->
+
+            @if ($cluesAdscripcionTipo == 16)
+                <ul>
+                    <li>{{ optional($ocupacion)->unidad }} - {{ optional($ocupacion)->area }} - {{ optional($ocupacion)->subarea }} - {{ optional($ocupacion)->ocupacion }}</li>
+                </ul>
+            @endif
             
         </div>
         <div class="card-footer">
         
-        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei')
+        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino' || Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
 
             @if ($profesional->puesto?->clues_adscripcion_tipo == 1)
 
@@ -567,6 +575,21 @@
                     </a>
                 @else  
                     <a href="{{ route('createEnsenanza', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="PASANTES MEDICOS / ENFERMERIA">
+                        <i class="fa-solid fa-children"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
+                    </a>
+                @endif
+                
+            @endif
+                    
+            <!-- CECOSAMA -->
+            @if ($profesional->puesto?->clues_adscripcion_tipo == 16)
+
+                @if ($profesional->ocupacionCecosama?->mdl_status == 1)
+                    <a href="{{ route('editCecosama', $profesional->id) }}" class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title="CECOSAMA">
+                        <i class="fa-solid fa-children"></i> EDITAR CATÁLOGO / CARTERA DE SERVICIOS
+                    </a>
+                @else  
+                    <a href="{{ route('createCecosama', $profesional->id) }}" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="CECOSAMA">
                         <i class="fa-solid fa-children"></i> CARGAR CATÁLOGO / CARTERA DE SERVICIOS
                     </a>
                 @endif

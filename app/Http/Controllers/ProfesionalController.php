@@ -23,6 +23,7 @@ use App\Models\ProfesionalCambioTipoNomina;
 use App\Models\ProfesionalComisionHistorico;
 use App\Models\ProfesionalOcupacionAlmacen;
 use App\Models\ProfesionalOcupacionCeam;
+use App\Models\ProfesionalOcupacionCecosama;
 use App\Models\ProfesionalOcupacionCentroSalud;
 use App\Models\ProfesionalOcupacionCesame;
 use App\Models\ProfesionalOcupacionCetsLesp;
@@ -980,19 +981,6 @@ class ProfesionalController extends Controller
                 })
                 ->get();
         }
-        elseif(Gate::allows('riesgos'))
-        {
-            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
-                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-                ->where(function($q) {
-                    $q->whereRelation('puesto', 'nomina_pago', 'FED - Federal (Unidad 420)')
-                    ->orWhereRelation('puesto', 'nomina_pago', 'FOR - Formalizado 1')
-                    ->orWhereRelation('puesto', 'nomina_pago', 'FO2 - Formalizado 2')
-                    ->orWhereRelation('puesto', 'nomina_pago', 'FO3 - Formalizado 3')
-                    ->orWhereRelation('puesto', 'nomina_pago', 'REG - Regularizado');
-                })
-                ->get();
-        }
         elseif(Gate::allows('cecosama'))
         {
             $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
@@ -1624,6 +1612,12 @@ class ProfesionalController extends Controller
         {
             $catalogoLabel = "PERSONAL EN FORMACIÓN";
             $ocupacion = ProfesionalOcupacionEnsenanza::where('id_profesional', $id)->first();
+        }
+        // CECOSAMA (16)
+        elseif ($tipo == 16) 
+        {
+            $catalogoLabel = "CECOSAMA";
+            $ocupacion = ProfesionalOcupacionCecosama::where('id_profesional', $id)->first();
         }
         else
         {

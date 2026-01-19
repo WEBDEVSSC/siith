@@ -199,6 +199,11 @@ class Profesional extends Model
         return $this->hasOne(ProfesionalOcupacionEnsenanza::class,'id_profesional');
     }
 
+    public function ocupacionCecosama()
+    {
+        return $this->hasOne(ProfesionalOcupacionCecosama::class,'id_profesional');
+    }
+
     /** PASES DE SALIDA */
     public function pasesDeSalida()
     {
