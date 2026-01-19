@@ -7,6 +7,7 @@ use App\Models\Profesional;
 use App\Models\ProfesionalCambioDeUnidad;
 use App\Models\ProfesionalOcupacionAlmacen;
 use App\Models\ProfesionalOcupacionCeam;
+use App\Models\ProfesionalOcupacionCecosama;
 use App\Models\ProfesionalOcupacionCentroSalud;
 use App\Models\ProfesionalOcupacionCesame;
 use App\Models\ProfesionalOcupacionCetsLesp;
@@ -346,8 +347,10 @@ class ProfesionalCambioDeUnidadController extends Controller
         $buscarOcupacionHospitalNino = ProfesionalOcupacionHospitalNino::where('id_profesional',$request->id_profesional)->first()?->delete();
 
         // Catalogo 15 - PERSONAL EN FORMACION
-
         $buscarOcupacionPersonalEnFormacion = ProfesionalOcupacionEnsenanza::where('id_profesional',$request->id_profesional)->first()?->delete();
+
+        // Catalogo 16 - CESAME
+        $buscarOcupacionCecosama = ProfesionalOcupacionCecosama::where('id_profesional',$request->id_profesional)->first()?->delete();
 
 
         // Redireccionamos al perfil del usuario
@@ -444,6 +447,7 @@ class ProfesionalCambioDeUnidadController extends Controller
 
     public function cambioDeUnidadForzoso(Request $request)
     {
+
         $request->validate([
             'id_profesional' => 'required',
             'clues_nomina' => 'required',
@@ -452,7 +456,16 @@ class ProfesionalCambioDeUnidadController extends Controller
             'tipo_contrato' => 'required',
             'fecha_ingreso' => 'required|date_format:Y-m-d',
             'vigencia_motivo' => 'required',
-        ],[]);
+        ],[
+            'id_profesional.required'    => 'El profesional es obligatorio.',
+            'clues_nomina.required'      => 'Debe seleccionar la CLUES de nómina.',
+            'clues_adscripcion.required' => 'Debe seleccionar la CLUES de adscripción.',
+            'nomina_pago.required'       => 'Debe seleccionar el tipo de nómina de pago.',
+            'tipo_contrato.required'     => 'Debe seleccionar el tipo de contrato.',
+            'fecha_ingreso.required'     => 'La fecha de ingreso es obligatoria.',
+            'fecha_ingreso.date_format'  => 'La fecha de ingreso debe tener el formato YYYY-MM-DD.',
+            'vigencia_motivo.required'   => 'Debe indicar el motivo de la vigencia.',
+        ]);
 
         // Consultamos los datos de la vigencia
         $vigencia = VigenciaMotivo::findOrFail($request->vigencia_motivo);
@@ -474,7 +487,7 @@ class ProfesionalCambioDeUnidadController extends Controller
         $puesto->clues_adscripcion = $cluesAdscripcion->clues;
         $puesto->clues_adscripcion_nombre = $cluesAdscripcion->nombre;
         $puesto->clues_adscripcion_municipio = $cluesAdscripcion->municipio;
-        $puesto->clues_adscripcion_jurisdiccion = $cluesAdscripcion->jurisdiccion;
+        $puesto->clues_adscripcion_jurisdiccion = $cluesAdscripcion->clave_jurisdiccion;
         $puesto->clues_adscripcion_tipo = $cluesAdscripcion->clave_establecimiento;
 
         $puesto->nomina_pago = $request->nomina_pago;
