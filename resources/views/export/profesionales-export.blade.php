@@ -674,14 +674,14 @@
                             <td>{{ $profesional->ocupacionCecosama->unidad ?? '' }}</td>
                             <td>{{ $profesional->ocupacionCecosama->area ?? '' }}</td>
                             <td></td>
-                            <td>{{ $profesional->ocupacionEnsenanza->subarea ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionCecosama->subarea ?? '' }}</td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td>{{ $profesional->ocupacionEnsenanza->ocupacion ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionCecosama->ocupacion ?? '' }}</td>
                             <td></td>
 
                             <td></td>
