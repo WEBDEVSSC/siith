@@ -136,22 +136,6 @@ class ProfesionalController extends Controller
                 $cluesAdscripcion = Clue::where('id', $usuario->id_unidad)->get();
             }
 
-            /*return view('profesional.create',compact(
-                'curp',
-                'rfc',
-                'sexo',
-                'fechaFormateada',
-                'paisNacimiento',
-                'entidad',
-                'municipios',
-                'nacionalidad',
-                'estadosConyuales',
-                'nombre',
-                'apellidoPaterno',
-                'apellidoMaterno',
-                'cluesAdscripcion'
-            ));*/
-
            return redirect()->route('datosGenerales', [
                 'curp'               => $curp,
                 'rfc'                => $rfc,
@@ -161,7 +145,7 @@ class ProfesionalController extends Controller
                 'entidad'            => $entidad,
                 'municipios'         => $municipios,
                 'nacionalidad'       => $nacionalidad,
-                'estadosConyugales'  => $estadosConyuales, // corregido el nombre
+                'estadosConyugales'  => $estadosConyuales,
                 'nombre'             => $nombre,
                 'apellidoPaterno'    => $apellidoPaterno,
                 'apellidoMaterno'    => $apellidoMaterno,
@@ -270,8 +254,8 @@ class ProfesionalController extends Controller
          // Ajustamos la nacionalidad
          if($entidadNacimiento === 'NE')
          {
-             $paisNacimiento = 'EXTRANGERO';
-             $nacionalidad = 'EXTRANGERA';
+             $paisNacimiento = 'EXTRANJERO';
+             $nacionalidad = 'EXTRANJERA';
          }
          else
          {
@@ -357,8 +341,8 @@ class ProfesionalController extends Controller
          // Ajustamos la nacionalidad
          if($entidadNacimiento === 'X')
          {
-             $paisNacimiento = 'EXTRANGERO';
-             $nacionalidad = 'EXTRANGERA';
+             $paisNacimiento = 'EXTRANJERO';
+             $nacionalidad = 'EXTRANJERA';
          }
          else
          {
