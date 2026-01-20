@@ -92,8 +92,8 @@ class ProfesionalController extends Controller
             // Ajustamos la nacionalidad
             if($entidadNacimiento === 'X')
             {
-                $paisNacimiento = 'EXTRANGERO';
-                $nacionalidad = 'EXTRANGERA';
+                $paisNacimiento = 'EXTRANJERO';
+                $nacionalidad = 'EXTRANJERA';
             }
             else
             {
