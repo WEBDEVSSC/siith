@@ -30,13 +30,13 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="text" name="curp" id='curp' class="form-control" value="{{ old('curp') }}" onpaste="return false;">
+                        <input type="text" name="curp" id='curp' class="form-control" value="{{ old('curp') }}" onpaste="return false style="text-transform: uppercase;">
                         @error('curp')
                             <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col-md-6">
-                        <input type="text" name="curp_confirma" id='curp_confirma' class="form-control" value="{{ old('curp_confirma') }}" onpaste="return false;">
+                        <input type="text" name="curp_confirma" id='curp_confirma' class="form-control" value="{{ old('curp_confirma') }}" onpaste="return false style="text-transform: uppercase;">
                         @error('curp_confirma')
                             <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror

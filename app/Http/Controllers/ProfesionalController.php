@@ -10,7 +10,6 @@ use App\Exports\ProfesionalExportBajaDefinitiva;
 use App\Exports\ProfesionalExportGeneral;
 use App\Mail\FelicitacionCumpleanos;
 use App\Models\CatOcupacionEnsenanza;
-use App\Models\CatOcupacionHospital;
 use App\Models\Clue;
 use App\Models\CodigoPuesto;
 use App\Models\Entidad;
@@ -50,8 +49,6 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
-
 
 
 class ProfesionalController extends Controller
@@ -90,7 +87,7 @@ class ProfesionalController extends Controller
         {
 
             // Ajustamos la nacionalidad
-            if($entidadNacimiento === 'X')
+            if($entidadNacimiento === 'NE')
             {
                 $paisNacimiento = 'EXTRANJERO';
                 $nacionalidad = 'EXTRANJERA';
@@ -242,11 +239,17 @@ class ProfesionalController extends Controller
         $sexo = substr($curp, 10, 1);  
         $entidadNacimiento = substr($curp, 11, 2);
 
-         // Formateamos la fecha
-         $fechaFormateada = Carbon::createFromFormat('ymd', $fechaNacimiento)->format('Y-m-d');
+        // Formateamos la fecha
+        $fechaFormateada = Carbon::createFromFormat('ymd', $fechaNacimiento)->format('Y-m-d');
 
-         // Consultamos la entidad de nacimiento
-         $entidad = Entidad::where('abreviacion',$entidadNacimiento)->first();
+        // Consultamos la entidad de nacimiento y la validamos con el catalogo de entidades
+        $entidad = Entidad::where('abreviacion',$entidadNacimiento)->first();
+
+        if (!$entidad) 
+        {
+            return redirect()->back()->with('error', 'La CURP no es válida: la clave de entidad de nacimiento no existe.')
+                        ->withInput();
+        }
 
          // Estados conyugales
          $estadosConyuales = EstadoConyugal::all();
@@ -329,17 +332,23 @@ class ProfesionalController extends Controller
         $sexo = substr($curp, 10, 1);  
         $entidadNacimiento = substr($curp, 11, 2);
 
-         // Formateamos la fecha
-         $fechaFormateada = Carbon::createFromFormat('ymd', $fechaNacimiento)->format('Y-m-d');
+        // Formateamos la fecha
+        $fechaFormateada = Carbon::createFromFormat('ymd', $fechaNacimiento)->format('Y-m-d');
 
-         // Consultamos la entidad de nacimiento
-         $entidad = Entidad::where('abreviacion',$entidadNacimiento)->first();
+        // Consultamos la entidad de nacimiento
+        $entidad = Entidad::where('abreviacion',$entidadNacimiento)->first();
+
+        if (!$entidad) 
+        {
+            return redirect()->back()->with('error', 'La CURP no es válida: la clave de entidad de nacimiento no existe.')
+                        ->withInput();
+        }
 
          // Estados conyugales
          $estadosConyuales = EstadoConyugal::all();
 
          // Ajustamos la nacionalidad
-         if($entidadNacimiento === 'X')
+         if($entidadNacimiento === 'NE')
          {
              $paisNacimiento = 'EXTRANJERO';
              $nacionalidad = 'EXTRANJERA';
@@ -2193,6 +2202,17 @@ class ProfesionalController extends Controller
         {
             $catalogoLabel = "PERSONAL EN FORMACIÓN";
             $ocupacion = ProfesionalOcupacionEnsenanza::where('id_profesional', $id)->first();
+
+            $ocupacionLabel = optional($ocupacion)->unidad.' - '.
+                      optional($ocupacion)->area.' - '.
+                      optional($ocupacion)->subarea.' - '.
+                      optional($ocupacion)->ocupacion;
+        }
+         // CECOSAMA (16)
+        elseif ($tipo == 16) 
+        {
+            $catalogoLabel = "CECOSAMA";
+            $ocupacion = ProfesionalOcupacionCecosama::where('id_profesional', $id)->first();
 
             $ocupacionLabel = optional($ocupacion)->unidad.' - '.
                       optional($ocupacion)->area.' - '.
