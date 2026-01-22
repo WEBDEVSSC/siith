@@ -193,7 +193,7 @@
                     <td>{{ $profesional->email ?? ''  }}</td>
 
                     <td>{{ $profesional->puesto?->actividad ?? '' }}</td>
-                    <td>{{ $profesional->puesto?->adicional ?? '' }}</td>
+                    <td>{{ eliminar_acentos($profesional->puesto?->adicional ?? '') }}</td>
                     <td>{{ $profesional->puesto?->area_trabajo ?? '' }}</td>
                     <td>{{ $profesional->puesto?->tipo_personal ?? '' }}</td>
                     <td>{{ $profesional->puesto?->codigo_puesto ?? '' }}</td>
