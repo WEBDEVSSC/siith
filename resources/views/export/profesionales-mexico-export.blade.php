@@ -157,7 +157,13 @@
                     <td>{{ $profesional->apellido_paterno ?? '' }}</td>
                     <td>{{ $profesional->apellido_materno ?? '' }}</td>
 
-                    <td>{{ eliminar_acentos($profesional->pais_nacimiento ?? '')  }}</td>
+                    <td>
+                         @if ($profesional->pais_nacimiento == NULL || $profesional->pais_nacimiento == '')
+                              SE IGNORA
+                         @else
+                              {{ eliminar_acentos($profesional->pais_nacimiento ?? '')  }}
+                         @endif
+                    </td>
 
                     <td>
                          @if ($profesional->entidad_nacimiento === 'NACIDO EN EL EXTRANJERO')
