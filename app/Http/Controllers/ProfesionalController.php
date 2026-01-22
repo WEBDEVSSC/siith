@@ -10,6 +10,7 @@ use App\Exports\ProfesionalExportBajaDefinitiva;
 use App\Exports\ProfesionalExportGeneral;
 use App\Mail\FelicitacionCumpleanos;
 use App\Models\CatOcupacionEnsenanza;
+use App\Models\CatPaisNacimiento;
 use App\Models\Clue;
 use App\Models\CodigoPuesto;
 use App\Models\Entidad;
@@ -257,12 +258,12 @@ class ProfesionalController extends Controller
          // Ajustamos la nacionalidad
          if($entidadNacimiento === 'NE')
          {
-             $paisNacimiento = 'EXTRANJERO';
+             $paisNacimiento = CatPaisNacimiento::orderBy('pais')->get();
              $nacionalidad = 'EXTRANJERA';
          }
          else
          {
-             $paisNacimiento = 'MÉXICO';
+             $paisNacimiento = CatPaisNacimiento::where('id', 55)->get();
              $nacionalidad = 'MEXICANA';
          }
 
@@ -350,12 +351,12 @@ class ProfesionalController extends Controller
          // Ajustamos la nacionalidad
          if($entidadNacimiento === 'NE')
          {
-             $paisNacimiento = 'EXTRANJERO';
+             $paisNacimiento = CatPaisNacimiento::orderBy('pais')->get();
              $nacionalidad = 'EXTRANJERA';
          }
          else
          {
-             $paisNacimiento = 'MÉXICO';
+             $paisNacimiento = CatPaisNacimiento::where('id', 55)->get();
              $nacionalidad = 'MEXICANA';
          }
 
@@ -400,7 +401,9 @@ class ProfesionalController extends Controller
             'apellido_paterno' => 'required',
             'apellido_materno' => 'required',
             'fechaFormateada' => 'required',
-            'paisNacimiento' => 'required',
+            //'paisNacimiento' => 'required',
+            'pais_nacimiento' => ['nullable','required_if:nacionalidad,EXTRANJERA'],
+
             'entidadNacimiento' => 'required',
             'municipio_nacimiento' => 'required',
             'nacionalidad' => 'required',
@@ -411,7 +414,8 @@ class ProfesionalController extends Controller
             'padre_madre_familia' => 'required',
             'clues_adscripcion' => 'required',
             'fecha_inicio' => 'required|date_format:Y-m-d|before_or_equal:today',
-        ], [
+        ], 
+        [
             'homoclave.required' => 'La homoclave es obligatoria.',
             'homoclave.size' => 'La homoclave debe ser de 3 caracteres.',            
             'nombre.required' => 'El nombre es obligatorio.',            
@@ -431,8 +435,10 @@ class ProfesionalController extends Controller
             'fecha_inicio.before_or_equal' => 'La fecha de inicio no puede ser mayor al día de hoy.',
             'fecha_inicio.date_format' => 'La fecha de vigencia debe tener el formato DD-MM-AAAA.',
 
-        ]);
+            'nacionalidad.required' => 'La nacionalidad es obligatoria',
 
+            'pais_nacimiento.required_if' => 'Debe seleccionar el país de nacimiento cuando la nacionalidad es extranjera.',
+        ]);
 
         // Formateamos el valor de SEXO
         if($request->sexo === "H")
@@ -461,7 +467,7 @@ class ProfesionalController extends Controller
         $profesional->apellido_materno = $request->apellido_materno;
         $profesional->fecha_nacimiento = $request->fechaFormateada; 
         $profesional->sexo = $sexoNuevo;
-        $profesional->pais_nacimiento = $request->paisNacimiento;
+        $profesional->pais_nacimiento = $request->pais_nacimiento;
         $profesional->entidad_nacimiento = $request->entidadNacimiento;
         $profesional->municipio_nacimiento = $municipio->nombre;
         $profesional->nacionalidad = $request->nacionalidad;
@@ -543,7 +549,8 @@ class ProfesionalController extends Controller
             'apellido_paterno' => 'required',
             'apellido_materno' => 'required',
             'fechaFormateada' => 'required',
-            'paisNacimiento' => 'required',
+            //'paisNacimiento' => 'required',
+            'pais_nacimiento' => ['nullable','required_if:nacionalidad,EXTRANJERA','exists:cat_paises_nacimiento,pais',],
             'entidadNacimiento' => 'required',
             'municipio_nacimiento' => 'required',
             'nacionalidad' => 'required',
@@ -615,7 +622,7 @@ class ProfesionalController extends Controller
         $profesional->apellido_materno = $request->apellido_materno;
         $profesional->fecha_nacimiento = $request->fechaFormateada; 
         $profesional->sexo = $sexoNuevo;
-        $profesional->pais_nacimiento = $request->paisNacimiento;
+        $profesional->pais_nacimiento = $request->pais_nacimiento;
         $profesional->entidad_nacimiento = $request->entidadNacimiento;
         $profesional->municipio_nacimiento = $municipio->nombre;
         $profesional->nacionalidad = $request->nacionalidad;

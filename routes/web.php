@@ -424,6 +424,8 @@ Route::middleware(['auth'])->group(function ()
 
      Route::put('admin/profesionales/cambioDeUnidad/cambioDeUnidadForzoso', [ProfesionalCambioDeUnidadController::class, 'cambioDeUnidadForzoso'])->name('cambioDeUnidadForzoso');
 
+     Route::put('admin/profesionales/cambioDeCurpForzoso/cambioDeCurpForzoso/{id}', [ProfesionalCambioDeUnidadController::class, 'cambioDeCurpForzoso'])->name('cambioDeCurpForzoso');
+
      /**
      * 
      * 

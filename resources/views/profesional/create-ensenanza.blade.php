@@ -122,10 +122,29 @@
                 <div class="row mt-3">
                     <div class="col-md-3">
                         <p><strong>Pais de nacimiento</strong></p>
-                        <input type="text" name="pais_nacimiento" id='pais_nacimiento' class="form-control" value="{{ $paisNacimiento }}" disabled>
+                        <select name="pais_nacimiento" id="pais_nacimiento" class="form-control"  {{ $nacionalidad === 'MEXICANA' ? 'disabled' : '' }}>
+                            <option value="">-- Seleccione una opción --</option>
+                            @foreach ($paisNacimiento as $pais)                                
+                                <option value="{{ $pais->pais }}"
+                                    {{ old('pais_nacimiento') == $pais->pais || $nacionalidad === 'MEXICANA' ? 'selected' : '' }}>
+                                    {{ $pais->pais }}
+                                </option>
+                            @endforeach
+
+                        </select>
+
+                        {{-- Input oculto para enviar el valor cuando esté disabled --}}
+                        @if($nacionalidad === 'MEXICANA')
+                            <input type="hidden" name="pais_nacimiento" value="{{ $paisNacimiento->first()->id }}">
+                        @endif
+
+                        @error('pais_nacimiento')
+                            <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                        {{--<input type="text" name="pais_nacimiento" id='pais_nacimiento' class="form-control" value="{{ $paisNacimiento }}" disabled>
                         @error('pais_nacimiento')
                         <br><div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+                        @enderror--}}
                     </div>
                     <div class="col-md-3">
                         <p><strong>Entidad de nacimiento</strong></p>

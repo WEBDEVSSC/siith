@@ -122,15 +122,39 @@
 
                 <!-- ---------------------------------------------------------------------- -->
 
+                
+
                 <div class="row mt-3">
                     <div class="col-md-3">
+                        <p><strong>País de nacimiento</strong></p>
+
+                        <select name="pais_nacimiento" id="pais_nacimiento" class="form-control select2"  {{ $nacionalidad === 'MEXICANA' ? 'disabled' : '' }}>
+                            <option value="">-- Seleccione una opción --</option>
+                            @foreach ($paisNacimiento as $pais)                                
+                                <option value="{{ $pais->pais }}"
+                                    {{ old('pais_nacimiento') == $pais->pais || $nacionalidad === 'MEXICANA' ? 'selected' : '' }}>
+                                    {{ $pais->pais }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        {{-- Input oculto para enviar el valor cuando esté disabled --}}
+                        @if($nacionalidad === 'MEXICANA')
+                            <input type="hidden" name="pais_nacimiento" value="{{ $paisNacimiento->first()->pais }}">
+                        @endif
+
+                        @error('pais_nacimiento')
+                            <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    {{--<div class="col-md-3">
                         <p><strong>Pais de nacimiento</strong></p>
                         <input type="text" name="pais_nacimiento" id='pais_nacimiento' class="form-control" value="{{ $paisNacimiento }}" disabled>
 
                         @error('pais_nacimiento')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                    </div>
+                    </div>--}}
                     <div class="col-md-3">
                         <p><strong>Entidad de nacimiento</strong></p>
                         <input type="text" name="entidad_nacimiento" id='entidad_nacimiento' class="form-control" value="{{ $entidad->nombre }}" disabled>
@@ -157,11 +181,26 @@
                     </div>
                     <div class="col-md-3">
                         <p><strong>Nacionalidad</strong></p>
-                        <input type="text" name="nacionalidad" id='nacionalidad' class="form-control" value="{{ $nacionalidad }}" disabled>
+
+                        @if ($nacionalidad == "MEXICANA")
+
+                            <input type="text" name="nacionalidad" id='nacionalidad' class="form-control" value="{{ $nacionalidad }}" disabled>
+                        
+                        @else
+
+                            <select name="nacionalidad" id="nacionalidad" class="form-control">
+                                <option value="">-- Seleccione una opación --</option>
+                                <option value="MEXICANA" {{ old('nacionalidad') === 'MEXICANA' ? 'selected' : '' }}>MEXICANA</option>
+                                <option value="EXTRANJERA"{{ old('nacionalidad') === 'EXTRANJERA' ? 'selected' : '' }}>EXTRANJERA</option>
+                            </select>
+
+                        @endif
 
                         @error('nacionalidad')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+
+                        <!-- ---------------------------------------------------- -->
                     </div>
                 </div>
 
@@ -295,6 +334,15 @@
     <script>
         $(document).ready(function() {
             $('#clues_adscripcion').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#pais_nacimiento').select2({
                 placeholder: "-- Seleccione una opcion --",
                 allowClear: true
             });

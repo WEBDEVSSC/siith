@@ -1659,31 +1659,36 @@
 @endif
 
 <!-- ----------------------------------------------------------------------- -->
-
-
 @if(Auth::user()->role == 'admin')
 
-<button type="button"
-        class="btn btn-danger btn-sm btn-block"
-        onclick="confirmarEliminacion({{ $profesional->id }})">
-    <i class="fas fa-trash"></i> ELIMINAR REGISTRO
-</button>
+<form action="{{ route('cambioDeCurpForzoso', $profesional->id) }}" method="POST">
 
-<form id="delete-form-{{ $profesional->id }}"
-      action="{{ route('profesionalDelete', $profesional->id) }}"
-      method="POST"
-      style="display:none;">
-    
     @csrf
-    @method('DELETE')
+
+    @method('PUT')
+
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header"><strong>CURP FORZOSO</strong></div>
+                <div class="card-body">
+                    <input type="text" name="curp" class="form-control" value={{$profesional->curp }}>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-info btn-sm">ACTUALIZAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </form>
 
 @endif
 
 
-    <br>
-    <br>
+<!-- ------------------------------------------------------------------------ -->
+
+
 
     <div class="card">
         <div class="card-header">
@@ -1724,6 +1729,30 @@
 
         </div>
         <div class="card-footer"></div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12">
+            @if(Auth::user()->role == 'admin')
+
+                <button type="button"
+                        class="btn btn-danger btn-sm btn-block"
+                        onclick="confirmarEliminacion({{ $profesional->id }})">
+                    <i class="fas fa-trash"></i> ELIMINAR REGISTRO
+                </button>
+
+                <form id="delete-form-{{ $profesional->id }}"
+                    action="{{ route('profesionalDelete', $profesional->id) }}"
+                    method="POST"
+                    style="display:none;">
+                    
+                    @csrf
+                    @method('DELETE')
+
+                </form>
+
+            @endif
+        </div>
     </div>
     
 @stop

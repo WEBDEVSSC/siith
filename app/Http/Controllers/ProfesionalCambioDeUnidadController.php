@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Clue;
+use App\Models\Entidad;
 use App\Models\Profesional;
 use App\Models\ProfesionalCambioDeUnidad;
 use App\Models\ProfesionalOcupacionAlmacen;
@@ -23,6 +24,7 @@ use App\Models\ProfesionalOcupacionPsiParras;
 use App\Models\ProfesionalOcupacionSamuCrum;
 use App\Models\ProfesionalPuesto;
 use App\Models\VigenciaMotivo;
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -549,5 +551,57 @@ class ProfesionalCambioDeUnidadController extends Controller
         // Redireccionamos al perfil del usuario
         return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Cambio de Unidad Forzoso Correctamente');
 
+    }
+
+    public function cambioDeCurpForzoso(Request $request, $id)
+    {
+        $request->validate([
+            'curp' => 'required|regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[A-Z0-9][0-9]$/|unique:profesionales_datos_generales,curp',
+        ], [
+            'curp.required' => 'El campo CURP es obligatorio.',
+            'curp.regex' => 'El formato del CURP no es válido. Asegúrate de que esté correctamente escrito (18 caracteres: letras y números en mayúsculas).',
+            'curp.unique' => 'La CURP ya se encuentra registrada.',
+        ]);
+
+        $curp = $request->curp;
+
+        $rfc = substr($curp, 0, 10);
+        $fechaNacimiento = substr($curp, 4, 6);
+        $sexo = substr($curp, 10, 1);  
+        $entidadNacimiento = substr($curp, 11, 2);
+
+        if($sexo == 'H')
+        {
+            $labelSexo = "M";
+        }
+        else
+        {
+            $labelSexo = "F";
+        }
+
+        // Formateamos la fecha
+        $fechaFormateada = Carbon::createFromFormat('ymd', $fechaNacimiento)->format('Y-m-d');
+
+        // Consultamos la entidad de nacimiento y la validamos con el catalogo de entidades
+        $entidad = Entidad::where('abreviacion',$entidadNacimiento)->first();
+
+        if (!$entidad) 
+        {
+            return redirect()->back()->with('error', 'La CURP no es válida: la clave de entidad de nacimiento no existe.')
+                        ->withInput();
+        }
+
+        $profesional = Profesional::findOrFail($id);
+
+        $profesional->curp = $curp;
+        $profesional->rfc = $rfc;
+        $profesional->sexo = $labelSexo;
+        $profesional->fecha_nacimiento = $fechaFormateada;
+        $profesional->entidad_nacimiento = $entidad->nombre;
+        $profesional->municipio_nacimiento = NULL;
+
+        $profesional->save();
+
+        return redirect()->route('profesionalShow',$id)->with('success', 'Cambio de CURP Forzoso Correctamente');
     }
 }
