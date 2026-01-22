@@ -207,7 +207,15 @@
 
                     <td>{{ $profesional->puesto?->clues_nomina ?? '' }}</td>
                     <td>{{ $profesional->puesto?->clues_adscripcion ?? '' }}</td>
-                    <td>{{ $profesional->puesto?->tipo_contrato ?? '' }}</td>
+                    
+                    <td>
+                         @if ( $profesional->puesto?->tipo_contrato == "BECAS")
+                              BECA
+                         @else
+                              {{ $profesional->puesto?->tipo_contrato ?? '' }}
+                         @endif
+                    </td>
+                    
                     <td>{{ $profesional->puesto?->tipo_plaza ?? '' }}</td>
                     <td>{{ $profesional->puesto?->institucion_puesto ?? '' }}</td>
 
