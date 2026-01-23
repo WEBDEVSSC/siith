@@ -253,9 +253,14 @@ class ProfesionalPuestoController extends Controller
         $codigosPuesto = CodigoPuesto::orderBy('codigo_puesto', 'asc')->get();
         
         // Llenamos el select de CLUES Nomina y Adscripcion
-        $clues = Clue::orderBy('clave_jurisdiccion', 'asc') 
+        /*$clues = Clue::orderBy('clave_jurisdiccion', 'asc') 
              ->orderBy('nombre', 'asc')
-             ->get();
+             ->get();*/
+
+        $clues = Clue::whereNotIn('clues', ['CLSSA009990', 'CLSSA009991', 'CLSSA009992', 'CLSSA009993', 'CLSSA009994', 'CLSSA009995', 'CLSSA009996', 'CLSSA009997', 'CLSSA009998', 'CLSSA000999','CLSSA009999'])
+            ->orderBy('clave_jurisdiccion', 'asc')
+            ->orderBy('nombre', 'asc')
+            ->get();
 
         // Cargamos los datos del usuario que inicio sesion
         $usuario = Auth::user();
