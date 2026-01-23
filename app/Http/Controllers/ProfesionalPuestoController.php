@@ -257,7 +257,7 @@ class ProfesionalPuestoController extends Controller
              ->orderBy('nombre', 'asc')
              ->get();*/
 
-        $clues = Clue::whereNotIn('clues', ['CLSSA009990', 'CLSSA009991', 'CLSSA009992', 'CLSSA009993', 'CLSSA009994', 'CLSSA009995', 'CLSSA009996', 'CLSSA009997', 'CLSSA009998', 'CLSSA000999','CLSSA009999'])
+        $clues = Clue::whereNotIn('clues', ['CLSSA009990', 'CLSSA009991', 'CLSSA009992', 'CLSSA009993', 'CLSSA009994', 'CLSSA009995', 'CLSSA009996', 'CLSSA009997', 'CLSSA009998', 'CLSSA000999','CLSSA009999','CLSSA002093-SC'])
             ->orderBy('clave_jurisdiccion', 'asc')
             ->orderBy('nombre', 'asc')
             ->get();
