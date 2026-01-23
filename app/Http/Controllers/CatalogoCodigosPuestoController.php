@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CodigoPuesto;
+use App\Models\ProfesionalPuesto;
 use Illuminate\Http\Request;
 
 class CatalogoCodigosPuestoController extends Controller
@@ -64,6 +65,15 @@ class CatalogoCodigosPuestoController extends Controller
         $codigoPuesto->grupo = $request->rama;
 
         $codigoPuesto->save();
+
+        // Buscamos y actualizamos todos los registros con ese codigo
+
+        ProfesionalPuesto::where('codigo_puesto_id', $id)
+            ->update([
+                'codigo_puesto' => $request->puesto,
+                'codigo'        => $request->codigo,
+                'grupo'         => $request->rama,
+            ]);
 
         return redirect()->route('indexCodigos')->with('success', 'Código de Puesto Actualizado Correctamente');
     }
