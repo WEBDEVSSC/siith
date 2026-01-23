@@ -598,7 +598,7 @@ class ProfesionalCambioDeUnidadController extends Controller
         $profesional->sexo = $labelSexo;
         $profesional->fecha_nacimiento = $fechaFormateada;
         $profesional->entidad_nacimiento = $entidad->nombre;
-        $profesional->municipio_nacimiento = NULL;
+        //$profesional->municipio_nacimiento = NULL;
 
         $profesional->save();
 
