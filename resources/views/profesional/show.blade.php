@@ -98,7 +98,7 @@
             <div class="col-md-2">
                 
                 <center>
-                    @if (Auth::user()->role == 'admin' || Auth::user()->role == 'directivo'  || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'cors'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei')
+                    @if (Auth::user()->role == 'admin' || Auth::user()->role == 'directivo'  || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'cors'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino' || Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
                         @if($fotoUrl)
                             <img src="{{ $fotoUrl }}" alt="Fotografía del profesional" style="max-width:100%; height:auto;" class="img-thumbnail"/>
                         @else
@@ -199,7 +199,7 @@
             <a href="{{ route('editDatosGeneralesEnsenanza', $profesional->id) }}" class="btn btn-info btn-sm"> <i class="fa-solid fa-pen"></i> EDITAR DATOS GENERALES</a>
         @endif
 
-        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei')
+        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
             @if ($profesional->mdl_datos_generales == 1)
                 <a href="{{ route('profesionalEdit', $profesional->id) }}" class="btn btn-info btn-sm"> <i class="fa-solid fa-pen"></i> EDITAR DATOS GENERALES</a>
             @elseif ($profesional->mdl_datos_generales == 0)
@@ -207,7 +207,7 @@
             @endif
         @endif
 
-        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei')
+        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
             @if ($profesional->credencializacion?->mdl_credencializacion == 1)
                 <a href="{{ route('editCredencializacion', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR FOTOGRAFÍA</a>
             @elseif ($profesional->credencializacion?->mdl_credencializacion == 0)
@@ -735,7 +735,7 @@
         
         <div class="card-footer">
         
-        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei')
+        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
 
             @if ($profesional->puesto?->mdl_puesto == 1)
                 <a href="{{ route('editPuesto', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
@@ -788,7 +788,7 @@
         </div>
         <div class="card-footer">
 
-            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei')
+            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
                 @if ($profesional->puesto?->mdl_puesto == 1)
                     <a href="{{ route('createCambioTipoNomina', $profesional->id) }}" class="btn btn-info btn-sm">
                         <i class="fa-solid fa-pen"></i> EDITAR DATOS
@@ -845,7 +845,7 @@
         </div>
         <div class="card-footer">
 
-            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei')
+            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
             
                 <a href="{{ route('createVigencia', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
 
@@ -938,7 +938,7 @@
     </div>
         <div class="card-footer">
         
-        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei')
+        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
             @if ($profesional->horario && $profesional->horario->mdl_horario == 1)
                 <a href="{{ route('editHorario', $profesional->id) }}" class="btn btn-info btn-sm"> EDITAR DATOS</a>
             @else
@@ -1091,7 +1091,7 @@
 
         </div>
         <div class="card-footer">
-            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'rhusuarios' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei')
+            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'rhusuarios' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
                 @if ($profesional->gradoAcademico?->mdl_grado_academico == 1)
                     <a href="{{ route('editGrado', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
                 @elseif ($profesional->gradoAcademico?->mdl_grado_academico == 0)
@@ -1128,7 +1128,7 @@
             </div>
         </div>
         <div class="card-footer">
-            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei')
+            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
 
                 @if ($profesional->areaMedica?->mdl_area_medica == 1)
                     <a href="{{ route('editAreaMedica', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
@@ -1166,7 +1166,7 @@
             </div>
         </div>
         <div class="card-footer">
-            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei')
+            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
 
                 @if ($profesional->certificacion?->mdl_certificacion == 1)
                     <a href="{{ route('editCertificacion', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
@@ -1197,14 +1197,6 @@
 
             <!-- -->
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <blockquote class="quote-secondary">
-                            <h4>Datos Personales</h4>
-                        </blockquote>
-                    </div>
-                </div>
-
                 <!-- -->
             <div class="row mt-3">
                 <div class="col-md-2">
@@ -1231,26 +1223,10 @@
 
             <!-- -------------------------------------------------------- -->
 
-            <!-- -->
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <blockquote class="quote-secondary">
-                            <h4>Médico de Cabecera</h4>
-                        </blockquote>
-                    </div>
-                </div>
-
-                <!-- -->
-
-            <div class="row">
-                <div class="col-md-2">
-                    <p><strong>NOMBRE</strong></p>
-                    {{ $emergencias->medico_nombre ?? ''  }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>TELÉFONO</strong></p>
-                    {{ $emergencias->medico_telefono ?? ''  }}
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <p><strong>MEDICO DE CABECERA</strong></p>
+                    {{ $emergencias->medico_nombre ?? ''  }} {{ $emergencias->medico_telefono ?? ''  }}
                 </div>
             </div>
 
@@ -1258,11 +1234,9 @@
 
             <!-- -->
 
-                <div class="row">
+                <div class="row mt-3">
                     <div class="col-md-12">
-                        <blockquote class="quote-secondary">
-                            <h4>CONTACTO DE EMERGENCIA 1</h4>
-                        </blockquote>
+                        <strong>CONTACTOS DE EMERGENCIA</strong>
                     </div>
                 </div>
 
@@ -1270,170 +1244,96 @@
             
             <!-- -------------------------------------------------------- -->
 
-            <div class="row">
-                <div class="col-md-2">
-                    <p><strong>NOMBRE</strong></p>
-                    {{ $emergencias->emergencia_nombre_uno ?? ''  }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>RELACIÓN</strong></p>
-                    {{ $emergencias->emergencia_relacion_uno ?? ''  }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>TELÉFONO</strong></p>
-                    {{ $emergencias->emergencia_telefono_uno_uno ?? ''  }} {{ $emergencias->emergencia_telefono_uno_dos ?? ''  }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>E-MAIL</strong></p>
-                    {{ $emergencias->emergencia_email_uno ?? ''  }}
-                </div>
-            </div>
+
 
             <!-- -------------------------------------------------------- -->
 
             <!-- -------------------------------------------------------- -->
 
-            <div class="row mt-3">
-                <div class="col-md-2">
-                    <p><strong>DIRECCIÓN</strong></p>
-                    {{ $emergencias->emergencia_calle_uno ?? ''  }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>#</strong></p>
-                    {{ $emergencias->emergencia_numero_uno ?? ''  }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>COLONIA</strong></p>
-                    {{ $emergencias->emergencia_colonia_uno ?? ''  }} - CP {{ $emergencias->emergencia_codigo_postal_uno ?? ''  }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>MUNICIPIO</strong></p>
-                    {{ $emergencias->emergencia_municipio_label_uno ?? ''  }}
-                </div>
-            </div>
+
 
             <!-- -------------------------------------------------------- -->
 
             <!-- -->
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <blockquote class="quote-secondary">
-                            <h4>CONTACTO DE EMERGENCIA 2</h4>
-                        </blockquote>
-                    </div>
-                </div>
-
                 <!-- -->
 
             <!-- -------------------------------------------------------- -->
 
-            <div class="row">
-                <div class="col-md-2">
-                    <p><strong>NOMBRE</strong></p>
-                    {{ $emergencias->emergencia_nombre_dos ?? ''  }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>RELACIÓN</strong></p>
-                    {{ $emergencias->emergencia_relacion_dos ?? ''  }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>TELÉFONO</strong></p>
-                    {{ $emergencias->emergencia_telefono_dos_uno ?? ''  }} {{ $emergencias->emergencia_telefono_dos_dos ?? ''  }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>E-MAIL</strong></p>
-                    {{ $emergencias->emergencia_email_dos ?? ''  }}
-                </div>
-            </div>
+ 
 
             <!-- -------------------------------------------------------- -->
 
             <!-- -------------------------------------------------------- -->
 
-            <div class="row mt-3">
-                <div class="col-md-2">
-                    <p><strong>DIRECCIÓN</strong></p>
-                    {{ $emergencias->emergencia_calle_dos ?? ''  }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>#</strong></p>
-                    {{ $emergencias->emergencia_numero_dos ?? ''  }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>COLONIA</strong></p>
-                    {{ $emergencias->emergencia_colonia_dos ?? ''  }} - CP {{ $emergencias->emergencia_codigo_postal_dos ?? ''  }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>MUNICIPIO</strong></p>
-                    {{ $emergencias->emergencia_municipio_label_dos ?? ''  }}
-                </div>
-            </div>
+   
 
             <!-- -------------------------------------------------------- -->
 
             <!-- -->
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <blockquote class="quote-secondary">
-                            <h4>CONTACTO DE EMERGENCIA 3</h4>
-                        </blockquote>
-                    </div>
-                </div>
-
+ 
                 <!-- -->
 
             <!-- -------------------------------------------------------- -->
 
-            <div class="row">
-                <div class="col-md-2">
-                    <p><strong>NOMBRE</strong></p>
-                    {{ $emergencias->emergencia_nombre_tres ?? '' }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>RELACIÓN</strong></p>
-                    {{ $emergencias->emergencia_relacion_tres ?? ''  }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>TELÉFONO</strong></p>
-                    {{ $emergencias->emergencia_telefono_tres_uno ?? ''  }} {{ $emergencias->emergencia_telefono_tres_dos ?? ''  }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>E-MAIL</strong></p>
-                    {{ $emergencias->emergencia_email_tres ?? ''  }}
-                </div>
-            </div>
+         
 
             <!-- -------------------------------------------------------- -->
+
+            <!-- -------------------------------------------------------- -->
+
+
 
             <!-- -------------------------------------------------------- -->
 
             <div class="row mt-3">
-                <div class="col-md-2">
-                    <p><strong>DIRECCIÓN</strong></p>
-                    {{ $emergencias->emergencia_calle_tres ?? ''  }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>#</strong></p>
-                    {{ $emergencias->emergencia_numero_tres ?? ''  }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>COLONIA</strong></p>
-                    {{ $emergencias->emergencia_colonia_tres ?? ''  }} - CP {{ $emergencias->emergencia_codigo_postal_tres ?? ''  }}
-                </div>
-                <div class="col-md-2">
-                    <p><strong>MUNICIPIO</strong></p>
-                    {{ $emergencias->emergencia_municipio_label_tres ?? ''  }}
+                <div class="col-md-12">
+                    <table class="table table-striped table-bordered">
+                        <thead class="table-dark">
+                            <tr>
+                                <th><strong>NOMBRE</strong></th>
+                                <th><strong>RELACIÓN</strong></th>
+                                <th><strong>TELÉFONO</strong></th>
+                                <th><strong>E-MAIL</strong></th>
+                                <th><strong>DIRECCIÓN</strong></th>
+                                <th><strong>MUNICIPIO</strong></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ $emergencias->emergencia_nombre_uno ?? '' }}</td>
+                                <td>{{ $emergencias->emergencia_relacion_uno ?? ''  }}</td>
+                                <td>{{ $emergencias->emergencia_telefono_uno_uno ?? ''  }} {{ $emergencias->emergencia_telefono_uno_dos ?? ''  }}</td>
+                                <td>{{ $emergencias->emergencia_email_uno ?? ''  }}</td>
+                                <td>{{ $emergencias->emergencia_calle_uno ?? ''  }} {{ $emergencias->emergencia_numero_uno ?? ''  }} {{ $emergencias->emergencia_colonia_uno ?? ''  }} - CP {{ $emergencias->emergencia_codigo_postal_uno ?? ''  }}</td>
+                                <td>{{ $emergencias->emergencia_estado_uno_label}} - {{ $emergencias->emergencia_municipio_label_uno ?? ''  }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ $emergencias->emergencia_nombre_dos ?? '' }}</td>
+                                <td>{{ $emergencias->emergencia_relacion_dos ?? ''  }}</td>
+                                <td>{{ $emergencias->emergencia_telefono_dos_uno ?? ''  }} {{ $emergencias->emergencia_telefono_dos_dos ?? ''  }}</td>
+                                <td>{{ $emergencias->emergencia_email_dos ?? ''  }}</td>
+                                <td>{{ $emergencias->emergencia_calle_dos ?? ''  }} {{ $emergencias->emergencia_numero_dos ?? ''  }} {{ $emergencias->emergencia_colonia_dos ?? ''  }} - CP {{ $emergencias->emergencia_codigo_postal_dos ?? ''  }}</td>
+                                <td>{{ $emergencias->emergencia_estado_dos_label}} - {{ $emergencias->emergencia_municipio_label_dos ?? ''  }}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ $emergencias->emergencia_nombre_tres ?? '' }}</td>
+                                <td>{{ $emergencias->emergencia_relacion_tres ?? ''  }}</td>
+                                <td>{{ $emergencias->emergencia_telefono_uno_tres ?? ''  }} {{ $emergencias->emergencia_telefono_dos_tres ?? ''  }}</td>
+                                <td>{{ $emergencias->emergencia_email_tres ?? ''  }}</td>
+                                <td>{{ $emergencias->emergencia_calle_tres ?? ''  }} {{ $emergencias->emergencia_numero_tres ?? ''  }} {{ $emergencias->emergencia_colonia_tres ?? ''  }} - CP {{ $emergencias->emergencia_codigo_postal_tres ?? ''  }}</td>
+                                <td>{{ $emergencias->emergencia_estado_tres_label}} - {{ $emergencias->emergencia_municipio_label_tres ?? ''  }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-            <!-- -------------------------------------------------------- -->
 
         </div>
         <div class="card-footer">
 
-            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei')
+            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
 
                 @if ($profesional->emergencia?->mdl_emergencia == 1)
                     <a href="{{ route('editEmergencia', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
