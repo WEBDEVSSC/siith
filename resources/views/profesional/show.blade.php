@@ -1292,6 +1292,7 @@
                     <table class="table table-striped table-bordered">
                         <thead class="table-dark">
                             <tr>
+                                <th><strong>#</strong></th>
                                 <th><strong>NOMBRE</strong></th>
                                 <th><strong>RELACIÓN</strong></th>
                                 <th><strong>TELÉFONO</strong></th>
@@ -1302,6 +1303,7 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <td>1</td>
                                 <td>{{ $emergencias->emergencia_nombre_uno ?? '' }}</td>
                                 <td>{{ $emergencias->emergencia_relacion_uno ?? ''  }}</td>
                                 <td>{{ $emergencias->emergencia_telefono_uno_uno ?? ''  }} {{ $emergencias->emergencia_telefono_uno_dos ?? ''  }}</td>
@@ -1310,6 +1312,7 @@
                                 <td>{{ $emergencias->emergencia_estado_uno_label}} - {{ $emergencias->emergencia_municipio_label_uno ?? ''  }}</td>
                             </tr>
                             <tr>
+                                <td>2</td>
                                 <td>{{ $emergencias->emergencia_nombre_dos ?? '' }}</td>
                                 <td>{{ $emergencias->emergencia_relacion_dos ?? ''  }}</td>
                                 <td>{{ $emergencias->emergencia_telefono_dos_uno ?? ''  }} {{ $emergencias->emergencia_telefono_dos_dos ?? ''  }}</td>
@@ -1318,6 +1321,7 @@
                                 <td>{{ $emergencias->emergencia_estado_dos_label}} - {{ $emergencias->emergencia_municipio_label_dos ?? ''  }}</td>
                             </tr>
                             <tr>
+                                <td>3</td>
                                 <td>{{ $emergencias->emergencia_nombre_tres ?? '' }}</td>
                                 <td>{{ $emergencias->emergencia_relacion_tres ?? ''  }}</td>
                                 <td>{{ $emergencias->emergencia_telefono_uno_tres ?? ''  }} {{ $emergencias->emergencia_telefono_dos_tres ?? ''  }}</td>

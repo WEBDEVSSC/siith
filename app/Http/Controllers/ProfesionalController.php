@@ -837,7 +837,7 @@ class ProfesionalController extends Controller
         {   
             $profesionales = Profesional::with(['puesto','credencializacion','horario','sueldo','gradoAcademico','areaMedica'])
             ->whereHas('puesto', function ($query) {
-                $query->whereIn('clues_adscripcion', ['CLSSA009989','CLSSA009988','CLSSA009987','CLSSA009986','CLSSA009985'])
+                $query->whereIn('clues_adscripcion', ['CLDIF000082','CLDIF000055','CLDIF000064','CLDIF000040','CLDIF000073'])
                 ->where('vigencia', 'ACTIVO');
                 })
                 ->get();
