@@ -1309,7 +1309,7 @@
                                 <td>{{ $emergencias->emergencia_telefono_uno_uno ?? ''  }} {{ $emergencias->emergencia_telefono_uno_dos ?? ''  }}</td>
                                 <td>{{ $emergencias->emergencia_email_uno ?? ''  }}</td>
                                 <td>{{ $emergencias->emergencia_calle_uno ?? ''  }} {{ $emergencias->emergencia_numero_uno ?? ''  }} {{ $emergencias->emergencia_colonia_uno ?? ''  }} - CP {{ $emergencias->emergencia_codigo_postal_uno ?? ''  }}</td>
-                                <td>{{ $emergencias->emergencia_estado_uno_label}} - {{ $emergencias->emergencia_municipio_label_uno ?? ''  }}</td>
+                                <td>{{ $emergencias->emergencia_estado_uno_label ?? ''}} - {{ $emergencias->emergencia_municipio_label_uno ?? ''  }}</td>
                             </tr>
                             <tr>
                                 <td>2</td>
@@ -1318,7 +1318,7 @@
                                 <td>{{ $emergencias->emergencia_telefono_dos_uno ?? ''  }} {{ $emergencias->emergencia_telefono_dos_dos ?? ''  }}</td>
                                 <td>{{ $emergencias->emergencia_email_dos ?? ''  }}</td>
                                 <td>{{ $emergencias->emergencia_calle_dos ?? ''  }} {{ $emergencias->emergencia_numero_dos ?? ''  }} {{ $emergencias->emergencia_colonia_dos ?? ''  }} - CP {{ $emergencias->emergencia_codigo_postal_dos ?? ''  }}</td>
-                                <td>{{ $emergencias->emergencia_estado_dos_label}} - {{ $emergencias->emergencia_municipio_label_dos ?? ''  }}</td>
+                                <td>{{ $emergencias->emergencia_estado_dos_label ?? ''}} - {{ $emergencias->emergencia_municipio_label_dos ?? ''  }}</td>
                             </tr>
                             <tr>
                                 <td>3</td>
@@ -1327,7 +1327,7 @@
                                 <td>{{ $emergencias->emergencia_telefono_uno_tres ?? ''  }} {{ $emergencias->emergencia_telefono_dos_tres ?? ''  }}</td>
                                 <td>{{ $emergencias->emergencia_email_tres ?? ''  }}</td>
                                 <td>{{ $emergencias->emergencia_calle_tres ?? ''  }} {{ $emergencias->emergencia_numero_tres ?? ''  }} {{ $emergencias->emergencia_colonia_tres ?? ''  }} - CP {{ $emergencias->emergencia_codigo_postal_tres ?? ''  }}</td>
-                                <td>{{ $emergencias->emergencia_estado_tres_label}} - {{ $emergencias->emergencia_municipio_label_tres ?? ''  }}</td>
+                                <td>{{ $emergencias->emergencia_estado_tres_label ?? ''}} - {{ $emergencias->emergencia_municipio_label_tres ?? ''  }}</td>
                             </tr>
                         </tbody>
                     </table>
