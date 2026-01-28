@@ -1374,8 +1374,6 @@ class ProfesionalController extends Controller
         // Buscamos el registro por el ID
         $profesional = Profesional::findOrFail($id);
 
-        //dd($profesional->entidad_nacimiento);
-
         if($profesional->municipio_nacimiento == '')
         {
             $entidad = Entidad::where('nombre',$profesional->entidad_nacimiento)->first();

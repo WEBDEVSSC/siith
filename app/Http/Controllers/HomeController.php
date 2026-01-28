@@ -580,6 +580,44 @@ class HomeController extends Controller
 
         // -----------------------------------------------------------------------------------------------
 
+        // CONTADORES PARA CECOSAMA
+
+        $totalCecosama = Profesional::whereRelation('puesto', function($query) {
+            $query->whereIn('clues_adscripcion', ['CLSSA002355','CLSSA002483','CLSSA002500','CLSSA002524','CLSSA002553','CLSSA002570','CLSSA002582','CLSSA002780'])
+            ->where('vigencia', 'ACTIVO');
+        })
+            ->count();
+
+        $totalCecosamaTemporal = Profesional::whereRelation('puesto', function($query) {
+            $query->whereIn('clues_adscripcion', ['CLSSA002355','CLSSA002483','CLSSA002500','CLSSA002524','CLSSA002553','CLSSA002570','CLSSA002582','CLSSA002780'])
+            ->where('vigencia', 'BAJA TEMPORAL');
+        })
+            ->count();
+
+        $totalCecosamaHombres = Profesional::whereHas('puesto', function($query) {
+            $query->whereIn('clues_adscripcion', ['CLSSA002355','CLSSA002483','CLSSA002500','CLSSA002524','CLSSA002553','CLSSA002570','CLSSA002582','CLSSA002780'])
+            ->where('vigencia', 'ACTIVO');
+        })
+            ->where('sexo', 'M')
+            ->count();
+
+        $totalCecosamaMujeres = Profesional::whereHas('puesto', function($query) {
+            $query->whereIn('clues_adscripcion', ['CLSSA002355','CLSSA002483','CLSSA002500','CLSSA002524','CLSSA002553','CLSSA002570','CLSSA002582','CLSSA002780'])
+            ->where('vigencia', 'ACTIVO');
+        })
+            ->where('sexo', 'F')
+            ->count();
+
+        $profesionalesHonomasticoCecosama = Profesional::whereMonth('fecha_nacimiento', $hoy->month)
+        ->whereDay('fecha_nacimiento', $hoy->day)
+        ->whereHas('puesto', function ($query) {
+            $query->where('vigencia', 'ACTIVO')
+                ->whereIn('clues_adscripcion', ['CLSSA002355','CLSSA002483','CLSSA002500','CLSSA002524','CLSSA002553','CLSSA002570','CLSSA002582','CLSSA002780']);
+        })
+        ->get();
+
+        // -----------------------------------------------------------------------------------------------
+
         return view('home', compact(
 
             'contadorEnsenanza610',
@@ -677,7 +715,13 @@ class HomeController extends Controller
             'totalCriCreeTemporal',
             'totalCriCreeHombres',
             'totalCriCreeMujeres',
-            'profesionalesHonomasticoCriCree'
+            'profesionalesHonomasticoCriCree',
+
+            'totalCecosama',
+            'totalCecosamaTemporal',
+            'totalCecosamaHombres',
+            'totalCecosamaMujeres',
+            'profesionalesHonomasticoCecosama'
         ));
     }
 }
