@@ -545,26 +545,26 @@ class HomeController extends Controller
          */
         
         $totalCriCree = Profesional::whereRelation('puesto', function($query) {
-            $query->whereIn('clues_adscripcion', ['CLSSA009989','CLSSA009988','CLSSA009987','CLSSA009986','CLSSA009985'])
+            $query->whereIn('clues_adscripcion', ['CLDIF000082','CLDIF000055','CLDIF000064','CLDIF000040','CLDIF000073','CLSSA009984'])
             ->where('vigencia', 'ACTIVO');
         })
             ->count();
 
         $totalCriCreeTemporal = Profesional::whereRelation('puesto', function($query) {
-            $query->whereIn('clues_adscripcion', ['CLSSA009989','CLSSA009988','CLSSA009987','CLSSA009986','CLSSA009985'])
+            $query->whereIn('clues_adscripcion', ['CLDIF000082','CLDIF000055','CLDIF000064','CLDIF000040','CLDIF000073','CLSSA009984'])
             ->where('vigencia', 'BAJA TEMPORAL');
         })
             ->count();
 
         $totalCriCreeHombres = Profesional::whereHas('puesto', function($query) {
-            $query->whereIn('clues_adscripcion', ['CLSSA009989','CLSSA009988','CLSSA009987','CLSSA009986','CLSSA009985'])
+            $query->whereIn('clues_adscripcion', ['CLDIF000082','CLDIF000055','CLDIF000064','CLDIF000040','CLDIF000073','CLSSA009984'])
             ->where('vigencia', 'ACTIVO');
         })
             ->where('sexo', 'M')
             ->count();
 
         $totalCriCreeMujeres = Profesional::whereHas('puesto', function($query) {
-            $query->whereIn('clues_adscripcion', ['CLSSA009989','CLSSA009988','CLSSA009987','CLSSA009986','CLSSA009985'])
+            $query->whereIn('clues_adscripcion', ['CLDIF000082','CLDIF000055','CLDIF000064','CLDIF000040','CLDIF000073','CLSSA009984'])
             ->where('vigencia', 'ACTIVO');
         })
             ->where('sexo', 'F')
@@ -574,7 +574,7 @@ class HomeController extends Controller
         ->whereDay('fecha_nacimiento', $hoy->day)
         ->whereHas('puesto', function ($query) {
             $query->where('vigencia', 'ACTIVO')
-                ->whereIn('clues_adscripcion', ['CLSSA009989','CLSSA009988','CLSSA009987','CLSSA009986','CLSSA009985']);
+                ->whereIn('clues_adscripcion', ['CLDIF000082','CLDIF000055','CLDIF000064','CLDIF000040','CLDIF000073','CLSSA009984']);
         })
         ->get();
 
