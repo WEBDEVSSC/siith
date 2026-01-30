@@ -1132,12 +1132,25 @@
 
                 @if ($profesional->areaMedica?->mdl_area_medica == 1)
                     <a href="{{ route('editAreaMedica', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
+
+                    <br>
+                    <br>
+                    
+                    <form id="delete-form-{{ $profesional->id }}" action="{{ route('deleteAreaMedica', $profesional->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $profesional->id }})"><i class="fa-solid fa-trash"></i> LIMPIAR DATOS</button>
+                    </form>
+
                 @elseif ($profesional->areaMedica?->mdl_area_medica == 0)
                     <a href="{{ route('createAreaMedica', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
                 @endif
 
             @endif
+            
         </div>
+
+        
     </div>
     
     
@@ -1521,7 +1534,72 @@
             <div class="card">
                 <div class="card-header"><strong>CURP FORZOSO</strong></div>
                 <div class="card-body">
-                    <input type="text" name="curp" class="form-control" value={{$profesional->curp }}>
+                    
+
+                    <div class="row">
+                        <div class="col-md-3">
+                        <p><strong>CURP</strong></p>
+                        <input type="text" name="curp" class="form-control" value={{$profesional->curp }}>
+                    </div>
+
+                    <div class="col-md-3">
+                        <p><strong>Pais Nacimiento</strong></p>
+                        <select name="pais_nacimiento" class="form-control">
+                            <option value="">Selecciona un país</option>
+
+                            @foreach ($paisesNacimiento as $pais)
+                                <option value="{{ $pais->pais }}"
+                                    {{ old('pais_nacimiento', $profesional->pais_nacimiento) == $pais->pais ? 'selected' : '' }}>
+                                    {{ $pais->pais }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <p><strong>Nacionalidad</strong></p>
+                        <select name="nacionalidad" class="form-control">
+                            <option value="">-- Selecciona una opción --</option>
+                            <option value="MEXICANA" {{ old('nacionalidad', $profesional->nacionalidad) == 'MEXICANA' ? 'selected' : '' }}>MEXICANA</option>
+                            <option value="EXTRANJERA" {{ old('nacionalidad', $profesional->nacionalidad) == 'EXTRANJERA' ? 'selected' : '' }}>EXTRANJERA</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <p><strong>Entidad Nacimiento</strong></p>
+                        <select name="entidad_nacimiento" class="form-control">
+                            <option value="">-- Selecciona una opcion --</option>
+
+                            @foreach ($entidadesNacimiento as $entidadNacimiento)
+                                <option value="{{ $entidadNacimiento->nombre }}"
+                                    {{ old('pais_nacimiento', $profesional->entidad_nacimiento) == $entidadNacimiento->nombre ? 'selected' : '' }}>
+                                    {{ $entidadNacimiento->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    
+
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                        <p><strong>Municipio Nacimiento</strong></p>
+                        <select name="municipio_nacimiento" class="form-control">
+                            <option value="">-- Selecciona una opcion --</option>
+
+                            @foreach ($municipiosNacimiento as $municipioNacimiento)
+                                <option value="{{ $municipioNacimiento->nombre }}"
+                                    {{ old('municipio_nacimiento', $profesional->municipio_nacimiento) == $municipioNacimiento->nombre ? 'selected' : '' }}>
+                                    {{ $municipioNacimiento->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    </div>
+                    
+
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-info btn-sm">ACTUALIZAR</button>
@@ -1708,6 +1786,25 @@
                     document.getElementById('delete-form-' + id).submit();
                 }
             });
+        }
+    </script>
+
+    <script>
+        function confirmDelete(id) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: 'Esta acción eliminará los datos del personal estudiando actualmente.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Sí, eliminar',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + id).submit();
+                }
+            })
         }
     </script>
 @stop

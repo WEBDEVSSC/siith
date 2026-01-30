@@ -1770,6 +1770,21 @@ class ProfesionalController extends Controller
 
         $vigenciasMotivos = VigenciaMotivo::orderBy('id_vigencia','asc')->get();
 
+        /**
+         * 
+         * 
+         * 
+         * 
+         * 
+         * 
+         */
+
+        $paisesNacimiento = CatPaisNacimiento::all();
+
+        $entidadesNacimiento = Entidad::all();
+
+        $municipiosNacimiento = Municipio::all();
+
         // Regresamos la vista con el arreglo
         return view('profesional.show', compact(
             'profesional',
@@ -1899,7 +1914,11 @@ class ProfesionalController extends Controller
             'nominasDePago',
             'tiposDeContrato',
             'vigenciasLabel',
-            'vigenciasMotivos'
+            'vigenciasMotivos',
+
+            'paisesNacimiento',
+            'entidadesNacimiento',
+            'municipiosNacimiento',
 
         ));
     }

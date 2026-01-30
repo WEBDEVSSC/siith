@@ -210,4 +210,14 @@ class ProfesionalAreaMedicaController extends Controller
         return redirect()->route('profesionalShow', $request->id_profesional)->with('updateAreaMedica', 'Area Medica actualizada correctamente.');
     }
 
+    public function deleteAreaMedica($id)
+    {
+        // Buscamos el registro en el id del profesional
+        $areaMedica = ProfesionalAreaMedica::where('id_profesional', $id)->first();
+
+        $areaMedica->delete();
+
+        return redirect()->route('profesionalShow', $id)->with('updateAreaMedica', 'Datos de Personal Estudiando Actualmente eliminados correctamente.');
+    }
+
 }

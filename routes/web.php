@@ -318,6 +318,8 @@ Route::middleware(['auth'])->group(function ()
  
      Route::put('admin/profesionales/area-medica/updateAreaMedica/{id}', [ProfesionalAreaMedicaController::class, 'updateAreaMedica'])->name('updateAreaMedica');
 
+     Route::delete('admin/profesionales/area-medica/deleteAreaMedica/{id}', [ProfesionalAreaMedicaController::class, 'deleteAreaMedica'])->name('deleteAreaMedica');
+
      /**
      * 
      * 
