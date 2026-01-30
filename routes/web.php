@@ -4,6 +4,7 @@ use App\Http\Controllers\AvisoController;
 use App\Http\Controllers\CatalogoCentroDeSaludUrbanoYRuralController;
 use App\Http\Controllers\CatalogoCluesController;
 use App\Http\Controllers\CatalogoCodigosPuestoController;
+use App\Http\Controllers\CatalogoInstitucionEducativaController;
 use App\Http\Controllers\CatalogoNominaDePagoController;
 use App\Http\Controllers\CatalogoOcupacionAlmacenController;
 use App\Http\Controllers\CatalogoOcupacionCeamController;
@@ -724,6 +725,29 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/settings/codigos-puesto/updateCodigos/{id}', [CatalogoCodigosPuestoController::class,'updateCodigos'])->name('updateCodigos');
 
      Route::delete('admin/settings/codigos-puesto/deleteCodigos/{id}', [CatalogoCodigosPuestoController::class, 'deleteCodigos'])->name('deleteCodigos');
+
+    /**
+     * 
+     * 
+     * MODULOS ADMINISRATIVOS
+     * INSTITUCIONES EDUCATIVAS
+     * 
+     * 
+     */
+
+     Route::get('admin/settings/institucion-educativa/indexInstitucionEducativa', [CatalogoInstitucionEducativaController::class,'indexInstitucionEducativa'])->name('indexInstitucionEducativa');
+
+     Route::get('admin/settings/institucion-educativa/showInstitucionEducativa/{id}', [CatalogoInstitucionEducativaController::class,'showInstitucionEducativa'])->name('showInstitucionEducativa');
+
+     Route::get('admin/settings/institucion-educativa/createInstitucionEducativa', [CatalogoInstitucionEducativaController::class,'createInstitucionEducativa'])->name('createInstitucionEducativa');
+
+     Route::post('admin/settings/institucion-educativa/storeInstitucionEducativa', [CatalogoInstitucionEducativaController::class,'storeInstitucionEducativa'])->name('storeInstitucionEducativa');
+
+     Route::get('admin/settings/institucion-educativa/editInstitucionEducativa/{id}', [CatalogoInstitucionEducativaController::class,'editInstitucionEducativa'])->name('editInstitucionEducativa');
+
+     Route::put('admin/settings/institucion-educativa/updateInstitucionEducativa/{id}', [CatalogoInstitucionEducativaController::class,'updateInstitucionEducativa'])->name('updateInstitucionEducativa');
+
+     Route::delete('admin/settings/institucion-educativa/deleteInstitucionEducativa/{id}', [CatalogoInstitucionEducativaController::class, 'deleteInstitucionEducativa'])->name('deleteInstitucionEducativa');
 
      /**
      * 

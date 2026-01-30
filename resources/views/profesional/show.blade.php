@@ -1136,11 +1136,11 @@
                     <br>
                     <br>
                     
-                    <form id="delete-form-{{ $profesional->id }}" action="{{ route('deleteAreaMedica', $profesional->id) }}" method="POST">
+                    {{-- <form id="delete-form-{{ $profesional->id }}" action="{{ route('deleteAreaMedica', $profesional->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete({{ $profesional->id }})"><i class="fa-solid fa-trash"></i> LIMPIAR DATOS</button>
-                    </form>
+                    </form> --}}
 
                 @elseif ($profesional->areaMedica?->mdl_area_medica == 0)
                     <a href="{{ route('createAreaMedica', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-plus"></i> REGISTRAR DATOS</a>
