@@ -642,7 +642,7 @@ auth()->user()->role === 'hospitalNino'
 <!-- ---------------------------------------------------- -->
 
 <div class="row mt-3">
-  <div class="col-md-6">
+  <div class="col-md-12">
       <div class="card">
       <div class="card-header bg-info text-white">
           <h3 class="card-title">Cumpleaños del día</h3>
@@ -935,7 +935,7 @@ auth()->user()->role === 'hospitalNino'
 <!-- ---------------------------------------------------- -->
 
 <div class="row mt-3">
-  <div class="col-md-6">
+  <div class="col-md-12">
       <div class="card">
       <div class="card-header bg-info text-white">
           <h3 class="card-title">Cumpleaños del día</h3>
@@ -1034,7 +1034,7 @@ auth()->user()->role === 'hospitalNino'
 <!-- ---------------------------------------------------- -->
 
 <div class="row mt-3">
-  <div class="col-md-6">
+  <div class="col-md-12">
       <div class="card">
       <div class="card-header bg-info text-white">
           <h3 class="card-title">Cumpleaños del día</h3>
@@ -1137,7 +1137,7 @@ auth()->user()->role === 'hospitalNino'
 <!-- ---------------------------------------------------- -->
 
 <div class="row mt-3">
-  <div class="col-md-6">
+  <div class="col-md-12">
       <div class="card">
       <div class="card-header bg-info text-white">
           <h3 class="card-title">Cumpleaños del día</h3>
@@ -1235,7 +1235,7 @@ auth()->user()->role === 'hospitalNino'
 <!-- ---------------------------------------------------- -->
 
 <div class="row mt-3">
-  <div class="col-md-6">
+  <div class="col-md-12">
       <div class="card">
       <div class="card-header bg-info text-white">
           <h3 class="card-title">Cumpleaños del día</h3>
@@ -1332,7 +1332,7 @@ auth()->user()->role === 'hospitalNino'
 <!-- ---------------------------------------------------- -->
 
 <div class="row mt-3">
-  <div class="col-md-6">
+  <div class="col-md-12">
       <div class="card">
       <div class="card-header bg-info text-white">
           <h3 class="card-title">Cumpleaños del día</h3>
@@ -1434,7 +1434,7 @@ auth()->user()->role === 'hospitalNino'
 <!-- ---------------------------------------------------- -->
 
 <div class="row mt-3">
-  <div class="col-md-6">
+  <div class="col-md-12">
       <div class="card">
       <div class="card-header bg-info text-white">
           <h3 class="card-title">Cumpleaños del día</h3>
@@ -1589,7 +1589,7 @@ auth()->user()->role === 'hospitalNino'
 <!-- ---------------------------------------------------- -->
 
 <div class="row mt-3">
-  <div class="col-md-6">
+  <div class="col-md-12">
       <div class="card">
       <div class="card-header bg-info text-white">
           <h3 class="card-title">Cumpleaños del día</h3>
