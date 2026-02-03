@@ -1338,7 +1338,7 @@ auth()->user()->role === 'hospitalNino'
           <h3 class="card-title">Cumpleaños del día</h3>
       </div>
       <div class="card-body">
-          @if($profesionalesHonomasticoOfJurisdiccionalCSUYR->isEmpty())
+          @if($profesionalesHonomasticoOfJurisdiccionalHospital->isEmpty())
               <p class="text-center">No hay profesionales que cumplan años hoy.</p>
           @else
               <table class="table">
