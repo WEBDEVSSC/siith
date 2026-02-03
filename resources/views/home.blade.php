@@ -1271,6 +1271,104 @@ auth()->user()->role === 'hospitalNino'
   </div>
 </div>
 
+
+<h3><strong>Hospitales</strong></h3>
+
+<div class="row">
+    <div class="col-md-3">
+        <!-- small box -->
+        <div class="small-box bg-info">
+            <div class="inner">
+              <h3>{{$totalOfJurisidiccionalHospital}}</h3>
+
+              <p>Trabajadores Activos</p>
+            </div>
+            <div class="icon">
+              <i class="ion-android-contacts"></i>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-3">
+      <!-- small box -->
+      <div class="small-box bg-info">
+          <div class="inner">
+            <h3>{{$totalOfJurisidiccionalBajaTemporalHospital}}</h3>
+
+            <p>Baja Temporal</p>
+          </div>
+          <div class="icon">
+            <i class="ion-ios-minus"></i>
+          </div>
+        </div>
+  </div>
+  <div class="col-md-3">
+    <!-- small box -->
+    <div class="small-box bg-info">
+        <div class="inner">
+          <h3>{{$totalOfJurisidiccionalHombresHospital}}</h3>
+
+          <p>Hombres</p>
+        </div>
+        <div class="icon">
+          <i class="ion-male"></i>
+        </div>
+      </div>
+</div>
+<div class="col-md-3">
+  <!-- small box -->
+  <div class="small-box bg-info">
+      <div class="inner">
+        <h3>{{$totalOfJurisidiccionalMujeresHospital}}</h3>
+
+        <p>Mujeres</p>
+      </div>
+      <div class="icon">
+        <i class="ion-female"></i>
+      </div>
+    </div>
+</div>
+</div>
+
+<!-- ---------------------------------------------------- -->
+
+<div class="row mt-3">
+  <div class="col-md-6">
+      <div class="card">
+      <div class="card-header bg-info text-white">
+          <h3 class="card-title">Cumpleaños del día</h3>
+      </div>
+      <div class="card-body">
+          @if($profesionalesHonomasticoOfJurisdiccionalCSUYR->isEmpty())
+              <p class="text-center">No hay profesionales que cumplan años hoy.</p>
+          @else
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Nombre</th>
+                          <th>Puesto</th>
+                          <th>Correo</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @foreach($profesionalesHonomasticoOfJurisdiccionalCSUYR as $index => $profesional)
+                          <tr>
+                              <td>{{ $index + 1 }}</td>
+                              <td>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
+                              <td>{{ $profesional->puesto->nombre ?? 'Sin puesto' }}</td>
+                              <td>{{ $profesional->email ?? 'No registrado' }}</td>
+                          </tr>
+                      @endforeach
+                  </tbody>
+              </table>
+          @endif
+      </div>
+  </div>
+
+  </div>
+</div>
+
+
 @endif
 
 <!-- ---------------------------------------------------------- -->

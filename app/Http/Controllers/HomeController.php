@@ -631,6 +631,11 @@ class HomeController extends Controller
             ->whereRelation('puesto', 'clues_adscripcion_tipo', 1)
             ->count();
 
+        $totalOfJurisidiccionalHospital = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->whereRelation('puesto', 'clues_adscripcion_tipo', 2)
+            ->count();
+
         $totalOfJurisidiccionalBajaTemporal = Profesional::whereRelation('puesto', 'clues_adscripcion', $usuario->clues_unidad)
             ->whereRelation('puesto', 'vigencia', 'BAJA TEMPORAL')
             ->count();
@@ -640,6 +645,11 @@ class HomeController extends Controller
             ->whereRelation('puesto', 'clues_adscripcion_tipo', 1)
             ->count();
 
+        $totalOfJurisidiccionalBajaTemporalHospital = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
+            ->whereRelation('puesto', 'vigencia', 'BAJA TEMPORAL')
+            ->whereRelation('puesto', 'clues_adscripcion_tipo', 2)
+            ->count();
+
         $totalOfJurisidiccionalHombres = Profesional::where('sexo', 'M')
             ->whereHas('puesto', function ($query) use ($usuario) {
                 $query->where('clues_adscripcion', $usuario->clues_unidad)
@@ -647,20 +657,19 @@ class HomeController extends Controller
             })
             ->count();
 
-        /*$totalOfJurisidiccionalHombresCSUYR = Profesional::where('sexo', 'M')
-            ->whereHas('puesto', function ($query) use ($usuario) {
-                $query
-                ->where('clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
-                ->where('vigencia', 'ACTIVO')
-                ->whereRelation('puesto', 'clues_adscripcion_tipo', 1);
-            })
-            ->count();*/
-
         $totalOfJurisidiccionalHombresCSUYR = Profesional::where('sexo', 'M')
             ->whereHas('puesto', function ($query) use ($usuario) {
                 $query->where('clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
                     ->where('vigencia', 'ACTIVO')
                     ->where('clues_adscripcion_tipo', 1);
+            })
+            ->count();
+
+        $totalOfJurisidiccionalHombresHospital = Profesional::where('sexo', 'M')
+            ->whereHas('puesto', function ($query) use ($usuario) {
+                $query->where('clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
+                    ->where('vigencia', 'ACTIVO')
+                    ->where('clues_adscripcion_tipo', 2);
             })
             ->count();
 
@@ -680,6 +689,15 @@ class HomeController extends Controller
             })
             ->count();
 
+        $totalOfJurisidiccionalMujeresHospital = Profesional::where('sexo', 'F')
+            ->whereHas('puesto', function ($query) use ($usuario) {
+                $query
+                ->where('clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
+                ->where('vigencia', 'ACTIVO')
+                ->where('clues_adscripcion_tipo', 2);
+            })
+            ->count();
+
         $profesionalesHonomasticoOfJurisdiccional = Profesional::whereMonth('fecha_nacimiento', $hoy->month)
             ->whereDay('fecha_nacimiento', $hoy->day)
             ->whereHas('puesto', function ($query) use ($usuario) {
@@ -691,8 +709,20 @@ class HomeController extends Controller
         $profesionalesHonomasticoOfJurisdiccionalCSUYR = Profesional::whereMonth('fecha_nacimiento', $hoy->month)
             ->whereDay('fecha_nacimiento', $hoy->day)
             ->whereHas('puesto', function ($query) use ($usuario) {
-                $query->where('vigencia', 'ACTIVO')
-                    ->where('clues_adscripcion_jurisdiccion', $usuario->clues_unidad);
+                $query
+                ->where('vigencia', 'ACTIVO')
+                ->where('clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
+                ->where('clues_adscripcion_tipo', 1);
+            })
+            ->get();
+
+         $profesionalesHonomasticoOfJurisdiccionalHospital = Profesional::whereMonth('fecha_nacimiento', $hoy->month)
+            ->whereDay('fecha_nacimiento', $hoy->day)
+            ->whereHas('puesto', function ($query) use ($usuario) {
+                $query
+                ->where('vigencia', 'ACTIVO')
+                ->where('clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
+                ->where('clues_adscripcion_tipo', 2);;
             })
             ->get();
 
@@ -812,7 +842,12 @@ class HomeController extends Controller
             'totalOfJurisidiccionalBajaTemporalCSUYR',
             'totalOfJurisidiccionalHombresCSUYR',
             'totalOfJurisidiccionalMujeresCSUYR',
-            'profesionalesHonomasticoOfJurisdiccionalCSUYR'
+            'profesionalesHonomasticoOfJurisdiccionalCSUYR',
+            'totalOfJurisidiccionalHospital',
+            'totalOfJurisidiccionalBajaTemporalHospital',
+            'totalOfJurisidiccionalHombresHospital',
+            'totalOfJurisidiccionalMujeresHospital',
+            'profesionalesHonomasticoOfJurisdiccionalHospital'
         ));
     }
 }
