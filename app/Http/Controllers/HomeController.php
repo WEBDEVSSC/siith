@@ -628,6 +628,7 @@ class HomeController extends Controller
 
         $totalOfJurisidiccionalCSUYR = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->whereRelation('puesto', 'clues_adscripcion_tipo', 1)
             ->count();
 
         $totalOfJurisidiccionalBajaTemporal = Profesional::whereRelation('puesto', 'clues_adscripcion', $usuario->clues_unidad)
@@ -636,6 +637,7 @@ class HomeController extends Controller
 
         $totalOfJurisidiccionalBajaTemporalCSUYR = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
             ->whereRelation('puesto', 'vigencia', 'BAJA TEMPORAL')
+            ->whereRelation('puesto', 'clues_adscripcion_tipo', 1)
             ->count();
 
         $totalOfJurisidiccionalHombres = Profesional::where('sexo', 'M')
@@ -645,10 +647,20 @@ class HomeController extends Controller
             })
             ->count();
 
-         $totalOfJurisidiccionalHombresCSUYR = Profesional::where('sexo', 'M')
+        /*$totalOfJurisidiccionalHombresCSUYR = Profesional::where('sexo', 'M')
+            ->whereHas('puesto', function ($query) use ($usuario) {
+                $query
+                ->where('clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
+                ->where('vigencia', 'ACTIVO')
+                ->whereRelation('puesto', 'clues_adscripcion_tipo', 1);
+            })
+            ->count();*/
+
+        $totalOfJurisidiccionalHombresCSUYR = Profesional::where('sexo', 'M')
             ->whereHas('puesto', function ($query) use ($usuario) {
                 $query->where('clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
-                    ->where('vigencia', 'ACTIVO');
+                    ->where('vigencia', 'ACTIVO')
+                    ->where('clues_adscripcion_tipo', 1);
             })
             ->count();
 
@@ -661,8 +673,10 @@ class HomeController extends Controller
 
         $totalOfJurisidiccionalMujeresCSUYR = Profesional::where('sexo', 'F')
             ->whereHas('puesto', function ($query) use ($usuario) {
-                $query->where('clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
-                    ->where('vigencia', 'ACTIVO');
+                $query
+                ->where('clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
+                ->where('vigencia', 'ACTIVO')
+                ->where('clues_adscripcion_tipo', 1);
             })
             ->count();
 
