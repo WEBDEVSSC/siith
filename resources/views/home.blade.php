@@ -665,7 +665,7 @@ auth()->user()->role === 'hospitalNino'
                           <tr>
                               <td>{{ $index + 1 }}</td>
                               <td>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
-                              <td>{{ $profesional->puesto->nombre ?? 'Sin puesto' }}</td>
+                              <td>{{ $profesional->puesto->area_trabajo ?? 'Sin puesto' }}</td>
                               <td>{{ $profesional->email ?? 'No registrado' }}</td>
                           </tr>
                       @endforeach
@@ -958,7 +958,7 @@ auth()->user()->role === 'hospitalNino'
                           <tr>
                               <td>{{ $index + 1 }}</td>
                               <td>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
-                              <td>{{ $profesional->puesto->nombre ?? 'Sin puesto' }}</td>
+                              <td>{{ $profesional->puesto->area_trabajo ?? 'Sin puesto' }}</td>
                               <td>{{ $profesional->email ?? 'No registrado' }}</td>
                           </tr>
                       @endforeach
@@ -1057,7 +1057,7 @@ auth()->user()->role === 'hospitalNino'
                           <tr>
                               <td>{{ $index + 1 }}</td>
                               <td>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
-                              <td>{{ $profesional->puesto->nombre ?? 'Sin puesto' }}</td>
+                              <td>{{ $profesional->puesto->area_trabajo ?? 'Sin puesto' }}</td>
                               <td>{{ $profesional->email ?? 'No registrado' }}</td>
                           </tr>
                       @endforeach
@@ -1160,7 +1160,7 @@ auth()->user()->role === 'hospitalNino'
                           <tr>
                               <td>{{ $index + 1 }}</td>
                               <td>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
-                              <td>{{ $profesional->puesto->nombre ?? 'Sin puesto' }}</td>
+                              <td>{{ $profesional->puesto->area_trabajo ?? 'Sin puesto' }}</td>
                               <td>{{ $profesional->email ?? 'No registrado' }}</td>
                           </tr>
                       @endforeach
@@ -1258,7 +1258,7 @@ auth()->user()->role === 'hospitalNino'
                           <tr>
                               <td>{{ $index + 1 }}</td>
                               <td>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
-                              <td>{{ $profesional->puesto->nombre ?? 'Sin puesto' }}</td>
+                              <td>{{ $profesional->puesto->area_trabajo ?? 'Sin puesto' }}</td>
                               <td>{{ $profesional->email ?? 'No registrado' }}</td>
                           </tr>
                       @endforeach
@@ -1355,7 +1355,7 @@ auth()->user()->role === 'hospitalNino'
                           <tr>
                               <td>{{ $index + 1 }}</td>
                               <td>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
-                              <td>{{ $profesional->puesto->nombre ?? 'Sin puesto' }}</td>
+                              <td>{{ $profesional->puesto->area_trabajo ?? 'Sin puesto' }}</td>
                               <td>{{ $profesional->email ?? 'No registrado' }}</td>
                           </tr>
                       @endforeach
@@ -1457,7 +1457,7 @@ auth()->user()->role === 'hospitalNino'
                           <tr>
                               <td>{{ $index + 1 }}</td>
                               <td>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
-                              <td>{{ $profesional->puesto->nombre ?? 'Sin puesto' }}</td>
+                              <td>{{ $profesional->puesto->area_trabajo ?? 'Sin puesto' }}</td>
                               <td>{{ $profesional->email ?? 'No registrado' }}</td>
                           </tr>
                       @endforeach
@@ -1612,7 +1612,7 @@ auth()->user()->role === 'hospitalNino'
                           <tr>
                               <td>{{ $index + 1 }}</td>
                               <td>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
-                              <td>{{ $profesional->puesto->nombre ?? 'Sin puesto' }}</td>
+                              <td>{{ $profesional->puesto->area_trabajo ?? 'Sin puesto' }}</td>
                               <td>{{ $profesional->email ?? 'No registrado' }}</td>
                           </tr>
                       @endforeach
