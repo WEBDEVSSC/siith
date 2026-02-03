@@ -101,6 +101,11 @@ class Profesional extends Model
         return $this->hasOne(ProfesionalEmergencia::class,'id_profesional');
     }
 
+    public function direccion()
+    {
+        return $this->hasOne(ProfesionalesDireccion::class, 'id_profesional');
+    }
+
     public function cambiosDeUnidad()
     {
         return $this->hasMany(ProfesionalCambioDeUnidad::class, 'id_profesional');

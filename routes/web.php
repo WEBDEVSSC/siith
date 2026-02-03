@@ -3,6 +3,7 @@
 use App\Http\Controllers\AvisoController;
 use App\Http\Controllers\CatalogoCentroDeSaludUrbanoYRuralController;
 use App\Http\Controllers\CatalogoCluesController;
+use App\Http\Controllers\CatalogoCodigoPostalController;
 use App\Http\Controllers\CatalogoCodigosPuestoController;
 use App\Http\Controllers\CatalogoInstitucionEducativaController;
 use App\Http\Controllers\CatalogoNominaDePagoController;
@@ -30,6 +31,7 @@ use App\Http\Controllers\ProfesionalCambioTipoNominaController;
 use App\Http\Controllers\ProfesionalCertificacionController;
 use App\Http\Controllers\ProfesionalController;
 use App\Http\Controllers\ProfesionalCredencializacionController;
+use App\Http\Controllers\ProfesionalDireccionController;
 use App\Http\Controllers\ProfesionalEmergenciaController;
 use App\Http\Controllers\ProfesionalFirmaNominaController;
 use App\Http\Controllers\ProfesionalGradoAcademicoController;
@@ -320,6 +322,24 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/profesionales/area-medica/updateAreaMedica/{id}', [ProfesionalAreaMedicaController::class, 'updateAreaMedica'])->name('updateAreaMedica');
 
      Route::delete('admin/profesionales/area-medica/deleteAreaMedica/{id}', [ProfesionalAreaMedicaController::class, 'deleteAreaMedica'])->name('deleteAreaMedica');
+
+    /**
+     * 
+     * 
+     * DIRECCION
+     * 
+     * 
+     */
+
+     Route::get('admin/profesionales/direccion/createDireccion/{id}', [ProfesionalDireccionController::class,'createDireccion'])->name('createDireccion');
+
+     Route::post('admin/profesionales/direccion/storeDireccion/{id}', [ProfesionalDireccionController::class,'storeDireccion'])->name('storeDireccion');
+ 
+     Route::get('admin/profesionales/direccion/editDireccion/{id}', [ProfesionalDireccionController::class, 'editDireccion'])->name('editDireccion');
+ 
+     Route::put('admin/profesionales/direccion/updateDireccion/{id}', [ProfesionalDireccionController::class, 'updateDireccion'])->name('updateDireccion');
+
+     Route::delete('admin/profesionales/direccion/deleteDireccion/{id}', [ProfesionalDireccionController::class, 'deleteDireccion'])->name('deleteDireccion');
 
      /**
      * 
@@ -748,6 +768,32 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/settings/institucion-educativa/updateInstitucionEducativa/{id}', [CatalogoInstitucionEducativaController::class,'updateInstitucionEducativa'])->name('updateInstitucionEducativa');
 
      Route::delete('admin/settings/institucion-educativa/deleteInstitucionEducativa/{id}', [CatalogoInstitucionEducativaController::class, 'deleteInstitucionEducativa'])->name('deleteInstitucionEducativa');
+
+     /**
+     * 
+     * 
+     * MODULOS ADMINISRATIVOS
+     * CODIGOS POSTALES
+     * 
+     * 
+     */
+
+     Route::get('admin/settings/codigo-postal/indexCodigoPostal', [CatalogoCodigoPostalController::class,'indexCodigoPostal'])->name('indexCodigoPostal');
+
+     Route::get('admin/settings/codigo-postal/showCodigoPostal/{id}', [CatalogoCodigoPostalController::class,'showCodigoPostal'])->name('showCodigoPostal');
+
+     Route::get('admin/settings/codigo-postal/createCodigoPostal', [CatalogoCodigoPostalController::class,'createCodigoPostal'])->name('createCodigoPostal');
+
+     Route::post('admin/settings/codigo-postal/storeCodigoPostal', [CatalogoCodigoPostalController::class,'storeCodigoPostal'])->name('storeCodigoPostal');
+
+     Route::get('admin/settings/codigo-postal/editCodigoPostal/{id}', [CatalogoCodigoPostalController::class,'editCodigoPostal'])->name('editCodigoPostal');
+
+     Route::put('admin/settings/codigo-postal/updateCodigoPostal/{id}', [CatalogoCodigoPostalController::class,'updateCodigoPostal'])->name('updateCodigoPostal');
+
+     Route::delete('admin/settings/codigo-postal/deleteCodigoPostal/{id}', [CatalogoCodigoPostalController::class, 'deleteCodigoPostal'])->name('deleteCodigoPostal');
+
+     
+    Route::get('/municipios/{entidad}', [CatalogoCodigoPostalController::class, 'municipios'])->name('municipios.por.entidad');
 
      /**
      * 

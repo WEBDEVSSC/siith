@@ -618,6 +618,72 @@ class HomeController extends Controller
 
         // -----------------------------------------------------------------------------------------------
 
+        // -----------------------------------------------------------------------------------------------
+
+        // CONTADORES PARA OFICINA JURISDICCIONAL
+
+        $totalOfJurisidiccional = Profesional::whereRelation('puesto', 'clues_adscripcion', $usuario->clues_unidad)
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $totalOfJurisidiccionalCSUYR = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $totalOfJurisidiccionalBajaTemporal = Profesional::whereRelation('puesto', 'clues_adscripcion', $usuario->clues_unidad)
+            ->whereRelation('puesto', 'vigencia', 'BAJA TEMPORAL')
+            ->count();
+
+        $totalOfJurisidiccionalBajaTemporalCSUYR = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
+            ->whereRelation('puesto', 'vigencia', 'BAJA TEMPORAL')
+            ->count();
+
+        $totalOfJurisidiccionalHombres = Profesional::where('sexo', 'M')
+            ->whereHas('puesto', function ($query) use ($usuario) {
+                $query->where('clues_adscripcion', $usuario->clues_unidad)
+                    ->where('vigencia', 'ACTIVO');
+            })
+            ->count();
+
+         $totalOfJurisidiccionalHombresCSUYR = Profesional::where('sexo', 'M')
+            ->whereHas('puesto', function ($query) use ($usuario) {
+                $query->where('clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
+                    ->where('vigencia', 'ACTIVO');
+            })
+            ->count();
+
+        $totalOfJurisidiccionalMujeres = Profesional::where('sexo', 'F')
+            ->whereHas('puesto', function ($query) use ($usuario) {
+                $query->where('clues_adscripcion', $usuario->clues_unidad)
+                    ->where('vigencia', 'ACTIVO');
+            })
+            ->count();
+
+        $totalOfJurisidiccionalMujeresCSUYR = Profesional::where('sexo', 'F')
+            ->whereHas('puesto', function ($query) use ($usuario) {
+                $query->where('clues_adscripcion_jurisdiccion', $usuario->jurisdiccion_unidad)
+                    ->where('vigencia', 'ACTIVO');
+            })
+            ->count();
+
+        $profesionalesHonomasticoOfJurisdiccional = Profesional::whereMonth('fecha_nacimiento', $hoy->month)
+            ->whereDay('fecha_nacimiento', $hoy->day)
+            ->whereHas('puesto', function ($query) use ($usuario) {
+                $query->where('vigencia', 'ACTIVO')
+                    ->where('clues_adscripcion', $usuario->clues_unidad);
+            })
+            ->get();
+
+        $profesionalesHonomasticoOfJurisdiccionalCSUYR = Profesional::whereMonth('fecha_nacimiento', $hoy->month)
+            ->whereDay('fecha_nacimiento', $hoy->day)
+            ->whereHas('puesto', function ($query) use ($usuario) {
+                $query->where('vigencia', 'ACTIVO')
+                    ->where('clues_adscripcion_jurisdiccion', $usuario->clues_unidad);
+            })
+            ->get();
+
+        // -----------------------------------------------------------------------------------------------
+
         return view('home', compact(
 
             'contadorEnsenanza610',
@@ -721,7 +787,18 @@ class HomeController extends Controller
             'totalCecosamaTemporal',
             'totalCecosamaHombres',
             'totalCecosamaMujeres',
-            'profesionalesHonomasticoCecosama'
+            'profesionalesHonomasticoCecosama',
+
+            'totalOfJurisidiccional',
+            'totalOfJurisidiccionalBajaTemporal',
+            'totalOfJurisidiccionalHombres',
+            'totalOfJurisidiccionalMujeres',
+            'profesionalesHonomasticoOfJurisdiccional',
+            'totalOfJurisidiccionalCSUYR',
+            'totalOfJurisidiccionalBajaTemporalCSUYR',
+            'totalOfJurisidiccionalHombresCSUYR',
+            'totalOfJurisidiccionalMujeresCSUYR',
+            'profesionalesHonomasticoOfJurisdiccionalCSUYR'
         ));
     }
 }

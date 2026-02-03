@@ -574,7 +574,6 @@
 @if(
 auth()->user()->role === 'csuyr' || 
 auth()->user()->role === 'hospital'|| 
-auth()->user()->role === 'ofJurisdiccional'|| 
 auth()->user()->role === 'almacen'|| 
 auth()->user()->role === 'psiParras'|| 
 auth()->user()->role === 'oncologico'|| 
@@ -1055,6 +1054,207 @@ auth()->user()->role === 'hospitalNino'
                   </thead>
                   <tbody>
                       @foreach($profesionalesHonomasticoCriCree as $index => $profesional)
+                          <tr>
+                              <td>{{ $index + 1 }}</td>
+                              <td>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
+                              <td>{{ $profesional->puesto->nombre ?? 'Sin puesto' }}</td>
+                              <td>{{ $profesional->email ?? 'No registrado' }}</td>
+                          </tr>
+                      @endforeach
+                  </tbody>
+              </table>
+          @endif
+      </div>
+  </div>
+
+  </div>
+</div>
+
+@endif
+
+<!-- ---------------------------------------------------------- -->
+
+<!-- ---------------------------------------------------------- -->
+@if(auth()->user()->role === 'ofJurisdiccional')
+
+<h3><strong>Oficina Jurisdiccional</strong></h3>
+
+<div class="row">
+    <div class="col-md-3">
+        <!-- small box -->
+        <div class="small-box bg-info">
+            <div class="inner">
+              <h3>{{$totalOfJurisidiccional}}</h3>
+
+              <p>Trabajadores Activos</p>
+            </div>
+            <div class="icon">
+              <i class="ion-android-contacts"></i>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-3">
+      <!-- small box -->
+      <div class="small-box bg-info">
+          <div class="inner">
+            <h3>{{$totalOfJurisidiccionalBajaTemporal}}</h3>
+
+            <p>Baja Temporal</p>
+          </div>
+          <div class="icon">
+            <i class="ion-ios-minus"></i>
+          </div>
+        </div>
+  </div>
+  <div class="col-md-3">
+    <!-- small box -->
+    <div class="small-box bg-info">
+        <div class="inner">
+          <h3>{{$totalOfJurisidiccionalHombres}}</h3>
+
+          <p>Hombres</p>
+        </div>
+        <div class="icon">
+          <i class="ion-male"></i>
+        </div>
+      </div>
+</div>
+<div class="col-md-3">
+  <!-- small box -->
+  <div class="small-box bg-info">
+      <div class="inner">
+        <h3>{{$totalOfJurisidiccionalMujeres}}</h3>
+
+        <p>Mujeres</p>
+      </div>
+      <div class="icon">
+        <i class="ion-female"></i>
+      </div>
+    </div>
+</div>
+</div>
+
+<!-- ---------------------------------------------------- -->
+
+<div class="row mt-3">
+  <div class="col-md-6">
+      <div class="card">
+      <div class="card-header bg-info text-white">
+          <h3 class="card-title">Cumpleaños del día</h3>
+      </div>
+      <div class="card-body">
+          @if($profesionalesHonomasticoOfJurisdiccional->isEmpty())
+              <p class="text-center">No hay profesionales que cumplan años hoy.</p>
+          @else
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Nombre</th>
+                          <th>Puesto</th>
+                          <th>Correo</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @foreach($profesionalesHonomasticoOfJurisdiccional as $index => $profesional)
+                          <tr>
+                              <td>{{ $index + 1 }}</td>
+                              <td>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
+                              <td>{{ $profesional->puesto->nombre ?? 'Sin puesto' }}</td>
+                              <td>{{ $profesional->email ?? 'No registrado' }}</td>
+                          </tr>
+                      @endforeach
+                  </tbody>
+              </table>
+          @endif
+      </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- ---------------------------------------------------------- -->
+
+<h3><strong>C. S. U. y C. S. R.</strong></h3>
+
+<div class="row">
+    <div class="col-md-3">
+        <!-- small box -->
+        <div class="small-box bg-info">
+            <div class="inner">
+              <h3>{{$totalOfJurisidiccionalCSUYR}}</h3>
+
+              <p>Trabajadores Activos</p>
+            </div>
+            <div class="icon">
+              <i class="ion-android-contacts"></i>
+            </div>
+          </div>
+    </div>
+    <div class="col-md-3">
+      <!-- small box -->
+      <div class="small-box bg-info">
+          <div class="inner">
+            <h3>{{$totalOfJurisidiccionalBajaTemporalCSUYR}}</h3>
+
+            <p>Baja Temporal</p>
+          </div>
+          <div class="icon">
+            <i class="ion-ios-minus"></i>
+          </div>
+        </div>
+  </div>
+  <div class="col-md-3">
+    <!-- small box -->
+    <div class="small-box bg-info">
+        <div class="inner">
+          <h3>{{$totalOfJurisidiccionalHombresCSUYR}}</h3>
+
+          <p>Hombres</p>
+        </div>
+        <div class="icon">
+          <i class="ion-male"></i>
+        </div>
+      </div>
+</div>
+<div class="col-md-3">
+  <!-- small box -->
+  <div class="small-box bg-info">
+      <div class="inner">
+        <h3>{{$totalOfJurisidiccionalMujeresCSUYR}}</h3>
+
+        <p>Mujeres</p>
+      </div>
+      <div class="icon">
+        <i class="ion-female"></i>
+      </div>
+    </div>
+</div>
+</div>
+
+<!-- ---------------------------------------------------- -->
+
+<div class="row mt-3">
+  <div class="col-md-6">
+      <div class="card">
+      <div class="card-header bg-info text-white">
+          <h3 class="card-title">Cumpleaños del día</h3>
+      </div>
+      <div class="card-body">
+          @if($profesionalesHonomasticoOfJurisdiccionalCSUYR->isEmpty())
+              <p class="text-center">No hay profesionales que cumplan años hoy.</p>
+          @else
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Nombre</th>
+                          <th>Puesto</th>
+                          <th>Correo</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @foreach($profesionalesHonomasticoOfJurisdiccionalCSUYR as $index => $profesional)
                           <tr>
                               <td>{{ $index + 1 }}</td>
                               <td>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>

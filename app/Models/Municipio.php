@@ -14,4 +14,20 @@ class Municipio extends Model
         'nombre', 
         'relacion',
     ];
+
+    /***
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     */
+
+    public function entidad()
+    {
+        return $this->belongsTo(Entidad::class, 'relacion');
+    }
 }

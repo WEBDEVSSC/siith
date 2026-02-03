@@ -546,6 +546,25 @@
 
                                 <!-- --------------------------- -->
                                 <!-- --------------------------- -->
+                                <!--   MODULO DE DIRECCION       -->
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
+                                {{--
+                                @if(optional($data['profesional']->direccion)->mdl_direccion == 1)
+                                    <a href="{{ route('editDireccion', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="DOMICILIO">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                    </a>
+                                @else
+                                    <a href="{{ route('createDireccion', $data['profesional']->id) }}" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="DOMICILIO">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                    </a>
+                                @endif
+                                --}}
+
+                                <hr>
+
+                                <!-- --------------------------- -->
+                                <!-- --------------------------- -->
                                 <!--   MODULO DE VIGENCIAS       -->
                                 <!-- --------------------------- -->
                                 <!-- --------------------------- -->

@@ -221,6 +221,32 @@
     <!-- -- -->
 
     <div class="card">
+        <div class="card-header"><i class="fa fa-home" aria-hidden="true"></i><strong> DIRECCIÓN</strong></div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <p><strong>CALLE</strong></p>
+                    {{$profesional->direccion->calle}} 
+                </div>
+                <div class="col-md-3">
+                    <p><strong>NÚMERO INTERIOR</strong></p>
+                    {{$profesional->direccion->numero_interior}} 
+                </div>
+                <div class="col-md-3">
+                    <p><strong>NÚMERO EXTERIOR</strong></p>
+                    {{$profesional->direccion->numero_exterior}} 
+                </div>
+                <div class="col-md-3">
+                    <p><strong>CP | COLONIA</strong></p>
+                    {{$profesional->direccion->codigo_postal}} - {{$profesional->direccion->colonia}} 
+                </div>
+            </div>
+        </div>
+        <div class="card-footer"></div>
+    </div>
+    <!-- -- -->
+
+    <div class="card">
         <div class="card-header"><strong>CATALOGO / CARTERA DE SERVICIOS</strong> {{ $catalogoLabel }}  </div>
         <div class="card-body">
 

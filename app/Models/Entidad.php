@@ -40,4 +40,21 @@ class Entidad extends Model
             'nombre'              // campo en cat_entidades
         );
     }
+
+    /***
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
+     */
+
+    public function municipios()
+    {
+        return $this->hasMany(Municipio::class, 'relacion');
+    }
 }
