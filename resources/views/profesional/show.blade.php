@@ -226,19 +226,19 @@
             <div class="row">
                 <div class="col-md-3">
                     <p><strong>CALLE</strong></p>
-                    {{$profesional->direccion->calle}} 
+                    {{$profesional->direccion?->calle}} 
                 </div>
                 <div class="col-md-3">
                     <p><strong>NÚMERO INTERIOR</strong></p>
-                    {{$profesional->direccion->numero_interior}} 
+                    {{$profesional->direccion?->numero_interior}} 
                 </div>
                 <div class="col-md-3">
                     <p><strong>NÚMERO EXTERIOR</strong></p>
-                    {{$profesional->direccion->numero_exterior}} 
+                    {{$profesional->direccion?->numero_exterior}} 
                 </div>
                 <div class="col-md-3">
                     <p><strong>CP | COLONIA</strong></p>
-                    {{$profesional->direccion->codigo_postal}} - {{$profesional->direccion->colonia}} 
+                    {{$profesional->direccion?->codigo_postal}} - {{$profesional?->direccion->colonia}} 
                 </div>
             </div>
         </div>
