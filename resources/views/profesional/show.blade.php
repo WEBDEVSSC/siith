@@ -238,7 +238,7 @@
                 </div>
                 <div class="col-md-3">
                     <p><strong>CP | COLONIA</strong></p>
-                    {{$profesional->direccion?->codigo_postal}} - {{$profesional?->direccion->colonia}} 
+                    {{$profesional->direccion?->codigo_postal}} - {{$profesional->direccion?->colonia}} 
                 </div>
             </div>
         </div>
