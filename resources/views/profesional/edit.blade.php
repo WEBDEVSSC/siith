@@ -96,11 +96,23 @@
 
                 <div class="row mt-3">
                     <div class="col-md-3">
-                        <p><strong>Pais de nacimiento</strong></p>
-                        <input type="text" name="pais_nacimiento" id='pais_nacimiento' class="form-control" value="{{ $profesional->pais_nacimiento }}" disabled>
+                        <p><strong>Pais de nacimiento</strong></p>                        
+
+                        <select name="pais_nacimiento" class="form-control">
+                            <option value="">-- Seleccione una opción --</option>
+
+                            @foreach ($paisesNacimiento as $pais)
+                                <option value="{{ $pais->pais }}"
+                                    {{ old('pais_nacimiento', $profesional->pais_nacimiento) == $pais->pais ? 'selected' : '' }}>
+                                    {{ $pais->pais }}
+                                </option>
+                            @endforeach
+                        </select>
+
                         @error('pais_nacimiento')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+
                     </div>
                     <div class="col-md-3">
                         <p><strong>Entidad de nacimiento</strong></p>
@@ -126,7 +138,13 @@
                     </div>
                     <div class="col-md-3">
                         <p><strong>Nacionalidad</strong></p>
-                        <input type="text" name="nacionalidad" id='nacionalidad' class="form-control" value="{{ $profesional->nacionalidad }}" disabled>
+
+                        <select name="nacionalidad" id="nacionalidad" class="form-control">
+                            <option value="">-- Seleccione una opación --</option>
+                            <option value="MEXICANA" {{ old('nacionalidad',$profesional->nacionalidad) === 'MEXICANA' ? 'selected' : '' }}>MEXICANA</option>
+                            <option value="EXTRANJERA"{{ old('nacionalidad',$profesional->nacionalidad) === 'EXTRANJERA' ? 'selected' : '' }}>EXTRANJERA</option>
+                        </select>
+
                         @error('nacionalidad')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror

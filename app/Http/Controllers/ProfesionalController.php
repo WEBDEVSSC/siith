@@ -1388,7 +1388,10 @@ class ProfesionalController extends Controller
         // Estados conyugales
         $estadosConyuales = EstadoConyugal::all();
 
-        return view('profesional.edit', compact('profesional','municipios','estadosConyuales'));
+        // Paises
+        $paisesNacimiento = CatPaisNacimiento::all();
+
+        return view('profesional.edit', compact('profesional','municipios','estadosConyuales', 'paisesNacimiento'));
     }
 
     /**
@@ -1412,6 +1415,7 @@ class ProfesionalController extends Controller
             'celular' => 'required|size:10',
             'email' => 'required|email',
             'padre_madre_familia' => 'required',
+            'nacionalidad' => 'required',
             
         ], [
             'homoclave.required' => 'La homoclave es obligatoria.',
@@ -1445,6 +1449,7 @@ class ProfesionalController extends Controller
             'celular' => $request->celular,
             'email' => $request->email,
             'padre_madre_familia' => $request->padre_madre_familia,
+            'nacionalidad' => $request->nacionalidad,
         ]);
 
         $usuario = Auth::user();
