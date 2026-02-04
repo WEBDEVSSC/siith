@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Log;
 
 class ProfesionalEmergenciaController extends Controller
 {
-    public function municipios(Entidad $entidad)
+    /*public function municipios(Entidad $entidad)
     { 
 
         return response()->json(
@@ -25,6 +25,13 @@ class ProfesionalEmergenciaController extends Controller
             ->orderBy('nombre')
             ->get()
         );
+    }*/
+
+    public function municipios($entidadId)
+    {
+        return Municipio::where('relacion', $entidadId)
+            ->orderBy('nombre')
+            ->get();
     }
 
     public function createEmergencia($id)
