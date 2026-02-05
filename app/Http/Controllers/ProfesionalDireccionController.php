@@ -60,7 +60,10 @@ class ProfesionalDireccionController extends Controller
         $direccion->codigo_postal = $codigoPostal->codigo_postal;
         $direccion->colonia = $codigoPostal->colonia;
         $direccion->municipio = $codigoPostal->municipio;
-        $direccion->estado = $codigoPostal->ciudad;
+        $direccion->estado = $codigoPostal->estado;
+        $direccion->ciudad = $codigoPostal->ciudad;
+        $direccion->tipo_asentamiento = $codigoPostal->tipo_asentamiento;
+        $direccion->zona = $codigoPostal->zona;
         $direccion->mdl_direccion = 1;
 
         $direccion->save();
