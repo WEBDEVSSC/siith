@@ -242,7 +242,19 @@
                 </div>
             </div>
         </div>
-        <div class="card-footer"></div>
+        <div class="card-footer">
+
+        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
+            
+            @if ($profesional->direccion->mdl_direccion == 1)
+                <a href="{{ route('editDireccion', $profesional->id) }}" class="btn btn-info btn-sm"> <i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
+            @elseif ($profesional->direccion->mdl_direccion == 0)
+                <a href="{{ route('createDireccion', $profesional->id) }}" class="btn btn-info btn-sm"> <i class="fa-solid fa-pen"></i> REGISTRAR DATOS</a>
+            @endif
+
+        @endif
+
+        </div>
     </div>
     <!-- -- -->
 

@@ -26,11 +26,11 @@
 
         </div>
 
-        <form action="{{ route('storeDireccion', $profesional->id) }}" method="POST">
+        <form action="{{ route('updateDireccion', $direccion->id) }}" method="POST">
 
         @csrf 
 
-        @method('POST')
+        @method('PUT')
             
             <div class="card-body">
 
@@ -40,7 +40,7 @@
                     
                     <div class="col-md-3">
                         <p><strong>Calle</strong></p>
-                        <input type="text" name="calle" class="form-control" value="{{ old('calle') }}">
+                        <input type="text" name="calle" class="form-control" value="{{ old('calle', $direccion->calle) }}">
 
                         @error('calle')
                         <br><div class="alert alert-danger">{{ $message }}</div>
@@ -49,7 +49,7 @@
 
                     <div class="col-md-3">
                         <p><strong>No. Interior</strong></p>
-                        <input type="text" name="numero_interior" class="form-control" value="{{ old('numero_interior') }}">
+                        <input type="text" name="numero_interior" class="form-control" value="{{ old('numero_interior', $direccion->numero_interior) }}">
 
                         @error('numero_interior')
                         <br><div class="alert alert-danger">{{ $message }}</div>
@@ -58,7 +58,7 @@
 
                     <div class="col-md-3">
                         <p><strong>No. Exterior</strong></p>
-                        <input type="text" name="numero_exterior" class="form-control" value="{{ old('numero_exterior') }}">
+                        <input type="text" name="numero_exterior" class="form-control" value="{{ old('numero_exterior', $direccion->numero_exterior) }}">
 
                         @error('numero_exterior')
                         <br><div class="alert alert-danger">{{ $message }}</div>
@@ -73,11 +73,11 @@
 
                             @foreach ($codigosPostales as $cp)
                                 <option value="{{ $cp->id }}"
-                                    {{ old('codigo_postal') == $cp->codigo_postal ? 'selected' : '' }}>
+                                    {{ old('codigo_postal', $direccion->id_codigo_postal) == $cp->id ? 'selected' : '' }}>
                                     {{ $cp->codigo_postal }} - {{ $cp->colonia }}
                                 </option>
                             @endforeach
-                        </select>                
+                        </select>            
                         @error('codigo_postal')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
