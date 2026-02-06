@@ -1381,8 +1381,19 @@ class ProfesionalController extends Controller
         }
         else
         {
+            //$municipioRelacion = Municipio::where('nombre', $profesional->municipio_nacimiento)->first();
+            //$municipios = Municipio::where('relacion', $municipioRelacion->relacion)->get();
+
             $municipioRelacion = Municipio::where('nombre', $profesional->municipio_nacimiento)->first();
-            $municipios = Municipio::where('relacion', $municipioRelacion->relacion)->get();
+
+            if ($municipioRelacion) 
+            {
+                $municipios = Municipio::where('relacion', $municipioRelacion->relacion)->get();
+            } 
+            else 
+            {
+                $municipios = collect(); // colección vacía para evitar errores
+            }
         }
 
         // Estados conyugales
