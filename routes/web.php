@@ -24,6 +24,7 @@ use App\Http\Controllers\CatalogoOcupacionOfJurisdiccionalController;
 use App\Http\Controllers\CatalogoOcupacionPsiParrasController;
 use App\Http\Controllers\CatalogoOcupacionSamuCrumController;
 use App\Http\Controllers\CatalogosController;
+use App\Http\Controllers\CatalogoTituloController;
 use App\Http\Controllers\GitHubController;
 use App\Http\Controllers\ProfesionalAreaMedicaController;
 use App\Http\Controllers\ProfesionalCambioDeUnidadController;
@@ -794,6 +795,29 @@ Route::middleware(['auth'])->group(function ()
 
      
     Route::get('/municipios/{entidad}', [CatalogoCodigoPostalController::class, 'municipios'])->name('municipios.por.entidad');
+
+    /**
+     * 
+     * 
+     * MODULOS ADMINISRATIVOS
+     * TITULOS
+     * 
+     * 
+     */
+
+     Route::get('admin/settings/titulo/indexTitulo', [CatalogoTituloController::class,'indexTitulo'])->name('indexTitulo');
+
+     Route::get('admin/settings/titulo/showTitulo/{id}', [CatalogoTituloController::class,'showTitulo'])->name('showTitulo');
+
+     Route::get('admin/settings/titulo/createTitulo', [CatalogoTituloController::class,'createTitulo'])->name('createTitulo');
+
+     Route::post('admin/settings/titulo/storeTitulo', [CatalogoTituloController::class,'storeTitulo'])->name('storeTitulo');
+
+     Route::get('admin/settings/titulo/editTitulo/{id}', [CatalogoTituloController::class,'editTitulo'])->name('editTitulo');
+
+     Route::put('admin/settings/titulo/updateTitulo/{id}', [CatalogoTituloController::class,'updateTitulo'])->name('updateTitulo');
+
+     Route::delete('admin/settings/titulo/deleteTitulo/{id}', [CatalogoTituloController::class, 'deleteTitulo'])->name('deleteTitulo');
 
      /**
      * 
