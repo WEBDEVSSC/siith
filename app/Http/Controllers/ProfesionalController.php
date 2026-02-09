@@ -1780,7 +1780,11 @@ class ProfesionalController extends Controller
 
         $nominasDePago = NominaPago::all();
 
-        $tiposDeContrato = TipoContrato::all();
+        //$tiposDeContrato = TipoContrato::all();
+
+        $tiposDeContrato = TipoContrato::all()
+            ->unique('tipo_contrato')
+            ->values();
 
         $vigenciasLabel = Vigencia::all();
 
