@@ -704,7 +704,7 @@
                     <td>{{ $profesional->puesto?->codigo ?? '' }}</td>
                     <td>{{ $profesional->puesto?->codigo_puesto ?? '' }}</td>
                     <td>{{ $profesional->puesto?->tipo_contrato ?? '' }}</td>
-                    <td></td>
+                    <td>{{ $profesional->puesto?->grupo ?? '' }}</td>
                     <td>{{ $profesional->puesto?->fecha_ingreso ?? '' }}</td>
                     <td>{{ $profesional->puesto?->tipo_personal ?? '' }}</td>
                     <td>{{ $profesional->puesto?->ocupacion ?? '' }}</td>
