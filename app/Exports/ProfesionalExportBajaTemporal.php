@@ -44,7 +44,7 @@ class ProfesionalExportBajaTemporal implements FromView, WithStyles
             // Catalogo 3 - Oficina Jurisdiccional
             elseif ($user->role == 'ofJurisdiccional') 
             {
-                $query->where('clues_adscripcion_jurisdiccion', $user->jurisdiccion_unidad);
+                $query->where('clues_adscripcion_jurisdiccion', $user->jurisdiccion_unidad)->whereIn('clues_adscripcion_tipo', [1, 3]);
             }
             // Catalogo 6 - Oficina Central
             elseif ($user->role == 'ofCentral') 
