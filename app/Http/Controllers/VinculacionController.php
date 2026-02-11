@@ -310,6 +310,6 @@ class VinculacionController extends Controller
 
         ];
 
-        return view('vinculacion.index', compact('municipios'));
+        return view('vinculacion.index', compact('municipios', 'allende','guerrero','hidalgo','nava','piedrasNegras','villaUnion','acuna','jimenez','morelos','zaragoza','juarez','muzquiz','progreso','sabinas','sanJuanDeSabinas','abasolo','candela','castanos','escobedo','frontera','monclova','nadadores','sanbuena'));
     }
 }
