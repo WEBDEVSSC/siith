@@ -49,6 +49,7 @@ use App\Http\Controllers\ProfesionalSueldoController;
 use App\Http\Controllers\ProfesionalVigenciaController;
 use App\Http\Controllers\SystemSettingsController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\VinculacionController;
 use App\Models\ProfesionalOcupacionEnsenanza;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -1246,6 +1247,16 @@ Route::middleware(['auth'])->group(function ()
     Route::get('admin/settings/sessions/activas',[ProfesionalSessionsController::class, 'sesionesActivas'])->name('sesionesActivas');
 
     Route::get('admin/settings/sessions/bitacora',[ProfesionalSessionsController::class, 'sesionesBitacora'])->name('sesionesBitacora');
+
+    /**
+     * 
+     * 
+     * VINCULACION Y ENLACE
+     * 
+     * 
+     */
+
+     Route::get('admin/vinculacion-y-enlace/index', [VinculacionController::class,'indexVYE'])->name('indexVYE');
 
 });
 

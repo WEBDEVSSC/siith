@@ -403,6 +403,19 @@ return [
             'icon' => 'fa-solid fa-gear',
             'can' => 'admin', 
         ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | PERMISOS PARA VINCULACION
+        |--------------------------------------------------------------------------
+        |
+        */
+        [
+            'text' => 'Vinculación',
+            'url' => 'admin/vinculacion-y-enlace/index',
+            'icon' => 'fa-solid fa-people-group',
+            'can' => 'vinculacion', 
+        ],
         
     ],
 
