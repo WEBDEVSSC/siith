@@ -211,7 +211,7 @@ class ProfesionalAreaMedicaController extends Controller
     }
 
     public function deleteAreaMedica($id)
-    {
+    {    
         // Buscamos el registro en el id del profesional
         $areaMedica = ProfesionalAreaMedica::where('id_profesional', $id)->first();
 

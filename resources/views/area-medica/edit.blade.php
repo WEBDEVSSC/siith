@@ -4,6 +4,8 @@
 
 @section('plugins.Select2', true)
 
+@section('plugins.Sweetalert2', true)
+
 @section('content_header')
     <h1><strong>Personal Estudiando Actualmente</strong></h1>
 @stop
@@ -147,6 +149,17 @@
     </form>
 </div>
 
+<br>
+
+<form id="formEliminar" action="{{ route('deleteAreaMedica',$profesional->id) }}" method="POST">
+
+    @csrf
+    @method('DELETE')
+
+    <button type="submit" class="btn btn-danger btn-block btn-sm"><i class="fa-solid fa-trash"></i> ELIMINAR REGISTRO POR TERMINO DE ESTUDIOS </button>
+
+</form>
+
 
 @stop
 
@@ -196,4 +209,26 @@
         });
     });
 </script>
+
+<script>
+document.getElementById('formEliminar').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "Esta acción eliminará el registro permanentemente.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            this.submit();
+        }
+    });
+});
+</script>
+
 @stop
