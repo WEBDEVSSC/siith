@@ -1400,7 +1400,7 @@ class ProfesionalController extends Controller
         $estadosConyuales = EstadoConyugal::all();
 
         // Paises
-        $paisesNacimiento = CatPaisNacimiento::all();
+        $paisesNacimiento = CatPaisNacimiento::orderBy('pais', 'asc')->get();
 
         return view('profesional.edit', compact('profesional','municipios','estadosConyuales', 'paisesNacimiento'));
     }
