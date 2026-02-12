@@ -132,7 +132,7 @@
     <table>
         <tr><th>Nombre</th><td>{{ $profesional->emergencia->emergencia_nombre_uno }}</td></tr>
         <tr><th>Parentesco</th><td>{{ $profesional->emergencia->emergencia_relacion_uno }}</td></tr>
-        <tr><th>Contacto</th><td>{{ $profesional->emergencia->emergencia_telefono_uno_uno }} {{ $profesional->emergencia->emergencia_telefono_uno_dos }} | {{ $profesional->emergencia->emergencia_email_uno }}</td></tr> 
+        <tr><th>Contacto</th><td>{{ $profesional->emergencia->emergencia_telefono_uno_uno }} {{ $profesional->emergencia->emergencia_telefono_dos_uno }} | {{ $profesional->emergencia->emergencia_email_uno }}</td></tr> 
         <tr><th>Dirección</th><td>{{ $profesional->emergencia->emergencia_calle_uno }} {{ $profesional->emergencia->emergencia_numero_uno }}, C.P. {{ $profesional->emergencia->emergencia_codigo_postal_uno }} {{ $profesional->emergencia->emergencia_colonia_uno }}, {{ $profesional->emergencia->emergencia_municipio_label_uno }}</td></tr> 
     </table>
 
