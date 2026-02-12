@@ -100,11 +100,7 @@
                 <p><strong>Correo:</strong> {{ $profesional->email }}</p>
             </td>
             <td class="centered">
-                @if($fotoBase64)
-                    <img src="{{ $fotoBase64 }}" alt="Fotografía del profesional" width="140"/>
-                @else
-                    <p>No se ha cargado una fotografía.</p>
-                @endif
+                
             </td>
         </tr>
     </table>
