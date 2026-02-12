@@ -96,7 +96,7 @@
             <td width="70%">
                 <p><strong>Nombre:</strong> {{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</p>
                 <p><strong>CURP:</strong> {{ $profesional->curp }}</p>
-                <p><strong>Celular:</strong> {{ $profesional->telefono_celular }}</p>
+                <p><strong>Celular:</strong> {{ $profesional->celular }}</p>
                 <p><strong>Correo:</strong> {{ $profesional->email }}</p>
             </td>
             <td class="centered">
