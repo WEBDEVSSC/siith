@@ -98,7 +98,7 @@
                     <div class="col-md-3">
                         <p><strong>Pais de nacimiento</strong></p>                        
 
-                        <select name="pais_nacimiento" class="form-control">
+                        <select name="pais_nacimiento" id="pais_nacimiento" class="form-control select2">
                             <option value="">-- Seleccione una opción --</option>
 
                             @foreach ($paisesNacimiento as $pais)
@@ -251,6 +251,15 @@
     <script>
         $(document).ready(function() {
             $('#municipio_nacimiento').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#pais_nacimiento').select2({
                 placeholder: "-- Seleccione una opcion --",
                 allowClear: true
             });

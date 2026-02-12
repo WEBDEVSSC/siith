@@ -1427,6 +1427,7 @@ class ProfesionalController extends Controller
             'email' => 'required|email',
             'padre_madre_familia' => 'required',
             'nacionalidad' => 'required',
+            'pais_nacimiento' => 'required',
             
         ], [
             'homoclave.required' => 'La homoclave es obligatoria.',
@@ -1461,6 +1462,7 @@ class ProfesionalController extends Controller
             'email' => $request->email,
             'padre_madre_familia' => $request->padre_madre_familia,
             'nacionalidad' => $request->nacionalidad,
+            'pais_nacimiento' => $request->pais_nacimiento,
         ]);
 
         $usuario = Auth::user();
