@@ -108,12 +108,12 @@
     <!-- DATOS MÉDICOS -->
     <div class="section-title">Datos Médicos</div>
     <table>
-        <tr><th width="20%">Tipo de Sangre</th><td>{{ $profesional->emergencia->tipo_sangre }}</td></tr>
-        <tr><th width="20%">Alergias</th><td>{{ $profesional->emergencia->tipo_alergia }}</td></tr>
-        <tr><th width="20%">Descripción</th><td>{{ $profesional->emergencia->alergia_descripcion }}</td></tr>
-        <tr><th width="20%">Enfermedades Preexistentes</th><td>{{ $profesional->emergencia->enfermedad }}</td></tr>
-        <tr><th width="20%">Medicamentos</th><td>{{ $profesional->emergencia->medicamentos }}</td></tr>
-        <tr><th width="20%">Tratamiento Médico Actual</th><td>{{ $profesional->emergencia->tratamiento }}</td></tr>
+        <tr><th width="25%">Tipo de Sangre</th><td>{{ $profesional->emergencia->tipo_sangre }}</td></tr>
+        <tr><th width="25%">Alergias</th><td>{{ $profesional->emergencia->tipo_alergia }}</td></tr>
+        <tr><th width="25%">Descripción</th><td>{{ $profesional->emergencia->alergia_descripcion }}</td></tr>
+        <tr><th width="25%">Enfermedades Preexistentes</th><td>{{ $profesional->emergencia->enfermedad }}</td></tr>
+        <tr><th width="25%">Medicamentos</th><td>{{ $profesional->emergencia->medicamentos }}</td></tr>
+        <tr><th width="25%">Tratamiento Médico Actual</th><td>{{ $profesional->emergencia->tratamiento }}</td></tr>
     </table>
 
     <!-- MÉDICO DE CABECERA -->
