@@ -108,42 +108,42 @@
     <!-- DATOS MÉDICOS -->
     <div class="section-title">Datos Médicos</div>
     <table>
-        <tr><th>Tipo de Sangre</th><td>{{ $profesional->emergencia->tipo_sangre }}</td></tr>
-        <tr><th>Alergias</th><td>{{ $profesional->emergencia->tipo_alergia }}</td></tr>
-        <tr><th>Descripción</th><td>{{ $profesional->emergencia->alergia_descripcion }}</td></tr>
-        <tr><th>Enfermedades Preexistentes</th><td>{{ $profesional->emergencia->enfermedad }}</td></tr>
-        <tr><th>Medicamentos</th><td>{{ $profesional->emergencia->medicamentos }}</td></tr>
-        <tr><th>Tratamiento Médico Actual</th><td>{{ $profesional->emergencia->tratamiento }}</td></tr>
+        <tr><th width="15%">Tipo de Sangre</th><td>{{ $profesional->emergencia->tipo_sangre }}</td></tr>
+        <tr><th width="15%">Alergias</th><td>{{ $profesional->emergencia->tipo_alergia }}</td></tr>
+        <tr><th width="15%">Descripción</th><td>{{ $profesional->emergencia->alergia_descripcion }}</td></tr>
+        <tr><th width="15%">Enfermedades Preexistentes</th><td>{{ $profesional->emergencia->enfermedad }}</td></tr>
+        <tr><th width="15%">Medicamentos</th><td>{{ $profesional->emergencia->medicamentos }}</td></tr>
+        <tr><th width="15%">Tratamiento Médico Actual</th><td>{{ $profesional->emergencia->tratamiento }}</td></tr>
     </table>
 
     <!-- MÉDICO DE CABECERA -->
     <div class="section-title">Médico de Cabecera</div>
     <table>
-        <tr><th>Nombre</th><td>{{ $profesional->emergencia->medico_nombre }}</td></tr>
-        <tr><th>Teléfono</th><td>{{ $profesional->emergencia->medico_telefono }}</td></tr>
+        <tr><th width="15%">Nombre</th><td>{{ $profesional->emergencia->medico_nombre }}</td></tr>
+        <tr><th width="15%">Teléfono</th><td>{{ $profesional->emergencia->medico_telefono }}</td></tr>
     </table>
 
     <!-- CONTACTOS DE EMERGENCIA -->
     <div class="section-title">Contactos en Caso de Emergencia</div>
     <table>
-        <tr><th width="20%">Nombre</th><td>{{ $profesional->emergencia->emergencia_nombre_uno }}</td></tr>
-        <tr><th width="20%">Parentesco</th><td>{{ $profesional->emergencia->emergencia_relacion_uno }}</td></tr>
-        <tr><th width="20%">Contacto</th><td>{{ $profesional->emergencia->emergencia_telefono_uno_uno }} {{ $profesional->emergencia->emergencia_telefono_dos_uno }} | {{ $profesional->emergencia->emergencia_email_uno }}</td></tr> 
-        <tr><th width="20%">Dirección</th><td>{{ $profesional->emergencia->emergencia_calle_uno }} {{ $profesional->emergencia->emergencia_numero_uno }}, C.P. {{ $profesional->emergencia->emergencia_codigo_postal_uno }} {{ $profesional->emergencia->emergencia_colonia_uno }}, {{ $profesional->emergencia->emergencia_municipio_label_uno }}</td></tr> 
+        <tr><th width="15%">Nombre</th><td>{{ $profesional->emergencia->emergencia_nombre_uno }}</td></tr>
+        <tr><th width="15%">Parentesco</th><td>{{ $profesional->emergencia->emergencia_relacion_uno }}</td></tr>
+        <tr><th width="15%">Contacto</th><td>{{ $profesional->emergencia->emergencia_telefono_uno_uno }} {{ $profesional->emergencia->emergencia_telefono_dos_uno }} | {{ $profesional->emergencia->emergencia_email_uno }}</td></tr> 
+        <tr><th width="15%">Dirección</th><td>{{ $profesional->emergencia->emergencia_calle_uno }} {{ $profesional->emergencia->emergencia_numero_uno }}, C.P. {{ $profesional->emergencia->emergencia_codigo_postal_uno }} {{ $profesional->emergencia->emergencia_colonia_uno }}, {{ $profesional->emergencia->emergencia_municipio_label_uno }}</td></tr> 
     </table>
 
      <table>
-        <tr><th width="20%">Nombre</th><td>{{ $profesional->emergencia->emergencia_nombre_dos }}</td></tr>
-        <tr><th width="20%">Parentesco</th><td>{{ $profesional->emergencia->emergencia_relacion_dos }}</td></tr>
-        <tr><th width="20%">Contacto</th><td>{{ $profesional->emergencia->emergencia_telefono_uno_dos }} {{ $profesional->emergencia->emergencia_telefono_dos_dos }} | {{ $profesional->emergencia->emergencia_email_dos }}</td></tr> 
-        <tr><th width="20%">Dirección</th><td>{{ $profesional->emergencia->emergencia_calle_dos }} {{ $profesional->emergencia->emergencia_numero_dos }}, C.P. {{ $profesional->emergencia->emergencia_codigo_postal_dos }} {{ $profesional->emergencia->emergencia_colonia_dos }}, {{ $profesional->emergencia->emergencia_municipio_label_dos }}</td></tr> 
+        <tr><th width="15%">Nombre</th><td>{{ $profesional->emergencia->emergencia_nombre_dos }}</td></tr>
+        <tr><th width="15%">Parentesco</th><td>{{ $profesional->emergencia->emergencia_relacion_dos }}</td></tr>
+        <tr><th width="15%">Contacto</th><td>{{ $profesional->emergencia->emergencia_telefono_uno_dos }} {{ $profesional->emergencia->emergencia_telefono_dos_dos }} | {{ $profesional->emergencia->emergencia_email_dos }}</td></tr> 
+        <tr><th width="15%">Dirección</th><td>{{ $profesional->emergencia->emergencia_calle_dos }} {{ $profesional->emergencia->emergencia_numero_dos }}, C.P. {{ $profesional->emergencia->emergencia_codigo_postal_dos }} {{ $profesional->emergencia->emergencia_colonia_dos }}, {{ $profesional->emergencia->emergencia_municipio_label_dos }}</td></tr> 
     </table>
 
      <table>
-        <tr><th width="20%">Nombre</th><td>{{ $profesional->emergencia->emergencia_nombre_tres }}</td></tr>
-        <tr><th width="20%">Parentesco</th><td>{{ $profesional->emergencia->emergencia_relacion_tres }}</td></tr>
-        <tr><th width="20%">Contacto</th><td>{{ $profesional->emergencia->emergencia_telefono_uno_tres}} {{ $profesional->emergencia->emergencia_telefono_dos_tres }} | {{ $profesional->emergencia->emergencia_email_tres }}</td></tr> 
-        <tr><th width="20%">Dirección</th><td>{{ $profesional->emergencia->emergencia_calle_tres }} {{ $profesional->emergencia->emergencia_numero_tres }}, C.P. {{ $profesional->emergencia->emergencia_codigo_postal_tres }} {{ $profesional->emergencia->emergencia_colonia_tres }}, {{ $profesional->emergencia->emergencia_municipio_label_tres }}</td></tr> 
+        <tr><th width="15%">Nombre</th><td>{{ $profesional->emergencia->emergencia_nombre_tres }}</td></tr>
+        <tr><th width="15%">Parentesco</th><td>{{ $profesional->emergencia->emergencia_relacion_tres }}</td></tr>
+        <tr><th width="15%">Contacto</th><td>{{ $profesional->emergencia->emergencia_telefono_uno_tres}} {{ $profesional->emergencia->emergencia_telefono_dos_tres }} | {{ $profesional->emergencia->emergencia_email_tres }}</td></tr> 
+        <tr><th width="15%">Dirección</th><td>{{ $profesional->emergencia->emergencia_calle_tres }} {{ $profesional->emergencia->emergencia_numero_tres }}, C.P. {{ $profesional->emergencia->emergencia_codigo_postal_tres }} {{ $profesional->emergencia->emergencia_colonia_tres }}, {{ $profesional->emergencia->emergencia_municipio_label_tres }}</td></tr> 
     </table>
 
     <table style="width: 100%; margin-top: 10px;">
