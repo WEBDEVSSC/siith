@@ -431,8 +431,6 @@ class ProfesionalGradoAcademicoController extends Controller
                 Storage::disk('public')->delete($grado->reg_nac_prof_uno);
             }
             
-            
-
             $extension = $request->file('reg_nac_prof_uno')->getClientOriginalExtension();
             $nombreArchivoUno = $profesional->curp . '-' . $request->cedula_numero_uno . '.' . $extension;
             $rutaUno = $request->reg_nac_prof_uno->storeAs('reg-nac-prof', $nombreArchivoUno, 'public');
@@ -485,6 +483,7 @@ class ProfesionalGradoAcademicoController extends Controller
             'cedula_uno'=>$request->cedula_uno,
             'numero_cedula_uno'=>$request->cedula_numero_uno,
             'reg_nac_prof_uno'=>$rutaUno,
+            'observaciones_uno'=> $request->observaciones_uno,
 
             'cve_grado_dos'=>$request->grado_academico_dos,
             'grado_academico_dos'=>$gradoAcademicoDosNombre,
@@ -495,6 +494,7 @@ class ProfesionalGradoAcademicoController extends Controller
             'cedula_dos'=>$request->cedula_dos,
             'numero_cedula_dos'=>$request->cedula_numero_dos,
             'reg_nac_prof_dos'=>$rutaDos,
+            'observaciones_dos'=> $request->observaciones_dos,
 
             'cve_grado_tres'=>$request->grado_academico_tres,
             'grado_academico_tres'=>$gradoAcademicoTresNombre,
@@ -505,6 +505,7 @@ class ProfesionalGradoAcademicoController extends Controller
             'cedula_tres'=>$request->cedula_tres,
             'numero_cedula_tres'=>$request->cedula_numero_tres,
             'reg_nac_prof_tres'=>$rutaTres,
+            'observaciones_tres'=> $request->observaciones_tres,
 
             'cve_grado_cuatro'=>$request->grado_academico_cuatro,
             'grado_academico_cuatro'=>$gradoAcademicoCuatroNombre,
@@ -515,6 +516,7 @@ class ProfesionalGradoAcademicoController extends Controller
             'cedula_cuatro'=>$request->cedula_cuatro,
             'numero_cedula_cuatro'=>$request->cedula_numero_cuatro,
             'reg_nac_prof_cuatro'=>$rutaCuatro,
+            'observaciones_cuatro'=> $request->observaciones_cuatro,
         ]);
 
         // Redireccionamos con un mensaje de éxito

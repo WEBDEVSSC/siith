@@ -1258,5 +1258,7 @@ Route::middleware(['auth'])->group(function ()
 
     Route::get('admin/vinculacion-y-enlace/index', [VinculacionController::class,'indexVYE'])->name('indexVYE');
 
+    Route::get('admin/vinculacion-y-enlace/jurisdicciones-index', [VinculacionController::class,'jurisdiccionesVYE'])->name('jurisdiccionesVYE');
+
 });
 

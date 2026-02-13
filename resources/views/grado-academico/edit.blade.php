@@ -146,7 +146,7 @@
                 </div>
 
                 <div class="row mt-3">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <p><strong>* Observaciones</strong></p>
                         <input type="text" name="observaciones_uno" id="observaciones_uno" class="form-control" value="{{ old('observaciones_uno', $gradoAcademico->observaciones_uno)}}">
 
@@ -154,6 +154,20 @@
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    @if(!empty($gradoAcademico->reg_nac_prof_uno))
+
+                        <div class="col-md-6">
+                            <p><strong>Actualizar documento</strong></p>
+                            <input type="file" name="reg_nac_prof_uno" class="form-control-file">
+                        </div>
+                        
+                        @error('reg_nac_prof_uno')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
+                    @endif
+                    
                 </div>                
 
                 <!-- ---------------------------------- -->
@@ -266,7 +280,7 @@
         </div>
 
                 <div class="row mt-3">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <p><strong>* Observaciones</strong></p>
                         <input type="text" name="observaciones_dos" id="observaciones_dos" class="form-control" value="{{ old('observaciones_dos', $gradoAcademico->observaciones_dos)}}">
 
@@ -274,6 +288,20 @@
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    @if(!empty($gradoAcademico->reg_nac_prof_dos))
+                    
+                        <div class="col-md-6">
+                            <p><strong>Actualizar documento</strong></p>
+                            <input type="file" name="reg_nac_prof_dos" class="form-control-file">
+                        </div>
+                        
+                        @error('reg_nac_prof_dos')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
+                    @endif
+
                 </div>
 
                 <!-- ---------------------------------- -->
@@ -386,7 +414,7 @@
         </div>
 
         <div class="row mt-3">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <p><strong>* Observaciones</strong></p>
                         <input type="text" name="observaciones_tres" id="observaciones_tres" class="form-control" value="{{ old('observaciones_tres', $gradoAcademico->observaciones_tres)}}">
 
@@ -394,6 +422,20 @@
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    @if(!empty($gradoAcademico->reg_nac_prof_tres))
+                    
+                        <div class="col-md-6">
+                            <p><strong>Actualizar documento</strong></p>
+                            <input type="file" name="reg_nac_prof_tres" class="form-control-file">
+                        </div>
+                        
+                        @error('reg_nac_prof_tres')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
+                    @endif
+
                 </div>
 
                 <!-- ---------------------------------- -->
@@ -508,7 +550,7 @@
         </div>
 
                 <div class="row mt-3">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <p><strong>* Observaciones</strong></p>
                         <input type="text" name="observaciones_cuatro" id="observaciones_cuatro" class="form-control" value="{{ old('observaciones_cuatro', $gradoAcademico->observaciones_cuatro)}}">
 
@@ -516,6 +558,20 @@
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    @if(!empty($gradoAcademico->reg_nac_prof_cuatro))
+                    
+                        <div class="col-md-6">
+                            <p><strong>Actualizar documento</strong></p>
+                            <input type="file" name="reg_nac_prof_cuatro" class="form-control-file">
+                        </div>
+                        
+                        @error('reg_nac_prof_cuatro')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
+                    @endif
+
                 </div>
 
 <!-- ---------------------------------------------------------------------- --> 
@@ -528,6 +584,10 @@
 
 </div>
 
+
+<br>
+<br>
+<br>
 
 @stop
 

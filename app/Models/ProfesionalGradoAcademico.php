@@ -20,6 +20,7 @@ class ProfesionalGradoAcademico extends Model
         'cedula_uno',
         'numero_cedula_uno',
         'reg_nac_prof_uno',
+        'observaciones_uno',
 
         'cve_grado_dos',
         'grado_academico_dos',
@@ -30,6 +31,7 @@ class ProfesionalGradoAcademico extends Model
         'cedula_dos',
         'numero_cedula_dos',
         'reg_nac_prof_dos',
+        'observaciones_dos',
 
         'cve_grado_tres',
         'grado_academico_tres',
@@ -40,6 +42,7 @@ class ProfesionalGradoAcademico extends Model
         'cedula_tres',
         'numero_cedula_tres',
         'reg_nac_prof_tres',
+        'observaciones_tres',
 
         'cve_grado_cuatro',
         'grado_academico_cuatro',
@@ -50,6 +53,7 @@ class ProfesionalGradoAcademico extends Model
         'cedula_cuatro',
         'numero_cedula_cuatro',
         'reg_nac_prof_cuatro',
+        'observaciones_cuatro',
 
         'mdl_grado_academico',
     ];

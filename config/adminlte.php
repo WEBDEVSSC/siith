@@ -416,6 +416,20 @@ return [
             'icon' => 'fa-solid fa-people-group',
             'can' => 'vinculacion', 
         ],
+
+        [
+            'text' => 'Jurisdicciones',
+            'url' => 'admin/vinculacion-y-enlace/jurisdicciones-index',
+            'icon' => 'fa-solid fa-people-group',
+            'can' => 'vinculacion', 
+        ],
+
+        [
+            'text' => 'Distritos Locales',
+            'url' => 'admin/vinculacion-y-enlace/distritos-locales',
+            'icon' => 'fa-solid fa-people-group',
+            'can' => 'vinculacion', 
+        ],
         
     ],
 

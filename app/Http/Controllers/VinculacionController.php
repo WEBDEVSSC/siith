@@ -310,6 +310,11 @@ class VinculacionController extends Controller
 
         ];
 
-        return view('vinculacion.index', compact('municipios', 'allende','guerrero','hidalgo','nava','piedrasNegras','villaUnion','acuna','jimenez','morelos','zaragoza','juarez','muzquiz','progreso','sabinas','sanJuanDeSabinas','abasolo','candela','castanos','escobedo','frontera','monclova','nadadores','sanbuena'));
+        return view('vinculacion.index', compact('municipios', 'allende','guerrero','hidalgo','nava','piedrasNegras','villaUnion','acuna','jimenez','morelos','zaragoza','juarez','muzquiz','progreso','sabinas','sanJuanDeSabinas','abasolo','candela','castanos','escobedo','frontera','monclova','nadadores','sanbuena','cuatrocienegas','lamadrid','ocampo','sacramento','sierraMojada','torreon','matamoros','viesca','fcoIMadero','sanPedro','arteaga','generalCepeda','parras','ramosArizpe','saltillo'));
+    }
+
+    public function jurisdiccionesVYE()
+    {
+        return view('vinculacion.jurisdicciones');
     }
 }
