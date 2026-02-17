@@ -182,56 +182,56 @@
                                 <tbody>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#8E44AD;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#3A86FF;border-radius:3px;"></div>
                                     </td>
                                     <td>Abasolo</td>
                                     <td>{{ $abasolo }}</td>
                                 </tr>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#8E44AD;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#3A86FF;border-radius:3px;"></div>
                                     </td>
                                     <td>Candela</td>
                                     <td>{{ $candela }}</td>
                                 </tr>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#8E44AD;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#3A86FF;border-radius:3px;"></div>
                                     </td>
                                     <td>Castaños</td>
                                     <td>{{ $castanos }}</td>
                                 </tr>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#8E44AD;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#3A86FF;border-radius:3px;"></div>
                                     </td>
                                     <td>Escobedo</td>
                                     <td>{{ $escobedo }}</td>
                                 </tr>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#8E44AD;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#3A86FF;border-radius:3px;"></div>
                                     </td>
                                     <td>Frontera</td>
                                     <td>{{ $frontera }}</td>
                                 </tr>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#8E44AD;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#3A86FF;border-radius:3px;"></div>
                                     </td>
                                     <td>Monclova</td>
                                     <td>{{ $monclova }}</td>
                                 </tr>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#8E44AD;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#3A86FF;border-radius:3px;"></div>
                                     </td>
                                     <td>Nadadores</td>
                                     <td>{{ $nadadores }}</td>
                                 </tr>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#8E44AD;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#3A86FF;border-radius:3px;"></div>
                                     </td>
                                     <td>San Buenaventura</td>
                                     <td>{{ $sanbuena }}</td>
