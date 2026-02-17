@@ -293,9 +293,9 @@ class VinculacionController extends Controller
             'Sierra Mojada' => ['color' => '#8338EC', 'total' => $sierraMojada],
 
             // JURISDICCION 6 TORREON
-            'Matamoros' => ['color' => '#06D6A0', 'total' => $matamoros],
-            'Torreón' => ['color' => '#06D6A0', 'total' => $torreon],
-            'Viesca' => ['color' => '#06D6A0', 'total' => $viesca],
+            'Matamoros' => ['color' => '#2B2D42', 'total' => $matamoros],
+            'Torreón' => ['color' => '#2B2D42', 'total' => $torreon],
+            'Viesca' => ['color' => '#2B2D42', 'total' => $viesca],
 
             // JURISDICCION 7 FOC. I. MADERO
             'Francisco I. Madero' => ['color' => '#FFD60A', 'total' => $fcoIMadero],

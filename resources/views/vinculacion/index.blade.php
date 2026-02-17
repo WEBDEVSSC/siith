@@ -33,42 +33,42 @@
                             <tbody>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#1F3A5F;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#E63946;border-radius:3px;"></div>
                                     </td>
                                     <td>Allende</td>
                                     <td>{{ $allende }}</td>
                                 </tr>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#1F3A5F;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#E63946;border-radius:3px;"></div>
                                     </td>
                                     <td>Guerrero</td>
                                     <td>{{ $guerrero }}</td>
                                 </tr>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#1F3A5F;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#E63946;border-radius:3px;"></div>
                                     </td>
                                     <td>Hidalgo</td>
                                     <td>{{ $hidalgo }}</td>
                                 </tr>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#1F3A5F;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#E63946;border-radius:3px;"></div>
                                     </td>
                                     <td>Nava</td>
                                     <td>{{ $nava }}</td>
                                 </tr>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#1F3A5F;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#E63946;border-radius:3px;"></div>
                                     </td>
                                     <td>Piedras Negras</td>
                                     <td>{{ $piedrasNegras }}</td>
                                 </tr>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#1F3A5F;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#E63946;border-radius:3px;"></div>
                                     </td>
                                     <td>Villa Unión</td>
                                     <td>{{ $villaUnion }}</td>
@@ -298,21 +298,21 @@
                                 <tbody>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#16A085;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#2B2D42;border-radius:3px;"></div>
                                     </td>
                                     <td>Torreón</td>
                                     <td>{{ $torreon }}</td>
                                 </tr>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#16A085;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#2B2D42;border-radius:3px;"></div>
                                     </td>
                                     <td>Matamoros</td>
                                     <td>{{ $matamoros }}</td>
                                 </tr>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#16A085;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#2B2D42;border-radius:3px;"></div>
                                     </td>
                                     <td>Viesca</td>
                                     <td>{{ $viesca }}</td>
@@ -591,11 +591,11 @@
     }
 
     .j1{ background:#E63946; }
-    .j2{ background:#FF9F1C; }
-    .j3{ background:#2EC4B6; }
+    .j2{ background:#E67E22; }
+    .j3{ background:#27AE60; }
     .j4{ background:#3A86FF; }
     .j5{ background:#8338EC; }
-    .j6{ background:#06D6A0; }
+    .j6{ background:#2B2D42; }
     .j7{ background:#FFD60A; }
     .j8{ background:#F72585; }
 </style>
@@ -684,7 +684,7 @@
                     'rgba(46, 196, 182, 0.6)',   // Amarillo fuerte
                     'rgba(58, 134, 255, 0.6)',   // Verde-azulado
                     'rgba(131, 56, 236, 0.6)',   // Azul vivo
-                    'rgba(6, 214, 160, 0.6)',  // Morado claro
+                    'rgba(43, 45, 66,, 0.6)',  // Morado claro
                     'rgba(255, 214, 10, 0.6)',    // Verde menta
                     'rgba(247, 37, 133, 0.6)',  // Fucsia claro  // Celeste brillante
                   ],
@@ -694,7 +694,7 @@
                     'rgba(46, 196, 182, 1)',
                     'rgba(58, 134, 255, 1)',
                     'rgba(131, 56, 236, 1)',
-                    'rgba(6, 214, 160, 1)',
+                    'rgba(43, 45, 66, 1)',
                     'rgba(255, 214, 10, 1)',
                     'rgba(247, 37, 133, 1)',
                   ],
