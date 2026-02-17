@@ -248,35 +248,35 @@
                                 {{-- ----------------------------------------------- --}}
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#C0392B;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#8338EC;border-radius:3px;"></div>
                                     </td>
                                     <td>Cuatro Cienegas</td>
                                     <td>{{ $cuatrocienegas }}</td>
                                 </tr>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#C0392B;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#8338EC;border-radius:3px;"></div>
                                     </td>
                                     <td>Lamadrid</td>
                                     <td>{{ $lamadrid }}</td>
                                 </tr>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#C0392B;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#8338EC;border-radius:3px;"></div>
                                     </td>
                                     <td>Ocampo</td>
                                     <td>{{ $ocampo }}</td>
                                 </tr>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#C0392B;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#8338EC;border-radius:3px;"></div>
                                     </td>
                                     <td>Sacramento</td>
                                     <td>{{ $sacramento }}</td>
                                 </tr>
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#C0392B;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#8338EC;border-radius:3px;"></div>
                                     </td>
                                     <td>Sierra Mojada</td>
                                     <td>{{ $sierraMojada }}</td>
@@ -356,7 +356,7 @@
 
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#3498DB;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#F72585;border-radius:3px;"></div>
                                     </td>
                                     <td>Arteaga</td>
                                     <td>{{ $arteaga }}</td>
@@ -364,7 +364,7 @@
 
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#3498DB;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#F72585;border-radius:3px;"></div>
                                     </td>
                                     <td>General Cepeda</td>
                                     <td>{{ $generalCepeda }}</td>
@@ -372,7 +372,7 @@
 
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#3498DB;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#F72585;border-radius:3px;"></div>
                                     </td>
                                     <td>Parras</td>
                                     <td>{{ $parras }}</td>
@@ -380,7 +380,7 @@
 
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#3498DB;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#F72585;border-radius:3px;"></div>
                                     </td>
                                     <td>Ramos Arizpe</td>
                                     <td>{{ $ramosArizpe }}</td>
@@ -388,7 +388,7 @@
 
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#3498DB;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#F72585;border-radius:3px;"></div>
                                     </td>
                                     <td>Saltillo</td>
                                     <td>{{ $saltillo }}</td>
