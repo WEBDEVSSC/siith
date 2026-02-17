@@ -317,41 +317,63 @@ class VinculacionController extends Controller
          * 
          */
 
-        $profesionalesJurisdiccion1 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '1')
+        /*$profesionalesJurisdiccion1 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '1')
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-            ->count();
+            ->count();*/
+        
+        $profesionalesJurisdiccion1 = Profesional::whereHas('puesto', function ($q) {
+            $q->where('clues_adscripcion_jurisdiccion', '1')
+            ->where('vigencia', 'ACTIVO')
+            ->whereIn('nomina_pago', ['REG - Regularizado','FOR - Formalizado 1','FO2 - Formalizado 2','FO3 - Formalizado 3','FED - Federal (Unidad 420)','EVE - Eventual','HOM - Homologado','BUR - Burócrata','IB - IMSS-BIENESTAR','UNEME - CECOSAMA','Ramo 12','HON - Honorarios','ISSREEI - Nómina','FAM - UMM - IMSS B.','ASIMILADOS','TAMIZ - FEDERAL','SNSP','U013 - PAGO CDMX']);
+            })->count();
 
-        $profesionalesJurisdiccion2 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '2')
-            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-            ->count();
+        $profesionalesJurisdiccion2 = Profesional::whereHas('puesto', function ($q) {
+            $q->where('clues_adscripcion_jurisdiccion', '2')
+            ->where('vigencia', 'ACTIVO')
+            ->whereIn('nomina_pago', ['REG - Regularizado','FOR - Formalizado 1','FO2 - Formalizado 2','FO3 - Formalizado 3','FED - Federal (Unidad 420)','EVE - Eventual','HOM - Homologado','BUR - Burócrata','IB - IMSS-BIENESTAR','UNEME - CECOSAMA','Ramo 12','HON - Honorarios','ISSREEI - Nómina','FAM - UMM - IMSS B.','ASIMILADOS','TAMIZ - FEDERAL','SNSP','U013 - PAGO CDMX']);
+            })->count();
 
-        $profesionalesJurisdiccion3 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '3')
-            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-            ->count();
+        $profesionalesJurisdiccion3 = Profesional::whereHas('puesto', function ($q) {
+            $q->where('clues_adscripcion_jurisdiccion', '3')
+            ->where('vigencia', 'ACTIVO')
+            ->whereIn('nomina_pago', ['REG - Regularizado','FOR - Formalizado 1','FO2 - Formalizado 2','FO3 - Formalizado 3','FED - Federal (Unidad 420)','EVE - Eventual','HOM - Homologado','BUR - Burócrata','IB - IMSS-BIENESTAR','UNEME - CECOSAMA','Ramo 12','HON - Honorarios','ISSREEI - Nómina','FAM - UMM - IMSS B.','ASIMILADOS','TAMIZ - FEDERAL','SNSP','U013 - PAGO CDMX']);
+            })->count();
 
-        $profesionalesJurisdiccion4 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '4')
-            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-            ->count();
+        $profesionalesJurisdiccion4 = Profesional::whereHas('puesto', function ($q) {
+            $q->where('clues_adscripcion_jurisdiccion', '4')
+            ->where('vigencia', 'ACTIVO')
+            ->whereIn('nomina_pago', ['REG - Regularizado','FOR - Formalizado 1','FO2 - Formalizado 2','FO3 - Formalizado 3','FED - Federal (Unidad 420)','EVE - Eventual','HOM - Homologado','BUR - Burócrata','IB - IMSS-BIENESTAR','UNEME - CECOSAMA','Ramo 12','HON - Honorarios','ISSREEI - Nómina','FAM - UMM - IMSS B.','ASIMILADOS','TAMIZ - FEDERAL','SNSP','U013 - PAGO CDMX']);
+            })->count();
 
-        $profesionalesJurisdiccion5 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '5')
-            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-            ->count();
+        $profesionalesJurisdiccion5 = Profesional::whereHas('puesto', function ($q) {
+            $q->where('clues_adscripcion_jurisdiccion', '5')
+            ->where('vigencia', 'ACTIVO')
+            ->whereIn('nomina_pago', ['REG - Regularizado','FOR - Formalizado 1','FO2 - Formalizado 2','FO3 - Formalizado 3','FED - Federal (Unidad 420)','EVE - Eventual','HOM - Homologado','BUR - Burócrata','IB - IMSS-BIENESTAR','UNEME - CECOSAMA','Ramo 12','HON - Honorarios','ISSREEI - Nómina','FAM - UMM - IMSS B.','ASIMILADOS','TAMIZ - FEDERAL','SNSP','U013 - PAGO CDMX']);
+            })->count();
 
-        $profesionalesJurisdiccion6 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '6')
-            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-            ->count();
+        $profesionalesJurisdiccion6 = Profesional::whereHas('puesto', function ($q) {
+            $q->where('clues_adscripcion_jurisdiccion', '6')
+            ->where('vigencia', 'ACTIVO')
+            ->whereIn('nomina_pago', ['REG - Regularizado','FOR - Formalizado 1','FO2 - Formalizado 2','FO3 - Formalizado 3','FED - Federal (Unidad 420)','EVE - Eventual','HOM - Homologado','BUR - Burócrata','IB - IMSS-BIENESTAR','UNEME - CECOSAMA','Ramo 12','HON - Honorarios','ISSREEI - Nómina','FAM - UMM - IMSS B.','ASIMILADOS','TAMIZ - FEDERAL','SNSP','U013 - PAGO CDMX']);
+            })->count();
+         
+        $profesionalesJurisdiccion7 = Profesional::whereHas('puesto', function ($q) {
+            $q->where('clues_adscripcion_jurisdiccion', '7')
+            ->where('vigencia', 'ACTIVO')
+            ->whereIn('nomina_pago', ['REG - Regularizado','FOR - Formalizado 1','FO2 - Formalizado 2','FO3 - Formalizado 3','FED - Federal (Unidad 420)','EVE - Eventual','HOM - Homologado','BUR - Burócrata','IB - IMSS-BIENESTAR','UNEME - CECOSAMA','Ramo 12','HON - Honorarios','ISSREEI - Nómina','FAM - UMM - IMSS B.','ASIMILADOS','TAMIZ - FEDERAL','SNSP','U013 - PAGO CDMX']);
+            })->count();
 
-        $profesionalesJurisdiccion7 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '7')
-            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-            ->count();
+        $profesionalesJurisdiccion8 = Profesional::whereHas('puesto', function ($q) {
+            $q->where('clues_adscripcion_jurisdiccion', '8')
+            ->where('vigencia', 'ACTIVO')
+            ->whereIn('nomina_pago', ['REG - Regularizado','FOR - Formalizado 1','FO2 - Formalizado 2','FO3 - Formalizado 3','FED - Federal (Unidad 420)','EVE - Eventual','HOM - Homologado','BUR - Burócrata','IB - IMSS-BIENESTAR','UNEME - CECOSAMA','Ramo 12','HON - Honorarios','ISSREEI - Nómina','FAM - UMM - IMSS B.','ASIMILADOS','TAMIZ - FEDERAL','SNSP','U013 - PAGO CDMX']);
+            })->count();
 
-        $profesionalesJurisdiccion8 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '8')
-            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-            ->count();
-
-        $profesionalesJurisdiccion9 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '9')
-            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
-            ->count();
+        $profesionalesJurisdiccion9 = Profesional::whereHas('puesto', function ($q) {
+            $q->where('clues_adscripcion_jurisdiccion', '9')
+            ->where('vigencia', 'ACTIVO')
+            ->whereIn('nomina_pago', ['REG - Regularizado','FOR - Formalizado 1','FO2 - Formalizado 2','FO3 - Formalizado 3','FED - Federal (Unidad 420)','EVE - Eventual','HOM - Homologado','BUR - Burócrata','IB - IMSS-BIENESTAR','UNEME - CECOSAMA','Ramo 12','HON - Honorarios','ISSREEI - Nómina','FAM - UMM - IMSS B.','ASIMILADOS','TAMIZ - FEDERAL','SNSP','U013 - PAGO CDMX']);
+            })->count();
 
         /**
          * 
