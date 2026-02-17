@@ -255,62 +255,164 @@ class VinculacionController extends Controller
     
         $municipios = [
             // JURISDICCION 1 PIEDRAS NEGRAS
-            'Allende' => ['color' => '#1F3A5F', 'total' => $allende],
-            'Guerrero' => ['color' => '#1F3A5F', 'total' => $guerrero],
-            'Hidalgo' => ['color' => '#1F3A5F', 'total' => $hidalgo],
-            'Nava' => ['color' => '#1F3A5F', 'total' => $nava],
-            'Piedras Negras' => ['color' => '#1F3A5F', 'total' => $piedrasNegras],
-            'Villa Unión' => ['color' => '#1F3A5F', 'total' => $villaUnion],
+            'Allende' => ['color' => '#E63946', 'total' => $allende],
+            'Guerrero' => ['color' => '#E63946', 'total' => $guerrero],
+            'Hidalgo' => ['color' => '#E63946', 'total' => $hidalgo],
+            'Nava' => ['color' => '#E63946', 'total' => $nava],
+            'Piedras Negras' => ['color' => '#E63946', 'total' => $piedrasNegras],
+            'Villa Unión' => ['color' => '#E63946', 'total' => $villaUnion],
 
             // JURISDICCION 2 ACUÑA
-            'Acuña' => ['color' => '#E67E22', 'total' => $acuna],
-            'Jiménez' => ['color' => '#E67E22', 'total' => $jimenez],
-            'Morelos' => ['color' => '#E67E22', 'total' => $morelos],
-            'Zaragoza' => ['color' => '#E67E22', 'total' => $zaragoza],
+            'Acuña' => ['color' => '#FF9F1C', 'total' => $acuna],
+            'Jiménez' => ['color' => '#FF9F1C', 'total' => $jimenez],
+            'Morelos' => ['color' => '#FF9F1C', 'total' => $morelos],
+            'Zaragoza' => ['color' => '#FF9F1C', 'total' => $zaragoza],
 
             // JURISDICCION 3 SABINAS
-            'Juárez' => ['color' => '#27AE60', 'total' => $juarez],
-            'Múzquiz' => ['color' => '#27AE60  ', 'total' => $muzquiz],
-            'Progreso' => ['color' => '#27AE60  ', 'total' => $progreso],
-            'Sabinas' => ['color' => '#27AE60  ', 'total' => $sabinas],
-            'San Juan de Sabinas' => ['color' => '#27AE60  ', 'total' => $sanJuanDeSabinas],
+            'Juárez' => ['color' => '#2EC4B6', 'total' => $juarez],
+            'Múzquiz' => ['color' => '#2EC4B6  ', 'total' => $muzquiz],
+            'Progreso' => ['color' => '#2EC4B6  ', 'total' => $progreso],
+            'Sabinas' => ['color' => '#2EC4B6  ', 'total' => $sabinas],
+            'San Juan de Sabinas' => ['color' => '#2EC4B6  ', 'total' => $sanJuanDeSabinas],
 
             // JURISDICCION 4 MONCLOVA
-            'Abasolo' => ['color' => '#8E44AD', 'total' => $abasolo],
-            'Candela' => ['color' => '#8E44AD', 'total' => $candela],
-            'Castaños' => ['color' => '#8E44AD', 'total' => $castanos],
-            'Escobedo' => ['color' => '#8E44AD', 'total' => $escobedo],
-            'Frontera' => ['color' => '#8E44AD', 'total' => $frontera],
-            'Monclova' => ['color' => '#8E44AD', 'total' => $monclova],
-            'Nadadores' => ['color' => '#8E44AD', 'total' => $nadadores],
-            'San Buenaventura' => ['color' => '#8E44AD', 'total' => $sanbuena],
+            'Abasolo' => ['color' => '#3A86FF', 'total' => $abasolo],
+            'Candela' => ['color' => '#3A86FF', 'total' => $candela],
+            'Castaños' => ['color' => '#3A86FF', 'total' => $castanos],
+            'Escobedo' => ['color' => '#3A86FF', 'total' => $escobedo],
+            'Frontera' => ['color' => '#3A86FF', 'total' => $frontera],
+            'Monclova' => ['color' => '#3A86FF', 'total' => $monclova],
+            'Nadadores' => ['color' => '#3A86FF', 'total' => $nadadores],
+            'San Buenaventura' => ['color' => '#3A86FF', 'total' => $sanbuena],
 
             // JURISDICCION 5 CUATRO CIENEGAS
-            'Cuatro Ciénegas' => ['color' => '#C0392B', 'total' => $cuatrocienegas],
-            'Lamadrid' => ['color' => '#C0392B', 'total' => $lamadrid],
-            'Ocampo' => ['color' => '#C0392B', 'total' => $ocampo],
-            'Sacramento' => ['color' => '#C0392B', 'total' => $sacramento],
-            'Sierra Mojada' => ['color' => '#C0392B', 'total' => $sierraMojada],
+            'Cuatro Ciénegas' => ['color' => '#8338EC', 'total' => $cuatrocienegas],
+            'Lamadrid' => ['color' => '#8338EC', 'total' => $lamadrid],
+            'Ocampo' => ['color' => '#8338EC', 'total' => $ocampo],
+            'Sacramento' => ['color' => '#8338EC', 'total' => $sacramento],
+            'Sierra Mojada' => ['color' => '#8338EC', 'total' => $sierraMojada],
 
             // JURISDICCION 6 TORREON
-            'Matamoros' => ['color' => '#16A085', 'total' => $matamoros],
-            'Torreón' => ['color' => '#16A085', 'total' => $torreon],
-            'Viesca' => ['color' => '#16A085', 'total' => $viesca],
+            'Matamoros' => ['color' => '#06D6A0', 'total' => $matamoros],
+            'Torreón' => ['color' => '#06D6A0', 'total' => $torreon],
+            'Viesca' => ['color' => '#06D6A0', 'total' => $viesca],
 
             // JURISDICCION 7 FOC. I. MADERO
-            'Francisco I. Madero' => ['color' => '#F1C40F', 'total' => $fcoIMadero],
-            'San Pedro' => ['color' => '#F1C40F', 'total' => $sanPedro],
+            'Francisco I. Madero' => ['color' => '#FFD60A', 'total' => $fcoIMadero],
+            'San Pedro' => ['color' => '#FFD60A', 'total' => $sanPedro],
 
             // JURISDICCION 8 SALTILLO
-            'Arteaga' => ['color' => '#2C3E50', 'total' => $arteaga],
-            'General Cepeda' => ['color' => '#2C3E50', 'total' => $generalCepeda],
-            'Parras' => ['color' => '#2C3E50', 'total' => $parras],
-            'Ramos Arizpe' => ['color' => '#2C3E50', 'total' => $ramosArizpe],
-            'Saltillo' => ['color' => '#2C3E50', 'total' => $saltillo],
-
+            'Arteaga' => ['color' => '#F72585', 'total' => $arteaga],
+            'General Cepeda' => ['color' => '#F72585', 'total' => $generalCepeda],
+            'Parras' => ['color' => '#F72585', 'total' => $parras],
+            'Ramos Arizpe' => ['color' => '#F72585', 'total' => $ramosArizpe],
+            'Saltillo' => ['color' => '#F72585', 'total' => $saltillo],
         ];
 
-        return view('vinculacion.index', compact('municipios', 'allende','guerrero','hidalgo','nava','piedrasNegras','villaUnion','acuna','jimenez','morelos','zaragoza','juarez','muzquiz','progreso','sabinas','sanJuanDeSabinas','abasolo','candela','castanos','escobedo','frontera','monclova','nadadores','sanbuena','cuatrocienegas','lamadrid','ocampo','sacramento','sierraMojada','torreon','matamoros','viesca','fcoIMadero','sanPedro','arteaga','generalCepeda','parras','ramosArizpe','saltillo'));
+        /**
+         * 
+         * 
+         * CONTEO POR JURISDICCIONES DE TRABAJADORES
+         * 
+         * 
+         */
+
+        $profesionalesJurisdiccion1 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '1')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $profesionalesJurisdiccion2 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '2')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $profesionalesJurisdiccion3 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '3')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $profesionalesJurisdiccion4 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '4')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $profesionalesJurisdiccion5 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '5')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $profesionalesJurisdiccion6 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '6')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $profesionalesJurisdiccion7 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '7')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $profesionalesJurisdiccion8 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '8')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        $profesionalesJurisdiccion9 = Profesional::whereRelation('puesto', 'clues_adscripcion_jurisdiccion', '9')
+            ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+            ->count();
+
+        /**
+         * 
+         * 
+         * CONTEO POR JURISDICCIONES DE TRABAJADORES
+         * 
+         * 
+         */
+
+        return view('vinculacion.index', compact(
+            'municipios',
+            'allende',
+            'guerrero',
+            'hidalgo',
+            'nava',
+            'piedrasNegras',
+            'villaUnion',
+            'acuna',
+            'jimenez',
+            'morelos',
+            'zaragoza',
+            'juarez',
+            'muzquiz',
+            'progreso',
+            'sabinas',
+            'sanJuanDeSabinas',
+            'abasolo',
+            'candela',
+            'castanos',
+            'escobedo',
+            'frontera',
+            'monclova',
+            'nadadores',
+            'sanbuena',
+            'cuatrocienegas',
+            'lamadrid',
+            'ocampo',
+            'sacramento',
+            'sierraMojada',
+            'torreon',
+            'matamoros',
+            'viesca',
+            'fcoIMadero',
+            'sanPedro',
+            'arteaga',
+            'generalCepeda',
+            'parras',
+            'ramosArizpe',
+            'saltillo',
+
+            'profesionalesJurisdiccion1',
+            'profesionalesJurisdiccion2',
+            'profesionalesJurisdiccion3',
+            'profesionalesJurisdiccion4',
+            'profesionalesJurisdiccion5',
+            'profesionalesJurisdiccion6',
+            'profesionalesJurisdiccion7',
+            'profesionalesJurisdiccion8',
+            'profesionalesJurisdiccion9',
+            
+            ));
     }
 
     public function jurisdiccionesVYE()

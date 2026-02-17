@@ -2,6 +2,8 @@
 
 @section('title', 'Dashboard')
 
+@section('plugins.Chartjs', true)
+
 @section('content_header')
     <h1><strong>Vinculación y Gestión</strong></h1>
 @stop
@@ -354,7 +356,7 @@
 
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#2C3E50;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#3498DB;border-radius:3px;"></div>
                                     </td>
                                     <td>Arteaga</td>
                                     <td>{{ $arteaga }}</td>
@@ -362,7 +364,7 @@
 
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#2C3E50;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#3498DB;border-radius:3px;"></div>
                                     </td>
                                     <td>General Cepeda</td>
                                     <td>{{ $generalCepeda }}</td>
@@ -370,7 +372,7 @@
 
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#2C3E50;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#3498DB;border-radius:3px;"></div>
                                     </td>
                                     <td>Parras</td>
                                     <td>{{ $parras }}</td>
@@ -378,7 +380,7 @@
 
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#2C3E50;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#3498DB;border-radius:3px;"></div>
                                     </td>
                                     <td>Ramos Arizpe</td>
                                     <td>{{ $ramosArizpe }}</td>
@@ -386,7 +388,7 @@
 
                                 <tr>
                                     <td style="width:40px;">
-                                        <div style="width:18px;height:18px;background-color:#2C3E50;border-radius:3px;"></div>
+                                        <div style="width:18px;height:18px;background-color:#3498DB;border-radius:3px;"></div>
                                     </td>
                                     <td>Saltillo</td>
                                     <td>{{ $saltillo }}</td>
@@ -455,7 +457,99 @@
         <div class="col-6"> 
             <div class="card">
                 <div class="card-header"><strong>Trabajadores por Jurisdiccion</strong></div>
-                <div class="card-body">Body</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <canvas id="profesionalesPorJurisdiccion" style="min-height: 300px; height: 300px; max-height: 300px; max-width: 100%;"></canvas>
+                        </div>
+                        <div class="col-md-6">
+                            <table class="table table-striped table-sm">
+    
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Jurisdicción</th>
+                                    <th class="text-right">Total</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="legend-item">
+                                            <div class="color-box j1"></div>
+                                            <span>J1 - Piedras Negras</span>
+                                        </div>
+                                    </td>
+                                    <td>{{ $profesionalesJurisdiccion1 }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="legend-item">
+                                            <div class="color-box j2"></div>
+                                            <span>J2 - Acuña</span>
+                                        </div>
+                                    </td>
+                                    <td>{{ $profesionalesJurisdiccion2 }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="legend-item">
+                                            <div class="color-box j3"></div>
+                                            <span>J3 - Sabinas</span>
+                                        </div>
+                                    </td>
+                                    <td>{{ $profesionalesJurisdiccion3 }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="legend-item">
+                                            <div class="color-box j4"></div>
+                                            <span>J4 - Monclova</span>
+                                        </div>
+                                    </td>
+                                    <td>{{ $profesionalesJurisdiccion4 }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="legend-item">
+                                            <div class="color-box j5"></div>
+                                            <span>J5 - Cuatro Ciénegas</span>
+                                        </div>
+                                    </td>
+                                    <td>{{ $profesionalesJurisdiccion5 }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="legend-item">
+                                            <div class="color-box j6"></div>
+                                            <span>J6 - Torreón</span>
+                                        </div>
+                                    </td>
+                                    <td>{{ $profesionalesJurisdiccion6 }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="legend-item">
+                                            <div class="color-box j7"></div>
+                                            <span>J7 - Fco. I. Madero</span>
+                                        </div>
+                                    </td>
+                                    <td>{{ $profesionalesJurisdiccion7 }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="legend-item">
+                                            <div class="color-box j8"></div>
+                                            <span>J8 - Saltillo</span>
+                                        </div>
+                                    </td>
+                                    <td>{{ $profesionalesJurisdiccion8  + $profesionalesJurisdiccion9}}</td>
+                                </tr>
+                            </table>
+                        </tbody>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-footer">Footer</div>
             </div>
         </div>
@@ -496,14 +590,14 @@
         margin-right:8px;
     }
 
-    .j1{ background:#1F3A5F; }
-    .j2{ background:#E67E22; }
-    .j3{ background:#27AE60; }
-    .j4{ background:#8E44AD; }
-    .j5{ background:#C0392B; }
-    .j6{ background:#16A085; }
-    .j7{ background:#F1C40F; }
-    .j8{ background:#2C3E50; }
+    .j1{ background:#E63946; }
+    .j2{ background:#FF9F1C; }
+    .j3{ background:#2EC4B6; }
+    .j4{ background:#3A86FF; }
+    .j5{ background:#8338EC; }
+    .j6{ background:#06D6A0; }
+    .j7{ background:#FFD60A; }
+    .j8{ background:#F72585; }
 </style>
 @stop
 
@@ -569,4 +663,61 @@
         });
 
 </script>
+
+<script>
+      // Espera a que el contenido del DOM esté cargado
+      document.addEventListener('DOMContentLoaded', function() {
+      // Obtén el contexto del canvas
+      var ctx = document.getElementById('profesionalesPorJurisdiccion').getContext('2d');
+      
+      // Crea la gráfica de dona
+      var myDoughnutChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+              labels: ['J1','J2','J3','J4','J5','J6','J7','J8'],
+              datasets: [{
+                  label: 'Número de votos',
+                  data: [{{$profesionalesJurisdiccion1}}, {{$profesionalesJurisdiccion2}}, {{$profesionalesJurisdiccion3}}, {{$profesionalesJurisdiccion4}}, {{$profesionalesJurisdiccion5}}, {{$profesionalesJurisdiccion6}}, {{$profesionalesJurisdiccion7}}, {{$profesionalesJurisdiccion8}}], 
+                  backgroundColor: [
+                    'rgba(230, 57, 70, 0.6)',   // Rojo fresa
+                    'rgba(255, 159, 28, 0.6)',   // Naranja vibrante
+                    'rgba(46, 196, 182, 0.6)',   // Amarillo fuerte
+                    'rgba(58, 134, 255, 0.6)',   // Verde-azulado
+                    'rgba(131, 56, 236, 0.6)',   // Azul vivo
+                    'rgba(6, 214, 160, 0.6)',  // Morado claro
+                    'rgba(255, 214, 10, 0.6)',    // Verde menta
+                    'rgba(247, 37, 133, 0.6)',  // Fucsia claro  // Celeste brillante
+                  ],
+                  borderColor: [
+                    'rgba(230, 57, 70, 1)',
+                    'rgba(255, 159, 28, 1)',
+                    'rgba(46, 196, 182, 1)',
+                    'rgba(58, 134, 255, 1)',
+                    'rgba(131, 56, 236, 1)',
+                    'rgba(6, 214, 160, 1)',
+                    'rgba(255, 214, 10, 1)',
+                    'rgba(247, 37, 133, 1)',
+                  ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              responsive: true,
+              plugins: {
+                  legend: {
+                      position: 'none',
+                  },
+                  tooltip: {
+                      callbacks: {
+                          label: function(tooltipItem) {
+                              return tooltipItem.label + ': ' + tooltipItem.raw;
+                          }
+                      }
+                  }
+              }
+          }
+      });
+  });
+  
+  </script>
 @stop
