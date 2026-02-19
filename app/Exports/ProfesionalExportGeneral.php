@@ -239,6 +239,20 @@ class ProfesionalExportGeneral implements FromView, WithStyles, WithColumnFormat
             'EE2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6A66BB']]],
             'EF2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6A66BB']]],
             'EG2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '6A66BB']]],
+
+            // Estilos para el modulo de DIRECCION
+            'EH1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
+            'EH2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
+            'EI2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
+            'EJ2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
+            'EK2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
+            'EL2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
+            'EM2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
+            'EM2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
+            'EN2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
+            'EO2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
+            'EP2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
+            'EQ2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
     
         ];
     }

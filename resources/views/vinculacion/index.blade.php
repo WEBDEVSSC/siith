@@ -550,7 +550,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">Footer</div>
+                <div class="card-footer"></div>
             </div>
         </div>
         <div class="col-6"> 
