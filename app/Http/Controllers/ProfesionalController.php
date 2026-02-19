@@ -2312,7 +2312,13 @@ class ProfesionalController extends Controller
     {
         $hoy = Carbon::now()->format('m-d');
 
-        $cumpleañeros = Profesional::whereRaw("DATE_FORMAT(fecha_nacimiento, '%m-%d') = ?", [$hoy])->get();
+        /*$cumpleañeros = Profesional::whereRaw("DATE_FORMAT(fecha_nacimiento, '%m-%d') = ?", [$hoy])->get();*/
+
+        $cumpleañeros = Profesional::whereRaw("DATE_FORMAT(fecha_nacimiento, '%m-%d') = ?", [$hoy])
+        ->whereHas('puesto', function ($query) {
+            $query->where('vigencia', 'ACTIVO');
+        })
+        ->get();
 
         $enviados = [];
 

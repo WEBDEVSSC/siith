@@ -7,87 +7,142 @@
 @stop
 
 @section('content')
+
+    {{----}}
+
     <div class="row">
         <div class="col-md-3">
-            <div class="card text-center" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title"></h5>
-                <p class="card-text"><strong>J.1. - Piedras Negras</strong></p>
-                <a href="#" class="btn btn-info btn-sm">Detalles</a>
-            </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card text-center" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title"></h5>
-                <p class="card-text"><strong>J.2. - Acuña</strong></p>
-                <a href="#" class="btn btn-info btn-sm">Detalles</a>
-            </div>
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>Piedras Negras</h3>
+
+                <p>Jurisdicción 1</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-chart-pie"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                Ver detalles <i class="fas fa-arrow-circle-right"></i>
+              </a>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card text-center" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title"></h5>
-                <p class="card-text"><strong>J.3. - Sabinas</strong></p>
-                <a href="#" class="btn btn-info btn-sm">Detalles</a>
-            </div>
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>Acuña</h3>
+
+                <p>Jurisdicción 2</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-chart-pie"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                Ver detalles <i class="fas fa-arrow-circle-right"></i>
+              </a>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card text-center" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title"></h5>
-                <p class="card-text"><strong>J.4. - Monclova</strong></p>
-                <a href="#" class="btn btn-info btn-sm">Detalles</a>
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>Sabinas</h3>
+
+                <p>Jurisdicción 3</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-chart-pie"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                Ver detalles <i class="fas fa-arrow-circle-right"></i>
+              </a>
             </div>
+        </div>
+        <div class="col-md-3">
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>Monclova</h3>
+
+                <p>Jurisdicción 4</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-chart-pie"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                Ver detalles <i class="fas fa-arrow-circle-right"></i>
+              </a>
             </div>
         </div>
     </div>
 
     {{----}}
 
+    {{----}}
+
     <div class="row">
         <div class="col-md-3">
-            <div class="card text-center" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title"></h5>
-                <p class="card-text"><strong>J.5. - Cuatro Ciénegas</strong></p>
-                <a href="#" class="btn btn-info btn-sm">Detalles</a>
-            </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card text-center" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title"></h5>
-                <p class="card-text"><strong>J.6. - Torreón</strong></p>
-                <a href="#" class="btn btn-info btn-sm">Detalles</a>
-            </div>
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>Cuatro Ciénegas</h3>
+
+                <p>Jurisdicción 5</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-chart-pie"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                Ver detalles <i class="fas fa-arrow-circle-right"></i>
+              </a>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card text-center" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title"></h5>
-                <p class="card-text"><strong>J.7. - Fco. I. Madero</strong></p>
-                <a href="#" class="btn btn-info btn-sm">Detalles</a>
-            </div>
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>Torreón</h3>
+
+                <p>Jurisdicción 6</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-chart-pie"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                Ver detalles <i class="fas fa-arrow-circle-right"></i>
+              </a>
             </div>
         </div>
         <div class="col-md-3">
-            <div class="card text-center" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title"></h5>
-                <p class="card-text"><strong>J.8. - Saltillo</strong></p>
-                <a href="#" class="btn btn-info btn-sm">Detalles</a>
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>Fco. I. Madero</h3>
+
+                <p>Jurisdicción 7</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-chart-pie"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                Ver detalles <i class="fas fa-arrow-circle-right"></i>
+              </a>
             </div>
+        </div>
+        <div class="col-md-3">
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>Saltillo</h3>
+
+                <p>Jurisdicción 8</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-chart-pie"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                Ver detalles <i class="fas fa-arrow-circle-right"></i>
+              </a>
             </div>
         </div>
     </div>
 
     {{----}}
+    
+
 @stop
 
 @include('partials.footer')
