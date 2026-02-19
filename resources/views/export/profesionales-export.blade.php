@@ -30,6 +30,9 @@
                 <th colspan="5" style="text-align: center; font-size: 20px; font-weight: bold;">PERSONAL ESTUDIANDO ACTUALMENTE</th>
 
                 <th colspan="35" style="text-align: center; font-size: 20px; font-weight: bold;">EMERGENCIA</th>
+
+                <th colspan="10" style="text-align: center; font-size: 20px; font-weight: bold;">DIRECCIÓN</th>
+
             </tr>
             <tr>
                 {{-- NUMERO CONSECUTIVO --}}
@@ -853,12 +856,24 @@
                     <td>{{ $profesional->emergencia->emergencia_codigo_postal_tres ?? '' }}</td>
                     <td>{{ $profesional->emergencia->emergencia_municipio_label_tres ?? '' }}</td>
                     
-                    <td>{{ $profesional->sueldo->sueldo_mensual ?? '' }}</td>
+                    {{-- <td>{{ $profesional->sueldo->sueldo_mensual ?? '' }}</td>
                     <td>{{ $profesional->sueldo->compensaciones ?? '' }}</td>
                     <td>{{ $profesional->sueldo->prestaciones_mandato_ley ?? '' }}</td>
                     <td>{{ $profesional->sueldo->prestaciones_cgt ?? '' }}</td>
                     <td>{{ $profesional->sueldo->estimulos ?? '' }}</td>
-                    <td>{{ $profesional->sueldo->total ?? '' }}</td>
+                    <td>{{ $profesional->sueldo->total ?? '' }}</td>--}}
+
+                    {{-- EMERGENCIAS --}}
+                    <td>{{ $profesional->direccion->calle ?? '' }}</td>
+                    <td>{{ $profesional->direccion->numero_exterior ?? '' }}</td>
+                    <td>{{ $profesional->direccion->numero_interior ?? '' }}</td>
+                    <td>{{ $profesional->direccion->codigo_postal ?? '' }}</td>
+                    <td>{{ $profesional->direccion->colonia ?? '' }}</td>
+                    <td>{{ $profesional->direccion->municipio ?? '' }}</td>
+                    <td>{{ $profesional->direccion->estado ?? '' }}</td>
+                    <td>{{ $profesional->direccion->ciudad ?? '' }}</td>
+                    <td>{{ $profesional->direccion->tipo_asentamiento ?? '' }}</td>
+                    <td>{{ $profesional->direccion->zona ?? '' }}</td>
 
                 </tr>
             @endforeach
