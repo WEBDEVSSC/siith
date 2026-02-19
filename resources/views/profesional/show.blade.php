@@ -132,11 +132,11 @@
                         {{ $profesional->rfc }} - {{ $profesional->homoclave }}
                     </div>
                     <div class="col-md-3">
-                        <p><strong>Nombre completo </strong></p>
+                        <p><strong>NOMBRE COMPLETO</strong></p>
                         {{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}
                     </div>
                     <div class="col-md-3">
-                        <p><strong>Fecha de nacimiento </strong></p>
+                        <p><strong>FECHA DE NACIMIENTO</strong></p>
                         {{ \Carbon\Carbon::parse($profesional->fecha_nacimiento)->format('d/m/Y') }} ( {{ $edad }} Años )
                     </div>
                 </div>
@@ -145,21 +145,21 @@
         
                 <div class="row mt-3">
                     <div class="col-md-3">
-                        <p><strong>Sexo</strong></p>
+                        <p><strong>SEXO</strong></p>
 
                         {{ $profesional->sexo == "M" ? 'MASCULINO' : 'FEMENINO' }}
 
                     </div>
                     <div class="col-md-3">
-                        <p><strong>Nacionalidad</strong></p>
+                        <p><strong>NACIONALIDAD</strong></p>
                         {{ $profesional->nacionalidad }}
                     </div>
                     <div class="col-md-3">
-                        <p><strong>Nacimiento</strong></p>
+                        <p><strong>NACIMIENTO</strong></p>
                         {{ $profesional->pais_nacimiento }} - {{ $profesional->entidad_nacimiento }} - {{ $profesional->municipio_nacimiento }}
                     </div>
                     <div class="col-md-3">
-                        <p><strong>Estado Civil</strong></p>
+                        <p><strong>ESTADO CIVIL</strong></p>
                         {{ $profesional->estado_conyugal }}
                     </div>
                 </div>
@@ -168,19 +168,19 @@
         
                 <div class="row mt-3">
                     <div class="col-md-3">
-                        <p><strong>Teléfono de Casa</strong></p>
+                        <p><strong>TELÉFONO DE CASA</strong></p>
                         {{ $profesional->telefono_casa }}
                     </div>
                     <div class="col-md-3">
-                        <p><strong>Celular</strong></p>
+                        <p><strong>CELULAR</strong></p>
                         {{ $profesional->celular }}
                     </div>
                     <div class="col-md-3">
-                        <p><strong>E-mail</strong></p>
+                        <p><strong>E-MAIL</strong></p>
                         {{ $profesional->email }}
                     </div>
                     <div class="col-md-3">
-                        <p><strong>Padre / Madre de familia</strong></p>
+                        <p><strong>PADRE / MADRE DE FAMILIA</strong></p>
                         {{ $profesional->padre_madre_familia }}
                     </div>
                 </div>
@@ -686,15 +686,15 @@
                     {{ $fiel ? $fiel . ($fiel_vigencia ? ' ' . \Carbon\Carbon::parse($fiel_vigencia)->format('d-m-Y') : '') : '' }}
                 </div>
                 <div class="col-md-3">
-                    <p><strong>Actividad</strong></p>
+                    <p><strong>ACTIVIDAD</strong></p>
                     {{ $actividad }}
                 </div>
                 <div class="col-md-3">
-                    <p><strong>Adicional</strong></p>
+                    <p><strong>ADICIONAL</strong></p>
                     {{ $adicional }}
                 </div>
                 <div class="col-md-3">
-                    <p><strong>Tipo de personal</strong></p>
+                    <p><strong>TIPO DE PERSONAL</strong></p>
                     {{ $tipoPersonal }}
                 </div>
                 
@@ -705,21 +705,21 @@
             <div class="row mt-3">
                 
                 <div class="col-md-3">
-                    <p><strong>Fecha de ingreso a la Institución</strong></p>
+                    <p><strong>FECHA DE INGRESO A LA INSTITUCIÓN</strong></p>
                     {{ \Carbon\Carbon::parse($fechaIngreso)->format('d-m-Y') }}
                     {{-- <p><strong>Código de puesto </strong></p>
                     {{ $codigoPuesto }} --}}
                 </div>
                 <div class="col-md-3">
-                    <p><strong>Área de trabajo</strong></p>
+                    <p><strong>ÁREA DE TRABAJO</strong></p>
                     {{ $areaTrabajo }}
                 </div>
                 <div class="col-md-3">
-                    <p><strong>Ocupación</strong></p>
+                    <p><strong>OCUPACIÓN</strong></p>
                     {{ $ocupacionPuesto }}
                 </div>
                 <div class="col-md-3">
-                    <p><strong>Institución puesto</strong></p>
+                    <p><strong>INSTITUCIÓN PUESTO</strong></p>
                     {{ $institucionPuesto }}
                     {{-- <p><strong>Nómina de pago</strong></p>
                     {{ $nominaPago }} --}}
@@ -784,11 +784,11 @@
 
             <div class="row mt-3">
                 <div class="col-md-6">
-                    <p><strong>CLUES Nómina</strong></p>
+                    <p><strong>CLUES NÓMINA</strong></p>
                     {{ $cluesNomina }} - {{ $cluesNominaNombre }} | {{ $cluesNominaMunicipio }} - JURISDICCIÓN {{ $cluesNominaJurisdiccion }}
                 </div>
                 <div class="col-md-6">
-                    <p><strong>CLUES Adscripción</strong></p>
+                    <p><strong>CLUES ADSCRIPCIÓN</strong></p>
                     {{ $cluesAdscripcion }} - {{ $cluesAdscripcionNombre }} | {{ $cluesAdscripcionMunicipio }} - JURISDICCIÓN {{ $cluesAdscripcionJurisdiccion }}
                 </div>
             </div>
@@ -822,12 +822,12 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Nómina de Pago</th>
-                        <th>Tipo de Contrato</th>
-                        <th>Tipo de Plaza</th>
-                        <th>Seguro de Salud</th>
-                        <th>Código de Puesto</th>
-                        <th>Fecha de Inicio</th>
+                        <th>NÓMINA DE PAGO</th>
+                        <th>TIPO DE CONTRATO</th>
+                        <th>TIPO DE PLAZA</th>
+                        <th>SEGURO DE SALUD</th>
+                        <th>CÓDIGO DE PUESTO</th>
+                        <th>FECHA DE INICIO</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -878,11 +878,11 @@
             <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Status</th>
-                    <th>Motivo</th>
-                    <th>Fecha Inicio</th>
-                    <th>Fecha Final</th>
-                    <th>Registro</th>
+                    <th>STATUS</th>
+                    <th>MOTIVO</th>
+                    <th>FECHA DE INICIO</th>
+                    <th>FECHA FINAL</th>
+                    <th>REGISTRO</th>
                 </tr>
             </thead>
             <tbody>
@@ -932,16 +932,16 @@
                 <div class="col-md-4">
                     <table class="table table-striped">
                         <tr>
-                            <td><strong>Jornada</strong></td>
+                            <td><strong>JORNADA</strong></td>
                             <td>{{ $jornada ?? '' }}</td>
                         </tr>
                         <tr>
-                            <td><strong>Promedio de Entrada</strong></td>
+                            <td><strong>PROMEDIO DE ENTRADA</strong></td>
                             <td>{{ $profesional->horario?->entrada_promedio ? \Carbon\Carbon::parse($profesional->horario->entrada_promedio)->format('h:i A') : '' }}</td>
 
                         </tr>
                         <tr>
-                            <td><strong>Promedio de Salida</strong></td>
+                            <td><strong>PROMEDIO DE SALIDA</strong></td>
                             <td>{{ $profesional->horario?->salida_promedio ? \Carbon\Carbon::parse($profesional->horario->salida_promedio)->format('h:i A') : '' }}</td>
                         </tr>
                     </table>
