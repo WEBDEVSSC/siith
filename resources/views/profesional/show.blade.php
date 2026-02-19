@@ -243,6 +243,27 @@
                     {{$profesional->direccion?->codigo_postal}} - {{$profesional->direccion?->colonia}} 
                 </div>
             </div>
+
+            @if (Auth::user()->role == 'admin')
+
+                <div class="row mt-3">
+                    <div class="col-md-3">
+                        <p><strong>CLAVE DE ELECTOR</strong></p>
+                        {{$profesional->direccion?->clave_elector}} 
+                    </div>
+                    <div class="col-md-3">
+                        <p><strong>SECCIÓN</strong></p>
+                        {{$profesional->direccion?->seccion}} 
+                    </div>
+                    <div class="col-md-3">
+                        <p><strong>VIGENCIA</strong></p>
+                        {{$profesional->direccion?->vigencia}} 
+                    </div>
+                    
+                </div>
+
+            @endif
+
         </div>
         <div class="card-footer">
 

@@ -29,6 +29,9 @@ class ProfesionalDireccionController extends Controller
             'numero_interior' => 'nullable|max:120|string',
             'numero_exterior' => 'required|max:120|string',
             'codigo_postal' => 'required|max:120|string',
+            'clave_elector' => 'nullable|max:120|string',
+            'seccion' => 'nullable|digits:4',
+            'vigencia' => 'nullable|digits:4|string',
         ],[
             'calle.required'           => 'La calle es obligatoria.',
             'calle.string'             => 'La calle debe ser un texto válido.',
@@ -45,6 +48,10 @@ class ProfesionalDireccionController extends Controller
             'codigo_postal.required'   => 'El código postal es obligatorio.',
             'codigo_postal.string'     => 'El código postal debe ser un texto válido.',
             'codigo_postal.max'        => 'El código postal no debe exceder los 120 caracteres.',
+
+            'clave_elector.max'        => 'La clave de elector no debe exceder los 120 caracteres.',
+            'seccion.digits'           => 'La sección debe tener 4 dígitos.',
+            'vigencia.digits'          => 'La vigencia debe tener 4 dígitos.',
         ]);
 
         $codigoPostal = CatCodigoPostal::findOrFail($request->codigo_postal);
@@ -64,6 +71,11 @@ class ProfesionalDireccionController extends Controller
         $direccion->ciudad = $codigoPostal->ciudad;
         $direccion->tipo_asentamiento = $codigoPostal->tipo_asentamiento;
         $direccion->zona = $codigoPostal->zona;
+
+        $direccion->clave_elector = $request->clave_elector;
+        $direccion->seccion = $request->seccion;
+        $direccion->vigencia = $request->vigencia;
+
         $direccion->mdl_direccion = 1;
 
         $direccion->save();
@@ -103,6 +115,9 @@ class ProfesionalDireccionController extends Controller
             'numero_interior' => 'nullable|max:120|string',
             'numero_exterior' => 'required|max:120|string',
             'codigo_postal' => 'required|max:120|string',
+            'clave_elector' => 'nullable|max:120|string',
+            'seccion' => 'nullable|digits:4',
+            'vigencia' => 'nullable|digits:4|string',
         ],[
             'calle.required'           => 'La calle es obligatoria.',
             'calle.string'             => 'La calle debe ser un texto válido.',
@@ -119,6 +134,10 @@ class ProfesionalDireccionController extends Controller
             'codigo_postal.required'   => 'El código postal es obligatorio.',
             'codigo_postal.string'     => 'El código postal debe ser un texto válido.',
             'codigo_postal.max'        => 'El código postal no debe exceder los 120 caracteres.',
+
+            'clave_elector.max'        => 'La clave de elector no debe exceder los 120 caracteres.',
+            'seccion.digits'           => 'La sección debe tener 4 dígitos.',
+            'vigencia.digits'          => 'La vigencia debe tener 4 dígitos.',
         ]);
 
         $codigoPostal = CatCodigoPostal::findOrFail($request->codigo_postal);
@@ -138,6 +157,11 @@ class ProfesionalDireccionController extends Controller
         $direccion->ciudad = $codigoPostal->ciudad;
         $direccion->tipo_asentamiento = $codigoPostal->tipo_asentamiento;
         $direccion->zona = $codigoPostal->zona;
+
+        $direccion->clave_elector = $request->clave_elector;
+        $direccion->seccion = $request->seccion;
+        $direccion->vigencia = $request->vigencia;
+
         $direccion->mdl_direccion = 1;
 
         $direccion->save();

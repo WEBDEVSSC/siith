@@ -86,6 +86,40 @@
                 </div>
 
         <!-- ---------------------------------------------------------------------- --> 
+                @if (Auth::user()->role == 'admin')
+
+                    <div class="row mt-3">
+                        <div class="col-md-3">
+                            <p><strong>Clave de Elector</strong></p>
+                            <input type="text" name="clave_elector" class="form-control" value="{{ old('clave_elector') }}">
+
+                            @error('clave_elector')
+                            <br><div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-3">
+                            <p><strong>Sección</strong></p>
+                            <input type="text" name="seccion" class="form-control" value="{{ old('seccion') }}">
+
+                            @error('seccion')
+                            <br><div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-3">
+                            <p><strong>Vigencia</strong></p>
+                            <input type="text" name="vigencia" class="form-control" value="{{ old('vigencia') }}">
+
+                            @error('vigencia')
+                            <br><div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+
+                @endif
+
+        <!-- ---------------------------------------------------------------------- --> 
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-success btn-sm btn-info">REGISTRAR DATOS</button>
