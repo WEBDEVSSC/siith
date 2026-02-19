@@ -423,13 +423,6 @@ return [
             'icon' => 'fa-solid fa-boxes-stacked',
             'can' => 'vinculacion', 
         ],
-
-        [
-            'text' => 'Distritos Locales',
-            'url' => 'admin/vinculacion-y-enlace/distritos-locales',
-            'icon' => 'fa-solid fa-code-fork',
-            'can' => 'vinculacion', 
-        ],
         
     ],
 

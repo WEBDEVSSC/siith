@@ -13,6 +13,12 @@
 
 @section('content')
 
+@if(auth()->check() && auth()->user()->role === 'vinculacion')
+    <script>
+        window.location.href = "{{ url('admin/vinculacion-y-enlace/index') }}";
+    </script>
+@endif
+
 <div class="row">
   <div class="col-md-12">
     <div class="small-box bg-warning">
