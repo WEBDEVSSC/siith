@@ -452,7 +452,7 @@ class VinculacionController extends Controller
             ->whereIn('nomina_pago', ['REG - Regularizado','FOR - Formalizado 1','FO2 - Formalizado 2','FO3 - Formalizado 3','FED - Federal (Unidad 420)','EVE - Eventual','HOM - Homologado','BUR - Burócrata','IB - IMSS-BIENESTAR','UNEME - CECOSAMA','Ramo 12','HON - Honorarios','ISSREEI - Nómina','FAM - UMM - IMSS B.','ASIMILADOS','TAMIZ - FEDERAL','SNSP','U013 - PAGO CDMX']);
         })->where('nacionalidad', 'EXTRANJERO')->get();*/
 
-        $profesionales = Profesional::where('nacionalidad', 'EXTRANJERO')
+        $profesionales = Profesional::where('nacionalidad', 'EXTRANJERA')
         ->whereHas('puesto', function ($q) {
             $q->where('vigencia', 'ACTIVO')
             ->whereIn('nomina_pago', [
