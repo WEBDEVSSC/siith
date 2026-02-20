@@ -21,7 +21,7 @@
               <div class="icon">
                 <i class="fas fa-chart-pie"></i>
               </div>
-              <a href="#" class="small-box-footer">
+              <a href="{{ route('jurisdiccionesDetallesVYE', 1) }}" class="small-box-footer">
                 Ver detalles <i class="fas fa-arrow-circle-right"></i>
               </a>
             </div>
@@ -36,7 +36,7 @@
               <div class="icon">
                 <i class="fas fa-chart-pie"></i>
               </div>
-              <a href="#" class="small-box-footer">
+              <a href="{{ route('jurisdiccionesDetallesVYE', 2) }}" class="small-box-footer">
                 Ver detalles <i class="fas fa-arrow-circle-right"></i>
               </a>
             </div>
@@ -51,7 +51,7 @@
               <div class="icon">
                 <i class="fas fa-chart-pie"></i>
               </div>
-              <a href="#" class="small-box-footer">
+              <a href="{{ route('jurisdiccionesDetallesVYE', 3) }}" class="small-box-footer">
                 Ver detalles <i class="fas fa-arrow-circle-right"></i>
               </a>
             </div>
@@ -66,7 +66,7 @@
               <div class="icon">
                 <i class="fas fa-chart-pie"></i>
               </div>
-              <a href="#" class="small-box-footer">
+              <a href="{{ route('jurisdiccionesDetallesVYE', 4) }}" class="small-box-footer">
                 Ver detalles <i class="fas fa-arrow-circle-right"></i>
               </a>
             </div>
@@ -88,7 +88,7 @@
               <div class="icon">
                 <i class="fas fa-chart-pie"></i>
               </div>
-              <a href="#" class="small-box-footer">
+              <a href="{{ route('jurisdiccionesDetallesVYE', 5) }}" class="small-box-footer">
                 Ver detalles <i class="fas fa-arrow-circle-right"></i>
               </a>
             </div>
@@ -103,7 +103,7 @@
               <div class="icon">
                 <i class="fas fa-chart-pie"></i>
               </div>
-              <a href="#" class="small-box-footer">
+              <a href="{{ route('jurisdiccionesDetallesVYE', 6) }}" class="small-box-footer">
                 Ver detalles <i class="fas fa-arrow-circle-right"></i>
               </a>
             </div>
@@ -118,7 +118,7 @@
               <div class="icon">
                 <i class="fas fa-chart-pie"></i>
               </div>
-              <a href="#" class="small-box-footer">
+              <a href="{{ route('jurisdiccionesDetallesVYE', 7) }}" class="small-box-footer">
                 Ver detalles <i class="fas fa-arrow-circle-right"></i>
               </a>
             </div>
@@ -133,7 +133,7 @@
               <div class="icon">
                 <i class="fas fa-chart-pie"></i>
               </div>
-              <a href="#" class="small-box-footer">
+              <a href="{{ route('jurisdiccionesDetallesVYE', 8) }}" class="small-box-footer">
                 Ver detalles <i class="fas fa-arrow-circle-right"></i>
               </a>
             </div>

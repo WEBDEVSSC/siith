@@ -1260,5 +1260,7 @@ Route::middleware(['auth'])->group(function ()
 
     Route::get('admin/vinculacion-y-enlace/jurisdicciones-index', [VinculacionController::class,'jurisdiccionesVYE'])->name('jurisdiccionesVYE');
 
+    Route::get('admin/vinculacion-y-enlace/jurisdicciones-detalles/{id}', [VinculacionController::class,'jurisdiccionesDetallesVYE'])->name('jurisdiccionesDetallesVYE');
+
 });
 

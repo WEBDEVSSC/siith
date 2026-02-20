@@ -19,6 +19,7 @@
                     <td>{{ $persona->nombre }} {{ $persona->apellido_paterno }} {{ $persona->apellido_materno }}</td>
                     <td>{{ $persona->email }}</td>
                     <td>{{ $persona->puesto->clues_adscripcion ?? 'N/A' }}</td>
+                    <td>{{ $persona->puesto->clues_adscripcion_nombre ?? 'N/A' }}</td>
                     <td>{{ $persona->puesto->vigencia ?? 'N/A' }}</td>
                 </tr>
             @endforeach
