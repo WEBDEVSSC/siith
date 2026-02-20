@@ -423,6 +423,12 @@ return [
             'icon' => 'fa-solid fa-boxes-stacked',
             'can' => 'vinculacion', 
         ],
+        [
+            'text' => 'Extranjeros',
+            'url' => 'admin/vinculacion-y-enlace/extranjeros-index',
+            'icon' => 'fa-solid fa-user',
+            'can' => 'vinculacion', 
+        ],
         
     ],
 
