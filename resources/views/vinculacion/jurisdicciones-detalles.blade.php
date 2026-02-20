@@ -20,6 +20,7 @@
                         <th>Correo</th>
                         <th>Nómina</th>
                         <th>Jurisdicción</th>
+                        <th>Nacionalidad</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +35,7 @@
                             <td>{{ $profesional->email }}</td>
                             <td>{{ $profesional->puesto->nomina_pago ?? '-' }}</td>
                             <td>{{ $profesional->puesto->clues_adscripcion_jurisdiccion ?? '-' }}</td>
+                            <td>{{ $profesional->nacionalidad ?? '-' }}</td>
                         </tr>
                     @empty
                         <tr>
