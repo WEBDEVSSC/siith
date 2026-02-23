@@ -84,9 +84,23 @@
                 <th><strong>PAIS DE NACIMIENTO</strong></th>
                 <th><strong>NACIONALIDAD</strong></th>
                 <th><strong>ESTADO CIVIL</strong></th>
-                <th><strong>TELEFONO</strong></th>
-                <th><strong>CELULAR</strong></th>
-                <th><strong>EMAIL</strong></th>
+                
+                @if(Auth::user()->role == 'normatividad')
+
+                    <th></th>
+                    <th></th>
+                    <th></th>
+
+                @else
+
+                    <th><strong>TELEFONO</strong></th>
+                    <th><strong>CELULAR</strong></th>
+                    <th><strong>EMAIL</strong></th>
+
+                @endif
+
+                
+                
                 
                 {{-- PUESTO --}}
                 <th><strong>CLUES NOMINA</strong></th>
@@ -162,56 +176,123 @@
                 <th><strong>DURACION</strong></th>
 
                 {{-- EMERGENCIAS --}}
-                <th><strong>TIPO DE SANGRE</strong></th>
-                <th><strong>TIPO ALERGIA</strong></th>
-                <th><strong>DESCRIPCION</strong></th>
-                <th><strong>ENFERMEDAD</strong></th>
-                <th><strong>TRATAMIENTO</strong></th>
-                <th><strong>MEDICAMENTOS</strong></th>
-                <th><strong>MEDICO NOMBRE</strong></th>
-                <th><strong>MEDICO TELEFONO</strong></th>
 
-                <th><strong>CONTACTO EMERGENCIA</strong></th>
-                <th><strong>RELACION</strong></th>
-                <th><strong>TELEFONO</strong></th>
-                <th><strong>TELEFONO</strong></th>
-                <th><strong>EMAIL</strong></th>
-                <th><strong>DIRECCION</strong></th>
-                <th><strong>COLONIA</strong></th>
-                <th><strong>C.P.</strong></th>
-                <th><strong>MUNICIPIO</strong></th>
+                @if(Auth::user()->role == 'normatividad')
 
-                <th><strong>CONTACTO EMERGENCIA</strong></th>
-                <th><strong>RELACION</strong></th>
-                <th><strong>TELEFONO</strong></th>
-                <th><strong>TELEFONO</strong></th>
-                <th><strong>EMAIL</strong></th>
-                <th><strong>DIRECCION</strong></th>
-                <th><strong>COLONIA</strong></th>
-                <th><strong>C.P.</strong></th>
-                <th><strong>MUNICIPIO</strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
 
-                <th><strong>CONTACTO EMERGENCIA</strong></th>
-                <th><strong>RELACION</strong></th>
-                <th><strong>TELEFONO</strong></th>
-                <th><strong>TELEFONO</strong></th>
-                <th><strong>EMAIL</strong></th>
-                <th><strong>DIRECCION</strong></th>
-                <th><strong>COLONIA</strong></th>
-                <th><strong>C.P.</strong></th>
-                <th><strong>MUNICIPIO</strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+
+                @else
+
+                    <th><strong>TIPO DE SANGRE</strong></th>
+                    <th><strong>TIPO ALERGIA</strong></th>
+                    <th><strong>DESCRIPCION</strong></th>
+                    <th><strong>ENFERMEDAD</strong></th>
+                    <th><strong>TRATAMIENTO</strong></th>
+                    <th><strong>MEDICAMENTOS</strong></th>
+                    <th><strong>MEDICO NOMBRE</strong></th>
+                    <th><strong>MEDICO TELEFONO</strong></th>
+
+                    <th><strong>CONTACTO EMERGENCIA</strong></th>
+                    <th><strong>RELACION</strong></th>
+                    <th><strong>TELEFONO</strong></th>
+                    <th><strong>TELEFONO</strong></th>
+                    <th><strong>EMAIL</strong></th>
+                    <th><strong>DIRECCION</strong></th>
+                    <th><strong>COLONIA</strong></th>
+                    <th><strong>C.P.</strong></th>
+                    <th><strong>MUNICIPIO</strong></th>
+
+                    <th><strong>CONTACTO EMERGENCIA</strong></th>
+                    <th><strong>RELACION</strong></th>
+                    <th><strong>TELEFONO</strong></th>
+                    <th><strong>TELEFONO</strong></th>
+                    <th><strong>EMAIL</strong></th>
+                    <th><strong>DIRECCION</strong></th>
+                    <th><strong>COLONIA</strong></th>
+                    <th><strong>C.P.</strong></th>
+                    <th><strong>MUNICIPIO</strong></th>
+
+                    <th><strong>CONTACTO EMERGENCIA</strong></th>
+                    <th><strong>RELACION</strong></th>
+                    <th><strong>TELEFONO</strong></th>
+                    <th><strong>TELEFONO</strong></th>
+                    <th><strong>EMAIL</strong></th>
+                    <th><strong>DIRECCION</strong></th>
+                    <th><strong>COLONIA</strong></th>
+                    <th><strong>C.P.</strong></th>
+                    <th><strong>MUNICIPIO</strong></th>
+
+                @endif
+
+                
                 
                 {{-- DIRECCION --}}
-                <th><strong>CALLE</strong></th>
-                <th><strong>No. EXT</strong></th>
-                <th><strong>No. INT</strong></th>
-                <th><strong>C.P.</strong></th>
-                <th><strong>COLONIA</strong></th>
-                <th><strong>MUNICIPIO</strong></th>
-                <th><strong>ESTADO</strong></th>
-                <th><strong>CIUDAD</strong></th>
-                <th><strong>TIPO ASENTAMIENTO</strong></th>
-                <th><strong>ZONA</strong></th>
+
+                @if(Auth::user()->role == 'normatividad')
+
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+                    <th><strong></strong></th>
+
+                @else
+
+                    <th><strong>CALLE</strong></th>
+                    <th><strong>No. EXT</strong></th>
+                    <th><strong>No. INT</strong></th>
+                    <th><strong>C.P.</strong></th>
+                    <th><strong>COLONIA</strong></th>
+                    <th><strong>MUNICIPIO</strong></th>
+                    <th><strong>ESTADO</strong></th>
+                    <th><strong>CIUDAD</strong></th>
+                    <th><strong>TIPO ASENTAMIENTO</strong></th>
+                    <th><strong>ZONA</strong></th>
+
+                @endif
+                
 
                 
             </tr>
