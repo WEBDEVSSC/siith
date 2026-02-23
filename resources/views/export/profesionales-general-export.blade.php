@@ -700,16 +700,17 @@
                     <td>{{ $profesional->pais_nacimiento ?? ''  }}</td>
                     <td>{{ $profesional->nacionalidad ?? ''  }}</td>
                     <td>{{ $profesional->estado_conyugal ?? ''  }}</td>
-                    <td>{{ $profesional->telefono_casa ?? ''  }}</td>
+                    
                     @if(Auth::user()->role == 'normatividad')
 
-                    <td></td>
-                    <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
 
                     @else
-
-                    <td>{{ $profesional->celular ?? ''  }}</td>
-                    <td>{{ $profesional->email ?? ''  }}</td>
+                        <td>{{ $profesional->telefono_casa ?? ''  }}</td>
+                        <td>{{ $profesional->celular ?? ''  }}</td>
+                        <td>{{ $profesional->email ?? ''  }}</td>
 
                     @endif
                     
