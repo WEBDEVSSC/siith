@@ -15,8 +15,9 @@
     <div class="card-body">
 
         <div class="row">
+            
 
-            @if(Auth::user()->role == 'admin')
+            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'normatividad')
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">
@@ -32,7 +33,7 @@
             </div>
             @endif
 
-            @if(Auth::user()->role != 'riesgos')
+            @if(Auth::user()->role != 'riesgos' && Auth::user()->role != 'normatividad')
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">
@@ -48,7 +49,7 @@
             </div>
             @endif
 
-            @if(Auth::user()->role != 'riesgos')
+            @if(Auth::user()->role != 'riesgos' && Auth::user()->role != 'normatividad')
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">
@@ -99,6 +100,7 @@
             </div>
             @endif
 
+            @if(Auth::user()->role != 'riesgos' && Auth::user()->role != 'normatividad')
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">
@@ -112,6 +114,7 @@
                     <a href="{{ asset('storage/formatos/Formulario-Contacto-Emergencia.pdf') }}" target="_blank" class="small-box-footer">Descargar <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            @endif
 
             @if(Auth::user()->role === 'profesionales')
             <div class="col-md-2">

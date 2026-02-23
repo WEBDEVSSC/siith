@@ -701,8 +701,18 @@
                     <td>{{ $profesional->nacionalidad ?? ''  }}</td>
                     <td>{{ $profesional->estado_conyugal ?? ''  }}</td>
                     <td>{{ $profesional->telefono_casa ?? ''  }}</td>
+                    @if(Auth::user()->role == 'normatividad')
+
+                    <td></td>
+                    <td></td>
+
+                    @else
+
                     <td>{{ $profesional->celular ?? ''  }}</td>
                     <td>{{ $profesional->email ?? ''  }}</td>
+
+                    @endif
+                    
 
                     {{-- PUESTO --}}
 
@@ -797,6 +807,48 @@
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}                    
 
                     {{-- EMERGENCIAS --}}
+                    @if(Auth::user()->role == 'normatividad')
+
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                    @else
 
                     <td>{{ $profesional->emergencia->tipo_sangre ?? '' }}</td>
                     <td>{{ $profesional->emergencia->tipo_alergia ?? '' }}</td>
@@ -836,6 +888,10 @@
                     <td>{{ $profesional->emergencia->emergencia_colonia_tres ?? '' }}</td>
                     <td>{{ $profesional->emergencia->emergencia_codigo_postal_tres ?? '' }}</td>
                     <td>{{ $profesional->emergencia->emergencia_municipio_label_tres ?? '' }}</td>
+
+                    @endif
+
+                    
                     
                     {{-- <td>{{ $profesional->sueldo->sueldo_mensual ?? '' }}</td>
                     <td>{{ $profesional->sueldo->compensaciones ?? '' }}</td>
@@ -846,7 +902,23 @@
 
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}                    
 
-                    {{-- EMERGENCIAS --}}
+                    {{-- DIRECCION --}}
+                    
+                    @if(Auth::user()->role == 'normatividad')
+
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                    @else
+
                     <td>{{ $profesional->direccion->calle ?? '' }}</td>
                     <td>{{ $profesional->direccion->numero_exterior ?? '' }}</td>
                     <td>{{ $profesional->direccion->numero_interior ?? '' }}</td>
@@ -857,7 +929,8 @@
                     <td>{{ $profesional->direccion->ciudad ?? '' }}</td>
                     <td>{{ $profesional->direccion->tipo_asentamiento ?? '' }}</td>
                     <td>{{ $profesional->direccion->zona ?? '' }}</td>
-
+                        
+                    @endif
 
                 </tr>
             @endforeach
