@@ -306,7 +306,6 @@ return [
             'icon' => 'fa fa-area-chart',
             'label_color' => 'success',
         ],
-
         [
             'text' => 'Mi Unidad',
             'url' => 'admin/profesionales/profesionalIndex',
@@ -321,7 +320,6 @@ return [
             'label_color' => 'success',
             'can' => 'ofJurisdiccional',
         ],
-
         [
             'text' => 'Cambio de Unidad',
             'url' => 'admin/profesionales/cambioDeUnidad/findProfesional',
@@ -329,7 +327,6 @@ return [
             'label_color' => 'success',
             'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino','cecosama'],
         ],
-
         [
             'text' => 'Nuevo registro',
             'url' => 'admin/profesionales/buscarCurp',
@@ -337,7 +334,6 @@ return [
             'label_color' => 'success',
             'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'universitario','cecosama'],
         ],
-
         [
             'text' => 'Recontratación',
             'url' => 'admin/profesionales/recontratacion/findRecontratacionProfesional',
@@ -345,7 +341,6 @@ return [
             'label_color' => 'success',
             'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'universitario','cecosama'],
         ],
-
         [
             'text' => 'Buscador',
             'url' => 'admin/profesionales/profesionalBuscadorForm',
@@ -353,21 +348,13 @@ return [
             'label_color' => 'success',
             'can' => ['admin', 'directivo', 'credencializacion', 'normatividad','sistematizacion','rhasistente','rhauditoria','rhusuarios','prestaciones'],
         ],
-
         [
             'text' => 'Vigencias',
             'url' => 'admin/normatividad/indexNormatividad',
             'icon' => 'fa-solid fa-magnifying-glass',
             'label_color' => 'success',
             'can' => ['directivo', 'admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'normatividad'],
-        ],
-
-        
-
-        
-
-        
-
+        ],        
         [
             'text' => 'Reportes',
             'url' => 'admin/profesionales/reportes/reporteIndex',
