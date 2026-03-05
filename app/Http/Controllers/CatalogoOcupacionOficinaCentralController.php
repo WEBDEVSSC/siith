@@ -12,7 +12,7 @@ class CatalogoOcupacionOficinaCentralController extends Controller
     public function ocupacionOficinaCentralIndex()
     {
         // Cargamos todos los registros de la tabla
-        $ocupaciones = CatOcupacionOficinaCentral::orderBy('id')->get();
+        $ocupaciones = CatOcupacionOficinaCentral::orderBy('orden')->get();
 
         // Retornamos la vista con el arreglo
         return view('settings.ocupacion.oficina-central.oficinaCentral-index', compact('ocupaciones'));
