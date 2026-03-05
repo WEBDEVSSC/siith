@@ -26,28 +26,28 @@
 
             <div class="row">
                 <div class="col-md-3">
-                    <p>Area</p>
+                    <p><strong>Area</strong></p>
                     <input type="text" name="area" id="area" class="form-control" value="{{ old('area') }}">
                     @error('area')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="col-md-3">
-                    <p>Subarea</p>
+                    <p><strong>Subarea</strong></p>
                     <input type="text" name="subarea" id="subarea" class="form-control" value="{{ old('subarea') }}">
                     @error('subarea')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="col-md-3">
-                    <p>Programa</p>
+                    <p><strong>Programa</strong></p>
                     <input type="text" name="programa" id="programa" class="form-control" value="{{ old('programa') }}">
                     @error('programa')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="col-md-3">
-                    <p>Componente</p>
+                    <p><strong>Componente</strong></p>
                     <input type="text" name="componente" id="componente" class="form-control" value="{{ old('componente') }}">
                     @error('componente')
                         <br><div class="alert alert-danger">{{ $message }}</div>
@@ -57,14 +57,14 @@
 
             <div class="row mt-3">
                 <div class="col-md-3">
-                    <p>Ocupación</p>
+                    <p><strong>Ocupación</strong></p>
                     <input type="text" name="ocupacion" id="ocupacion" class="form-control" value="{{ old('ocupacion') }}">
                     @error('ocupacion')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="col-md-3">
-                    <p>Orden</p>
+                    <p><strong>Orden</strong></p>
                     <input type="text" name="orden" id="orden" class="form-control" value="{{ old('orden') }}">
                     @error('orden')
                         <br><div class="alert alert-danger">{{ $message }}</div>

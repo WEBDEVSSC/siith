@@ -90,6 +90,7 @@ class CatalogoOcupacionOficinaCentralController extends Controller
             'programa' => 'required|string',
             'componente' => 'required|string',
             'ocupacion' => 'required|string',
+            'orden' => 'required|numeric',
         ],[            
             'area.required' => 'El campo área es obligatorio.',
             'area.string' => 'El campo área debe ser una cadena de texto.',
@@ -105,6 +106,9 @@ class CatalogoOcupacionOficinaCentralController extends Controller
 
             'ocupacion.required' => 'El campo ocupacion es obligatorio.',
             'ocupacion.string' => 'El campo ocupacion debe ser una cadena de texto.',
+
+            'orden.required' => 'El campo orden es obligatorio.',
+            'orden.numeric' => 'El campo orden debe ser un número.',
         ]);
 
         // Buscamos el registro
@@ -116,6 +120,7 @@ class CatalogoOcupacionOficinaCentralController extends Controller
         $ocupacion->programa = $request->programa;
         $ocupacion->componente = $request->componente;
         $ocupacion->ocupacion = $request->ocupacion;
+        $ocupacion->orden = $request->orden;
 
         // Guardamos los cambios
         $ocupacion->save();
