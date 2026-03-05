@@ -69,8 +69,7 @@
                         <td>{{ $ocupacion->unidad }}</td>                 
                         <td>{{ $ocupacion->area }}</td>                 
                         <td>{{ $ocupacion->subarea }}</td>                      
-                        <td>{{ $ocupacion->ocupacion }}</td>                   
-                        <td>{{ $ocupacion->orden }}</td>                   
+                        <td>{{ $ocupacion->ocupacion }}</td>                  
                         <td>
                         
                             <a href="{{ route('ocupacionCecosamaEdit', $ocupacion->id) }}" class="btn btn-warning btn-sm btn-block">EDITAR</a>
