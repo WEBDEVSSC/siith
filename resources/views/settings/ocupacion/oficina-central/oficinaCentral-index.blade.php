@@ -50,7 +50,7 @@
                 No hay registros disponibles.
             </div>
         @else
-        <table class="table table-bordered" id="profesionalesTable">
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>ORDEN</th>
