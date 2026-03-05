@@ -72,7 +72,6 @@
                         <td>{{ $ocupacion->subarea_servicio }}</td>                 
                         <td>{{ $ocupacion->componente }}</td>                 
                         <td>{{ $ocupacion->ocupacion }}</td>                   
-                        <td>{{ $ocupacion->orden }}</td>                   
                         <td>
                         
                             <a href="{{ route('ocupacionCorsEdit', $ocupacion->id) }}" class="btn btn-warning btn-sm btn-block">EDITAR</a>
