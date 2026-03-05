@@ -19,6 +19,7 @@ use App\Models\CatOcupacionOfJurisdiccional;
 use App\Models\CatOcupacionPsiParras;
 use App\Models\CatOcupacionSamuCrum;
 use App\Models\Profesional;
+use App\Models\ProfesionalBitacoraCartera;
 use App\Models\ProfesionalOcupacionAlmacen;
 use App\Models\ProfesionalOcupacionCeam;
 use App\Models\ProfesionalOcupacionCecosama;
@@ -36,6 +37,8 @@ use App\Models\ProfesionalOcupacionOfJurisdiccional;
 use App\Models\ProfesionalOcupacionPsiParras;
 use App\Models\ProfesionalOcupacionSamuCrum;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 
 class ProfesionalOcupacionController extends Controller
 {
@@ -972,7 +975,7 @@ class ProfesionalOcupacionController extends Controller
     }
 
     public function updateAlmacen(Request $request, $id)
-    {
+    {    
         // Validamos los datos
         $request->validate([
             'ocupacion_uno'=>'required',
@@ -981,6 +984,14 @@ class ProfesionalOcupacionController extends Controller
         ],[
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
+
+        $user = Auth::user();
+
+        // Consultamos los datos anteriores para la bitacora
+        $ocupacionAnterior = ProfesionalOcupacionAlmacen::where('id',$id)->first();
+
+        $labelOcupacionAnterior = $ocupacionAnterior->area_uno.' - '.$ocupacionAnterior->subarea_uno.' - '.$ocupacionAnterior->jefatura_uno.' - '.$ocupacionAnterior->departamento_uno.' - '.$ocupacionAnterior->ocupacion_uno;
+        $profesional = Profesional::where('id',$ocupacionAnterior->id_profesional)->first();
 
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionAlmacen::where('id',$request->ocupacion_uno)->first();
@@ -997,7 +1008,17 @@ class ProfesionalOcupacionController extends Controller
 
         if($request->eliminar_ocupacion == 1)
         {
-           $ocupaciones->delete();
+            $ocupaciones->delete();
+
+            $profesionalBitacoraCartera = new ProfesionalBitacoraCartera();
+
+            $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
+            $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->id_capturista = $user->id;
+            $profesionalBitacoraCartera->capturista_label = $user->name;
+
+            $profesionalBitacoraCartera->save();
+
             return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('destroy', 'Ocupación eliminada correctamente.');
         }
         else
@@ -1018,9 +1039,36 @@ class ProfesionalOcupacionController extends Controller
                 'departamento_dos' => $ocupacionDos?->departamento,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
             ]);
-        }
 
-        
+            // Guardamos en la bitacora
+
+            $profesionalBitacoraCartera = new ProfesionalBitacoraCartera();
+
+            $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
+            $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->id_capturista = $user->id;
+            $profesionalBitacoraCartera->capturista_label = $user->name;
+
+            $profesionalBitacoraCartera->save();
+
+            // Enviar notificación a Telegram
+
+            $token = env('TELEGRAM_BOT_TOKEN');
+            $chat_id = env('TELEGRAM_CHAT_ID');
+
+            $mensaje = "✅ CAMBIO DE OCUPACIÓN
+                        \n📁 CATALOGO: ALMACÉN
+                        \n👤 PROFESIONAL: \n".$profesional->nombre. " " . $profesional->apellido_paterno. " " . $profesional->apellido_materno."
+                        \n📌 OCUPACIÓN ANTERIOR: \n".$labelOcupacionAnterior."
+                        \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->jefatura.' - '.$ocupacionUno->departamento.' - '.$ocupacionUno->ocupacion."
+                        \n🧑‍💻 CAPTURISTA: \n".$user->name;
+
+            Http::post("https://api.telegram.org/bot$token/sendMessage", [
+                'chat_id' => $chat_id,
+                'text' => $mensaje
+            ]);
+
+        }
 
         // Redireccionar con un mensaje de éxito
         return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');

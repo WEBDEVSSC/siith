@@ -50,10 +50,10 @@
                 No hay registros disponibles.
             </div>
         @else
-        <table id="profesionalesTable" class="table table-bordered">
+        <table class="table table-bordered" id="profesionalesTable">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>ORDEN</th>
                     <th>AREA</th>
                     <th>SUBAREA</th>
                     <th>PROGRAMA</th>
@@ -66,7 +66,7 @@
             <tbody>
                 @foreach ($ocupaciones as $ocupacion)
                     <tr>
-                        <td>{{ $ocupacion->id }}</td>                     
+                        <td>{{ $ocupacion->orden }}</td>                     
                         <td>{{ $ocupacion->area }}</td>                 
                         <td>{{ $ocupacion->subarea }}</td>                 
                         <td>{{ $ocupacion->programa }}</td>                   
