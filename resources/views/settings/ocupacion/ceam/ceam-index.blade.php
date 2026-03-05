@@ -71,8 +71,7 @@
                         <td>{{ $ocupacion->area }}</td>                 
                         <td>{{ $ocupacion->subarea_servicio }}</td>                
                         <td>{{ $ocupacion->componente }}</td>                 
-                        <td>{{ $ocupacion->ocupacion }}</td>                   
-                        <td>{{ $ocupacion->orden }}</td>                   
+                        <td>{{ $ocupacion->ocupacion }}</td>                  
                         <td>
                         
                             <a href="{{ route('ocupacionCeamEdit', $ocupacion->id) }}" class="btn btn-warning btn-sm btn-block">EDITAR</a>
