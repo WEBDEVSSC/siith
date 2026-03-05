@@ -65,7 +65,7 @@
             <tbody>
                 @foreach ($ocupaciones as $ocupacion)
                     <tr>
-                        <td>{{ $ocupacion->orden }}</td>                     
+                        <td>{{ $ocupacion->id }}</td>                     
                         <td>{{ $ocupacion->unidad }}</td>                     
                         <td>{{ $ocupacion->area }}</td>                 
                         <td>{{ $ocupacion->subarea }}</td>                       
