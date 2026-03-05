@@ -71,8 +71,7 @@
                         <td>{{ $ocupacion->subarea }}</td>                 
                         <td>{{ $ocupacion->jefatura }}</td>                 
                         <td>{{ $ocupacion->departamento }}</td>                 
-                        <td>{{ $ocupacion->ocupacion }}</td>                   
-                        <td>{{ $ocupacion->orden }}</td>                   
+                        <td>{{ $ocupacion->ocupacion }}</td>                 
                         <td>
                         
                             <a href="{{ route('ocupacionAlmacenEdit', $ocupacion->id) }}" class="btn btn-warning btn-sm btn-block">EDITAR</a>
