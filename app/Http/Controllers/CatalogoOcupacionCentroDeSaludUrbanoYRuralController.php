@@ -33,7 +33,7 @@ class CatalogoOcupacionCentroDeSaludUrbanoYRuralController extends Controller
             'area' => 'required|string',
             'subarea' => 'required|string',
             'ocupacion' => 'required|string',
-            'orden' => 'required|numeric|regex:/^\d{1,8}(\.\d{1,6})?$/',
+            'orden' => 'required|numeric|regex:/^\d{1,4}(\.\d{1,6})?$/',
         ],[
             'unidad.required' => 'El campo unidad es obligatorio.',
             'unidad.string' => 'El campo unidad debe ser una cadena de texto.',
@@ -85,7 +85,7 @@ class CatalogoOcupacionCentroDeSaludUrbanoYRuralController extends Controller
             'area' => 'required|string',
             'subarea' => 'required|string',
             'ocupacion' => 'required|string',
-            'orden' => 'required|string',
+            'orden' => 'required|numeric|regex:/^\d{1,4}(\.\d{1,6})?$/',
         ],[
             'unidad.required' => 'El campo unidad es obligatorio.',
             'unidad.string' => 'El campo unidad debe ser una cadena de texto.',
