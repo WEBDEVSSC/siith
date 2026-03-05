@@ -33,7 +33,7 @@ class CatalogoOcupacionOficinaCentralController extends Controller
             'programa' => 'required|string',
             'componente' => 'required|string',
             'ocupacion' => 'required|string',
-            'orden' => ['required', 'regex:/^\d{1,2}(\.\d{1,6})?$/'],
+            'orden' => 'required|numeric|regex:/^\d{1,8}(\.\d{1,6})?$/',
         ],[            
             'area.required' => 'El campo área es obligatorio.',
             'area.string' => 'El campo área debe ser una cadena de texto.',
