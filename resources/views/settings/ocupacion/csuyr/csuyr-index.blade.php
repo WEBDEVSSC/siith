@@ -53,12 +53,11 @@
         <table id="profesionalesTable" class="table table-bordered">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>ORDEN</th>
                     <th>UNIDAD</th>
                     <th>AREA</th>
                     <th>SUBAREA</th>
                     <th>OCUPACIÓN</th>
-                    <th>ORDEN</th>
                     <th></th>
                     
                 </tr>
@@ -66,12 +65,11 @@
             <tbody>
                 @foreach ($ocupaciones as $ocupacion)
                     <tr>
-                        <td>{{ $ocupacion->id }}</td>                 
+                        <td>{{ $ocupacion->orden }}</td>                  
                         <td>{{ $ocupacion->unidad }}</td>                 
                         <td>{{ $ocupacion->area }}</td>                 
                         <td>{{ $ocupacion->subarea }}</td>                 
-                        <td>{{ $ocupacion->ocupacion }}</td>                 
-                        <td>{{ $ocupacion->orden }}</td>                 
+                        <td>{{ $ocupacion->ocupacion }}</td>                        
                         <td>
                         
                             <a href="{{ route('ocupacionCsuyrEdit', $ocupacion->id) }}" class="btn btn-warning btn-sm btn-block">EDITAR</a>

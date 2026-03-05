@@ -53,12 +53,11 @@
         <table id="profesionalesTable" class="table table-bordered">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>ORDEN</th>
                     <th>UNIDAD</th>
                     <th>AREA</th>
                     <th>SUBAREA</th>
                     <th>OCUPACION</th>
-                    <th>ORDEN</th>
                     <th></th>
                     
                 </tr>
@@ -66,7 +65,7 @@
             <tbody>
                 @foreach ($ocupaciones as $ocupacion)
                     <tr>
-                        <td>{{ $ocupacion->id }}</td>                 
+                        <td>{{ $ocupacion->orden }}</td>                 
                         <td>{{ $ocupacion->unidad }}</td>                 
                         <td>{{ $ocupacion->area }}</td>                 
                         <td>{{ $ocupacion->subarea }}</td>                 

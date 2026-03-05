@@ -53,6 +53,7 @@
         <table id="profesionalesTable" class="table table-bordered">
             <thead>
                 <tr>
+                    <th>ORDEN</th>
                     <th>UNIDAD</th>
                     <th>AREA</th>
                     <th>SUBAREA</th>
@@ -64,6 +65,7 @@
             <tbody>
                 @foreach ($ocupaciones as $ocupacion)
                     <tr>
+                        <td>{{ $ocupacion->orden }}</td>                     
                         <td>{{ $ocupacion->unidad }}</td>                     
                         <td>{{ $ocupacion->area }}</td>                 
                         <td>{{ $ocupacion->subarea }}</td>                       
