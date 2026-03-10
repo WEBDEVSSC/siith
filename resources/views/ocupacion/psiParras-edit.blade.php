@@ -44,7 +44,7 @@
                     @enderror
                 </div>  
             </div>
-
+            {{--
             <div class="row mt-3">
                 <div class="col-md-12">
                     <div class="form-check">
@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </div>
-
+            --}}
             {{--<div class="row mt-3">
                 <div class="col-md-12">
                     <label for="ocupacion_dos">Ocupación 2</label>

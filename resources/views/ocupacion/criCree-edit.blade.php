@@ -46,6 +46,7 @@
             </div>
 
             {{-- Checkbox eliminar ocupación --}}
+            {{--
             <div class="row mt-3">
                 <div class="col-md-12">
                     <div class="form-check">
@@ -57,6 +58,7 @@
                     </div>
                 </div>
             </div>
+            --}}
 
             {{-- Ocupación 2 (comentada) --}}
             {{--
