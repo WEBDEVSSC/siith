@@ -739,7 +739,7 @@
                 
                 <div class="col-md-3">
                     <p><strong>FECHA DE INGRESO A LA INSTITUCIÓN</strong></p>
-                    {{ \Carbon\Carbon::parse($fechaIngreso)->format('d-m-Y') }}
+                    {{ $fechaIngreso ? \Carbon\Carbon::parse($fechaIngreso)->format('d-m-Y') : '' }}
                     {{-- <p><strong>Código de puesto </strong></p>
                     {{ $codigoPuesto }} --}}
                 </div>
