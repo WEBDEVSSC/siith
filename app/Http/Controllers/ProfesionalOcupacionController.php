@@ -138,6 +138,16 @@ class ProfesionalOcupacionController extends Controller
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
 
+        $user = Auth::user();
+
+        // Consultamos los datos anteriores para la bitacora
+        $ocupacionAnterior = ProfesionalOcupacionCentroSalud::where('id',$id)->first();
+
+        $labelOcupacionAnterior = $ocupacionAnterior->unidad_uno.' - '.$ocupacionAnterior->area_uno.' - '.$ocupacionAnterior->subarea_uno.' - '.$ocupacionAnterior->ocupacion_uno;
+        $profesional = Profesional::where('id',$ocupacionAnterior->id_profesional)->first();
+
+        $catalogo = "C.S.U. y R.";
+
          // Consultamos los datos para registrar
          $ocupacionUno = CatOcupacionCentroSalud::where('id',$request->ocupacion_uno)->first();
 
@@ -172,6 +182,44 @@ class ProfesionalOcupacionController extends Controller
                 'subarea_dos'=>$ocupacionDos?->subarea,
                 'ocupacion_dos'=>$ocupacionDos?->ocupacion,
             ]);
+
+            // Guardamos en la bitacora
+
+            $profesionalBitacoraCartera = new ProfesionalBitacoraCartera();
+
+            $profesionalBitacoraCartera->id_profesional = $ocupacion->id_profesional;
+            $profesionalBitacoraCartera->catalogo = $catalogo;
+            $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->id_capturista = $user->id;
+            $profesionalBitacoraCartera->capturista_label = $user->name;
+
+            $profesionalBitacoraCartera->save();
+
+            // Enviar notificación a Telegram
+
+            $token = env('TELEGRAM_BOT_TOKEN');
+            $chat_ids = [
+                env('TELEGRAM_CHAT_ID'),
+                env('TELEGRAM_CHAT_ID_2')
+            ];
+
+            $mensaje = "✅ CAMBIO DE OCUPACIÓN
+                        \n📁 CATALOGO: C.S.U. y R.
+                        \n👤 PROFESIONAL: \n".$profesional->nombre. " " . $profesional->apellido_paterno. " " . $profesional->apellido_materno."
+                        \n📌 OCUPACIÓN ANTERIOR: \n".$labelOcupacionAnterior."
+                        \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->ocupacion."
+                        \n🧑‍💻 CAPTURISTA: \n".$user->name;
+
+            foreach ($chat_ids as $chat_id) {
+
+                Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
+                    'chat_id' => $chat_id,
+                    'text' => $mensaje
+                ]);
+
+            }
+
+
         }
 
          // Regresamos a la vista con su mensaje
@@ -276,6 +324,20 @@ class ProfesionalOcupacionController extends Controller
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
 
+        // Consultamos el usuario en sesion
+        $user = Auth::user();
+
+        // Consultamos los datos anteriores para la bitacora
+        $ocupacionAnterior = ProfesionalOcupacionHospital::where('id',$id)->first();
+
+        // Creamsos la etiqueta para la bitacora
+        $labelOcupacionAnterior = $ocupacionAnterior->unidad_uno.' - '.$ocupacionAnterior->area_uno.' - '.$ocupacionAnterior->subarea_uno.' - '.$ocupacionAnterior->puesto_uno;
+        
+        $profesional = Profesional::where('id',$ocupacionAnterior->id_profesional)->first();
+
+        // Asignamos el nombre del catalogo para la bitacora
+        $catalogo = "HOSPITALES";
+
          // Consultamos los datos para registrar
          $ocupacionUno = CatOcupacionHospital::where('id',$request->ocupacion_uno)->first();
 
@@ -299,19 +361,57 @@ class ProfesionalOcupacionController extends Controller
             // Asignamos los valores al registro
             $ocupacion->update([
                 'id_catalogo_uno'=>$request->ocupacion_uno,
-                'unidad_uno'=>$ocupacionUno->unidad_uno,
-                'area_uno'=>$ocupacionUno->area_uno,
-                'subarea_uno'=>$ocupacionUno->subarea_uno,
-                'puesto_uno'=>$ocupacionUno->puesto_uno,
+                'unidad_uno'=>$ocupacionUno->unidad,
+                'area_uno'=>$ocupacionUno->area,
+                'subarea_uno'=>$ocupacionUno->subarea,
+                'puesto_uno'=>$ocupacionUno->puesto,
 
                 'id_catalogo_dos'=>$request?->ocupacion_dos,
-                'unidad_dos'=>$ocupacionDos?->unidad_dos,
-                'area_dos'=>$ocupacionDos?->area_dos,
-                'subarea_dos'=>$ocupacionDos?->subarea_dos,
-                'puesto_dos'=>$ocupacionDos?->ocupacion_dos,
+                'unidad_dos'=>$ocupacionDos?->unidad,
+                'area_dos'=>$ocupacionDos?->area,
+                'subarea_dos'=>$ocupacionDos?->subarea,
+                'puesto_dos'=>$ocupacionDos?->puesto,
             ]);
+
+            // Guardamos en la bitacora
+
+            $profesionalBitacoraCartera = new ProfesionalBitacoraCartera();
+
+            $profesionalBitacoraCartera->id_profesional = $ocupacion->id_profesional;
+            $profesionalBitacoraCartera->catalogo = $catalogo;
+            $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->id_capturista = $user->id;
+            $profesionalBitacoraCartera->capturista_label = $user->name;
+
+            $profesionalBitacoraCartera->save();
+
+            // Enviar notificación a Telegram
+
+            $token = env('TELEGRAM_BOT_TOKEN');
+            $chat_ids = [
+                env('TELEGRAM_CHAT_ID'),
+                env('TELEGRAM_CHAT_ID_2')
+            ];
+
+            $mensaje = "✅ CAMBIO DE OCUPACIÓN
+                        \n📁 CATALOGO: HOSPITALES
+                        \n👤 PROFESIONAL: \n".$profesional->nombre. " " . $profesional->apellido_paterno. " " . $profesional->apellido_materno."
+                        \n📌 OCUPACIÓN ANTERIOR: \n".$labelOcupacionAnterior."
+                        \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->puesto."
+                        \n🧑‍💻 CAPTURISTA: \n".$user->name;
+
+            foreach ($chat_ids as $chat_id) {
+
+                Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
+                    'chat_id' => $chat_id,
+                    'text' => $mensaje
+                ]);
+
+            }
+
         
         }
+
          // Regresamos a la vista con su mensaje
          return redirect()->route('profesionalShow',$ocupacion->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
     }
@@ -416,6 +516,17 @@ class ProfesionalOcupacionController extends Controller
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
 
+        $user = Auth::user();
+
+        // Consultamos los datos anteriores para la bitacora
+        $ocupacionAnterior = ProfesionalOcupacionOfJurisdiccional::where('id',$id)->first();
+
+        $labelOcupacionAnterior = $ocupacionAnterior->unidad_uno.' - '.$ocupacionAnterior->area_uno.' - '.$ocupacionAnterior->subarea_uno.' - '.$ocupacionAnterior->servicio_uno.' - '.$ocupacionAnterior->ocupacion_uno;
+        $profesional = Profesional::where('id',$ocupacionAnterior->id_profesional)->first();
+
+        $catalogo = "OFICINA JURISDICCIONAL";
+
+
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionOfJurisdiccional::where('id',$request->ocupacion_uno)->first();
 
@@ -455,6 +566,43 @@ class ProfesionalOcupacionController extends Controller
                 'servicio_dos' => $ocupacionDos?->servicio,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
             ]);
+
+            // Guardamos en la bitacora
+
+            $profesionalBitacoraCartera = new ProfesionalBitacoraCartera();
+
+            $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
+            $profesionalBitacoraCartera->catalogo = $catalogo;
+            $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->id_capturista = $user->id;
+            $profesionalBitacoraCartera->capturista_label = $user->name;
+
+            $profesionalBitacoraCartera->save();
+
+            // Enviar notificación a Telegram
+
+            $token = env('TELEGRAM_BOT_TOKEN');
+            $chat_ids = [
+                env('TELEGRAM_CHAT_ID'),
+                env('TELEGRAM_CHAT_ID_2')
+            ];
+
+            $mensaje = "✅ CAMBIO DE OCUPACIÓN
+                        \n📁 CATALOGO: OFICINA JURISDICCIONAL
+                        \n👤 PROFESIONAL: \n".$profesional->nombre. " " . $profesional->apellido_paterno. " " . $profesional->apellido_materno."
+                        \n📌 OCUPACIÓN ANTERIOR: \n".$labelOcupacionAnterior."
+                        \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->servicio.' - '.$ocupacionUno->ocupacion."
+                        \n🧑‍💻 CAPTURISTA: \n".$user->name;
+
+            foreach ($chat_ids as $chat_id) {
+
+                Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
+                    'chat_id' => $chat_id,
+                    'text' => $mensaje
+                ]);
+
+            }
+
             
         }
         // Redireccionar con un mensaje de éxito
@@ -559,6 +707,16 @@ class ProfesionalOcupacionController extends Controller
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
 
+        $user = Auth::user();
+
+        // Consultamos los datos anteriores para la bitacora
+        $ocupacionAnterior = ProfesionalOcupacionCriCree::where('id',$id)->first();
+
+        $labelOcupacionAnterior = $ocupacionAnterior->unidad_uno.' - '.$ocupacionAnterior->area_uno.' - '.$ocupacionAnterior->subarea_uno.' - '.$ocupacionAnterior->ocupacion_uno;
+        $profesional = Profesional::where('id',$ocupacionAnterior->id_profesional)->first();
+
+        $catalogo = "CRI CREE";
+
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCriCree::where('id',$request->ocupacion_uno)->first();
 
@@ -593,6 +751,43 @@ class ProfesionalOcupacionController extends Controller
                 'subarea_dos' => $ocupacionDos?->subarea,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
             ]);
+
+            // Guardamos en la bitacora
+
+            $profesionalBitacoraCartera = new ProfesionalBitacoraCartera();
+
+            $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
+            $profesionalBitacoraCartera->catalogo = $catalogo;
+            $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->id_capturista = $user->id;
+            $profesionalBitacoraCartera->capturista_label = $user->name;
+
+            $profesionalBitacoraCartera->save();
+
+            // Enviar notificación a Telegram
+
+            $token = env('TELEGRAM_BOT_TOKEN');
+            $chat_ids = [
+                env('TELEGRAM_CHAT_ID'),
+                env('TELEGRAM_CHAT_ID_2')
+            ];
+
+            $mensaje = "✅ CAMBIO DE OCUPACIÓN
+                        \n📁 CATALOGO: CRI CREE
+                        \n👤 PROFESIONAL: \n".$profesional->nombre. " " . $profesional->apellido_paterno. " " . $profesional->apellido_materno."
+                        \n📌 OCUPACIÓN ANTERIOR: \n".$labelOcupacionAnterior."
+                        \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->ocupacion."
+                        \n🧑‍💻 CAPTURISTA: \n".$user->name;
+
+            foreach ($chat_ids as $chat_id) {
+
+                Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
+                    'chat_id' => $chat_id,
+                    'text' => $mensaje
+                ]);
+
+            }
+
         }
 
         // Redireccionar con un mensaje de éxito
@@ -699,6 +894,16 @@ class ProfesionalOcupacionController extends Controller
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
 
+        $user = Auth::user();
+
+        // Consultamos los datos anteriores para la bitacora
+        $ocupacionAnterior = ProfesionalOcupacionSamuCrum::where('id',$id)->first();
+
+        $labelOcupacionAnterior = $ocupacionAnterior->unidad_uno.' - '.$ocupacionAnterior->area_uno.' - '.$ocupacionAnterior->subarea_uno.' - '.$ocupacionAnterior->componente_uno.' - '.$ocupacionAnterior->ocupacion_uno;
+        $profesional = Profesional::where('id',$ocupacionAnterior->id_profesional)->first();
+
+        $catalogo = "SAMU CRUM";
+
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionSamuCrum::where('id',$request->ocupacion_uno)->first();
 
@@ -735,6 +940,43 @@ class ProfesionalOcupacionController extends Controller
                 'componente_dos' => $ocupacionDos?->componente,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
             ]);
+
+            // Guardamos en la bitacora
+
+            $profesionalBitacoraCartera = new ProfesionalBitacoraCartera();
+
+            $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
+            $profesionalBitacoraCartera->catalogo = $catalogo;
+            $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->id_capturista = $user->id;
+            $profesionalBitacoraCartera->capturista_label = $user->name;
+
+            $profesionalBitacoraCartera->save();
+
+            // Enviar notificación a Telegram
+
+            $token = env('TELEGRAM_BOT_TOKEN');
+            $chat_ids = [
+                env('TELEGRAM_CHAT_ID'),
+                env('TELEGRAM_CHAT_ID_2')
+            ];
+
+            $mensaje = "✅ CAMBIO DE OCUPACIÓN
+                        \n📁 CATALOGO: SAMU CRUM
+                        \n👤 PROFESIONAL: \n".$profesional->nombre. " " . $profesional->apellido_paterno. " " . $profesional->apellido_materno."
+                        \n📌 OCUPACIÓN ANTERIOR: \n".$labelOcupacionAnterior."
+                        \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion."
+                        \n🧑‍💻 CAPTURISTA: \n".$user->name;
+
+            foreach ($chat_ids as $chat_id) {
+
+                Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
+                    'chat_id' => $chat_id,
+                    'text' => $mensaje
+                ]);
+
+            }
+
         
         }
 
@@ -842,6 +1084,17 @@ class ProfesionalOcupacionController extends Controller
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
 
+        $user = Auth::user();
+
+        // Consultamos los datos anteriores para la bitacora
+        $ocupacionAnterior = ProfesionalOcupacionOficinaCentral::where('id',$id)->first();
+
+        $labelOcupacionAnterior = $ocupacionAnterior->area_uno.' - '.$ocupacionAnterior->subarea_uno.' - '.$ocupacionAnterior->programa_uno.' - '.$ocupacionAnterior->componente_uno.' - '.$ocupacionAnterior->ocupacion_uno;
+        $profesional = Profesional::where('id',$ocupacionAnterior->id_profesional)->first();
+
+        $catalogo = "OFICINA CENTRAL";
+
+
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionOficinaCentral::where('id',$request->ocupacion_uno)->first();
 
@@ -878,6 +1131,43 @@ class ProfesionalOcupacionController extends Controller
                 'componente_dos' => $ocupacionDos?->componente,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
             ]);
+
+            // Guardamos en la bitacora
+
+            $profesionalBitacoraCartera = new ProfesionalBitacoraCartera();
+
+            $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
+            $profesionalBitacoraCartera->catalogo = $catalogo;
+            $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->id_capturista = $user->id;
+            $profesionalBitacoraCartera->capturista_label = $user->name;
+
+            $profesionalBitacoraCartera->save();
+
+            // Enviar notificación a Telegram
+
+            $token = env('TELEGRAM_BOT_TOKEN');
+            $chat_ids = [
+                env('TELEGRAM_CHAT_ID'),
+                env('TELEGRAM_CHAT_ID_2')
+            ];
+
+            $mensaje = "✅ CAMBIO DE OCUPACIÓN
+                        \n📁 CATALOGO: OFICINA CENTRAL
+                        \n👤 PROFESIONAL: \n".$profesional->nombre. " " . $profesional->apellido_paterno. " " . $profesional->apellido_materno."
+                        \n📌 OCUPACIÓN ANTERIOR: \n".$labelOcupacionAnterior."
+                        \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->programa.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion."
+                        \n🧑‍💻 CAPTURISTA: \n".$user->name;
+
+            foreach ($chat_ids as $chat_id) {
+
+                Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
+                    'chat_id' => $chat_id,
+                    'text' => $mensaje
+                ]);
+
+            }
+
 
         }
 
@@ -993,6 +1283,8 @@ class ProfesionalOcupacionController extends Controller
         $labelOcupacionAnterior = $ocupacionAnterior->area_uno.' - '.$ocupacionAnterior->subarea_uno.' - '.$ocupacionAnterior->jefatura_uno.' - '.$ocupacionAnterior->departamento_uno.' - '.$ocupacionAnterior->ocupacion_uno;
         $profesional = Profesional::where('id',$ocupacionAnterior->id_profesional)->first();
 
+        $catalogo = "ALMACEN";
+
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionAlmacen::where('id',$request->ocupacion_uno)->first();
 
@@ -1013,6 +1305,7 @@ class ProfesionalOcupacionController extends Controller
             $profesionalBitacoraCartera = new ProfesionalBitacoraCartera();
 
             $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
+            $profesionalBitacoraCartera->catalogo = $catalogo;
             $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
             $profesionalBitacoraCartera->id_capturista = $user->id;
             $profesionalBitacoraCartera->capturista_label = $user->name;
@@ -1045,6 +1338,7 @@ class ProfesionalOcupacionController extends Controller
             $profesionalBitacoraCartera = new ProfesionalBitacoraCartera();
 
             $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
+            $profesionalBitacoraCartera->catalogo = $catalogo;
             $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
             $profesionalBitacoraCartera->id_capturista = $user->id;
             $profesionalBitacoraCartera->capturista_label = $user->name;
@@ -1054,7 +1348,10 @@ class ProfesionalOcupacionController extends Controller
             // Enviar notificación a Telegram
 
             $token = env('TELEGRAM_BOT_TOKEN');
-            $chat_id = env('TELEGRAM_CHAT_ID');
+            $chat_ids = [
+                env('TELEGRAM_CHAT_ID'),
+                env('TELEGRAM_CHAT_ID_2')
+            ];
 
             $mensaje = "✅ CAMBIO DE OCUPACIÓN
                         \n📁 CATALOGO: ALMACÉN
@@ -1063,10 +1360,14 @@ class ProfesionalOcupacionController extends Controller
                         \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->jefatura.' - '.$ocupacionUno->departamento.' - '.$ocupacionUno->ocupacion."
                         \n🧑‍💻 CAPTURISTA: \n".$user->name;
 
-            Http::post("https://api.telegram.org/bot$token/sendMessage", [
+            foreach ($chat_ids as $chat_id) {
+
+            Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
                 'chat_id' => $chat_id,
                 'text' => $mensaje
             ]);
+
+        }
 
         }
 
@@ -1174,6 +1475,16 @@ class ProfesionalOcupacionController extends Controller
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
 
+        $user = Auth::user();
+
+        // Consultamos los datos anteriores para la bitacora
+        $ocupacionAnterior = ProfesionalOcupacionCors::where('id',$id)->first();
+
+        $labelOcupacionAnterior = $ocupacionAnterior->unidad_uno.' - '.$ocupacionAnterior->area_uno.' - '.$ocupacionAnterior->subarea_servicio_uno.' - '.$ocupacionAnterior->componente_uno.' - '.$ocupacionAnterior->ocupacion_uno;
+        $profesional = Profesional::where('id',$ocupacionAnterior->id_profesional)->first();
+
+        $catalogo = "CORS";
+
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCors::where('id',$request->ocupacion_uno)->first();
 
@@ -1194,24 +1505,58 @@ class ProfesionalOcupacionController extends Controller
         }
         else
         {
+            // Asignamos los valores
+            $ocupaciones->update([
+                'id_catalogo_uno'=>$request->ocupacion_uno,
+                'unidad_uno'=>$ocupacionUno->unidad,
+                'area_uno'=>$ocupacionUno->area,
+                'subarea_servicio_uno'=>$ocupacionUno->subarea_servicio,
+                'componente_uno'=>$ocupacionUno->componente,
+                'ocupacion_uno'=>$ocupacionUno->ocupacion,
 
+                'id_catalogo_dos' => $request?->ocupacion_dos,
+                'unidad_dos' => $ocupacionDos?->unidad,
+                'area_dos' => $ocupacionDos?->area,
+                'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
+                'componente_dos' => $ocupacionDos?->componente,
+                'ocupacion_dos' => $ocupacionDos?->ocupacion,
+            ]);
 
-        // Asignamos los valores
-        $ocupaciones->update([
-            'id_catalogo_uno'=>$request->ocupacion_uno,
-            'unidad_uno'=>$ocupacionUno->unidad,
-            'area_uno'=>$ocupacionUno->area,
-            'subarea_servicio_uno'=>$ocupacionUno->subarea_servicio,
-            'componente_uno'=>$ocupacionUno->componente,
-            'ocupacion_uno'=>$ocupacionUno->ocupacion,
+            // Guardamos en la bitacora
 
-            'id_catalogo_dos' => $request?->ocupacion_dos,
-            'unidad_dos' => $ocupacionDos?->unidad,
-            'area_dos' => $ocupacionDos?->area,
-            'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
-            'componente_dos' => $ocupacionDos?->componente,
-            'ocupacion_dos' => $ocupacionDos?->ocupacion,
-        ]);
+            $profesionalBitacoraCartera = new ProfesionalBitacoraCartera();
+
+            $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
+            $profesionalBitacoraCartera->catalogo = $catalogo;
+            $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->id_capturista = $user->id;
+            $profesionalBitacoraCartera->capturista_label = $user->name;
+
+            $profesionalBitacoraCartera->save();
+
+            // Enviar notificación a Telegram
+
+            $token = env('TELEGRAM_BOT_TOKEN');
+            $chat_ids = [
+                env('TELEGRAM_CHAT_ID'),
+                env('TELEGRAM_CHAT_ID_2')
+            ];
+
+            $mensaje = "✅ CAMBIO DE OCUPACIÓN
+                        \n📁 CATALOGO: CORS
+                        \n👤 PROFESIONAL: \n".$profesional->nombre. " " . $profesional->apellido_paterno. " " . $profesional->apellido_materno."
+                        \n📌 OCUPACIÓN ANTERIOR: \n".$labelOcupacionAnterior."
+                        \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea_servicio.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion."
+                        \n🧑‍💻 CAPTURISTA: \n".$user->name;
+
+            foreach ($chat_ids as $chat_id) {
+
+                Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
+                    'chat_id' => $chat_id,
+                    'text' => $mensaje
+                ]);
+
+            }
 
     }
 
@@ -1319,6 +1664,17 @@ class ProfesionalOcupacionController extends Controller
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
 
+        $user = Auth::user();
+
+        // Consultamos los datos anteriores para la bitacora
+        $ocupacionAnterior = ProfesionalOcupacionCetsLesp::where('id',$id)->first();
+
+        $labelOcupacionAnterior = $ocupacionAnterior->area_uno.' - '.$ocupacionAnterior->subarea_uno.' - '.$ocupacionAnterior->jefatura_programa_uno.' - '.$ocupacionAnterior->componente_uno.' - '.$ocupacionAnterior->ocupacion_uno;
+        $profesional = Profesional::where('id',$ocupacionAnterior->id_profesional)->first();
+
+        $catalogo = "CETS LESP";
+
+
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCetsLesp::where('id',$request->ocupacion_uno)->first();
 
@@ -1356,6 +1712,43 @@ class ProfesionalOcupacionController extends Controller
                 'componente_dos' => $ocupacionDos?->componente,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
             ]);
+
+            // Guardamos en la bitacora
+
+            $profesionalBitacoraCartera = new ProfesionalBitacoraCartera();
+
+            $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
+            $profesionalBitacoraCartera->catalogo = $catalogo;
+            $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->id_capturista = $user->id;
+            $profesionalBitacoraCartera->capturista_label = $user->name;
+
+            $profesionalBitacoraCartera->save();
+
+            // Enviar notificación a Telegram
+
+            $token = env('TELEGRAM_BOT_TOKEN');
+            $chat_ids = [
+                env('TELEGRAM_CHAT_ID'),
+                env('TELEGRAM_CHAT_ID_2')
+            ];
+
+            $mensaje = "✅ CAMBIO DE OCUPACIÓN
+                        \n📁 CATALOGO: CETS LESP
+                        \n👤 PROFESIONAL: \n".$profesional->nombre. " " . $profesional->apellido_paterno. " " . $profesional->apellido_materno."
+                        \n📌 OCUPACIÓN ANTERIOR: \n".$labelOcupacionAnterior."
+                        \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->jefatura_programa.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion."
+                        \n🧑‍💻 CAPTURISTA: \n".$user->name;
+
+            foreach ($chat_ids as $chat_id) {
+
+                Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
+                    'chat_id' => $chat_id,
+                    'text' => $mensaje
+                ]);
+
+            }
+
 
         }
 
@@ -1463,6 +1856,17 @@ class ProfesionalOcupacionController extends Controller
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
 
+        $user = Auth::user();
+
+        // Consultamos los datos anteriores para la bitacora
+        $ocupacionAnterior = ProfesionalOcupacionCesame::where('id',$id)->first();
+
+        $labelOcupacionAnterior = $ocupacionAnterior->unidad_uno.' - '.$ocupacionAnterior->area_uno.' - '.$ocupacionAnterior->subarea_servicio_uno.' - '.$ocupacionAnterior->componente_uno.' - '.$ocupacionAnterior->ocupacion_uno;
+        $profesional = Profesional::where('id',$ocupacionAnterior->id_profesional)->first();
+
+        $catalogo = "CESAME";
+
+
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCesame::where('id',$request->ocupacion_uno)->first();
 
@@ -1501,6 +1905,43 @@ class ProfesionalOcupacionController extends Controller
                 'componente_dos' => $ocupacionDos?->componente,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
             ]);
+
+            // Guardamos en la bitacora
+
+            $profesionalBitacoraCartera = new ProfesionalBitacoraCartera();
+
+            $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
+            $profesionalBitacoraCartera->catalogo = $catalogo;
+            $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->id_capturista = $user->id;
+            $profesionalBitacoraCartera->capturista_label = $user->name;
+
+            $profesionalBitacoraCartera->save();
+
+            // Enviar notificación a Telegram
+
+            $token = env('TELEGRAM_BOT_TOKEN');
+            $chat_ids = [
+                env('TELEGRAM_CHAT_ID'),
+                env('TELEGRAM_CHAT_ID_2')
+            ];
+
+            $mensaje = "✅ CAMBIO DE OCUPACIÓN
+                        \n📁 CATALOGO: CESAME
+                        \n👤 PROFESIONAL: \n".$profesional->nombre. " " . $profesional->apellido_paterno. " " . $profesional->apellido_materno."
+                        \n📌 OCUPACIÓN ANTERIOR: \n".$labelOcupacionAnterior."
+                        \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea_servicio.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion."
+                        \n🧑‍💻 CAPTURISTA: \n".$user->name;
+
+            foreach ($chat_ids as $chat_id) {
+
+                Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
+                    'chat_id' => $chat_id,
+                    'text' => $mensaje
+                ]);
+
+            }
+
 
         }
 
@@ -1608,6 +2049,16 @@ class ProfesionalOcupacionController extends Controller
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
 
+        $user = Auth::user();
+
+        // Consultamos los datos anteriores para la bitacora
+        $ocupacionAnterior = ProfesionalOcupacionPsiParras::where('id',$id)->first();
+
+        $labelOcupacionAnterior = $ocupacionAnterior->unidad_uno.' - '.$ocupacionAnterior->area_uno.' - '.$ocupacionAnterior->subarea_servicio_uno.' - '.$ocupacionAnterior->componente_uno.' - '.$ocupacionAnterior->ocupacion_uno;
+        $profesional = Profesional::where('id',$ocupacionAnterior->id_profesional)->first();
+
+        $catalogo = "PSI PARRAS";
+
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionPsiParras::where('id',$request->ocupacion_uno)->first();
 
@@ -1645,6 +2096,43 @@ class ProfesionalOcupacionController extends Controller
                 'componente_dos' => $ocupacionDos?->componente,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
             ]);
+
+            // Guardamos en la bitacora
+
+            $profesionalBitacoraCartera = new ProfesionalBitacoraCartera();
+
+            $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
+            $profesionalBitacoraCartera->catalogo = $catalogo;
+            $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->id_capturista = $user->id;
+            $profesionalBitacoraCartera->capturista_label = $user->name;
+
+            $profesionalBitacoraCartera->save();
+
+            // Enviar notificación a Telegram
+
+            $token = env('TELEGRAM_BOT_TOKEN');
+            $chat_ids = [
+                env('TELEGRAM_CHAT_ID'),
+                env('TELEGRAM_CHAT_ID_2')
+            ];
+
+            $mensaje = "✅ CAMBIO DE OCUPACIÓN
+                        \n📁 CATALOGO: PSI PARRAS
+                        \n👤 PROFESIONAL: \n".$profesional->nombre. " " . $profesional->apellido_paterno. " " . $profesional->apellido_materno."
+                        \n📌 OCUPACIÓN ANTERIOR: \n".$labelOcupacionAnterior."
+                        \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea_servicio.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion."
+                        \n🧑‍💻 CAPTURISTA: \n".$user->name;
+
+            foreach ($chat_ids as $chat_id) {
+
+                Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
+                    'chat_id' => $chat_id,
+                    'text' => $mensaje
+                ]);
+
+            }
+
 
         }
 
@@ -1750,6 +2238,16 @@ class ProfesionalOcupacionController extends Controller
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
 
+        $user = Auth::user();
+
+        // Consultamos los datos anteriores para la bitacora
+        $ocupacionAnterior = ProfesionalOcupacionHospitalNino::where('id',$id)->first();
+
+        $labelOcupacionAnterior = $ocupacionAnterior->unidad_uno.' - '.$ocupacionAnterior->area_uno.' - '.$ocupacionAnterior->subarea_uno.' - '.$ocupacionAnterior->ocupacion_uno;
+        $profesional = Profesional::where('id',$ocupacionAnterior->id_profesional)->first();
+
+        $catalogo = "HOSPITAL NINO";
+
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionHospitalNino::where('id',$request->ocupacion_uno)->first();
 
@@ -1785,6 +2283,43 @@ class ProfesionalOcupacionController extends Controller
                 'subarea_dos' => $ocupacionDos?->subarea,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
             ]);
+
+             // Guardamos en la bitacora
+
+            $profesionalBitacoraCartera = new ProfesionalBitacoraCartera();
+
+            $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
+            $profesionalBitacoraCartera->catalogo = $catalogo;
+            $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->id_capturista = $user->id;
+            $profesionalBitacoraCartera->capturista_label = $user->name;
+
+            $profesionalBitacoraCartera->save();
+
+            // Enviar notificación a Telegram
+
+            $token = env('TELEGRAM_BOT_TOKEN');
+            $chat_ids = [
+                env('TELEGRAM_CHAT_ID'),
+                env('TELEGRAM_CHAT_ID_2')
+            ];
+
+            $mensaje = "✅ CAMBIO DE OCUPACIÓN
+                        \n📁 CATALOGO: HOSPITAL NIÑO
+                        \n👤 PROFESIONAL: \n".$profesional->nombre. " " . $profesional->apellido_paterno. " " . $profesional->apellido_materno."
+                        \n📌 OCUPACIÓN ANTERIOR: \n".$labelOcupacionAnterior."
+                        \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->ocupacion."
+                        \n🧑‍💻 CAPTURISTA: \n".$user->name;
+
+            foreach ($chat_ids as $chat_id) {
+
+                Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
+                    'chat_id' => $chat_id,
+                    'text' => $mensaje
+                ]);
+
+            }
+
 
         }
 
@@ -1892,6 +2427,17 @@ class ProfesionalOcupacionController extends Controller
             'ocupacion_uno.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
 
+        $user = Auth::user();
+
+        // Consultamos los datos anteriores para la bitacora
+        $ocupacionAnterior = ProfesionalOcupacionCeam::where('id',$id)->first();
+
+        $labelOcupacionAnterior = $ocupacionAnterior->unidad_uno.' - '.$ocupacionAnterior->area_uno.' - '.$ocupacionAnterior->subarea_servicio_uno.' - '.$ocupacionAnterior->componente_uno.' - '.$ocupacionAnterior->ocupacion_uno;
+        $profesional = Profesional::where('id',$ocupacionAnterior->id_profesional)->first();
+
+        $catalogo = "CEAM";
+
+
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCeam::where('id',$request->ocupacion_uno)->first();
 
@@ -1929,6 +2475,30 @@ class ProfesionalOcupacionController extends Controller
                 'componente_dos' => $ocupacionDos?->componente,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
             ]);
+
+            // Enviar notificación a Telegram
+
+            $token = env('TELEGRAM_BOT_TOKEN');
+            $chat_ids = [
+                env('TELEGRAM_CHAT_ID'),
+                env('TELEGRAM_CHAT_ID_2')
+            ];
+
+            $mensaje = "✅ CAMBIO DE OCUPACIÓN
+                        \n📁 CATALOGO: CEAM
+                        \n👤 PROFESIONAL: \n".$profesional->nombre. " " . $profesional->apellido_paterno. " " . $profesional->apellido_materno."
+                        \n📌 OCUPACIÓN ANTERIOR: \n".$labelOcupacionAnterior."
+                        \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea_servicio.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion."
+                        \n🧑‍💻 CAPTURISTA: \n".$user->name;
+
+            foreach ($chat_ids as $chat_id) {
+
+                Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
+                    'chat_id' => $chat_id,
+                    'text' => $mensaje
+                ]);
+
+            }
 
         }
 
@@ -2243,6 +2813,17 @@ class ProfesionalOcupacionController extends Controller
             'ocupacion.required' => 'Debe elegir al menos una opción; en caso contrario, comuníquese con la Coord. de Mejora Continua.',
         ]);
 
+        $user = Auth::user();
+
+        // Consultamos los datos anteriores para la bitacora
+        $ocupacionAnterior = ProfesionalOcupacionCECOSAMA::where('id',$id)->first();
+
+        $labelOcupacionAnterior = $ocupacionAnterior->unidad.' - '.$ocupacionAnterior->area.' - '.$ocupacionAnterior->subarea.' - '.$ocupacionAnterior->ocupacion;
+        $profesional = Profesional::where('id',$ocupacionAnterior->id_profesional)->first();
+
+        $catalogo = "CECOSAMA";
+
+
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCecosama::where('id',$request->ocupacion)->first();
 
@@ -2266,6 +2847,43 @@ class ProfesionalOcupacionController extends Controller
                 'ocupacion'=>$ocupacionUno->ocupacion,
                 
             ]);
+
+            // Guardamos en la bitacora
+
+            $profesionalBitacoraCartera = new ProfesionalBitacoraCartera();
+
+            $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
+            $profesionalBitacoraCartera->catalogo = $catalogo;
+            $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->id_capturista = $user->id;
+            $profesionalBitacoraCartera->capturista_label = $user->name;
+
+            $profesionalBitacoraCartera->save();
+
+            // Enviar notificación a Telegram
+
+            $token = env('TELEGRAM_BOT_TOKEN');
+            $chat_ids = [
+                env('TELEGRAM_CHAT_ID'),
+                env('TELEGRAM_CHAT_ID_2')
+            ];
+
+            $mensaje = "✅ CAMBIO DE OCUPACIÓN
+                        \n📁 CATALOGO: CECOSAMA
+                        \n👤 PROFESIONAL: \n".$profesional->nombre. " " . $profesional->apellido_paterno. " " . $profesional->apellido_materno."
+                        \n📌 OCUPACIÓN ANTERIOR: \n".$labelOcupacionAnterior."
+                        \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->ocupacion."
+                        \n🧑‍💻 CAPTURISTA: \n".$user->name;
+
+            foreach ($chat_ids as $chat_id) {
+
+                Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
+                    'chat_id' => $chat_id,
+                    'text' => $mensaje
+                ]);
+
+            }
+
 
         }
 

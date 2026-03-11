@@ -299,7 +299,7 @@
                                                                                                    
                                 @endif
 
-                                <!-- CATALOGO PARA ALMACEN (9) -->
+                                <!-- CATALOGO PARA CORS (9) -->
 
                                 @if ( $data['profesional']->puesto?->clues_adscripcion_tipo == 9)
 

@@ -19,6 +19,7 @@ use App\Models\Municipio;
 use App\Models\NominaPago;
 use App\Models\Profesional;
 use App\Models\ProfesionalBitacora;
+use App\Models\ProfesionalBitacoraCartera;
 use App\Models\ProfesionalCambioTipoNomina;
 use App\Models\ProfesionalComisionHistorico;
 use App\Models\ProfesionalOcupacionAlmacen;
@@ -1807,6 +1808,18 @@ class ProfesionalController extends Controller
 
         $municipiosNacimiento = Municipio::all();
 
+        /**
+         * 
+         * 
+         * BITACORA DE OCUPACIONES
+         * 
+         * 
+         */
+
+        $bitacotaOcupacion = ProfesionalBitacoraCartera::where('id_profesional', $id)
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+
         // Regresamos la vista con el arreglo
         return view('profesional.show', compact(
             'profesional',
@@ -1941,6 +1954,7 @@ class ProfesionalController extends Controller
             'paisesNacimiento',
             'entidadesNacimiento',
             'municipiosNacimiento',
+            'bitacotaOcupacion'
 
         ));
     }

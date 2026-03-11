@@ -677,6 +677,39 @@
     <!-- -- -->
 
     <div class="card">
+        <div class="card-header">
+            <i class="fa-solid fa-bookmark"></i> <strong>HISTORIAL DE OCUPACIONES</strong>
+        </div>
+        <div class="card-body">
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>CATALOGO</th>
+                        <th>OCUPACIÓN</th>
+                        <th>FECHA DE ACTUALIZACIÓN</th>
+                        <th>AUTOR</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($bitacotaOcupacion as $bitacora)
+                        <tr>
+                            <td>{{ $bitacora->catalogo }}</td>
+                            <td>{{ $bitacora->ocupacion_anterior }}</td>
+                            <td>{{ $bitacora->created_at }}</td>
+                            <td>{{ $bitacora->capturista_label }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+        </div>
+        <div class="card-footer"></div>
+    </div>
+
+    <!-- -- -->
+
+    <div class="card">
         <div class="card-header"><i class="fa fa-archive" aria-hidden="true"></i> <strong>PUESTO</strong></div>
         <div class="card-body">
 
