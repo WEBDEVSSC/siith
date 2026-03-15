@@ -8,6 +8,7 @@ use App\Mail\FelicitacionesEnviadas;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class EnviarFelicitacionesDiarias extends Command
 {
@@ -26,7 +27,8 @@ class EnviarFelicitacionesDiarias extends Command
 
         // Enviar resumen solo si hay felicitados
         if (!empty($profesionalesFelicitados)) {
-            Mail::to(['soportewebssc@gmail.com','rhcoordmejoracontinua@gmail.com'])->send(new FelicitacionesEnviadas($profesionalesFelicitados));
+            //Mail::to(['soportewebssc@gmail.com','rhcoordmejoracontinua@gmail.com'])->send(new FelicitacionesEnviadas($profesionalesFelicitados));
+            Mail::to(['soportewebssc@gmail.com','cesartorres.1688@gmail.com'])->send(new FelicitacionesEnviadas($profesionalesFelicitados));
         }
 
         $this->info('Correos de felicitación enviados exitosamente.');
@@ -37,18 +39,38 @@ class EnviarFelicitacionesDiarias extends Command
 
     private function enviarNotificacionTelegram($cantidad)
     {
-        $token = env('TELEGRAM_BOT_TOKEN');
-        $chatId = env('TELEGRAM_CHAT_ID');
+        //$token = env('TELEGRAM_BOT_TOKEN');
+        //$chatId = env('TELEGRAM_CHAT_ID');
+
+        $token = config('services.telegram.token');
+        $chatIds = config('services.telegram.chat_ids');
+        $server = gethostname();
+        $fecha = date('Y-m-d');
+
+        $chatId = trim($chatIds[0]);
 
         $mensaje = $cantidad > 0
-            ? "✅ Se han enviado $cantidad correos de felicitación exitosamente."
-            : "❌ No hubo cumpleaños hoy, no se enviaron correos.";
+            ? "🎉 *Felicitaciones enviadas*\n\n"
+            ."📧 Correos enviados: {$cantidad}\n"
+            ."🖥 Servidor: {$server}\n"
+            ."📅 Fecha: {$fecha}"
+            : "📭 *Sin cumpleaños hoy*\n\n"
+            ."📧 Correos enviados: 0\n"
+            ."🖥 Servidor: {$server}\n"
+            ."📅 Fecha: {$fecha}";
 
         $url = "https://api.telegram.org/bot{$token}/sendMessage";
 
-        Http::post($url, [
+        $response = Http::post($url, [
             'chat_id' => $chatId,
             'text' => $mensaje,
         ]);
+
+        if (!$response->successful()) {
+            Log::error('Error enviando Telegram', [
+                'status' => $response->status(),
+                'body' => $response->body()
+            ]);
+        }
     }
 }
