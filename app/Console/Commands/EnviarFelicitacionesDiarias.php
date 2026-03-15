@@ -27,8 +27,7 @@ class EnviarFelicitacionesDiarias extends Command
 
         // Enviar resumen solo si hay felicitados
         if (!empty($profesionalesFelicitados)) {
-            //Mail::to(['soportewebssc@gmail.com','rhcoordmejoracontinua@gmail.com'])->send(new FelicitacionesEnviadas($profesionalesFelicitados));
-            Mail::to(['soportewebssc@gmail.com','cesartorres.1688@gmail.com'])->send(new FelicitacionesEnviadas($profesionalesFelicitados));
+            Mail::to(['soportewebssc@gmail.com','rhcoordmejoracontinua@gmail.com'])->send(new FelicitacionesEnviadas($profesionalesFelicitados));
         }
 
         $this->info('Correos de felicitación enviados exitosamente.');
@@ -39,9 +38,6 @@ class EnviarFelicitacionesDiarias extends Command
 
     private function enviarNotificacionTelegram($cantidad)
     {
-        //$token = env('TELEGRAM_BOT_TOKEN');
-        //$chatId = env('TELEGRAM_CHAT_ID');
-
         $token = config('services.telegram.token');
         $chatIds = config('services.telegram.chat_ids');
         $server = gethostname();
@@ -50,7 +46,7 @@ class EnviarFelicitacionesDiarias extends Command
         $chatId = trim($chatIds[0]);
 
         $mensaje = $cantidad > 0
-            ? "🎉 *Felicitaciones enviadas*\n\n"
+            ? "🎉 Felicitaciones enviadas\n\n"
             ."📧 Correos enviados: {$cantidad}\n"
             ."🖥 Servidor: {$server}\n"
             ."📅 Fecha: {$fecha}"
