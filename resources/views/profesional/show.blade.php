@@ -689,6 +689,7 @@
                         <th>OCUPACIÓN</th>
                         <th>FECHA DE ACTUALIZACIÓN</th>
                         <th>AUTOR</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -696,8 +697,27 @@
                         <tr>
                             <td>{{ $bitacora->catalogo }}</td>
                             <td>{{ $bitacora->ocupacion_anterior }}</td>
-                            <td>{{ $bitacora->created_at }}</td>
+                            <td>{{ $bitacora->created_at->format('d-m-Y H:i:s') }}</td>
                             <td>{{ $bitacora->capturista_label }}</td>
+                            <td>
+                                @if (Auth::user()->role == 'admin')
+                                    <form action="{{ route('deleteOcupacionBitacora', $bitacora->id) }}" 
+                                        method="POST" 
+                                        class="formEliminar d-inline">
+
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" 
+                                                class="btn btn-danger btn-sm"
+                                                data-toggle="tooltip"
+                                                title="ELIMINAR">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+
+                                    </form>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -1903,4 +1923,30 @@
             })
         }
     </script>
+
+    <script>
+        document.querySelectorAll('.formEliminar').forEach(form => {
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                Swal.fire({
+                    title: '¿Estás seguro?',
+                    text: "Este registro se eliminará de la bitácora",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Sí, eliminar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+
+            });
+
+        });
+        </script>
 @stop

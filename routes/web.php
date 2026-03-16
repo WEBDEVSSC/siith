@@ -563,8 +563,6 @@ Route::middleware(['auth'])->group(function ()
  
       Route::put('admin/profesionales/ocupaciones/updateAlmacen/{id}', [ProfesionalOcupacionController::class, 'updateAlmacen'])->name('updateAlmacen');
 
-      //Route::delete('admin/profesionales/ocupaciones/destroyAlmacen/{id}', [ProfesionalOcupacionController::class, 'destroyAlmacen'])->name('destroyAlmacen');
-
       /**RUTAS PARA EL CATALOGO 8 - CETS LESP */
 
       Route::get('admin/profesionales/ocupaciones/createCetsLesp/{id}', [ProfesionalOcupacionController::class, 'createCetsLesp'])->name('createCetsLesp');
@@ -654,6 +652,10 @@ Route::middleware(['auth'])->group(function ()
       Route::get('admin/profesionales/ocupaciones/editCecosama/{id}', [ProfesionalOcupacionController::class, 'editCecosama'])->name('editCecosama');
  
       Route::put('admin/profesionales/ocupaciones/updateCecosama/{id}', [ProfesionalOcupacionController::class, 'updateCecosama'])->name('updateCecosama');
+
+      /**RUTA PARA ELIMINAR REGISTROS DE LA BITACORA DE OCUPACIONES */
+
+      Route::delete('admin/profesionales/ocupaciones/deleteOcupacionBitacora/{id}', [ProfesionalOcupacionController::class, 'deleteOcupacionBitacora'])->name('deleteOcupacionBitacora');
 
     /**
      * 

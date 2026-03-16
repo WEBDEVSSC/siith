@@ -2868,4 +2868,13 @@ class ProfesionalOcupacionController extends Controller
         return redirect()->route('profesionalShow',$ocupaciones->id_profesional)->with('update', 'Ocupaciones actualizadas correctamente.');
 
     }
+    
+    public function deleteOcupacionBitacora($id)
+    {
+        $ocupacion = ProfesionalBitacoraCartera::findOrFail($id);
+        $ocupacion->delete();
+
+        return redirect()->route('profesionalShow',$ocupacion->id_profesional)->with('destroy', 'Bitacora de Ocupación eliminada correctamente.');
+    }
+
 }

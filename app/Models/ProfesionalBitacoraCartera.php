@@ -3,10 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProfesionalBitacoraCartera extends Model
 {
     //
+    use SoftDeletes;
+
     protected $table = 'profesionales_bitacoras_cartera';
 
     protected $fillable = [
