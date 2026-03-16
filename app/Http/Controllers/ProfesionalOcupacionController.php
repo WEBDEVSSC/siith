@@ -394,11 +394,8 @@ class ProfesionalOcupacionController extends Controller
 
             // Enviar notificación a Telegram
 
-            $token = env('TELEGRAM_BOT_TOKEN');
-            $chat_ids = [
-                env('TELEGRAM_CHAT_ID'),
-                env('TELEGRAM_CHAT_ID_2')
-            ];
+            $token = config('services.telegram.token');
+            $chatIds = config('services.telegram.chat_ids');
 
             $mensaje = "✅ CAMBIO DE OCUPACIÓN
                         \n📁 CATALOGO: HOSPITALES
@@ -407,14 +404,15 @@ class ProfesionalOcupacionController extends Controller
                         \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->puesto."
                         \n🧑‍💻 CAPTURISTA: \n".$user->name;
 
-            foreach ($chat_ids as $chat_id) {
+            foreach ($chatIds as $chatId) {
 
                 Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
-                    'chat_id' => $chat_id,
+                    'chat_id' => trim($chatId),
                     'text' => $mensaje
                 ]);
 
             }
+
 
         
         }
@@ -588,11 +586,8 @@ class ProfesionalOcupacionController extends Controller
 
             // Enviar notificación a Telegram
 
-            $token = env('TELEGRAM_BOT_TOKEN');
-            $chat_ids = [
-                env('TELEGRAM_CHAT_ID'),
-                env('TELEGRAM_CHAT_ID_2')
-            ];
+            $token = config('services.telegram.token');
+            $chatIds = config('services.telegram.chat_ids');
 
             $mensaje = "✅ CAMBIO DE OCUPACIÓN
                         \n📁 CATALOGO: OFICINA JURISDICCIONAL
@@ -601,15 +596,14 @@ class ProfesionalOcupacionController extends Controller
                         \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->servicio.' - '.$ocupacionUno->ocupacion."
                         \n🧑‍💻 CAPTURISTA: \n".$user->name;
 
-            foreach ($chat_ids as $chat_id) {
+            foreach ($chatIds as $chatId) {
 
                 Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
-                    'chat_id' => $chat_id,
+                    'chat_id' => trim($chatId),
                     'text' => $mensaje
                 ]);
 
             }
-
             
         }
         // Redireccionar con un mensaje de éxito
@@ -773,11 +767,8 @@ class ProfesionalOcupacionController extends Controller
 
             // Enviar notificación a Telegram
 
-            $token = env('TELEGRAM_BOT_TOKEN');
-            $chat_ids = [
-                env('TELEGRAM_CHAT_ID'),
-                env('TELEGRAM_CHAT_ID_2')
-            ];
+            $token = config('services.telegram.token');
+            $chatIds = config('services.telegram.chat_ids');
 
             $mensaje = "✅ CAMBIO DE OCUPACIÓN
                         \n📁 CATALOGO: CRI CREE
@@ -786,10 +777,10 @@ class ProfesionalOcupacionController extends Controller
                         \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->ocupacion."
                         \n🧑‍💻 CAPTURISTA: \n".$user->name;
 
-            foreach ($chat_ids as $chat_id) {
+            foreach ($chatIds as $chatId) {
 
                 Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
-                    'chat_id' => $chat_id,
+                    'chat_id' => trim($chatId),
                     'text' => $mensaje
                 ]);
 
@@ -962,11 +953,9 @@ class ProfesionalOcupacionController extends Controller
 
             // Enviar notificación a Telegram
 
-            $token = env('TELEGRAM_BOT_TOKEN');
-            $chat_ids = [
-                env('TELEGRAM_CHAT_ID'),
-                env('TELEGRAM_CHAT_ID_2')
-            ];
+            $token = config('services.telegram.token');
+            $chatIds = config('services.telegram.chat_ids');
+
 
             $mensaje = "✅ CAMBIO DE OCUPACIÓN
                         \n📁 CATALOGO: SAMU CRUM
@@ -975,14 +964,15 @@ class ProfesionalOcupacionController extends Controller
                         \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion."
                         \n🧑‍💻 CAPTURISTA: \n".$user->name;
 
-            foreach ($chat_ids as $chat_id) {
+            foreach ($chatIds as $chatId) {
 
                 Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
-                    'chat_id' => $chat_id,
+                    'chat_id' => trim($chatId),
                     'text' => $mensaje
                 ]);
 
             }
+
 
         
         }
@@ -1172,8 +1162,6 @@ class ProfesionalOcupacionController extends Controller
 
             }
 
-
-
         }
 
         // Redireccionar con un mensaje de éxito
@@ -1352,11 +1340,8 @@ class ProfesionalOcupacionController extends Controller
 
             // Enviar notificación a Telegram
 
-            $token = env('TELEGRAM_BOT_TOKEN');
-            $chat_ids = [
-                env('TELEGRAM_CHAT_ID'),
-                env('TELEGRAM_CHAT_ID_2')
-            ];
+            $token = config('services.telegram.token');
+            $chatIds = config('services.telegram.chat_ids');
 
             $mensaje = "✅ CAMBIO DE OCUPACIÓN
                         \n📁 CATALOGO: ALMACÉN
@@ -1365,14 +1350,15 @@ class ProfesionalOcupacionController extends Controller
                         \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->jefatura.' - '.$ocupacionUno->departamento.' - '.$ocupacionUno->ocupacion."
                         \n🧑‍💻 CAPTURISTA: \n".$user->name;
 
-            foreach ($chat_ids as $chat_id) {
+            foreach ($chatIds as $chatId) {
 
-            Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
-                'chat_id' => $chat_id,
-                'text' => $mensaje
-            ]);
+                Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
+                    'chat_id' => trim($chatId),
+                    'text' => $mensaje
+                ]);
 
-        }
+            }
+
 
         }
 
@@ -1541,11 +1527,8 @@ class ProfesionalOcupacionController extends Controller
 
             // Enviar notificación a Telegram
 
-            $token = env('TELEGRAM_BOT_TOKEN');
-            $chat_ids = [
-                env('TELEGRAM_CHAT_ID'),
-                env('TELEGRAM_CHAT_ID_2')
-            ];
+            $token = config('services.telegram.token');
+            $chatIds = config('services.telegram.chat_ids');
 
             $mensaje = "✅ CAMBIO DE OCUPACIÓN
                         \n📁 CATALOGO: CORS
@@ -1554,14 +1537,15 @@ class ProfesionalOcupacionController extends Controller
                         \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea_servicio.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion."
                         \n🧑‍💻 CAPTURISTA: \n".$user->name;
 
-            foreach ($chat_ids as $chat_id) {
+            foreach ($chatIds as $chatId) {
 
                 Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
-                    'chat_id' => $chat_id,
+                    'chat_id' => trim($chatId),
                     'text' => $mensaje
                 ]);
 
             }
+
 
     }
 
@@ -1732,11 +1716,8 @@ class ProfesionalOcupacionController extends Controller
 
             // Enviar notificación a Telegram
 
-            $token = env('TELEGRAM_BOT_TOKEN');
-            $chat_ids = [
-                env('TELEGRAM_CHAT_ID'),
-                env('TELEGRAM_CHAT_ID_2')
-            ];
+            $token = config('services.telegram.token');
+            $chatIds = config('services.telegram.chat_ids');
 
             $mensaje = "✅ CAMBIO DE OCUPACIÓN
                         \n📁 CATALOGO: CETS LESP
@@ -1745,14 +1726,15 @@ class ProfesionalOcupacionController extends Controller
                         \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->jefatura_programa.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion."
                         \n🧑‍💻 CAPTURISTA: \n".$user->name;
 
-            foreach ($chat_ids as $chat_id) {
+            foreach ($chatIds as $chatId) {
 
                 Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
-                    'chat_id' => $chat_id,
+                    'chat_id' => trim($chatId),
                     'text' => $mensaje
                 ]);
 
             }
+
 
 
         }
@@ -1925,11 +1907,8 @@ class ProfesionalOcupacionController extends Controller
 
             // Enviar notificación a Telegram
 
-            $token = env('TELEGRAM_BOT_TOKEN');
-            $chat_ids = [
-                env('TELEGRAM_CHAT_ID'),
-                env('TELEGRAM_CHAT_ID_2')
-            ];
+            $token = config('services.telegram.token');
+            $chatIds = config('services.telegram.chat_ids');
 
             $mensaje = "✅ CAMBIO DE OCUPACIÓN
                         \n📁 CATALOGO: CESAME
@@ -1938,14 +1917,15 @@ class ProfesionalOcupacionController extends Controller
                         \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea_servicio.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion."
                         \n🧑‍💻 CAPTURISTA: \n".$user->name;
 
-            foreach ($chat_ids as $chat_id) {
+            foreach ($chatIds as $chatId) {
 
                 Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
-                    'chat_id' => $chat_id,
+                    'chat_id' => trim($chatId),
                     'text' => $mensaje
                 ]);
 
             }
+
 
 
         }
@@ -2116,11 +2096,8 @@ class ProfesionalOcupacionController extends Controller
 
             // Enviar notificación a Telegram
 
-            $token = env('TELEGRAM_BOT_TOKEN');
-            $chat_ids = [
-                env('TELEGRAM_CHAT_ID'),
-                env('TELEGRAM_CHAT_ID_2')
-            ];
+            $token = config('services.telegram.token');
+            $chatIds = config('services.telegram.chat_ids');
 
             $mensaje = "✅ CAMBIO DE OCUPACIÓN
                         \n📁 CATALOGO: PSI PARRAS
@@ -2129,14 +2106,15 @@ class ProfesionalOcupacionController extends Controller
                         \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea_servicio.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion."
                         \n🧑‍💻 CAPTURISTA: \n".$user->name;
 
-            foreach ($chat_ids as $chat_id) {
+            foreach ($chatIds as $chatId) {
 
                 Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
-                    'chat_id' => $chat_id,
+                    'chat_id' => trim($chatId),
                     'text' => $mensaje
                 ]);
 
             }
+
 
 
         }
@@ -2303,11 +2281,8 @@ class ProfesionalOcupacionController extends Controller
 
             // Enviar notificación a Telegram
 
-            $token = env('TELEGRAM_BOT_TOKEN');
-            $chat_ids = [
-                env('TELEGRAM_CHAT_ID'),
-                env('TELEGRAM_CHAT_ID_2')
-            ];
+            $token = config('services.telegram.token');
+            $chatIds = config('services.telegram.chat_ids');
 
             $mensaje = "✅ CAMBIO DE OCUPACIÓN
                         \n📁 CATALOGO: HOSPITAL NIÑO
@@ -2316,14 +2291,15 @@ class ProfesionalOcupacionController extends Controller
                         \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->ocupacion."
                         \n🧑‍💻 CAPTURISTA: \n".$user->name;
 
-            foreach ($chat_ids as $chat_id) {
+            foreach ($chatIds as $chatId) {
 
                 Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
-                    'chat_id' => $chat_id,
+                    'chat_id' => trim($chatId),
                     'text' => $mensaje
                 ]);
 
             }
+
 
 
         }
@@ -2483,11 +2459,8 @@ class ProfesionalOcupacionController extends Controller
 
             // Enviar notificación a Telegram
 
-            $token = env('TELEGRAM_BOT_TOKEN');
-            $chat_ids = [
-                env('TELEGRAM_CHAT_ID'),
-                env('TELEGRAM_CHAT_ID_2')
-            ];
+            $token = config('services.telegram.token');
+            $chatIds = config('services.telegram.chat_ids');
 
             $mensaje = "✅ CAMBIO DE OCUPACIÓN
                         \n📁 CATALOGO: CEAM
@@ -2496,14 +2469,15 @@ class ProfesionalOcupacionController extends Controller
                         \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea_servicio.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion."
                         \n🧑‍💻 CAPTURISTA: \n".$user->name;
 
-            foreach ($chat_ids as $chat_id) {
+            foreach ($chatIds as $chatId) {
 
                 Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
-                    'chat_id' => $chat_id,
+                    'chat_id' => trim($chatId),
                     'text' => $mensaje
                 ]);
 
             }
+
 
         }
 
@@ -2867,11 +2841,8 @@ class ProfesionalOcupacionController extends Controller
 
             // Enviar notificación a Telegram
 
-            $token = env('TELEGRAM_BOT_TOKEN');
-            $chat_ids = [
-                env('TELEGRAM_CHAT_ID'),
-                env('TELEGRAM_CHAT_ID_2')
-            ];
+            $token = config('services.telegram.token');
+            $chatIds = config('services.telegram.chat_ids');
 
             $mensaje = "✅ CAMBIO DE OCUPACIÓN
                         \n📁 CATALOGO: CECOSAMA
@@ -2880,14 +2851,15 @@ class ProfesionalOcupacionController extends Controller
                         \n➡️ OCUPACIÓN NUEVA: \n".$ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->ocupacion."
                         \n🧑‍💻 CAPTURISTA: \n".$user->name;
 
-            foreach ($chat_ids as $chat_id) {
+            foreach ($chatIds as $chatId) {
 
                 Http::post("https://api.telegram.org/bot{$token}/sendMessage", [
-                    'chat_id' => $chat_id,
+                    'chat_id' => trim($chatId),
                     'text' => $mensaje
                 ]);
 
             }
+
 
 
         }
