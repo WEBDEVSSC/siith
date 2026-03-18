@@ -1259,7 +1259,7 @@ Route::middleware(['auth'])->group(function ()
      * 
      */
 
-    Route::get('admin/settings/bitacora-ocupacion/indexBitacoraOcupacion', [BitacoraOcupacionController::class,'indexBitacoraOcupacion'])->middleware('role:admin')->name('indexBitacoraOcupacion');
+    Route::get('admin/settings/bitacora-ocupacion/indexBitacoraOcupacion', [BitacoraOcupacionController::class,'indexBitacoraOcupacion'])->middleware('can:admin')->name('indexBitacoraOcupacion');
 
     /**
      * 
