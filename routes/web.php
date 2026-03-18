@@ -45,6 +45,7 @@ use App\Http\Controllers\ProfesionalRecontratacionController;
 use App\Http\Controllers\ProfesionalReporteController;
 use App\Http\Controllers\ProfesionalRolController;
 use App\Http\Controllers\ProfesionalSessionsController;
+use App\Http\Controllers\BitacoraOcupacionController;
 use App\Http\Controllers\ProfesionalSueldoController;
 use App\Http\Controllers\ProfesionalVigenciaController;
 use App\Http\Controllers\SystemSettingsController;
@@ -1249,6 +1250,16 @@ Route::middleware(['auth'])->group(function ()
     Route::get('admin/settings/sessions/activas',[ProfesionalSessionsController::class, 'sesionesActivas'])->name('sesionesActivas');
 
     Route::get('admin/settings/sessions/bitacora',[ProfesionalSessionsController::class, 'sesionesBitacora'])->name('sesionesBitacora');
+
+    /**
+     * 
+     * 
+     * BITACORA DE CAMBIOS DE OCUPACION
+     * 
+     * 
+     */
+
+    Route::get('admin/settings/bitacora-ocupacion/indexBitacoraOcupacion', [BitacoraOcupacionController::class,'indexBitacoraOcupacion'])->name('indexBitacoraOcupacion');
 
     /**
      * 
