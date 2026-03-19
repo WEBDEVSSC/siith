@@ -157,6 +157,43 @@
     <div class="card-footer"></div>
 </div>
 
+<div class="row mt-3">
+    <div class="col-md-4">
+
+        <div class="card">
+            <div class="card-header"><strong>Bitacora de Cambios en Cartera de Servicios / Catalogos</strong></div>
+            <div class="card-body">
+
+                <form action="">
+                    <div class="row">
+                        
+                        <div class="col-md-6">
+                            <p><strong>Fecha de Inicio</strong></p>
+                            <input type="date" name="fecha_inicio" id="fecha_inicio" class="form-control" value='{{ old('fecha_inicio') }}'>
+                        </div>
+
+                        <div class="col-md-6">
+                            <p><strong>Fecha de Fin</strong></p>
+                            <input type="date" name="fecha_inicio" id="fecha_inicio" class="form-control" value='{{ old('fecha_inicio') }}'>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+            <div class="card-footer">
+
+                <button type="submit" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass"></i> MOSTRAR DATOS</button>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-6"></div>
+</div>
+
+
+
 
 @stop
 

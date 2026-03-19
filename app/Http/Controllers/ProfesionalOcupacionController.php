@@ -151,6 +151,8 @@ class ProfesionalOcupacionController extends Controller
          // Consultamos los datos para registrar
          $ocupacionUno = CatOcupacionCentroSalud::where('id',$request->ocupacion_uno)->first();
 
+         $ocupacionUnoLabel = $ocupacionUno->unidad." - ".$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->ocupacion;
+
          $ocupacionDos = null;
 
         if ($request->ocupacion_dos) 
@@ -190,6 +192,7 @@ class ProfesionalOcupacionController extends Controller
             $profesionalBitacoraCartera->id_profesional = $ocupacion->id_profesional;
             $profesionalBitacoraCartera->catalogo = $catalogo;
             $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->ocupacion_actual = $ocupacionUnoLabel;
             $profesionalBitacoraCartera->id_capturista = $user->id;
             $profesionalBitacoraCartera->capturista_label = $user->name;
 
@@ -348,6 +351,8 @@ class ProfesionalOcupacionController extends Controller
          // Consultamos los datos para registrar
          $ocupacionUno = CatOcupacionHospital::where('id',$request->ocupacion_uno)->first();
 
+         $ocupacionUnoLabel = $ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->puesto;
+
          $ocupacionDos = null;
 
         if ($request->ocupacion_dos) 
@@ -387,6 +392,7 @@ class ProfesionalOcupacionController extends Controller
             $profesionalBitacoraCartera->id_profesional = $ocupacion->id_profesional;
             $profesionalBitacoraCartera->catalogo = $catalogo;
             $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->ocupacion_actual = $ocupacionUnoLabel;
             $profesionalBitacoraCartera->id_capturista = $user->id;
             $profesionalBitacoraCartera->capturista_label = $user->name;
 
@@ -535,6 +541,8 @@ class ProfesionalOcupacionController extends Controller
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionOfJurisdiccional::where('id',$request->ocupacion_uno)->first();
 
+        $ocupacionUnoLabel = $ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->servicio.' - '.$ocupacionUno->ocupacion;
+
         $ocupacionDos = null;
 
         if ($request->ocupacion_dos) 
@@ -579,6 +587,7 @@ class ProfesionalOcupacionController extends Controller
             $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
             $profesionalBitacoraCartera->catalogo = $catalogo;
             $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->ocupacion_actual = $ocupacionUnoLabel;
             $profesionalBitacoraCartera->id_capturista = $user->id;
             $profesionalBitacoraCartera->capturista_label = $user->name;
 
@@ -721,6 +730,8 @@ class ProfesionalOcupacionController extends Controller
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCriCree::where('id',$request->ocupacion_uno)->first();
 
+        $ocupacionUnoLabel = $ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->ocupacion;
+
         $ocupacionDos = null;
 
         if ($request->ocupacion_dos) 
@@ -760,6 +771,7 @@ class ProfesionalOcupacionController extends Controller
             $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
             $profesionalBitacoraCartera->catalogo = $catalogo;
             $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->ocupacion_actual = $ocupacionUnoLabel;
             $profesionalBitacoraCartera->id_capturista = $user->id;
             $profesionalBitacoraCartera->capturista_label = $user->name;
 
@@ -905,6 +917,8 @@ class ProfesionalOcupacionController extends Controller
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionSamuCrum::where('id',$request->ocupacion_uno)->first();
 
+        $ocupacionUnoLabel = $ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion;
+
         $ocupacionDos = null;
 
         if ($request->ocupacion_dos) 
@@ -946,6 +960,7 @@ class ProfesionalOcupacionController extends Controller
             $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
             $profesionalBitacoraCartera->catalogo = $catalogo;
             $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->ocupacion_actual = $ocupacionUnoLabel;
             $profesionalBitacoraCartera->id_capturista = $user->id;
             $profesionalBitacoraCartera->capturista_label = $user->name;
 
@@ -1095,6 +1110,8 @@ class ProfesionalOcupacionController extends Controller
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionOficinaCentral::where('id',$request->ocupacion_uno)->first();
 
+        $ocupacionUnoLabel = $ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->programa.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion;
+
         $ocupacionDos = null;
 
         if ($request->ocupacion_dos) 
@@ -1136,6 +1153,7 @@ class ProfesionalOcupacionController extends Controller
             $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
             $profesionalBitacoraCartera->catalogo = $catalogo;
             $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->ocupacion_actual = $ocupacionUnoLabel;
             $profesionalBitacoraCartera->id_capturista = $user->id;
             $profesionalBitacoraCartera->capturista_label = $user->name;
 
@@ -1281,6 +1299,8 @@ class ProfesionalOcupacionController extends Controller
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionAlmacen::where('id',$request->ocupacion_uno)->first();
 
+        $ocupacionUnoLabel = $ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->jefatura.' - '.$ocupacionUno->departamento.' - '.$ocupacionUno->ocupacion;
+
         $ocupacionDos = null;
 
         if ($request->ocupacion_dos) 
@@ -1333,6 +1353,7 @@ class ProfesionalOcupacionController extends Controller
             $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
             $profesionalBitacoraCartera->catalogo = $catalogo;
             $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->ocupacion_actual = $ocupacionUnoLabel;
             $profesionalBitacoraCartera->id_capturista = $user->id;
             $profesionalBitacoraCartera->capturista_label = $user->name;
 
@@ -1479,6 +1500,8 @@ class ProfesionalOcupacionController extends Controller
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCors::where('id',$request->ocupacion_uno)->first();
 
+        $ocupacionUnoLabel = $ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea_servicio.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion;
+
         $ocupacionDos = null;
 
         if ($request->ocupacion_dos) 
@@ -1520,6 +1543,7 @@ class ProfesionalOcupacionController extends Controller
             $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
             $profesionalBitacoraCartera->catalogo = $catalogo;
             $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->ocupacion_actual = $ocupacionUnoLabel;
             $profesionalBitacoraCartera->id_capturista = $user->id;
             $profesionalBitacoraCartera->capturista_label = $user->name;
 
@@ -1663,9 +1687,10 @@ class ProfesionalOcupacionController extends Controller
 
         $catalogo = "CETS LESP";
 
-
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCetsLesp::where('id',$request->ocupacion_uno)->first();
+
+        $ocupacionUnoLabel = $ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->jefatura_programa.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion;
 
         $ocupacionDos = null;
 
@@ -1709,6 +1734,7 @@ class ProfesionalOcupacionController extends Controller
             $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
             $profesionalBitacoraCartera->catalogo = $catalogo;
             $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->ocupacion_actual = $ocupacionUnoLabel;
             $profesionalBitacoraCartera->id_capturista = $user->id;
             $profesionalBitacoraCartera->capturista_label = $user->name;
 
@@ -1853,9 +1879,10 @@ class ProfesionalOcupacionController extends Controller
 
         $catalogo = "CESAME";
 
-
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCesame::where('id',$request->ocupacion_uno)->first();
+
+        $ocupacionUnoLabel = $ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea_servicio.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion;
 
         $ocupacionDos = null;
 
@@ -1900,6 +1927,7 @@ class ProfesionalOcupacionController extends Controller
             $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
             $profesionalBitacoraCartera->catalogo = $catalogo;
             $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->ocupacion_actual = $ocupacionUnoLabel;
             $profesionalBitacoraCartera->id_capturista = $user->id;
             $profesionalBitacoraCartera->capturista_label = $user->name;
 
@@ -2047,6 +2075,8 @@ class ProfesionalOcupacionController extends Controller
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionPsiParras::where('id',$request->ocupacion_uno)->first();
 
+        $ocupacionUnoLabel = $ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea_servicio.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion;
+
         $ocupacionDos = null;
 
         if ($request->ocupacion_dos) 
@@ -2089,6 +2119,7 @@ class ProfesionalOcupacionController extends Controller
             $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
             $profesionalBitacoraCartera->catalogo = $catalogo;
             $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->ocupacion_actual = $ocupacionUnoLabel;
             $profesionalBitacoraCartera->id_capturista = $user->id;
             $profesionalBitacoraCartera->capturista_label = $user->name;
 
@@ -2234,6 +2265,8 @@ class ProfesionalOcupacionController extends Controller
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionHospitalNino::where('id',$request->ocupacion_uno)->first();
 
+        $ocupacionUnoLabel = $ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->ocupacion;
+
         $ocupacionDos = null;
 
         if ($request->ocupacion_dos) 
@@ -2274,6 +2307,7 @@ class ProfesionalOcupacionController extends Controller
             $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
             $profesionalBitacoraCartera->catalogo = $catalogo;
             $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->ocupacion_actual = $ocupacionUnoLabel;
             $profesionalBitacoraCartera->id_capturista = $user->id;
             $profesionalBitacoraCartera->capturista_label = $user->name;
 
@@ -2418,9 +2452,10 @@ class ProfesionalOcupacionController extends Controller
 
         $catalogo = "CEAM";
 
-
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCeam::where('id',$request->ocupacion_uno)->first();
+
+        $ocupacionUnoLabel = $ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea_servicio.' - '.$ocupacionUno->componente.' - '.$ocupacionUno->ocupacion;
 
         $ocupacionDos = null;
 
@@ -2456,6 +2491,19 @@ class ProfesionalOcupacionController extends Controller
                 'componente_dos' => $ocupacionDos?->componente,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
             ]);
+            
+            // Guardamos en la bitacora
+
+            $profesionalBitacoraCartera = new ProfesionalBitacoraCartera();
+
+            $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
+            $profesionalBitacoraCartera->catalogo = $catalogo;
+            $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->ocupacion_actual = $ocupacionUnoLabel;
+            $profesionalBitacoraCartera->id_capturista = $user->id;
+            $profesionalBitacoraCartera->capturista_label = $user->name;
+
+            $profesionalBitacoraCartera->save();
 
             // Enviar notificación a Telegram
 
@@ -2802,9 +2850,10 @@ class ProfesionalOcupacionController extends Controller
 
         $catalogo = "CECOSAMA";
 
-
         // Consultamos los datos para registrar
         $ocupacionUno = CatOcupacionCecosama::where('id',$request->ocupacion)->first();
+
+        $ocupacionUnoLabel = $ocupacionUno->unidad.' - '.$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->ocupacion;
 
         // Buscamos el registro a editar
         $ocupaciones = ProfesionalOcupacionCecosama::findOrFail($id);
@@ -2834,6 +2883,7 @@ class ProfesionalOcupacionController extends Controller
             $profesionalBitacoraCartera->id_profesional = $ocupaciones->id_profesional;
             $profesionalBitacoraCartera->catalogo = $catalogo;
             $profesionalBitacoraCartera->ocupacion_anterior = $labelOcupacionAnterior;
+            $profesionalBitacoraCartera->ocupacion_actual = $ocupacionUnoLabel;
             $profesionalBitacoraCartera->id_capturista = $user->id;
             $profesionalBitacoraCartera->capturista_label = $user->name;
 
