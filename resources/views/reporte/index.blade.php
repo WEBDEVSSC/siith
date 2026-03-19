@@ -157,7 +157,11 @@
     <div class="card-footer"></div>
 </div>
 
+ @if(Auth::user()->role === 'admin')
+
 <div class="row mt-3">
+
+
     <div class="col-md-4">
 
         <div class="card">
@@ -196,7 +200,7 @@
     <div class="col-md-6"></div>
 </div>
 
-
+@endif
 
 
 @stop
