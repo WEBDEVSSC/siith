@@ -157,7 +157,7 @@
     <div class="card-footer"></div>
 </div>
 
- @if(Auth::user()->role != 'admin' && Auth::user()->role != 'normatividad')
+ @if(Auth::user()->role === 'admin' && Auth::user()->role === 'normatividad')
 
 <div class="row mt-3">
 
