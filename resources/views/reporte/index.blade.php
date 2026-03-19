@@ -33,7 +33,7 @@
             </div>
             @endif
 
-            @if(Auth::user()->role != 'riesgos' && Auth::user()->role != 'normatividad')
+            @if(Auth::user()->role != 'riesgos' || Auth::user()->role != 'normatividad')
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">
@@ -49,7 +49,7 @@
             </div>
             @endif
 
-            @if(Auth::user()->role != 'riesgos' && Auth::user()->role != 'normatividad')
+            @if(Auth::user()->role != 'riesgos' || Auth::user()->role != 'normatividad')
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">
@@ -100,7 +100,7 @@
             </div>
             @endif
 
-            @if(Auth::user()->role != 'riesgos' && Auth::user()->role != 'normatividad')
+            @if(Auth::user()->role != 'riesgos' || Auth::user()->role != 'normatividad')
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">
@@ -157,7 +157,7 @@
     <div class="card-footer"></div>
 </div>
 
- @if(Auth::user()->role == 'admin' && Auth::user()->role == 'normatividad')
+@if(Auth::user()->role == 'admin' || Auth::user()->role == 'normatividad')
 
 <div class="row mt-3">
 
