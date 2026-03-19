@@ -372,7 +372,7 @@ Route::middleware(['auth'])->group(function ()
 
     Route::get('admin/profesionales/reportes/descargarCarpetaFotografias', [ProfesionalReporteController::class,'descargarCarpetaFotografias'])->name('descargarCarpetaFotografias');
 
-    Route::get('admin/profesionales/reportes/bitacoraCartera', [ProfesionalReporteController::class,'bitacoraCartera'])->name('bitacoraCartera');
+    Route::post('admin/profesionales/reportes/bitacoraCartera', [ProfesionalReporteController::class,'bitacoraCartera'])->name('bitacoraCartera');
 
     Route::get('/contratos-por-nomina/{nomina}', [ProfesionalCambioTipoNominaController::class, 'getContratosPorNomina']);
 

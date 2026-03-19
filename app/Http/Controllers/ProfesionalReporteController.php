@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use ZipArchive;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\BitacoraCarteraExport;
+use Carbon\Carbon;
 
 class ProfesionalReporteController extends Controller
 {
@@ -47,5 +50,21 @@ class ProfesionalReporteController extends Controller
         }
 
         return response()->download($zipFile)->deleteFileAfterSend(true);
+    }
+
+    public function bitacoraCartera(Request $request)
+    {
+        $request->validate([
+            'fecha_inicio'=>'required|date',
+            'fecha_fin' => 'required|date',
+        ],[]);
+
+        $inicio = Carbon::parse($request->fecha_inicio)->startOfDay();
+        $fin = Carbon::parse($request->fecha_fin)->endOfDay();
+
+        return Excel::download(
+            new BitacoraCarteraExport($inicio, $fin),
+            'bitacora_cartera.xlsx'
+        );
     }
 }

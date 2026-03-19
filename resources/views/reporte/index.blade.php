@@ -164,7 +164,10 @@
             <div class="card-header"><strong>Bitacora de Cambios en Cartera de Servicios / Catalogos</strong></div>
             <div class="card-body">
 
-                <form action="">
+                <form action="{{route('bitacoraCartera')}}" method="POST">
+
+                    @csrf
+
                     <div class="row">
                         
                         <div class="col-md-6">
@@ -174,11 +177,10 @@
 
                         <div class="col-md-6">
                             <p><strong>Fecha de Fin</strong></p>
-                            <input type="date" name="fecha_inicio" id="fecha_inicio" class="form-control" value='{{ old('fecha_inicio') }}'>
+                            <input type="date" name="fecha_fin" id="fecha_fin" class="form-control" value='{{ old('fecha_fin') }}'>
                         </div>
 
                     </div>
-                </form>
 
             </div>
             <div class="card-footer">
@@ -186,6 +188,8 @@
                 <button type="submit" class="btn btn-info btn-sm"><i class="fa-solid fa-magnifying-glass"></i> MOSTRAR DATOS</button>
 
             </div>
+
+            </form>
         </div>
 
     </div>
