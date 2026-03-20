@@ -42,6 +42,8 @@ class BitacoraCarteraExport implements FromView, WithStyles
             'E1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '4A4A4A']]],
             'F1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '4A4A4A']]],
             'G1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '4A4A4A']]],
+            'H1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '4A4A4A']]],
+            'I1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '4A4A4A']]],
         ];
     }
 }
