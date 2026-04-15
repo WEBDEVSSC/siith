@@ -293,7 +293,7 @@
 
                 @endif
                 
-
+                <th><strong>ID SISTEMA</strong></th>
                 
             </tr>
         </thead>
@@ -1013,6 +1013,9 @@
                     <td>{{ $profesional->direccion->zona ?? '' }}</td>
                         
                     @endif
+
+                    <td>{{ $profesional->id ?? '' }}</td>
+
 
                 </tr>
             @endforeach
