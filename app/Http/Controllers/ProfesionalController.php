@@ -540,7 +540,8 @@ class ProfesionalController extends Controller
 
     public function datosGeneralesStoreEnsenanza(Request $request)
     {  
-    // Validamos los datos
+        //dd($request->pais_nacimiento);
+        // Validamos los datos
         $validated = $request->validate([
             'curp' => 'required',
             'rfc' => 'required',
@@ -609,6 +610,22 @@ class ProfesionalController extends Controller
         // Datos del capturista
         $usuario = Auth::user();
 
+        // Consultamos el pais de nacimiento
+        if($request->nacionalidad === "EXTRANJERA")
+        {
+            $paisNacimiento = $request->pais_nacimiento;
+
+            $labelPaisNacimiento = $paisNacimiento;
+        }
+        else
+        {
+            $paisNacimiento = CatPaisNacimiento::where('id', 55)->firstOrFail();
+
+            $labelPaisNacimiento = "MÉXICO";
+        }
+
+        //dd($paisNacimiento);
+
         /********************************************************************************************************************************
          * 
          * MODULO DE DATOS GENERALES
@@ -625,7 +642,7 @@ class ProfesionalController extends Controller
         $profesional->apellido_materno = $request->apellido_materno;
         $profesional->fecha_nacimiento = $request->fechaFormateada; 
         $profesional->sexo = $sexoNuevo;
-        $profesional->pais_nacimiento = $request->pais_nacimiento;
+        $profesional->pais_nacimiento = $labelPaisNacimiento;
         $profesional->entidad_nacimiento = $request->entidadNacimiento;
         $profesional->municipio_nacimiento = $municipio->nombre;
         $profesional->nacionalidad = $request->nacionalidad;
