@@ -539,8 +539,8 @@ class ProfesionalController extends Controller
      */
 
     public function datosGeneralesStoreEnsenanza(Request $request)
-    {
-        // Validamos los datos
+    {  
+    // Validamos los datos
         $validated = $request->validate([
             'curp' => 'required',
             'rfc' => 'required',
@@ -550,8 +550,8 @@ class ProfesionalController extends Controller
             'apellido_paterno' => 'required',
             'apellido_materno' => 'required',
             'fechaFormateada' => 'required',
-            //'paisNacimiento' => 'required',
-            'pais_nacimiento' => ['nullable','required_if:nacionalidad,EXTRANJERA','exists:cat_paises_nacimiento,pais',],
+            'paisNacimiento' => 'required',
+            //'pais_nacimiento' => ['nullable','required_if:nacionalidad,EXTRANJERA','exists:cat_paises_nacimiento,pais',],
             'entidadNacimiento' => 'required',
             'municipio_nacimiento' => 'required',
             'nacionalidad' => 'required',
@@ -584,6 +584,8 @@ class ProfesionalController extends Controller
             'fecha_inicio.before_or_equal' => 'La fecha de inicio no puede ser mayor al día de hoy.',
             'fecha_inicio.date_format' => 'La fecha de vigencia debe tener el formato DD-MM-AAAA.',
         ]);
+
+        
 
         // Formateamos el valor de SEXO
         if($request->sexo === "H")
