@@ -106,7 +106,7 @@ class HomeController extends Controller
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
             ->count();
 
-        $nominaFederal420 = Profesional::whereRelation('puesto', 'nomina_pago', 'FED - Federal (Unidad 420)')
+        $nominaFederal420 = Profesional::whereRelation('puesto', 'nomina_pago', 'FED - Federal (Unidad 411)')
             ->whereRelation('puesto', 'vigencia', 'ACTIVO')
             ->count();
 
