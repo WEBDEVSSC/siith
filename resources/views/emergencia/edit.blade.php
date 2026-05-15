@@ -8,46 +8,48 @@
 
 @section('content')
 
-<div class="alert alert-info" role="alert">
+    <div class="alert alert-info" role="alert">
 
-    <ul>
-        <li><strong>Nombre</strong> : {{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</li>
-        <li><strong>CURP</strong> : {{ $profesional->curp }}</li>
-    </ul>
-    
-</div>
-
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
+        <ul>
+            <li><strong>Nombre</strong> : {{ $profesional->nombre }} {{ $profesional->apellido_paterno }}
+                {{ $profesional->apellido_materno }}</li>
+            <li><strong>CURP</strong> : {{ $profesional->curp }}</li>
         </ul>
+
     </div>
-@endif
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
 
 
     <!-- -->
-    
+
     <div class="card">
         <div class="card-header">
-            
+
             <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm">PERFIL DEL TRABAJADOR</a>
 
-            <a href="{{ route('emergenciaPDF', $profesional->id) }}" class="btn btn-warning btn-sm" target="_blank"><i class="fa-solid fa-print"></i> IMPRIMIR</a>
+            <a href="{{ route('emergenciaPDF', $profesional->id) }}" class="btn btn-warning btn-sm" target="_blank"><i
+                    class="fa-solid fa-print"></i> IMPRIMIR</a>
 
         </div>
 
         <form action="{{ route('updateEmergencia', $profesional->id) }}" method="POST">
 
-        @csrf 
+            @csrf
 
-        @method('PUT')
+            @method('PUT')
 
-        <input type="hidden" name="id_profesional" value="{{ $profesional->id }}">
-            
+            <input type="hidden" name="id_profesional" value="{{ $profesional->id }}">
+
             <div class="card-body">
 
                 <div class="row">
@@ -59,24 +61,28 @@
                 </div>
 
                 <div class="row mt-3">
-                    
+
                     <div class="col-md-3">
                         <p><strong>Teléfono Celular</strong></p>
-                        <input type="text" name="telefono_celular" class="form-control" maxlength="10" value="{{ old('telefono_celular', $emergencia->telefono) }}">
-                        
+                        <input type="text" name="telefono_celular" class="form-control" maxlength="10"
+                            value="{{ old('telefono_celular', $emergencia->telefono) }}">
+
                         @error('telefono_celular')
-                            <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    
+
 
                     <div class="col-md-3">
                         <p><strong>Correo Electrónico</strong></p>
-                        <input type="email" name="correo_electronico" class="form-control" value="{{ old('correo_electronico', $emergencia->correo_electronico) }}"> 
+                        <input type="email" name="correo_electronico" class="form-control"
+                            value="{{ old('correo_electronico', $emergencia->correo_electronico) }}">
 
                         @error('correo_electronico')
-                            <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -102,29 +108,32 @@
                         <select name="tipo_alergia_id" id="tipo_alergia_id" class="form-control">
                             <option value="">-- Seleccione una opción --</option>
                             @foreach ($tiposDeAlergia as $alergia)
-                                <option value="{{ $alergia->id }}" 
-                                    {{ old('tipo_alergia_id',$emergencia->tipo_alergia_id) == $alergia->id ? 'selected' : '' }}>
+                                <option value="{{ $alergia->id }}"
+                                    {{ old('tipo_alergia_id', $emergencia->tipo_alergia_id) == $alergia->id ? 'selected' : '' }}>
                                     {{ $alergia->tipo_alergia }}
                                 </option>
                             @endforeach
                         </select>
 
                         @error('tipo_alergia_id')
-                            <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
-                    
+
                 </div>
 
                 <!-- ---------------------------------- -->
 
-                <div class="row mt-3">      
+                <div class="row mt-3">
 
                     <div class="col-md-12">
                         <p><strong>Describa Brevemente</strong></p>
-                        <input type="text" name="alergia_descripcion" id="alergia_descripcion" class="form-control"  value="{{ old('alergia_descripcion', $emergencia->alergia_descripcion) }}">                     
+                        <input type="text" name="alergia_descripcion" id="alergia_descripcion" class="form-control"
+                            value="{{ old('alergia_descripcion', $emergencia->alergia_descripcion) }}">
                         @error('alergia_descripcion')
-                            <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -133,23 +142,27 @@
                 <!-- -->
 
                 <div class="row mt-3">
-                    
+
                     <div class="col-md-6">
                         <p><strong>Enfermedades Preexistentes</strong></p>
-                        <input type="text" name="enfermedad" id="enfermedad" class="form-control" value="{{ old('enfermedad', $emergencia->enfermedad) }}">                     
+                        <input type="text" name="enfermedad" id="enfermedad" class="form-control"
+                            value="{{ old('enfermedad', $emergencia->enfermedad) }}">
                         @error('enfermedad')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                    </div>  
+                    </div>
 
                     <div class="col-md-6">
                         <p><strong>Medicamentos que Toma Regularmente</strong></p>
-                        <input type="text" name="medicamentos" id="medicamentos" class="form-control" value="{{ old('medicamentos', $emergencia->medicamentos) }}">                     
+                        <input type="text" name="medicamentos" id="medicamentos" class="form-control"
+                            value="{{ old('medicamentos', $emergencia->medicamentos) }}">
                         @error('medicamentos')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                    </div>  
-                    
+                    </div>
+
                 </div>
 
                 <!-- -->
@@ -158,7 +171,7 @@
 
                     <div class="col-md-12">
                         <p><strong>Tratamiento Médico Actual</strong></p>
-                        <textarea name="tratamiento" id="tratamiento" cols="30" rows="5" class="form-control">{{ old('tratamiento', $emergencia->tratamiento) }}</textarea>                    
+                        <textarea name="tratamiento" id="tratamiento" cols="30" rows="5" class="form-control">{{ old('tratamiento', $emergencia->tratamiento) }}</textarea>
                         @error('tratamiento')
                             <br>
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -183,19 +196,23 @@
 
                     <div class="col-md-3">
                         <p><strong>Nombre</strong></p>
-                        <input type="text" name="medico_nombre" id="medico_nombre" class="form-control" value="{{ old('medico_nombre', $emergencia->medico_nombre) }}">                     
+                        <input type="text" name="medico_nombre" id="medico_nombre" class="form-control"
+                            value="{{ old('medico_nombre', $emergencia->medico_nombre) }}">
                         @error('medico_nombre')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                    </div>  
+                    </div>
 
                     <div class="col-md-3">
                         <p><strong>Teléfono de Contacto</strong></p>
-                        <input type="text" name="medico_telefono" id="medico_telefono" class="form-control" value="{{ old('medico_telefono', $emergencia->medico_telefono) }}">                     
+                        <input type="text" name="medico_telefono" id="medico_telefono" class="form-control"
+                            value="{{ old('medico_telefono', $emergencia->medico_telefono) }}">
                         @error('medico_telefono')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                    </div>  
+                    </div>
 
                 </div>
 
@@ -215,50 +232,62 @@
 
                     <div class="col-md-4">
                         <p><strong>Nombre</strong></p>
-                        <input type="text" name="emergencia_nombre_uno" id="emergencia_nombre_uno" class="form-control" value="{{ old('emergencia_nombre_uno', $emergencia->emergencia_nombre_uno) }}">                     
+                        <input type="text" name="emergencia_nombre_uno" id="emergencia_nombre_uno"
+                            class="form-control"
+                            value="{{ old('emergencia_nombre_uno', $emergencia->emergencia_nombre_uno) }}">
                         @error('emergencia_nombre_uno')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                    </div>  
-
-                    <div class="col-md-2">                        
-                            <p><strong>Parentesco</strong></p>
-                            <select name="emergencia_relacion_uno" id="emergencia_relacion_uno" class="form-control">
-                                <option value="">-- Selecciona una opción --</option>
-                                @foreach ($relacionesDeEmergencia as $relacion)
-                                    <option value="{{ $relacion->id }}" 
-                                        {{ old('emergencia_relacion_uno', $emergencia->emergencia_relacion_uno_id) == $relacion->id ? 'selected' : '' }}>
-                                        {{ $relacion->relacion }}
-                                    </option>
-                                @endforeach
-                            </select>
-
-                            @error('emergencia_relacion_uno')
-                                <br><div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
                     </div>
-                    
+
+                    <div class="col-md-2">
+                        <p><strong>Parentesco</strong></p>
+                        <select name="emergencia_relacion_uno" id="emergencia_relacion_uno" class="form-control">
+                            <option value="">-- Selecciona una opción --</option>
+                            @foreach ($relacionesDeEmergencia as $relacion)
+                                <option value="{{ $relacion->id }}"
+                                    {{ old('emergencia_relacion_uno', $emergencia->emergencia_relacion_uno_id) == $relacion->id ? 'selected' : '' }}>
+                                    {{ $relacion->relacion }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        @error('emergencia_relacion_uno')
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     <div class="col-md-2">
                         <p><strong>Teléfono Principal</strong></p>
-                        <input type="text" name="emergencia_telefono_uno_uno" id="emergencia_telefono_uno_uno" class="form-control" value="{{ old('emergencia_telefono_uno_uno', $emergencia->emergencia_telefono_uno_uno) }}">                     
+                        <input type="text" name="emergencia_telefono_uno_uno" id="emergencia_telefono_uno_uno"
+                            class="form-control"
+                            value="{{ old('emergencia_telefono_uno_uno', $emergencia->emergencia_telefono_uno_uno) }}">
                         @error('emergencia_telefono_uno_uno')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-2">
                         <p><strong>Teléfono Secundario</strong></p>
-                        <input type="text" name="emergencia_telefono_dos_uno" id="emergencia_telefono_dos_uno" class="form-control" value="{{ old('emergencia_telefono_dos_uno', $emergencia->emergencia_telefono_dos_uno) }}">                     
+                        <input type="text" name="emergencia_telefono_dos_uno" id="emergencia_telefono_dos_uno"
+                            class="form-control"
+                            value="{{ old('emergencia_telefono_dos_uno', $emergencia->emergencia_telefono_dos_uno) }}">
                         @error('emergencia_telefono_dos_uno')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-2">
                         <p><strong>E-mail</strong></p>
-                        <input type="text" name="emergencia_email_uno" id="emergencia_email_uno" class="form-control" value="{{ old('emergencia_email_uno', $emergencia->emergencia_email_uno) }}">                     
+                        <input type="text" name="emergencia_email_uno" id="emergencia_email_uno" class="form-control"
+                            value="{{ old('emergencia_email_uno', $emergencia->emergencia_email_uno) }}">
                         @error('emergencia_email_uno')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -270,37 +299,48 @@
 
                     <div class="col-md-4">
                         <p><strong>Calle</strong></p>
-                        <input type="text" name="emergencia_calle_uno" id="emergencia_calle_uno" class="form-control" value="{{ old('emergencia_calle_uno', $emergencia->emergencia_calle_uno) }}">                     
+                        <input type="text" name="emergencia_calle_uno" id="emergencia_calle_uno" class="form-control"
+                            value="{{ old('emergencia_calle_uno', $emergencia->emergencia_calle_uno) }}">
                         @error('emergencia_calle_uno')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-2">
                         <p><strong>Número</strong></p>
-                        <input type="text" name="emergencia_numero_uno" id="emergencia_numero_uno" class="form-control" value="{{ old('emergencia_numero_uno', $emergencia->emergencia_numero_uno) }}">                     
+                        <input type="text" name="emergencia_numero_uno" id="emergencia_numero_uno"
+                            class="form-control"
+                            value="{{ old('emergencia_numero_uno', $emergencia->emergencia_numero_uno) }}">
                         @error('emergencia_numero_uno')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-2">
                         <p><strong>Colonia</strong></p>
-                        <input type="text" name="emergencia_colonia_uno" id="emergencia_colonia_uno" class="form-control" value="{{ old('emergencia_colonia_uno', $emergencia->emergencia_colonia_uno) }}">                     
+                        <input type="text" name="emergencia_colonia_uno" id="emergencia_colonia_uno"
+                            class="form-control"
+                            value="{{ old('emergencia_colonia_uno', $emergencia->emergencia_colonia_uno) }}">
                         @error('emergencia_colonia_uno')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-2">
                         <p><strong>Código Postal</strong></p>
-                        <input type="text" name="emergencia_codigo_postal_uno" id="emergencia_codigo_postal_uno" class="form-control" value="{{ old('emergencia_codigo_postal_uno', $emergencia->emergencia_codigo_postal_uno) }}">                     
+                        <input type="text" name="emergencia_codigo_postal_uno" id="emergencia_codigo_postal_uno"
+                            class="form-control"
+                            value="{{ old('emergencia_codigo_postal_uno', $emergencia->emergencia_codigo_postal_uno) }}">
                         @error('emergencia_codigo_postal_uno')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    
+
 
                 </div>
 
@@ -308,46 +348,55 @@
 
                 <!-- -->
 
-            
-                <div class="col-md-3">
-    <p><strong>Entidad</strong></p>
-    <select class="form-control entidad-select"
-            name="emergencia_estado_uno_id"
-            data-target="municipio_uno"
-            data-selected-municipio="{{ old('emergencia_municipio_uno_id', $emergencia->emergencia_municipio_uno_id) }}">
-        <option value="">Seleccione una entidad</option>
-        @foreach($entidades as $entidad)
-            <option value="{{ $entidad->id }}"
-                {{ old('emergencia_estado_uno_id', $emergencia->emergencia_estado_uno_id) == $entidad->id ? 'selected' : '' }}>
-                {{ $entidad->nombre }}
-            </option>
-        @endforeach
-    </select>
+                <div class="row mt-3">
 
-    @error('emergencia_estado_uno_id')
-        <div class="alert alert-danger mt-1">{{ $message }}</div>
-    @enderror
-</div>
+                    <div class="col-md-3">
 
-<div class="col-md-3">
-    <p><strong>Municipio</strong></p>
-    <select id="municipio_uno"
-            class="form-control"
-            name="emergencia_municipio_uno_id">
-        <option value="">Seleccione un municipio</option>
-    </select>
+                        <p><strong>Entidad</strong></p>
+                        <select class="form-control entidad-select" name="emergencia_estado_uno_id"
+                            data-target="municipio_uno"
+                            data-selected-municipio="{{ old('emergencia_municipio_uno_id', $emergencia->emergencia_municipio_uno_id) }}">
+                            <option value="">Seleccione una entidad</option>
+                            @foreach ($entidades as $entidad)
+                                <option value="{{ $entidad->id }}"
+                                    {{ old('emergencia_estado_uno_id', $emergencia->emergencia_estado_uno_id) == $entidad->id ? 'selected' : '' }}>
+                                    {{ $entidad->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
 
-    @error('emergencia_municipio_uno_id')
-        <div class="alert alert-danger mt-1">{{ $message }}</div>
-    @enderror
-</div>
+                        @error('emergencia_estado_uno_id')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
 
+                    </div>
+                    <div class="col-md-3">
+
+                        <p><strong>Municipio</strong></p>
+                        <select id="municipio_uno" class="form-control" name="emergencia_municipio_uno_id">
+                            <option value="">Seleccione un municipio</option>
+                        </select>
+
+                        @error('emergencia_municipio_uno_id')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+
+                    </div>
+
+                </div>
 
 
 
                 
 
-                
+
+
+
+
+
+
+
+
 
 
                 <!-- -->
@@ -368,50 +417,62 @@
 
                     <div class="col-md-4">
                         <p><strong>Nombre</strong></p>
-                        <input type="text" name="emergencia_nombre_dos" id="emergencia_nombre_dos" class="form-control" value="{{ old('emergencia_nombre_dos',$emergencia->emergencia_nombre_dos) }}">                     
+                        <input type="text" name="emergencia_nombre_dos" id="emergencia_nombre_dos"
+                            class="form-control"
+                            value="{{ old('emergencia_nombre_dos', $emergencia->emergencia_nombre_dos) }}">
                         @error('emergencia_nombre_dos')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                    </div>  
-
-                    <div class="col-md-2">                        
-                            <p><strong>Parentesco</strong></p>
-                            <select name="emergencia_relacion_dos" id="emergencia_relacion_dos" class="form-control">
-                                <option value="">-- Selecciona una opción --</option>
-                                @foreach ($relacionesDeEmergencia as $relacion)
-                                    <option value="{{ $relacion->id }}" 
-                                        {{ old('emergencia_relacion_dos', $emergencia->emergencia_relacion_dos_id) == $relacion->id ? 'selected' : '' }}>
-                                        {{ $relacion->relacion }}
-                                    </option>
-                                @endforeach
-                            </select>
-
-                            @error('emergencia_relacion_dos')
-                                <br><div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
                     </div>
-                    
+
+                    <div class="col-md-2">
+                        <p><strong>Parentesco</strong></p>
+                        <select name="emergencia_relacion_dos" id="emergencia_relacion_dos" class="form-control">
+                            <option value="">-- Selecciona una opción --</option>
+                            @foreach ($relacionesDeEmergencia as $relacion)
+                                <option value="{{ $relacion->id }}"
+                                    {{ old('emergencia_relacion_dos', $emergencia->emergencia_relacion_dos_id) == $relacion->id ? 'selected' : '' }}>
+                                    {{ $relacion->relacion }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        @error('emergencia_relacion_dos')
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     <div class="col-md-2">
                         <p><strong>Teléfono Principal</strong></p>
-                        <input type="text" name="emergencia_telefono_uno_dos" id="emergencia_telefono_uno_dos" class="form-control" value="{{ old('emergencia_telefono_uno_dos', $emergencia->emergencia_telefono_uno_dos) }}">                     
+                        <input type="text" name="emergencia_telefono_uno_dos" id="emergencia_telefono_uno_dos"
+                            class="form-control"
+                            value="{{ old('emergencia_telefono_uno_dos', $emergencia->emergencia_telefono_uno_dos) }}">
                         @error('emergencia_telefono_uno_dos')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-2">
                         <p><strong>Teléfono Secundario</strong></p>
-                        <input type="text" name="emergencia_telefono_dos_dos" id="emergencia_telefono_dos_dos" class="form-control" value="{{ old('emergencia_telefono_dos_dos', $emergencia->emergencia_telefono_dos_dos) }}">              
+                        <input type="text" name="emergencia_telefono_dos_dos" id="emergencia_telefono_dos_dos"
+                            class="form-control"
+                            value="{{ old('emergencia_telefono_dos_dos', $emergencia->emergencia_telefono_dos_dos) }}">
                         @error('emergencia_telefono_dos_dos')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-2">
                         <p><strong>E-mail</strong></p>
-                        <input type="text" name="emergencia_email_dos" id="emergencia_email_dos" class="form-control" value="{{ old('emergencia_email_dos', $emergencia->emergencia_email_dos) }}">                    
+                        <input type="text" name="emergencia_email_dos" id="emergencia_email_dos" class="form-control"
+                            value="{{ old('emergencia_email_dos', $emergencia->emergencia_email_dos) }}">
                         @error('emergencia_email_dos')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -425,37 +486,48 @@
 
                     <div class="col-md-4">
                         <p><strong>Calle</strong></p>
-                        <input type="text" name="emergencia_calle_dos" id="emergencia_calle_dos" class="form-control" value="{{ old('emergencia_calle_dos', $emergencia->emergencia_calle_dos) }}">                
+                        <input type="text" name="emergencia_calle_dos" id="emergencia_calle_dos" class="form-control"
+                            value="{{ old('emergencia_calle_dos', $emergencia->emergencia_calle_dos) }}">
                         @error('emergencia_calle_dos')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-2">
                         <p><strong>Número</strong></p>
-                        <input type="text" name="emergencia_numero_dos" id="emergencia_numero_dos" class="form-control" value="{{ old('emergencia_numero_dos', $emergencia->emergencia_numero_dos) }}">                   
+                        <input type="text" name="emergencia_numero_dos" id="emergencia_numero_dos"
+                            class="form-control"
+                            value="{{ old('emergencia_numero_dos', $emergencia->emergencia_numero_dos) }}">
                         @error('emergencia_numero_dos')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-2">
                         <p><strong>Colonia</strong></p>
-                        <input type="text" name="emergencia_colonia_dos" id="emergencia_colonia_dos" class="form-control" value="{{ old('emergencia_colonia_dos', $emergencia->emergencia_colonia_dos) }}">               
+                        <input type="text" name="emergencia_colonia_dos" id="emergencia_colonia_dos"
+                            class="form-control"
+                            value="{{ old('emergencia_colonia_dos', $emergencia->emergencia_colonia_dos) }}">
                         @error('emergencia_colonia_dos')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-2">
                         <p><strong>Código Postal</strong></p>
-                        <input type="text" name="emergencia_codigo_postal_dos" id="emergencia_codigo_postal_dos" class="form-control" value="{{ old('emergencia_codigo_postal_dos', $emergencia->emergencia_codigo_postal_dos) }}">             
+                        <input type="text" name="emergencia_codigo_postal_dos" id="emergencia_codigo_postal_dos"
+                            class="form-control"
+                            value="{{ old('emergencia_codigo_postal_dos', $emergencia->emergencia_codigo_postal_dos) }}">
                         @error('emergencia_codigo_postal_dos')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    
+
 
                 </div>
 
@@ -465,44 +537,40 @@
 
                 <div class="row mt-3">
 
-    <div class="col-md-3">
-        <p><strong>Entidad</strong></p>
-        <select class="form-control entidad-select"
-                name="emergencia_estado_dos_id"
-                data-target="municipio_dos"
-                data-selected-municipio="{{ old('emergencia_municipio_dos_id', $emergencia->emergencia_municipio_dos_id ?? '') }}">
-            <option value="">Seleccione una entidad</option>
-            @foreach($entidades as $entidad)
-                <option value="{{ $entidad->id }}"
-                    {{ old('emergencia_estado_dos_id', $emergencia->emergencia_estado_dos_id ?? '') == $entidad->id ? 'selected' : '' }}>
-                    {{ $entidad->nombre }}
-                </option>
-            @endforeach
-        </select>
+                    <div class="col-md-3">
+                        <p><strong>Entidad</strong></p>
+                        <select class="form-control entidad-select" name="emergencia_estado_dos_id"
+                            data-target="municipio_dos"
+                            data-selected-municipio="{{ old('emergencia_municipio_dos_id', $emergencia->emergencia_municipio_dos_id ?? '') }}">
+                            <option value="">Seleccione una entidad</option>
+                            @foreach ($entidades as $entidad)
+                                <option value="{{ $entidad->id }}"
+                                    {{ old('emergencia_estado_dos_id', $emergencia->emergencia_estado_dos_id ?? '') == $entidad->id ? 'selected' : '' }}>
+                                    {{ $entidad->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
 
-        @error('emergencia_estado_dos_id')
-            <div class="alert alert-danger mt-1">{{ $message }}</div>
-        @enderror
-    </div>
+                        @error('emergencia_estado_dos_id')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-    <div class="col-md-3">
-        <p><strong>Municipio</strong></p>
-        <select id="municipio_dos"
-                class="form-control"
-                name="emergencia_municipio_dos_id"
-                >
-            <option value="">Seleccione un municipio</option>
-        </select>
+                    <div class="col-md-3">
+                        <p><strong>Municipio</strong></p>
+                        <select id="municipio_dos" class="form-control" name="emergencia_municipio_dos_id">
+                            <option value="">Seleccione un municipio</option>
+                        </select>
 
-        @error('emergencia_municipio_dos_id')
-            <div class="alert alert-danger mt-1">{{ $message }}</div>
-        @enderror
-    </div>
+                        @error('emergencia_municipio_dos_id')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-</div>
+                </div>
 
 
-                
+
 
 
 
@@ -523,51 +591,63 @@
 
                     <div class="col-md-4">
                         <p><strong>Nombre</strong></p>
-                        <input type="text" name="emergencia_nombre_tres" id="emergencia_nombre" class="form-control" value="{{ old('emergencia_nombre_tres', $emergencia->emergencia_nombre_tres) }}">
+                        <input type="text" name="emergencia_nombre_tres" id="emergencia_nombre" class="form-control"
+                            value="{{ old('emergencia_nombre_tres', $emergencia->emergencia_nombre_tres) }}">
 
                         @error('emergencia_nombre')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                    </div>  
-
-                    <div class="col-md-2">                        
-                            <p><strong>Relación de Emergencia</strong></p>
-                            <select name="emergencia_relacion_tres" id="emergencia_relacion_tres" class="form-control">
-                                <option value="">-- Selecciona una opción --</option>
-                                @foreach ($relacionesDeEmergencia as $relacion)
-                                    <option value="{{ $relacion->id }}" 
-                                        {{ old('emergencia_relacion_tres', $emergencia->emergencia_relacion_tres_id) == $relacion->id ? 'selected' : '' }}>
-                                        {{ $relacion->relacion }}
-                                    </option>
-                                @endforeach
-                            </select>
-
-                            @error('emergencia_relacion_tres')
-                                <br><div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
                     </div>
-                    
+
+                    <div class="col-md-2">
+                        <p><strong>Relación de Emergencia</strong></p>
+                        <select name="emergencia_relacion_tres" id="emergencia_relacion_tres" class="form-control">
+                            <option value="">-- Selecciona una opción --</option>
+                            @foreach ($relacionesDeEmergencia as $relacion)
+                                <option value="{{ $relacion->id }}"
+                                    {{ old('emergencia_relacion_tres', $emergencia->emergencia_relacion_tres_id) == $relacion->id ? 'selected' : '' }}>
+                                    {{ $relacion->relacion }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        @error('emergencia_relacion_tres')
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     <div class="col-md-2">
                         <p><strong>Teléfono Principal</strong></p>
-                        <input type="text" name="emergencia_telefono_uno_tres" id="emergencia_telefono_uno_tres" class="form-control" value="{{ old('emergencia_telefono_uno_tres', $emergencia->emergencia_telefono_uno_tres) }}">          
+                        <input type="text" name="emergencia_telefono_uno_tres" id="emergencia_telefono_uno_tres"
+                            class="form-control"
+                            value="{{ old('emergencia_telefono_uno_tres', $emergencia->emergencia_telefono_uno_tres) }}">
                         @error('emergencia_telefono_uno_tres')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-2">
                         <p><strong>Teléfono Secundario</strong></p>
-                        <input type="text" name="emergencia_telefono_dos_tres" id="emergencia_telefono_dos_tres" class="form-control" value="{{ old('emergencia_telefono_dos_tres', $emergencia->emergencia_telefono_dos_tres) }}">              
+                        <input type="text" name="emergencia_telefono_dos_tres" id="emergencia_telefono_dos_tres"
+                            class="form-control"
+                            value="{{ old('emergencia_telefono_dos_tres', $emergencia->emergencia_telefono_dos_tres) }}">
                         @error('emergencia_telefono_dos_tres')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-2">
                         <p><strong>E-mail</strong></p>
-                        <input type="text" name="emergencia_email_tres" id="emergencia_email_tres" class="form-control" value="{{ old('emergencia_email_tres', $emergencia->emergencia_email_tres) }}">                             
+                        <input type="text" name="emergencia_email_tres" id="emergencia_email_tres"
+                            class="form-control"
+                            value="{{ old('emergencia_email_tres', $emergencia->emergencia_email_tres) }}">
                         @error('emergencia_email_tres')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
@@ -579,94 +659,103 @@
 
                     <div class="col-md-4">
                         <p><strong>Calle</strong></p>
-                        <input type="text" name="emergencia_calle_tres" id="emergencia_calle_tres" class="form-control" value="{{ old('emergencia_calle_tres', $emergencia->emergencia_calle_tres) }}">                        
+                        <input type="text" name="emergencia_calle_tres" id="emergencia_calle_tres"
+                            class="form-control"
+                            value="{{ old('emergencia_calle_tres', $emergencia->emergencia_calle_tres) }}">
                         @error('emergencia_calle_tres')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-2">
                         <p><strong>Número</strong></p>
-                        <input type="text" name="emergencia_numero_tres" id="emergencia_numero_tres" class="form-control" value="{{ old('emergencia_numero_tres', $emergencia->emergencia_numero_tres) }}">                         
+                        <input type="text" name="emergencia_numero_tres" id="emergencia_numero_tres"
+                            class="form-control"
+                            value="{{ old('emergencia_numero_tres', $emergencia->emergencia_numero_tres) }}">
                         @error('emergencia_numero_tres')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-2">
                         <p><strong>Colonia</strong></p>
-                        <input type="text" name="emergencia_colonia_tres" id="emergencia_colonia_tres" class="form-control" value="{{ old('emergencia_colonia_tres', $emergencia->emergencia_colonia_tres) }}">                      
+                        <input type="text" name="emergencia_colonia_tres" id="emergencia_colonia_tres"
+                            class="form-control"
+                            value="{{ old('emergencia_colonia_tres', $emergencia->emergencia_colonia_tres) }}">
                         @error('emergencia_colonia_tres')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="col-md-2">
                         <p><strong>Código Postal</strong></p>
-                        <input type="text" name="emergencia_codigo_postal_tres" id="emergencia_codigo_postal_tres" class="form-control" value="{{ old('emergencia_codigo_postal_tres', $emergencia->emergencia_codigo_postal_tres) }}">                  
+                        <input type="text" name="emergencia_codigo_postal_tres" id="emergencia_codigo_postal_tres"
+                            class="form-control"
+                            value="{{ old('emergencia_codigo_postal_tres', $emergencia->emergencia_codigo_postal_tres) }}">
                         @error('emergencia_codigo_postal_tres')
-                        <br><div class="alert alert-danger">{{ $message }}</div>
+                            <br>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    
+
 
                 </div>
 
-        <!-- ---------------------------------------------------------------------- --> 
+                <!-- ---------------------------------------------------------------------- -->
 
-        
-
-        <!-- ------------------------------------------------------------- -->
-
-                <div class="row mt-3">
-
-    <div class="col-md-3">
-        <p><strong>Entidad</strong></p>
-        <select class="form-control entidad-select"
-                name="emergencia_estado_tres_id"
-                data-target="municipio_tres"
-                data-selected-municipio="{{ old('emergencia_municipio_tres_id', $emergencia->emergencia_municipio_tres_id ?? '') }}">
-            <option value="">Seleccione una entidad</option>
-            @foreach($entidades as $entidad)
-                <option value="{{ $entidad->id }}"
-                    {{ old('emergencia_estado_tres_id', $emergencia->emergencia_estado_tres_id ?? '') == $entidad->id ? 'selected' : '' }}>
-                    {{ $entidad->nombre }}
-                </option>
-            @endforeach
-        </select>
-
-        @error('emergencia_estado_tres_id')
-            <div class="alert alert-danger mt-1">{{ $message }}</div>
-        @enderror
-    </div>
-
-    <div class="col-md-3">
-        <p><strong>Municipio</strong></p>
-        <select id="municipio_tres"
-                class="form-control"
-                name="emergencia_municipio_tres_id">
-            <option value="">Seleccione un municipio</option>
-        </select>
-
-        @error('emergencia_municipio_tres_id')
-            <div class="alert alert-danger mt-1">{{ $message }}</div>
-        @enderror
-    </div>
-
-</div>
 
 
                 <!-- ------------------------------------------------------------- -->
-        </div>
-        <div class="card-footer">
-            <button type="submit" class="btn btn-success btn-sm btn-info">ACTUALIZAR DATOS</button>
-        </div>
 
-    </form>
-</div>
+                <div class="row mt-3">
 
-<br>
+                    <div class="col-md-3">
+                        <p><strong>Entidad</strong></p>
+                        <select class="form-control entidad-select" name="emergencia_estado_tres_id"
+                            data-target="municipio_tres"
+                            data-selected-municipio="{{ old('emergencia_municipio_tres_id', $emergencia->emergencia_municipio_tres_id ?? '') }}">
+                            <option value="">Seleccione una entidad</option>
+                            @foreach ($entidades as $entidad)
+                                <option value="{{ $entidad->id }}"
+                                    {{ old('emergencia_estado_tres_id', $emergencia->emergencia_estado_tres_id ?? '') == $entidad->id ? 'selected' : '' }}>
+                                    {{ $entidad->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        @error('emergencia_estado_tres_id')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-3">
+                        <p><strong>Municipio</strong></p>
+                        <select id="municipio_tres" class="form-control" name="emergencia_municipio_tres_id">
+                            <option value="">Seleccione un municipio</option>
+                        </select>
+
+                        @error('emergencia_municipio_tres_id')
+                            <div class="alert alert-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                </div>
+
+
+                <!-- ------------------------------------------------------------- -->
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-success btn-sm btn-info">ACTUALIZAR DATOS</button>
+            </div>
+
+        </form>
+    </div>
+
+    <br>
 
 @stop
 
@@ -678,7 +767,9 @@
 @stop
 
 @section('js')
-    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+    <script>
+        console.log("Hi, I'm using the Laravel-AdminLTE package!");
+    </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     {{--
@@ -736,70 +827,71 @@
                     }
 
                 });
-                </script>--}}
-                
+                </script> --}}
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
 
-    document.querySelectorAll('.entidad-select').forEach(entidadSelect => {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
 
-        const municipioSelectId = entidadSelect.dataset.target;
-        const municipioSelect = document.getElementById(municipioSelectId);
-        const selectedMunicipio = entidadSelect.dataset.selectedMunicipio ?? null;
+            document.querySelectorAll('.entidad-select').forEach(entidadSelect => {
 
-        function cargarMunicipios(entidadId) {
+                const municipioSelectId = entidadSelect.dataset.target;
+                const municipioSelect = document.getElementById(municipioSelectId);
+                const selectedMunicipio = entidadSelect.dataset.selectedMunicipio ?? null;
 
-            municipioSelect.innerHTML = '<option value="">Cargando...</option>';
+                function cargarMunicipios(entidadId) {
 
-            if (!entidadId) {
-                municipioSelect.innerHTML = '<option value="">Seleccione un municipio</option>';
-                return;
-            }
+                    municipioSelect.innerHTML = '<option value="">Cargando...</option>';
 
-            fetch(`/municipios/${entidadId}`)
-                .then(response => response.json())
-                .then(data => {
+                    if (!entidadId) {
+                        municipioSelect.innerHTML = '<option value="">Seleccione un municipio</option>';
+                        return;
+                    }
 
-                    municipioSelect.innerHTML = '<option value="">Seleccione un municipio</option>';
+                    fetch(`/municipios/${entidadId}`)
+                        .then(response => response.json())
+                        .then(data => {
 
-                    data.forEach(municipio => {
+                            municipioSelect.innerHTML =
+                                '<option value="">Seleccione un municipio</option>';
 
-                        const option = document.createElement('option');
-                        option.value = municipio.id;
-                        option.textContent = municipio.nombre;
+                            data.forEach(municipio => {
 
-                        if (
-                            selectedMunicipio !== null &&
-                            String(municipio.id) === String(selectedMunicipio)
-                        ) {
-                            option.selected = true;
-                        }
+                                const option = document.createElement('option');
+                                option.value = municipio.id;
+                                option.textContent = municipio.nombre;
 
-                        municipioSelect.appendChild(option);
-                    });
+                                if (
+                                    selectedMunicipio !== null &&
+                                    String(municipio.id) === String(selectedMunicipio)
+                                ) {
+                                    option.selected = true;
+                                }
 
-                })
-                .catch(error => {
-                    console.error('Error al cargar municipios:', error);
-                    municipioSelect.innerHTML = '<option value="">Error al cargar</option>';
+                                municipioSelect.appendChild(option);
+                            });
+
+                        })
+                        .catch(error => {
+                            console.error('Error al cargar municipios:', error);
+                            municipioSelect.innerHTML = '<option value="">Error al cargar</option>';
+                        });
+                }
+
+                // Cambio manual
+                entidadSelect.addEventListener('change', function() {
+                    cargarMunicipios(this.value);
                 });
-        }
 
-        // Cambio manual
-        entidadSelect.addEventListener('change', function () {
-            cargarMunicipios(this.value);
+                // Carga automática en edición
+                if (entidadSelect.value) {
+                    cargarMunicipios(entidadSelect.value);
+                }
+
+            });
+
         });
-
-        // Carga automática en edición
-        if (entidadSelect.value) {
-            cargarMunicipios(entidadSelect.value);
-        }
-
-    });
-
-});
-</script>
+    </script>
 
 
 
