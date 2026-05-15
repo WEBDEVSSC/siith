@@ -143,7 +143,8 @@
                 <th style="color: white;"><strong>NIVEL DE DOMINIO</strong></th>
                 <th style="color: white;"><strong>LENGUA INDIGENA</strong></th>
                 <th style="color: white;"><strong>NIVEL DE DOMINIO</strong></th>
-                <th style="color: white;"><strong>LENGUA DE SEÑAS</strong></th>            
+                <th style="color: white;"><strong>LENGUA DE SEÑAS</strong></th>       
+                <th style="color: white;"><strong>OCUPACION</strong></th>     
 
             </tr>
         </thead>
@@ -521,6 +522,8 @@
                     <td></td>
 
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}
+
+                    <td>{{ $profesional->puesto?->ocupacion ?? '' }}</td>
 
                 </tr>
             @endforeach
