@@ -140,7 +140,7 @@
                                 <!-- ------------------------- -->
                                 <!-- ------------------------- -->
 
-                                @if($data['profesional']->mdl_datos_generales == 1)
+                                {{--@if($data['profesional']->mdl_datos_generales == 1)
                                     <a href="{{ route('profesionalEdit', $data['profesional']->id) }}" class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="DATOS GENERALES">
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                     </a>
@@ -148,6 +148,31 @@
                                     <a href="#!" class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="DATOS GENERALES">
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                     </a>
+                                @endif--}}
+
+                                @if (
+                                    !filled($data['profesional']->padre_madre_familia) || 
+                                    !filled($data['profesional']->estado_conyugal)
+                                )
+
+                                    <a href="{{ route('profesionalEdit', $data['profesional']->id) }}"
+                                    class="btn btn-danger btn-sm"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="DATOS GENERALES">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    </a>
+
+                                @else
+
+                                    <a href="{{ route('profesionalEdit', $data['profesional']->id) }}"
+                                    class="btn btn-success btn-sm"
+                                    data-toggle="tooltip"
+                                    data-placement="top"
+                                    title="DATOS GENERALES">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                    </a>
+
                                 @endif
                                 <!-- ------------------------- -->
                                 <!-- ------------------------- -->
