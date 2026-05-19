@@ -248,11 +248,15 @@ class ProfesionalExportGeneral implements FromView, WithStyles, WithColumnFormat
             'EK2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
             'EL2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
             'EM2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
-            'EM2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
             'EN2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
             'EO2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
             'EP2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
             'EQ2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
+
+            // Estilos para el modulo de DATOS EXTRAS
+            'ER1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '006BFF']]],
+            'ER2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '006BFF']]],
+            'ES2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '006BFF']]],
     
         ];
     }

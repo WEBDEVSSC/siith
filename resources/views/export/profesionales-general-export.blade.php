@@ -32,6 +32,8 @@
                 <th colspan="35" style="text-align: center; font-size: 20px; font-weight: bold;">EMERGENCIA</th>
 
                 <th colspan="10" style="text-align: center; font-size: 20px; font-weight: bold;">DIRECCIÓN</th>
+
+                <th colspan="2" style="text-align: center; font-size: 20px; font-weight: bold;">EXTRA</th>
             </tr>
             <tr>
                 {{-- NUMERO CONSECUTIVO --}}
@@ -294,6 +296,7 @@
                 @endif
                 
                 <th><strong>ID SISTEMA</strong></th>
+                <th><strong>PADRE / MADRE</strong></th>
                 
             </tr>
         </thead>
@@ -1015,6 +1018,9 @@
                     @endif
 
                     <td>{{ $profesional->id ?? '' }}</td>
+
+                    <td>{{ $profesional->padre_madre_familia ?? '' }}</td>
+
 
 
                 </tr>

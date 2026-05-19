@@ -33,6 +33,8 @@
 
                 <th colspan="10" style="text-align: center; font-size: 20px; font-weight: bold;">DIRECCIÓN</th>
 
+                <th colspan="1" style="text-align: center; font-size: 20px; font-weight: bold;"></th>
+
             </tr>
             <tr>
                 {{-- NUMERO CONSECUTIVO --}}
@@ -201,6 +203,9 @@
                 <th><strong>COLONIA</strong></th>
                 <th><strong>C.P.</strong></th>
                 <th><strong>MUNICIPIO</strong></th>
+                
+                {{-- DATOS EXTRAS --}}
+                <th><strong>PADRE / MADRE</strong></th>
 
                 
             </tr>
@@ -874,6 +879,8 @@
                     <td>{{ $profesional->direccion->ciudad ?? '' }}</td>
                     <td>{{ $profesional->direccion->tipo_asentamiento ?? '' }}</td>
                     <td>{{ $profesional->direccion->zona ?? '' }}</td>
+
+                    <td>{{ $profesional->padre_madre_familia ?? '' }}</td>
 
                 </tr>
             @endforeach
