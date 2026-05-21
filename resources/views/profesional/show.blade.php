@@ -1659,6 +1659,16 @@
                     </div>
 
                     <div class="col-md-3">
+                            <p><strong>Limpiar municipio</strong></p>
+                            <select name="limpiar_municipio" class="form-control">
+                                <option value="">-- Selecciona una opción --</option>
+                                <option value="SI">SI</option>
+                            </select>
+                        </div>
+
+                    {{-- 
+
+                    <div class="col-md-3">
                         <p><strong>Pais Nacimiento</strong></p>
                         <select name="pais_nacimiento" class="form-control">
                             <option value="">Selecciona un país</option>
@@ -1693,13 +1703,14 @@
                                 </option>
                             @endforeach
                         </select>
-                    </div>
+                    </div>--}}
 
                     
 
                     </div>
-
+                    
                     <div class="row mt-3">
+                        {{--
                         <div class="col-md-3">
                         <p><strong>Municipio Nacimiento</strong></p>
                         <select name="municipio_nacimiento" class="form-control">
@@ -1712,8 +1723,16 @@
                                 </option>
                             @endforeach
                         </select>
+
+                        </div>
+
+                        --}}
+
+                        
+
                     </div>
-                    </div>
+
+                
                     
 
                 </div>

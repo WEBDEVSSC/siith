@@ -555,8 +555,10 @@ class ProfesionalCambioDeUnidadController extends Controller
 
     public function cambioDeCurpForzoso(Request $request, $id)
     {
+    
         $request->validate([
-            'curp' => 'required|regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[A-Z0-9][0-9]$/|unique:profesionales_datos_generales,curp',
+            'curp' => 'required|regex:/^[A-Z]{4}[0-9]{6}[HM][A-Z]{5}[A-Z0-9][0-9]$/|unique:profesionales_datos_generales,curp,' . $id,
+            'limpiar_municipio' => 'nullable',
         ], [
             'curp.required' => 'El campo CURP es obligatorio.',
             'curp.regex' => 'El formato del CURP no es válido. Asegúrate de que esté correctamente escrito (18 caracteres: letras y números en mayúsculas).',
@@ -599,6 +601,10 @@ class ProfesionalCambioDeUnidadController extends Controller
         $profesional->fecha_nacimiento = $fechaFormateada;
         $profesional->entidad_nacimiento = $entidad->nombre;
         //$profesional->municipio_nacimiento = NULL;
+        
+        if ($request->limpiar_municipio == 'SI') {
+            $profesional->municipio_nacimiento = NULL;
+        }
 
         $profesional->save();
 
