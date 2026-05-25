@@ -1017,6 +1017,43 @@ class ProfesionalController extends Controller
                 })
                 ->get();
         }
+
+        elseif(Gate::allows('creeSaltillo'))
+        {
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLDIF000040')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        } 
+        elseif(Gate::allows('criMonclova'))
+        {
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLDIF000055')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        } 
+        elseif(Gate::allows('criTorreon'))
+        {
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLDIF000064')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        } 
+        elseif(Gate::allows('criParras'))
+        {
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLDIF000073')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        } 
+        elseif(Gate::allows('criPiedrasNegras'))
+        {
+            $profesionales = Profesional::with(['puesto', 'credencializacion', 'horario', 'sueldo', 'gradoAcademico', 'areaMedica'])
+                ->whereRelation('puesto', 'clues_adscripcion', 'CLDIF000082')
+                ->whereRelation('puesto', 'vigencia', 'ACTIVO')
+                ->get();
+        }
+
         else
         {
             $profesionales = collect(); // colección vacía para evitar errores

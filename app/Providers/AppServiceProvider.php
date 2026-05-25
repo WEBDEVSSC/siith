@@ -48,11 +48,6 @@ class AppServiceProvider extends ServiceProvider
         });
 
         // ROL OFICINAS JURISDICCIONALES (CATALOGO 3)
-        Gate::define('criCree', function ($user) {
-            return $user->role === 'criCree';
-        });
-
-        // ROL OFICINAS JURISDICCIONALES (CATALOGO 3)
         Gate::define('samuCrum', function ($user) {
             return $user->role === 'samuCrum';
         });
@@ -201,6 +196,39 @@ class AppServiceProvider extends ServiceProvider
         // ROL RH VINCULACION
         Gate::define('vinculacion', function ($user) {
             return $user->role === 'vinculacion';
+        });
+
+        /**
+         * 
+         * 
+         * ROLES PARA DIF CRI CREE
+         * 
+         * 
+         */
+
+        // ROL OFICINAS JURISDICCIONALES (CATALOGO 3)
+        Gate::define('criCree', function ($user) {
+            return $user->role === 'criCree';
+        });
+
+        Gate::define('creeSaltillo', function ($user) {
+            return $user->role === 'creeSaltillo';
+        });
+
+        Gate::define('criMonclova', function ($user) {
+            return $user->role === 'criMonclova';
+        });
+
+        Gate::define('criTorreon', function ($user) {
+            return $user->role === 'criTorreon';
+        });
+
+        Gate::define('criParras', function ($user) {
+            return $user->role === 'criParras';
+        });
+
+        Gate::define('criPiedrasNegras', function ($user) {
+            return $user->role === 'criPiedrasNegras';
         });
     }
 
