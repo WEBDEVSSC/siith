@@ -46,6 +46,7 @@ use App\Http\Controllers\ProfesionalReporteController;
 use App\Http\Controllers\ProfesionalRolController;
 use App\Http\Controllers\ProfesionalSessionsController;
 use App\Http\Controllers\BitacoraOcupacionController;
+use App\Http\Controllers\CatalogoCertificacionController;
 use App\Http\Controllers\ProfesionalSueldoController;
 use App\Http\Controllers\ProfesionalVigenciaController;
 use App\Http\Controllers\SystemSettingsController;
@@ -824,6 +825,29 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/settings/titulo/updateTitulo/{id}', [CatalogoTituloController::class,'updateTitulo'])->name('updateTitulo');
 
      Route::delete('admin/settings/titulo/deleteTitulo/{id}', [CatalogoTituloController::class, 'deleteTitulo'])->name('deleteTitulo');
+
+     /**
+     * 
+     * 
+     * MODULOS ADMINISRATIVOS
+     * CERTIFICACIONES
+     * 
+     * 
+     */
+
+     Route::get('admin/settings/certificacion/indexCertificacion', [CatalogoCertificacionController::class,'indexCertificacion'])->name('indexCertificacion');
+
+     Route::get('admin/settings/certificacion/showCertificacion/{id}', [CatalogoCertificacionController::class,'showCertificacion'])->name('showCertificacion');
+
+     Route::get('admin/settings/certificacion/createCertificacion', [CatalogoCertificacionController::class,'createCertificacion'])->name('createCertificacion');
+
+     Route::post('admin/settings/certificacion/storeCertificacion', [CatalogoCertificacionController::class,'storeCertificacion'])->name('storeCertificacion');
+
+     Route::get('admin/settings/certificacion/editCertificacion/{id}', [CatalogoCertificacionController::class,'editCertificacion'])->name('editCertificacion');
+
+     Route::put('admin/settings/certificacion/updateCertificacion/{id}', [CatalogoCertificacionController::class,'updateCertificacion'])->name('updateCertificacion');
+
+     Route::delete('admin/settings/certificacion/deleteCertificacion/{id}', [CatalogoCertificacionController::class, 'deleteCertificacion'])->name('deleteCertificacion');
 
      /**
      * 
