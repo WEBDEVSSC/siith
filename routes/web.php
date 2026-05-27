@@ -839,7 +839,7 @@ Route::middleware(['auth'])->group(function ()
 
      Route::get('admin/settings/certificacion/showCertificacion/{id}', [CatalogoCertificacionController::class,'showCertificacion'])->name('showCertificacion');
 
-     Route::get('admin/settings/certificacion/createCertificacion', [CatalogoCertificacionController::class,'createCertificacion'])->name('createCertificacion');
+     Route::get('admin/settings/certificacion/createCertificaciones', [CatalogoCertificacionController::class,'createCertificaciones'])->name('createCertificaciones');
 
      Route::post('admin/settings/certificacion/storeCertificacion', [CatalogoCertificacionController::class,'storeCertificacion'])->name('storeCertificacion');
 

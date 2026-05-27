@@ -16,7 +16,7 @@ class CatalogoCertificacionController extends Controller
         return view('settings.certificacion.index', compact('certificaciones'));
     }
 
-    public function createCertificacion()
+    public function createCertificaciones()
     {
         return view('settings.certificacion.create');
     }
