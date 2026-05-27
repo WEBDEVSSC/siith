@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class CatalogoCertificacionController extends Controller
 {
     //
-    public function indexCertificacion()
+    public function indexCertificaciones()
     {
         $certificaciones = Certificacion::all();
 
@@ -21,7 +21,7 @@ class CatalogoCertificacionController extends Controller
         return view('settings.certificacion.create');
     }
 
-    public function storeCertificacion(Request $request)
+    public function storeCertificaciones(Request $request)
     {
         $request->validate([
             'certificacion' => 'required|string|max:100',
@@ -37,17 +37,17 @@ class CatalogoCertificacionController extends Controller
 
         $certificacion->save();
 
-        return redirect()->route('indexCertificacion')->with('success', 'Registro realizado correctamente');
+        return redirect()->route('indexCertificaciones')->with('success', 'Registro realizado correctamente');
     }
 
-        public function editCertificacion($id)
+        public function editCertificaciones($id)
         {
             $certificacion = Certificacion::findOrFail($id);
     
             return view('settings.certificacion.edit', compact('certificacion'));
         }
 
-        public function updateCertificacion(Request $request, $id)
+        public function updateCertificaciones(Request $request, $id)
         {        
             $request->validate([
                 'certificacion' => 'required|string|max:100',
@@ -72,10 +72,10 @@ class CatalogoCertificacionController extends Controller
                 $profesionalCertificacion->save();
             }
 
-            return redirect()->route('indexCertificacion')->with('success', 'Registro actualizado correctamente');
+            return redirect()->route('indexCertificaciones')->with('success', 'Registro actualizado correctamente');
         }
 
-        public function deleteCertificacion($id)
+        public function deleteCertificaciones($id)
         {
             $certificacion = Certificacion::findOrFail($id);
     
@@ -91,6 +91,6 @@ class CatalogoCertificacionController extends Controller
                 $profesionalCertificacion->save();
             }
     
-            return redirect()->route('indexCertificacion')->with('success', 'Registro eliminado correctamente');
+            return redirect()->route('indexCertificaciones')->with('success', 'Registro eliminado correctamente');
         }
 }

@@ -835,19 +835,19 @@ Route::middleware(['auth'])->group(function ()
      * 
      */
 
-     Route::get('admin/settings/certificacion/indexCertificacion', [CatalogoCertificacionController::class,'indexCertificacion'])->name('indexCertificacion');
+     Route::get('admin/settings/certificacion/indexCertificaciones', [CatalogoCertificacionController::class,'indexCertificaciones'])->name('indexCertificaciones');
 
-     Route::get('admin/settings/certificacion/showCertificacion/{id}', [CatalogoCertificacionController::class,'showCertificacion'])->name('showCertificacion');
+     Route::get('admin/settings/certificacion/showCertificaciones/{id}', [CatalogoCertificacionController::class,'showCertificaciones'])->name('showCertificaciones');
 
      Route::get('admin/settings/certificacion/createCertificaciones', [CatalogoCertificacionController::class,'createCertificaciones'])->name('createCertificaciones');
 
-     Route::post('admin/settings/certificacion/storeCertificacion', [CatalogoCertificacionController::class,'storeCertificacion'])->name('storeCertificacion');
+     Route::post('admin/settings/certificacion/storeCertificaciones', [CatalogoCertificacionController::class,'storeCertificaciones'])->name('storeCertificaciones');
 
-     Route::get('admin/settings/certificacion/editCertificacion/{id}', [CatalogoCertificacionController::class,'editCertificacion'])->name('editCertificacion');
+     Route::get('admin/settings/certificacion/editCertificaciones/{id}', [CatalogoCertificacionController::class,'editCertificaciones'])->name('editCertificaciones');
 
-     Route::put('admin/settings/certificacion/updateCertificacion/{id}', [CatalogoCertificacionController::class,'updateCertificacion'])->name('updateCertificacion');
+     Route::put('admin/settings/certificacion/updateCertificaciones/{id}', [CatalogoCertificacionController::class,'updateCertificaciones'])->name('updateCertificaciones');
 
-     Route::delete('admin/settings/certificacion/deleteCertificacion/{id}', [CatalogoCertificacionController::class, 'deleteCertificacion'])->name('deleteCertificacion');
+     Route::delete('admin/settings/certificacion/deleteCertificaciones/{id}', [CatalogoCertificacionController::class, 'deleteCertificaciones'])->name('deleteCertificaciones');
 
      /**
      * 
