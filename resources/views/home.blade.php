@@ -359,7 +359,9 @@
               <td>{{ $nominau013 }}</td>
           </tr>
 
-          <!-- 8 -->
+          
+
+          <!-- 9 -->
           <tr>
               <!-- UNE -->
               <td>
@@ -374,6 +376,31 @@
                   <span style="font-weight: bold;">UMM</span>
               </td>
               <td>{{ $nominaUmmFam }}</td>
+
+              <!-- 6MR -->
+              <td>
+                  <span style="display:inline-block; width:12px; height:12px; background-color: rgba(153, 102, 255, 0.6); border-radius:3px; margin-right:6px;"></span>
+                  <span style="font-weight: bold;">6MR</span>
+              </td>
+              <td>{{ $nominaMedicoResidente }}</td>
+
+              <!-- TOTAL -->
+              
+          </tr>
+
+          <!-- 8 -->
+          <tr>
+              <!-- UNE -->
+              <td>
+                  
+              </td>
+              <td></td>
+
+              <!-- UMM -->
+              <td>
+                  
+              </td>
+              <td></td>
 
               <!-- TOTAL -->
               <td>
