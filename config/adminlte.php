@@ -332,7 +332,7 @@ return [
             'url' => 'admin/profesionales/buscarCurp',
             'icon' => 'fas fa-plus',
             'label_color' => 'success',
-            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'universitario','cecosama','issreei'],
+            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'universitario','cecosama','issreei','creeSaltillo','cecreMonclova','criTorreon','criParras','criPiedrasNegras'],
         ],
         [
             'text' => 'Recontratación',
