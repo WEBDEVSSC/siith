@@ -120,7 +120,8 @@ class ProfesionalExport implements FromView, WithStyles, WithColumnFormatting
             {
                 $query->where('clues_adscripcion', 'CLSSA001136');
             }
-            elseif ($user->role == 'csuyr') 
+
+            elseif (in_array($user->role, ['csuyr','creeSaltillo','cecreMonclova','criTorreon','criParras','criPiedrasNegras']))
             {
                 $query->where('clues_adscripcion', $user->clues_unidad);
             }
