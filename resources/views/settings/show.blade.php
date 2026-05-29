@@ -325,7 +325,7 @@
                 <span class="info-box-icon bg-info"><i class="fa fa-cog" aria-hidden="true"></i></span>
 
                 <div class="info-box-content">
-                    <a href="{{ route('indexCertificacion') }}"><span class="info-box-text"><span class="info-box-text"><span class="info-box-text">Certificaciones</span></a>
+                    <a href="{{ route('indexCertificaciones') }}"><span class="info-box-text"><span class="info-box-text"><span class="info-box-text">Certificaciones</span></a>
                 </div>
                 <!-- /.info-box-content -->
                 </div>
