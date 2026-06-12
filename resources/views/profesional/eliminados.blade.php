@@ -39,7 +39,7 @@
                             <td>{{ $profesional->id }}</td>
                             <td>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
                             <td>{{ $profesional->curp }}</td>
-                            <td>{{ $profesional->deleted_at }}</td>
+                            <td>{{ $profesional->deleted_at ? $profesional->deleted_at->format('d/m/Y H:i:s') : '' }}</td>
                             <td>
                                 <form action="{{ route('profesionalesRestaurar', $profesional->id) }}"
                                       method="POST"
