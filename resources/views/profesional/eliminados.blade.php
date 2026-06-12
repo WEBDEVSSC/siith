@@ -26,7 +26,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Correo</th>
+                        <th>Curp</th>
                         <th>Fecha de eliminación</th>
                         <th>Acciones</th>
                     </tr>
@@ -39,7 +39,6 @@
                             <td>{{ $profesional->id }}</td>
                             <td>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
                             <td>{{ $profesional->curp }}</td>
-                            <td>{{ $profesional->email }}</td>
                             <td>{{ $profesional->deleted_at }}</td>
                             <td>
                                 <form action="{{ route('profesionalesRestaurar', $profesional->id) }}"
