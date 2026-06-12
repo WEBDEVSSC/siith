@@ -2692,4 +2692,20 @@ class ProfesionalController extends Controller
         return redirect()->route('profesionalBuscadorForm')->with('success', 'Registro eliminado correctamente.');
     }
 
+    public function registrosInactivos()
+    {
+        $profesionales = Profesional::onlyTrashed()->get();
+
+        return view('profesional.eliminados', compact('profesionales'));
+    }
+
+    public function profesionalesRestaurar($id)
+    {
+        $usuario = Profesional::withTrashed()
+            ->findOrFail($id)
+            ->restore();
+
+        return back()->with('success', 'Profesional restaurado correctamente.');
+    }
+
 }

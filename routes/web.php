@@ -197,6 +197,12 @@ Route::middleware(['auth'])->group(function ()
     Route::get('admin/profesionales/editDatosGeneralesEnsenanza/{id}',[ProfesionalController::class,'editDatosGeneralesEnsenanza'])->name('editDatosGeneralesEnsenanza');
 
     Route::put('admin/profesionales/updateDatosGeneralesEnsenanza/{id}',[ProfesionalController::class,'updateDatosGeneralesEnsenanza'])->name('updateDatosGeneralesEnsenanza');
+    
+    // RUTAS PARA REACTIVAR REGISTROS
+
+    Route::get('admin/profesionales/registros-inactivos',[ProfesionalController::class,'registrosInactivos'])->name('registrosInactivos');
+
+    Route::put('admin/profesionales/registros-restaurar/{id}',[ProfesionalController::class,'profesionalesRestaurar'])->name('profesionalesRestaurar');
 
     /**
      * 
