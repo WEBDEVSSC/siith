@@ -33,6 +33,7 @@ class CatalogoOcupacionOfJurisdiccionalController extends Controller
             'subarea' => 'required|string',
             'servicio' => 'required|string',
             'ocupacion' => 'required|string',
+            'orden' => 'required|numeric',
         ],[
             'unidad.required' => 'El campo unidad es obligatorio.',
             'unidad.string' => 'El campo unidad debe ser una cadena de texto.',
@@ -48,6 +49,9 @@ class CatalogoOcupacionOfJurisdiccionalController extends Controller
 
             'ocupacion.required' => 'El campo ocupación es obligatorio.',
             'ocupacion.string' => 'El campo ocupación debe ser una cadena de texto.',
+
+            'orden.required' => 'Debes ingresar el orden.',
+            'orden.numeric' => 'El orden debe ser un valor numérico válido.',
         ]);
 
         // Creamos el objeto
@@ -59,6 +63,7 @@ class CatalogoOcupacionOfJurisdiccionalController extends Controller
         $ocupacion->subarea = $request->subarea;
         $ocupacion->servicio = $request->servicio;
         $ocupacion->ocupacion = $request->ocupacion;
+        $ocupacion->orden = $request->orden;
 
         // Guardamos los valores
         $ocupacion->save();
@@ -85,6 +90,7 @@ class CatalogoOcupacionOfJurisdiccionalController extends Controller
             'subarea' => 'required|string',
             'servicio' => 'required|string',
             'ocupacion' => 'required|string',
+            'orden' => 'required|numeric',
         ],[
             'unidad.required' => 'El campo unidad es obligatorio.',
             'unidad.string' => 'El campo unidad debe ser una cadena de texto.',
@@ -100,6 +106,9 @@ class CatalogoOcupacionOfJurisdiccionalController extends Controller
 
             'ocupacion.required' => 'El campo ocupación es obligatorio.',
             'ocupacion.string' => 'El campo ocupación debe ser una cadena de texto.',
+
+            'orden.required' => 'Debes ingresar el orden.',
+            'orden.numeric' => 'El orden debe ser un valor numérico válido.',
         ]);
 
         // Buscamos el registro
@@ -111,6 +120,7 @@ class CatalogoOcupacionOfJurisdiccionalController extends Controller
         $ocupacion->subarea = $request->subarea;
         $ocupacion->servicio = $request->servicio;
         $ocupacion->ocupacion = $request->ocupacion;
+        $ocupacion->orden = $request->orden;
 
         // Guardamos los cambios
         $ocupacion->save();

@@ -28,28 +28,28 @@
 
             <div class="row">
                 <div class="col-md-3">
-                    <p>Unidad</p>
+                    <p><strong>Unidad</strong></p>
                     <input type="text" name="unidad" id="unidad" class="form-control" value="{{ old('unidad', $ocupacion->unidad) }}">
                     @error('unidad')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="col-md-3">
-                    <p>Area</p>
+                    <p><strong>Área</strong></p>
                     <input type="text" name="area" id="area" class="form-control" value="{{ old('area', $ocupacion->area) }}">
                     @error('area')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="col-md-3">
-                    <p>Subarea</p>
+                    <p><strong>Subarea</strong></p>
                     <input type="text" name="subarea" id="subarea" class="form-control" value="{{ old('subarea', $ocupacion->subarea) }}">
                     @error('subarea')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="col-md-3">
-                    <p>Servicio</p>
+                    <p><strong>Servicio</strong></p>
                     <input type="text" name="servicio" id="servicio" class="form-control" value="{{ old('servicio', $ocupacion->servicio) }}">
                     @error('servicio')
                         <br><div class="alert alert-danger">{{ $message }}</div>
@@ -59,12 +59,21 @@
 
             <div class="row mt-3">
                 <div class="col-md-3">
-                    <p>Ocupación</p>
+                    <p><strong>Ocupación</strong></p>
                     <input type="text" name="ocupacion" id="ocupacion" class="form-control" value="{{ old('ocupacion', $ocupacion->ocupacion) }}">
                     @error('ocupacion')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                 </div>
+
+                <div class="col-md-3">
+                    <p><strong>Orden</strong></p>
+                    <input type="number" step="0.00001" name="orden" id="orden" class="form-control" value="{{ old('orden', $ocupacion->orden) }}">
+                    @error('orden')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
             </div>
 
         </div>
