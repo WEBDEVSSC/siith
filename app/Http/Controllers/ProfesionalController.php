@@ -2731,7 +2731,7 @@ class ProfesionalController extends Controller
         $clues = $user->clues_unidad;
 
         // 🔎 Obtener registros filtrados por CLUES
-        $registros = DB::table('profesionales_grados_academicos')
+        /*$registros = DB::table('profesionales_grados_academicos')
             ->join(
                 'profesionales_puesto',
                 'profesionales_puesto.id',
@@ -2741,6 +2741,24 @@ class ProfesionalController extends Controller
             ->where('profesionales_puesto.clues_adscripcion', $clues)
             ->where('profesionales_puesto.vigencia', 'ACTIVO')
             ->select([
+                'reg_nac_prof_uno',
+                'reg_nac_prof_dos',
+                'reg_nac_prof_tres',
+                'reg_nac_prof_cuatro'
+            ])
+            ->get();*/
+
+        $registros = DB::table('profesionales_grados_academicos')
+            ->join(
+                'profesionales_puesto',
+                'profesionales_puesto.id_profesional',
+                '=',
+                'profesionales_grados_academicos.id_profesional'
+            )
+            ->where('profesionales_puesto.clues_adscripcion', $clues)
+            ->where('profesionales_puesto.vigencia', 'ACTIVO')
+            ->select([
+                'profesionales_grados_academicos.id_profesional',
                 'reg_nac_prof_uno',
                 'reg_nac_prof_dos',
                 'reg_nac_prof_tres',
