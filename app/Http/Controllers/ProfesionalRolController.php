@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ProfesionalRolController extends Controller
 {
@@ -95,4 +96,14 @@ class ProfesionalRolController extends Controller
 
         return redirect()->route('indexRol')->with('delete', 'Registro eliminado correctamente.');
     }
+
+    public function PdfRol()
+    {
+        $roles = Role::all();
+
+        $pdf = Pdf::loadView('pdf.roles', compact('roles'));
+
+        return $pdf->download('roles.pdf');
+    }
+
 }

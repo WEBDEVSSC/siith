@@ -42,6 +42,10 @@
 <div class="card">
         <div class="card-header">
             <a href="{{ route('createRol') }}" class="btn btn-success btn-sm">NUEVO REGISTRO</a>
+
+            <a href="{{ route('PdfRol') }}" class="btn btn-danger btn-sm">
+                Descargar PDF
+            </a>
         </div>
         <div class="card-body">
 

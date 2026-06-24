@@ -883,6 +883,8 @@ Route::middleware(['auth'])->group(function ()
 
      Route::delete('admin/usuarios/roles/deleteRol/{id}', [ProfesionalRolController::class, 'deleteRol'])->name('deleteRol');
 
+     Route::get('admin/usuarios/roles/pdf', [ProfesionalRolController::class, 'PdfRol'])->name('PdfRol');
+
      /**
      * 
      * 
