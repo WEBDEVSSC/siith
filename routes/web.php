@@ -153,6 +153,11 @@ Route::middleware(['auth'])->group(function ()
     // Ruta para ver los registros
     Route::get('admin/profesionales/profesionalIndex',[ProfesionalController::class, 'profesionalIndex'])->name('profesionalIndex');
 
+    // Ruta para index de Descargas
+    Route::get('admin/profesionales/descargas/index',[ProfesionalController::class, 'profesionalDescargasIndex'])->name('profesionalDescargasIndex');
+
+    Route::get('/descargar-registros', [ProfesionalController::class, 'descargarArchivos'])->name('descargarArchivos');
+
     // Ruta para mostrar los registros en baja temporal
     Route::get('admin/profesionales/profesionalesBajasTemporalesIndex',[ProfesionalController::class, 'profesionalesBajasTemporalesIndex'])->name('profesionalesBajasTemporalesIndex');
 

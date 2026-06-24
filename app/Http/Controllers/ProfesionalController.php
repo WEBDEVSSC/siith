@@ -51,6 +51,9 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use ZipArchive;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 
 class ProfesionalController extends Controller
@@ -2708,4 +2711,97 @@ class ProfesionalController extends Controller
         return back()->with('success', 'Profesional restaurado correctamente.');
     }
 
+    /**
+     * 
+     * 
+     * 
+     * DESCARGAS
+     * 
+     * 
+     */
+
+    public function profesionalDescargasIndex()
+    {
+        return view('descarga.index');
+    }
+
+    public function descargarArchivos()
+    {
+        $user = Auth::user();
+        $clues = $user->clues_unidad;
+
+        // 🔎 Obtener registros filtrados por CLUES
+        $registros = DB::table('profesionales_grados_academicos')
+            ->join(
+                'profesionales_puesto',
+                'profesionales_puesto.id',
+                '=',
+                'profesionales_grados_academicos.id_profesional'
+            )
+            ->where('profesionales_puesto.clues_adscripcion', $clues)
+            ->select([
+                'reg_nac_prof_uno',
+                'reg_nac_prof_dos',
+                'reg_nac_prof_tres',
+                'reg_nac_prof_cuatro'
+            ])
+            ->get();
+
+        if ($registros->isEmpty()) {
+            abort(404, 'No hay registros para descargar');
+        }
+
+        // 📦 Crear ZIP
+        $zipName = 'registros_' . time() . '.zip';
+        $zipPath = storage_path('app/public/' . $zipName);
+
+        $zip = new ZipArchive;
+
+        if ($zip->open($zipPath, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) {
+            abort(500, 'No se pudo crear el archivo ZIP');
+        }
+
+        $hayArchivos = false;
+
+        // 📁 Recorrer registros
+        foreach ($registros as $registro) {
+
+            $files = [
+                $registro->reg_nac_prof_uno,
+                $registro->reg_nac_prof_dos,
+                $registro->reg_nac_prof_tres,
+                $registro->reg_nac_prof_cuatro,
+            ];
+
+            foreach ($files as $file) {
+
+                if (!$file) {
+                    continue;
+                }
+
+                // 📌 validar en storage/app/public
+                if (Storage::disk('public')->exists($file)) {
+
+                    $fullPath = Storage::disk('public')->path($file);
+
+                    if (file_exists($fullPath)) {
+
+                        $zip->addFile($fullPath, basename($file));
+                        $hayArchivos = true;
+                    }
+                }
+            }
+        }
+
+        $zip->close();
+
+        // 🚨 Validación final
+        if (!$hayArchivos || !file_exists($zipPath)) {
+            abort(404, 'No se encontraron archivos para descargar');
+        }
+
+        // 📥 Descargar ZIP y eliminarlo después
+        return response()->download($zipPath)->deleteFileAfterSend(true);
+
+    }
 }

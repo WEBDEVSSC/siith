@@ -360,6 +360,14 @@ return [
             'url' => 'admin/profesionales/reportes/reporteIndex',
             'icon' => 'fa-solid fa-file-excel',
             'label_color' => 'success',
+            'can' => ['almacen'],
+            //'can' => ['admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'ensenanza', 'universitario', 'riesgos','cecosama','creeSaltillo','cecreMonclova','criTorreon','criParras','criPiedrasNegras'],
+        ],
+        [
+            'text' => 'Descargas',
+            'url' => 'admin/profesionales/descargas/index',
+            'icon' => 'fa-solid fa-download',
+            'label_color' => 'success',
             'can' => ['admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'ensenanza', 'universitario', 'riesgos','cecosama','creeSaltillo','cecreMonclova','criTorreon','criParras','criPiedrasNegras'],
         ],
         [
