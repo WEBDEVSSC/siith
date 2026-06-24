@@ -35,6 +35,8 @@
 
                 <th colspan="1" style="text-align: center; font-size: 20px; font-weight: bold;"></th>
 
+                <th colspan="4" style="text-align: center; font-size: 20px; font-weight: bold;">DOC G.A.</th>
+
             </tr>
             <tr>
                 {{-- NUMERO CONSECUTIVO --}}
@@ -206,6 +208,11 @@
                 
                 {{-- DATOS EXTRAS --}}
                 <th><strong>PADRE / MADRE</strong></th>
+
+                <th><strong>DOC GRADO ACADEMICO UNO</strong></th>
+                <th><strong>DOC GRADO ACADEMICO DOS</strong></th>
+                <th><strong>DOC GRADO ACADEMICO TRES</strong></th>
+                <th><strong>DOC GRADO ACADEMICO CUATRO</strong></th>
 
                 
             </tr>
@@ -881,6 +888,12 @@
                     <td>{{ $profesional->direccion->zona ?? '' }}</td>
 
                     <td>{{ $profesional->padre_madre_familia ?? '' }}</td>
+
+                    <td>{{ $profesional->gradoAcademico->reg_nac_prof_uno ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->reg_nac_prof_dos ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->reg_nac_prof_tres ?? '' }}</td>
+                    <td>{{ $profesional->gradoAcademico->reg_nac_prof_cuatro ?? '' }}</td>
+
 
                 </tr>
             @endforeach
