@@ -33,7 +33,7 @@
 
                 <th colspan="10" style="text-align: center; font-size: 20px; font-weight: bold;">DIRECCIÓN</th>
 
-                <th colspan="1" style="text-align: center; font-size: 20px; font-weight: bold;"></th>
+                <th colspan="1" style="text-align: center; font-size: 20px; font-weight: bold;">PADRE / MADRE</th>
 
                 <th colspan="4" style="text-align: center; font-size: 20px; font-weight: bold;">DOC G.A.</th>
 
@@ -207,7 +207,18 @@
                 <th><strong>MUNICIPIO</strong></th>
                 
                 {{-- DATOS EXTRAS --}}
-                <th><strong>PADRE / MADRE</strong></th>
+                <th><strong>CALLE</strong></th>
+                <th><strong>NUMERO EXT</strong></th>
+                <th><strong>NUMERO INT</strong></th>
+                <th><strong>CODIGO POSTAL</strong></th>
+                <th><strong>COLONIA</strong></th>
+                <th><strong>MUNICIPIO</strong></th>
+                <th><strong>ESTADO</strong></th>
+                <th><strong>CIUDAD</strong></th>
+                <th><strong>TIPO ASENTAMIENTO</strong></th>
+                <th><strong>ZONA</strong></th>
+
+                <th><strong></strong></th>
 
                 <th><strong>DOC GRADO ACADEMICO UNO</strong></th>
                 <th><strong>DOC GRADO ACADEMICO DOS</strong></th>
@@ -875,7 +886,7 @@
                     <td>{{ $profesional->sueldo->estimulos ?? '' }}</td>
                     <td>{{ $profesional->sueldo->total ?? '' }}</td>--}}
 
-                    {{-- EMERGENCIAS --}}
+                    {{-- DIRECCION --}}
                     <td>{{ $profesional->direccion->calle ?? '' }}</td>
                     <td>{{ $profesional->direccion->numero_exterior ?? '' }}</td>
                     <td>{{ $profesional->direccion->numero_interior ?? '' }}</td>
