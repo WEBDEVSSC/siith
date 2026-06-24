@@ -2739,6 +2739,7 @@ class ProfesionalController extends Controller
                 'profesionales_grados_academicos.id_profesional'
             )
             ->where('profesionales_puesto.clues_adscripcion', $clues)
+            ->where('profesionales_puesto.vigencia', 'ACTIVO')
             ->select([
                 'reg_nac_prof_uno',
                 'reg_nac_prof_dos',
