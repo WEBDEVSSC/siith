@@ -2722,31 +2722,24 @@ class ProfesionalController extends Controller
 
     public function profesionalDescargasIndex()
     {
-        return view('descarga.index');
+        $user = Auth::user();
+        
+        if($user->role == "ofJurisdiccional")
+        {
+            $clues = Clue::where('clave_jurisdiccion',$user->jurisdiccion_unidad)->get();
+        }
+        else
+        {
+            $clues = collect();
+        }
+
+        return view('descarga.index', compact('clues'));
     }
 
     public function descargarArchivos()
     {
         $user = Auth::user();
         $clues = $user->clues_unidad;
-
-        // 🔎 Obtener registros filtrados por CLUES
-        /*$registros = DB::table('profesionales_grados_academicos')
-            ->join(
-                'profesionales_puesto',
-                'profesionales_puesto.id',
-                '=',
-                'profesionales_grados_academicos.id_profesional'
-            )
-            ->where('profesionales_puesto.clues_adscripcion', $clues)
-            ->where('profesionales_puesto.vigencia', 'ACTIVO')
-            ->select([
-                'reg_nac_prof_uno',
-                'reg_nac_prof_dos',
-                'reg_nac_prof_tres',
-                'reg_nac_prof_cuatro'
-            ])
-            ->get();*/
 
         $registros = DB::table('profesionales_grados_academicos')
             ->join(
@@ -2822,5 +2815,92 @@ class ProfesionalController extends Controller
         // 📥 Descargar ZIP y eliminarlo después
         return response()->download($zipPath)->deleteFileAfterSend(true);
 
+    }
+
+    public function descargarArchivosClues(Request $request)
+    {        
+        $request->validate([
+            'clues' => 'required'
+        ],[
+            'clues.required' => 'Debe seleccionar una CLUES.',
+        ]);
+        
+        $clues = $request->clues;
+
+        $registros = DB::table('profesionales_grados_academicos')
+            ->join(
+                'profesionales_puesto',
+                'profesionales_puesto.id_profesional',
+                '=',
+                'profesionales_grados_academicos.id_profesional'
+            )
+            ->where('profesionales_puesto.clues_adscripcion', $clues)
+            ->where('profesionales_puesto.vigencia', 'ACTIVO')
+            ->select([
+                'profesionales_grados_academicos.id_profesional',
+                'reg_nac_prof_uno',
+                'reg_nac_prof_dos',
+                'reg_nac_prof_tres',
+                'reg_nac_prof_cuatro'
+            ])
+            ->get();
+
+        //dd($registros->count());
+
+        if ($registros->isEmpty()) {
+            abort(404, 'No hay registros para descargar');
+        }
+
+        // 📦 Crear ZIP
+        $zipName = 'registros_' . time() . '.zip';
+        $zipPath = storage_path('app/public/' . $zipName);
+
+        $zip = new ZipArchive;
+
+        if ($zip->open($zipPath, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== true) {
+            abort(500, 'No se pudo crear el archivo ZIP');
+        }
+
+        $hayArchivos = false;
+
+        // 📁 Recorrer registros
+        foreach ($registros as $registro) {
+
+            $files = [
+                $registro->reg_nac_prof_uno,
+                $registro->reg_nac_prof_dos,
+                $registro->reg_nac_prof_tres,
+                $registro->reg_nac_prof_cuatro,
+            ];
+
+            foreach ($files as $file) {
+
+                if (!$file) {
+                    continue;
+                }
+
+                // 📌 validar en storage/app/public
+                if (Storage::disk('public')->exists($file)) {
+
+                    $fullPath = Storage::disk('public')->path($file);
+
+                    if (file_exists($fullPath)) {
+
+                        $zip->addFile($fullPath, basename($file));
+                        $hayArchivos = true;
+                    }
+                }
+            }
+        }
+
+        $zip->close();
+
+        // 🚨 Validación final
+        if (!$hayArchivos || !file_exists($zipPath)) {
+            abort(404, 'No se encontraron archivos para descargar');
+        }
+
+        // 📥 Descargar ZIP y eliminarlo después
+        return response()->download($zipPath)->deleteFileAfterSend(true);
     }
 }

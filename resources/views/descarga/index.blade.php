@@ -31,6 +31,44 @@
         </div>
     </div>
 
+    @if(auth()->user()->role == 'ofJurisdiccional')
+
+    <div class="card">
+        <div class="card-header"></div>
+        <div class="card-body">
+
+            <form action="{{ route('descargarArchivosClues') }}" method="POST">
+
+            @csrf
+
+            <div class="form-group">
+                <label for="clues">CLUES</label>
+                <select name="clues" id="clues" class="form-control">
+                    <option value="">-- Seleccione una opción --</option>
+
+                    @foreach($clues as $clue)
+                        <option value="{{ $clue->clues }}">
+                            {{ $clue->clues }} - {{ $clue->nombre }}
+                        </option>
+                    @endforeach
+
+                </select>
+            </div>
+
+            
+
+        </div>
+        <div class="card-footer text-right">
+            <button type="submit" class="btn btn-success btn-sm">
+                <i class="fas fa-hospital-alt mr-1"></i> SELECCIONAR CLUES
+            </button>
+        </div>
+    </div>
+        
+    @endif
+    
+    
+
     
 @stop
 
