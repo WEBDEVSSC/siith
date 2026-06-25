@@ -33,7 +33,7 @@
 
                 <th colspan="10" style="text-align: center; font-size: 20px; font-weight: bold;">DIRECCIÓN</th>
 
-                <th colspan="2" style="text-align: center; font-size: 20px; font-weight: bold;">EXTRA</th>
+                <th colspan="6" style="text-align: center; font-size: 20px; font-weight: bold;">EXTRA</th>
             </tr>
             <tr>
                 {{-- NUMERO CONSECUTIVO --}}
@@ -297,6 +297,10 @@
                 
                 <th><strong>ID SISTEMA</strong></th>
                 <th><strong>PADRE / MADRE</strong></th>
+                <th><strong>DOC . GRADO ACADEMICO UNO</strong></th>
+                <th><strong>DOC . GRADO ACADEMICO DOS</strong></th>
+                <th><strong>DOC . GRADO ACADEMICO TRES</strong></th>
+                <th><strong>DOC . GRADO ACADEMICO CUATRO</strong></th>
                 
             </tr>
         </thead>
@@ -1021,7 +1025,10 @@
 
                     <td>{{ $profesional->padre_madre_familia ?? '' }}</td>
 
-
+                    <td>{{ basename($profesional->gradoAcademico->reg_nac_prof_uno ?? '') }}</td>
+                    <td>{{ basename($profesional->gradoAcademico->reg_nac_prof_dos ?? '') }}</td>
+                    <td>{{ basename($profesional->gradoAcademico->reg_nac_prof_tres ?? '') }}</td>
+                    <td>{{ basename($profesional->gradoAcademico->reg_nac_prof_cuatro ?? '') }}</td>
 
                 </tr>
             @endforeach

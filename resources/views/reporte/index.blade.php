@@ -4,6 +4,8 @@
 
 @section('plugins.Select2', true)
 
+@section('plugins.Sweetalert2', true)
+
 @section('content_header')
     <h1><strong>Reportes</strong></h1>
 @stop
@@ -21,7 +23,7 @@
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>Reporte General</h3>
+                    <h4>Reporte General</h4>
 
                     <p>Archivo Excel</p>
                 </div>
@@ -37,7 +39,7 @@
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>Mi Unidad</h3>
+                    <h4>Mi Unidad</h4>
 
                     <p>Archivo Excel (Activos)</p>
                 </div>
@@ -53,7 +55,7 @@
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>Mi Unidad</h3>
+                    <h4>Mi Unidad</h4>
 
                     <p>Archivo Excel (Baja Temporal)</p>
                 </div>
@@ -69,7 +71,7 @@
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>Mi Unidad</h3>
+                    <h4>Mi Unidad</h4>
 
                     <p>Archivo Excel (Baja Definitiva)</p>
                 </div>
@@ -88,7 +90,7 @@
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>Fotografías</h3>
+                    <h4>Fotografías</h4>
 
                     <p>Carpeta</p>
                 </div>
@@ -104,7 +106,7 @@
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>Formato</h3>
+                    <h4>Formato</h4>
 
                     <p>Datos de Emergencia</p>
                 </div>
@@ -120,7 +122,7 @@
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>Profesionales</h3>
+                    <h4>Profesionales</h4>
 
                     <p>México</p>
                 </div>
@@ -138,7 +140,7 @@
             <div class="col-md-2">
                 <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>Riesgos</h3>
+                    <h4>Riesgos</h4>
 
                     <p>Estatal</p>
                 </div>
