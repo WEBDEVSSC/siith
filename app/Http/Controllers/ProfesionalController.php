@@ -2726,7 +2726,9 @@ class ProfesionalController extends Controller
         
         if($user->role == "ofJurisdiccional")
         {
-            $clues = Clue::where('clave_jurisdiccion',$user->jurisdiccion_unidad)->get();
+            $clues = Clue::where('clave_jurisdiccion',$user->jurisdiccion_unidad)
+                        ->where('clave_establecimiento',1)
+                        ->get();
         }
         else
         {
