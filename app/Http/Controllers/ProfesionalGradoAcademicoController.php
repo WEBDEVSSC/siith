@@ -308,17 +308,7 @@ class ProfesionalGradoAcademicoController extends Controller
      * Update the specified resource in storage.
      */
     public function updateGrado(Request $request, $id)
-    {    
-        
-        if ($request->hasFile('reg_nac_prof_uno')) {
-
-            dd(
-                $request->file('reg_nac_prof_uno')->getError(),
-                $request->file('reg_nac_prof_uno')->getErrorMessage()
-            );
-
-        }
-    
+    {        
         // Validamos los datos
         $request->validate([
             'id_profesional'=>'required',
