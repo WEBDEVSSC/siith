@@ -89,8 +89,13 @@
 @endif
 
 <div class="card mt-3">
-    <div class="card-header">
-        <strong><i class="fa fa-user" aria-hidden="true"></i> DATOS GENERALES</strong>        
+    
+    <div class="card card-info">
+        <div class="card-header">
+            <h3 class="card-title text-white">
+                <small><i class="fa fa-user"></i> <strong>DATOS GENERALES</strong></small>
+            </h3>
+        </div>
     </div>
     <div class="card-body">
 
@@ -193,7 +198,7 @@
 
     <!-- -- -->
     
-    <div class="card-footer">
+    <div class="card-footer d-flex justify-content-end">
 
         @if(Auth::user()->role == 'universitario')
             <a href="{{ route('editDatosGeneralesEnsenanza', $profesional->id) }}" class="btn btn-info btn-sm"> <i class="fa-solid fa-pen"></i> EDITAR DATOS GENERALES</a>
@@ -206,6 +211,8 @@
                 <a href="{{ route('profesionalEdit', $profesional->id) }}" class="btn btn-info btn-sm"> <i class="fa-solid fa-pen"></i> EDITAR DATOS GENERALES</a>
             @endif
         @endif
+
+        .
 
         @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
             @if ($profesional->credencializacion?->mdl_credencializacion == 1)
@@ -222,22 +229,34 @@
 
     @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
 
-    <div class="card">
-        <div class="card-header"><i class="fa fa-home" aria-hidden="true"></i><strong> DIRECCIÓN</strong></div>
-        <div class="card-body">
+    <div class="card card-info">
+
+    <div class="card-header">
+        <h3 class="card-title text-white m-0">
+            <small>
+                <i class="fa fa-home"></i>
+                <strong>DIRECCIÓN</strong>
+            </small>
+        </h3>
+    </div>
+
+    <div class="card-body">
             <div class="row">
                 <div class="col-md-3">
                     <p><strong>CALLE</strong></p>
                     {{$profesional->direccion?->calle}} 
                 </div>
+
                 <div class="col-md-3">
                     <p><strong>NÚMERO INTERIOR</strong></p>
                     {{$profesional->direccion?->numero_interior}} 
                 </div>
+
                 <div class="col-md-3">
                     <p><strong>NÚMERO EXTERIOR</strong></p>
                     {{$profesional->direccion?->numero_exterior}} 
                 </div>
+
                 <div class="col-md-3">
                     <p><strong>CP | COLONIA</strong></p>
                     {{$profesional->direccion?->codigo_postal}} - {{$profesional->direccion?->colonia}} 
@@ -246,45 +265,58 @@
 
             @if (Auth::user()->role == 'admin')
 
-                <div class="row mt-3">
-                    <div class="col-md-3">
-                        <p><strong>CLAVE DE ELECTOR</strong></p>
-                        {{$profesional->direccion?->clave_elector}} 
-                    </div>
-                    <div class="col-md-3">
-                        <p><strong>SECCIÓN</strong></p>
-                        {{$profesional->direccion?->seccion}} 
-                    </div>
-                    <div class="col-md-3">
-                        <p><strong>VIGENCIA</strong></p>
-                        {{$profesional->direccion?->vigencia}} 
-                    </div>
-                    
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <p><strong>CLAVE DE ELECTOR</strong></p>
+                    {{$profesional->direccion?->clave_elector}} 
                 </div>
 
+                <div class="col-md-3">
+                    <p><strong>SECCIÓN</strong></p>
+                    {{$profesional->direccion?->seccion}} 
+                </div>
+
+                <div class="col-md-3">
+                    <p><strong>VIGENCIA</strong></p>
+                    {{$profesional->direccion?->vigencia}} 
+                </div>
+            </div>
+
             @endif
 
         </div>
-        <div class="card-footer">
 
-        
-            
+        <div class="card-footer d-flex justify-content-end">
+
             @if ($profesional->direccion?->mdl_direccion == 1)
-                <a href="{{ route('editDireccion', $profesional->id) }}" class="btn btn-info btn-sm"> <i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
+                <a href="{{ route('editDireccion', $profesional->id) }}" class="btn btn-info btn-sm">
+                    <i class="fa-solid fa-pen"></i> EDITAR DATOS
+                </a>
             @elseif ($profesional->direccion?->mdl_direccion == 0)
-                <a href="{{ route('createDireccion', $profesional->id) }}" class="btn btn-info btn-sm"> <i class="fa-solid fa-pen"></i> REGISTRAR DATOS</a>
+                <a href="{{ route('createDireccion', $profesional->id) }}" class="btn btn-info btn-sm">
+                    <i class="fa-solid fa-pen"></i> REGISTRAR DATOS
+                </a>
             @endif
 
-        
-
         </div>
+
     </div>
 
     @endif
     <!-- -- -->
 
-    <div class="card">
-        <div class="card-header"><strong>CATALOGO / CARTERA DE SERVICIOS</strong> {{ $catalogoLabel }}  </div>
+    <div class="card card-info">
+
+    <div class="card-header">
+        <h3 class="card-title text-white m-0">
+            <small>
+                <i class="fa fa-home"></i>
+                <strong>CATALOGO / CARTERA DE SERVICIOS</strong> | {{ $catalogoLabel }} 
+            </small>
+        </h3>
+    </div>
+
+   
         <div class="card-body">
 
             
@@ -431,7 +463,7 @@
             @endif
             
         </div>
-        <div class="card-footer">
+        <div class="card-footer d-flex justify-content-end">
         
         @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino' || Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
 
@@ -675,11 +707,18 @@
     </div>
 
     <!-- -- -->
+    <div class="card card-info">
 
-    <div class="card">
-        <div class="card-header">
-            <i class="fa-solid fa-bookmark"></i> <strong>HISTORIAL DE OCUPACIONES</strong>
-        </div>
+    <div class="card-header">
+        <h3 class="card-title text-white m-0">
+            <small>
+                <i class="fa-solid fa-bookmark"></i>
+                <strong>HISTORIAL DE OCUPACIONES</strong> 
+            </small>
+        </h3>
+    </div>
+
+
         <div class="card-body">
 
             <table class="table table-striped">
@@ -724,13 +763,22 @@
             </table>
 
         </div>
-        <div class="card-footer"></div>
+        <div class="card-footer d-flex justify-content-end"></div>
     </div>
 
     <!-- -- -->
 
-    <div class="card">
-        <div class="card-header"><i class="fa fa-archive" aria-hidden="true"></i> <strong>PUESTO</strong></div>
+    <div class="card card-info">
+
+    <div class="card-header">
+        <h3 class="card-title text-white m-0">
+            <small>
+                <i class="fa fa-archive"></i>
+                <strong>PUESTO</strong> 
+            </small>
+        </h3>
+    </div>
+
         <div class="card-body">
 
             <div class="row">
@@ -849,7 +897,7 @@
         </div>
 
         
-        <div class="card-footer">
+        <div class="card-footer d-flex justify-content-end">
         
         @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
 
@@ -866,10 +914,17 @@
 
     <!-- -- -->
 
-    <div class="card">
-        <div class="card-header">
-            <i class="fa fa-building" aria-hidden="true"></i> <strong>TIPO DE NÓMINA</strong>
-        </div>
+    <div class="card card-info">
+
+    <div class="card-header">
+        <h3 class="card-title text-white m-0">
+            <small>
+                <i class="fa fa-building"></i>
+                <strong>TIPO DE NÓMINA</strong> 
+            </small>
+        </h3>
+    </div>
+
         <div class="card-body">
 
             <table class="table table-striped">
@@ -902,7 +957,7 @@
             </table>
 
         </div>
-        <div class="card-footer">
+        <div class="card-footer d-flex justify-content-end">
 
             @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
                 @if ($profesional->puesto?->mdl_puesto == 1)
@@ -922,10 +977,17 @@
 
     <!-- -- -->
 
-    <div class="card">
-        <div class="card-header">
-            <i class="fa-solid fa-tags"></i> <strong>VIGENCIAS</strong>
-        </div>
+    <div class="card card-info">
+
+    <div class="card-header">
+        <h3 class="card-title text-white m-0">
+            <small>
+                <i class="fa-solid fa-tags"></i>
+                <strong>VIGENCIAS</strong> 
+            </small>
+        </h3>
+    </div>
+
         <div class="card-body">
 
             <table class="table table-striped">
@@ -959,7 +1021,7 @@
         </table>
 
         </div>
-        <div class="card-footer">
+        <div class="card-footer d-flex justify-content-end">
 
             @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
             
@@ -976,10 +1038,18 @@
 
     {{-- ---------------------------------------------------------------------------------------------- --}}
 
-    <div class="card">
-        <div class="card-header">
-            <i class="fa fa-clock" aria-hidden="true"></i> <strong>HORARIO</strong>
-        </div>
+    <div class="card card-info">
+
+    <div class="card-header">
+        <h3 class="card-title text-white m-0">
+            <small>
+                <i class="fa fa-clock"></i>
+                <strong>HORARIO</strong> 
+            </small>
+        </h3>
+    </div>
+
+
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4">
@@ -1052,11 +1122,11 @@
                 </div>
         </div>
     </div>
-        <div class="card-footer">
+        <div class="card-footer d-flex justify-content-end">
         
         @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
             @if ($profesional->horario && $profesional->horario->mdl_horario == 1)
-                <a href="{{ route('editHorario', $profesional->id) }}" class="btn btn-info btn-sm"> EDITAR DATOS</a>
+                <a href="{{ route('editHorario', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
             @else
                 <a href="{{ route('createHorario', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa fa-check" aria-hidden="true"></i> REGISTRAR DATOS</a>
             @endif
@@ -1098,7 +1168,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-footer">
+        <div class="card-footer d-flex justify-content-end">
 
             @if ($profesional->sueldo?->mdl_sueldo == 1)
                 <a href="{{ route('editSueldo', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
@@ -1113,16 +1183,23 @@
 
     <!-- --------------------------------------------------------------- -->
 
-    <div class="card mt-3">
-        <div class="card-header">
-            <i class="fa fa-graduation-cap" aria-hidden="true"></i> <strong>GRADO ACADEMICO</strong>
-        </div>
+    <div class="card card-info">
+
+    <div class="card-header">
+        <h3 class="card-title text-white m-0">
+            <small>
+                <i class="fa fa-graduation-cap"></i>
+                <strong>GRADO ACADEMICO</strong> 
+            </small>
+        </h3>
+    </div>
+
         <div class="card-body">
 
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-striped table-bordered">
-                        <thead class="table-dark">
+                    <table class="table table-striped">
+                        <thead>
                             <tr>
                                 <th>#</th>
                                 <th>GRADO ACADÉMICO</th>
@@ -1206,7 +1283,7 @@
             </div>
 
         </div>
-        <div class="card-footer">
+        <div class="card-footer d-flex justify-content-end">
             @if(Auth::user()->role == 'admin' || Auth::user()->role == 'rhusuarios' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
                 @if ($profesional->gradoAcademico?->mdl_grado_academico == 1)
                     <a href="{{ route('editGrado', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
@@ -1219,10 +1296,17 @@
 
     <!-- --------------------------------------------------------------- -->
 
-    <div class="card mt-3">
-        <div class="card-header">
-            <i class="fa fa-stethoscope" aria-hidden="true"></i><strong>PERSONAL ESTUDIANDO ACTUALMENTE</strong>
-        </div>
+    <div class="card card-info">
+
+    <div class="card-header">
+        <h3 class="card-title text-white m-0">
+            <small>
+                <i class="fa fa-stethoscope"></i>
+                <strong>PERSONAL ESTUDIANDO ACTUALMENTE</strong> 
+            </small>
+        </h3>
+    </div>
+
         <div class="card-body">
             <div class="row">
                 <div class="col-md-3">
@@ -1243,15 +1327,12 @@
                 </div>
             </div>
         </div>
-        <div class="card-footer">
+        <div class="card-footer d-flex justify-content-end">
             @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
 
                 @if ($profesional->areaMedica?->mdl_area_medica == 1)
                     <a href="{{ route('editAreaMedica', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
 
-                    <br>
-                    <br>
-                    
                     {{-- <form id="delete-form-{{ $profesional->id }}" action="{{ route('deleteAreaMedica', $profesional->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
@@ -1272,8 +1353,17 @@
     
     <!-- --------------------------------------------------------------- -->
 
-    <div class="card mt-3">
-        <div class="card-header"><strong>CERTIFICACIONES</strong></div>
+    <div class="card card-info">
+
+    <div class="card-header">
+        <h3 class="card-title text-white m-0">
+            <small>
+                <i class="fa fa-stethoscope"></i>
+                <strong>CERTIFICACIONES</strong> 
+            </small>
+        </h3>
+    </div>
+
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4">
@@ -1294,7 +1384,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-footer">
+        <div class="card-footer d-flex justify-content-end">
             @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
 
                 @if ($profesional->certificacion?->mdl_certificacion == 1)
@@ -1310,10 +1400,18 @@
     <!-- --------------------------------------------------------------- -->
 
     <!-- --------------------------------------------------------------- -->
+
+    <div class="card card-info">
+
+    <div class="card-header">
+        <h3 class="card-title text-white m-0">
+            <small>
+                <i class="fa fa-credit-card"></i>
+                <strong>EMERGENCIAS</strong> 
+            </small>
+        </h3>
+    </div>
     
-    <div class="card mt-3">
-        <div class="card-header">
-            <i class="fa fa-credit-card" aria-hidden="true"></i> <strong>EMERGENCIAS</strong></div>
         <div class="card-body">
 
             <!-- -->
@@ -1363,8 +1461,8 @@
 
             <div class="row mt-3">
                 <div class="col-md-12">
-                    <table class="table table-striped table-bordered">
-                        <thead class="table-dark">
+                    <table class="table table-striped">
+                        <thead>
                             <tr>
                                 <th><strong>#</strong></th>
                                 <th><strong>NOMBRE</strong></th>
@@ -1409,7 +1507,7 @@
             </div>
 
         </div>
-        <div class="card-footer">
+        <div class="card-footer d-flex justify-content-end">
 
             @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
 
@@ -1425,10 +1523,17 @@
 
     <!-- --------------------------------------------------------------- -->
 
-    <div class="card">
-        <div class="card-header">
-            <i class="fa-solid fa-building-circle-arrow-right"></i><strong> CAMBIOS DE UNIDAD</strong>
-        </div>
+    <div class="card card-info">
+
+    <div class="card-header">
+        <h3 class="card-title text-white m-0">
+            <small>
+                <i class="fa-solid fa-building-circle-arrow-right"></i>
+                <strong>CAMBIOS DE UNIDAD</strong> 
+            </small>
+        </h3>
+    </div>
+
         <div class="card-body">
 
             @if ($cambiosDeUnidad->isEmpty())
@@ -1472,7 +1577,7 @@
             
 
         </div>
-        <div class="card-footer"></div>
+        <div class="card-footer d-flex justify-content-end"></div>
     </div>
 
     <!-- --------------------------------------------------------------- -->
@@ -1519,7 +1624,7 @@
                 </div>
             </div>
         </div>
-        <div class="card-footer"></div>
+        <div class="card-footer d-flex justify-content-end"></div>
     </div>
     --}}
     <!-- --------------------------------------------------------------- -->
@@ -1628,7 +1733,7 @@
             </div>
         </div>
 
-        <div class="card-footer">
+        <div class="card-footer d-flex justify-content-end">
             <button type="submit" class="btn btn-danger btn-sm">
                 <i class="fa-solid fa-pen"></i> ACTUALIZAR DATOS
             </button>
@@ -1743,7 +1848,7 @@
                     
 
                 </div>
-                <div class="card-footer">
+                <div class="card-footer d-flex justify-content-end">
                     <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-pen"></i> ACTUALIZAR DATOS</button>
                 </div>
             </div>
@@ -1757,13 +1862,17 @@
 
 <!-- ------------------------------------------------------------------------ -->
 
+<div class="card card-info">
 
+    <div class="card-header">
+        <h3 class="card-title text-white m-0">
+            <small>
+                <i class="fa-solid fa-cloud"></i>
+                <strong>DOCUMENTOS DE COMISION EN LA PLATAFORMA WEB PROFESIONALES</strong> 
+            </small>
+        </h3>
+    </div>
 
-    <div class="card">
-        <div class="card-header">
-            <i class="fa-solid fa-cloud"></i>
-            <strong>DOCUMENTOS DE COMISION EN LA PLATAFORMA WEB PROFESIONALES</strong>
-        </div>
         <div class="card-body">
             <table class="table table table-striped">
                 <thead>
@@ -1797,7 +1906,7 @@
             </table>
 
         </div>
-        <div class="card-footer"></div>
+        <div class="card-footer d-flex justify-content-end"></div>
     </div>
 
     <div class="row mt-3">
