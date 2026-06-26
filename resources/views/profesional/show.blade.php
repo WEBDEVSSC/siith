@@ -1526,9 +1526,11 @@
 @if(Auth::user()->role == 'admin')
 
   <div class="card mt-3">
+    <div class="card card-danger">
     <div class="card-header">
         <i class="fa-solid fa-building-circle-arrow-right"></i>
         <strong> CAMBIOS FORZOSOS</strong>
+    </div>
     </div>
 
     <form action="{{ route('cambioDeUnidadForzoso') }}" method="POST">
@@ -1627,7 +1629,7 @@
         </div>
 
         <div class="card-footer">
-            <button type="submit" class="btn btn-info btn-sm">
+            <button type="submit" class="btn btn-danger btn-sm">
                 <i class="fa-solid fa-pen"></i> ACTUALIZAR DATOS
             </button>
         </div>
@@ -1648,7 +1650,12 @@
     <div class="row mt-3">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"><strong>CURP FORZOSO</strong></div>
+                <div class="card card-danger">
+                <div class="card-header">
+                    <i class="fa-solid fa-id-card"></i> <strong>CURP FORZOSO</strong>
+                </div>
+                </div>
+                
                 <div class="card-body">
                     
 
@@ -1737,7 +1744,7 @@
 
                 </div>
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-info btn-sm">ACTUALIZAR</button>
+                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-pen"></i> ACTUALIZAR DATOS</button>
                 </div>
             </div>
         </div>
