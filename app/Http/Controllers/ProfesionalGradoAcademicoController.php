@@ -309,6 +309,9 @@ class ProfesionalGradoAcademicoController extends Controller
      */
     public function updateGrado(Request $request, $id)
     {        
+        
+        dd($request->reg_nac_prof_uno);
+
         // Validamos los datos
         $request->validate([
             'id_profesional'=>'required',
@@ -381,8 +384,6 @@ class ProfesionalGradoAcademicoController extends Controller
             'reg_nac_prof_tres.uploaded' => 'Ocurrió un error al subir el archivo del tercer grado.',
             'reg_nac_prof_cuatro.uploaded' => 'Ocurrió un error al subir el archivo del cuarto grado.',
         ]);
-
-        
 
         // Consultamos el label de grado academico
         $gradoAcademicoUno = GradoAcademico::where('cve',$request->grado_academico_uno)->first();
