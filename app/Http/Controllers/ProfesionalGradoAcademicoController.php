@@ -310,6 +310,11 @@ class ProfesionalGradoAcademicoController extends Controller
     public function updateGrado(Request $request, $id)
     {        
         
+        dd([
+    'upload_max_filesize' => ini_get('upload_max_filesize'),
+    'post_max_size' => ini_get('post_max_size'),
+]);
+
         dd($request->reg_nac_prof_uno);
 
         // Validamos los datos
