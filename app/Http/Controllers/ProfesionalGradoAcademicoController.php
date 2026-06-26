@@ -308,7 +308,8 @@ class ProfesionalGradoAcademicoController extends Controller
      * Update the specified resource in storage.
      */
     public function updateGrado(Request $request, $id)
-    {
+    {    
+        
         // Validamos los datos
         $request->validate([
             'id_profesional'=>'required',
@@ -375,7 +376,21 @@ class ProfesionalGradoAcademicoController extends Controller
             'reg_nac_prof_cuatro.mimes' => 'El archivo del Registro Nacional Profesional (cuarto grado) debe ser un PDF.',
             'reg_nac_prof_cuatro.max' => 'El archivo del Registro Nacional Profesional (cuarto grado) no debe exceder los 5MB.',
             'observaciones_cuatro.required_if' => 'Al seleccionar CEDULA = TRUNCA este campo es obligatorio',
+
+            'reg_nac_prof_uno.uploaded' => 'Ocurrió un error al subir el archivo del primer grado.',
+            'reg_nac_prof_dos.uploaded' => 'Ocurrió un error al subir el archivo del segundo grado.',
+            'reg_nac_prof_tres.uploaded' => 'Ocurrió un error al subir el archivo del tercer grado.',
+            'reg_nac_prof_cuatro.uploaded' => 'Ocurrió un error al subir el archivo del cuarto grado.',
         ]);
+
+        if ($request->hasFile('reg_nac_prof_uno')) {
+
+            dd(
+                $request->file('reg_nac_prof_uno')->getError(),
+                $request->file('reg_nac_prof_uno')->getErrorMessage()
+            );
+
+        }
 
         // Consultamos el label de grado academico
         $gradoAcademicoUno = GradoAcademico::where('cve',$request->grado_academico_uno)->first();
