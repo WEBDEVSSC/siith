@@ -784,6 +784,13 @@
 
             <div class="row">
                 <div class="col-md-3">
+                    <p><strong>Número de Empleado</strong></p>
+                    {{ $profesional->puesto->numero_empleado ?? '' }}
+                </div>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-md-3">
                     <p><strong>FIEL </strong></p>
                     {{ $fiel ? $fiel . ($fiel_vigencia ? ' ' . \Carbon\Carbon::parse($fiel_vigencia)->format('d-m-Y') : '') : '' }}
                 </div>
