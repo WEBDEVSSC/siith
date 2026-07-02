@@ -35,9 +35,17 @@
   </div>
 </div>
 
+<div class="callout callout-info">
+    <h5><i class="fas fa-tools"></i> Dashboard en mantenimiento</h5>
+    <p>
+        Estamos realizando mejoras para optimizar la experiencia de usuario,
+        el rendimiento y la funcionalidad del sistema. Agradecemos su comprensión.
+    </p>
+</div>
+
 @auth
 
-@if(auth()->user()->role === 'root' || auth()->user()->role === 'admin'|| auth()->user()->role === 'directivo')
+@if(auth()->user()->role === 'root' || auth()->user()->role === 'admin')
 
 
 <div class="row">
