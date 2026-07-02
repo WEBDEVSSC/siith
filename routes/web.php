@@ -321,6 +321,8 @@ Route::middleware(['auth'])->group(function ()
  
      Route::put('admin/profesionales/gradoAcademico/updateGrado/{id}', [ProfesionalGradoAcademicoController::class, 'updateGrado'])->name('updateGrado');
 
+     Route::get('admin/profesionales/gradoAcademico/destroyGrado/{id}', [ProfesionalGradoAcademicoController::class, 'destroyGrado'])->name('destroyGrado');
+
     // Ruta dinamica para mostrar
     Route::get('/titulos/{cve}', [ProfesionalGradoAcademicoController::class, 'getTitulos']);
 

@@ -528,4 +528,81 @@ class ProfesionalGradoAcademicoController extends Controller
         return redirect()->route('profesionalShow', $request->id_profesional)->with('updateGradoAcademico', 'Grado Academico actualizado correctamente.');
     }
 
+    public function destroyGrado($id, Request $request)
+    {
+        $campo = $request->campo;   
+        
+        $gradoAcademico = ProfesionalGradoAcademico::where('id_profesional', $id)->first();
+
+        if($campo == 1)
+        {
+            $gradoAcademico->cve_grado_uno = null;
+            $gradoAcademico->grado_academico_uno = null;
+            $gradoAcademico->titulo_uno_id = null;
+            $gradoAcademico->titulo_uno = null;
+            $gradoAcademico->institucion_educativa_uno = null;
+            $gradoAcademico->institucion_educativa_uno_id = null;
+            $gradoAcademico->cedula_uno = null;
+            $gradoAcademico->numero_cedula_uno = null;
+            
+            Storage::disk('public')->delete($gradoAcademico->reg_nac_prof_uno);
+
+            $gradoAcademico->reg_nac_prof_uno = null;
+            $gradoAcademico->observaciones_uno = null;
+        }
+        if($campo == 2)
+        {
+            $gradoAcademico->cve_grado_dos = null;
+            $gradoAcademico->grado_academico_dos = null;
+            $gradoAcademico->titulo_dos_id = null;
+            $gradoAcademico->titulo_dos = null;
+            $gradoAcademico->institucion_educativa_dos = null;
+            $gradoAcademico->institucion_educativa_dos_id = null;
+            $gradoAcademico->cedula_dos = null;
+            $gradoAcademico->numero_cedula_dos = null;
+
+            Storage::disk('public')->delete($gradoAcademico->reg_nac_prof_dos);
+
+            $gradoAcademico->reg_nac_prof_dos = null;
+            $gradoAcademico->observaciones_dos = null;
+        }
+        if($campo == 3)
+        {
+            $gradoAcademico->cve_grado_tres = null;
+            $gradoAcademico->grado_academico_tres = null;
+            $gradoAcademico->titulo_tres_id = null;
+            $gradoAcademico->titulo_tres = null;
+            $gradoAcademico->institucion_educativa_tres = null;
+            $gradoAcademico->institucion_educativa_tres_id = null;
+            $gradoAcademico->cedula_tres = null;
+            $gradoAcademico->numero_cedula_tres = null;
+
+            Storage::disk('public')->delete($gradoAcademico->reg_nac_prof_tres);
+            
+            $gradoAcademico->reg_nac_prof_tres = null;
+            $gradoAcademico->observaciones_tres = null;
+        }
+        if($campo == 4)
+        {
+            $gradoAcademico->cve_grado_cuatro = null;
+            $gradoAcademico->grado_academico_cuatro = null;
+            $gradoAcademico->titulo_cuatro_id = null;
+            $gradoAcademico->titulo_cuatro = null;
+            $gradoAcademico->institucion_educativa_cuatro = null;
+            $gradoAcademico->institucion_educativa_cuatro_id = null;
+            $gradoAcademico->cedula_cuatro = null;
+            $gradoAcademico->numero_cedula_cuatro = null;
+
+            Storage::disk('public')->delete($gradoAcademico->reg_nac_prof_cuatro);
+
+            $gradoAcademico->reg_nac_prof_cuatro = null;
+            $gradoAcademico->observaciones_cuatro = null;
+        }
+
+        $gradoAcademico->save();
+
+        return redirect()->route('profesionalShow', $id)->with('deleteGradoAcademico', 'Grado Academico eliminado correctamente.');
+        
+    }
+
 }

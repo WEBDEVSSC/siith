@@ -48,7 +48,8 @@
         'updateOficinaCentral',
         'successAlmacen',
         'updateAlmacen',
-        'successCambioTipoNomina'
+        'successCambioTipoNomina',
+        'deleteGradoAcademico'
     ];
 
     $alertMessage = null;
@@ -1207,6 +1208,12 @@
                                 <th>INSTITUCIÓN EDUCATIVA</th>
                                 <th>CÉDULA</th>
                                 <th>ARCHIVO DE TÍTULO, CÉDULA, R.N.P.</th>
+
+                                @if(auth()->user()->role === 'root')
+
+                                <th></th>
+
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -1224,15 +1231,26 @@
                                             <i class="fa-solid fa-file-lines"></i> VER DOCUMENTO
                                         </a>
                                     @endif
-
-                                    <!-- <form action="" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="fa-solid fa-trash"></i> ELIMINAR REGISTRO
-                                        </button>
-                                    </form> -->
                                 </td>
+
+                                @if($cveGradoUno !== null)
+                                {
+                                    @if(auth()->user()->role === 'admin')
+
+                                    <td>
+                                        <a class="btn btn-danger btn-sm" href="{{ route('destroyGrado', [
+                                            'id' => $profesional->id,
+                                            'campo' => 1
+                                        ]) }}">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    </td>
+
+                                    @endif
+                                }
+                                @endif
+
+
 
                             </tr>
                             <tr>
@@ -1248,6 +1266,23 @@
                                         
                                     @endif
                                 </td>
+
+                                @if($cveGradoDos !== null)
+                                {
+                                    @if(auth()->user()->role === 'admin')
+
+                                    <td>
+                                        <a class="btn btn-danger btn-sm" href="{{ route('destroyGrado', [
+                                            'id' => $profesional->id,
+                                            'campo' => 2
+                                        ]) }}">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    </td>
+
+                                    @endif
+                                }
+                                @endif
                             </tr>
                             <tr>
                                 <td>3</td>
@@ -1262,6 +1297,23 @@
                                         
                                     @endif
                                 </td>
+
+                                @if($cveGradoTres !== null)
+                                {
+                                    @if(auth()->user()->role === 'admin')
+
+                                    <td>
+                                        <a class="btn btn-danger btn-sm" href="{{ route('destroyGrado', [
+                                            'id' => $profesional->id,
+                                            'campo' => 3
+                                        ]) }}">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    </td>
+
+                                    @endif
+                                }
+                                @endif
                             </tr>
                             <tr>
                                 <td>4</td>
@@ -1276,6 +1328,23 @@
                                         
                                     @endif
                                 </td>
+
+                                @if($cveGradoCuatro !== null)
+                                {
+                                    @if(auth()->user()->role === 'admin')
+
+                                    <td>
+                                        <a class="btn btn-danger btn-sm" href="{{ route('destroyGrado', [
+                                            'id' => $profesional->id,
+                                            'campo' => 4
+                                        ]) }}">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    </td>
+
+                                    @endif
+                                }
+                                @endif
                             </tr>
                         </tbody>
                     </table>
