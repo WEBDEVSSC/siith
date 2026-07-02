@@ -35,6 +35,11 @@
   </div>
 </div>
 
+
+@auth
+
+@if(auth()->user()->role === 'directivo')
+
 <div class="callout callout-info">
     <h5><i class="fas fa-tools"></i> Dashboard en mantenimiento</h5>
     <p>
@@ -43,7 +48,8 @@
     </p>
 </div>
 
-@auth
+
+@endif
 
 @if(auth()->user()->role === 'root' || auth()->user()->role === 'admin')
 
