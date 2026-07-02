@@ -1234,7 +1234,7 @@
                                 </td>
 
                                 @if($cveGradoUno !== null)
-                                {
+                                
                                     @if(auth()->user()->role === 'admin')
 
                                     <td>
@@ -1247,7 +1247,7 @@
                                     </td>
 
                                     @endif
-                                }
+                                
                                 @endif
 
 
@@ -1268,7 +1268,7 @@
                                 </td>
 
                                 @if($cveGradoDos !== null)
-                                {
+                                
                                     @if(auth()->user()->role === 'admin')
 
                                     <td>
@@ -1281,7 +1281,7 @@
                                     </td>
 
                                     @endif
-                                }
+                                
                                 @endif
                             </tr>
                             <tr>
@@ -1299,7 +1299,7 @@
                                 </td>
 
                                 @if($cveGradoTres !== null)
-                                {
+                                
                                     @if(auth()->user()->role === 'admin')
 
                                     <td>
@@ -1312,7 +1312,7 @@
                                     </td>
 
                                     @endif
-                                }
+                                
                                 @endif
                             </tr>
                             <tr>
@@ -1330,7 +1330,7 @@
                                 </td>
 
                                 @if($cveGradoCuatro !== null)
-                                {
+                                
                                     @if(auth()->user()->role === 'admin')
 
                                     <td>
@@ -1343,7 +1343,7 @@
                                     </td>
 
                                     @endif
-                                }
+                                
                                 @endif
                             </tr>
                         </tbody>
