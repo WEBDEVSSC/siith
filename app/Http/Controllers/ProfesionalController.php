@@ -2730,6 +2730,10 @@ class ProfesionalController extends Controller
                         ->where('clave_establecimiento',1)
                         ->get();
         }
+        elseif($user->role == "riesgos")
+        {
+            $clues = Clue::all();
+        }
         else
         {
             $clues = collect();

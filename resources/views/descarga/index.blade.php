@@ -8,6 +8,8 @@
 
 @section('content')
 
+    @if(auth()->user()->role !== 'riesgos')
+
     <div class="card">
         <div class="card-body">
 
@@ -31,7 +33,9 @@
         </div>
     </div>
 
-    @if(auth()->user()->role == 'ofJurisdiccional')
+    @endif
+
+    @if(auth()->user()->role == 'ofJurisdiccional' || auth()->user()->role == 'riesgos')
 
     <div class="card">
         <div class="card-header"></div>

@@ -368,7 +368,7 @@ return [
             'icon' => 'fa-solid fa-download',
             'label_color' => 'success',
             //'can' => ['admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'ensenanza', 'universitario', 'riesgos','cecosama','creeSaltillo','cecreMonclova','criTorreon','criParras','criPiedrasNegras'],
-            'can' => ['almacen', 'psiParras', 'oncologico', 'hospital', 'ofJurisdiccional'],
+            'can' => ['almacen', 'psiParras', 'oncologico', 'hospital', 'ofJurisdiccional','riesgos'],
         ],
         [
             'text' => 'Pases de Salida',
