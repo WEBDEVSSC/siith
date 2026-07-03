@@ -346,7 +346,7 @@ return [
             'url' => 'admin/profesionales/profesionalBuscadorForm',
             'icon' => 'fa-solid fa-magnifying-glass',
             'label_color' => 'success',
-            'can' => ['admin', 'directivo', 'credencializacion', 'normatividad','sistematizacion','rhasistente','rhauditoria','rhusuarios','prestaciones','ofCentral'],
+            'can' => ['admin', 'directivo', 'credencializacion', 'normatividad','sistematizacion','rhasistente','rhauditoria','rhusuarios','prestaciones','ofCentral','sistematizacion'],
         ],
         [
             'text' => 'Vigencias',
@@ -367,8 +367,7 @@ return [
             'url' => 'admin/profesionales/descargas/index',
             'icon' => 'fa-solid fa-download',
             'label_color' => 'success',
-            //'can' => ['admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'ensenanza', 'universitario', 'riesgos','cecosama','creeSaltillo','cecreMonclova','criTorreon','criParras','criPiedrasNegras'],
-            'can' => ['almacen', 'psiParras', 'oncologico', 'hospital', 'ofJurisdiccional','riesgos'],
+            'can' => ['almacen', 'psiParras', 'oncologico', 'hospital', 'ofJurisdiccional','riesgos','csuyr', 'criCree', 'samuCrum','ofCentral', 'cets', 'lesp', 'cesame', 'issreei', 'ceam', 'hospitalNino'],
         ],
         [
             'text' => 'Pases de Salida',
