@@ -346,7 +346,7 @@ return [
             'url' => 'admin/profesionales/profesionalBuscadorForm',
             'icon' => 'fa-solid fa-magnifying-glass',
             'label_color' => 'success',
-            'can' => ['admin', 'directivo', 'credencializacion', 'normatividad','sistematizacion','rhasistente','rhauditoria','rhusuarios','prestaciones','ofCentral','sistematizacion'],
+            'can' => ['admin', 'directivo', 'credencializacion', 'normatividad','sistematizacion','rhasistente','rhauditoria','rhusuarios','prestaciones','ofCentral','profesionales'],
         ],
         [
             'text' => 'Vigencias',
