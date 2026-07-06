@@ -121,11 +121,17 @@
 
                     <div class="col-md-3">
                         <p><strong>Número</strong></p>
-                        <input type="text" name="cedula_numero_uno" id="cedula_numero_uno" class="form-control" value="{{ old('cedula_numero_uno', $gradoAcademico->numero_cedula_uno)}}">
+                        <input type="text"
+                            name="cedula_numero_uno"
+                            id="cedula_numero_uno"
+                            class="form-control"
+                            value="{{ old('cedula_numero_uno', $gradoAcademico->numero_cedula_uno) }}">
                         @error('cedula_numero_uno')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                    </div>    
+                    </div>
+
+        
 
                     <div class="col-md-3">
 
@@ -253,13 +259,17 @@
                 @enderror
             </div>    
 
-            <div class="col-md-3">
-                <p><strong>Número</strong></p>
-                <input type="text" name="cedula_numero_dos" id="cedula_numero_dos" class="form-control" value="{{ old('cedula_numero_dos', $gradoAcademico->numero_cedula_dos)}}">
-                @error('cedula_numero_dos')
-                <br><div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-            </div> 
+                <div class="col-md-3">
+                        <p><strong>Número</strong></p>
+                        <input type="text"
+                            name="cedula_numero_dos"
+                            id="cedula_numero_dos"
+                            class="form-control"
+                            value="{{ old('cedula_numero_dos', $gradoAcademico->numero_cedula_dos) }}">
+                        @error('cedula_numero_dos')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
             <div class="col-md-3">
                         
@@ -388,12 +398,16 @@
             </div>    
 
             <div class="col-md-3">
-                <p><strong>Número</strong></p>
-                <input type="text" name="cedula_numero_tres" id="cedula_numero_tres" class="form-control" value="{{ old('cedula_numero_tres', $gradoAcademico->numero_cedula_tres)}}">
-                @error('cedula_numero_tres')
-                <br><div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-            </div> 
+                        <p><strong>Número</strong></p>
+                        <input type="text"
+                            name="cedula_numero_tres"
+                            id="cedula_numero_tres"
+                            class="form-control"
+                            value="{{ old('cedula_numero_tres', $gradoAcademico->numero_cedula_tres) }}">
+                        @error('cedula_numero_tres')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
             
             <div class="col-md-3">
                         
@@ -522,12 +536,16 @@
             </div>    
 
             <div class="col-md-3">
-                <p><strong>Número</strong></p>
-                <input type="text" name="cedula_numero_cuatro" id="cedula_numero_cuatro" class="form-control" value="{{ old('cedula_numero_cuatro', $gradoAcademico->numero_cedula_cuatro)}}">
-                @error('cedula_numero_cuatro')
-                <br><div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-            </div> 
+                        <p><strong>Número</strong></p>
+                        <input type="text"
+                            name="cedula_numero_cuatro"
+                            id="cedula_numero_cuatro"
+                            class="form-control"
+                            value="{{ old('cedula_numero_cuatro', $gradoAcademico->numero_cedula_cuatro) }}">
+                        @error('cedula_numero_cuatro')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
             <div class="col-md-3">
                         
@@ -777,5 +795,97 @@
             });
         });
     </script>   
+
+    <script>
+    $(document).ready(function () {
+
+        function validarCedula() {
+            if ($("#cedula_uno").val() === "SI") {
+                $("#cedula_numero_uno").prop("disabled", false);
+            } else {
+                $("#cedula_numero_uno").prop("disabled", true);
+                $("#cedula_numero_uno").val("");
+            }
+        }
+
+        // Al cargar la página
+        validarCedula();
+
+        // Cuando cambia el select
+        $("#cedula_uno").on("change", function () {
+            validarCedula();
+        });
+
+    });
+    </script>
+
+    <script>
+    $(document).ready(function () {
+
+        function validarCedula() {
+            if ($("#cedula_dos").val() === "SI") {
+                $("#cedula_numero_dos").prop("disabled", false);
+            } else {
+                $("#cedula_numero_dos").prop("disabled", true);
+                $("#cedula_numero_dos").val("");
+            }
+        }
+
+        // Al cargar la página
+        validarCedula();
+
+        // Cuando cambia el select
+        $("#cedula_dos").on("change", function () {
+            validarCedula();
+        });
+
+    });
+    </script>
+
+    <script>
+    $(document).ready(function () {
+
+        function validarCedula() {
+            if ($("#cedula_tres").val() === "SI") {
+                $("#cedula_numero_tres").prop("disabled", false);
+            } else {
+                $("#cedula_numero_tres").prop("disabled", true);
+                $("#cedula_numero_tres").val("");
+            }
+        }
+
+        // Al cargar la página
+        validarCedula();
+
+        // Cuando cambia el select
+        $("#cedula_tres").on("change", function () {
+            validarCedula();
+        });
+
+    });
+    </script>
+
+    <script>
+    $(document).ready(function () {
+
+        function validarCedula() {
+            if ($("#cedula_cuatro").val() === "SI") {
+                $("#cedula_numero_cuatro").prop("disabled", false);
+            } else {
+                $("#cedula_numero_cuatro").prop("disabled", true);
+                $("#cedula_numero_cuatro").val("");
+            }
+        }
+
+        // Al cargar la página
+        validarCedula();
+
+        // Cuando cambia el select
+        $("#cedula_cuatro").on("change", function () {
+            validarCedula();
+        });
+
+    });
+    </script>
     
 @stop
