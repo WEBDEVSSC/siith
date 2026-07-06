@@ -630,6 +630,14 @@
             $('#titulo_dos').change(function() {
                 $('#titulo_dos_hidden').val($(this).val());
             });
+
+            $('#titulo_tres').change(function() {
+                $('#titulo_tres_hidden').val($(this).val());
+            });
+
+            $('#titulo_cuatro').change(function() {
+                $('#titulo_cuatro_hidden').val($(this).val());
+            });
             
             $('form').submit(function() {
                 $('#titulo_uno, #titulo_dos').prop('disabled', false);
@@ -640,7 +648,7 @@
     <script>
         $(document).ready(function(){
             // Deshabilitar los select de títulos al cargar la página
-            $('#titulo_uno, #titulo_dos').prop('disabled', true);
+            $('#titulo_uno, #titulo_dos, #titulo_tres, #titulo_cuatro').prop('disabled', true);
     
             function cargarTitulos(gradoSelect, tituloSelect) {
                 let gradoCve = $(gradoSelect).val(); // Obtener el valor seleccionado
@@ -675,6 +683,16 @@
             $('#grado_academico_dos').change(function(){
                 cargarTitulos('#grado_academico_dos', '#titulo_dos');
             });
+
+            // Evento para el segundo grado académico
+            $('#grado_academico_tres').change(function(){
+                cargarTitulos('#grado_academico_tres', '#titulo_tres');
+            });
+
+            // Evento para el segundo grado académico
+            $('#grado_academico_cuatro').change(function(){
+                cargarTitulos('#grado_academico_cuatro', '#titulo_cuatro');
+            });
         });
     </script>
     
@@ -694,7 +712,35 @@
                 allowClear: true
             });
         });
-    </script>   
+    </script> 
+    
+    <script>
+        $(document).ready(function() {
+            $('#titulo_dos').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script> 
+
+    <script>
+        $(document).ready(function() {
+            $('#titulo_tres').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script> 
+
+    <script>
+        $(document).ready(function() {
+            $('#titulo_cuatro').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script> 
+
 
     <script>
         $(document).ready(function() {
@@ -708,6 +754,24 @@
     <script>
         $(document).ready(function() {
             $('#institucion_educativa_dos').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script>   
+
+    <script>
+        $(document).ready(function() {
+            $('#institucion_educativa_tres').select2({
+                placeholder: "-- Seleccione una opcion --",
+                allowClear: true
+            });
+        });
+    </script>   
+
+    <script>
+        $(document).ready(function() {
+            $('#institucion_educativa_cuatro').select2({
                 placeholder: "-- Seleccione una opcion --",
                 allowClear: true
             });
