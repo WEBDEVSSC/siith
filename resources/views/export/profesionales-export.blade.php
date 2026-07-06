@@ -35,7 +35,7 @@
 
                 <th colspan="1" style="text-align: center; font-size: 20px; font-weight: bold;">PADRE / MADRE</th>
 
-                <th colspan="4" style="text-align: center; font-size: 20px; font-weight: bold;">DOC G.A.</th>
+                <th colspan="5" style="text-align: center; font-size: 20px; font-weight: bold;">EXTRA</th>
 
             </tr>
             <tr>
@@ -224,6 +224,8 @@
                 <th><strong>DOC GRADO ACADEMICO DOS</strong></th>
                 <th><strong>DOC GRADO ACADEMICO TRES</strong></th>
                 <th><strong>DOC GRADO ACADEMICO CUATRO</strong></th>
+
+                <th><strong>NUMERO EMPLEADO</strong></th>
 
                 
             </tr>
@@ -904,6 +906,8 @@
                     <td>{{ $profesional->gradoAcademico->reg_nac_prof_dos ?? '' }}</td>
                     <td>{{ $profesional->gradoAcademico->reg_nac_prof_tres ?? '' }}</td>
                     <td>{{ $profesional->gradoAcademico->reg_nac_prof_cuatro ?? '' }}</td>
+
+                    <td>{{ $profesional->puesto->numero_empleado ?? '' }}</td>
 
 
                 </tr>
