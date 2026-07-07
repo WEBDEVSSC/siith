@@ -21,8 +21,10 @@
 
         </div>
         <div class="card-body">
+        
+        <div class="table-responsive">
 
-            <table id="profesionalesTable" class="table table-bordered">
+            <table id="profesionalesTable" class="table table-bordered table-striped nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th></th>
@@ -233,6 +235,7 @@
                     @endforelse
                 </tbody>
             </table>
+            </div>
         </div>
         <div class="card-footer">
 
@@ -284,6 +287,11 @@
                     "sSortAscending":  ": activar para ordenar la columna de manera ascendente",
                     "sSortDescending": ": activar para ordenar la columna de manera descendente"
                 }
+                responsive: true,
+                    autoWidth: false,
+                    language: {
+                        // tu configuración
+                    }
             }
         });
     });
