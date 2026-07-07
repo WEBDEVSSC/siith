@@ -236,7 +236,7 @@
         <h3 class="card-title text-white m-0">
             <small>
                 <i class="fa fa-home"></i>
-                <strong>DIRECCIÓN</strong>
+                <strong>DOCUMENTOS DE DOMICILIO E IDENTIFICACIÓN PERSONAL</strong>
             </small>
         </h3>
     </div>
@@ -284,6 +284,49 @@
             </div>
 
             @endif
+
+            <div class="row mt-3">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th width="50%">DOCUMENTO</th>
+                        <th width="50%">ACCIÓN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>INE</td>
+                        <td>
+                            @if($profesional->direccion?->ine)
+                                <a href="{{ asset('storage/'.$profesional->direccion->ine) }}"
+                                target="_blank"
+                                class="btn btn-info btn-sm">
+                                    <i class="fas fa-file-pdf"></i> VER DOCUMENTO
+                                </a>
+                            @else
+                                <span class="badge badge-secondary">NO DISPONIBLE</span>
+                            @endif
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>COMPROBANTE DE DOMICILIO</td>
+                        <td>
+                            @if($profesional->direccion?->comprobante_domicilio)
+                                <a href="{{ asset('storage/'.$profesional->direccion->comprobante_domicilio) }}"
+                                target="_blank"
+                                class="btn btn-info btn-sm">
+                                    <i class="fas fa-file-pdf"></i> VER DOCUMENTO
+                                </a>
+                            @else
+                                <span class="badge badge-secondary">NO DISPONIBLE</span>
+                            @endif
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
 
         </div>
 

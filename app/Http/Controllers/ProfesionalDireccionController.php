@@ -32,6 +32,8 @@ class ProfesionalDireccionController extends Controller
             'clave_elector' => 'nullable|max:120|string',
             'seccion' => 'nullable|digits:4',
             'vigencia' => 'nullable|digits:4|string',
+            'ine' => 'nullable|file|mimes:pdf|max:10000',
+            'comprobante_domicilio' => 'nullable|file|mimes:pdf|max:10000',
         ],[
             'calle.required'           => 'La calle es obligatoria.',
             'calle.string'             => 'La calle debe ser un texto válido.',
@@ -52,11 +54,46 @@ class ProfesionalDireccionController extends Controller
             'clave_elector.max'        => 'La clave de elector no debe exceder los 120 caracteres.',
             'seccion.digits'           => 'La sección debe tener 4 dígitos.',
             'vigencia.digits'          => 'La vigencia debe tener 4 dígitos.',
+
+            'ine.file'                  => 'El archivo debe ser un archivo válido.',
+            'ine.mimes'                 => 'El archivo debe ser un PDF.',
+            'ine.max'                   => 'El archivo no debe exceder los 10 MB.',
+
+            'comprobante_domicilio.file' => 'El archivo debe ser un archivo válido.',
+            'comprobante_domicilio.mimes' => 'El archivo debe ser un PDF.',
+            'comprobante_domicilio.max' => 'El archivo no debe exceder los 10 MB.',
         ]);
 
         $codigoPostal = CatCodigoPostal::findOrFail($request->codigo_postal);
 
-        
+        $profesional = Profesional::findOrFail($id);
+
+        if ($request->hasFile('ine')) {
+
+            $archivo = $request->file('ine');
+
+            $nombreArchivo = strtoupper($profesional->curp) . '_INE.' . $archivo->getClientOriginalExtension();
+
+            $ruta = $archivo->storeAs('ine',$nombreArchivo,'public');
+        }
+        else
+        {
+            $ruta = null;
+        }
+
+        if ($request->hasFile('comprobante_domicilio')) {
+
+            $archivoComprobanteDomicilio = $request->file('comprobante_domicilio');
+
+            $nombreArchivoComprobanteDomicilio = strtoupper($profesional->curp) . '_COMPROBANTE_DOMICILIO.' . $archivoComprobanteDomicilio->getClientOriginalExtension();
+
+            $rutaComprobanteDomicilio = $archivoComprobanteDomicilio->storeAs('comprobante_domicilio',$nombreArchivoComprobanteDomicilio,'public');
+        }
+        else
+        {
+            $rutaComprobanteDomicilio = null;
+        }
+
         $direccion = new ProfesionalesDireccion();
 
         $direccion->id_profesional = $id;
@@ -75,6 +112,9 @@ class ProfesionalDireccionController extends Controller
         $direccion->clave_elector = $request->clave_elector;
         $direccion->seccion = $request->seccion;
         $direccion->vigencia = $request->vigencia;
+
+        $direccion->ine = $ruta;
+        $direccion->comprobante_domicilio = $rutaComprobanteDomicilio;
 
         $direccion->mdl_direccion = 1;
 
@@ -118,6 +158,8 @@ class ProfesionalDireccionController extends Controller
             'clave_elector' => 'nullable|max:120|string',
             'seccion' => 'nullable|digits:4',
             'vigencia' => 'nullable|digits:4|string',
+            'ine' => 'nullable|file|mimes:pdf|max:10000',
+            'comprobante_domicilio' => 'nullable|file|mimes:pdf|max:10000',
         ],[
             'calle.required'           => 'La calle es obligatoria.',
             'calle.string'             => 'La calle debe ser un texto válido.',
@@ -138,6 +180,14 @@ class ProfesionalDireccionController extends Controller
             'clave_elector.max'        => 'La clave de elector no debe exceder los 120 caracteres.',
             'seccion.digits'           => 'La sección debe tener 4 dígitos.',
             'vigencia.digits'          => 'La vigencia debe tener 4 dígitos.',
+
+            'ine.file'                  => 'El archivo debe ser un archivo válido.',
+            'ine.mimes'                 => 'El archivo debe ser un PDF.',
+            'ine.max'                   => 'El archivo no debe exceder los 10 MB.',
+
+            'comprobante_domicilio.file' => 'El archivo debe ser un archivo válido.',
+            'comprobante_domicilio.mimes' => 'El archivo debe ser un PDF.',
+            'comprobante_domicilio.max' => 'El archivo no debe exceder los 10 MB.',
         ]);
 
         $codigoPostal = CatCodigoPostal::findOrFail($request->codigo_postal);
@@ -145,6 +195,35 @@ class ProfesionalDireccionController extends Controller
         $direccion = ProfesionalesDireccion::findOrFail($id);
 
         $profesional = Profesional::where('id', $direccion->id_profesional)->first();
+
+        //$profesional = Profesional::findOrFail($id);
+
+        if ($request->hasFile('ine')) {
+
+            $archivo = $request->file('ine');
+
+            $nombreArchivo = strtoupper($profesional->curp) . '_INE.' . $archivo->getClientOriginalExtension();
+
+            $ruta = $archivo->storeAs('ine',$nombreArchivo,'public');
+        }
+        else
+        {
+            $ruta = $profesional->direccion->ine;
+        }
+
+        if ($request->hasFile('comprobante_domicilio')) {
+
+            $archivoComprobanteDomicilio = $request->file('comprobante_domicilio');
+
+            $nombreArchivoComprobanteDomicilio = strtoupper($profesional->curp) . '_COMPROBANTE_DOMICILIO.' . $archivoComprobanteDomicilio->getClientOriginalExtension();
+
+            $rutaComprobanteDomicilio = $archivoComprobanteDomicilio->storeAs('comprobante_domicilio',$nombreArchivoComprobanteDomicilio,'public');
+        }
+        else
+        {
+            $rutaComprobanteDomicilio = $profesional->direccion->comprobante_domicilio;
+        }
+
 
         $direccion->calle = $request->calle;
         $direccion->numero_exterior = $request->numero_exterior;
@@ -161,6 +240,9 @@ class ProfesionalDireccionController extends Controller
         $direccion->clave_elector = $request->clave_elector;
         $direccion->seccion = $request->seccion;
         $direccion->vigencia = $request->vigencia;
+
+        $direccion->ine = $ruta;
+        $direccion->comprobante_domicilio = $rutaComprobanteDomicilio;
 
         $direccion->mdl_direccion = 1;
 

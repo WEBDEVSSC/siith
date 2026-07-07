@@ -5,7 +5,7 @@
 @section('plugins.Select2', true)
 
 @section('content_header')
-    <h1><strong>Domicilio del Trabajador</strong></h1>
+    <h1><strong>Documentos de Domicilio e Identificación Personal</strong></h1>
 @stop
 
 @section('content')
@@ -122,6 +122,60 @@
                 @endif
 
         <!-- ---------------------------------------------------------------------- --> 
+
+        <div class="row mt-3">
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="ine"><strong>INE</strong></label>
+
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input @error('ine') is-invalid @enderror" id="ine" name="ine" accept=".pdf">
+
+                        <label class="custom-file-label" for="ine">
+                            Seleccione un archivo...
+                        </label>
+                    </div>
+
+                    <small class="form-text text-muted">
+                        Formatos permitidos: PDF.
+                    </small>
+
+                    @error('ine')
+                        <span class="invalid-feedback d-block">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="comprobante_domicilio"><strong>COMPROBANTE DE DOMICILIO</strong></label>
+
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input @error('comprobante_domicilio') is-invalid @enderror" id="comprobante_domicilio" name="comprobante_domicilio" accept=".pdf">
+
+                        <label class="custom-file-label" for="comprobante_domicilio">
+                            Seleccione un archivo...
+                        </label>
+                    </div>
+
+                    <small class="form-text text-muted">
+                        Formatos permitidos: PDF.
+                    </small>
+
+                    @error('comprobante_domicilio')
+                        <span class="invalid-feedback d-block">
+                            {{ $message }}
+                        </span>
+                    @enderror
+                </div>
+            </div>
+
+        </div>
+
+        
         </div>
         <div class="card-footer">
             <button type="submit" class="btn btn-success btn-sm btn-info">REGISTRAR DATOS</button>
@@ -160,6 +214,20 @@
 
 @section('js')
     <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+
+    <script>
+    document.getElementById('ine').addEventListener('change', function () {
+        let nombre = this.files[0] ? this.files[0].name : 'Seleccione un archivo...';
+        this.nextElementSibling.innerHTML = nombre;
+    });
+    </script>
+
+    <script>
+    document.getElementById('comprobante_domicilio').addEventListener('change', function () {
+        let nombre = this.files[0] ? this.files[0].name : 'Seleccione un archivo...';
+        this.nextElementSibling.innerHTML = nombre;
+    });
+    </script>
 
     <script>
         $(document).ready(function() {
