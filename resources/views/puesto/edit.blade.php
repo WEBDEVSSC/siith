@@ -38,6 +38,16 @@
             
             <div class="card-body">
 
+                <div class="row">
+                    <div class="col-md-3">
+                        <p><strong>Número de empleado</strong></p>
+                        <input type="text" name="numero_empleado" id="numero_empleado" class="form-control" value="{{ old('numero_empleado', $profesional->numero_empleado) }}">
+                        @error('numero_empleado')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+
                 <!-- ---------------------------------- -->
 
                 <div class="row mt-3">
@@ -361,8 +371,8 @@
 
         <!-- ---------------------------------------------------------------------- --> 
         </div>
-        <div class="card-footer">
-            <button type="submit" class="btn btn-success btn-sm btn-info">ACTUALIZAR DATOS DE PUESTO</button>
+        <div class="card-footer d-flex justify-content-end">
+            <button type="submit" class="btn btn-success btn-sm btn-info"><i class="fa-solid fa-pen"></i> ACTUALIZAR DATOS</button>
         </div>
 
     </form>

@@ -358,6 +358,7 @@ class ProfesionalPuestoController extends Controller
             //'temporalidad' => 'required',
             //'licencia_maternidad' => 'required',
             //'seguro_salud' => 'required',
+            'numero_empleado' => 'nullable|string|max:255',
         ], [
             'id_profesional.required' => 'El ID del profesional es obligatorio.',
             'fiel.required' => 'El campo FIEL es obligatorio.',
@@ -382,6 +383,8 @@ class ProfesionalPuestoController extends Controller
             'temporalidad.required' => 'El campo Temporalidad es obligatorio.',
             'licencia_maternidad.required' => 'El campo Licencia de Maternidad es obligatorio.',
             'seguro_salud.required' => 'El campo Seguro de Salud es obligatorio.',
+            'numero_empleado.string' => 'El campo Número de Empleado debe ser una cadena de texto.',
+            'numero_empleado.max' => 'El campo Número de Empleado no debe exceder los 255 caracteres.',
         ]);
 
         // Consultamos el registro con el ID
@@ -401,30 +404,16 @@ class ProfesionalPuestoController extends Controller
             'adicional' => $request->adicional,
 
             'tipo_personal' => $request->tipo_personal,
-            //'codigo_puesto' => $request->codigo_puesto,
 
             'clues_nomina' => $request->clues_nomina,
             'clues_nomina_nombre' => $cluesNomina->nombre,
             'clues_nomina_municipio' => $cluesNomina->municipio,
             'clues_nomina_jurisdiccion' => $cluesNomina->clave_jurisdiccion,
 
-            //'clues_adscripcion' => $request->clues_adscripcion,
-            //'clues_adscripcion_nombre' => $cluesAdscripcion->nombre,
-            //'clues_adscripcion_municipio' => $cluesAdscripcion->municipio,
-            //'clues_adscripcion_jurisdiccion' => $cluesAdscripcion->clave_jurisdiccion,
-
             'area_trabajo' => $request->area_trabajo,
             'ocupacion' => $request->ocupacion,
-            //'nomina_pago' => $request->nomina_pago,
-            //'tipo_contrato' => $request->tipo_contrato,
-            //'fecha_ingreso' => $request->fecha_ingreso,
-            //'tipo_plaza' => $request->tipo_plaza,
             'institucion_puesto' => $request->institucion_puesto,
-            //'vigencia' => $request->vigencia,
-            //'vigencia_motivo' => $request->vigencia_motivo,
-            //'temporalidad' => $request->temporalidad,
-            //'licencia_maternidad' => $request->licencia_maternidad,
-            //'seguro_salud' => $request->seguro_salud,
+            'numero_empleado' => $request->numero_empleado,
             'mdl_puesto' => 1,
 
         ]);
