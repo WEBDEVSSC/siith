@@ -19,7 +19,9 @@
 
 <div class="card">
         <div class="card-header">
-            <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm">PERFIL DEL TRABAJADOR</a>
+            <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm">
+                <i class="fas fa-user mr-1"></i> PERFIL DEL TRABAJADOR
+            </a>
         </div>
         <div class="card-header">
 
@@ -78,8 +80,10 @@
 
                 <!-- ---------------------------------------------------------------------- --> 
         </div>
-        <div class="card-footer">
-            <button type="submit" class="btn btn-success btn-sm btn-info">REGISTRAR FOTOGRAFÍA</button>
+        <div class="card-footer d-flex justify-content-end">
+            <button type="submit" class="btn btn-info btn-sm">
+                <i class="fas fa-save mr-1"></i> ACTUALIZAR DATOS
+            </button>
         </div>
 
     </form>

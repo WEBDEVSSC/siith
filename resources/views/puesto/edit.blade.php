@@ -23,11 +23,11 @@
     
 <div class="card">
         <div class="card-header">
-
-            <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm">PERFIL DEL TRABAJADOR</a>
-            
+            <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm">
+                <i class="fas fa-user mr-1"></i> PERFIL DEL TRABAJADOR
+            </a>
         </div>
-
+        
         <form action="{{ route('updatePuesto', $profesional->id) }}" method="POST">
 
         <input type="hidden" name="id_profesional" value={{ $profesional->id_profesional }}>
@@ -372,7 +372,9 @@
         <!-- ---------------------------------------------------------------------- --> 
         </div>
         <div class="card-footer d-flex justify-content-end">
-            <button type="submit" class="btn btn-success btn-sm btn-info"><i class="fa-solid fa-pen"></i> ACTUALIZAR DATOS</button>
+            <button type="submit" class="btn btn-info btn-sm">
+                <i class="fas fa-save mr-1"></i> ACTUALIZAR DATOS
+            </button>
         </div>
 
     </form>

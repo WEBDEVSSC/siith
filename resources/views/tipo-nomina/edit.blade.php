@@ -29,9 +29,9 @@
 
     <div class="card">
         <div class="card-header">
-
-            <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm">PERFIL DEL TRABAJADOR</a>
-
+            <a href="{{ route('profesionalShow', $profesional->id) }}" class="btn btn-info btn-sm">
+                <i class="fas fa-user mr-1"></i> PERFIL DEL TRABAJADOR
+            </a>
         </div>
 
         <form action="{{ route('updateCambioTipoNomina', $tipoDeNomina->id) }}" method="POST">
