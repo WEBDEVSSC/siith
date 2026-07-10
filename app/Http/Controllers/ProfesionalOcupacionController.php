@@ -250,7 +250,7 @@ class ProfesionalOcupacionController extends Controller
         $profesional = Profesional::findOrFail($id);
 
         // Llenamos el select de ocupaciones
-        $ocupaciones = CatOcupacionHospital::orderBy('area', 'asc')->get();
+        $ocupaciones = CatOcupacionHospital::orderBy('orden', 'asc')->get();
 
         // Retornamos la vista con todos los objetos
         return view('ocupacion.hospital-create', compact('profesional','ocupaciones'));
