@@ -145,6 +145,7 @@
                 <th style="color: white;"><strong>NIVEL DE DOMINIO</strong></th>
                 <th style="color: white;"><strong>LENGUA DE SEÑAS</strong></th>       
                 <th style="color: white;"><strong>OCUPACION</strong></th>     
+                <th style="color: white;"><strong>CODIGO</strong></th>     
 
             </tr>
         </thead>
@@ -184,18 +185,16 @@
                     
                     <td>{{ $profesional->nacionalidad ?? ''  }}</td>
                     <td>{{ $profesional->estado_conyugal ?? ''  }}</td>
-                    
-                    @if($profesional->puesto->fiel_vigencia == '0000-00-00')
-                         <td>NO</td>
+
+                    <td>{{ $profesional->puesto?->fiel ?? '' }}</td>
+
+                    @if(optional($profesional->puesto)->fiel_vigencia === '0000-00-00')
+                    <td></td>
                     @else
-                         <td>{{ $profesional->puesto?->fiel ?? '' }}</td>
+                    <td>{{ $profesional->puesto?->fiel_vigencia ?? '' }}</td>
                     @endif
 
-                    @if ($profesional->puesto?->fiel_vigencia === '0000-00-00')
-                           <td></td>   
-                    @else
-                         <td>{{ $profesional->puesto?->fiel_vigencia ?? '' }}</td>
-                    @endif
+                    
                     
                     <td>{{ $profesional->email ?? ''  }}</td>
 
@@ -524,6 +523,8 @@
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}
 
                     <td>{{ $profesional->puesto?->ocupacion ?? '' }}</td>
+
+                    <td>{{ $profesional->puesto?->codigo ?? '' }}</td>
 
                 </tr>
             @endforeach

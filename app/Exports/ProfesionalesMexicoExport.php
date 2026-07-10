@@ -164,6 +164,9 @@ class ProfesionalesMexicoExport implements FromView, WithStyles
             'DG1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '1E1A4D']]],
             'DH1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '1E1A4D']]],
 
+            'DI1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '1E1A4D']]],
+            'DJ1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '1E1A4D']]],
+
         ];
     }
 }
