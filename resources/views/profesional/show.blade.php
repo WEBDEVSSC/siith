@@ -104,7 +104,7 @@
             <div class="col-md-2">
                 
                 <center>
-                    @if (Auth::user()->role == 'admin' || Auth::user()->role == 'directivo'  || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'cors'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino' || Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama' || Auth::user()->role == 'sistematizacion' || Auth::user()->role == 'creeSaltillo')
+                    @if (Auth::user()->role == 'admin' || Auth::user()->role == 'directivo'  || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'cors'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino' || Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama' || Auth::user()->role == 'sistematizacion' || Auth::user()->role == 'creeSaltillo' || Auth::user()->role == 'criMonclova' || Auth::user()->role == 'criTorreon' || Auth::user()->role == 'criParras' || Auth::user()->role == 'criPiedrasNegras')
                         @if($fotoUrl)
                             <img src="{{ $fotoUrl }}" alt="Fotografía del profesional" style="max-width:100%; height:auto;" class="img-thumbnail"/>
                         @else
@@ -205,7 +205,7 @@
             <a href="{{ route('editDatosGeneralesEnsenanza', $profesional->id) }}" class="btn btn-info btn-sm"> <i class="fa-solid fa-pen"></i> EDITAR DATOS GENERALES</a>
         @endif
 
-        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
+        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama' || Auth::user()->role == 'creeSaltillo' || Auth::user()->role == 'criMonclova' || Auth::user()->role == 'criTorreon' || Auth::user()->role == 'criParras' || Auth::user()->role == 'criPiedrasNegras')
             @if ($profesional->mdl_datos_generales == 1)
                 <a href="{{ route('profesionalEdit', $profesional->id) }}" class="btn btn-info btn-sm"> <i class="fa-solid fa-pen"></i> EDITAR DATOS GENERALES</a>
             @elseif ($profesional->mdl_datos_generales == 0)
@@ -215,7 +215,7 @@
 
         .
 
-        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
+        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama' || Auth::user()->role == 'creeSaltillo' || Auth::user()->role == 'criMonclova' || Auth::user()->role == 'criTorreon' || Auth::user()->role == 'criParras' || Auth::user()->role == 'criPiedrasNegras')
             @if ($profesional->credencializacion?->mdl_credencializacion == 1)
                 <a href="{{ route('editCredencializacion', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR FOTOGRAFÍA</a>
             @elseif ($profesional->credencializacion?->mdl_credencializacion == 0)
@@ -228,7 +228,7 @@
 
     <!-- -- -->
 
-    @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
+    @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama' || Auth::user()->role == 'creeSaltillo' || Auth::user()->role == 'criMonclova' || Auth::user()->role == 'criTorreon' || Auth::user()->role == 'criParras' || Auth::user()->role == 'criPiedrasNegras')
 
     <div class="card card-info">
 
@@ -510,7 +510,7 @@
         </div>
         <div class="card-footer d-flex justify-content-end">
         
-        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino' || Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
+        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino' || Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama' || Auth::user()->role == 'creeSaltillo' || Auth::user()->role == 'criMonclova' || Auth::user()->role == 'criTorreon' || Auth::user()->role == 'criParras' || Auth::user()->role == 'criPiedrasNegras')
 
             @if ($profesional->puesto?->clues_adscripcion_tipo == 1)
 
@@ -951,7 +951,7 @@
         
         <div class="card-footer d-flex justify-content-end">
         
-        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
+        @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama' || Auth::user()->role == 'creeSaltillo' || Auth::user()->role == 'criMonclova' || Auth::user()->role == 'criTorreon' || Auth::user()->role == 'criParras' || Auth::user()->role == 'criPiedrasNegras')
 
             @if ($profesional->puesto?->mdl_puesto == 1)
                 <a href="{{ route('editPuesto', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
@@ -1011,7 +1011,7 @@
         </div>
         <div class="card-footer d-flex justify-content-end">
 
-            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
+            @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama' || Auth::user()->role == 'creeSaltillo' || Auth::user()->role == 'criMonclova' || Auth::user()->role == 'criTorreon' || Auth::user()->role == 'criParras' || Auth::user()->role == 'criPiedrasNegras')
                 @if ($profesional->puesto?->mdl_puesto == 1)
                     <a href="{{ route('createCambioTipoNomina', $profesional->id) }}" class="btn btn-info btn-sm">
                         <i class="fa-solid fa-pen"></i> EDITAR DATOS
@@ -1075,7 +1075,7 @@
         </div>
         <div class="card-footer d-flex justify-content-end">
 
-            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
+            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama' || Auth::user()->role == 'creeSaltillo' || Auth::user()->role == 'criMonclova' || Auth::user()->role == 'criTorreon' || Auth::user()->role == 'criParras' || Auth::user()->role == 'criPiedrasNegras')
             
                 <a href="{{ route('createVigencia', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
 
@@ -1176,7 +1176,7 @@
     </div>
         <div class="card-footer d-flex justify-content-end">
         
-        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
+        @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama' || Auth::user()->role == 'creeSaltillo' || Auth::user()->role == 'criMonclova' || Auth::user()->role == 'criTorreon' || Auth::user()->role == 'criParras' || Auth::user()->role == 'criPiedrasNegras')
             @if ($profesional->horario && $profesional->horario->mdl_horario == 1)
                 <a href="{{ route('editHorario', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
             @else
@@ -1404,7 +1404,7 @@
 
         </div>
         <div class="card-footer d-flex justify-content-end">
-            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'rhusuarios' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
+            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'rhusuarios' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama' || Auth::user()->role == 'creeSaltillo' || Auth::user()->role == 'criMonclova' || Auth::user()->role == 'criTorreon' || Auth::user()->role == 'criParras' || Auth::user()->role == 'criPiedrasNegras')
                 @if ($profesional->gradoAcademico?->mdl_grado_academico == 1)
                     <a href="{{ route('editGrado', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
                 @elseif ($profesional->gradoAcademico?->mdl_grado_academico == 0)
@@ -1448,7 +1448,7 @@
             </div>
         </div>
         <div class="card-footer d-flex justify-content-end">
-            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
+            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama' || Auth::user()->role == 'creeSaltillo' || Auth::user()->role == 'criMonclova' || Auth::user()->role == 'criTorreon' || Auth::user()->role == 'criParras' || Auth::user()->role == 'criPiedrasNegras')
 
                 @if ($profesional->areaMedica?->mdl_area_medica == 1)
                     <a href="{{ route('editAreaMedica', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
@@ -1505,7 +1505,7 @@
             </div>
         </div>
         <div class="card-footer d-flex justify-content-end">
-            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
+            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama' || Auth::user()->role == 'creeSaltillo' || Auth::user()->role == 'criMonclova' || Auth::user()->role == 'criTorreon' || Auth::user()->role == 'criParras' || Auth::user()->role == 'criPiedrasNegras')
 
                 @if ($profesional->certificacion?->mdl_certificacion == 1)
                     <a href="{{ route('editCertificacion', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
@@ -1629,7 +1629,7 @@
         </div>
         <div class="card-footer d-flex justify-content-end">
 
-            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama')
+            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama' || Auth::user()->role == 'creeSaltillo' || Auth::user()->role == 'criMonclova' || Auth::user()->role == 'criTorreon' || Auth::user()->role == 'criParras' || Auth::user()->role == 'criPiedrasNegras')
 
                 @if ($profesional->emergencia?->mdl_emergencia == 1)
                     <a href="{{ route('editEmergencia', $profesional->id) }}" class="btn btn-info btn-sm"><i class="fa-solid fa-pen"></i> EDITAR DATOS</a>
