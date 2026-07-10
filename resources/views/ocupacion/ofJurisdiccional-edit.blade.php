@@ -35,7 +35,7 @@
                         @foreach($ocupaciones as $ocupacion)
                             <option value="{{ $ocupacion->id }}" 
                                 {{ old('ocupacion_uno', optional($profesionalOcupaciones)->id_catalogo_uno) == $ocupacion->id ? 'selected' : '' }}>
-                                {{ $ocupacion->unidad }} - {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->servicio }} - {{ $ocupacion->ocupacion }}
+                                {{$ocupacion->orden}} | {{ $ocupacion->unidad }} - {{ $ocupacion->area }} - {{ $ocupacion->subarea }} - {{ $ocupacion->servicio }} - {{ $ocupacion->ocupacion }}
                             </option>
                         @endforeach
                     </select>
