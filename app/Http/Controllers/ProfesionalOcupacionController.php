@@ -442,7 +442,7 @@ class ProfesionalOcupacionController extends Controller
         $profesional = Profesional::findOrFail($id);
 
         // Llenamos el select de ocupaciones
-        $ocupaciones = CatOcupacionOfJurisdiccional::orderBy('area', 'asc')->get();
+        $ocupaciones = CatOcupacionOfJurisdiccional::orderBy('orden', 'asc')->get();
 
         // Retornamos la vista con todos los objetos
         return view('ocupacion.ofJurisdiccional-create', compact('profesional','ocupaciones'));
@@ -507,7 +507,7 @@ class ProfesionalOcupacionController extends Controller
         $profesional = Profesional::findOrFail($id);
 
         // Llenamos el select de ocupaciones
-        $ocupaciones = CatOcupacionOfJurisdiccional::orderBy('area', 'asc')->get();
+        $ocupaciones = CatOcupacionOfJurisdiccional::orderBy('orden', 'asc')->get();
 
         // Consultamos si tiene registros en la tabla
         $profesionalOcupaciones = ProfesionalOcupacionOfJurisdiccional::where('id_profesional',$id)->first();
@@ -2772,7 +2772,7 @@ class ProfesionalOcupacionController extends Controller
         $profesional = Profesional::findOrFail($id);
 
         // Llenamos el select de ocupaciones
-        $ocupaciones = CatOcupacionCecosama::all();
+        $ocupaciones = CatOcupacionCecosama::orderBy('orden', 'asc')->get();
 
         // Retornamos la vista con todos los objetos
         return view('ocupacion.cecosama-create', compact('profesional','ocupaciones'));
@@ -2821,7 +2821,7 @@ class ProfesionalOcupacionController extends Controller
         $profesional = Profesional::findOrFail($id);
 
         // Llenamos el select de ocupaciones
-        $ocupaciones = CatOcupacionCecosama::all();
+        $ocupaciones = CatOcupacionCecosama::orderBy('orden', 'asc')->get();
 
         // Consultamos si tiene registros en la tabla
         $profesionalOcupaciones = ProfesionalOcupacionCecosama::where('id_profesional',$id)->first();
