@@ -311,7 +311,7 @@ return [
             'url' => 'admin/profesionales/profesionalIndex',
             'icon' => 'fa-solid fa-list',
             'label_color' => 'success',
-            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei', 'ensenanza', 'universitario','riesgos','prestaciones','eventual','cecosama','creeSaltillo','cecreMonclova','criTorreon','criParras','criPiedrasNegras'],
+            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'issreei', 'ensenanza', 'universitario','riesgos','prestaciones','eventual','cecosama','creeSaltillo','criMonclova','criTorreon','criParras','criPiedrasNegras'],
         ],
         [
             'text' => 'Mis Centros',
@@ -325,14 +325,14 @@ return [
             'url' => 'admin/profesionales/cambioDeUnidad/findProfesional',
             'icon' => 'fa-solid fa-building-circle-arrow-right',
             'label_color' => 'success',
-            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino','cecosama','creeSaltillo','cecreMonclova','criTorreon','criParras','criPiedrasNegras'],
+            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino','cecosama','creeSaltillo','criMonclova','criTorreon','criParras','criPiedrasNegras'],
         ],
         [
             'text' => 'Nuevo registro',
             'url' => 'admin/profesionales/buscarCurp',
             'icon' => 'fas fa-plus',
             'label_color' => 'success',
-            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'universitario','cecosama','issreei','creeSaltillo','cecreMonclova','criTorreon','criParras','criPiedrasNegras'],
+            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'universitario','cecosama','issreei','creeSaltillo','criMonclova','criTorreon','criParras','criPiedrasNegras'],
         ],
         [
             'text' => 'Recontratación',
@@ -360,7 +360,7 @@ return [
             'url' => 'admin/profesionales/reportes/reporteIndex',
             'icon' => 'fa-solid fa-file-excel',
             'label_color' => 'success',
-            'can' => ['admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'ensenanza', 'universitario', 'riesgos','cecosama','creeSaltillo','cecreMonclova','criTorreon','criParras','criPiedrasNegras'],
+            'can' => ['admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino', 'ensenanza', 'universitario', 'riesgos','cecosama','creeSaltillo','criMonclova','criTorreon','criParras','criPiedrasNegras'],
         ],
         [
             'text' => 'Descargas',
