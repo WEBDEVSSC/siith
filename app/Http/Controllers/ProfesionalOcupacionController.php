@@ -314,7 +314,7 @@ class ProfesionalOcupacionController extends Controller
         $profesional = Profesional::findOrFail($id);
 
         // Llenamos el select de ocupaciones
-        $ocupaciones = CatOcupacionHospital::orderBy('area', 'asc')->get();
+        $ocupaciones = CatOcupacionHospital::orderBy('orden', 'asc')->get();
 
         // Consultamos si tiene registros en la tabla
         $profesionalOcupaciones = ProfesionalOcupacionHospital::where('id_profesional',$id)->first();
