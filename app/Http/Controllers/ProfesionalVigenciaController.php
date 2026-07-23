@@ -52,7 +52,6 @@ class ProfesionalVigenciaController extends Controller
             'vigencia'         => 'required',
             'vigencia_motivo'  => 'required',
             'fecha_inicio'     => 'required|date_format:Y-m-d',
-            //'fecha_final'      => 'nullable|required_if:vigencia,BAJA TEMPORAL|date_format:Y-m-d|after:fecha_inicio',
             'fecha_final'      => 'nullable|required_if:vigencia_motivo,BECA,INCAPACIDAD MEDICA,LIC. MEDICA,LIC. SIN GOCE DE SUELDO,LIC. SIN GOCE DE SUELDO PARA CURSAR RESIDENCIA MEDICA EN INSTITUCIONES FUERA DE LA SECRETARIA DE SALUD,LIC. SIN GOCE DE SUELDO PARA CURSAR RESIDENCIA MEDICA EN LA SECRETARIA DE SALUD,LIC. SIN GOCE DE SUELDO PARA DESEMPENO DE UN CARGO DE ELECCION POPULAR,LIC. SIN GOCE DE SUELDO PARA EL DISFRUTE DE UNA BECA DENTRO O FUERA DEL PAIS,LIC. SIN GOCE DE SUELDO PARA OCUPAR PUESTO DE CONFIAZAN EN LA SECRETARIA DE SALUD,LIC. SIN GOCE DE SUELDO POR ASUNTOS PARTICULARES,LIC. SIN GOCE DE SUELDO POR COM. EXT. PARA OCUPAR PUESTO DE CONF. FUERA DE LA SS Y DENTRO DEL SECTOR PUBLICO FEDERAL|date_format:Y-m-d|after:fecha_inicio',
         ],[
             'id_profesional.required'   => 'El campo profesional es obligatorio.',
@@ -135,12 +134,24 @@ class ProfesionalVigenciaController extends Controller
     {
         // Validamos los datos
         $request->validate([
-            'vigencia'=>'required',
-            'vigencia_motivo'=>'required',
-            'fecha_inicio'=>'required',
-            'fecha_termino'=>'nullable',
+            'vigencia'         => 'required|string|max:255',
+            'vigencia_motivo'  => 'required|string|max:255',
+            'fecha_inicio'     => 'required|date',
+            'fecha_final'      => 'nullable|date|after_or_equal:fecha_inicio',
         ],[
+            'vigencia.required' => 'Debe seleccionar una vigencia.',
+            'vigencia.string'   => 'La vigencia seleccionada no es válida.',
+            'vigencia.max'      => 'La vigencia no puede tener más de 255 caracteres.',
 
+            'vigencia_motivo.required' => 'Debe ingresar el motivo de la vigencia.',
+            'vigencia_motivo.string'   => 'El motivo de la vigencia no es válido.',
+            'vigencia_motivo.max'      => 'El motivo de la vigencia no puede tener más de 255 caracteres.',
+
+            'fecha_inicio.required' => 'Debe seleccionar la fecha de inicio.',
+            'fecha_inicio.date'     => 'La fecha de inicio no es válida.',
+
+            'fecha_final.date'            => 'La fecha final no es válida.',
+            'fecha_final.after_or_equal'  => 'La fecha final debe ser igual o posterior a la fecha de inicio.',
         ]);
 
         // Buscamos el registro a editar
@@ -150,7 +161,7 @@ class ProfesionalVigenciaController extends Controller
         $profesionalVigencia->vigencia = $request->vigencia;
         $profesionalVigencia->vigencia_motivo = $request->vigencia_motivo;
         $profesionalVigencia->fecha_inicio = $request->fecha_inicio;
-        $profesionalVigencia->fecha_final = $request->fecha_termino;
+        $profesionalVigencia->fecha_final = $request->fecha_final;
 
         $profesionalVigencia->save();
 
