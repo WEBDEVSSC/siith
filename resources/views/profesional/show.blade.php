@@ -2070,6 +2070,12 @@
             @endif
         </div>
     </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <p><strong>Registro realizado por : {{ $profesional->capturado_label }}</strong></p>
+        </div>
+    </div>
     
 @stop
 
