@@ -1050,6 +1050,7 @@
                     <th>FECHA DE INICIO</th>
                     <th>FECHA FINAL</th>
                     <th>REGISTRO</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -1063,6 +1064,23 @@
                     : 'N/A' }}</td>
                     {{-- <td>{{ $vigencia->fecha_final ? \Carbon\Carbon::parse($vigencia->fecha_final)->format('d-m-Y') : 'N/A' }}</td> --}}
                     <td>{{ $vigencia->created_at ? \Carbon\Carbon::parse($vigencia->created_at)->format('d-m-Y') : 'N/A' }}</td>
+                    <td>
+
+                    @if (Auth::user()->role == 'admin')
+                        <form action="{{ route('deleteVigencia', $vigencia->id) }}" method="POST" class="formEliminarVigencia d-inline">
+
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit" class="btn btn-danger btn-sm" data-toggle="tooltip" title="ELIMINAR">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+
+                        </form>
+                    @endif
+
+                    </td>
+
                 </tr>
                 @empty
                 <tr>
@@ -2203,5 +2221,36 @@
             });
 
         });
-        </script>
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            document.querySelectorAll('.formEliminarVigencia').forEach(form => {
+
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+
+                    Swal.fire({
+                        title: '¿Estás seguro?',
+                        text: "Este registro se eliminará de las vigencias",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#6c757d',
+                        confirmButtonText: 'Sí, eliminar',
+                        cancelButtonText: 'Cancelar',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+
+                });
+
+            });
+
+        });
+    </script>
 @stop

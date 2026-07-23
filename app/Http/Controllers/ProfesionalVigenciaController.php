@@ -157,4 +157,13 @@ class ProfesionalVigenciaController extends Controller
         // Retornar o redirigir a donde lo necesites, por ejemplo:
         return redirect()->route('profesionalShow', $profesionalVigencia->id_profesional)->with('success', 'Vigencia actualizada correctamente.');
     }
+
+    public function deleteVigencia(String $id)
+    {
+        $profesionalVigencia = ProfesionalVigencia::findOrFail($id);
+
+        $profesionalVigencia->delete();
+
+         return redirect()->route('profesionalShow', $profesionalVigencia->id_profesional)->with('success', 'Vigencia eliminada correctamente.');
+    }
 }

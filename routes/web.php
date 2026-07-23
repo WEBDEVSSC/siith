@@ -434,6 +434,8 @@ Route::middleware(['auth'])->group(function ()
  
      Route::put('admin/profesionales/vigencias/updateVigencia/{id}', [ProfesionalVigenciaController::class, 'updateVigencia'])->name('updateVigencia');
 
+     Route::delete('admin/profesionales/vigencias/deleteVigencia/{id}', [ProfesionalVigenciaController::class, 'deleteVigencia'])->name('deleteVigencia');
+
      
 
           /**

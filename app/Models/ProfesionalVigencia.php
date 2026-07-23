@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProfesionalVigencia extends Model
 {
+    use SoftDeletes;
     //
     protected $table = 'profesionales_vigencias';
 
@@ -21,6 +23,7 @@ class ProfesionalVigencia extends Model
     protected $dates = [
         'fecha_inicio',
         'fecha_final',
+        'deleted_at',
         'created_at',
         'updated_at',
     ];
@@ -30,10 +33,4 @@ class ProfesionalVigencia extends Model
     {
         return $this->belongsTo(Profesional::class, 'id_profesional', 'id');
     }
-
-    // Relación con ProfesionalDatosGenerales (uno a uno)
-    /*public function credencializacion()
-    {
-        return $this->belongsTo(ProfesionalCredencializacion::class, 'id_profesional', 'id_profesional');
-    }*/
 }
