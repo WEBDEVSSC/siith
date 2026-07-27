@@ -404,7 +404,7 @@ class ProfesionalController extends Controller
             'nombre' => 'required',
             'apellido_paterno' => 'required',
             'apellido_materno' => 'required',
-            'fechaFormateada' => 'required',
+            'fechaFormateada' => 'required|date|before_or_equal:' . Carbon::now()->subYears(16)->format('Y-m-d'),
             //'paisNacimiento' => 'required',
             'pais_nacimiento' => ['nullable','required_if:nacionalidad,EXTRANJERA'],
 
@@ -439,10 +439,24 @@ class ProfesionalController extends Controller
             'fecha_inicio.before_or_equal' => 'La fecha de inicio no puede ser mayor al día de hoy.',
             'fecha_inicio.date_format' => 'La fecha de vigencia debe tener el formato DD-MM-AAAA.',
 
+            'fechaFormateada.required' => 'La fecha de nacimiento es obligatoria.',
+            'fechaFormateada.date' => 'La fecha de nacimiento no es válida.',
+            'fechaFormateada.before_or_equal' => 'El paciente debe tener al menos 16 años.',
+
             'nacionalidad.required' => 'La nacionalidad es obligatoria',
 
             'pais_nacimiento.required_if' => 'Debe seleccionar el país de nacimiento cuando la nacionalidad es extranjera.',
         ]);
+
+        $fechaNacimiento = Carbon::parse($request->fechaFormateada);
+        $fechaEntrada = Carbon::parse($request->fecha_inicio);
+
+        if ($fechaNacimiento->copy()->addYears(16)->gt($fechaEntrada)) 
+        {
+            return back()
+                ->withErrors(['fechaFormateada' => 'La fecha de inicio debe ser al menos 16 años posterior a la fecha de nacimiento'])
+                ->withInput();
+        }
 
         // Formateamos el valor de SEXO
         if($request->sexo === "H")
