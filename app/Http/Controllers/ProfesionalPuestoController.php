@@ -334,8 +334,6 @@ class ProfesionalPuestoController extends Controller
 
     public function updatePuesto(Request $request, $id)
     {      
-        
-        // Validamos los datos
         $validated = $request->validate([
             'id_profesional' => 'required',
             'fiel' => 'required',
@@ -343,22 +341,13 @@ class ProfesionalPuestoController extends Controller
             'actividad' => 'required',
             'adicional' => 'required',
             'tipo_personal' => 'required',
-            //'codigo_puesto' => 'required',
             'clues_nomina' => 'required',
             'clues_adscripcion' => 'required',
             'area_trabajo' => 'required',
             'ocupacion' => 'required',
-            //'nomina_pago' => 'required',
-            //'tipo_contrato' => 'required',
-            //'fecha_ingreso' => 'nullable|date',
-            //'tipo_plaza' => 'required',
             'institucion_puesto' => 'required',
-            //'vigencia' => 'required',
-            //'vigencia_motivo' => 'required',
-            //'temporalidad' => 'required',
-            //'licencia_maternidad' => 'required',
-            //'seguro_salud' => 'required',
             'numero_empleado' => 'nullable|string|max:255',
+            'numero_asistencia' => 'nullable|string|max:255',
         ], [
             'id_profesional.required' => 'El ID del profesional es obligatorio.',
             'fiel.required' => 'El campo FIEL es obligatorio.',
@@ -385,7 +374,11 @@ class ProfesionalPuestoController extends Controller
             'seguro_salud.required' => 'El campo Seguro de Salud es obligatorio.',
             'numero_empleado.string' => 'El campo Número de Empleado debe ser una cadena de texto.',
             'numero_empleado.max' => 'El campo Número de Empleado no debe exceder los 255 caracteres.',
+            'numero_asistencia.string' => 'El campo Número de Asistencia debe ser una cadena de texto.',
+            'numero_asistencia.max' => 'El campo Número de Asistencia no debe exceder los 255 caracteres.',
         ]);
+
+        //dd($request->numero_asistencia);
 
         // Consultamos el registro con el ID
         $profesional = ProfesionalPuesto::findOrFail($id);
@@ -414,6 +407,7 @@ class ProfesionalPuestoController extends Controller
             'ocupacion' => $request->ocupacion,
             'institucion_puesto' => $request->institucion_puesto,
             'numero_empleado' => $request->numero_empleado,
+            'numero_asistencia' => $request->numero_asistencia,
             'mdl_puesto' => 1,
 
         ]);

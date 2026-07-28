@@ -828,10 +828,16 @@
 
             <div class="row">
                 <div class="col-md-3">
-                    <p><strong>Número de Empleado</strong></p>
+                    <p><strong>No. EMPLEADO</strong></p>
                     {{ $profesional->puesto->numero_empleado ?? '' }}
                 </div>
+                <div class="col-md-3">
+                    <p><strong>No. CONTROL ASISTENCIA</strong></p>
+                    {{ $profesional->puesto->numero_asistencia ?? '' }}
+                </div>
             </div>
+
+            <hr>
 
             <div class="row mt-3">
                 <div class="col-md-3">

@@ -39,7 +39,8 @@ class ProfesionalPuesto extends Model
         'temporalidad',
         'licencia_maternidad', 
         'seguro_salud',
-        'numero_empleado'
+        'numero_empleado',
+        'numero_asistencia',
     ];
 
     // Relación con la tabla profesionales_datos_generales

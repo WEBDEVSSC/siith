@@ -40,9 +40,16 @@
 
                 <div class="row">
                     <div class="col-md-3">
-                        <p><strong>Número de empleado</strong></p>
+                        <p><strong>No. de empleado</strong></p>
                         <input type="text" name="numero_empleado" id="numero_empleado" class="form-control" value="{{ old('numero_empleado', $profesional->numero_empleado) }}">
                         @error('numero_empleado')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-3">
+                        <p><strong>No. de control de asistencia</strong></p>
+                        <input type="text" name="numero_asistencia" id="numero_asistencia" class="form-control" value="{{ old('numero_asistencia', $profesional->numero_asistencia) }}">
+                        @error('numero_asistencia')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
