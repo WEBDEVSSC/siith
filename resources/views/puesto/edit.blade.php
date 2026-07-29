@@ -177,7 +177,7 @@
                 </div>
 
                 <div class="row mt-3">
-                         <div class="col-md-3">
+                         <div class="col-md-6">
                             <p><strong>Ocupación</strong></p>
                             <select name="ocupacion" id="ocupacion" class="form-control select2">
                                 <option value="">-- Selecciona una opción --</option>
@@ -192,7 +192,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-9">
+                        <div class="col-md-6">
                 <p><strong>Institución a la que pertenece el puesto</strong></p>
                 <select name="institucion_puesto" id="institucion_puesto" class="form-control">
                     <option value="">-- Selecciona una opción --</option>

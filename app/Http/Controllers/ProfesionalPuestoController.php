@@ -409,7 +409,6 @@ class ProfesionalPuestoController extends Controller
             'numero_empleado' => $request->numero_empleado,
             'numero_asistencia' => $request->numero_asistencia,
             'mdl_puesto' => 1,
-
         ]);
 
         $usuario = Auth::user();

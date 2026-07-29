@@ -18,7 +18,10 @@ class ProfesionalPuesto extends Model
         'tipo_personal', 
         'codigo_puesto_id',
         'codigo_puesto',
+        'codigo',
+        'grupo',
         'codigo_puesto_label',
+
         'clues_nomina', 
         'clues_nomina_nombre', 
         'clues_nomina_municipio', 
@@ -27,6 +30,8 @@ class ProfesionalPuesto extends Model
         'clues_adscripcion_nombre', 
         'clues_adscripcion_municipio', 
         'clues_adscripcion_jurisdiccion',
+        'clues_adscripcion_tipo',
+
         'area_trabajo', 
         'ocupacion', 
         'nomina_pago', 
@@ -41,6 +46,8 @@ class ProfesionalPuesto extends Model
         'seguro_salud',
         'numero_empleado',
         'numero_asistencia',
+        'mdl_puesto'
+
     ];
 
     // Relación con la tabla profesionales_datos_generales
