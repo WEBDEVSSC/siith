@@ -47,6 +47,7 @@ use App\Http\Controllers\ProfesionalRolController;
 use App\Http\Controllers\ProfesionalSessionsController;
 use App\Http\Controllers\BitacoraOcupacionController;
 use App\Http\Controllers\CatalogoCertificacionController;
+use App\Http\Controllers\CatalogoOcupacionController;
 use App\Http\Controllers\ProfesionalSueldoController;
 use App\Http\Controllers\ProfesionalVigenciaController;
 use App\Http\Controllers\SystemSettingsController;
@@ -751,6 +752,28 @@ Route::middleware(['auth'])->group(function ()
      Route::delete('admin/clues/deleteClues/{id}', [CatalogoCluesController::class, 'deleteClues'])->name('deleteClues');
 
      /**
+      * 
+      *
+      * CATALOGO DE OCUPACIONES DE MEXICO 
+      * 
+      * 
+      */
+
+     Route::get('admin/ocupaciones/indexOcupaciones', [CatalogoOcupacionController::class,'indexOcupaciones'])->name('indexOcupaciones');
+
+     Route::get('admin/ocupaciones/showOcupaciones/{id}', [CatalogoOcupacionController::class,'showOcupaciones'])->name('showOcupaciones');
+
+     Route::get('admin/ocupaciones/createOcupaciones', [CatalogoOcupacionController::class,'createOcupaciones'])->name('createOcupaciones');
+
+     Route::post('admin/ocupaciones/storeOcupaciones', [CatalogoOcupacionController::class,'storeOcupaciones'])->name('storeOcupaciones');
+
+     Route::get('admin/ocupaciones/editOcupaciones/{id}', [CatalogoOcupacionController::class,'editOcupaciones'])->name('editOcupaciones');
+
+     Route::put('admin/ocupaciones/updateOcupaciones/{id}', [CatalogoOcupacionController::class,'updateOcupaciones'])->name('updateOcupaciones');
+
+     Route::delete('admin/ocupaciones/deleteOcupaciones/{id}', [CatalogoOcupacionController::class, 'deleteOcupaciones'])->name('deleteOcupaciones');
+
+     /**
      * 
      * 
      * MODULOS ADMINISRATIVOS
@@ -1252,6 +1275,7 @@ Route::middleware(['auth'])->group(function ()
      * 
      * 
      */
+
      Route::get('admin/settings/ocupacion/cecosama/index', [CatalogoOcupacionCecosamaController::class, 'ocupacionCecosamaIndex'])->name('ocupacionCecosamaIndex'); 
 
      Route::get('admin/settings/ocupacion/cecosama/create', [CatalogoOcupacionCecosamaController::class, 'ocupacionCecosamaCreate'])->name('ocupacionCecosamaCreate');  
