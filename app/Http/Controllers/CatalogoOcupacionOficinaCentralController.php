@@ -91,6 +91,8 @@ class CatalogoOcupacionOficinaCentralController extends Controller
             'componente' => 'required|string',
             'ocupacion' => 'required|string',
             'orden' => 'required|numeric',
+            's_area_trabajo' => 'nullable|string',
+            's_ocupacion' => 'nullable|string'
         ],[            
             'area.required' => 'El campo área es obligatorio.',
             'area.string' => 'El campo área debe ser una cadena de texto.',
@@ -121,7 +123,8 @@ class CatalogoOcupacionOficinaCentralController extends Controller
         $ocupacion->componente = $request->componente;
         $ocupacion->ocupacion = $request->ocupacion;
         $ocupacion->orden = $request->orden;
-
+        $ocupacion->s_area_trabajo = $request->s_area_trabajo;
+        $ocupacion->s_ocupacion = $request->s_ocupacion;
         // Guardamos los cambios
         $ocupacion->save();
 
@@ -132,6 +135,8 @@ class CatalogoOcupacionOficinaCentralController extends Controller
                                             'programa_uno' => $request->programa,
                                             'componente_uno' => $request->componente,
                                             'ocupacion_uno' => $request->ocupacion,
+                                            's_area_trabajo_uno' => $request->s_area_trabajo,
+                                            's_ocupacion_uno' => $request->s_ocupacion,
                                         ]);
 
         ProfesionalOcupacionOficinaCentral::where('id_catalogo_dos', $id)
@@ -141,6 +146,8 @@ class CatalogoOcupacionOficinaCentralController extends Controller
                                             'programa_dos' => $request->programa,
                                             'componente_dos' => $request->componente,
                                             'ocupacion_dos' => $request->ocupacion,
+                                            's_area_trabajo_dos' => $request->s_area_trabajo,
+                                            's_ocupacion_dos' => $request->s_ocupacion,
                                         ]);
 
         // Redirigimos con un mensaje de éxito

@@ -60,6 +60,7 @@
                     <th>COMPONENTE</th>
                     <th>OCUPACION</th>
                     <th></th>
+                    <th></th>
                     
                 </tr>
             </thead>
@@ -72,6 +73,7 @@
                         <td>{{ $ocupacion->programa }}</td>                   
                         <td>{{ $ocupacion->componente }}</td>                   
                         <td>{{ $ocupacion->ocupacion }}</td>                   
+                        <td class="small-text text-muted">{{ $ocupacion->s_area_trabajo }}<br>{{ $ocupacion->s_ocupacion }}</td>         
                         <td>
                         
                             <a href="{{ route('ocupacionOficinaCentralEdit', $ocupacion->id) }}" class="btn btn-warning btn-sm btn-block">EDITAR</a>
