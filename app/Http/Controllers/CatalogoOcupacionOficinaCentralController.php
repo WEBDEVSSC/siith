@@ -33,6 +33,8 @@ class CatalogoOcupacionOficinaCentralController extends Controller
             'programa' => 'required|string',
             'componente' => 'required|string',
             'ocupacion' => 'required|string',
+            's_area_trabajo' => 'nullable|string',
+            's_ocupacion' => 'nullable|string',
             'orden' => 'required|numeric|regex:/^\d{1,8}(\.\d{1,6})?$/',
         ],[            
             'area.required' => 'El campo área es obligatorio.',
@@ -64,6 +66,8 @@ class CatalogoOcupacionOficinaCentralController extends Controller
         $ocupacion->componente = $request->componente;
         $ocupacion->ocupacion = $request->ocupacion;
         $ocupacion->orden = $request->orden;
+        $ocupacion->s_area_trabajo = $request->s_area_trabajo;
+        $ocupacion->s_ocupacion = $request->s_ocupacion;
 
         // Guardamos los valores
         $ocupacion->save();
