@@ -3,7 +3,6 @@
 @section('title', 'Dashboard')
 
 @section('plugins.Sweetalert2', true)
-
 @section('plugins.Datatables', true)
 
 @section('content_header')
@@ -12,14 +11,8 @@
 
 @section('content')
 
-<!-- -->
-
 @php
-    $alerts = [
-        'success',
-        'update',
-        'delete'
-    ];
+    $alerts = ['success', 'update', 'delete'];
 @endphp
 
 @foreach ($alerts as $alert)
@@ -37,134 +30,89 @@
     @endif
 @endforeach
 
-<!-- -->
-    
 <div class="card">
-        <div class="card-header">
-            {{-- <a href="{{ route('createAreaDeTrabajo') }}" class="btn btn-success btn-sm">NUEVO REGISTRO</a> --}}
-        </div>
-        <div class="card-body">
+    <div class="card-header">
+        {{-- <a href="{{ route('createAreaDeTrabajo') }}" class="btn btn-success btn-sm">NUEVO REGISTRO</a> --}}
+    </div>
+    <div class="card-body">
 
-        @if($areasTrabajo->isEmpty())
-            <div class="alert alert-warning" role="alert">
-                No hay registros disponibles.
-            </div>
-        @else
-        {{-- <table id="profesionalesTable" class="table table-bordered"> --}}
+    @if($areasTrabajo->isEmpty())
+        <div class="alert alert-warning" role="alert">
+            No hay registros disponibles.
+        </div>
+    @else
         <table id="profesionalesTable" class="table table-bordered">
             <thead>
                 <tr>
                     <th>Áreas de Trabajo</th>
-                    <th></th>
-                    
                 </tr>
             </thead>
             <tbody>
                 @foreach ($areasTrabajo as $areaTrabajo)
                     <tr>
                         <td>{{ $areaTrabajo->area_trabajo }}</td>
-                         {{--<td>
-                            <a href="{{ route('editAreaDeTrabajo', $areaTrabajo->id) }}" class="btn btn-warning btn-sm">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </a>
-                
-                            <form action="{{ route('deleteAreaDeTrabajo', $areaTrabajo->id) }}" method="POST" style="display:inline;" class="form-eliminar">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>--}}
-
                     </tr> 
                 @endforeach
             </tbody>
         </table>
     @endif
 
-        </div>
-        <div class="card-footer">
-
-        </div>
+    </div>
+    <div class="card-footer"></div>
 </div>
 
 @stop
 
 @include('partials.footer')
 
-@section('css')
-    {{-- Add here extra stylesheets --}}
-    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
-@stop
-
 @section('js')
-    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
-
     <script>
         $(document).ready(function() {
-            // Inicializar todos los tooltips de la página
+            // Inicializar Tooltips
             $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
 
-    <script>$(document).ready( function () {
-        $(document).ready(function() {
-        $('#profesionalesTable').DataTable({
-            "language": {
-                "sProcessing":     "Procesando...",
-                "sLengthMenu":     "Mostrar _MENU_ registros",
-                "sZeroRecords":    "No se encontraron resultados",
-                "sEmptyTable":     "Ningún dato disponible en esta tabla",
-                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-                "sInfoPostFix":    "",
-                "sSearch":         "Buscar:",
-                "sUrl":            "",
-                "sInfoThousands":  ",",
-                "sLoadingRecords": "Cargando...",
-                "oPaginate": {
-                    "sFirst":    "Primero",
-                    "sLast":     "Último",
-                    "sNext":     "Siguiente",
-                    "sPrevious": "Anterior"
-                },
-                "oAria": {
-                    "sSortAscending":  ": activar para ordenar la columna de manera ascendente",
-                    "sSortDescending": ": activar para ordenar la columna de manera descendente"
-                }
-            }
-        });
-    });
-    } );
-    </script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const forms = document.querySelectorAll('.form-eliminar');
-    
-        forms.forEach(form => {
-            form.addEventListener('submit', function (e) {
-                e.preventDefault(); // Detener el envío inmediato
-    
-                Swal.fire({
-                    title: '¿Estás seguro?',
-                    text: "Esta acción no se puede deshacer.",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#d33',
-                    cancelButtonColor: '#3085d6',
-                    confirmButtonText: 'Sí, eliminar',
-                    cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit(); // Enviar el formulario si el usuario confirma
+            // Inicializar DataTables
+            $('#profesionalesTable').DataTable({
+                "language": {
+                    "sProcessing":     "Procesando...",
+                    "sLengthMenu":     "Mostrar _MENU_ registros",
+                    "sZeroRecords":    "No se encontraron resultados",
+                    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                    "sSearch":         "Buscar:",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst":    "Primero",
+                        "sLast":     "Último",
+                        "sNext":     "Siguiente",
+                        "sPrevious": "Anterior"
                     }
+                }
+            });
+
+            // Confirmación SweetAlert para eliminar
+            const forms = document.querySelectorAll('.form-eliminar');
+            forms.forEach(form => {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: '¿Estás seguro?',
+                        text: "Esta acción no se puede deshacer.",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#d33',
+                        cancelButtonColor: '#3085d6',
+                        confirmButtonText: 'Sí, eliminar',
+                        cancelButtonText: 'Cancelar'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
                 });
             });
         });
-    });
     </script>
-
 @stop
