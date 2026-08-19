@@ -19,19 +19,96 @@
     </script>
 @endif
 
-<div class="row">
+<style>
+  .card-patrimonial-siith {
+    background: #1a2238 !important; /* Azul oscuro corporativo de la imagen */
+    border-radius: 8px !important;
+    position: relative;
+    overflow: hidden;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  .card-patrimonial-siith .inner-content {
+    padding: 18px 24px 14px 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .card-patrimonial-siith .badge-icon {
+    color: #e67e22; /* Color naranja de acento */
+    font-size: 1.3rem;
+    margin-right: 10px;
+  }
+  .card-patrimonial-siith .title-patrimonial {
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    color: #ffffff;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+  }
+  .card-patrimonial-siith .desc-patrimonial {
+    font-size: 0.82rem;
+    color: #94a3b8;
+    margin-bottom: 0;
+    padding-left: 28px;
+  }
+  /* Ícono semitransparente de fondo a la derecha */
+  .card-patrimonial-siith .watermark-icon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.05);
+    z-index: 1;
+    pointer-events: none;
+  }
+  /* Footer / Enlace de acción */
+  .card-patrimonial-siith .footer-link {
+    display: block;
+    background: rgba(0, 0, 0, 0.2);
+    color: #cbd5e1 !important;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 2;
+  }
+  .card-patrimonial-siith .footer-link:hover {
+    background: rgba(0, 0, 0, 0.35);
+    color: #ffffff !important;
+  }
+</style>
+
+<div class="row mb-4">
   <div class="col-md-12">
-    <div class="small-box bg-warning">
-              <div class="inner">
-                <h3 style="color: white;">DECLARACION PATRIMONIAL</h3>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="{{ route('declaracionPatrimonial') }}" class="small-box-footer" style="color: white !important;">
-                  Más información <i class="fas fa-arrow-circle-right"></i>
-              </a>
-            </div>
+    <div class="card-patrimonial-siith">
+      <!-- Ícono de agua en fondo -->
+      <div class="watermark-icon">
+        <i class="fas fa-file-signature"></i>
+      </div>
+
+      <!-- Contenido Principal -->
+      <div class="inner-content">
+        <div class="title-patrimonial">
+          <i class="fas fa-shield-alt badge-icon"></i> DECLARACIÓN PATRIMONIAL
+        </div>
+        <p class="desc-patrimonial">
+          Módulo oficial de registro, consulta y seguimiento de obligaciones patrimoniales.
+        </p>
+      </div>
+
+      <!-- Enlace inferior -->
+      <a href="{{ route('declaracionPatrimonial') }}" class="footer-link">
+        Ingresar al módulo de declaración <i class="fas fa-arrow-right ml-1"></i>
+      </a>
+    </div>
   </div>
 </div>
 
@@ -630,6 +707,8 @@ auth()->user()->role === 'cesame'||
 auth()->user()->role === 'ceam'|| 
 auth()->user()->role === 'hospitalNino'
 )
+
+
 
 <div class="row">
     <div class="col-md-3">
@@ -1522,6 +1601,8 @@ auth()->user()->role === 'hospitalNino'
 <!-- ---------------------------------------------------------- -->
 
 @if(auth()->user()->role === 'ofCentral')
+{{-- 
+<h3><strong>Jefatura Estatal</strong></h3>
 
 <div class="row">
     <div class="col-md-3">
@@ -1578,6 +1659,47 @@ auth()->user()->role === 'hospitalNino'
 </div>
 </div>
 
+<!-- ---------------------------------------------------- -->
+
+<div class="row mt-3">
+  <div class="col-md-12">
+      <div class="card">
+      <div class="card-header bg-info text-white">
+          <h3 class="card-title">Cumpleaños del día</h3>
+      </div>
+      <div class="card-body">
+          @if($profesionalesHonomastico->isEmpty())
+              <p class="text-center">No hay profesionales que cumplan años hoy.</p>
+          @else
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>#</th>
+                          <th>Nombre</th>
+                          <th>Puesto</th>
+                          <th>Correo</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @foreach($profesionalesHonomastico as $index => $profesional)
+                          <tr>
+                              <td>{{ $index + 1 }}</td>
+                              <td>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</td>
+                              <td>{{ $profesional->ocupacionOficinaCentral->area_uno ?? '' }} - {{ $profesional->ocupacionOficinaCentral->subarea_uno ?? '' }} - {{ $profesional->ocupacionOficinaCentral->programa_uno ?? '' }} - {{ $profesional->ocupacionOficinaCentral->componente_uno ?? '' }} - {{ $profesional->ocupacionOficinaCentral->ocupacion_uno ?? '' }}</td>
+                              <td>{{ $profesional->email ?? 'No registrado' }}</td>
+                          </tr>
+                      @endforeach
+                  </tbody>
+              </table>
+          @endif
+      </div>
+  </div>
+
+  </div>
+</div>
+
+<h3><strong>SAMU CRUM</strong></h3>
+
 <div class="row mt-3">
     <div class="col-md-3">
         <!-- small box -->
@@ -1633,6 +1755,8 @@ auth()->user()->role === 'hospitalNino'
 </div>
 </div>
 
+
+
 <!-- ---------------------------------------------------- -->
 
 <div class="row mt-3">
@@ -1669,6 +1793,285 @@ auth()->user()->role === 'hospitalNino'
       </div>
   </div>
 
+  </div>
+</div> --}}
+
+<!-- Estilos auxiliares para toques de diseño modernos -->
+<style>
+  .section-title {
+    font-weight: 700;
+    color: #2c3e50;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .bg-female {
+    background-color: #e83e8c !important;
+    color: #fff !important;
+  }
+  .card-birthday {
+    border-top: 4px solid #17a2b8;
+    border-radius: 8px;
+  }
+  .table th {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
+    border-top: none;
+  }
+  .empty-state {
+    padding: 30px 15px;
+    text-align: center;
+    color: #6c757d;
+  }
+</style>
+
+<!-- ========================================== -->
+<!-- SECCIÓN 1: JEFATURA ESTATAL -->
+<!-- ========================================== -->
+<h3 class="section-title mt-2">
+  <i class="fas fa-building text-primary"></i> Jefatura Estatal
+</h3>
+
+<div class="row">
+  <!-- Activos -->
+  <div class="col-lg-3 col-6">
+    <div class="small-box bg-success elevation-2">
+      <div class="inner">
+        <h3>{{ $profesionalesActivosUnidad }}</h3>
+        <p>Trabajadores Activos</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-user-check"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Baja Temporal -->
+  <div class="col-lg-3 col-6">
+    <div class="small-box bg-warning elevation-2 text-white">
+      <div class="inner">
+        <h3 class="text-white">{{ $profesionalesBajaTemporalUnidad }}</h3>
+        <p class="text-white">Baja Temporal</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-user-clock"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hombres -->
+  <div class="col-lg-3 col-6">
+    <div class="small-box bg-primary elevation-2">
+      <div class="inner">
+        <h3>{{ $profesionalesActivosMasculinoUnidad }}</h3>
+        <p>Hombres</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-mars"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mujeres -->
+  <div class="col-lg-3 col-6">
+    <div class="small-box bg-female elevation-2">
+      <div class="inner">
+        <h3>{{ $profesionalesActivosFemeninoUnidad }}</h3>
+        <p>Mujeres</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-venus"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tabla Cumpleaños Jefatura -->
+<div class="row mt-2 mb-5">
+  <div class="col-md-12">
+    <div class="card card-birthday shadow-sm">
+      <div class="card-header bg-white d-flex align-items-center justify-content-between">
+        <h3 class="card-title font-weight-bold text-dark m-0">
+          <i class="fas fa-birthday-cake text-danger mr-2"></i> Cumpleaños del día
+        </h3>
+        <span class="badge badge-info badge-pill">{{ $profesionalesHonomastico->count() }} Cumpleañero(s)</span>
+      </div>
+      <div class="card-body p-0">
+        @if($profesionalesHonomastico->isEmpty())
+          <div class="empty-state">
+            <i class="fas fa-calendar-day fa-3x text-muted mb-2"></i>
+            <p class="m-0 font-weight-light">No hay profesionales que cumplan años hoy en Jefatura Estatal.</p>
+          </div>
+        @else
+          <div class="table-responsive">
+            <table class="table table-hover table-striped m-0 align-middle">
+              <thead>
+                <tr>
+                  <th style="width: 50px;" class="text-center">#</th>
+                  <th>Nombre completo</th>
+                  <th>Puesto / Área</th>
+                  <th>Correo Electrónico</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($profesionalesHonomastico as $index => $profesional)
+                  <tr>
+                    <td class="text-center font-weight-bold text-muted">{{ $index + 1 }}</td>
+                    <td>
+                      <i class="fas fa-user-circle text-secondary mr-2"></i>
+                      <strong>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</strong>
+                    </td>
+                    <td>
+                      <small class="text-muted d-block">
+                        {{ $profesional->ocupacionOficinaCentral->area_uno ?? '' }}
+                        {{ isset($profesional->ocupacionOficinaCentral->subarea_uno) ? ' • ' . $profesional->ocupacionOficinaCentral->subarea_uno : '' }}
+                        {{ isset($profesional->ocupacionOficinaCentral->programa_uno) ? ' • ' . $profesional->ocupacionOficinaCentral->programa_uno : '' }}
+                        {{ isset($profesional->ocupacionOficinaCentral->componente_uno) ? ' • ' . $profesional->ocupacionOficinaCentral->componente_uno : '' }}
+                        {{ isset($profesional->ocupacionOficinaCentral->ocupacion_uno) ? ' • ' . $profesional->ocupacionOficinaCentral->ocupacion_uno : '' }}
+                      </small>
+                    </td>
+                    <td>
+                      @if($profesional->email)
+                        <a href="mailto:{{ $profesional->email }}" class="text-primary">
+                          <i class="far fa-envelope mr-1"></i> {{ $profesional->email }}
+                        </a>
+                      @else
+                        <span class="text-muted font-italic"><i class="far fa-envelope-open mr-1"></i> No registrado</span>
+                      @endif
+                    </td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        @endif
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================== -->
+<!-- SECCIÓN 2: SAMU CRUM -->
+<!-- ========================================== -->
+<h3 class="section-title">
+  <i class="fas fa-ambulance text-danger"></i> SAMU CRUM
+</h3>
+
+<div class="row">
+  <!-- Activos SAMU -->
+  <div class="col-lg-3 col-6">
+    <div class="small-box bg-success elevation-2">
+      <div class="inner">
+        <h3>{{ $totalSamuOficinaCentral }}</h3>
+        <p>Trabajadores Activos SAMU</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-user-shield"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Baja Temporal SAMU -->
+  <div class="col-lg-3 col-6">
+    <div class="small-box bg-warning elevation-2 text-white">
+      <div class="inner">
+        <h3 class="text-white">{{ $totalSamuBajaTemporalOficinaCentral }}</h3>
+        <p class="text-white">Baja Temporal SAMU</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-user-minus"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hombres SAMU -->
+  <div class="col-lg-3 col-6">
+    <div class="small-box bg-primary elevation-2">
+      <div class="inner">
+        <h3>{{ $totalSamuHombresOficinaCentral }}</h3>
+        <p>Hombres SAMU</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-mars"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mujeres SAMU -->
+  <div class="col-lg-3 col-6">
+    <div class="small-box bg-female elevation-2">
+      <div class="inner">
+        <h3>{{ $totalSamuMujeresOficinaCentral }}</h3>
+        <p>Mujeres SAMU</p>
+      </div>
+      <div class="icon">
+        <i class="fas fa-venus"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tabla Cumpleaños SAMU -->
+<div class="row mt-2 mb-4">
+  <div class="col-md-12">
+    <div class="card card-birthday shadow-sm">
+      <div class="card-header bg-white d-flex align-items-center justify-content-between">
+        <h3 class="card-title font-weight-bold text-dark m-0">
+          <i class="fas fa-birthday-cake text-danger mr-2"></i> Cumpleaños del día (SAMU)
+        </h3>
+        <span class="badge badge-info badge-pill">{{ $profesionalesHonomasticoSamu->count() }} Cumpleañero(s)</span>
+      </div>
+      <div class="card-body p-0">
+        @if($profesionalesHonomasticoSamu->isEmpty())
+          <div class="empty-state">
+            <i class="fas fa-calendar-day fa-3x text-muted mb-2"></i>
+            <p class="m-0 font-weight-light">No hay profesionales que cumplan años hoy en SAMU CRUM.</p>
+          </div>
+        @else
+          <div class="table-responsive">
+            <table class="table table-hover table-striped m-0 align-middle">
+              <thead>
+                <tr>
+                  <th style="width: 50px;" class="text-center">#</th>
+                  <th>Nombre completo</th>
+                  <th>Puesto / Área</th>
+                  <th>Correo Electrónico</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($profesionalesHonomasticoSamu as $index => $profesional)
+                  <tr>
+                    <td class="text-center font-weight-bold text-muted">{{ $index + 1 }}</td>
+                    <td>
+                      <i class="fas fa-user-circle text-secondary mr-2"></i>
+                      <strong>{{ $profesional->nombre }} {{ $profesional->apellido_paterno }} {{ $profesional->apellido_materno }}</strong>
+                    </td>
+                    <td>
+                      <span class="badge badge-light border">
+                        {{ $profesional->puesto->area_trabajo ?? 'Sin puesto asignado' }}
+                      </span>
+                    </td>
+                    <td>
+                      @if($profesional->email)
+                        <a href="mailto:{{ $profesional->email }}" class="text-primary">
+                          <i class="far fa-envelope mr-1"></i> {{ $profesional->email }}
+                        </a>
+                      @else
+                        <span class="text-muted font-italic"><i class="far fa-envelope-open mr-1"></i> No registrado</span>
+                      @endif
+                    </td>
+                  </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        @endif
+      </div>
+    </div>
   </div>
 </div>
 

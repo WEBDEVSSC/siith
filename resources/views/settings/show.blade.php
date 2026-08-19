@@ -278,7 +278,7 @@
                     <div class="info-box">
                         <span class="info-box-icon bg-info"><i class="fas fa-layer-group" aria-hidden="true"></i></span>
                         <div class="info-box-content">
-                            <a href="{{ route('registrosInactivos') }}"><span class="info-box-text"><strong>Áreas de Trabajo</strong></span></a>
+                            <a href="{{ route('indexAreaDeTrabajo') }}"><span class="info-box-text"><strong>Áreas de Trabajo</strong></span></a>
                         </div>
                     </div>
                 </div>

@@ -46,6 +46,7 @@ use App\Http\Controllers\ProfesionalReporteController;
 use App\Http\Controllers\ProfesionalRolController;
 use App\Http\Controllers\ProfesionalSessionsController;
 use App\Http\Controllers\BitacoraOcupacionController;
+use App\Http\Controllers\CatalogoAreaDeTrabajoController;
 use App\Http\Controllers\CatalogoCertificacionController;
 use App\Http\Controllers\CatalogoOcupacionController;
 use App\Http\Controllers\ProfesionalSueldoController;
@@ -750,6 +751,29 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/clues/updateClues/{id}', [CatalogoCluesController::class,'updateClues'])->name('updateClues');
 
      Route::delete('admin/clues/deleteClues/{id}', [CatalogoCluesController::class, 'deleteClues'])->name('deleteClues');
+
+     /**
+     * 
+     * 
+     * MODULOS ADMINISRATIVOS
+     * AREAS DE TRABAJO MEXICO
+     * 
+     * 
+     */
+
+     Route::get('admin/settings/area-de-trabajo/indexAreaDeTrabajo', [CatalogoAreaDeTrabajoController::class,'indexAreaDeTrabajo'])->name('indexAreaDeTrabajo');
+
+     Route::get('admin/settings/area-de-trabajo/showAreaDeTrabajo/{id}', [CatalogoAreaDeTrabajoController::class,'showAreaDeTrabajo'])->name('showAreaDeTrabajo');
+
+     Route::get('admin/settings/area-de-trabajo/createAreaDeTrabajo', [CatalogoAreaDeTrabajoController::class,'createAreaDeTrabajo'])->name('createAreaDeTrabajo');
+
+     Route::post('admin/settings/area-de-trabajo/storeAreaDeTrabajo', [CatalogoAreaDeTrabajoController::class,'storeAreaDeTrabajo'])->name('storeAreaDeTrabajo');
+
+     Route::get('admin/settings/area-de-trabajo/editAreaDeTrabajo/{id}', [CatalogoAreaDeTrabajoController::class,'editAreaDeTrabajo'])->name('editAreaDeTrabajo');
+
+     Route::put('admin/settings/area-de-trabajo/updateAreaDeTrabajo/{id}', [CatalogoAreaDeTrabajoController::class,'updateAreaDeTrabajo'])->name('updateAreaDeTrabajo');
+
+     Route::delete('admin/settings/area-de-trabajo/deleteAreaDeTrabajo/{id}', [CatalogoAreaDeTrabajoController::class, 'deleteAreaDeTrabajo'])->name('deleteAreaDeTrabajo');
 
      /**
       * 
