@@ -10,7 +10,7 @@ class CatalogoAreaDeTrabajoController extends Controller
     //
     public function indexAreaDeTrabajo()
     {
-        $areasTrabajo = AreaTrabajo::all();
+        $areasTrabajo = AreaTrabajo::orderNy('area_trabajo', 'ASC');
 
         return view('settings.areas-trabajo.index', compact('areasTrabajo'));
     }
