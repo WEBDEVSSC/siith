@@ -34,6 +34,8 @@ class ProfesionalDireccionController extends Controller
             'vigencia' => 'nullable|digits:4|string',
             'ine' => 'nullable|file|mimes:pdf|max:10000',
             'comprobante_domicilio' => 'nullable|file|mimes:pdf|max:10000',
+            'curp' => 'nullable|file|mimes:pdf|max:10000',
+            'rfc' => 'nullable|file|mimes:pdf|max:10000',
         ],[
             'calle.required'           => 'La calle es obligatoria.',
             'calle.string'             => 'La calle debe ser un texto válido.',
@@ -62,6 +64,14 @@ class ProfesionalDireccionController extends Controller
             'comprobante_domicilio.file' => 'El archivo debe ser un archivo válido.',
             'comprobante_domicilio.mimes' => 'El archivo debe ser un PDF.',
             'comprobante_domicilio.max' => 'El archivo no debe exceder los 10 MB.',
+
+            'curp.file' => 'El archivo debe ser un archivo válido.',
+            'curp.mimes' => 'El archivo debe ser un PDF.',
+            'curp.max' => 'El archivo no debe exceder los 10 MB.',
+
+            'rfc.file' => 'El archivo debe ser un archivo válido.',
+            'rfc.mimes' => 'El archivo debe ser un PDF.',
+            'rfc.max' => 'El archivo no debe exceder los 10 MB.',
         ]);
 
         $codigoPostal = CatCodigoPostal::findOrFail($request->codigo_postal);
@@ -94,6 +104,32 @@ class ProfesionalDireccionController extends Controller
             $rutaComprobanteDomicilio = null;
         }
 
+        if ($request->hasFile('curp')) {
+
+            $archivoCurp = $request->file('curp');
+
+            $nombreArchivoCurp = strtoupper($profesional->curp) . '_CURP.' . $archivoCurp->getClientOriginalExtension();
+
+            $rutaCurp = $archivoCurp->storeAs('curp',$nombreArchivoCurp,'public');
+        }
+        else
+        {
+            $rutaCurp = null;
+        }
+
+        if ($request->hasFile('rfc')) {
+
+            $archivoRfc = $request->file('rfc');
+
+            $nombreArchivoRfc = strtoupper($profesional->rfc) . '_RFC.' . $archivoRfc->getClientOriginalExtension();
+
+            $rutaRfc = $archivoRfc->storeAs('rfc',$nombreArchivoRfc,'public');
+        }
+        else
+        {
+            $rutaRfc = null;
+        }
+
         $direccion = new ProfesionalesDireccion();
 
         $direccion->id_profesional = $id;
@@ -115,6 +151,8 @@ class ProfesionalDireccionController extends Controller
 
         $direccion->ine = $ruta;
         $direccion->comprobante_domicilio = $rutaComprobanteDomicilio;
+        $direccion->curp = $rutaCurp;
+        $direccion->rfc = $rutaRfc;
 
         $direccion->mdl_direccion = 1;
 
@@ -158,36 +196,55 @@ class ProfesionalDireccionController extends Controller
             'clave_elector' => 'nullable|max:120|string',
             'seccion' => 'nullable|digits:4',
             'vigencia' => 'nullable|digits:4|string',
-            'ine' => 'nullable|file|mimes:pdf|max:10000',
-            'comprobante_domicilio' => 'nullable|file|mimes:pdf|max:10000',
+
+            // Si viene un archivo físico, aplicamos validación de archivo; si viene texto (URL precargada), se ignora
+            'ine' => $request->hasFile('ine') ? 'file|mimes:pdf|max:10240' : 'nullable',
+            'comprobante_domicilio' => $request->hasFile('comprobante_domicilio') ? 'file|mimes:pdf|max:10240' : 'nullable',
+            'curp' => $request->hasFile('curp') ? 'file|mimes:pdf|max:10240' : 'nullable',
+            'rfc' => $request->hasFile('rfc') ? 'file|mimes:pdf|max:10240' : 'nullable',
         ],[
-            'calle.required'           => 'La calle es obligatoria.',
-            'calle.string'             => 'La calle debe ser un texto válido.',
-            'calle.max'                => 'La calle no debe exceder los 120 caracteres.',
+            // CALLE
+            'calle.required' => 'La calle es obligatoria.',
+            'calle.string' => 'La calle debe ser un texto válido.',
+            'calle.max' => 'La calle no debe exceder los 120 caracteres.',
 
-            'numero_interior.required' => 'El número interior es obligatorio.',
-            'numero_interior.string'   => 'El número interior debe ser un texto válido.',
-            'numero_interior.max'      => 'El número interior no debe exceder los 120 caracteres.',
+            // NÚMERO INTERIOR
+            'numero_interior.string' => 'El número interior debe ser un texto válido.',
+            'numero_interior.max' => 'El número interior no debe exceder los 120 caracteres.',
 
+            // NÚMERO EXTERIOR
             'numero_exterior.required' => 'El número exterior es obligatorio.',
-            'numero_exterior.string'   => 'El número exterior debe ser un texto válido.',
-            'numero_exterior.max'      => 'El número exterior no debe exceder los 120 caracteres.',
+            'numero_exterior.string' => 'El número exterior debe ser un texto válido.',
+            'numero_exterior.max' => 'El número exterior no debe exceder los 120 caracteres.',
 
-            'codigo_postal.required'   => 'El código postal es obligatorio.',
-            'codigo_postal.string'     => 'El código postal debe ser un texto válido.',
-            'codigo_postal.max'        => 'El código postal no debe exceder los 120 caracteres.',
+            // CÓDIGO POSTAL
+            'codigo_postal.required' => 'El código postal es obligatorio.',
+            'codigo_postal.string' => 'El código postal debe ser un texto válido.',
+            'codigo_postal.max' => 'El código postal no debe exceder los 120 caracteres.',
 
-            'clave_elector.max'        => 'La clave de elector no debe exceder los 120 caracteres.',
-            'seccion.digits'           => 'La sección debe tener 4 dígitos.',
-            'vigencia.digits'          => 'La vigencia debe tener 4 dígitos.',
+            // INE
+            'clave_elector.max' => 'La clave de elector no debe exceder los 120 caracteres.',
 
-            'ine.file'                  => 'El archivo debe ser un archivo válido.',
-            'ine.mimes'                 => 'El archivo debe ser un PDF.',
-            'ine.max'                   => 'El archivo no debe exceder los 10 MB.',
+            'seccion.digits' => 'La sección debe tener exactamente 4 dígitos.',
 
-            'comprobante_domicilio.file' => 'El archivo debe ser un archivo válido.',
-            'comprobante_domicilio.mimes' => 'El archivo debe ser un PDF.',
-            'comprobante_domicilio.max' => 'El archivo no debe exceder los 10 MB.',
+            'vigencia.digits' => 'La vigencia debe tener exactamente 4 dígitos.',
+            'vigencia.string' => 'La vigencia debe ser un texto válido.',
+
+            'ine.file' => 'El archivo de la INE debe ser un archivo válido.',
+            'ine.mimes' => 'El archivo de la INE debe estar en formato PDF.',
+            'ine.max' => 'El archivo de la INE no debe exceder los 10 MB.',
+
+            'comprobante_domicilio.file' => 'El comprobante de domicilio debe ser un archivo válido.',
+            'comprobante_domicilio.mimes' => 'El comprobante de domicilio debe estar en formato PDF.',
+            'comprobante_domicilio.max' => 'El comprobante de domicilio no debe exceder los 10 MB.',
+
+            'curp.file' => 'El archivo de la CURP debe ser un archivo válido.',
+            'curp.mimes' => 'El archivo de la CURP debe estar en formato PDF.',
+            'curp.max' => 'El archivo de la CURP no debe exceder los 10 MB.',
+
+            'rfc.file' => 'El archivo del RFC debe ser un archivo válido.',
+            'rfc.mimes' => 'El archivo del RFC debe estar en formato PDF.',
+            'rfc.max' => 'El archivo del RFC no debe exceder los 10 MB.',
         ]);
 
         $codigoPostal = CatCodigoPostal::findOrFail($request->codigo_postal);
@@ -224,6 +281,32 @@ class ProfesionalDireccionController extends Controller
             $rutaComprobanteDomicilio = $profesional->direccion->comprobante_domicilio;
         }
 
+        if ($request->hasFile('curp')) {
+
+            $archivoCurp = $request->file('curp');
+
+            $nombreArchivoCurp = strtoupper($profesional->curp) . 'CURP.' . $archivoCurp->getClientOriginalExtension();
+
+            $rutaCurp = $archivoCurp->storeAs('curp',$nombreArchivoCurp,'public');
+        }
+        else
+        {
+            $rutaCurp = $profesional->direccion->curp;
+        }
+
+        if ($request->hasFile('rfc')) {
+
+            $archivoRfc = $request->file('rfc');
+
+            $nombreArchivoRfc = strtoupper($profesional->rfc) . 'RFC.' . $archivoRfc->getClientOriginalExtension();
+
+            $rutaRfc = $archivoRfc->storeAs('rfc',$nombreArchivoRfc,'public');
+        }
+        else
+        {
+            $rutaRfc = $profesional->direccion->rfc;
+        }
+
 
         $direccion->calle = $request->calle;
         $direccion->numero_exterior = $request->numero_exterior;
@@ -243,6 +326,8 @@ class ProfesionalDireccionController extends Controller
 
         $direccion->ine = $ruta;
         $direccion->comprobante_domicilio = $rutaComprobanteDomicilio;
+        $direccion->curp = $rutaCurp;
+        $direccion->rfc = $rutaRfc;
 
         $direccion->mdl_direccion = 1;
 

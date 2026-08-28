@@ -27,6 +27,8 @@ class ProfesionalesDireccion extends Model
         'clave_elector',
         'ine',
         'comprobante_domicilio',
+        'rfc',
+        'curp',
         'mdl_direccion'
     ];
 
