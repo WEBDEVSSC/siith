@@ -34,6 +34,8 @@ class CatalogoOcupacionSamuCrumController extends Controller
             'componente' => 'required|string',
             'ocupacion' => 'required|string',
             'orden' => 'required|string',
+            's_area_trabajo' => 'nullable|string',
+            's_ocupacion' => 'nullable|string',
         ],[
             'unidad.required' => 'El campo unidad es obligatorio.',
             'unidad.string' => 'El campo unidad debe ser una cadena de texto.',
@@ -52,6 +54,9 @@ class CatalogoOcupacionSamuCrumController extends Controller
 
             'orden.required' => 'El campo orden es obligatorio.',
             'orden.string' => 'El campo orden debe ser una cadena de texto.',
+
+            's_area_trabajo.string' => 'El campo área de trabajo debe ser una cadena de texto.',
+            's_ocupacion.string' => 'El campo ocupación debe ser una cadena de texto.',
         ]);
 
         // Creamos el objeto
@@ -64,6 +69,8 @@ class CatalogoOcupacionSamuCrumController extends Controller
         $ocupacion->componente = $request->componente;
         $ocupacion->ocupacion = $request->ocupacion;
         $ocupacion->orden = $request->orden;
+        $ocupacion->s_area_trabajo = $request->s_area_trabajo;
+        $ocupacion->s_ocupacion = $request->s_ocupacion;
 
         // Guardamos los valores
         $ocupacion->save();
@@ -91,6 +98,8 @@ class CatalogoOcupacionSamuCrumController extends Controller
             'componente' => 'required|string',
             'ocupacion' => 'required|string',
             'orden' => 'required|string',
+            's_area_trabajo' => 'nullable|string',
+            's_ocupacion' => 'nullable|string',
         ],[
             'unidad.required' => 'El campo unidad es obligatorio.',
             'unidad.string' => 'El campo unidad debe ser una cadena de texto.',
@@ -109,6 +118,9 @@ class CatalogoOcupacionSamuCrumController extends Controller
 
             'orden.required' => 'El campo orden es obligatorio.',
             'orden.string' => 'El campo orden debe ser una cadena de texto.',
+
+            's_area_trabajo.string' => 'El campo área de trabajo debe ser una cadena de texto.',
+            's_ocupacion.string' => 'El campo ocupación debe ser una cadena de texto.',
         ]);
 
         // Buscamos el registro
@@ -121,6 +133,8 @@ class CatalogoOcupacionSamuCrumController extends Controller
         $ocupacion->componente = $request->componente;
         $ocupacion->ocupacion = $request->ocupacion;
         $ocupacion->orden = $request->orden;
+        $ocupacion->s_area_trabajo = $request->s_area_trabajo;
+        $ocupacion->s_ocupacion = $request->s_ocupacion;
 
         // Guardamos los cambios
         $ocupacion->save();
@@ -132,6 +146,8 @@ class CatalogoOcupacionSamuCrumController extends Controller
                                             'subarea_uno' => $request->subarea,
                                             'componente_uno' => $request->componente,
                                             'ocupacion_uno' => $request->ocupacion,
+                                            's_area_trabajo_uno' => $request->s_area_trabajo,
+                                            's_ocupacion_uno' => $request->s_ocupacion,
                                         ]);
 
         ProfesionalOcupacionSamuCrum::where('id_catalogo_dos', $id)
@@ -141,6 +157,8 @@ class CatalogoOcupacionSamuCrumController extends Controller
                                             'subarea_dos' => $request->subarea,
                                             'componente_dos' => $request->componente,
                                             'ocupacion_dos' => $request->ocupacion,
+                                            's_area_trabajo_dos' => $request->s_area_trabajo,
+                                            's_ocupacion_dos' => $request->s_ocupacion,
                                         ]);
 
         // Redirigimos con un mensaje de éxito
@@ -163,6 +181,8 @@ class CatalogoOcupacionSamuCrumController extends Controller
                                             'subarea_uno' => NULL,
                                             'componente_uno' => NULL,
                                             'ocupacion_uno' => NULL,
+                                            's_area_trabajo_uno' => NULL,
+                                            's_ocupacion_uno' => NULL,
                                         ]);
         
         ProfesionalOcupacionSamuCrum::where('id_catalogo_dos', $id)
@@ -172,6 +192,8 @@ class CatalogoOcupacionSamuCrumController extends Controller
                                             'subarea_dos' => NULL,
                                             'componente_dos' => NULL,
                                             'ocupacion_dos' => NULL,
+                                            's_area_trabajo_dos' => NULL,
+                                            's_ocupacion_dos' => NULL,
                                         ]);
 
         return redirect()->route('ocupacionSamuCrumIndex')->with('delete', 'Ocupación eliminada correctamente.');

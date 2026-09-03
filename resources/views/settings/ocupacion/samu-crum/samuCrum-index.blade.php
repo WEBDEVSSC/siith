@@ -60,6 +60,7 @@
                     <th>COMPONENTE</th>
                     <th>OCUPACIÓN</th>
                     <th></th>
+                    <th></th>
                     
                 </tr>
             </thead>
@@ -71,7 +72,16 @@
                         <td>{{ $ocupacion->area }}</td>                 
                         <td>{{ $ocupacion->subarea }}</td>                 
                         <td>{{ $ocupacion->componente }}</td>                   
-                        <td>{{ $ocupacion->ocupacion }}</td>                    
+                        <td>{{ $ocupacion->ocupacion }}</td> 
+                        <td class="text-muted">
+                            <div class="small">
+                                <i class="fas fa-building mr-1"></i>
+                                {{ $ocupacion->s_area_trabajo ?? 'Sin área de trabajo' }}
+                            </div>
+                            <div class="font-weight-bold text-dark">
+                                {{ $ocupacion->s_ocupacion ?? 'Sin ocupación' }}
+                            </div>
+                        </td>                    
                         <td>
                         
                             <a href="{{ route('ocupacionSamuCrumEdit', $ocupacion->id) }}" class="btn btn-warning btn-sm btn-block">EDITAR</a>
