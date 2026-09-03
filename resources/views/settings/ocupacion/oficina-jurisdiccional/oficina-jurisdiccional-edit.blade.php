@@ -74,6 +74,22 @@
                     @enderror
                 </div>
 
+                <div class="col-md-3">
+                    <p><strong>S. Area de Trabajo</strong></p>
+                    <input type="text" name="s_area_trabajo" id="s_area_trabajo" class="form-control" value="{{ old('s_area_trabajo', $ocupacion->s_area_trabajo) }}">
+                    @error('s_area_trabajo')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-3">
+                    <p><strong>S. Ocupacion</strong></p>
+                    <input type="text" name="s_ocupacion" id="s_ocupacion" class="form-control" value="{{ old('s_ocupacion', $ocupacion->s_ocupacion) }}">
+                    @error('s_ocupacion')
+                        <br><div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
             </div>
 
         </div>

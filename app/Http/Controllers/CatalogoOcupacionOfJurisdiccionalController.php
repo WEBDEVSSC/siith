@@ -34,6 +34,8 @@ class CatalogoOcupacionOfJurisdiccionalController extends Controller
             'servicio' => 'required|string',
             'ocupacion' => 'required|string',
             'orden' => 'required|numeric',
+            's_area_trabajo' => 'nullable|string',
+            's_ocupacion' => 'nullable|string',
         ],[
             'unidad.required' => 'El campo unidad es obligatorio.',
             'unidad.string' => 'El campo unidad debe ser una cadena de texto.',
@@ -52,6 +54,9 @@ class CatalogoOcupacionOfJurisdiccionalController extends Controller
 
             'orden.required' => 'Debes ingresar el orden.',
             'orden.numeric' => 'El orden debe ser un valor numérico válido.',
+
+            's_area_trabajo.nullable' => 'El campo área de trabajo debe ser una cadena de texto.',
+            's_ocupacion.nullable' => 'El campo ocupación debe ser una cadena de texto.',
         ]);
 
         // Creamos el objeto
@@ -64,6 +69,8 @@ class CatalogoOcupacionOfJurisdiccionalController extends Controller
         $ocupacion->servicio = $request->servicio;
         $ocupacion->ocupacion = $request->ocupacion;
         $ocupacion->orden = $request->orden;
+        $ocupacion->s_area_trabajo = $request->s_area_trabajo;
+        $ocupacion->s_ocupacion = $request->s_ocupacion;
 
         // Guardamos los valores
         $ocupacion->save();
@@ -91,6 +98,8 @@ class CatalogoOcupacionOfJurisdiccionalController extends Controller
             'servicio' => 'required|string',
             'ocupacion' => 'required|string',
             'orden' => 'required|numeric',
+            's_area_trabajo' => 'nullable|string',
+            's_ocupacion' => 'nullable|string',
         ],[
             'unidad.required' => 'El campo unidad es obligatorio.',
             'unidad.string' => 'El campo unidad debe ser una cadena de texto.',
@@ -109,6 +118,9 @@ class CatalogoOcupacionOfJurisdiccionalController extends Controller
 
             'orden.required' => 'Debes ingresar el orden.',
             'orden.numeric' => 'El orden debe ser un valor numérico válido.',
+
+            's_area_trabajo.nullable' => 'El campo área de trabajo debe ser una cadena de texto.',
+            's_ocupacion.nullable' => 'El campo ocupación debe ser una cadena ',
         ]);
 
         // Buscamos el registro
@@ -121,6 +133,8 @@ class CatalogoOcupacionOfJurisdiccionalController extends Controller
         $ocupacion->servicio = $request->servicio;
         $ocupacion->ocupacion = $request->ocupacion;
         $ocupacion->orden = $request->orden;
+        $ocupacion->s_area_trabajo = $request->s_area_trabajo;
+        $ocupacion->s_ocupacion = $request->s_ocupacion;
 
         // Guardamos los cambios
         $ocupacion->save();
@@ -132,6 +146,8 @@ class CatalogoOcupacionOfJurisdiccionalController extends Controller
                                             'subarea_uno' => $request->subarea,
                                             'servicio_uno' => $request->servicio,
                                             'ocupacion_uno' => $request->ocupacion,
+                                            's_area_trabajo_uno' => $request->s_area_trabajo,
+                                            's_ocupacion_uno' => $request->s_ocupacion,
                                         ]);
 
         ProfesionalOcupacionOfJurisdiccional::where('id_catalogo_dos', $id)
@@ -141,6 +157,8 @@ class CatalogoOcupacionOfJurisdiccionalController extends Controller
                                             'subarea_dos' => $request->subarea,
                                             'servicio_dos' => $request->servicio,
                                             'ocupacion_dos' => $request->ocupacion,
+                                            's_area_trabajo_dos' => $request->s_area_trabajo,
+                                            's_ocupacion_dos' => $request->s_ocupacion,
                                         ]);
 
         // Redirigimos con un mensaje de éxito
@@ -163,6 +181,8 @@ class CatalogoOcupacionOfJurisdiccionalController extends Controller
                                             'subarea_uno' => NULL,
                                             'servicio_uno' => NULL,
                                             'ocupacion_uno' => NULL,
+                                            's_area_trabajo_uno' => NULL,
+                                            's_ocupacion_uno' => NULL,
                                         ]);
         
         ProfesionalOcupacionOfJurisdiccional::where('id_catalogo_dos', $id)
@@ -172,6 +192,8 @@ class CatalogoOcupacionOfJurisdiccionalController extends Controller
                                             'subarea_dos' => NULL,
                                             'servicio_dos' => NULL,
                                             'ocupacion_dos' => NULL,
+                                            's_area_trabajo_dos' => NULL,
+                                            's_ocupacion_dos' => NULL,
                                         ]);
 
         return redirect()->route('ocupacionOfJurisdiccionalIndex')->with('delete', 'Ocupación eliminada correctamente.');
