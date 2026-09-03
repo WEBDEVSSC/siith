@@ -34,6 +34,8 @@ class CatalogoOcupacionAlmacenController extends Controller
             'departamento' => 'required|string',
             'ocupacion' => 'required|string',
             'orden' => 'required|string',
+            's_area_trabajo' => 'nullable|string',
+            's_ocupacion' => 'nullable|string',
         ],[            
             'area.required' => 'El campo área es obligatorio.',
             'area.string' => 'El campo área debe ser una cadena de texto.',
@@ -52,6 +54,9 @@ class CatalogoOcupacionAlmacenController extends Controller
             
             'orden.required' => 'El campo orden es obligatorio.',
             'orden.string' => 'El campo orden debe ser una cadena de texto.',
+
+            's_area_trabajo.string' => 'El campo área de trabajo debe ser una cadena de texto.',
+            's_ocupacion.string' => 'El campo ocupación debe ser una cadena de texto.',
         ]);
 
         // Creamos el objeto
@@ -64,6 +69,8 @@ class CatalogoOcupacionAlmacenController extends Controller
         $ocupacion->departamento = $request->departamento;
         $ocupacion->ocupacion = $request->ocupacion;
         $ocupacion->orden = $request->orden;
+        $ocupacion->s_area_trabajo = $request->s_area_trabajo;
+        $ocupacion->s_ocupacion = $request->s_ocupacion;
 
         // Guardamos los valores
         $ocupacion->save();
@@ -91,6 +98,8 @@ class CatalogoOcupacionAlmacenController extends Controller
             'departamento' => 'required|string',
             'ocupacion' => 'required|string',
             'orden' => 'required|string',
+            's_area_trabajo' => 'nullable|string',
+            's_ocupacion' => 'nullable|string',
         ],[            
             'area.required' => 'El campo área es obligatorio.',
             'area.string' => 'El campo área debe ser una cadena de texto.',
@@ -109,6 +118,9 @@ class CatalogoOcupacionAlmacenController extends Controller
             
             'orden.required' => 'El campo orden es obligatorio.',
             'orden.string' => 'El campo orden debe ser una cadena de texto.',
+
+            's_area_trabajo.string' => 'El campo área de trabajo debe ser una cadena de texto.',
+            's_ocupacion.string' => 'El campo ocupación debe ser una cadena de texto.',
         ]);
 
         // Buscamos el registro
@@ -121,6 +133,8 @@ class CatalogoOcupacionAlmacenController extends Controller
         $ocupacion->departamento = $request->departamento;
         $ocupacion->ocupacion = $request->ocupacion;
         $ocupacion->orden = $request->orden;
+        $ocupacion->s_area_trabajo = $request->s_area_trabajo;
+        $ocupacion->s_ocupacion = $request->s_ocupacion;
 
         // Guardamos los cambios
         $ocupacion->save();
@@ -132,6 +146,8 @@ class CatalogoOcupacionAlmacenController extends Controller
                                             'jefatura_uno' => $request->jefatura,
                                             'departamento_uno' => $request->departamento,
                                             'ocupacion_uno' => $request->ocupacion,
+                                            's_area_trabajo_uno' => $request->s_area_trabajo,
+                                            's_ocupacion_uno' => $request->s_ocupacion,
                                         ]);
 
         ProfesionalOcupacionAlmacen::where('id_catalogo_dos', $id)
@@ -141,6 +157,8 @@ class CatalogoOcupacionAlmacenController extends Controller
                                             'jefatura_dos' => $request->jefatura,
                                             'departamento_dos' => $request->departamento,
                                             'ocupacion_dos' => $request->ocupacion,
+                                            's_area_trabajo_dos' => $request->s_area_trabajo,
+                                            's_ocupacion_dos' => $request->s_ocupacion,
                                         ]);
 
         // Redirigimos con un mensaje de éxito
@@ -163,6 +181,8 @@ class CatalogoOcupacionAlmacenController extends Controller
                                             'jefatura_uno' => NULL,
                                             'departamento_uno' => NULL,
                                             'ocupacion_uno' => NULL,
+                                            's_area_trabajo_uno' => NULL,
+                                            's_ocupacion_uno' => NULL,
                                         ]);
         
         ProfesionalOcupacionAlmacen::where('id_catalogo_dos', $id)
@@ -172,6 +192,8 @@ class CatalogoOcupacionAlmacenController extends Controller
                                             'jefatura_dos' => NULL,
                                             'departamento_dos' => NULL,
                                             'ocupacion_dos' => NULL,
+                                            's_area_trabajo_dos' => NULL,
+                                            's_ocupacion_dos' => NULL,
                                         ]);
 
         return redirect()->route('ocupacionAlmacenIndex')->with('delete', 'Ocupación eliminada correctamente.');
