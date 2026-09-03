@@ -59,6 +59,7 @@
                     <th>SUBAREA</th>
                     <th>PUESTO</th>
                     <th></th>
+                    <th></th>
                     
                 </tr>
             </thead>
@@ -69,7 +70,16 @@
                         <td>{{ $ocupacion->unidad }}</td>                 
                         <td>{{ $ocupacion->area }}</td>                 
                         <td>{{ $ocupacion->subarea }}</td>                 
-                        <td>{{ $ocupacion->puesto }}</td>                   
+                        <td>{{ $ocupacion->puesto }}</td> 
+                        <td class="text-muted">
+                            <div class="small">
+                                <i class="fas fa-building mr-1"></i>
+                                {{ $ocupacion->s_area_trabajo ?? 'Sin área de trabajo' }}
+                            </div>
+                            <div class="font-weight-bold text-dark">
+                                {{ $ocupacion->s_ocupacion ?? 'Sin ocupación' }}
+                            </div>
+                        </td>                   
                         <td>
                         
                             <a href="{{ route('ocupacionHospitalEdit', $ocupacion->id) }}" class="btn btn-warning btn-sm btn-block">EDITAR</a>

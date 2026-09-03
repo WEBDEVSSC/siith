@@ -33,6 +33,8 @@ class CatalogoOcupacionHospitalController extends Controller
             'subarea' => 'required|string',
             'puesto' => 'required|string',
             'orden' => 'required',
+            's_area_trabajo' => 'nullable|string',
+            's_ocupacion' => 'nullable|string',
         ],[
             'unidad.required' => 'El campo unidad es obligatorio.',
             'unidad.string' => 'El campo unidad debe ser una cadena de texto.',
@@ -45,6 +47,9 @@ class CatalogoOcupacionHospitalController extends Controller
             
             'puesto.required' => 'El campo ocupación es obligatorio.',
             'puesto.string' => 'El campo ocupación debe ser una cadena de texto.',
+
+            's_area_trabajo.nullable' => 'El campo área de trabajo debe ser una cadena de texto.',
+            's_ocupacion.nullable' => 'El campo ocupación debe ser una cadena de texto.',
         ]);
 
         // Creamos el objeto
@@ -56,6 +61,8 @@ class CatalogoOcupacionHospitalController extends Controller
         $ocupacion->subarea = $request->subarea;
         $ocupacion->puesto = $request->puesto;
         $ocupacion->orden = $request->orden;
+        $ocupacion->s_area_trabajo = $request->s_area_trabajo;
+        $ocupacion->s_ocupacion = $request->s_ocupacion;
 
         // Guardamos los valores
         $ocupacion->save();
@@ -82,6 +89,8 @@ class CatalogoOcupacionHospitalController extends Controller
             'subarea' => 'required|string',
             'puesto' => 'required|string',
             'orden' => 'required',
+            's_area_trabajo' => 'nullable|string',
+            's_ocupacion' => 'nullable|string',
         ],[
             'unidad.required' => 'El campo unidad es obligatorio.',
             'unidad.string' => 'El campo unidad debe ser una cadena de texto.',
@@ -94,6 +103,10 @@ class CatalogoOcupacionHospitalController extends Controller
             
             'puesto.required' => 'El campo ocupación es obligatorio.',
             'puesto.string' => 'El campo ocupación debe ser una cadena de texto.',
+
+            's_area_trabajo.nullable' => 'El campo área de trabajo debe ser una cadena de texto.',
+            's_ocupacion.nullable' => 'El campo ocupación debe ser una cadena de texto.',
+
         ]);
 
         // Buscamos el registro
@@ -105,6 +118,8 @@ class CatalogoOcupacionHospitalController extends Controller
         $ocupacion->subarea = $request->subarea;
         $ocupacion->puesto = $request->puesto;
         $ocupacion->orden = $request->orden;
+        $ocupacion->s_area_trabajo = $request->s_area_trabajo;
+        $ocupacion->s_ocupacion = $request->s_ocupacion;
 
         // Guardamos los cambios
         $ocupacion->save();
@@ -115,6 +130,8 @@ class CatalogoOcupacionHospitalController extends Controller
                                             'area_uno' => $request->area,
                                             'subarea_uno' => $request->subarea,
                                             'puesto_uno' => $request->puesto,
+                                            's_area_trabajo_uno' => $request->s_area_trabajo,
+                                            's_ocupacion_uno' => $request->s_ocupacion,
                                         ]);
 
         ProfesionalOcupacionHospital::where('id_catalogo_dos', $id)
@@ -123,6 +140,8 @@ class CatalogoOcupacionHospitalController extends Controller
                                             'area_dos' => $request->area,
                                             'subarea_dos' => $request->subarea,
                                             'puesto_dos' => $request->puesto,
+                                            's_area_trabajo_dos' => $request->s_area_trabajo,
+                                            's_ocupacion_dos' => $request->s_ocupacion,
                                         ]);
 
         // Redirigimos con un mensaje de éxito
