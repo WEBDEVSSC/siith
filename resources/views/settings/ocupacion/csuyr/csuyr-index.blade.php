@@ -40,8 +40,16 @@
 <!-- -->
     
 <div class="card">
-        <div class="card-header">
-            <a href="{{ route('ocupacionCsuyrCreate') }}" class="btn btn-success btn-sm">NUEVO REGISTRO</a>
+        <div class="card-header text-right d-flex justify-content-end align-items-center">
+            <a href="{{ route('ocupacionCsuyrCreate') }}" class="btn btn-success btn-sm">
+                <i class="fas fa-plus mr-1" style="margin-right: 5px;"></i> NUEVO REGISTRO
+            </a>
+            <a href="{{ route('ocupacionCsuyrPDF') }}" target="_blank" class="btn btn-danger btn-sm" style="margin-left: 10px;">
+                <i class="fas fa-file-pdf" style="margin-right: 5px;"></i> PDF
+            </a>
+            <a href="{{ route('ocupacionCsuyrExcel') }}" class="btn btn-primary btn-sm" style="margin-left: 10px;">
+                <i class="fas fa-file-excel" style="margin-right: 5px;"></i> EXCEL
+            </a>
         </div>
         <div class="card-body">
 

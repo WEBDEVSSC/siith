@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CatalogoOcupacionesCsuyrExport;
 use App\Models\CatOcupacionCentroSalud;
 use App\Models\ProfesionalOcupacionCentroSalud;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CatalogoOcupacionCentroDeSaludUrbanoYRuralController extends Controller
 {
@@ -185,5 +188,24 @@ class CatalogoOcupacionCentroDeSaludUrbanoYRuralController extends Controller
                                         ]);
 
         return redirect()->route('ocupacionCsuyrIndex')->with('delete', 'Ocupación eliminada correctamente.');
+    }
+
+    public function ocupacionCsuyrPDF()
+    {
+        $ocupaciones = CatOcupacionCentroSalud::orderBy('orden')->get();
+
+        $pdf = Pdf::loadView('settings.ocupacion.csuyr.csuyr-pdf', compact('ocupaciones'))
+                    ->setPaper('letter', 'landscape');
+
+        return $pdf->stream('catalogo-ocupaciones-csuyr.pdf');
+    }
+
+    public function ocupacionCsuyrExcel()
+    {
+        $ocupaciones = CatOcupacionCentroSalud::orderBy('orden')->get();
+
+        $filename = 'catalogo-ocupaciones-csuyr.xlsx';
+
+        return Excel::download(new CatalogoOcupacionesCsuyrExport($ocupaciones), $filename);
     }
 }

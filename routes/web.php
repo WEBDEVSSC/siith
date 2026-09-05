@@ -1013,6 +1013,10 @@ Route::middleware(['auth'])->group(function ()
      
      Route::delete('admin/settings/ocupacion/csuyr/delete/{id}', [CatalogoOcupacionCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrDestroy'])->name('ocupacionCsuyrDestroy');
 
+     Route::get('admin/settings/ocupacion/csuyr/pdf', [CatalogoOcupacionCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrPDF'])->name('ocupacionCsuyrPDF');
+
+     Route::get('admin/settings/ocupacion/csuyr/excel', [CatalogoOcupacionCentroDeSaludUrbanoYRuralController::class, 'ocupacionCsuyrExcel'])->name('ocupacionCsuyrExcel');
+
      /**
      * 
      * 
