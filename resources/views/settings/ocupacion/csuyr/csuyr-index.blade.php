@@ -91,11 +91,9 @@
                         <td class="text-center align-middle">
                             <div class="d-flex justify-content-center align-items-center" style="gap: 5px;">
                                 <!-- Botón Editar -->
-                                <a href="{{ route('ocupacionCsuyrEdit', $ocupacion->id) }}" 
-   class="btn btn-warning btn-sm" 
-   title="Editar registro">
-    <i class="fas fa-edit text-white"></i>
-</a>
+                                <a href="{{ route('ocupacionCsuyrEdit', $ocupacion->id) }}" class="btn btn-warning btn-sm" title="Editar registro">
+                                    <i class="fas fa-edit text-white"></i>
+                                </a>
 
                                 <!-- Botón Eliminar -->
                                 <form action="{{ route('ocupacionCsuyrDestroy', $ocupacion->id) }}" method="POST" class="form-eliminar d-inline">
