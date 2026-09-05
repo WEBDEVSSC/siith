@@ -7,17 +7,17 @@
     <table>
         <!-- Encabezado del reporte -->
         <tr>
-            <td colspan="7" style="font-size: 14pt; font-weight: bold; text-align: center; color: #2b3e50;">
+            <td colspan="8" style="font-size: 14pt; font-weight: bold; text-align: center; color: #2b3e50;">
                 CATÁLOGO DE OCUPACIONES / CARTERA DE SERVICIOS
             </td>
         </tr>
         <tr>
-            <td colspan="7" style="font-size: 10pt; text-align: center; color: #555555;">
+            <td colspan="8" style="font-size: 10pt; text-align: center; color: #555555;">
                 Centros de Salud Urbano y Rural (CSUyR) - Subdirección de Recursos Humanos
             </td>
         </tr>
         <tr>
-            <td colspan="7" style="font-size: 8pt; text-align: right; color: #777777;">
+            <td colspan="8" style="font-size: 8pt; text-align: right; color: #777777;">
                 Fecha de generación: {{ date('d/m/Y H:i') }}
             </td>
         </tr>
@@ -53,7 +53,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="7" style="text-align: center; color: #888888; border: 1px solid #dcdcdc;">
+                    <td colspan="8" style="text-align: center; color: #888888; border: 1px solid #dcdcdc;">
                         No se encontraron registros en el sistema.
                     </td>
                 </tr>
