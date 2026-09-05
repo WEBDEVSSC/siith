@@ -117,7 +117,7 @@
         <tbody>
             @forelse ($ocupaciones as $ocupacion)
                 <tr>
-                    <td class="text-center">{{ $ocupacion->orden ?? '-' }}</td>
+                    <td class="text-center">{{ (string) $ocupacion->orden ?? '-' }}</td>
                     <td class="text-center">{{ $ocupacion->id ?? '-' }}</td>
                     <td class="text-left">{{ $ocupacion->unidad ?? '-' }}</td>
                     <td class="text-left">{{ $ocupacion->area ?? '-' }}</td>

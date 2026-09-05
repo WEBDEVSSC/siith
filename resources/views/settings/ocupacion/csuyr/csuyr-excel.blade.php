@@ -42,7 +42,7 @@
                     $bgColor = ($index % 2 == 0) ? '#ffffff' : '#f8f9fa';
                 @endphp
                 <tr>
-                    <td style="background-color: {{ $bgColor }}; text-align: center; border: 1px solid #dcdcdc;">{{ $ocupacion->orden ?? '-' }}</td>
+                    <td style="background-color: {{ $bgColor }}; text-align: center; border: 1px solid #dcdcdc;">{{ (string) $ocupacion->orden ?? '-' }}</td>
                     <td style="background-color: {{ $bgColor }}; text-align: center; border: 1px solid #dcdcdc;">{{ $ocupacion->id ?? '-' }}</td>
                     <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->unidad ?? '-' }}</td>
                     <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->area ?? '-' }}</td>
