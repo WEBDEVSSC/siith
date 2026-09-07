@@ -33,6 +33,8 @@ class CatalogoOcupacionCecosamaController extends Controller
             'subarea' => 'required|string',
             'ocupacion' => 'required|string',
             'orden' => 'required|string',
+            's_area_trabajo' => 'nullable|string',
+            's_ocupacion' => 'nullable|string'
         ],[            
             'unidad.required' => 'El campo unidad es obligatorio.',
             'unidad.string' => 'El campo unidad debe ser una cadena de texto.',
@@ -48,6 +50,9 @@ class CatalogoOcupacionCecosamaController extends Controller
             
             'orden.required' => 'El campo orden es obligatorio.',
             'orden.string' => 'El campo orden debe ser una cadena de texto.',
+
+            's_area_trabajo.string' => 'El campo área de trabajo debe ser una cadena de texto.',
+            's_ocupacion.string' => 'El campo ocupación debe ser una cadena de texto.',
         ]);
 
         // Creamos el objeto
@@ -59,6 +64,8 @@ class CatalogoOcupacionCecosamaController extends Controller
         $ocupacion->subarea = $request->subarea;
         $ocupacion->ocupacion = $request->ocupacion;
         $ocupacion->orden = $request->orden;
+        $ocupacion->s_area_trabajo = $request->s_area_trabajo;
+        $ocupacion->s_ocupacion = $request->s_ocupacion;
 
         // Guardamos los valores
         $ocupacion->save();
@@ -85,6 +92,8 @@ class CatalogoOcupacionCecosamaController extends Controller
             'subarea' => 'required|string',
             'ocupacion' => 'required|string',
             'orden' => 'required|string',
+            's_area_trabajo' => 'nullable|string',
+            's_ocupacion' => 'nullable|string',
         ],[            
             'unidad.required' => 'El campo unidad es obligatorio.',
             'unidad.string' => 'El campo unidad debe ser una cadena de texto.',
@@ -100,6 +109,9 @@ class CatalogoOcupacionCecosamaController extends Controller
             
             'orden.required' => 'El campo orden es obligatorio.',
             'orden.string' => 'El campo orden debe ser una cadena de texto.',
+
+            's_area_trabajo.string' => 'El campo área de trabajo debe ser una cadena de texto.',
+            's_ocupacion.string' => 'El campo ocupación debe ser una cadena de texto.',
         ]);
 
         // Buscamos el registro
@@ -111,6 +123,8 @@ class CatalogoOcupacionCecosamaController extends Controller
         $ocupacion->subarea = $request->subarea;
         $ocupacion->ocupacion = $request->ocupacion;
         $ocupacion->orden = $request->orden;
+        $ocupacion->s_area_trabajo = $request->s_area_trabajo;
+        $ocupacion->s_ocupacion = $request->s_ocupacion;
 
         // Guardamos los cambios
         $ocupacion->save();
@@ -121,6 +135,8 @@ class CatalogoOcupacionCecosamaController extends Controller
                                             'area' => $request->area,
                                             'subarea' => $request->subarea,
                                             'ocupacion' => $request->ocupacion,
+                                            's_area_trabajo' => $request->s_area_trabajo,
+                                            's_ocupacion' => $request->s_ocupacion,
                                         ]);
 
         // Redirigimos con un mensaje de éxito
@@ -142,6 +158,8 @@ class CatalogoOcupacionCecosamaController extends Controller
                                             'area' => NULL,
                                             'subarea' => NULL,
                                             'ocupacion' => NULL,
+                                            's_area_trabajo' => NULL,
+                                            's_ocupacion' => NULL,
                                         ]);
 
         return redirect()->route('ocupacionCecosamaIndex')->with('delete', 'Ocupación eliminada correctamente.');
