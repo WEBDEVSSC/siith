@@ -97,7 +97,7 @@
                 </div>
             @endif
 
-            @if(Auth::user()->role == 'admin' || Auth::user()->role == 'almacen')
+            
                 <div class="row mt-3">
                     <div class="col-12">
                         <div class="callout callout-info elevation-1">
@@ -150,7 +150,7 @@
                 <!-- INE -->
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="ine"><strong>INE</strong></label>
+                        <label for="ine"><strong>Identificación Personal (INE)</strong></label>
                         <input type="file" class="filepond" id="ine" name="ine" accept="application/pdf">
                         @error('ine')
                             <span class="invalid-feedback d-block">{{ $message }}</span>
@@ -183,7 +183,7 @@
                 </div>
             </div>
 
-            @endif
+            
 
             
 
