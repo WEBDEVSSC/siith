@@ -441,7 +441,7 @@ class ProfesionalController extends Controller
 
             'fechaFormateada.required' => 'La fecha de nacimiento es obligatoria.',
             'fechaFormateada.date' => 'La fecha de nacimiento no es válida.',
-            'fechaFormateada.before_or_equal' => 'El paciente debe tener al menos 16 años.',
+            'fechaFormateada.before_or_equal' => 'El profesional debe tener al menos 16 años.',
 
             'nacionalidad.required' => 'La nacionalidad es obligatoria',
 

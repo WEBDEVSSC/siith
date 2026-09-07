@@ -112,6 +112,8 @@ class ProfesionalOcupacionController extends Controller
         // Registramos los datos
         $ocupacion->save();
 
+        // Cargamos 
+
         // Regresamos a la vista con su mensaje
         return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Ocupaciones registradas correctamente.');
     }

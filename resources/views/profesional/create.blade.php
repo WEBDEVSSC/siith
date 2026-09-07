@@ -117,6 +117,9 @@
                         @error('fecha_nacimiento')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+                        @error('fechaFormateada')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
@@ -269,11 +272,8 @@
                         @error('fecha_inicio')
                         <br><div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-                        @error('fechaFormateada')
-                            <div class="text-danger">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        
+
                     </div>
                     <div class="col-md-6">
                         <p><strong>CLUES Adscripción Física</strong></p>
