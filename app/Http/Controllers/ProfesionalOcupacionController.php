@@ -96,12 +96,16 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->area_uno = $ocupacionUno->area;
         $ocupacion->subarea_uno = $ocupacionUno->subarea;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
+        $ocupacion->s_area_trabajo = $ocupacionUno->s_area_trabajo; 
+        $ocupacion->s_ocupacion = $ocupacionUno->s_ocupacion;
 
         $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
         $ocupacion->unidad_dos = $ocupacionDos?->unidad;
         $ocupacion->area_dos = $ocupacionDos?->area;
         $ocupacion->subarea_dos = $ocupacionDos?->subarea;
         $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
+        $ocupacion->s_area_trabajo_dos = $ocupacionDos?->s_area_trabajo;
+        $ocupacion->s_ocupacion_dos = $ocupacionDos?->s_ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -177,12 +181,16 @@ class ProfesionalOcupacionController extends Controller
                 'area_uno'=>$ocupacionUno->area,
                 'subarea_uno'=>$ocupacionUno->subarea,
                 'ocupacion_uno'=>$ocupacionUno->ocupacion,
+                's_area_trabajo'=>$ocupacionUno->s_area_trabajo,
+                's_ocupacion'=>$ocupacionUno->s_ocupacion,
 
                 'id_catalogo_dos'=>$request?->ocupacion_dos,
                 'unidad_dos'=>$ocupacionDos?->unidad,
                 'area_dos'=>$ocupacionDos?->area,
                 'subarea_dos'=>$ocupacionDos?->subarea,
                 'ocupacion_dos'=>$ocupacionDos?->ocupacion,
+                's_area_trabajo_dos'=>$ocupacionDos?->s_area_trabajo,
+                's_ocupacion_dos'=>$ocupacionDos?->s_ocupacion,
             ]);
 
             // Guardamos en la bitacora
@@ -199,12 +207,6 @@ class ProfesionalOcupacionController extends Controller
             $profesionalBitacoraCartera->save();
 
             // Enviar notificación a Telegram
-
-            /*$token = env('TELEGRAM_BOT_TOKEN');
-            $chat_ids = [
-                env('TELEGRAM_CHAT_ID'),
-                env('TELEGRAM_CHAT_ID_2')
-            ];*/
 
             $token = config('services.telegram.token');
             $chatIds = config('services.telegram.chat_ids');
@@ -292,12 +294,16 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->area_uno = $ocupacionUno->area;
         $ocupacion->subarea_uno = $ocupacionUno->subarea;
         $ocupacion->puesto_uno = $ocupacionUno->puesto;
+        $ocupacion->s_area_trabajo = $ocupacionUno->s_area_trabajo;
+        $ocupacion->s_ocupacion = $ocupacionUno->s_ocupacion;
 
         $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
         $ocupacion->unidad_dos = $ocupacionDos?->unidad;
         $ocupacion->area_dos = $ocupacionDos?->area;
         $ocupacion->subarea_dos = $ocupacionDos?->subarea;
         $ocupacion->puesto_dos = $ocupacionDos?->puesto;
+        $ocupacion->s_area_trabajo_dos = $ocupacionDos?->s_area_trabajo;
+        $ocupacion->s_ocupacion_dos = $ocupacionDos?->s_ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -377,12 +383,16 @@ class ProfesionalOcupacionController extends Controller
                 'area_uno'=>$ocupacionUno->area,
                 'subarea_uno'=>$ocupacionUno->subarea,
                 'puesto_uno'=>$ocupacionUno->puesto,
+                's_area_trabajo'=>$ocupacionUno->s_area_trabajo,
+                's_ocupacion'=>$ocupacionUno->s_ocupacion,
 
                 'id_catalogo_dos'=>$request?->ocupacion_dos,
                 'unidad_dos'=>$ocupacionDos?->unidad,
                 'area_dos'=>$ocupacionDos?->area,
                 'subarea_dos'=>$ocupacionDos?->subarea,
                 'puesto_dos'=>$ocupacionDos?->puesto,
+                's_area_trabajo_dos'=>$ocupacionDos?->s_area_trabajo,
+                's_ocupacion_dos'=>$ocupacionDos?->s_ocupacion,
             ]);
 
             // Guardamos en la bitacora
@@ -484,6 +494,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->subarea_uno = $ocupacionUno->subarea;
         $ocupacion->servicio_uno = $ocupacionUno->servicio;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
+        $ocupacion->s_area_trabajo = $ocupacionUno->s_area_trabajo;
+        $ocupacion->s_ocupacion = $ocupacionUno->s_ocupacion;
 
         $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
         $ocupacion->unidad_dos = $ocupacionDos?->unidad;
@@ -491,6 +503,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->subarea_dos = $ocupacionDos?->subarea;        
         $ocupacion->servicio_dos = $ocupacionDos?->servicio;
         $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
+        $ocupacion->s_area_trabajo_dos = $ocupacionDos?->s_area_trabajo;
+        $ocupacion->s_ocupacion_dos = $ocupacionDos?->s_ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -571,6 +585,8 @@ class ProfesionalOcupacionController extends Controller
                 'subarea_uno'=>$ocupacionUno->subarea,
                 'servicio_uno'=>$ocupacionUno->servicio,
                 'ocupacion_uno'=>$ocupacionUno->ocupacion,
+                's_area_trabajo'=>$ocupacionUno->s_area_trabajo,
+                's_ocupacion'=>$ocupacionUno->s_ocupacion,
 
                 'id_catalogo_dos' => $request->ocupacion_dos,
                 'unidad_dos' => $ocupacionDos?->unidad,
@@ -578,6 +594,8 @@ class ProfesionalOcupacionController extends Controller
                 'subarea_dos' => $ocupacionDos?->subarea,
                 'servicio_dos' => $ocupacionDos?->servicio,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
+                's_area_trabajo_dos' => $ocupacionDos?->s_area_trabajo,
+                's_ocupacion_dos' => $ocupacionDos?->s_ocupacion,
             ]);
 
             // Guardamos en la bitacora
@@ -675,12 +693,16 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->area_uno = $ocupacionUno->area;
         $ocupacion->subarea_uno = $ocupacionUno->subarea;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
+        $ocupacion->s_area_trabajo = $ocupacionUno->s_area_trabajo;
+        $ocupacion->s_ocupacion = $ocupacionUno->s_ocupacion;
 
         $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
         $ocupacion->unidad_dos = $ocupacionDos?->unidad;
         $ocupacion->area_dos = $ocupacionDos?->area;
         $ocupacion->subarea_dos = $ocupacionDos?->subarea;   
         $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
+        $ocupacion->s_area_trabajo_dos = $ocupacionDos?->s_area_trabajo;
+        $ocupacion->s_ocupacion_dos = $ocupacionDos?->s_ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -756,12 +778,16 @@ class ProfesionalOcupacionController extends Controller
                 'area_uno'=>$ocupacionUno->area,
                 'subarea_uno'=>$ocupacionUno->subarea,
                 'ocupacion_uno'=>$ocupacionUno->ocupacion,
+                's_area_trabajo'=>$ocupacionUno->s_area_trabajo,
+                's_ocupacion'=>$ocupacionUno->s_ocupacion,
 
                 'id_catalogo_dos' => $request?->ocupacion_dos,
                 'unidad_dos' => $ocupacionDos?->unidad,
                 'area_dos' => $ocupacionDos?->area,
                 'subarea_dos' => $ocupacionDos?->subarea,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
+                's_area_trabajo_dos' => $ocupacionDos?->s_area_trabajo,
+                's_ocupacion_dos' => $ocupacionDos?->s_ocupacion,
             ]);
 
             // Guardamos en la bitacora
@@ -861,6 +887,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->subarea_uno = $ocupacionUno->subarea;
         $ocupacion->componente_uno = $ocupacionUno->componente;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
+        $ocupacion->s_area_trabajo = $ocupacionUno->s_area_trabajo;
+        $ocupacion->s_ocupacion = $ocupacionUno->s_ocupacion;
 
         $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
         $ocupacion->unidad_dos = $ocupacionDos?->unidad;
@@ -868,6 +896,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->subarea_dos = $ocupacionDos?->subarea;   
         $ocupacion->componente_dos = $ocupacionDos?->componente;   
         $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
+        $ocupacion->s_area_trabajo_dos = $ocupacionDos?->s_area_trabajo;
+        $ocupacion->s_ocupacion_dos = $ocupacionDos?->s_ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -944,6 +974,8 @@ class ProfesionalOcupacionController extends Controller
                 'subarea_uno'=>$ocupacionUno->subarea,
                 'componente_uno'=>$ocupacionUno->componente,
                 'ocupacion_uno'=>$ocupacionUno->ocupacion,
+                's_area_trabajo'=>$ocupacionUno->s_area_trabajo,
+                's_ocupacion'=>$ocupacionUno->s_ocupacion,
 
                 'id_catalogo_dos' => $request?->ocupacion_dos,
                 'unidad_dos' => $ocupacionDos?->unidad,
@@ -951,6 +983,8 @@ class ProfesionalOcupacionController extends Controller
                 'subarea_dos' => $ocupacionDos?->subarea,
                 'componente_dos' => $ocupacionDos?->componente,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
+                's_area_trabajo_dos' => $ocupacionDos?->s_area_trabajo,
+                's_ocupacion_dos' => $ocupacionDos?->s_ocupacion,
             ]);
 
             // Guardamos en la bitacora
@@ -1062,7 +1096,6 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->programa_dos = $ocupacionDos?->programa;   
         $ocupacion->componente_dos = $ocupacionDos?->componente;   
         $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
-        
         $ocupacion->s_area_trabajo_dos = $ocupacionDos?->s_area_trabajo;
         $ocupacion->s_ocupacion_dos = $ocupacionDos?->s_ocupacion;
 
@@ -1142,7 +1175,6 @@ class ProfesionalOcupacionController extends Controller
                 'programa_uno'=>$ocupacionUno->programa,
                 'componente_uno'=>$ocupacionUno->componente,
                 'ocupacion_uno'=>$ocupacionUno->ocupacion,
-
                 's_area_trabajo_uno'=>$ocupacionUno->s_area_trabajo,
                 's_ocupacion_uno'=>$ocupacionUno->s_ocupacion,
 
@@ -1152,7 +1184,6 @@ class ProfesionalOcupacionController extends Controller
                 'programa_dos' => $ocupacionDos?->programa,
                 'componente_dos' => $ocupacionDos?->componente,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
-
                 's_area_trabajo_dos'=>$ocupacionDos?->s_area_trabajo,
                 's_ocupacion_dos'=>$ocupacionDos?->s_ocupacion,
 
@@ -1255,6 +1286,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->jefatura_uno = $ocupacionUno->jefatura;
         $ocupacion->departamento_uno = $ocupacionUno->departamento;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
+        $ocupacion->s_area_trabajo = $ocupacionUno->s_area_trabajo;
+        $ocupacion->s_ocupacion = $ocupacionUno->s_ocupacion;
 
         $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
         $ocupacion->area_dos = $ocupacionDos?->area;
@@ -1262,6 +1295,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->jefatura_dos = $ocupacionDos?->jefatura;   
         $ocupacion->departamento_dos = $ocupacionDos?->departamento;   
         $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
+        $ocupacion->s_area_trabajo_dos = $ocupacionDos?->s_area_trabajo;
+        $ocupacion->s_ocupacion_dos = $ocupacionDos?->s_ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -1349,6 +1384,8 @@ class ProfesionalOcupacionController extends Controller
                 'jefatura_uno'=>$ocupacionUno->jefatura,
                 'departamento_uno'=>$ocupacionUno->departamento,
                 'ocupacion_uno'=>$ocupacionUno->ocupacion,
+                's_area_trabajo'=>$ocupacionUno->s_area_trabajo,
+                's_ocupacion'=>$ocupacionUno->s_ocupacion,
 
                 'id_catalogo_dos' => $request?->ocupacion_dos,
                 'area_dos' => $ocupacionDos?->area,
@@ -1356,6 +1393,8 @@ class ProfesionalOcupacionController extends Controller
                 'jefatura_dos' => $ocupacionDos?->jefatura,
                 'departamento_dos' => $ocupacionDos?->departamento,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
+                's_area_trabajo_dos' => $ocupacionDos?->s_area_trabajo,
+                's_ocupacion_dos' => $ocupacionDos?->s_ocupacion,
             ]);
 
             // Guardamos en la bitacora
@@ -1456,6 +1495,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->subarea_servicio_uno = $ocupacionUno->subarea_servicio;
         $ocupacion->componente_uno = $ocupacionUno->componente;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
+        $ocupacion->s_area_trabajo = $ocupacionUno->s_area_trabajo;
+        $ocupacion->s_ocupacion = $ocupacionUno->s_ocupacion;
 
         $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
         $ocupacion->unidad_dos = $ocupacionDos?->unidad;
@@ -1463,6 +1504,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->subarea_servicio_dos = $ocupacionDos?->subarea_servicio;   
         $ocupacion->componente_dos = $ocupacionDos?->componente;   
         $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
+        $ocupacion->s_area_trabajo_dos = $ocupacionDos?->s_area_trabajo;
+        $ocupacion->s_ocupacion_dos = $ocupacionDos?->s_ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -1539,6 +1582,8 @@ class ProfesionalOcupacionController extends Controller
                 'subarea_servicio_uno'=>$ocupacionUno->subarea_servicio,
                 'componente_uno'=>$ocupacionUno->componente,
                 'ocupacion_uno'=>$ocupacionUno->ocupacion,
+                's_area_trabajo'=>$ocupacionUno->s_area_trabajo,
+                's_ocupacion'=>$ocupacionUno->s_ocupacion,
 
                 'id_catalogo_dos' => $request?->ocupacion_dos,
                 'unidad_dos' => $ocupacionDos?->unidad,
@@ -1546,6 +1591,8 @@ class ProfesionalOcupacionController extends Controller
                 'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
                 'componente_dos' => $ocupacionDos?->componente,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
+                's_area_trabajo_dos' => $ocupacionDos?->s_area_trabajo,
+                's_ocupacion_dos' => $ocupacionDos?->s_ocupacion,
             ]);
 
             // Guardamos en la bitacora
@@ -1646,6 +1693,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->jefatura_programa_uno = $ocupacionUno->jefatura_programa;
         $ocupacion->componente_uno = $ocupacionUno->componente;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
+        $ocupacion->s_area_trabajo = $ocupacionUno->s_area_trabajo;
+        $ocupacion->s_ocupacion = $ocupacionUno->s_ocupacion;
 
         $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
         $ocupacion->area_dos = $ocupacionDos?->area;
@@ -1653,6 +1702,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->jefatura_programa_dos = $ocupacionDos?->jefatura_programa;
         $ocupacion->componente_dos = $ocupacionDos?->componente;
         $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
+        $ocupacion->s_area_trabajo_dos = $ocupacionDos?->s_area_trabajo;
+        $ocupacion->s_ocupacion_dos = $ocupacionDos?->s_ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -1730,6 +1781,8 @@ class ProfesionalOcupacionController extends Controller
                 'jefatura_programa_uno'=>$ocupacionUno->jefatura_programa,
                 'componente_uno'=>$ocupacionUno->componente,
                 'ocupacion_uno'=>$ocupacionUno->ocupacion,
+                's_area_trabajo'=>$ocupacionUno->s_area_trabajo,
+                's_ocupacion'=>$ocupacionUno->s_ocupacion,
 
                 'id_catalogo_dos' => $request?->ocupacion_dos,
                 'area_dos' => $ocupacionDos?->area,
@@ -1737,6 +1790,8 @@ class ProfesionalOcupacionController extends Controller
                 'jefatura_programa_dos' => $ocupacionDos?->jefatura_programa,
                 'componente_dos' => $ocupacionDos?->componente,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
+                's_area_trabajo_dos' => $ocupacionDos?->s_area_trabajo,
+                's_ocupacion_dos' => $ocupacionDos?->s_ocupacion,
             ]);
 
             // Guardamos en la bitacora
@@ -1838,6 +1893,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->subarea_servicio_uno = $ocupacionUno->subarea_servicio;
         $ocupacion->componente_uno = $ocupacionUno->componente;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
+        $ocupacion->s_area_trabajo = $ocupacionUno->s_area_trabajo;
+        $ocupacion->s_ocupacion = $ocupacionUno->s_ocupacion;
 
         $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
         $ocupacion->unidad_dos = $ocupacionDos?->unidad;
@@ -1845,6 +1902,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->subarea_servicio_dos = $ocupacionDos?->subarea_servicio;
         $ocupacion->componente_dos = $ocupacionDos?->componente;
         $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
+        $ocupacion->s_area_trabajo_dos = $ocupacionDos?->s_area_trabajo;
+        $ocupacion->s_ocupacion_dos = $ocupacionDos?->s_ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -2031,6 +2090,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->subarea_servicio_uno = $ocupacionUno->subarea_servicio;
         $ocupacion->componente_uno = $ocupacionUno->componente;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
+        $ocupacion->s_area_trabajo = $ocupacionUno->s_area_trabajo;
+        $ocupacion->s_ocupacion = $ocupacionUno->s_ocupacion;   
 
         $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
         $ocupacion->unidad_dos = $ocupacionDos?->unidad;
@@ -2038,6 +2099,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->subarea_servicio_dos = $ocupacionDos?->subarea_servicio;
         $ocupacion->componente_dos = $ocupacionDos?->componente;
         $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
+        $ocupacion->s_area_trabajo_dos = $ocupacionDos?->s_area_trabajo;
+        $ocupacion->s_ocupacion_dos = $ocupacionDos?->s_ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -2115,6 +2178,8 @@ class ProfesionalOcupacionController extends Controller
                 'subarea_servicio_uno'=>$ocupacionUno->subarea_servicio,
                 'componente_uno'=>$ocupacionUno->componente,
                 'ocupacion_uno'=>$ocupacionUno->ocupacion,
+                's_area_trabajo'=>$ocupacionUno->s_area_trabajo,
+                's_ocupacion'=>$ocupacionUno->s_ocupacion,
 
                 'id_catalogo_dos' => $request?->ocupacion_dos,
                 'unidad_dos' => $ocupacionDos?->unidad,
@@ -2122,6 +2187,8 @@ class ProfesionalOcupacionController extends Controller
                 'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
                 'componente_dos' => $ocupacionDos?->componente,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
+                's_area_trabajo_dos' => $ocupacionDos?->s_area_trabajo,
+                's_ocupacion_dos' => $ocupacionDos?->s_ocupacion,
             ]);
 
             // Guardamos en la bitacora
@@ -2222,12 +2289,16 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->area_uno = $ocupacionUno->area;
         $ocupacion->subarea_uno = $ocupacionUno->subarea;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
+        $ocupacion->s_area_trabajo = $ocupacionUno->s_area_trabajo;
+        $ocupacion->s_ocupacion = $ocupacionUno->s_ocupacion;
 
         $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
         $ocupacion->unidad_dos = $ocupacionDos?->unidad;
         $ocupacion->area_dos = $ocupacionDos?->area;
         $ocupacion->subarea_dos = $ocupacionDos?->subarea;
         $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
+        $ocupacion->s_area_trabajo_dos = $ocupacionDos?->s_area_trabajo;
+        $ocupacion->s_ocupacion_dos = $ocupacionDos?->s_ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -2304,12 +2375,16 @@ class ProfesionalOcupacionController extends Controller
                 'area_uno'=>$ocupacionUno->area,
                 'subarea_uno'=>$ocupacionUno->subarea,
                 'ocupacion_uno'=>$ocupacionUno->ocupacion,
+                's_area_trabajo'=>$ocupacionUno->s_area_trabajo,
+                's_ocupacion'=>$ocupacionUno->s_ocupacion,
 
                 'id_catalogo_dos' => $request?->ocupacion_dos,
                 'unidad_dos' => $ocupacionDos?->unidad,
                 'area_dos' => $ocupacionDos?->area,
                 'subarea_dos' => $ocupacionDos?->subarea,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
+                's_area_trabajo_dos' => $ocupacionDos?->s_area_trabajo,
+                's_ocupacion_dos' => $ocupacionDos?->s_ocupacion,
             ]);
 
              // Guardamos en la bitacora
@@ -2411,6 +2486,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->subarea_servicio_uno = $ocupacionUno->subarea_servicio;
         $ocupacion->componente_uno = $ocupacionUno->componente;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
+        $ocupacion->s_area_trabajo = $ocupacionUno->s_area_trabajo;
+        $ocupacion->s_ocupacion = $ocupacionUno->s_ocupacion;
 
         $ocupacion->id_catalogo_dos = $request?->ocupacion_dos;
         $ocupacion->unidad_dos = $ocupacionDos?->unidad;
@@ -2418,6 +2495,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->subarea_servicio_dos = $ocupacionDos?->subarea_servicio;
         $ocupacion->componente_dos = $ocupacionDos?->componente;
         $ocupacion->ocupacion_dos = $ocupacionDos?->ocupacion;
+        $ocupacion->s_area_trabajo_dos = $ocupacionDos?->s_area_trabajo;
+        $ocupacion->s_ocupacion_dos = $ocupacionDos?->s_ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -2495,6 +2574,8 @@ class ProfesionalOcupacionController extends Controller
                 'subarea_servicio_uno'=>$ocupacionUno->subarea_servicio,
                 'componente_uno'=>$ocupacionUno->componente,
                 'ocupacion_uno'=>$ocupacionUno->ocupacion,
+                's_area_trabajo'=>$ocupacionUno->s_area_trabajo,
+                's_ocupacion'=>$ocupacionUno->s_ocupacion,
 
                 'id_catalogo_dos' => $request?->ocupacion_dos,
                 'unidad_dos' => $ocupacionDos?->unidad,
@@ -2502,6 +2583,8 @@ class ProfesionalOcupacionController extends Controller
                 'subarea_servicio_dos' => $ocupacionDos?->subarea_servicio,
                 'componente_dos' => $ocupacionDos?->componente,
                 'ocupacion_dos' => $ocupacionDos?->ocupacion,
+                's_area_trabajo_dos' => $ocupacionDos?->s_area_trabajo,
+                's_ocupacion_dos' => $ocupacionDos?->s_ocupacion,
             ]);
             
             // Guardamos en la bitacora
@@ -2593,6 +2676,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->area_uno = $ocupacionUno->area;
         $ocupacion->subarea_uno = $ocupacionUno->subarea;
         $ocupacion->ocupacion_uno = $ocupacionUno->ocupacion;
+        $ocupacion->s_area_trabajo = $ocupacionUno->s_area_trabajo;
+        $ocupacion->s_ocupacion = $ocupacionUno->s_ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -2649,6 +2734,8 @@ class ProfesionalOcupacionController extends Controller
                 'area_uno'=>$ocupacionUno->area,
                 'subarea_uno'=>$ocupacionUno->subarea,
                 'ocupacion_uno'=>$ocupacionUno->ocupacion,
+                's_area_trabajo'=>$ocupacionUno->s_area_trabajo,
+                's_ocupacion'=>$ocupacionUno->s_ocupacion,
             ]);
 
         }
@@ -2705,6 +2792,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->area = $ocupacionUno->area;
         $ocupacion->subarea = $ocupacionUno->subarea;
         $ocupacion->ocupacion = $ocupacionUno->ocupacion;
+        $ocupacion->s_area_trabajo = $ocupacionUno->s_area_trabajo;
+        $ocupacion->s_ocupacion = $ocupacionUno->s_ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -2761,6 +2850,8 @@ class ProfesionalOcupacionController extends Controller
                 'area'=>$ocupacionUno->area,
                 'subarea'=>$ocupacionUno->subarea,
                 'ocupacion'=>$ocupacionUno->ocupacion,
+                's_area_trabajo'=>$ocupacionUno->s_area_trabajo,
+                's_ocupacion'=>$ocupacionUno->s_ocupacion,
             ]);
 
         }
@@ -2817,6 +2908,8 @@ class ProfesionalOcupacionController extends Controller
         $ocupacion->area = $ocupacionUno->area;
         $ocupacion->subarea = $ocupacionUno->subarea;
         $ocupacion->ocupacion = $ocupacionUno->ocupacion;
+        $ocupacion->s_area_trabajo = $ocupacionUno->s_area_trabajo;
+        $ocupacion->s_ocupacion = $ocupacionUno->s_ocupacion;
 
         $ocupacion->mdl_status = $mdl_status;
 
@@ -2885,6 +2978,8 @@ class ProfesionalOcupacionController extends Controller
                 'area'=>$ocupacionUno->area,
                 'subarea'=>$ocupacionUno->subarea,
                 'ocupacion'=>$ocupacionUno->ocupacion,
+                's_area_trabajo'=>$ocupacionUno->s_area_trabajo,
+                's_ocupacion'=>$ocupacionUno->s_ocupacion,
                 
             ]);
 
