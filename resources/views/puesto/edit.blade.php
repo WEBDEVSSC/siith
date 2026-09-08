@@ -160,58 +160,73 @@
                     </div>
 
                     <div class="col-md-3">
+                            <p><strong>Institución a la que pertenece el puesto</strong></p>
+                            <select name="institucion_puesto" id="institucion_puesto" class="form-control">
+                                <option value="">-- Selecciona una opción --</option>
+                                @foreach ($institucionesPuesto as $institucionPuesto)
+                                    <option value="{{ $institucionPuesto->abreviatura }}" {{ old('institucion_puesto',$profesional->institucion_puesto) == $institucionPuesto->abreviatura ? 'selected' : '' }}>
+                                        {{ $institucionPuesto->abreviatura }} - {{ $institucionPuesto->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('institucion_puesto')
+                            <br><div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                    {{--<div class="col-md-3">
                             <p><strong><strong>Área de Trabajo</strong></strong></p>
 
                             <input type="text" name="area_trabajo" value="{{ $profesional->area_trabajo }}" readonly class="form-control">                            
 
-                            {{--<select name="area_trabajo" id="area_trabajo" class="form-control select2">
+                            <select name="area_trabajo" id="area_trabajo" class="form-control select2">
                                 <option value="">-- Selecciona una opción --</option>
                                 @foreach ($areasTrabajo as $areaTrabajo)
                                     <option value="{{ $areaTrabajo->area_trabajo }}" {{ old('area_trabajo', $profesional->area_trabajo) == $areaTrabajo->area_trabajo ? 'selected' : '' }}>
                                         {{ $areaTrabajo->area_trabajo }}
                                     </option>
                                 @endforeach
-                            </select>--}}
+                            </select>
                             @error('area_trabajo')
                             <br><div class="alert alert-danger">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div>--}}
 
                 </div>
 
                 <div class="row mt-3">
-                         <div class="col-md-6">
+                         {{--<div class="col-md-6">
                             <p><strong>Ocupación</strong></p>
 
                             <input type="text" name="ocupacion" value="{{ $profesional->ocupacion }}" readonly class="form-control"> 
 
-                            {{-- <select name="ocupacion" id="ocupacion" class="form-control select2">
+                            <select name="ocupacion" id="ocupacion" class="form-control select2">
                                 <option value="">-- Selecciona una opción --</option>
                                 @foreach ($ocupaciones as $ocupacion)
                                     <option value="{{ $ocupacion->ocupacion }}" {{ old('ocupacion', $profesional->ocupacion) == $ocupacion->ocupacion ? 'selected' : '' }}>
                                         {{ $ocupacion->ocupacion }}
                                     </option>
                                 @endforeach
-                            </select>--}}
+                            </select>
                             @error('ocupacion')
                             <br><div class="alert alert-danger">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div>--}}
 
-                        <div class="col-md-6">
-                <p><strong>Institución a la que pertenece el puesto</strong></p>
-                <select name="institucion_puesto" id="institucion_puesto" class="form-control">
-                    <option value="">-- Selecciona una opción --</option>
-                    @foreach ($institucionesPuesto as $institucionPuesto)
-                        <option value="{{ $institucionPuesto->abreviatura }}" {{ old('institucion_puesto',$profesional->institucion_puesto) == $institucionPuesto->abreviatura ? 'selected' : '' }}>
-                            {{ $institucionPuesto->abreviatura }} - {{ $institucionPuesto->nombre }}
-                        </option>
-                    @endforeach
-                </select>
-                @error('institucion_puesto')
-                <br><div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-            </div>
+                        {{--<div class="col-md-6">
+                            <p><strong>Institución a la que pertenece el puesto</strong></p>
+                            <select name="institucion_puesto" id="institucion_puesto" class="form-control">
+                                <option value="">-- Selecciona una opción --</option>
+                                @foreach ($institucionesPuesto as $institucionPuesto)
+                                    <option value="{{ $institucionPuesto->abreviatura }}" {{ old('institucion_puesto',$profesional->institucion_puesto) == $institucionPuesto->abreviatura ? 'selected' : '' }}>
+                                        {{ $institucionPuesto->abreviatura }} - {{ $institucionPuesto->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('institucion_puesto')
+                            <br><div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>--}}
 
                 </div>
 

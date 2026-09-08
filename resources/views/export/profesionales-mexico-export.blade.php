@@ -200,7 +200,9 @@
 
                     <td>{{ $profesional->puesto?->actividad ?? '' }}</td>
                     <td>{{ eliminar_acentos($profesional->puesto?->adicional ?? '') }}</td>
+                    
                     <td>{{ $profesional->puesto?->area_trabajo ?? '' }}</td>
+
                     <td>{{ $profesional->puesto?->tipo_personal ?? '' }}</td>
                     <td>{{ $profesional->puesto?->codigo_puesto ?? '' }}</td>
                     <td>{{ $profesional->puesto?->fecha_ingreso ?? '' }}</td>
@@ -522,7 +524,77 @@
 
                     {{-- ----------------------------------------------------------------------------------------------------------------- --}}
 
-                    <td>{{ $profesional->puesto?->ocupacion ?? '' }}</td>
+                    @if ($profesional->puesto?->clues_adscripcion_tipo == 1)
+
+                    <td>{{ $profesional->ocupacionCentroSalud->s_ocupacion_uno ?? '' }}</td>
+                    
+                    @elseif($profesional->puesto?->clues_adscripcion_tipo == 2)
+
+                    <td>{{ $profesional->ocupacionHospital->s_ocupacion_uno ?? '' }}</td>
+
+                    @elseif($profesional->puesto?->clues_adscripcion_tipo == 3)
+
+                    <td>{{ $profesional->ocupacionOfJurisidccion->s_ocupacion_uno ?? '' }}</td>
+
+                    @elseif($profesional->puesto?->clues_adscripcion_tipo == 4)
+
+                    <td>{{ $profesional->ocupacionCriCree->s_ocupacion_uno ?? '' }}</td>
+
+                    @elseif($profesional->puesto?->clues_adscripcion_tipo == 5)
+
+                    <td>{{ $profesional->ocupacionSamuCrum->s_ocupacion_uno ?? '' }}</td>
+
+                    @elseif($profesional->puesto?->clues_adscripcion_tipo == 6)
+
+                    <td>{{ $profesional->ocupacionOficinaCentral->s_ocupacion_uno ?? '' }}</td>
+
+                    @elseif($profesional->puesto?->clues_adscripcion_tipo == 7)
+
+                    <td>{{ $profesional->ocupacionAlmacen->s_ocupacion_uno ?? '' }}</td>
+
+                    @elseif($profesional->puesto?->clues_adscripcion_tipo == 8)
+
+                    <td>{{ $profesional->ocupacionCetsLesp->s_ocupacion_uno ?? '' }}</td>
+
+                    @elseif($profesional->puesto?->clues_adscripcion_tipo == 9)
+
+                    <td>{{ $profesional->ocupacionCors->s_ocupacion_uno ?? '' }}</td>
+
+                    @elseif($profesional->puesto?->clues_adscripcion_tipo == 10)
+
+                    <td></td>
+
+                    @elseif($profesional->puesto?->clues_adscripcion_tipo == 11)
+
+                    <td>{{ $profesional->ocupacionCesame->s_ocupacion_uno ?? '' }}</td>
+
+                    @elseif($profesional->puesto?->clues_adscripcion_tipo == 12)
+
+                    <td>{{ $profesional->ocupacionPsiParras->s_ocupacion_uno ?? '' }}</td>
+
+                    @elseif($profesional->puesto?->clues_adscripcion_tipo == 13)
+
+                    <td>{{ $profesional->ocupacionCeam->s_ocupacion_uno ?? '' }}</td>
+
+                    @elseif($profesional->puesto?->clues_adscripcion_tipo == 14)
+
+                    <td>{{ $profesional->ocupacionHospitalNino->s_ocupacion_uno ?? '' }}</td>
+
+                    @elseif($profesional->puesto?->clues_adscripcion_tipo == 15)
+
+                    <td></td>
+
+                    @elseif($profesional->puesto?->clues_adscripcion_tipo == 16)
+
+                    <td>{{ $profesional->ocupacionEnsenanza->s_ocupacion_uno ?? '' }}</td>
+
+                    @else
+                    
+                    <td></td>
+
+                    @endif
+
+                    {{-- <td>{{ $profesional->puesto?->ocupacion ?? '' }}</td> --}}
 
                     <td>{{ $profesional->puesto?->codigo ?? '' }}</td>
 
