@@ -1594,8 +1594,8 @@ class ProfesionalController extends Controller
 
         $cluesAdscripcionTipo = $puesto ? $puesto->clues_adscripcion_tipo : null;
 
-        $areaTrabajo = $puesto ? $puesto->area_trabajo : null;
-        $ocupacionPuesto = $puesto ? $puesto->ocupacion : null;
+        //$areaTrabajo = $puesto ? $puesto->area_trabajo : null;
+        //$ocupacionPuesto = $puesto ? $puesto->ocupacion : null;
         $nominaPago = $puesto ? $puesto->nomina_pago : null;
         $tipoContrato = $puesto ? $puesto->tipo_contrato : null;
         $fechaIngreso = $puesto ? $puesto->fecha_ingreso : null;
@@ -1618,100 +1618,134 @@ class ProfesionalController extends Controller
         {
             $catalogoLabel = "CENTROS DE SALUD URBANOS Y RURALES";
             $ocupacion = ProfesionalOcupacionCentroSalud::where('id_profesional', $id)->first();
+            $areaTrabajo = $ocupacion ? $ocupacion->s_area_trabajo_uno : null;
+            $ocupacionPuesto = $ocupacion ? $ocupacion->s_ocupacion_uno : null;
         } 
         // HOSPITALES (2)
         elseif ($tipo == 2) 
         {
             $catalogoLabel = "HOSPITALES";
             $ocupacion = ProfesionalOcupacionHospital::where('id_profesional', $id)->first();
+            $areaTrabajo = $ocupacion ? $ocupacion->s_area_trabajo_uno : null;
+            $ocupacionPuesto = $ocupacion ? $ocupacion->s_ocupacion_uno : null;
         } 
         // OFICINA JURISDICCIONAL (3)
         elseif ($tipo == 3) 
         {
             $catalogoLabel = "OFICINA JURISDICCIONAL";
             $ocupacion = ProfesionalOcupacionOfJurisdiccional::where('id_profesional', $id)->first();
+            $areaTrabajo = $ocupacion ? $ocupacion->s_area_trabajo_uno : null;
+            $ocupacionPuesto = $ocupacion ? $ocupacion->s_ocupacion_uno : null;
         } 
         // CRI CREE (4)
         elseif ($tipo == 4) 
         {
             $catalogoLabel = "DIF CRI CREE";
             $ocupacion = ProfesionalOcupacionCriCree::where('id_profesional', $id)->first();
+            $areaTrabajo = $ocupacion ? $ocupacion->s_area_trabajo_uno : null;
+            $ocupacionPuesto = $ocupacion ? $ocupacion->s_ocupacion_uno : null;
         }
         // SAMU CRUM (5)
         elseif ($tipo == 5) 
         {
             $catalogoLabel = "SAMU CRUM";
             $ocupacion = ProfesionalOcupacionSamuCrum::where('id_profesional', $id)->first();
+            $areaTrabajo = $ocupacion ? $ocupacion->s_area_trabajo_uno : null;
+            $ocupacionPuesto = $ocupacion ? $ocupacion->s_ocupacion_uno : null;
         }
         // OFICINA CENTRAL (6)
         elseif ($tipo == 6) 
         {
             $catalogoLabel = "OFICINA CENTRAL";
             $ocupacion = ProfesionalOcupacionOficinaCentral::where('id_profesional', $id)->first();
+            $areaTrabajo = $ocupacion ? $ocupacion->s_area_trabajo_uno : null;
+            $ocupacionPuesto = $ocupacion ? $ocupacion->s_ocupacion_uno : null;
         }
         // ALMACEN (7)
         elseif ($tipo == 7) 
         {
             $catalogoLabel = "ALMACEN";
             $ocupacion = ProfesionalOcupacionAlmacen::where('id_profesional', $id)->first();
+            $areaTrabajo = $ocupacion ? $ocupacion->s_area_trabajo_uno : null;
+            $ocupacionPuesto = $ocupacion ? $ocupacion->s_ocupacion_uno : null;
         }
         // CETS LESP (8)
         elseif ($tipo == 8) 
         {
             $catalogoLabel = "CETS LESP";
             $ocupacion = ProfesionalOcupacionCetsLesp::where('id_profesional', $id)->first();
+            $areaTrabajo = $ocupacion ? $ocupacion->s_area_trabajo_uno : null;
+            $ocupacionPuesto = $ocupacion ? $ocupacion->s_ocupacion_uno : null;
         }
         // CORS (9)
         elseif ($tipo == 9) 
         {
             $catalogoLabel = "CORS";
             $ocupacion = ProfesionalOcupacionCors::where('id_profesional', $id)->first();
+            $areaTrabajo = $ocupacion ? $ocupacion->s_area_trabajo_uno : null;
+            $ocupacionPuesto = $ocupacion ? $ocupacion->s_ocupacion_uno : null;
         }
         // ISSREEI (10)
         elseif ($tipo == 10) 
         {
             $catalogoLabel = "ISSREEI";
             $ocupacion = ProfesionalOcupacionIssreei::where('id_profesional', $id)->first();
+            $areaTrabajo = $ocupacion ? $ocupacion->s_area_trabajo_uno : null;
+            $ocupacionPuesto = $ocupacion ? $ocupacion->s_ocupacion_uno : null;
         }
         // CESAME (11)
         elseif ($tipo == 11) 
         {
             $catalogoLabel = "CESAME";
             $ocupacion = ProfesionalOcupacionCesame::where('id_profesional', $id)->first();
+            $areaTrabajo = $ocupacion ? $ocupacion->s_area_trabajo_uno : null;
+            $ocupacionPuesto = $ocupacion ? $ocupacion->s_ocupacion_uno : null;
         }
         // PSI PARRAS (12)
         elseif ($tipo == 12) 
         {
             $catalogoLabel = "PSI PARRAS";
             $ocupacion = ProfesionalOcupacionPsiParras::where('id_profesional', $id)->first();
+            $areaTrabajo = $ocupacion ? $ocupacion->s_area_trabajo_uno : null;
+            $ocupacionPuesto = $ocupacion ? $ocupacion->s_ocupacion_uno : null;
         }
         // CEAM (13)
         elseif ($tipo == 13) 
         {
             $catalogoLabel = "CEAM";
             $ocupacion = ProfesionalOcupacionCeam::where('id_profesional', $id)->first();
+            $areaTrabajo = $ocupacion ? $ocupacion->s_area_trabajo_uno : null;
+            $ocupacionPuesto = $ocupacion ? $ocupacion->s_ocupacion_uno : null;
         }
         // CESAME (14)
         elseif ($tipo == 14) 
         {
             $catalogoLabel = "HOSPITAL DEL NIÑO";
             $ocupacion = ProfesionalOcupacionHospitalNino::where('id_profesional', $id)->first();
+            $areaTrabajo = $ocupacion ? $ocupacion->s_area_trabajo_uno : null;
+            $ocupacionPuesto = $ocupacion ? $ocupacion->s_ocupacion_uno : null;
         }
         // PASANTE DE ENSENANZA (15)
         elseif ($tipo == 15) 
         {
             $catalogoLabel = "PERSONAL EN FORMACIÓN";
             $ocupacion = ProfesionalOcupacionEnsenanza::where('id_profesional', $id)->first();
+            $areaTrabajo = $ocupacion ? $ocupacion->s_area_trabajo_uno : null;
+            $ocupacionPuesto = $ocupacion ? $ocupacion->s_ocupacion_uno : null;
         }
         // CECOSAMA (16)
         elseif ($tipo == 16) 
         {
             $catalogoLabel = "CECOSAMA";
             $ocupacion = ProfesionalOcupacionCecosama::where('id_profesional', $id)->first();
+            $areaTrabajo = $ocupacion ? $ocupacion->s_area_trabajo_uno : null;
+            $ocupacionPuesto = $ocupacion ? $ocupacion->s_ocupacion_uno : null;
         }
         else
         {
             $catalogoLabel = "SIN UNIDAD ASIGNADA";
+            $areaTrabajo = "";
+            $ocupacionPuesto = "";
         }
 
         // Cargamos los datos del MODULO CREDENCIALIZACION
