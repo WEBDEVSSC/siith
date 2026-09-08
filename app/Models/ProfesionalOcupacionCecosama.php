@@ -16,6 +16,16 @@ class ProfesionalOcupacionCecosama extends Model
         'area',
         'subarea',
         'ocupacion',
+        's_area_trabajo',
+        's_ocupacion',
         'mdl_status',
     ];
+
+    /**
+     * Relación con el modelo ProfesionalDatosGenerales
+     */
+    public function profesional()
+    {
+        return $this->belongsTo(Profesional::class, 'id');
+    }
 }

@@ -16,6 +16,8 @@ class CatOcupacionCeam extends Model
         'subarea_servicio',
         'componente',
         'ocupacion',
+        's_area_trabajo',
+        's_ocupacion',
         'orden',
     ];
 }

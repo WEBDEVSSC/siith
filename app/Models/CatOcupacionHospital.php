@@ -13,6 +13,9 @@ class CatOcupacionHospital extends Model
         'unidad', 
         'area', 
         'subarea', 
-        'puesto'
+        'puesto',
+        's_area_trabajo',
+        's_ocupacion',
+        'orden'
     ];
 }

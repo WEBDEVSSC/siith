@@ -15,6 +15,8 @@ class CatOcupacionSamuCrum extends Model
         'subarea',
         'componente',
         'ocupacion',
+        's_area_trabajo',
+        's_ocupacion',
         'orden',
     ];
 }

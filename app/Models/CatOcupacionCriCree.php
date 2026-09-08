@@ -14,6 +14,8 @@ class CatOcupacionCriCree extends Model
         'area',
         'subarea',
         'ocupacion',
+        's_area_trabajo',
+        's_ocupacion',
         'orden',
     ];
 }

@@ -112,8 +112,6 @@ class ProfesionalOcupacionController extends Controller
         // Registramos los datos
         $ocupacion->save();
 
-        // Cargamos 
-
         // Regresamos a la vista con su mensaje
         return redirect()->route('profesionalShow',$request->id_profesional)->with('success', 'Ocupaciones registradas correctamente.');
     }
@@ -134,7 +132,7 @@ class ProfesionalOcupacionController extends Controller
     }
 
     public function updateCentrosDeSalud(Request $request, $id)
-    {                
+    {             
         // Validamos los datos
         $request->validate([
             'ocupacion_uno' => 'required',
@@ -154,20 +152,20 @@ class ProfesionalOcupacionController extends Controller
 
         $catalogo = "C.S.U. y R.";
 
-         // Consultamos los datos para registrar
-         $ocupacionUno = CatOcupacionCentroSalud::where('id',$request->ocupacion_uno)->first();
+        // Consultamos los datos para registrar
+        $ocupacionUno = CatOcupacionCentroSalud::where('id',$request->ocupacion_uno)->first();
 
-         $ocupacionUnoLabel = $ocupacionUno->unidad." - ".$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->ocupacion;
+        $ocupacionUnoLabel = $ocupacionUno->unidad." - ".$ocupacionUno->area.' - '.$ocupacionUno->subarea.' - '.$ocupacionUno->ocupacion;
 
-         $ocupacionDos = null;
+        $ocupacionDos = null;
 
         if ($request->ocupacion_dos) 
         {
             $ocupacionDos = CatOcupacionCentroSalud::where('id',$request->ocupacion_dos)->first();
         }
 
-         // Consultamos el id
-         $ocupacion = ProfesionalOcupacionCentroSalud::findOrFail($id);
+        // Consultamos el id
+        $ocupacion = ProfesionalOcupacionCentroSalud::findOrFail($id);
 
          if($request->eliminar_ocupacion == 1)
         {
@@ -175,7 +173,7 @@ class ProfesionalOcupacionController extends Controller
             return redirect()->route('profesionalShow',$ocupacion->id_profesional)->with('destroy', 'Ocupación eliminada correctamente.');
         }
         else
-        {
+        {   
             // Asignamos los valores al registro
             $ocupacion->update([
                 'id_catalogo_uno'=>$request->ocupacion_uno,
@@ -1325,7 +1323,7 @@ class ProfesionalOcupacionController extends Controller
     }
 
     public function updateAlmacen(Request $request, $id)
-    {    
+    {   
         // Validamos los datos
         $request->validate([
             'ocupacion_uno'=>'required',

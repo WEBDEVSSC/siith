@@ -17,12 +17,21 @@ class ProfesionalOcupacionOfJurisdiccional extends Model
         'subarea_uno',
         'servicio_uno',
         'ocupacion_uno',
+        's_area_trabajo_uno',
+        's_ocupacion_uno',
         'id_catalogo_dos',
         'unidad_dos',
         'area_dos',
         'subarea_dos',
         'servicio_dos',
         'ocupacion_dos',
+        's_area_trabajo_dos',
+        's_ocupacion_dos',
         'mdl_status',
     ];
+
+    public function profesional()
+    {
+        return $this->belongsTo(Profesional::class,'id_profesional');
+    }
 }

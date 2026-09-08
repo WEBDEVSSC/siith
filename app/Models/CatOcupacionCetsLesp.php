@@ -15,6 +15,8 @@ class CatOcupacionCetsLesp extends Model
         'jefatura_programa',
         'componente',
         'ocupacion',
+        's_area_trabajo',
+        's_ocupacion',
         'orden',
     ];
 }

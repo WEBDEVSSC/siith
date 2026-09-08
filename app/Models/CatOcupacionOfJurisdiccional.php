@@ -14,6 +14,9 @@ class CatOcupacionOfJurisdiccional extends Model
         'area', 
         'subarea', 
         'servicio',
-        'ocupacion'
+        'ocupacion',
+        's_area_trabajo',
+        's_ocupacion',
+        'orden'
     ];
 }

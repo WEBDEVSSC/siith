@@ -17,12 +17,17 @@ class ProfesionalOcupacionOficinaCentral extends Model
         'programa_uno',
         'componente_uno',
         'ocupacion_uno',
+        's_area_trabajo_uno',
+        's_ocupacion_uno',
         'id_catalogo_dos',
         'area_dos',
         'subarea_dos',
         'programa_dos',
         'componente_dos',
         'ocupacion_dos',
+        's_area_trabajo_dos',
+        's_ocupacion_dos',
+        'mdl_status',
     ];
 
     // Relación con la tabla profesionales_datos_generales

@@ -15,6 +15,8 @@ class CatOcupacionAlmacen extends Model
         'jefatura',
         'departamento',
         'ocupacion',
+        's_area_trabajo',
+        's_ocupacion',
         'orden',
     ];
 }

@@ -17,12 +17,16 @@ class ProfesionalOcupacionCetsLesp extends Model
         'jefatura_programa_uno',
         'componente_uno',
         'ocupacion_uno',
+        's_area_trabajo_uno',
+        's_ocupacion_uno',
         'id_catalogo_dos',
         'area_dos',
         'subarea_dos',
         'jefatura_programa_dos',
         'componente_dos',
         'ocupacion_dos',
+        's_area_trabajo_dos',
+        's_ocupacion_dos',
         'mdl_status',
     ];
 

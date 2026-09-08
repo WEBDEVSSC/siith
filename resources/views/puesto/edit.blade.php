@@ -161,14 +161,17 @@
 
                     <div class="col-md-3">
                             <p><strong><strong>Área de Trabajo</strong></strong></p>
-                            <select name="area_trabajo" id="area_trabajo" class="form-control select2">
+
+                            <input type="text" name="area_trabajo" value="{{ $profesional->area_trabajo }}" readonly class="form-control">                            
+
+                            {{--<select name="area_trabajo" id="area_trabajo" class="form-control select2">
                                 <option value="">-- Selecciona una opción --</option>
                                 @foreach ($areasTrabajo as $areaTrabajo)
                                     <option value="{{ $areaTrabajo->area_trabajo }}" {{ old('area_trabajo', $profesional->area_trabajo) == $areaTrabajo->area_trabajo ? 'selected' : '' }}>
                                         {{ $areaTrabajo->area_trabajo }}
                                     </option>
                                 @endforeach
-                            </select>
+                            </select>--}}
                             @error('area_trabajo')
                             <br><div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -179,14 +182,17 @@
                 <div class="row mt-3">
                          <div class="col-md-6">
                             <p><strong>Ocupación</strong></p>
-                            <select name="ocupacion" id="ocupacion" class="form-control select2">
+
+                            <input type="text" name="ocupacion" value="{{ $profesional->ocupacion }}" readonly class="form-control"> 
+
+                            {{-- <select name="ocupacion" id="ocupacion" class="form-control select2">
                                 <option value="">-- Selecciona una opción --</option>
                                 @foreach ($ocupaciones as $ocupacion)
                                     <option value="{{ $ocupacion->ocupacion }}" {{ old('ocupacion', $profesional->ocupacion) == $ocupacion->ocupacion ? 'selected' : '' }}>
                                         {{ $ocupacion->ocupacion }}
                                     </option>
                                 @endforeach
-                            </select>
+                            </select>--}}
                             @error('ocupacion')
                             <br><div class="alert alert-danger">{{ $message }}</div>
                             @enderror

@@ -15,6 +15,8 @@ class CatOcupacionOficinaCentral extends Model
         'programa',
         'componente',
         'ocupacion',
+        's_area_trabajo',
+        's_ocupacion',
         'orden',
     ];
 }
