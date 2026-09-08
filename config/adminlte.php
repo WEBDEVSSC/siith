@@ -381,7 +381,7 @@ return [
             'url' => 'admin/profesionales/reportes/reporteMexicoExcel',
             'icon' => 'fa-solid fa-file-excel',
             'label_color' => 'success',
-            'can' => 'sistematizacion',
+            'can' => 'profesionales',
         ],
 
         /*
