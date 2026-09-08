@@ -293,6 +293,16 @@
         </div>
         <div class="card-body">
             <div class="row">
+
+                <div class="col-md-2">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info"><i class="fas fa-file-excel" aria-hidden="true"></i></span>
+                        <div class="info-box-content">
+                            <a href="{{ route('reporteMexicoExcel') }}"><span class="info-box-text"><strong>Reporte México</strong></span></a>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-md-2">
                     <div class="info-box">
                         <span class="info-box-icon bg-info"><i class="fas fa-user-clock" aria-hidden="true"></i></span>
