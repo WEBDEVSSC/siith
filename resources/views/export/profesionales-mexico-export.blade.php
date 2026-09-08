@@ -29,6 +29,7 @@
                 <th style="color: white;"><strong>ACTIVIDAD</strong></th>
                 <th style="color: white;"><strong>ACTIVIDADES ADICIONALES</strong></th>
                 <th style="color: white;"><strong>AREA DE TRABAJO</strong></th>
+                <th style="color: white;"><strong>OCUPACION</strong></th>
                 <th style="color: white;"><strong>TIPO DE PERSONAL</strong></th>
                 <th style="color: white;"><strong>CODIGO DE PUESTO</strong></th>
                 <th style="color: white;"><strong>FECHA DE INGRESO (A LA INSTITUCION)</strong></th>
@@ -143,8 +144,7 @@
                 <th style="color: white;"><strong>NIVEL DE DOMINIO</strong></th>
                 <th style="color: white;"><strong>LENGUA INDIGENA</strong></th>
                 <th style="color: white;"><strong>NIVEL DE DOMINIO</strong></th>
-                <th style="color: white;"><strong>LENGUA DE SEÑAS</strong></th>       
-                <th style="color: white;"><strong>OCUPACION</strong></th>     
+                <th style="color: white;"><strong>LENGUA DE SEÑAS</strong></th>    
                 <th style="color: white;"><strong>CODIGO</strong></th>     
 
             </tr>
@@ -273,7 +273,7 @@
 
                     @endif
 
-                    
+
 
                     @if ($profesional->puesto?->clues_adscripcion_tipo == 1)
 
