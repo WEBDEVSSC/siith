@@ -1115,6 +1115,11 @@ Route::middleware(['auth'])->group(function ()
 
      Route::delete('admin/settings/ocupacion/oficinaCentral/delete/{id}', [CatalogoOcupacionOficinaCentralController::class, 'ocupacionOficinaCentralDestroy'])->name('ocupacionOficinaCentralDestroy');
 
+     Route::get('admin/settings/ocupacion/oficinaCentral/pdf', [CatalogoOcupacionOficinaCentralController::class, 'ocupacionOficinaCentralPDF'])->name('ocupacionOficinaCentralPDF');
+
+     Route::get('admin/settings/ocupacion/oficinaCentral/excel', [CatalogoOcupacionOficinaCentralController::class, 'ocupacionOficinaCentralExcel'])->name('ocupacionOficinaCentralExcel');
+
+
      /**
      * 
      * 

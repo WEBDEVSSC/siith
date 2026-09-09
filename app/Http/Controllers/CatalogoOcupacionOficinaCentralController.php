@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CatalogoOcupacionesOficinaCentralExport;
 use App\Models\CatOcupacionOficinaCentral;
 use App\Models\ProfesionalOcupacionOficinaCentral;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CatalogoOcupacionOficinaCentralController extends Controller
 {
@@ -189,4 +192,28 @@ class CatalogoOcupacionOficinaCentralController extends Controller
 
         return redirect()->route('ocupacionOficinaCentralIndex')->with('delete', 'Ocupación eliminada correctamente.');
     }
+
+    public function ocupacionOficinaCentralPDF()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionOficinaCentral::orderBy('orden')->get();
+
+        $pdf = Pdf::loadView('settings.ocupacion.oficina-central.oficinaCentral-pdf', compact('ocupaciones'))
+                    ->setPaper('letter', 'landscape');
+
+        return $pdf->stream('catalogo-ocupaciones-oficina-central.pdf');
+
+    }
+
+    public function ocupacionOficinaCentralExcel()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionOficinaCentral::orderBy('orden')->get();
+
+        $filename = 'catalogo-ocupaciones-oficina-central.xlsx';
+
+        // Retornamos la vista con el arreglo
+        return Excel::download(new CatalogoOcupacionesOficinaCentralExport($ocupaciones), $filename);
+    }
+   
 }
