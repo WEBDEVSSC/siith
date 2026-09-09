@@ -822,10 +822,129 @@
                     <td>{{ $profesional->puesto?->grupo ?? '' }}</td>
                     <td>{{ $profesional->puesto?->fecha_ingreso ?? '' }}</td>
                     <td>{{ $profesional->puesto?->tipo_personal ?? '' }}</td>
-                    <td>{{ $profesional->puesto?->ocupacion ?? '' }}</td>
+
+                    {{-- <td>{{ $profesional->puesto?->ocupacion ?? '' }}</td> --}}
+
+                    @switch($profesional->puesto->clues_adscripcion_tipo)
+                        {{-- CENTROS DE SALUD URBANOS Y RURALES --}}
+                    @case(1)
+                        <td>{{ $profesional->ocupacionCentroSalud->s_ocupacion_uno ?? '' }}</td>
+                    @break
+                    @case(2)
+                        <td>{{ $profesional->ocupacionHospital->s_ocupacion_uno ?? '' }}</td>
+                        @break
+                    @case(3)
+                        <td>{{ $profesional->ocupacionOfJurisidccion->s_ocupacion_uno ?? '' }}</td>
+                        @break
+                    @case(4)
+                        <td>{{ $profesional->ocupacionCriCree->s_ocupacion_uno ?? '' }}</td>
+                        @break
+                    @case(5)
+                        <td>{{ $profesional->ocupacionSamuCrum->s_ocupacion_uno ?? '' }}</td>
+                        @break
+                    @case(6)
+                        <td>{{ $profesional->ocupacionOficinaCentral->s_ocupacion_uno ?? '' }}</td>
+                        @break
+                    @case(7)
+                        <td>{{ $profesional->ocupacionAlmacen->s_ocupacion_uno ?? '' }}</td>
+                    @break
+                    @case(8)
+                        <td>{{ $profesional->ocupacionCetsLesp->s_ocupacion_uno ?? '' }}</td>
+                    @break
+                    @case(9)
+                        <td>{{ $profesional->ocupacionCors->s_ocupacion_uno ?? '' }}</td>
+                    @break
+                    @case(10)
+                        <td></td>
+                    @break
+                    @case(11)
+                        <td>{{ $profesional->ocupacionCesame->s_ocupacion_uno ?? '' }}</td>
+                    @break
+                    @case(12)
+                        <td>{{ $profesional->ocupacionPsiParras->s_ocupacion_uno ?? '' }}</td>
+                    @break
+                    @case(13)
+                        <td>{{ $profesional->ocupacionCeam->s_ocupacion_uno ?? '' }}</td>
+                    @break
+                    @case(14)
+                        <td>{{ $profesional->ocupacionHospitalNino->s_ocupacion_uno ?? '' }}</td>
+                    @break
+                    @case(15)
+                        <td></td>
+                    @break
+                    @case(16)
+                        <td>{{ $profesional->ocupacionCecosama->s_ocupacion ?? '' }}</td>
+                    @break
+
+                    @default
+
+                    <td></td>
+
+                    @endswitch
+
+
                     <td>{{ $profesional->puesto?->actividad ?? '' }}</td>
                     <td>{{ $profesional->puesto?->adicional ?? '' }}</td>
-                    <td>{{ $profesional->puesto?->area_trabajo ?? '' }}</td>
+
+                    {{-- <td>{{ $profesional->puesto?->area_trabajo ?? '' }}</td>--}}
+
+                    @switch($profesional->puesto->clues_adscripcion_tipo)
+                        {{-- CENTROS DE SALUD URBANOS Y RURALES --}}
+                    @case(1)
+                        <td>{{ $profesional->ocupacionCentroSalud->s_area_trabajo_uno ?? '' }}</td>
+                    @break
+                    @case(2)
+                        <td>{{ $profesional->ocupacionHospital->s_area_trabajo_uno ?? '' }}</td>
+                    @break
+                    @case(3)
+                        <td>{{ $profesional->ocupacionOfJurisidccion->s_area_trabajo_uno ?? '' }}</td>
+                    @break
+                    @case(4)
+                        <td>{{ $profesional->ocupacionCriCree->s_area_trabajo_uno ?? '' }}</td>
+                    @break
+                    @case(5)
+                        <td>{{ $profesional->ocupacionSamuCrum->s_area_trabajo_uno ?? '' }}</td>
+                    @break
+                    @case(6)
+                        <td>{{ $profesional->ocupacionOficinaCentral->s_area_trabajo_uno ?? '' }}</td>
+                    @break
+                    @case(7)
+                        <td>{{ $profesional->ocupacionAlmacen->s_area_trabajo_uno ?? '' }}</td>
+                    @break
+                    @case(8)
+                        <td>{{ $profesional->ocupacionCetsLesp->s_area_trabajo_uno ?? '' }}</td>
+                    @break
+                    @case(9)
+                        <td>{{ $profesional->ocupacionCors->s_area_trabajo_uno ?? '' }}</td>
+                    @break
+                    @case(10)
+                        <td></td>
+                    @break
+                    @case(11)
+                        <td>{{ $profesional->ocupacionCesame->s_area_trabajo_uno ?? '' }}</td>
+                    @break
+                    @case(12)
+                        <td>{{ $profesional->ocupacionPsiParras->s_area_trabajo_uno ?? '' }}</td>
+                    @break
+                    @case(13)
+                        <td>{{ $profesional->ocupacionCeam->s_area_trabajo_uno ?? '' }}</td>
+                    @break
+                    @case(14)
+                        <td>{{ $profesional->ocupacionHospitalNino->s_area_trabajo_uno ?? '' }}</td>
+                    @break
+                    @case(15)
+                        <td></td>
+                    @break
+                    @case(16)
+                        <td>{{ $profesional->ocupacionCecosama->s_area_trabajo ?? '' }}</td>
+                    @break
+
+                    @default
+
+                    <td></td>
+
+                    @endswitch
+
                     <td>{{ $profesional->puesto?->tipo_plaza ?? '' }}</td>
 
                     <td>{{ $profesional->puesto?->licencia_maternidad ?? '' }}</td>

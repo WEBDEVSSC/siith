@@ -1059,6 +1059,10 @@ Route::middleware(['auth'])->group(function ()
 
     Route::delete('admin/settings/ocupacion/ofJurisdiccional/delete/{id}', [CatalogoOcupacionOfJurisdiccionalController::class, 'ocupacionOfJurisdiccionalDestroy'])->name('ocupacionOfJurisdiccionalDestroy');
 
+    Route::get('admin/settings/ocupacion/ofJurisdiccional/pdf', [CatalogoOcupacionOfJurisdiccionalController::class, 'ocupacionOfJurisdiccionalPDF'])->name('ocupacionOfJurisdiccionalPDF');
+
+    Route::get('admin/settings/ocupacion/ofJurisdiccional/excel', [CatalogoOcupacionOfJurisdiccionalController::class, 'ocupacionOfJurisdiccionalExcel'])->name('ocupacionOfJurisdiccionalExcel');
+
     /**
      * 
      * 

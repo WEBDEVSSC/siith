@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CatalogoOcupacionesOfJurisdiccionalExport;
 use App\Models\CatOcupacionOfJurisdiccional;
 use App\Models\ProfesionalOcupacionOfJurisdiccional;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CatalogoOcupacionOfJurisdiccionalController extends Controller
 {
@@ -198,4 +201,28 @@ class CatalogoOcupacionOfJurisdiccionalController extends Controller
 
         return redirect()->route('ocupacionOfJurisdiccionalIndex')->with('delete', 'Ocupación eliminada correctamente.');
     }
-}
+
+    public function ocupacionOfJurisdiccionalPDF()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionOfJurisdiccional::orderBy('orden')->get();
+
+        $pdf = Pdf::loadView('settings.ocupacion.oficina-jurisdiccional.oficina-jurisdiccional-pdf', compact('ocupaciones'))
+                    ->setPaper('letter', 'landscape');
+
+        return $pdf->stream('catalogo-ocupaciones-oficina-jurisdiccional.pdf');
+    }
+
+    public function ocupacionOfJurisdiccionalExcel()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionOfJurisdiccional::orderBy('orden')->get();
+
+        $filename = 'catalogo-ocupaciones-oficina-jurisdiccional.xlsx';
+
+        // Retornamos la vista con el arreglo
+        return Excel::download(new CatalogoOcupacionesOfJurisdiccionalExport($ocupaciones), $filename);
+    }
+
+
+   }

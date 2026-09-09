@@ -40,9 +40,20 @@
 <!-- -->
     
 <div class="card">
-        <div class="card-header">
-            <a href="{{ route('ocupacionOfJurisdiccionalCreate') }}" class="btn btn-success btn-sm">NUEVO REGISTRO</a>
+
+        <div class="card-header text-right d-flex justify-content-end align-items-center">
+
+            <a href="{{ route('ocupacionOfJurisdiccionalCreate') }}" class="btn btn-success btn-sm">
+                <i class="fas fa-plus mr-1" style="margin-right: 5px;"></i> NUEVO REGISTRO
+            </a>
+            <a href="{{ route('ocupacionOfJurisdiccionalPDF') }}" target="_blank" class="btn btn-danger btn-sm" style="margin-left: 10px;">
+                <i class="fas fa-file-pdf" style="margin-right: 5px;"></i> PDF
+            </a>
+            <a href="{{ route('ocupacionOfJurisdiccionalExcel') }}" class="btn btn-primary btn-sm" style="margin-left: 10px;">
+                <i class="fas fa-file-excel" style="margin-right: 5px;"></i> EXCEL
+            </a>
         </div>
+
         <div class="card-body">
 
         @if($ocupaciones->isEmpty())
@@ -83,16 +94,24 @@
                             </div>
                         </td>                 
                         <td>
+
+                            <div class="d-flex justify-content-center align-items-center" style="gap: 5px;">
+                                <!-- Botón Editar -->
+                                <a href="{{ route('ocupacionOfJurisdiccionalEdit', $ocupacion->id) }}" class="btn btn-warning btn-sm" title="Editar registro">
+                                    <i class="fas fa-edit text-white"></i>
+                                </a>
+
+                                <!-- Botón Eliminar -->
+                                <form action="{{ route('ocupacionOfJurisdiccionalDestroy', $ocupacion->id) }}" method="POST" class="form-eliminar d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" title="Eliminar registro">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </div>
                         
-                            <a href="{{ route('ocupacionOfJurisdiccionalEdit', $ocupacion->id) }}" class="btn btn-warning btn-sm btn-block">EDITAR</a>
-
-                            <br>
-
-                            <form action="{{ route('ocupacionOfJurisdiccionalDestroy', $ocupacion->id) }}" method="POST" class="form-eliminar">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm btn-block">ELIMINAR</button>
-                            </form>
+                            
                         
                         </td>                 
                     </tr>
