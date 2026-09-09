@@ -169,6 +169,7 @@ class CatalogoOcupacionOficinaCentralController extends Controller
         // Limpiamos los registros
         ProfesionalOcupacionOficinaCentral::where('id_catalogo_uno', $id)
                                         ->update([
+                                            'id_catalogo_uno' => null,
                                             'area_uno' => NULL,
                                             'subarea_uno' => NULL,
                                             'programa_uno' => NULL,
@@ -178,6 +179,7 @@ class CatalogoOcupacionOficinaCentralController extends Controller
         
         ProfesionalOcupacionOficinaCentral::where('id_catalogo_dos', $id)
                                         ->update([
+                                            'id_catalogo_dos' => null,
                                             'area_dos' => NULL,
                                             'subarea_dos' => NULL,
                                             'programa_dos' => NULL,
