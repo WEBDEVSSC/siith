@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CatalogoOcupacionesHospitalExport;
 use App\Models\CatOcupacionHospital;
 use App\Models\ProfesionalOcupacionHospital;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CatalogoOcupacionHospitalController extends Controller
 {
@@ -174,5 +177,28 @@ class CatalogoOcupacionHospitalController extends Controller
                                         ]);
 
         return redirect()->route('ocupacionHospitalIndex')->with('delete', 'Ocupación eliminada correctamente.');
+    }
+
+    public function ocupacionHospitalPDF()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionHospital::orderBy('orden')->get();
+
+        $pdf = Pdf::loadView('settings.ocupacion.hospital.hospital-pdf', compact('ocupaciones'))
+                    ->setPaper('letter', 'landscape');
+
+        return $pdf->stream('catalogo-ocupaciones-hospital.pdf');
+
+    }
+
+    public function ocupacionHospitalExcel()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionHospital::orderBy('orden')->get();
+
+        $filename = 'catalogo-ocupaciones-hospital.xlsx';
+
+        // Retornamos la vista con el arreglo
+        return Excel::download(new CatalogoOcupacionesHospitalExport($ocupaciones), $filename);
     }
 }

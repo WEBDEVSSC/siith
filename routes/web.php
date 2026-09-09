@@ -1036,6 +1036,10 @@ Route::middleware(['auth'])->group(function ()
 
     Route::delete('admin/settings/ocupacion/hospital/delete/{id}', [CatalogoOcupacionHospitalController::class, 'ocupacionHospitalDestroy'])->name('ocupacionHospitalDestroy');
 
+    Route::get('admin/settings/ocupacion/hospital/pdf', [CatalogoOcupacionHospitalController::class, 'ocupacionHospitalPDF'])->name('ocupacionHospitalPDF');
+
+    Route::get('admin/settings/ocupacion/hospital/excel', [CatalogoOcupacionHospitalController::class, 'ocupacionHospitalExcel'])->name('ocupacionHospitalExcel');
+
      /**
      * 
      * 
