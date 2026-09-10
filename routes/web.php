@@ -1156,6 +1156,10 @@ Route::middleware(['auth'])->group(function ()
 
      Route::delete('admin/settings/ocupacion/almacen/delete/{id}', [CatalogoOcupacionAlmacenController::class, 'ocupacionAlmacenDestroy'])->name('ocupacionAlmacenDestroy');
 
+     Route::get('admin/settings/ocupacion/almacen/pdf', [CatalogoOcupacionAlmacenController::class, 'ocupacionAlmacenPDF'])->name('ocupacionAlmacenPDF');
+
+     Route::get('admin/settings/ocupacion/almacen/excel', [CatalogoOcupacionAlmacenController::class, 'ocupacionAlmacenExcel'])->name('ocupacionAlmacenExcel');
+
      /**
      * 
      * 

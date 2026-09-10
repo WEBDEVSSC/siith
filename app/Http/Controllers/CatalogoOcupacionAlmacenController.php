@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CatalogoOcupacionesAlmacenExport;
 use App\Models\CatOcupacionAlmacen;
 use App\Models\ProfesionalOcupacionAlmacen;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CatalogoOcupacionAlmacenController extends Controller
 {
@@ -198,4 +201,28 @@ class CatalogoOcupacionAlmacenController extends Controller
 
         return redirect()->route('ocupacionAlmacenIndex')->with('delete', 'Ocupación eliminada correctamente.');
     }
+
+    public function ocupacionAlmacenPDF()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionAlmacen::orderBy('orden')->get();
+
+        $pdf = Pdf::loadView('settings.ocupacion.almacen.almacen-pdf', compact('ocupaciones'))
+                    ->setPaper('letter', 'landscape');
+
+        return $pdf->stream('catalogo-ocupaciones-almacen.pdf');
+    }
+
+    public function ocupacionAlmacenExcel()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionAlmacen::orderBy('orden')->get();
+
+        $filename = 'catalogo-ocupaciones-almacen.xlsx';
+
+        // Retornamos la vista con el arreglo
+        return Excel::download(new CatalogoOcupacionesAlmacenExport($ocupaciones), $filename);
+        
+    }
+
 }
