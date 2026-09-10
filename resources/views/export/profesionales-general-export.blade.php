@@ -864,7 +864,7 @@
                         <td>{{ $profesional->ocupacionPsiParras->s_ocupacion_uno ?? '' }}</td>
                     @break
                     @case(13)
-                        <td>{{ $profesional->ocupacionCeam->s_ocupacion ?? '' }}</td>
+                        <td>{{ $profesional->ocupacionCeam->s_ocupacion_uno ?? '' }}</td>
                     @break
                     @case(14)
                         <td>{{ $profesional->ocupacionHospitalNino->s_ocupacion_uno ?? '' }}</td>
@@ -927,7 +927,7 @@
                         <td>{{ $profesional->ocupacionPsiParras->s_area_trabajo_uno ?? '' }}</td>
                     @break
                     @case(13)
-                        <td>{{ $profesional->ocupacionCeam->s_area_trabajo ?? '' }}</td>
+                        <td>{{ $profesional->ocupacionCeam->s_area_trabajo_uno ?? '' }}</td>
                     @break
                     @case(14)
                         <td>{{ $profesional->ocupacionHospitalNino->s_area_trabajo_uno ?? '' }}</td>
