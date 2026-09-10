@@ -61,6 +61,7 @@
         @else
 
         <div class="table-responsive">
+            
         <table id="profesionalesTable" class="table table-bordered">
             <thead>
                 <tr>

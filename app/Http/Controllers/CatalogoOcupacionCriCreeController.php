@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CatalogoOcupacionesCriCreeExport;
 use App\Models\CatOcupacionCriCree;
 use App\Models\ProfesionalOcupacionCriCree;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CatalogoOcupacionCriCreeController extends Controller
 {
@@ -183,6 +186,28 @@ class CatalogoOcupacionCriCreeController extends Controller
                                         ]);
 
         return redirect()->route('ocupacionCriCreeIndex')->with('delete', 'Ocupación eliminada correctamente.');
+    }
+
+    public function ocupacionCriCreePDF()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionCriCree::orderBy('orden')->get();
+
+        $pdf = Pdf::loadView('settings.ocupacion.criCree.criCree-pdf', compact('ocupaciones'))
+                    ->setPaper('letter', 'landscape');
+
+        return $pdf->stream('catalogo-ocupaciones-cri-cree.pdf');
+    }
+
+    public function ocupacionCriCreeExcel()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionCriCree::orderBy('orden')->get();
+
+        $filename = 'catalogo-ocupaciones-cri-cree.xlsx';
+
+        // Retornamos la vista con el arreglo
+        return Excel::download(new CatalogoOcupacionesCriCreeExport($ocupaciones), $filename);
     }
 
 }

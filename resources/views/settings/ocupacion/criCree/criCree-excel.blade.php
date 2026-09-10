@@ -7,17 +7,17 @@
     <table>
         <!-- Encabezado del reporte -->
         <tr>
-            <td colspan="9" style="font-size: 14pt; font-weight: bold; text-align: center; color: #2b3e50;">
+            <td colspan="8" style="font-size: 14pt; font-weight: bold; text-align: center; color: #2b3e50;">
                 CATÁLOGO DE OCUPACIONES / CARTERA DE SERVICIOS
             </td>
         </tr>
         <tr>
-            <td colspan="9" style="font-size: 10pt; text-align: center; color: #555555;">
-                Oficinas Jurisdiccionales - Subdirección de Recursos Humanos
+            <td colspan="8" style="font-size: 10pt; text-align: center; color: #555555;">
+                CRI CREE - Subdirección de Recursos Humanos
             </td>
         </tr>
         <tr>
-            <td colspan="9" style="font-size: 8pt; text-align: right; color: #777777;">
+            <td colspan="8" style="font-size: 8pt; text-align: right; color: #777777;">
                 Fecha de generación: {{ date('d/m/Y H:i') }}
             </td>
         </tr>
@@ -31,7 +31,6 @@
                 <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Unidad</th>
                 <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Área</th>
                 <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Subárea</th>
-                <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Servicio</th>
                 <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Ocupación</th>
                 <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">S Área Trabajo</th>
                 <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">S Ocupación</th>
@@ -48,14 +47,13 @@
                     <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->unidad ?? '-' }}</td>
                     <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->area ?? '-' }}</td>
                     <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->subarea ?? '-' }}</td>
-                    <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->servicio ?? '-' }}</td>
                     <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->ocupacion ?? '-' }}</td>
                     <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->s_area_trabajo ?? '-' }}</td>
                     <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->s_ocupacion ?? '-' }}</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="9" style="text-align: center; color: #888888; border: 1px solid #dcdcdc;">
+                    <td colspan="8" style="text-align: center; color: #888888; border: 1px solid #dcdcdc;">
                         No se encontraron registros en el sistema.
                     </td>
                 </tr>

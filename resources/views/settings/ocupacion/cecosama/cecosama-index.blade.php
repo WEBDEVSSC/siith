@@ -50,6 +50,9 @@
                 No hay registros disponibles.
             </div>
         @else
+
+        <div class="table-responsive">
+
         <table id="profesionalesTable" class="table table-bordered">
             <thead>
                 <tr>
@@ -97,6 +100,8 @@
                 @endforeach
             </tbody>
         </table>
+
+        </div>
     @endif
 
         </div>

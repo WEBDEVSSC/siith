@@ -1083,6 +1083,10 @@ Route::middleware(['auth'])->group(function ()
 
     Route::delete('admin/settings/ocupacion/CriCree/delete/{id}', [CatalogoOcupacionCriCreeController::class, 'ocupacionCriCreeDestroy'])->name('ocupacionCriCreeDestroy');
 
+    Route::get('admin/settings/ocupacion/CriCree/pdf', [CatalogoOcupacionCriCreeController::class, 'ocupacionCriCreePDF'])->name('ocupacionCriCreePDF');
+
+    Route::get('admin/settings/ocupacion/CriCree/excel', [CatalogoOcupacionCriCreeController::class, 'ocupacionCriCreeExcel'])->name('ocupacionCriCreeExcel');
+
     /**
      * 
      * 
@@ -1102,6 +1106,10 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/settings/ocupacion/samuCrum/update/{id}', [CatalogoOcupacionSamuCrumController::class, 'ocupacionSamuCrumUpdate'])->name('ocupacionSamuCrumUpdate');
  
      Route::delete('admin/settings/ocupacion/samuCrum/delete/{id}', [CatalogoOcupacionSamuCrumController::class, 'ocupacionSamuCrumDestroy'])->name('ocupacionSamuCrumDestroy');
+
+     Route::get('admin/settings/ocupacion/samuCrum/pdf', [CatalogoOcupacionSamuCrumController::class, 'ocupacionSamuCrumPDF'])->name('ocupacionSamuCrumPDF');
+
+     Route::get('admin/settings/ocupacion/samuCrum/excel', [CatalogoOcupacionSamuCrumController::class, 'ocupacionSamuCrumExcel'])->name('ocupacionSamuCrumExcel');
 
      /**
      * 

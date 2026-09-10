@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CatalogoOcupacionesSamuCrumExport;
 use App\Models\CatOcupacionSamuCrum;
 use App\Models\ProfesionalOcupacionSamuCrum;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CatalogoOcupacionSamuCrumController extends Controller
 {
@@ -197,5 +200,27 @@ class CatalogoOcupacionSamuCrumController extends Controller
                                         ]);
 
         return redirect()->route('ocupacionSamuCrumIndex')->with('delete', 'Ocupación eliminada correctamente.');
+    }
+
+    public function ocupacionSamuCrumPDF()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionSamuCrum::orderBy('orden')->get();
+
+        $pdf = Pdf::loadView('settings.ocupacion.samu-crum.samuCrum-pdf', compact('ocupaciones'))
+                    ->setPaper('letter', 'landscape');
+
+        return $pdf->stream('catalogo-ocupaciones-samu-crum.pdf');
+    }
+
+    public function ocupacionSamuCrumExcel()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionSamuCrum::orderBy('orden')->get();
+
+        $filename = 'catalogo-ocupaciones-samu-crum.xlsx';
+
+        // Retornamos la vista con el arreglo
+        return Excel::download(new CatalogoOcupacionesSamuCrumExport($ocupaciones), $filename);
     }
 }

@@ -13,7 +13,7 @@
         </tr>
         <tr>
             <td colspan="9" style="font-size: 10pt; text-align: center; color: #555555;">
-                Oficinas Jurisdiccionales - Subdirección de Recursos Humanos
+                SAMU CRUM - Subdirección de Recursos Humanos
             </td>
         </tr>
         <tr>
@@ -31,7 +31,7 @@
                 <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Unidad</th>
                 <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Área</th>
                 <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Subárea</th>
-                <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Servicio</th>
+                <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Componente</th>
                 <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Ocupación</th>
                 <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">S Área Trabajo</th>
                 <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">S Ocupación</th>
@@ -48,7 +48,7 @@
                     <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->unidad ?? '-' }}</td>
                     <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->area ?? '-' }}</td>
                     <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->subarea ?? '-' }}</td>
-                    <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->servicio ?? '-' }}</td>
+                    <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->componente ?? '-' }}</td>
                     <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->ocupacion ?? '-' }}</td>
                     <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->s_area_trabajo ?? '-' }}</td>
                     <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->s_ocupacion ?? '-' }}</td>
