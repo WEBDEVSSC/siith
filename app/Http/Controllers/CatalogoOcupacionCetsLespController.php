@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CatalogoOcupacionesCetsLespExport;
 use App\Models\CatOcupacionCetsLesp;
 use App\Models\ProfesionalOcupacionCetsLesp;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CatalogoOcupacionCetsLespController extends Controller
 {
@@ -197,5 +200,28 @@ class CatalogoOcupacionCetsLespController extends Controller
                                         ]);
 
         return redirect()->route('ocupacionCetsLespIndex')->with('delete', 'Ocupación eliminada correctamente.');
+    }
+
+    public function ocupacionCetsLespPDF()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionCetsLesp::orderBy('orden')->get();
+
+        $pdf = Pdf::loadView('settings.ocupacion.cets-lesp.cets-lesp-pdf', compact('ocupaciones'))
+                    ->setPaper('letter', 'landscape');
+
+        return $pdf->stream('catalogo-ocupaciones-cets-lesp.pdf');
+    }
+
+    public function ocupacionCetsLespExcel()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionCetsLesp::orderBy('orden')->get();
+
+        $filename = 'catalogo-ocupaciones-cets-lesp.xlsx';
+
+        // Retornamos la vista con el arreglo
+        return Excel::download(new CatalogoOcupacionesCetsLespExport($ocupaciones), $filename);
+        
     }
 }

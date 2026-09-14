@@ -1180,6 +1180,10 @@ Route::middleware(['auth'])->group(function ()
 
      Route::delete('admin/settings/ocupacion/cetsLesp/delete/{id}', [CatalogoOcupacionCetsLespController::class, 'ocupacionCetsLespDestroy'])->name('ocupacionCetsLespDestroy');
 
+     Route::get('admin/settings/ocupacion/cetsLesp/pdf', [CatalogoOcupacionCetsLespController::class, 'ocupacionCetsLespPDF'])->name('ocupacionCetsLespPDF');
+
+     Route::get('admin/settings/ocupacion/cetsLesp/excel', [CatalogoOcupacionCetsLespController::class, 'ocupacionCetsLespExcel'])->name('ocupacionCetsLespExcel');
+
      /**
      * 
      * 
