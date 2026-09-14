@@ -776,16 +776,16 @@
                         @case(16)
                             <td>CECOSAMA</td>
                             <td>{{ $profesional->ocupacionCecosama->unidad ?? '' }}</td>
-                            <td>{{ $profesional->ocupacionEnsenanza->area ?? '' }}</td>
+                            <td>{{ $profesional->ocupacionCecosama->area ?? '' }}</td>
                             <td></td>
-                            <td>{{ $profesional->ocupacionEnsenanza->subarea ?? '' }}</td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $profesional->ocupacionCecosama->subarea ?? '' }}</td>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td>{{ $profesional->ocupacionEnsenanza->ocupacion ?? '' }}</td>
+                            <td></td>
+                            <td></td>
+                            <td>{{ $profesional->ocupacionCecosama->ocupacion ?? '' }}</td>
                             <td></td>
 
                             <td></td>
