@@ -6,7 +6,7 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 
-class CatalogoOcupacionesAlmacenExport implements FromView, ShouldAutoSize
+class CatalogoOcupacionesCorsExport implements FromView, ShouldAutoSize
 {
     protected $ocupaciones;
 
@@ -17,7 +17,7 @@ class CatalogoOcupacionesAlmacenExport implements FromView, ShouldAutoSize
 
     public function view(): View
     {
-        return view('settings.ocupacion.almacen.almacen-excel', [
+        return view('settings.ocupacion.cors.cors-excel', [
             'ocupaciones' => $this->ocupaciones
         ]);
     }

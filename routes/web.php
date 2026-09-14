@@ -1204,6 +1204,10 @@ Route::middleware(['auth'])->group(function ()
 
      Route::delete('admin/settings/ocupacion/cors/delete/{id}', [CatalogoOcupacionCorsController::class, 'ocupacionCorsDestroy'])->name('ocupacionCorsDestroy');
 
+     Route::get('admin/settings/ocupacion/cors/pdf', [CatalogoOcupacionCorsController::class, 'ocupacionCorsPDF'])->name('ocupacionCorsPDF');
+
+     Route::get('admin/settings/ocupacion/cors/excel', [CatalogoOcupacionCorsController::class, 'ocupacionCorsExcel'])->name('ocupacionCorsExcel');
+
       /**
      * 
      * 

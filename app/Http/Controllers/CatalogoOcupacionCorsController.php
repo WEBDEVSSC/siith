@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CatalogoOcupacionesCorsExport;
 use App\Models\CatOcupacionCors;
 use App\Models\ProfesionalOcupacionCors;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CatalogoOcupacionCorsController extends Controller
 {
@@ -198,5 +201,28 @@ class CatalogoOcupacionCorsController extends Controller
                                         ]);
 
         return redirect()->route('ocupacionCorsIndex')->with('delete', 'Ocupación eliminada correctamente.');
+    }
+
+    public function ocupacionCorsPDF()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionCors::orderBy('orden')->get();
+
+        $pdf = Pdf::loadView('settings.ocupacion.cors.cors-pdf', compact('ocupaciones'))
+                    ->setPaper('letter', 'landscape');
+
+        return $pdf->stream('catalogo-ocupaciones-cors.pdf');
+    }
+
+    public function ocupacionCorsExcel()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionCors::orderBy('orden')->get();
+
+        $filename = 'catalogo-ocupaciones-cors.xlsx';
+
+        // Retornamos la vista con el arreglo
+        return Excel::download(new CatalogoOcupacionesCorsExport($ocupaciones), $filename);
+        
     }
 }

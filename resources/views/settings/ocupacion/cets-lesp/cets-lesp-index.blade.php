@@ -92,20 +92,25 @@
                             <div class="font-weight-bold text-dark">
                                 {{ $ocupacion->s_ocupacion ?? 'Sin ocupación' }}
                             </div>
-                        </td>                   
-                        <td>
+                        </td>     
                         
-                            <a href="{{ route('ocupacionCetsLespEdit', $ocupacion->id) }}" class="btn btn-warning btn-sm btn-block">EDITAR</a>
+                        <td class="text-center align-middle">
+                            <div class="d-flex justify-content-center align-items-center" style="gap: 5px;">
+                                <!-- Botón Editar -->
+                                <a href="{{ route('ocupacionCetsLespEdit', $ocupacion->id) }}" class="btn btn-warning btn-sm" title="Editar registro">
+                                    <i class="fas fa-edit text-white"></i>
+                                </a>
 
-                            <br>
-
-                            <form action="{{ route('ocupacionCetsLespDestroy', $ocupacion->id) }}" method="POST" class="form-eliminar">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm btn-block">ELIMINAR</button>
-                            </form>
-                        
-                        </td>                 
+                                <!-- Botón Eliminar -->
+                                <form action="{{ route('ocupacionCetsLespDestroy', $ocupacion->id) }}" method="POST" class="form-eliminar d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm" title="Eliminar registro">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>                  
                     </tr>
                 @endforeach
             </tbody>
