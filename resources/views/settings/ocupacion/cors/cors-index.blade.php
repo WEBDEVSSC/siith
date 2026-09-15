@@ -51,7 +51,6 @@
             <a href="{{ route('ocupacionCorsExcel') }}" class="btn btn-primary btn-sm" style="margin-left: 10px;">
                 <i class="fas fa-file-excel" style="margin-right: 5px;"></i> EXCEL
             </a>
-
         </div>
 
         <div class="card-body">

@@ -1248,6 +1248,10 @@ Route::middleware(['auth'])->group(function ()
 
      Route::delete('admin/settings/ocupacion/cesame/delete/{id}', [CatalogoOcupacionCesameController::class, 'ocupacionCesameDestroy'])->name('ocupacionCesameDestroy');
 
+     Route::get('admin/settings/ocupacion/cesame/pdf', [CatalogoOcupacionCesameController::class, 'ocupacionCesamePDF'])->name('ocupacionCesamePDF');
+
+     Route::get('admin/settings/ocupacion/cesame/excel', [CatalogoOcupacionCesameController::class, 'ocupacionCesameExcel'])->name('ocupacionCesameExcel');
+
      /**
      * 
      * 
