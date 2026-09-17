@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CatalogoOcupacionesPsiParrasExport;
 use App\Models\CatOcupacionPsiParras;
 use App\Models\ProfesionalOcupacionPsiParras;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CatalogoOcupacionPsiParrasController extends Controller
 {
@@ -197,5 +200,28 @@ class CatalogoOcupacionPsiParrasController extends Controller
                                         ]);
 
         return redirect()->route('ocupacionPsiParrasIndex')->with('delete', 'Ocupación eliminada correctamente.');
+    }
+
+    public function ocupacionPsiParrasPDF()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionPsiParras::orderBy('orden')->get();
+
+        $pdf = Pdf::loadView('settings.ocupacion.psi-parras.psi-parras-pdf', compact('ocupaciones'))
+                    ->setPaper('letter', 'landscape');
+
+        return $pdf->stream('catalogo-ocupaciones-psi-parras.pdf');
+    }
+
+    public function ocupacionPsiParrasExcel()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionPsiParras::orderBy('orden')->get();
+
+        $filename = 'catalogo-ocupaciones-psi-parras.xlsx';
+
+        // Retornamos la vista con el arreglo
+        return Excel::download(new CatalogoOcupacionesPsiParrasExport($ocupaciones), $filename);
+        
     }
 }

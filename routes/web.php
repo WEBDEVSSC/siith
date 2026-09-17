@@ -1272,6 +1272,10 @@ Route::middleware(['auth'])->group(function ()
 
      Route::delete('admin/settings/ocupacion/psiParras/delete/{id}', [CatalogoOcupacionPsiParrasController::class, 'ocupacionPsiParrasDestroy'])->name('ocupacionPsiParrasDestroy');
 
+     Route::get('admin/settings/ocupacion/psiParras/pdf', [CatalogoOcupacionPsiParrasController::class, 'ocupacionPsiParrasPDF'])->name('ocupacionPsiParrasPDF');
+
+     Route::get('admin/settings/ocupacion/psiParras/excel', [CatalogoOcupacionPsiParrasController::class, 'ocupacionPsiParrasExcel'])->name('ocupacionPsiParrasExcel');
+
      /**
      * 
      * 
