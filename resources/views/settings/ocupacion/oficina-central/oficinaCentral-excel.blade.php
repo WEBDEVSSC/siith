@@ -40,7 +40,7 @@
         <tbody>
             @forelse ($ocupaciones as $index => $ocupacion)
                 @php
-                    $bgColor = ($index % 2 == 0) ? '#ffffff' : '#f8f9fa';
+                    $bgColor = ($index % 2 == 0) ? '#ffffff' : '#ffffff';
                 @endphp
                 <tr>
                     <td style="background-color: {{ $bgColor }}; text-align: center; border: 1px solid #dcdcdc;">{{ (string) $ocupacion->orden ?? '-' }}</td>

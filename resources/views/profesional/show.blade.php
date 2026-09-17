@@ -284,8 +284,9 @@
             </div>
 
             @endif
+            
 
-            {{--
+            
             <div class="row mt-3">
             <table class="table table-striped">
                 <thead>
@@ -326,7 +327,7 @@
                     </tr>
                 </tbody>
             </table>
-            </div>--}}
+            </div>
 
 
         </div>
