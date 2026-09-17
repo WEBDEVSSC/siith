@@ -1297,6 +1297,10 @@ Route::middleware(['auth'])->group(function ()
 
      Route::delete('admin/settings/ocupacion/ceam/delete/{id}', [CatalogoOcupacionCeamController::class, 'ocupacionCeamDestroy'])->name('ocupacionCeamDestroy');
 
+     Route::get('admin/settings/ocupacion/ceam/pdf', [CatalogoOcupacionCeamController::class, 'ocupacionCeamPDF'])->name('ocupacionCeamPDF');
+
+     Route::get('admin/settings/ocupacion/ceam/excel', [CatalogoOcupacionCeamController::class, 'ocupacionCeamExcel'])->name('ocupacionCeamExcel');
+
      /**
      * 
      * 

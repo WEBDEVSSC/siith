@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CatalogoOcupacionesCeamExport;
 use App\Models\CatOcupacionCeam;
 use App\Models\ProfesionalOcupacionCeam;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CatalogoOcupacionCeamController extends Controller
 {
@@ -196,5 +199,28 @@ class CatalogoOcupacionCeamController extends Controller
                                         ]);
 
         return redirect()->route('ocupacionCeamIndex')->with('delete', 'Ocupación eliminada correctamente.');
+    }
+
+    public function ocupacionCeamPDF()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionCeam::orderBy('orden')->get();
+
+        $pdf = Pdf::loadView('settings.ocupacion.cors.cors-pdf', compact('ocupaciones'))
+                    ->setPaper('letter', 'landscape');
+
+        return $pdf->stream('catalogo-ocupaciones-cors.pdf');
+    }
+
+    public function ocupacionCeamExcel()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionCeam::orderBy('orden')->get();
+
+        $filename = 'catalogo-ocupaciones-ceam.xlsx';
+
+        // Retornamos la vista con el arreglo
+        return Excel::download(new CatalogoOcupacionesCeamExport($ocupaciones), $filename);
+        
     }
 }
