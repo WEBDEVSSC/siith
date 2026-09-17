@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CatalogoOcupacionesCecosamaExport;
 use App\Models\CatOcupacionCecosama;
 use App\Models\ProfesionalOcupacionCecosama;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CatalogoOcupacionCecosamaController extends Controller
 {
@@ -163,5 +166,28 @@ class CatalogoOcupacionCecosamaController extends Controller
                                         ]);
 
         return redirect()->route('ocupacionCecosamaIndex')->with('delete', 'Ocupación eliminada correctamente.');
+    }
+
+    public function ocupacionCecosamaPDF()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionCecosama::orderBy('orden')->get();
+
+        $pdf = Pdf::loadView('settings.ocupacion.cecosama.cecosama-pdf', compact('ocupaciones'))
+                    ->setPaper('letter', 'landscape');
+
+        return $pdf->stream('catalogo-ocupaciones-cecosama.pdf');
+    }
+
+    public function ocupacionCecosamaExcel()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionCecosama::orderBy('orden')->get();
+
+        $filename = 'catalogo-ocupaciones-cecosama.xlsx';
+
+        // Retornamos la vista con el arreglo
+        return Excel::download(new CatalogoOcupacionesCecosamaExport($ocupaciones), $filename);
+        
     }
 }

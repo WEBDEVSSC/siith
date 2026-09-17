@@ -1366,6 +1366,10 @@ Route::middleware(['auth'])->group(function ()
      Route::put('admin/settings/ocupacion/cecosama/update/{id}', [CatalogoOcupacionCecosamaController::class, 'ocupacionCecosamaUpdate'])->name('ocupacionCecosamaUpdate');
      
      Route::delete('admin/settings/ocupacion/cecosama/delete/{id}', [CatalogoOcupacionCecosamaController::class, 'ocupacionCecosamaDestroy'])->name('ocupacionCecosamaDestroy');
+
+     Route::get('admin/settings/ocupacion/cecosama/pdf', [CatalogoOcupacionCecosamaController::class, 'ocupacionCecosamaPDF'])->name('ocupacionCecosamaPDF');
+
+     Route::get('admin/settings/ocupacion/cecosama/excel', [CatalogoOcupacionCecosamaController::class, 'ocupacionCecosamaExcel'])->name('ocupacionCecosamaExcel');
  
      /**
      * 
