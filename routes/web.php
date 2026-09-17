@@ -1321,6 +1321,12 @@ Route::middleware(['auth'])->group(function ()
 
      Route::delete('admin/settings/ocupacion/hospitalNino/delete/{id}', [CatalogoOcupacionHospitalNinoController::class, 'ocupacionHospitalNinoDestroy'])->name('ocupacionHospitalNinoDestroy');
 
+     Route::get('admin/settings/ocupacion/hospitalNino/pdf', [CatalogoOcupacionHospitalNinoController::class, 'ocupacionHospitalNinoPDF'])->name('ocupacionHospitalNinoPDF');
+
+     Route::get('admin/settings/ocupacion/hospitalNino/excel', [CatalogoOcupacionHospitalNinoController::class, 'ocupacionHospitalNinoExcel'])->name('ocupacionHospitalNinoExcel');
+
+     
+
      /**
      * 
      * 

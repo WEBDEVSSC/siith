@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CatalogoOcupacionesHospitalNinoExport;
 use App\Models\CatOcupacionHospitalNino;
 use App\Models\ProfesionalOcupacionHospitalNino;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CatalogoOcupacionHospitalNinoController extends Controller
 {
@@ -184,5 +187,28 @@ class CatalogoOcupacionHospitalNinoController extends Controller
                                         ]);
 
         return redirect()->route('ocupacionHospitalNinoIndex')->with('delete', 'Ocupación eliminada correctamente.');
+    }
+
+    public function ocupacionHospitalNinoPDF()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionHospitalNino::orderBy('orden')->get();
+
+        $pdf = Pdf::loadView('settings.ocupacion.hospital-nino.hospital-nino-pdf', compact('ocupaciones'))
+                    ->setPaper('letter', 'landscape');
+
+        return $pdf->stream('catalogo-ocupaciones-hospital-nino.pdf');
+    }
+
+    public function ocupacionHospitalNinoExcel()
+    {
+        // Cargamos todos los registros de la tabla
+        $ocupaciones = CatOcupacionHospitalNino::orderBy('orden')->get();
+
+        $filename = 'catalogo-ocupaciones-hospital-nino.xlsx';
+
+        // Retornamos la vista con el arreglo
+        return Excel::download(new CatalogoOcupacionesHospitalNinoExport($ocupaciones), $filename);
+        
     }
 }
