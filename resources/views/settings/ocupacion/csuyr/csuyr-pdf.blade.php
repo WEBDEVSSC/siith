@@ -104,7 +104,7 @@
     <table class="table-data">
         <thead>
             <tr>
-                <th>Orden</th>
+                <th>Orden</th>+
                 <th>ID</th>
                 <th>Unidad</th>
                 <th>Área</th>

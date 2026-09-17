@@ -28,9 +28,9 @@
             <tr>
                 <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Orden</th>
                 <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">ID</th>
+                <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Unidad</th>
                 <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Área</th>
-                <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Subárea</th>
-                <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Jefatura Programa</th>
+                <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Subárea Servicio</th>
                 <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Componente</th>
                 <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">Ocupación</th>
                 <th style="background-color: #2b3e50; color: #ffffff; font-weight: bold; text-align: center; border: 1px solid #1a252f;">S Área Trabajo</th>
@@ -45,9 +45,9 @@
                 <tr>
                     <td style="background-color: {{ $bgColor }}; text-align: center; border: 1px solid #dcdcdc;">{{ (string) $ocupacion->orden ?? '-' }}</td>
                     <td style="background-color: {{ $bgColor }}; text-align: center; border: 1px solid #dcdcdc;">{{ $ocupacion->id ?? '-' }}</td>
+                    <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->unidad ?? '-' }}</td>
                     <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->area ?? '-' }}</td>
-                    <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->subarea ?? '-' }}</td>
-                    <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->jefatura_programa ?? '-' }}</td>
+                    <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->subarea_servicio ?? '-' }}</td>
                     <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->componente ?? '-' }}</td>
                     <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->ocupacion ?? '-' }}</td>
                     <td style="background-color: {{ $bgColor }}; border: 1px solid #dcdcdc;">{{ $ocupacion->s_area_trabajo ?? '-' }}</td>

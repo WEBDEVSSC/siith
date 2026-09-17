@@ -108,6 +108,7 @@
                 <th>ID</th>
                 <th>Área</th>
                 <th>Subarea</th>
+                <th>Programa</th>
                 <th>Componente</th>
                 <th>Ocupación</th>
                 <th>S Area Trabajo</th>
@@ -121,6 +122,7 @@
                     <td class="text-center">{{ $ocupacion->id ?? '-' }}</td>
                     <td class="text-left">{{ $ocupacion->area ?? '-' }}</td>
                     <td class="text-left">{{ $ocupacion->subarea ?? '-' }}</td>
+                    <td class="text-left">{{ $ocupacion->programa ?? '-' }}</td>
                     <td class="text-left">{{ $ocupacion->componente ?? '-' }}</td>
                     <td class="text-left">{{ $ocupacion->ocupacion ?? '-' }}</td>
                     <td class="text-left">{{ $ocupacion->s_area_trabajo ?? '-' }}</td>
