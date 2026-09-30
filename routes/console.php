@@ -14,9 +14,12 @@ Schedule::command('felicitaciones:enviar')
     ->withoutOverlapping()
     ->description('Envía felicitaciones de cumpleaños a los profesionales');
 
-//Schedule::command('profesionales:revisar-bajas')->dailyAt('08:00');
-
 Schedule::command('db:backup')
     ->dailyAt('02:00')
     ->withoutOverlapping()
-    ->description('Crea el respado de la DB');;
+    ->description('Crea el respado de la DB');
+
+Schedule::command('profesionales:importar')
+    ->dailyAt('08:00')
+    ->withoutOverlapping()
+    ->description('Importa los datos extraídos de INE desde el JSON');
