@@ -30,9 +30,15 @@ class ImportarProfesionales extends Command
             return;
         }
 
-        $cantidad = 0;
+        $nuevos = 0;
+        $actualizados = 0;
 
         foreach ($registros as $item) {
+            // Verificar si el archivo ya existe en la base de datos
+            $existe = DB::table('profesionales_extraer')
+                ->where('archivo', $item['archivo'])
+                ->exists();
+
             DB::table('profesionales_extraer')->updateOrInsert(
                 ['archivo' => $item['archivo']],
                 [
@@ -41,34 +47,36 @@ class ImportarProfesionales extends Command
                     'seccion'    => $item['datos']['seccion'] ?? null,
                     'vigencia'   => $item['datos']['vigencia'] ?? null,
                     'updated_at' => now(),
-                    'created_at' => now(),
+                    'created_at' => $existe ? DB::raw('created_at') : now(),
                 ]
             );
-            $cantidad++;
+
+            if ($existe) {
+                $actualizados++;
+            } else {
+                $nuevos++;
+            }
         }
 
-        // Envía la notificación con el total procesado
-        $this->enviarNotificacionTelegram($cantidad);
+        // Envía la notificación detallada a Telegram
+        $this->enviarNotificacionTelegram($nuevos, $actualizados, count($registros));
 
-        $this->info('¡Importación realizada con éxito desde el Escritorio!');
+        $this->info("¡Importación realizada con éxito! (Nuevos: {$nuevos}, Actualizados: {$actualizados})");
     }
 
-    private function enviarNotificacionTelegram($cantidad)
+    private function enviarNotificacionTelegram($nuevos, $actualizados, $total)
     {
         $token = config('services.telegram.token');
         $chatIds = config('services.telegram.chat_ids');
         $server = gethostname();
-        $fecha = date('Y-m-d');
+        $fecha = date('Y-m-d H:i');
 
         $chatId = is_array($chatIds) ? trim($chatIds[0]) : trim($chatIds);
 
-        $mensaje = $cantidad > 0
-            ? "🎉 Importación de INE exitosa\n\n"
-            ."📁 Registros importados: {$cantidad}\n"
-            ."🖥 Servidor: {$server}\n"
-            ."📅 Fecha: {$fecha}"
-            : "📭 *Sin registros para importar*\n\n"
-            ."📁 Registros importados: 0\n"
+        $mensaje = "🪪 *Reporte de Importación INE*\n\n"
+            ."🆕 Registros nuevos: {$nuevos}\n"
+            ."🔄 Registros actualizados: {$actualizados}\n"
+            ."📊 Total en el JSON: {$total}\n\n"
             ."🖥 Servidor: {$server}\n"
             ."📅 Fecha: {$fecha}";
 
@@ -77,6 +85,7 @@ class ImportarProfesionales extends Command
         $response = Http::post($url, [
             'chat_id' => $chatId,
             'text' => $mensaje,
+            'parse_mode' => 'Markdown',
         ]);
 
         if (!$response->successful()) {
