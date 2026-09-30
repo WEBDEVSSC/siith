@@ -338,6 +338,16 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-md-2">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info"><i class="fas fa-file-download" aria-hidden="true"></i></span>
+                        <div class="info-box-content">
+                            <a href="{{ route('datosExtraidos') }}"><span class="info-box-text"><strong>Datos Extraídos</strong></span></a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
         <div class="card-footer"></div>

@@ -1405,6 +1405,8 @@ Route::middleware(['auth'])->group(function ()
 
     Route::get('admin/settings/sessions/bitacora',[ProfesionalSessionsController::class, 'sesionesBitacora'])->name('sesionesBitacora');
 
+    Route::get('admin/settings/datos-extraidos/ine',[SystemSettingsController::class, 'datosExtraidos'])->name('datosExtraidos');
+
     /**
      * 
      * 
