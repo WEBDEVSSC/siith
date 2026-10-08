@@ -263,6 +263,12 @@ class ProfesionalExportGeneral implements FromView, WithStyles, WithColumnFormat
             'EW2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '006BFF']]],
 
             'EX2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '006BFF']]],
+
+            'EY1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
+            'EY2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
+            'EZ2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
+            'FA2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
+            'FB2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
     
         ];
     }

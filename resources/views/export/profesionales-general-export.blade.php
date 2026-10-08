@@ -34,6 +34,8 @@
                 <th colspan="10" style="text-align: center; font-size: 20px; font-weight: bold;">DIRECCIÓN</th>
 
                 <th colspan="7" style="text-align: center; font-size: 20px; font-weight: bold;">EXTRA</th>
+
+                <th colspan="4" style="text-align: center; font-size: 20px; font-weight: bold;">DOCUMENTACIÓN</th>
             </tr>
             <tr>
                 {{-- NUMERO CONSECUTIVO --}}
@@ -303,6 +305,11 @@
                 <th><strong>DOC . GRADO ACADEMICO CUATRO</strong></th>
 
                 <th><strong>NUMERO EMPLEADO</strong></th>
+
+                <th><strong>COMP. DOM.</strong></th>
+                <th><strong>IDENTIFICACIÓN</strong></th>
+                <th><strong>CURP</strong></th>
+                <th><strong>RFC</strong></th>
                 
             </tr>
         </thead>
@@ -1182,6 +1189,11 @@
                     <td>{{ basename($profesional->gradoAcademico->reg_nac_prof_cuatro ?? '') }}</td>
 
                     <td>{{ basename($profesional->puesto->numero_empleado ?? '') }}</td>
+
+                    <td>{{ !empty($profesional->direccion->comprobante_domicilio) ? 'SI' : 'NO' }}</td>
+                    <td>{{ !empty($profesional->direccion->ine ?? '') ? 'SI' : 'NO' }}</td>
+                    <td>{{ !empty($profesional->direccion->curp ?? '') ? 'SI' : 'NO' }}</td>
+                    <td>{{ !empty($profesional->direccion->rfc ?? '') ? 'SI' : 'NO' }}</td>
 
                 </tr>
             @endforeach
