@@ -1,11 +1,3 @@
-/**
-* 
-* 
-* REPORTE SIITH GENERAL CON TODOS LOS CAMPOS
-* 
-* 
-*/
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
