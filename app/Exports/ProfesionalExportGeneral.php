@@ -13,6 +13,14 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class ProfesionalExportGeneral implements FromView, WithStyles, WithColumnFormatting
 {
+    /**
+     * 
+     * 
+     * REPORTE SIITH GENERAL CON TODOS LOS CAMPOS
+     * 
+     * 
+     */
+
     public function columnFormats(): array
     {
         return [
@@ -264,11 +272,14 @@ class ProfesionalExportGeneral implements FromView, WithStyles, WithColumnFormat
 
             'EX2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '006BFF']]],
 
-            'EY1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
-            'EY2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
+            'EY1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '006BFF']]],
+            'EY2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '006BFF']]],
+            
+            'EZ1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
             'EZ2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
             'FA2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
             'FB2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
+            'FC2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
     
         ];
     }

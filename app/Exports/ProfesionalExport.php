@@ -15,6 +15,14 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 class ProfesionalExport implements FromView, WithStyles, WithColumnFormatting
 {
 
+    /**
+     * 
+     * 
+     * REPORTE PARA LOS RH DE LAS UNIDADES
+     * 
+     * 
+     */
+
     public function columnFormats(): array
     {
         return [
@@ -352,22 +360,21 @@ class ProfesionalExport implements FromView, WithStyles, WithColumnFormatting
             'EP2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
             'EQ2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FF6B00']]],
 
-            'ER1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '343A40']]],
-            'ER2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '343A40']]],
-
-            'ES1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '146C43']]],
+            'ER1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '146C43']]],
+            'ER2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '146C43']]],
             'ES2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '146C43']]],
             'ET2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '146C43']]],
             'EU2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '146C43']]],
             'EV2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '146C43']]],
-
             'EW2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '146C43']]],
+            'EX2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '146C43']]],
+            'EY2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => '146C43']]],
 
-            'EX1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
-            'EX2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
-            'EY2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
+            'EZ1' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
             'EZ2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
             'FA2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
+            'FB2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
+            'FC2' => ['fill' => ['fillType' => 'solid', 'startColor' => ['rgb' => 'FFF9E6']]],
         ];
     }
 

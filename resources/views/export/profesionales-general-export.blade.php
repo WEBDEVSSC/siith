@@ -1,3 +1,11 @@
+/**
+* 
+* 
+* REPORTE SIITH GENERAL CON TODOS LOS CAMPOS
+* 
+* 
+*/
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +23,7 @@
                 <th colspan="1" style="text-align: center; font-size: 20px; font-weight: bold;">CREDENCIALIZACION</th>
 
                 <th colspan="13" style="text-align: center; font-size: 20px; font-weight: bold;">CATALOGO/CARTERA SERVICIOS (PRINCIPAL)</th>
+
                 <th colspan="12" style="text-align: center; font-size: 20px; font-weight: bold;">CATALOGO/CARTERA SERVICIOS (SECUNDARIO)</th>
 
                 <th colspan="15" style="text-align: center; font-size: 20px; font-weight: bold;">DATOS GENERALES</th>
@@ -33,7 +42,7 @@
 
                 <th colspan="10" style="text-align: center; font-size: 20px; font-weight: bold;">DIRECCIÓN</th>
 
-                <th colspan="7" style="text-align: center; font-size: 20px; font-weight: bold;">EXTRA</th>
+                <th colspan="8" style="text-align: center; font-size: 20px; font-weight: bold;">EXTRA</th>
 
                 <th colspan="4" style="text-align: center; font-size: 20px; font-weight: bold;">DOCUMENTACIÓN</th>
             </tr>
@@ -305,6 +314,7 @@
                 <th><strong>DOC . GRADO ACADEMICO CUATRO</strong></th>
 
                 <th><strong>NUMERO EMPLEADO</strong></th>
+                <th><strong>NUMERO ASISTENCIA</strong></th>
 
                 <th><strong>COMP. DOM.</strong></th>
                 <th><strong>IDENTIFICACIÓN</strong></th>
@@ -1188,7 +1198,8 @@
                     <td>{{ basename($profesional->gradoAcademico->reg_nac_prof_tres ?? '') }}</td>
                     <td>{{ basename($profesional->gradoAcademico->reg_nac_prof_cuatro ?? '') }}</td>
 
-                    <td>{{ basename($profesional->puesto->numero_empleado ?? '') }}</td>
+                    <td>{{ $profesional->puesto->numero_empleado ?? '' }}</td>
+                    <td>{{ $profesional->puesto->numero_asistencia ?? '' }}</td>
 
                     <td>{{ !empty($profesional->direccion->comprobante_domicilio) ? 'SI' : 'NO' }}</td>
                     <td>{{ !empty($profesional->direccion->ine ?? '') ? 'SI' : 'NO' }}</td>
