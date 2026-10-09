@@ -9,6 +9,12 @@
     <table>
         <thead>
             <tr>
+                <!-- ------------------------------------------- -->
+                <!-- ------------------------------------------- -->
+                <!--       REPORTE GERENCIAL ADMINISTRATIVO      -->
+                <!-- ------------------------------------------- -->
+                <!-- ------------------------------------------- -->
+
                 <!-- Título grande que abarca todas las columnas -->
                 <th colspan="1" style="text-align: center; font-size: 20px; font-weight: bold;"></th>
 
