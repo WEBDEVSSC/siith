@@ -54,7 +54,8 @@
         <table class="table table-bordered">
     <thead>
         <tr>
-            <th>PROFESIONAL</th> <!-- Nueva columna -->
+            <th>#</th>
+            <th>PROFESIONAL</th>
             <th>Archivo</th>
             <th>Tipo</th>
             <th>CURP</th>
@@ -65,7 +66,7 @@
     <tbody>
         @foreach ($datosExtraidos as $datoExtraido)
             <tr>
-                {{-- Muestra el nombre completo o un texto alternativo si no coincide la CURP --}}
+                <td>{{ $loop->iteration }}</td>
                 <td>
                     <span class="font-weight-bold">
                         {{ $datoExtraido->nombre_completo }}
