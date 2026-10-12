@@ -68,7 +68,7 @@
                 {{-- Muestra el nombre completo o un texto alternativo si no coincide la CURP --}}
                 <td>
                     <span class="font-weight-bold">
-                        {{ $datoExtraido->profesional?->nombre_completo ?? 'No registrado en sistema' }}
+                        {{ $datoExtraido->profesional?->nombre_completo ?? '' }}
                     </span>
                 </td>
                 <td>{{ $datoExtraido->archivo }}</td>
