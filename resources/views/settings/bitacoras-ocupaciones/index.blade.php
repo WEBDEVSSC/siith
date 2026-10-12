@@ -54,6 +54,7 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>PROFESIONAL</th>
                     <th>CATALOGO</th>
                     <th>OCUPACIÓN ANTERIOR</th>
@@ -65,6 +66,7 @@
             <tbody>
                 @foreach ($bitacorasOcupacion as $bitacoraOcupacion)
                     <tr>
+                        <td>{{ $bitacoraOcupacion->id }}</td>
                         <td>{{ $bitacoraOcupacion->profesional?->nombre_completo ?? 'N/A' }}</td>
                         <td>{{ $bitacoraOcupacion->catalogo }}</td>
                         <td>{{ $bitacoraOcupacion->ocupacion_anterior }}</td>
