@@ -61,6 +61,7 @@
             <th>CURP</th>
             <th>Sección</th>
             <th>Vigencia</th>
+            <th>Registro</th>
         </tr>
     </thead>
     <tbody>
@@ -77,6 +78,7 @@
                 <td>{{ $datoExtraido->curp }}</td>
                 <td>{{ $datoExtraido->seccion }}</td>
                 <td>{{ substr($datoExtraido->vigencia, -4) }}</td>
+                <td>{{ $datoExtraido->created_at->format('d/m/Y') }}</td>
             </tr>
         @endforeach
     </tbody>
