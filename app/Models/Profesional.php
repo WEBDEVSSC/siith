@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Casts\Uppercase;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Profesional extends Model
 {
@@ -55,6 +56,13 @@ class Profesional extends Model
     }
 
     /****************************************************************************************** */
+
+    public function nombreCompleto(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => trim("{$this->nombre} {$this->apellido_paterno} {$this->apellido_materno}")
+        );
+    }
 
     /*public function puesto()
     {

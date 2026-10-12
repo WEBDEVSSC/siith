@@ -65,7 +65,7 @@
             <tbody>
                 @foreach ($bitacorasOcupacion as $bitacoraOcupacion)
                     <tr>
-                        <td>{{ $bitacoraOcupacion->profesional->nombre }} {{ $bitacoraOcupacion->profesional->apellido_paterno }} {{ $bitacoraOcupacion->profesional->apellido_materno }}</td>
+                        <td>{{ $bitacoraOcupacion->profesional?->nombre_completo ?? 'N/A' }}</td>
                         <td>{{ $bitacoraOcupacion->catalogo }}</td>
                         <td>{{ $bitacoraOcupacion->ocupacion_anterior }}</td>
                         <td>{{ $bitacoraOcupacion->capturista_label }}</td>
