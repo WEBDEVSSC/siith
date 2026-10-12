@@ -15,7 +15,7 @@ class SystemSettingsController extends Controller
 
     public function datosExtraidos()
     {
-        $datosExtraidos = ProfesionalExtraer::all();
+        $datosExtraidos = ProfesionalExtraer::has('profesional')->get();
 
         return view('settings.datos-extraidos.index', compact('datosExtraidos'));
     }

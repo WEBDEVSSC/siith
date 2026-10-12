@@ -52,45 +52,34 @@
         @else
         {{-- <table id="profesionalesTable" class="table table-bordered"> --}}
         <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Archivo</th>
-                    <th>Tipo</th>
-                    <th>CURP</th>
-                    <th>Sección</th>
-                    <th>Vigencia</th>
-                    {{--<th></th>--}}
-                    
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($datosExtraidos as $datoExtraido)
-                    <tr>
-                        <td>{{ $datoExtraido->archivo }}</td>
-                        <td>{{ $datoExtraido->tipo }}</td>
-                        <td>{{ $datoExtraido->curp }}</td>
-                        <td>{{ $datoExtraido->seccion }}</td>
-                        <td>{{ $datoExtraido->vigencia }}</td>
-                        {{--<td>
-                            <a href="{{ route('editCodigos', $datoExtraido->id) }}" class="btn btn-warning btn-sm">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </a>
-                
-                            <form action="{{ route('deleteCodigos', $datoExtraido->id) }}" method="POST" style="display:inline;" class="form-eliminar">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>--}}
-
-                        
-
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <thead>
+        <tr>
+            <th>PROFESIONAL</th> <!-- Nueva columna -->
+            <th>Archivo</th>
+            <th>Tipo</th>
+            <th>CURP</th>
+            <th>Sección</th>
+            <th>Vigencia</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($datosExtraidos as $datoExtraido)
+            <tr>
+                {{-- Muestra el nombre completo o un texto alternativo si no coincide la CURP --}}
+                <td>
+                    <span class="font-weight-bold">
+                        {{ $datoExtraido->profesional?->nombre_completo ?? 'No registrado en sistema' }}
+                    </span>
+                </td>
+                <td>{{ $datoExtraido->archivo }}</td>
+                <td>{{ $datoExtraido->tipo }}</td>
+                <td>{{ $datoExtraido->curp }}</td>
+                <td>{{ $datoExtraido->seccion }}</td>
+                <td>{{ $datoExtraido->vigencia }}</td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
     @endif
 
         </div>

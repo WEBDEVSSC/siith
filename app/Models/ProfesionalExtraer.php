@@ -21,4 +21,9 @@ class ProfesionalExtraer extends Model
         'seccion',
         'vigencia',
     ];
+
+    public function profesional()
+    {
+        return $this->belongsTo(Profesional::class, 'curp', 'curp');
+    }
 }
