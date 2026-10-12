@@ -18,7 +18,9 @@ class ProfesionalSessionsController extends Controller
 
     public function sesionesBitacora()
     {
-        $sesionesBitacoras = UserLogin::with('user')->orderBy('logged_in_at', 'desc')->get();
+        $sesionesBitacoras = UserLogin::with('user')
+            ->orderBy('logged_in_at', 'desc')
+            ->paginate(25);
 
         return view('settings.sessions.bitacora-sesiones', compact('sesionesBitacoras'));
     }

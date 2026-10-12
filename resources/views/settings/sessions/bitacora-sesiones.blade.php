@@ -7,7 +7,10 @@
 @section('plugins.Datatables', true)
 
 @section('content_header')
-    <h1><strong>Bitacora</strong> <small>Inicios de Sesión</small> </h1>
+    <h1>
+        <strong>Bitacora</strong>
+        <small class="text-muted font-weight-normal fs-6">| Inicios de Sesión (Últimos 30 registros)</small>
+    </h1>
 @stop
 
 @section('content')
@@ -51,9 +54,10 @@
             </div>
         @else
         {{-- <table id="profesionalesTable" class="table table-bordered"> --}}
-        <table id="profesionalesTable" class="table table-bordered">
+        <table class="table table-bordered">
             <thead>
                 <tr>
+                    <th></th>
                     <th>ID</th>
                     <th>USUARIO</th>
                     <th>IP</th>
@@ -64,6 +68,7 @@
             <tbody>
                 @foreach ($sesionesBitacoras as $sesionBitacora)
                     <tr>
+                        <td>{{ ($sesionesBitacoras->currentPage() - 1) * $sesionesBitacoras->perPage() + $loop->iteration }}</td>
                         <td>{{ $sesionBitacora['id'] }}</td>
                         <td>{{ $sesionBitacora->user->name ?? 'Sin usuario' }}</td>
                         <td>{{ $sesionBitacora['ip_address'] }}</td>
