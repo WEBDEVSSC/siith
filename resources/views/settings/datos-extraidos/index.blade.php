@@ -75,7 +75,7 @@
                 <td>{{ $datoExtraido->tipo }}</td>
                 <td>{{ $datoExtraido->curp }}</td>
                 <td>{{ $datoExtraido->seccion }}</td>
-                <td>{{ $datoExtraido->vigencia }}</td>
+                <td>{{ substr($datoExtraido->vigencia, -4) }}</td>
             </tr>
         @endforeach
     </tbody>
