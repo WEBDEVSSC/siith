@@ -71,13 +71,30 @@
                     <div class="row">
                         <div class="col-md-6">
                             <p><strong>Tipo de movimiento</strong></p>
+
+                            @if(auth()->check() && auth()->user()->role == 'admin')
+
                             <select name="tipo_movimiento" id="tipo_movimiento" class="form-control">
                                 <option value="">[-- Seleccione una opción --]</option>
                                 <option value="1" {{ old('tipo_movimiento') == '1' ? 'selected' : '' }}>Regresa a su unidad de origen</option>
                                 <option value="2" {{ old('tipo_movimiento') == '2' ? 'selected' : '' }}>Comisionado a la unidad</option>
                                 <option value="3" {{ old('tipo_movimiento') == '3' ? 'selected' : '' }}>Movimiento escalafonario</option>
-                                <option value="4" {{ old('tipo_movimiento') == '3' ? 'selected' : '' }}>Personal en formación</option>
+                                <option value="4" {{ old('tipo_movimiento') == '4' ? 'selected' : '' }}>Personal en formación</option>
+                                <option value="5" {{ old('tipo_movimiento') == '5' ? 'selected' : '' }}>Cambio de unidad</option>
                             </select>
+
+                            @else
+
+                            <select name="tipo_movimiento" id="tipo_movimiento" class="form-control">
+                                <option value="">[-- Seleccione una opción --]</option>
+                                <option value="1" {{ old('tipo_movimiento') == '1' ? 'selected' : '' }}>Regresa a su unidad de origen</option>
+                                <option value="2" {{ old('tipo_movimiento') == '2' ? 'selected' : '' }}>Comisionado a la unidad</option>
+                                <option value="3" {{ old('tipo_movimiento') == '3' ? 'selected' : '' }}>Movimiento escalafonario</option>
+                                <option value="4" {{ old('tipo_movimiento') == '4' ? 'selected' : '' }}>Personal en formación</option>
+                            </select>
+                                
+                            @endif
+                            
 
                             @error('tipo_movimiento')
                                 <br><div class="alert alert-danger">{{ $message }}</div>

@@ -238,6 +238,9 @@ class ProfesionalCambioDeUnidadController extends Controller
             case 4:
                 $tipoMovimiento = "PERSONAL EN FORMACION";
                 break;
+            case 5:
+                $tipoMovimiento = "CAMBIO DE UNIDAD";
+                break;
             default:
                 $tipoMovimiento = null;
                 break;
@@ -260,6 +263,9 @@ class ProfesionalCambioDeUnidadController extends Controller
                     break;
                 case 4:
                     $archivoNombre = $profesional->curp . '_PEF_' . $timestamp . '.' . $extension;
+                    break;
+                case 5:
+                    $archivoNombre = $profesional->curp . '_CU_' . $timestamp . '.' . $extension;
                     break;
             }
 
@@ -353,7 +359,6 @@ class ProfesionalCambioDeUnidadController extends Controller
 
         // Catalogo 16 - CESAME
         $buscarOcupacionCecosama = ProfesionalOcupacionCecosama::where('id_profesional',$request->id_profesional)->first()?->delete();
-
 
         // Redireccionamos al perfil del usuario
         return redirect()->route('profesionalShow',$profesional->id)->with('success', 'Cambio de unidad registrada correctamente');

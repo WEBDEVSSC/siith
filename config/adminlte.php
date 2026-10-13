@@ -325,7 +325,7 @@ return [
             'url' => 'admin/profesionales/cambioDeUnidad/findProfesional',
             'icon' => 'fa-solid fa-building-circle-arrow-right',
             'label_color' => 'success',
-            'can' => ['csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino','cecosama','creeSaltillo','criMonclova','criTorreon','criParras','criPiedrasNegras'],
+            'can' => ['admin', 'csuyr', 'hospital', 'ofJurisdiccional', 'criCree', 'samuCrum', 'ofCentral', 'almacen', 'psiParras', 'oncologico', 'cets', 'lesp', 'cesame', 'ceam', 'hospitalNino','cecosama','creeSaltillo','criMonclova','criTorreon','criParras','criPiedrasNegras'],
         ],
         [
             'text' => 'Nuevo registro',

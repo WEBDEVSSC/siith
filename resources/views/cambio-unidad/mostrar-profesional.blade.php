@@ -34,9 +34,16 @@
         </div>
         
     </div>
-    <div class="card-footer">
-          <a class="btn btn-danger btn-sm" href="{{ route('findProfesional') }}"> BUSCAR OTRO PROFESIONAL</a>
-          <a class="btn btn-success btn-sm" href="{{ route('createCambioDeUnidad', $profesional->id) }}"> SELECCIONAR PROFESIONAL</a>
+    <div class="card-footer d-flex justify-content-center">
+        <a class="btn btn-danger btn-sm me-3" href="{{ route('findProfesional') }}">
+            <i class="fas fa-search me-1"></i> BUSCAR OTRO PROFESIONAL
+        </a>
+
+        ...
+
+        <a class="btn btn-success btn-sm" href="{{ route('createCambioDeUnidad', $profesional->id) }}">
+            <i class="fas fa-check me-1"></i> SELECCIONAR PROFESIONAL
+        </a>
     </div>
 </div>
 
