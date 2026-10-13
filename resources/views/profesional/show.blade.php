@@ -1464,7 +1464,7 @@
                 </div>
                 <div class="col-md-3">
                     <p><strong>INSTITUCIÓN EDUCATIVA</strong></p>
-                    {{ $carrera }}
+                    {{ $profesional->areaMedica?->institucion_educativa_label ?? '' }}
                 </div>
                 <div class="col-md-3">
                     <p><strong>AÑO EN CURSO / DURACIÓN</strong></p>
