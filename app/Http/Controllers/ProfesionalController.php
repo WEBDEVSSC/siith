@@ -244,8 +244,20 @@ class ProfesionalController extends Controller
         $sexo = substr($curp, 10, 1);  
         $entidadNacimiento = substr($curp, 11, 2);
 
-        // Formateamos la fecha
-        $fechaFormateada = Carbon::createFromFormat('ymd', $fechaNacimiento)->format('Y-m-d');
+        // Separamos el año, mes y día
+        $anioShort = substr($fechaNacimiento, 0, 2); // '69'
+        $mesDia = substr($fechaNacimiento, 2, 4);     // '0524'
+
+        // Definimos el siglo: Si el año es mayor a un límite (ej. 30), asumimos 19xx, si no 20xx.
+        // (O ajusta la regla según los años de nacimiento esperados en tu sistema)
+        $siglo = ($anioShort > 30) ? '19' : '20'; 
+        $anioCompleto = $siglo . $anioShort; // '1969'
+
+        // Reconstruimos la fecha completa con formato de 4 dígitos para el año
+        $fechaCompleta = $anioCompleto . $mesDia; // '19690524'
+
+        // Formateamos la fecha correctamente
+        $fechaFormateada = Carbon::createFromFormat('Ymd', $fechaCompleta)->format('Y-m-d');
 
         // Consultamos la entidad de nacimiento y la validamos con el catalogo de entidades
         $entidad = Entidad::where('abreviacion',$entidadNacimiento)->first();
@@ -337,8 +349,20 @@ class ProfesionalController extends Controller
         $sexo = substr($curp, 10, 1);  
         $entidadNacimiento = substr($curp, 11, 2);
 
-        // Formateamos la fecha
-        $fechaFormateada = Carbon::createFromFormat('ymd', $fechaNacimiento)->format('Y-m-d');
+        // Separamos el año, mes y día
+        $anioShort = substr($fechaNacimiento, 0, 2); // '69'
+        $mesDia = substr($fechaNacimiento, 2, 4);     // '0524'
+
+        // Definimos el siglo: Si el año es mayor a un límite (ej. 30), asumimos 19xx, si no 20xx.
+        // (O ajusta la regla según los años de nacimiento esperados en tu sistema)
+        $siglo = ($anioShort > 30) ? '19' : '20'; 
+        $anioCompleto = $siglo . $anioShort; // '1969'
+
+        // Reconstruimos la fecha completa con formato de 4 dígitos para el año
+        $fechaCompleta = $anioCompleto . $mesDia; // '19690524'
+
+        // Formateamos la fecha correctamente
+        $fechaFormateada = Carbon::createFromFormat('Ymd', $fechaCompleta)->format('Y-m-d');
 
         // Consultamos la entidad de nacimiento
         $entidad = Entidad::where('abreviacion',$entidadNacimiento)->first();
