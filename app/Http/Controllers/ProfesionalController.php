@@ -8,6 +8,7 @@ use App\Exports\ProfesionalExport;
 use App\Exports\ProfesionalExportBajaTemporal;
 use App\Exports\ProfesionalExportBajaDefinitiva;
 use App\Exports\ProfesionalExportGeneral;
+use App\Exports\ProfesionalExportIne;
 use App\Mail\FelicitacionCumpleanos;
 use App\Models\CatOcupacionEnsenanza;
 use App\Models\CatPaisNacimiento;
@@ -356,7 +357,7 @@ class ProfesionalController extends Controller
         // Definimos el siglo: Si el año es mayor a un límite (ej. 30), asumimos 19xx, si no 20xx.
         // (O ajusta la regla según los años de nacimiento esperados en tu sistema)
         $siglo = ($anioShort > 30) ? '19' : '20'; 
-        $anioCompleto = $siglo . $anioShort; // '1969'
+        $anioCompleto = $siglo . $anioShort;
 
         // Reconstruimos la fecha completa con formato de 4 dígitos para el año
         $fechaCompleta = $anioCompleto . $mesDia; // '19690524'
@@ -2980,5 +2981,10 @@ class ProfesionalController extends Controller
 
         // 📥 Descargar ZIP y eliminarlo después
         return response()->download($zipPath)->deleteFileAfterSend(true);
+    }
+
+    public function exportarExcel()
+    {
+        return Excel::download(new ProfesionalExportIne, 'profesionales_ine.xlsx');
     }
 }

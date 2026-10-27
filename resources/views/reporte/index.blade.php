@@ -199,7 +199,16 @@
         </div>
 
     </div>
-    <div class="col-md-6"></div>
+    <div class="col-md-6">
+
+         @if(Auth::user()->role === 'admin')
+
+         <a href="{{ route('exportarExcel') }}" class="btn btn-primary btn-sm">
+             <i class="fas fa-file-excel"></i> Exportar Excel Salud Pa Delante
+         </a>
+
+         @endif
+    </div>
 </div>
 
 @endif

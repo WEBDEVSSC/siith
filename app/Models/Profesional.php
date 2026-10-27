@@ -217,6 +217,12 @@ class Profesional extends Model
         return $this->hasOne(ProfesionalOcupacionCecosama::class,'id_profesional');
     }
 
+    public function ine()
+    {
+        // hasOne(ModeloRelacionado, foreignKeyEnTablaRelacionada, localKeyEnEstaTabla)
+        return $this->hasOne(ProfesionalIne::class, 'curp', 'curp');
+    }
+
     /** PASES DE SALIDA */
     public function pasesDeSalida()
     {

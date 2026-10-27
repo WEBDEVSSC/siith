@@ -703,6 +703,8 @@ Route::middleware(['auth'])->group(function ()
 
     Route::get('admin/profesionales/reportes/reporteRiesgosEstatal', [ProfesionalController::class, 'reporteRiesgosEstatal'])->name('reporteRiesgosEstatal');
 
+    Route::get('/exportar-ine', [ProfesionalController::class, 'exportarExcel'])->name('exportarExcel');
+
     // Ruta para el envio de correos
     Route::get('admin/profesionales/cumpleanos',[ProfesionalController::class,'enviarFelicitaciones'])->name('enviarFelicitaciones');
 
