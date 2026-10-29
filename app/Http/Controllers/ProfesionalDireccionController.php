@@ -29,9 +29,6 @@ class ProfesionalDireccionController extends Controller
             'numero_interior' => 'nullable|max:120|string',
             'numero_exterior' => 'required|max:120|string',
             'codigo_postal' => 'required|max:120|string',
-            'clave_elector' => 'nullable|max:120|string',
-            'seccion' => 'nullable|digits:4',
-            'vigencia' => 'nullable|digits:4|string',
             'ine' => 'nullable|file|mimes:pdf|max:10000',
             'comprobante_domicilio' => 'nullable|file|mimes:pdf|max:10000',
             'curp' => 'nullable|file|mimes:pdf|max:10000',
@@ -52,10 +49,6 @@ class ProfesionalDireccionController extends Controller
             'codigo_postal.required'   => 'El código postal es obligatorio.',
             'codigo_postal.string'     => 'El código postal debe ser un texto válido.',
             'codigo_postal.max'        => 'El código postal no debe exceder los 120 caracteres.',
-
-            'clave_elector.max'        => 'La clave de elector no debe exceder los 120 caracteres.',
-            'seccion.digits'           => 'La sección debe tener 4 dígitos.',
-            'vigencia.digits'          => 'La vigencia debe tener 4 dígitos.',
 
             'ine.file'                  => 'El archivo debe ser un archivo válido.',
             'ine.mimes'                 => 'El archivo debe ser un PDF.',
@@ -145,10 +138,6 @@ class ProfesionalDireccionController extends Controller
         $direccion->tipo_asentamiento = $codigoPostal->tipo_asentamiento;
         $direccion->zona = $codigoPostal->zona;
 
-        $direccion->clave_elector = $request->clave_elector;
-        $direccion->seccion = $request->seccion;
-        $direccion->vigencia = $request->vigencia;
-
         $direccion->ine = $ruta;
         $direccion->comprobante_domicilio = $rutaComprobanteDomicilio;
         $direccion->curp = $rutaCurp;
@@ -193,9 +182,6 @@ class ProfesionalDireccionController extends Controller
             'numero_interior' => 'nullable|max:120|string',
             'numero_exterior' => 'required|max:120|string',
             'codigo_postal' => 'required|max:120|string',
-            'clave_elector' => 'nullable|max:120|string',
-            'seccion' => 'nullable|digits:4',
-            'vigencia' => 'nullable|digits:4|string',
 
             // Si viene un archivo físico, aplicamos validación de archivo; si viene texto (URL precargada), se ignora
             'ine' => $request->hasFile('ine') ? 'file|mimes:pdf|max:10240' : 'nullable',
@@ -221,14 +207,6 @@ class ProfesionalDireccionController extends Controller
             'codigo_postal.required' => 'El código postal es obligatorio.',
             'codigo_postal.string' => 'El código postal debe ser un texto válido.',
             'codigo_postal.max' => 'El código postal no debe exceder los 120 caracteres.',
-
-            // INE
-            'clave_elector.max' => 'La clave de elector no debe exceder los 120 caracteres.',
-
-            'seccion.digits' => 'La sección debe tener exactamente 4 dígitos.',
-
-            'vigencia.digits' => 'La vigencia debe tener exactamente 4 dígitos.',
-            'vigencia.string' => 'La vigencia debe ser un texto válido.',
 
             'ine.file' => 'El archivo de la INE debe ser un archivo válido.',
             'ine.mimes' => 'El archivo de la INE debe estar en formato PDF.',
@@ -319,10 +297,6 @@ class ProfesionalDireccionController extends Controller
         $direccion->ciudad = $codigoPostal->ciudad;
         $direccion->tipo_asentamiento = $codigoPostal->tipo_asentamiento;
         $direccion->zona = $codigoPostal->zona;
-
-        $direccion->clave_elector = $request->clave_elector;
-        $direccion->seccion = $request->seccion;
-        $direccion->vigencia = $request->vigencia;
 
         $direccion->ine = $ruta;
         $direccion->comprobante_domicilio = $rutaComprobanteDomicilio;

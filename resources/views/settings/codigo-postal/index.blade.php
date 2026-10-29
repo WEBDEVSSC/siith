@@ -67,14 +67,14 @@
                     <tr>
                         <td>{{ $codigoPostal->codigo_postal }}</td>
                         <td>{{ $codigoPostal->colonia }}</td>
-                        <td>{{ $codigoPostal->ciudad }}</td>
+                        <td>{{ $codigoPostal->estado }}</td>
                         <td>{{ $codigoPostal->municipio }}</td>
                         <td>
-                            <a href="{{ route('editCodigos', $codigoPostal->id) }}" class="btn btn-warning btn-sm">
+                            <a href="{{ route('editCodigoPostal', $codigoPostal->id) }}" class="btn btn-warning btn-sm">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </a>
                 
-                            <form action="{{ route('deleteCodigos', $codigoPostal->id) }}" method="POST" style="display:inline;" class="form-eliminar">
+                            <form action="{{ route('deleteCodigoPostal', $codigoPostal->id) }}" method="POST" style="display:inline;" class="form-eliminar">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">

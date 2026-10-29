@@ -71,4 +71,62 @@ class CatalogoCodigoPostalController extends Controller
 
         return redirect()->route('indexCodigoPostal')->with('success', 'Código Postal Registrado Correctamente');
     }
+
+    public function editCodigoPostal($id)
+    {    
+        $codigoPostal = CatCodigoPostal::findOrFail($id);
+        $entidades = Entidad::orderBy('nombre')->get();
+        $municipios = Municipio::where('relacion', $codigoPostal->ciudad)->orderBy('nombre')->get();
+
+        return view('settings.codigo-postal.edit', compact('codigoPostal', 'entidades', 'municipios'));
+    }
+
+    public function updateCodigoPostal(Request $request, $id)
+    {
+        $request->validate([
+            'codigo_postal' => 'required|string|max:10',
+            'colonia'       => 'required|string|max:50',
+            'entidad'     => 'required|string|max:50',
+            'municipio'        => 'required|string|max:50',
+        ],[
+            'codigo_postal.required' => 'El código postal es obligatorio.',
+            'codigo_postal.string'   => 'El código postal debe ser texto.',
+            'codigo_postal.max'      => 'El código postal no debe exceder los 10 caracteres.',
+
+            'colonia.required' => 'La colonia es obligatoria.',
+            'colonia.string'   => 'La colonia debe ser texto.',
+            'colonia.max'      => 'La colonia no debe exceder los 50 caracteres.',
+
+            'entidad.required' => 'La entidad federativa es obligatoria.',
+            'entidad.string'   => 'La entidad debe ser texto.',
+            'entidad.max'      => 'La entidad no debe exceder los 50 caracteres.',
+
+            'municipio.required' => 'El municipio es obligatorio.',
+            'municipio.string'   => 'El municipio debe ser texto.',
+            'municipio.max'      => 'El municipio no debe exceder los 50 caracteres.',
+        ]);
+
+        $codigoPostal = CatCodigoPostal::findOrFail($id);
+
+        $entidad = Entidad::where('nombre', $request->entidad)->first();
+        $municipio = Municipio::where('nombre', $request->municipio)->first();
+
+        $codigoPostal->codigo_postal = $request->codigo_postal; 
+        $codigoPostal->colonia = $request->colonia; 
+        $codigoPostal->municipio = $municipio->nombre; 
+        $codigoPostal->ciudad = $entidad->nombre; 
+
+        $codigoPostal->save();
+
+        return redirect()->route('indexCodigoPostal')->with('success', 'Código Postal Actualizado Correctamente');
+    }
+
+    public function deleteCodigoPostal($id)
+    {
+        $codigoPostal = CatCodigoPostal::findOrFail($id);
+        $codigoPostal->delete();
+
+        return redirect()->route('indexCodigoPostal')->with('success', 'Código Postal Eliminado Correctamente');
+    }
+    
 }

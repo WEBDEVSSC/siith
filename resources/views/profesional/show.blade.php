@@ -230,65 +230,56 @@
 
     @if (Auth::user()->role == 'admin' || Auth::user()->role == 'csuyr' || Auth::user()->role == 'hospital'|| Auth::user()->role == 'ofJurisdiccional'|| Auth::user()->role == 'criCree'|| Auth::user()->role == 'samuCrum'|| Auth::user()->role == 'ofCentral'|| Auth::user()->role == 'almacen'|| Auth::user()->role == 'cets'|| Auth::user()->role == 'lesp'|| Auth::user()->role == 'oncologico'|| Auth::user()->role == 'cesame'|| Auth::user()->role == 'psiParras'|| Auth::user()->role == 'ceam'|| Auth::user()->role == 'hospitalNino'|| Auth::user()->role == 'issreei' || Auth::user()->role == 'cecosama' || Auth::user()->role == 'creeSaltillo' || Auth::user()->role == 'criMonclova' || Auth::user()->role == 'criTorreon' || Auth::user()->role == 'criParras' || Auth::user()->role == 'criPiedrasNegras')
 
-    <div class="card card-info">
+    @php
+    $documentos = [
+        'INE' => $profesional->direccion?->ine,
+        'COMPROBANTE DE DOMICILIO' => $profesional->direccion?->comprobante_domicilio,
+        'RFC' => $profesional->direccion?->rfc,
+        'CURP' => $profesional->direccion?->curp,
+    ];
+@endphp
 
+<div class="card card-info">
     <div class="card-header">
         <h3 class="card-title text-white m-0">
             <small>
-                <i class="fa fa-home"></i>
+                <i class="fas fa-id-card"></i>
                 <strong>DOCUMENTOS DE DOMICILIO E IDENTIFICACIÓN PERSONAL</strong>
             </small>
         </h3>
     </div>
 
     <div class="card-body">
-            <div class="row">
-                <div class="col-md-3">
-                    <p><strong>CALLE</strong></p>
-                    {{$profesional->direccion?->calle}} 
-                </div>
-
-                <div class="col-md-3">
-                    <p><strong>NÚMERO INTERIOR</strong></p>
-                    {{$profesional->direccion?->numero_interior}} 
-                </div>
-
-                <div class="col-md-3">
-                    <p><strong>NÚMERO EXTERIOR</strong></p>
-                    {{$profesional->direccion?->numero_exterior}} 
-                </div>
-
-                <div class="col-md-3">
-                    <p><strong>CP | COLONIA</strong></p>
-                    {{$profesional->direccion?->codigo_postal}} - {{$profesional->direccion?->colonia}} 
-                </div>
+        {{-- Información de Dirección --}}
+        <div class="row">
+            <div class="col-md-3">
+                <p class="mb-1"><strong>CALLE</strong></p>
+                <span>{{ $profesional->direccion?->calle ?? 'N/A' }}</span>
             </div>
 
-            @if (Auth::user()->role == 'admin')
-
-            <div class="row mt-3">
-                <div class="col-md-3">
-                    <p><strong>CLAVE DE ELECTOR</strong></p>
-                    {{$profesional->direccion?->clave_elector}} 
-                </div>
-
-                <div class="col-md-3">
-                    <p><strong>SECCIÓN</strong></p>
-                    {{$profesional->direccion?->seccion}} 
-                </div>
-
-                <div class="col-md-3">
-                    <p><strong>VIGENCIA</strong></p>
-                    {{$profesional->direccion?->vigencia}} 
-                </div>
+            <div class="col-md-3">
+                <p class="mb-1"><strong>NÚMERO INTERIOR</strong></p>
+                <span>{{ $profesional->direccion?->numero_interior ?? 'N/A' }}</span>
             </div>
 
-            @endif
-            
+            <div class="col-md-3">
+                <p class="mb-1"><strong>NÚMERO EXTERIOR</strong></p>
+                <span>{{ $profesional->direccion?->numero_exterior ?? 'N/A' }}</span>
+            </div>
 
-            
-            <div class="row mt-3">
-            <table class="table table-striped">
+            <div class="col-md-3">
+                <p class="mb-1"><strong>CP | COLONIA</strong></p>
+                <span>
+                    {{ $profesional->direccion?->codigo_postal }} - {{ $profesional->direccion?->colonia }}
+                </span>
+            </div>
+        </div>
+
+        <br>
+
+        {{-- Tabla de Documentos --}}
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle mb-0">
                 <thead>
                     <tr>
                         <th width="50%">DOCUMENTO</th>
@@ -296,50 +287,89 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>INE</td>
-                        <td>
-                            @if($profesional->direccion?->ine)
-                                <a href="{{ asset('storage/'.$profesional->direccion->ine) }}"
-                                target="_blank"
-                                class="btn btn-info btn-sm">
-                                    <i class="fas fa-file-pdf"></i> VER DOCUMENTO
-                                </a>
-                            @else
-                                <span class="badge badge-secondary">NO DISPONIBLE</span>
-                            @endif
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>COMPROBANTE DE DOMICILIO</td>
-                        <td>
-                            @if($profesional->direccion?->comprobante_domicilio)
-                                <a href="{{ asset('storage/'.$profesional->direccion->comprobante_domicilio) }}"
-                                target="_blank"
-                                class="btn btn-info btn-sm">
-                                    <i class="fas fa-file-pdf"></i> VER DOCUMENTO
-                                </a>
-                            @else
-                                <span class="badge badge-secondary">NO DISPONIBLE</span>
-                            @endif
-                        </td>
-                    </tr>
+                    @foreach($documentos as $nombre => $ruta)
+                        <tr>
+                            <td class="font-weight-bold">{{ $nombre }}</td>
+                            <td>
+                                @if($ruta)
+                                    <a href="{{ asset('storage/'.$ruta) }}" 
+                                       target="_blank" 
+                                       class="btn btn-info btn-sm">
+                                        <i class="fas fa-file-pdf"></i> VER DOCUMENTO
+                                    </a>
+                                @else
+                                    <span class="badge badge-secondary">NO DISPONIBLE</span>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
-            </div>
+        </div>
+    </div>
 
+    <div class="card-footer d-flex justify-content-end">
+        @if ($profesional->direccion?->mdl_direccion == 1)
+            <a href="{{ route('editDireccion', $profesional->id) }}" class="btn btn-info btn-sm">
+                <i class="fa-solid fa-pen"></i> EDITAR DATOS
+            </a>
+        @elseif ($profesional->direccion?->mdl_direccion == 0)
+            <a href="{{ route('createDireccion', $profesional->id) }}" class="btn btn-info btn-sm">
+                <i class="fa-solid fa-pen"></i> REGISTRAR DATOS
+            </a>
+        @endif
+    </div>
+</div>
+    @endif
+
+    <!-- -- -->
+
+    @if (Auth::user()->role == 'admin')
+        <div class="card card-info">
+
+    <div class="card-header">
+        <h3 class="card-title text-white m-0">
+            <small>
+                <i class="fa fa-id-card"></i>
+                <strong>IDENTIFICACIÓN</strong>
+            </small>
+        </h3>
+    </div>
+
+    <div class="card-body">
+
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <p><strong>CLAVE DE ELECTOR</strong></p>
+                    {{$profesional->ine?->clave_elector}} 
+                </div>
+
+                <div class="col-md-3">
+                    <p><strong>SECCIÓN</strong></p>
+                    {{$profesional->ine?->seccion}} 
+                </div>
+
+                <div class="col-md-3">
+                    <p><strong>VIGENCIA</strong></p>
+                    {{$profesional->ine?->vigencia}} 
+                </div>
+
+                <div class="col-md-3">
+                    <p><strong>DISTRITOS</strong></p>
+                    Local : {{$profesional->ine?->dl}} - Federal : {{$profesional->ine?->df}}
+                </div>
+            </div>
 
         </div>
 
         <div class="card-footer d-flex justify-content-end">
 
-            @if ($profesional->direccion?->mdl_direccion == 1)
-                <a href="{{ route('editDireccion', $profesional->id) }}" class="btn btn-info btn-sm">
+            @if ($profesional->ine?->mdl_status == 1)
+                <a href="{{ route('editIne', $profesional->id) }}" class="btn btn-info btn-sm">
                     <i class="fa-solid fa-pen"></i> EDITAR DATOS
                 </a>
-            @elseif ($profesional->direccion?->mdl_direccion == 0)
-                <a href="{{ route('createDireccion', $profesional->id) }}" class="btn btn-info btn-sm">
+            @elseif ($profesional->ine?->mdl_status == 0)
+                <a href="{{ route('createIne', $profesional->id) }}" class="btn btn-info btn-sm">
                     <i class="fa-solid fa-pen"></i> REGISTRAR DATOS
                 </a>
             @endif
@@ -347,9 +377,7 @@
         </div>
 
     </div>
-
     @endif
-    <!-- -- -->
 
     <div class="card card-info">
 

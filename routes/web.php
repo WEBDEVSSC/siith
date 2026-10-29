@@ -25,6 +25,7 @@ use App\Http\Controllers\CatalogoOcupacionPsiParrasController;
 use App\Http\Controllers\CatalogoOcupacionSamuCrumController;
 use App\Http\Controllers\CatalogosController;
 use App\Http\Controllers\CatalogoTituloController;
+use App\Http\Controllers\ProfesionalIneController;
 use App\Http\Controllers\GitHubController;
 use App\Http\Controllers\ProfesionalAreaMedicaController;
 use App\Http\Controllers\ProfesionalCambioDeUnidadController;
@@ -681,6 +682,16 @@ Route::middleware(['auth'])->group(function ()
       /**RUTA PARA ELIMINAR REGISTROS DE LA BITACORA DE OCUPACIONES */
 
       Route::delete('admin/profesionales/ocupaciones/deleteOcupacionBitacora/{id}', [ProfesionalOcupacionController::class, 'deleteOcupacionBitacora'])->name('deleteOcupacionBitacora');
+
+      /** RUTAS PARA EL MODULO DE INE */
+
+      Route::get('admin/profesionales/ine/createIne/{id}', [ProfesionalIneController::class, 'createIne'])->name('createIne');
+
+      Route::post('admin/profesionales/ine/storeIne', [ProfesionalIneController::class, 'storeIne'])->name('storeIne');
+
+      Route::get('admin/profesionales/ine/editIne/{id}', [ProfesionalIneController::class, 'editIne'])->name('editIne');
+
+      Route::put('admin/profesionales/ine/updateIne/{id}', [ProfesionalIneController::class, 'updateIne'])->name('updateIne');
 
     /**
      * 

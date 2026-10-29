@@ -220,7 +220,7 @@ class Profesional extends Model
     public function ine()
     {
         // hasOne(ModeloRelacionado, foreignKeyEnTablaRelacionada, localKeyEnEstaTabla)
-        return $this->hasOne(ProfesionalIne::class, 'curp', 'curp');
+        return $this->hasOne(ProfesionalIne::class, 'id_profesional');
     }
 
     /** PASES DE SALIDA */
