@@ -693,6 +693,8 @@ Route::middleware(['auth'])->group(function ()
 
       Route::put('admin/profesionales/ine/updateIne/{id}', [ProfesionalIneController::class, 'updateIne'])->name('updateIne');
 
+      Route::get('admin/settings/datos-extraidos/ine',[ProfesionalIneController::class, 'datosExtraidos'])->name('datosExtraidos');
+
     /**
      * 
      * 
@@ -1418,7 +1420,7 @@ Route::middleware(['auth'])->group(function ()
 
     Route::get('admin/settings/sessions/bitacora',[ProfesionalSessionsController::class, 'sesionesBitacora'])->name('sesionesBitacora');
 
-    Route::get('admin/settings/datos-extraidos/ine',[SystemSettingsController::class, 'datosExtraidos'])->name('datosExtraidos');
+    
 
     /**
      * 

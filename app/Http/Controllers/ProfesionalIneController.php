@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profesional;
+use App\Models\ProfesionalExtraer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProfesionalIneController extends Controller
 {
@@ -35,5 +37,21 @@ class ProfesionalIneController extends Controller
 
         return redirect()->route('profesional.show', $profesional->id)
                          ->with('success', 'Datos de INE registrados correctamente.');
+    }
+
+    public function datosExtraidos()
+    {
+        $datosExtraidos = ProfesionalExtraer::leftJoin('profesionales_datos_generales', function($join) {
+                $join->on(DB::raw('SUBSTRING(profesionales_extraer.archivo, 1, 18)'), '=', 'profesionales_datos_generales.curp');
+            })
+            ->select(
+                'profesionales_extraer.*', 
+                'profesionales_datos_generales.nombre', 
+                'profesionales_datos_generales.apellido_paterno', 
+                'profesionales_datos_generales.apellido_materno'
+            )
+            ->get();
+
+        return view('settings.datos-extraidos.index', compact('datosExtraidos'));
     }
 }
