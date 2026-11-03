@@ -2,49 +2,48 @@
 
 namespace App\Exports;
 
-use App\Models\ProfesionalIne;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use App\Models\Profesional;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class ProfesionalExportIne implements FromCollection
+class ProfesionalExportIne implements FromView, WithStyles
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection()
+    public function view(): View
     {
-        // Cargamos los datos junto con su relación por si deseas mostrar algo del profesional
-        return ProfesionalIne::with('profesional')->get();
+        // Obtenemos los datos con los filtros y relaciones necesarios
+        $profesionales = Profesional::with(['puesto', 'ine'])
+            ->whereHas('puesto', function ($query) {
+                $query->whereIn('vigencia', ['ACTIVO', 'BAJA TEMPORAL']);
+            })
+            ->get();
+
+        // Retornamos la vista pasándole la variable (la vista ya no necesita estilos en línea)
+        return view('export.profesionales_ine', [
+            'profesionales' => $profesionales
+        ]);
     }
 
     /**
-     * Define los encabezados de las columnas en el Excel.
+     * Aplica estilos a la hoja de cálculo
      */
-    public function headings(): array
+    public function styles(Worksheet $sheet)
     {
         return [
-            'ID Registro',
-            'ID Profesional',
-            'Clave de Elector',
-            'Sección',
-            'Vigencia',
-            'DL',
-            'DF',
-        ];
-    }
-
-    /**
-     * Mapea cada fila para darle formato a las columnas.
-     */
-    public function map($row): array
-    {
-        return [
-            $row->id,
-            $row->sid_profesional,
-            $row->clave_elector,
-            $row->seccion,
-            $row->vigencia,
-            $row->dl,
-            $row->df,
+            // Aplica estilos a la Fila 1 (Encabezados)
+            1 => [
+                'font' => [
+                    'bold' => true,
+                    'color' => ['argb' => 'FFFFFF'], // Texto blanco
+                ],
+                'fill' => [
+                    'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                    'startColor' => [
+                        'argb' => 'B19CD9', // Color de fondo (Azul oscuro HEX sin el #)
+                    ],
+                ],
+            ],
         ];
     }
 }

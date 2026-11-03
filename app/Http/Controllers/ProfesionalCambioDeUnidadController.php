@@ -463,6 +463,7 @@ class ProfesionalCambioDeUnidadController extends Controller
             'tipo_contrato' => 'required',
             'fecha_ingreso' => 'required|date_format:Y-m-d',
             'vigencia_motivo' => 'required',
+            ''
         ],[
             'id_profesional.required'    => 'El profesional es obligatorio.',
             'clues_nomina.required'      => 'Debe seleccionar la CLUES de nómina.',

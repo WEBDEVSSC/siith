@@ -1944,81 +1944,16 @@
                     </div>
 
                     <div class="col-md-3">
-                            <p><strong>Limpiar municipio</strong></p>
-                            <select name="limpiar_municipio" class="form-control">
-                                <option value="">-- Selecciona una opción --</option>
-                                <option value="SI">SI</option>
-                            </select>
-                        </div>
-
-                    {{-- 
-
-                    <div class="col-md-3">
-                        <p><strong>Pais Nacimiento</strong></p>
-                        <select name="pais_nacimiento" class="form-control">
-                            <option value="">Selecciona un país</option>
-
-                            @foreach ($paisesNacimiento as $pais)
-                                <option value="{{ $pais->pais }}"
-                                    {{ old('pais_nacimiento', $profesional->pais_nacimiento) == $pais->pais ? 'selected' : '' }}>
-                                    {{ $pais->pais }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="col-md-3">
-                        <p><strong>Nacionalidad</strong></p>
-                        <select name="nacionalidad" class="form-control">
+                        <p><strong>Limpiar municipio</strong></p>
+                        <select name="limpiar_municipio" class="form-control">
                             <option value="">-- Selecciona una opción --</option>
-                            <option value="MEXICANA" {{ old('nacionalidad', $profesional->nacionalidad) == 'MEXICANA' ? 'selected' : '' }}>MEXICANA</option>
-                            <option value="EXTRANJERA" {{ old('nacionalidad', $profesional->nacionalidad) == 'EXTRANJERA' ? 'selected' : '' }}>EXTRANJERA</option>
+                            <option value="SI">SI</option>
                         </select>
                     </div>
 
-                    <div class="col-md-3">
-                        <p><strong>Entidad Nacimiento</strong></p>
-                        <select name="entidad_nacimiento" class="form-control">
-                            <option value="">-- Selecciona una opcion --</option>
 
-                            @foreach ($entidadesNacimiento as $entidadNacimiento)
-                                <option value="{{ $entidadNacimiento->nombre }}"
-                                    {{ old('pais_nacimiento', $profesional->entidad_nacimiento) == $entidadNacimiento->nombre ? 'selected' : '' }}>
-                                    {{ $entidadNacimiento->nombre }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>--}}
-
-                    
-
-                    </div>
-                    
-                    <div class="row mt-3">
-                        {{--
-                        <div class="col-md-3">
-                        <p><strong>Municipio Nacimiento</strong></p>
-                        <select name="municipio_nacimiento" class="form-control">
-                            <option value="">-- Selecciona una opcion --</option>
-
-                            @foreach ($municipiosNacimiento as $municipioNacimiento)
-                                <option value="{{ $municipioNacimiento->nombre }}"
-                                    {{ old('municipio_nacimiento', $profesional->municipio_nacimiento) == $municipioNacimiento->nombre ? 'selected' : '' }}>
-                                    {{ $municipioNacimiento->nombre }}
-                                </option>
-                            @endforeach
-                        </select>
-
-                        </div>
-
-                        --}}
-
-                        
-
-                    </div>
-
-                
-                    
+                </div>
+ 
 
                 </div>
                 <div class="card-footer d-flex justify-content-end">
