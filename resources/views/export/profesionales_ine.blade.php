@@ -45,7 +45,13 @@
         @foreach($profesionales as $row)
             <tr>
                 <td>{{ $row->id }}</td>
-                <td></td>
+
+                @if(empty($row->credencializacion?->fotografia))
+                    <td>NO</td>
+                @else
+                    <td>SI</td>
+                @endif
+
                 @switch($row->puesto->clues_adscripcion_tipo ?? null)
                         {{-- CENTROS DE SALUD URBANOS Y RURALES --}}
                         @case(1)
