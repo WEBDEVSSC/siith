@@ -13,6 +13,8 @@ class ProfesionalExportIne implements FromView, WithStyles, ShouldAutoSize
 {
     public function view(): View
     {
+        ini_set('memory_limit', '512M');
+        
         // Cargamos todas las relaciones requeridas por el switch de la vista para evitar consultas N+1
         $profesionales = Profesional::with([
             'puesto',
