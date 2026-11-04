@@ -6,20 +6,39 @@ use App\Models\Profesional;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithStyles;
+use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class ProfesionalExportIne implements FromView, WithStyles
+class ProfesionalExportIne implements FromView, WithStyles, ShouldAutoSize
 {
     public function view(): View
     {
-        // Obtenemos los datos con los filtros y relaciones necesarios
-        $profesionales = Profesional::with(['puesto', 'ine'])
-            ->whereHas('puesto', function ($query) {
-                $query->whereIn('vigencia', ['ACTIVO', 'BAJA TEMPORAL']);
-            })
-            ->get();
+        // Cargamos todas las relaciones requeridas por el switch de la vista para evitar consultas N+1
+        $profesionales = Profesional::with([
+            'puesto',
+            'ine',
+            'ocupacionCentroSalud',
+            'ocupacionHospital',
+            'ocupacionOfJurisidccion',
+            'ocupacionCriCree',
+            'ocupacionSamuCrum',
+            'ocupacionOficinaCentral',
+            'ocupacionAlmacen',
+            'ocupacionCetsLesp',
+            'ocupacionCors',
+            'ocupacionIssreei',
+            'ocupacionCesame',
+            'ocupacionPsiParras',
+            'ocupacionCeam',
+            'ocupacionHospitalNino',
+            'ocupacionEnsenanza',
+            'ocupacionCecosama',
+        ])
+        ->whereHas('puesto', function ($query) {
+            $query->whereIn('vigencia', ['ACTIVO', 'BAJA TEMPORAL']);
+        })
+        ->get();
 
-        // Retornamos la vista pasándole la variable (la vista ya no necesita estilos en línea)
         return view('export.profesionales_ine', [
             'profesionales' => $profesionales
         ]);
@@ -40,7 +59,7 @@ class ProfesionalExportIne implements FromView, WithStyles
                 'fill' => [
                     'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
                     'startColor' => [
-                        'argb' => 'B19CD9', // Color de fondo (Azul oscuro HEX sin el #)
+                        'argb' => 'B19CD9', // Lila / Púrpura pastel
                     ],
                 ],
             ],

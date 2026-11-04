@@ -223,6 +223,14 @@ class Profesional extends Model
         return $this->hasOne(ProfesionalIne::class, 'id_profesional');
     }
 
+    public function extraido()
+    {
+        // primer parámetro: Modelo relacionado
+        // segundo parámetro: foreign_key en la tabla 'profesionales_extraer'
+        // tercer parámetro: local_key en la tabla 'profesionales_datos_generales'
+        return $this->hasOne(ProfesionalExtraer::class, 'curp', 'curp');
+    }
+
     /** PASES DE SALIDA */
     public function pasesDeSalida()
     {

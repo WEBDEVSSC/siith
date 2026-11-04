@@ -23,7 +23,7 @@ class ProfesionalExtraer extends Model
         'vigencia',
     ];
 
-    public function profesional()
+    /*public function profesional()
     {
         // Compara los primeros 18 caracteres de 'archivo' (en profesional_extraers) con 'curp' (en profesionales_datos_generales)
             return $this->belongsTo(Profesional::class, 'curp', 'curp') // Nota: el segundo parámetro es auxiliar, la magia ocurre abajo
@@ -32,14 +32,22 @@ class ProfesionalExtraer extends Model
                             '=', 
                             'profesionales_datos_generales.curp'
                         );
+    }*/
+
+    public function profesional()
+    {
+        // primer parámetro: Modelo relacionado
+        // segundo parámetro: foreign_key en la tabla 'profesionales_extraer'
+        // tercer parámetro: owner_key en la tabla 'profesionales_datos_generales'
+        return $this->belongsTo(Profesional::class, 'curp', 'curp');
     }
 
     public function getNombreCompletoAttribute()
-{
-    if (!$this->nombre) {
-        return '';
+    {
+        if (!$this->nombre) {
+            return '';
+        }
+        
+        return trim("{$this->nombre} {$this->apellido_paterno} {$this->apellido_materno}");
     }
-    
-    return trim("{$this->nombre} {$this->apellido_paterno} {$this->apellido_materno}");
-}
 }
