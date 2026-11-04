@@ -328,6 +328,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
                             <td>{{ $row->ocupacionCecosama->ocupacion ?? '' }}</td>
                             
                         @break
