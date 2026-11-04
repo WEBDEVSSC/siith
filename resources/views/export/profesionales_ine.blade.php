@@ -311,6 +311,7 @@
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
                             <td>{{ $row->ocupacionEnsenanza->ocupacion ?? '' }}</td>
                             
                         @break
