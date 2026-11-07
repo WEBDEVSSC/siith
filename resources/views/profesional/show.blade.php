@@ -798,46 +798,46 @@
         <div class="card-body">
 
             <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>CATALOGO</th>
-                        <th>OCUPACIÓN</th>
-                        <th>FECHA DE ACTUALIZACIÓN</th>
-                        <th>AUTOR</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($bitacotaOcupacion as $bitacora)
-                        <tr>
-                            <td>{{ $bitacora->catalogo }}</td>
-                            <td>{{ $bitacora->ocupacion_anterior }}</td>
-                            <td>{{ $bitacora->created_at->format('d-m-Y H:i:s') }}</td>
-                            <td>{{ $bitacora->capturista_label }}</td>
-                            <td>
-                                @if (Auth::user()->role == 'admin')
-                                    <form action="{{ route('deleteOcupacionBitacora', $bitacora->id) }}" 
-                                        method="POST" 
-                                        class="formEliminar d-inline">
-
-                                        @csrf
-                                        @method('DELETE')
-
-                                        <button type="submit" 
-                                                class="btn btn-danger btn-sm"
-                                                data-toggle="tooltip"
-                                                title="ELIMINAR">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-
-                                    </form>
-                                @endif
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-
+    <thead>
+        <tr>
+            <th>CATALOGO</th>
+            <th>OCUPACIÓN</th>
+            <th>FECHA DE ACTUALIZACIÓN</th>
+            <th>AUTOR</th>
+            @if (Auth::user()->role == 'admin')
+                <th class="text-center">ACCIONES</th>
+            @else
+                <th></th>
+            @endif
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($bitacotaOcupacion as $bitacora)
+            <tr>
+                <td>{{ $bitacora->catalogo }}</td>
+                <td>{{ $bitacora->ocupacion_anterior }}</td>
+                <td>{{ optional($bitacora->created_at)->format('d-m-Y H:i:s') ?? 'Sin fecha' }}</td>
+                <td>{{ $bitacora->capturista_label }}</td>
+                <td>
+                    @if (Auth::user()->role == 'admin')
+                        <form action="{{ route('deleteOcupacionBitacora', $bitacora->id) }}" 
+                              method="POST" 
+                              class="formEliminar d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" 
+                                    class="btn btn-danger btn-sm"
+                                    data-toggle="tooltip"
+                                    title="ELIMINAR">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+                    @endif
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
         </div>
         <div class="card-footer d-flex justify-content-end"></div>
     </div>
