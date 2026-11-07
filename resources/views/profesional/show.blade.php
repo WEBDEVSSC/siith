@@ -1004,7 +1004,7 @@
     </div>
 
     <!-- -- -->
-
+<div class="table-responsive">
     <div class="card card-info">
 
     <div class="card-header">
@@ -1064,10 +1064,11 @@
     
         </div>
     </div>
+</div>
     <!-- -- -->
 
     <!-- -- -->
-
+<div class="table-responsive">
     <div class="card card-info">
 
     <div class="card-header">
@@ -1140,7 +1141,7 @@
 
         </div>
     </div>
-
+</div>
     <!-- -- -->
 
     
@@ -1291,7 +1292,7 @@
     <!-- --------------------------------------------------------------- -->
 
     <!-- --------------------------------------------------------------- -->
-
+<div class="table-responsive">
     <div class="card card-info">
 
     <div class="card-header">
@@ -1471,6 +1472,8 @@
         </div>
     </div>
 
+</div>
+
     <!-- --------------------------------------------------------------- -->
 
     <div class="card card-info">
@@ -1636,6 +1639,8 @@
 
             <!-- -------------------------------------------------------- -->
 
+            <div class="table-responsive">
+
             <div class="row mt-3">
                 <div class="col-md-12">
                     <table class="table table-striped">
@@ -1681,6 +1686,8 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+
             </div>
 
         </div>
